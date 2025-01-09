@@ -381,6 +381,13 @@
       "https://www.werra-rundschau.de/hessen/rssfeed.rdf"
     ]
   },
+  "Israel (English)": {
+    "feeds": [
+      "https://www.jpost.com/Rss",
+      "https://www.israelnationalnews.com/rss",
+      "https://www.haaretz.com/srv/israel-news-rss"
+    ]
+  },
   "Italy": {
     "feeds": [
       "https://www.ilpost.it/italia/feed/",
@@ -448,6 +455,15 @@
       "https://fetchrss.com/rss/6736cbf627f3f93f450b28c36736cbe54fcaddddfd00cdc2.xml",
       "https://news.google.com/rss?hl=it-IT&gl=IT&ceid=IT:it",
       "https://news.google.com/rss/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNRE55YW1vU0FtbDBLQUFQAQ?hl=it&gl=IT&ceid=IT%3Ait"
+    ]
+  },
+  "Japan (English)": {
+    "feeds": [
+      "https://www.japantimes.co.jp/feed/",
+      "https://japantoday.com/feed",
+      "https://asia.nikkei.com/rss/feed/",
+      "https://soranews24.com/feed/",
+      "https://english.kyodonews.net/rss/kyodonews-fzone.xml"
     ]
   },
   "Linux & OSS": {
