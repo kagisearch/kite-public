@@ -780,7 +780,12 @@
                             animation: 150,
                             ghostClass: "bg-blue-600",
                             swapThreshold: 0.5,
+                            onStart: (evt) => {
+                                enabledContainer.classList.add('is-dragging');
+                            },
                             onEnd: (evt) => {
+                                enabledContainer.classList.remove('is-dragging');
+
                                 const newEnabledOrder = Array.from(evt.to.children)
                                     .map(el => el.dataset.category)
                                     .filter(Boolean);
@@ -801,11 +806,17 @@
                         
                         function createCategoryElement(categoryName, isEnabled) {
                             const div = document.createElement('div');
-                            div.className = `px-4 py-3 rounded-md text-sm cursor-pointer font-medium flex items-center justify-center min-h-[48px] ${
-                            isEnabled ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-600'
+                            div.className = `px-6 py-3 rounded-lg text-sm cursor-pointer font-medium inline-flex items-center whitespace-nowrap ${
+                                isEnabled 
+                                    ? 'bg-blue-500 text-white shadow-sm [.is-dragging_&]:bg-blue-500 [&.sortable-chosen]:!bg-blue-600 hover:bg-blue-600' 
+                                    : 'bg-gray-100 dark:bg-gray-200 text-gray-700 dark:text-gray-800 hover:bg-gray-200 dark:hover:bg-gray-300'
                             }`;
                             div.dataset.category = categoryName;
 
+                            // Create inner span for text
+                            const span = document.createElement('span');
+                            span.textContent = categoryName === 'OnThisDay' ? 'Today in History' : categoryName;
+                            div.appendChild(span);
 
                             // Use pointer workaround instead of click to avoid mobile browser issues
                             let startTime = 0;
@@ -820,9 +831,6 @@
                                 }
                             });
 
-                                
-                            const displayName = categoryName === 'OnThisDay' ? 'Today in History' : categoryName;
-                            div.innerHTML = `<span class='text-sm font-medium'>${displayName}</span>`;
                             return div;
                         }
 
@@ -2118,14 +2126,14 @@
                         <div class="flex flex-col space-y-2">
                             <p class="text-xs text-gray-500 dark:text-gray-400">Tap to toggle. Drag enabled categories to reorder.</p>
 
-                            <!-- Enabled categories grid -->
-                            <div x-ref="enabledCategories" class="grid grid-cols-3 gap-3 mb-4"></div>
+                            <!-- Enabled categories container -->
+                            <div x-ref="enabledCategories" class="flex flex-wrap gap-2 mb-4"></div>
 
                             <!-- Separator -->
                             <div class="border-t border-gray-200 dark:border-gray-700 my-4"></div>
 
-                            <!-- Disabled categories grid -->
-                            <div x-ref="disabledCategories" class="grid grid-cols-3 gap-3"></div>
+                            <!-- Disabled categories container -->
+                            <div x-ref="disabledCategories" class="flex flex-wrap gap-2"></div>
 
                             <!-- Contribute link -->
                             <div class="flex justify-center mt-4">
