@@ -467,8 +467,12 @@
       "https://www.nytimes.com/svc/collections/v1/publish/http://www.nytimes.com/topic/destination/japan/rss.xml",
       "https://www.nippon.com/en/rss-all/",
       "https://newsonjapan.com/rss/top.xml",
+      "https://newsonjapan.com/html/newsdesk/Society_News/rss/index.xml",
       "https://newsonjapan.com/html/newsdesk/Business_News/rss/index.xml",
       "https://newsonjapan.com/html/newsdesk/Politics_News/rss/index.xml",
+      "https://newsonjapan.com/html/newsdesk/Education_News/rss/index.xml",
+      "https://newsonjapan.com/html/newsdesk/Education_News/rss/index.xml",
+      "https://newsonjapan.com/html/newsdesk/Technology_News/rss/index.xml",
       "https://mainichi.jp/rss/etc/english_latest.rss",
       "https://blog.gaijinpot.com/feed/",
       "https://livejapan.com/rss/article_latest_en.xml",
@@ -478,7 +482,9 @@
       "https://japan-forward.com/feed/",
       "https://moderntokyotimes.com/feed/",
       "https://www.japannakama.co.uk/feed/",
-      "https://www.tofugu.com/feed.xml"
+      "https://www.tofugu.com/feed.xml",
+      "https://www.reddit.com/r/japan.rss",
+      "https://www.reddit.com/r/japannews.rss"
    ]
   },
   "Linux & OSS": {
