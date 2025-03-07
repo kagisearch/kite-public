@@ -2025,7 +2025,7 @@
                         </div>
                     </template>
                     <template x-if="currentCategory !== 'OnThisDay'">
-                        <template x-for="(story, index) in stories" :key="story.cluster_number">
+                        <template x-for="(story, index) in stories" :key="story.category + story.cluster_number">
                             <article
                                 :id="'story-' + index"
                                 role="article"
