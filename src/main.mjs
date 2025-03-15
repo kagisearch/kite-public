@@ -131,7 +131,7 @@ document.addEventListener("alpine:init", () => {
     async processSource($event) {
       if (!mediaData?.lookup) {
         console.log("Media data not yet loaded, fetching...");
-        const response = await fetch("{{ static_path }}/media_data.json");
+        const response = await fetch(`${import.meta.env.VITE_STATIC_PATH}/media_data.json`);
         const data = await response.json();
         const lookup = {};
         data.forEach((item) => {
