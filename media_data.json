@@ -2706,5 +2706,13 @@
     "description": "Omroep Brabant is the regional public broadcaster of the province of North Brabant that provides radio, television, and online news.",
     "owner": "Omroep Brabant Organisatie",
     "typology": "State Funded Media"
+  },
+  {
+    "country": "Spain",
+    "organization": "El Salto",
+    "domains": ["elsaltodiario.com"],
+    "description": "El Salto is an independent, subscription funded newspaper founded in 2017. Its online version works as daily newspaper covering in Spanish local and international events, investigation and debates.",
+    "owner": "Independent",
+    "typology": "Private Media"
   }
 ]
