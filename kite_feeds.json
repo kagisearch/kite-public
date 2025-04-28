@@ -1318,5 +1318,20 @@
       "https://news.google.com/rss/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNRFpqTVhrU0FuSnZLQUFQAQ?hl=ro&gl=RO&ceid=RO%3Aro&oc=11",
       "https://www.reddit.com/r/Romania/.rss"
     ]
+  },
+  "China": {
+    "feeds": [
+      "https://www.chinanews.com.cn/rss/china.xml",
+      "https://www.chinanews.com.cn/rss/importnews.xml",
+      "https://www.cgtn.com/subscribe/rss/section/china.xml",
+      "https://www.cgtn.com/subscribe/rss/section/politics.xml",
+      "https://www.cgtn.com/subscribe/rss/section/opinion.xml",
+      "http://news.ifeng.com/rss/index.xml",
+      "http://news.ifeng.com/rss/mainland.xml",
+      "http://www.chinadaily.com.cn/rss/china_rss.xml",
+      "http://www.chinadaily.com.cn/rss/bizchina_rss.xml",
+      "https://feedx.net/rss/thepaper.xml",
+      "https://feedx.net/rss/cna.xml"
+    ]
   }
 }
