@@ -2866,5 +2866,101 @@
     "description": "Nationwide cable TV channel for news and general programming.",
     "owner": "Maekyung Media Group",
     "typology": "Private Media"
+  },
+  {
+    "country": "Switzerland",
+    "organization": "SRG SSR",
+    "domains": ["srgssr.ch", "srf.ch", "rsi.ch", "rts.ch", "rtr.ch"],
+    "description": "SRG SSR is a public service broadcaster in Switzerland. It is built upon a federalist model specific to the country’s political organization.",
+    "owner": "Swiss Confederation",
+    "typology": "Public Media"
+  },
+  {
+    "country": "Switzerland",
+    "organization": "Federal administration of Switzerland",
+    "domains": ["admin.ch"],
+    "description": "Website of the Federal Administration of the Swiss Confederation (including Federal Council and Departments)",
+    "owner": "Swiss Confederation",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Switzerland",
+    "organization": "GMX",
+    "domains": ["gmx.ch"],
+    "description": "OnlineReports.ch is an Internet news portal from Basel, which mainly publishes regional research, news and comments.",
+    "owner": "1&1 Mail & Media GmbH",
+    "typology": "Private Media"
+  },
+  {
+    "country": "Switzerland",
+    "organization": "OnlineReports GmbH",
+    "domains": ["onlinereports.ch"],
+    "description": "OnlineReports.ch is an Internet news portal from Basel, which mainly publishes regional research, news and comments.",
+    "owner": "Jan Amsler, Alessandra Paone",
+    "typology": "Private Media"
+  },
+  {
+    "country": "Switzerland",
+    "organization": "20 Minuten",
+    "domains": ["20min.ch"],
+    "description": "Free daily newspaper in Switzerland",
+    "owner": "Express-Zeitung AG",
+    "typology": "Private Media"
+  },
+  {
+    "country": "Switzerland",
+    "organization": "Der Bund",
+    "domains": ["derbund.ch"],
+    "description": "German-language daily newspaper published in Bern",
+    "owner": "TX Group",
+    "typology": "Private Media"
+  },
+  {
+    "country": "Switzerland",
+    "organization": "Tages-Anzeiger",
+    "domains": ["tagesanzeiger.ch"],
+    "description": "German-language national daily newspaper published in Zurich",
+    "owner": "TX Group",
+    "typology": "Private Media"
+  },
+  {
+    "country": "Switzerland",
+    "organization": "Canton of Bern",
+    "domains": ["be.ch"],
+    "description": "Press releases and news from the Canton of Bern",
+    "owner": "Canton of Bern",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Switzerland",
+    "organization": "Canton of St.Gallen",
+    "domains": ["sg.ch"],
+    "description": "Press releases and news from the Canton of St.Gallen",
+    "owner": "Canton of St.Gallen",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Switzerland",
+    "organization": "blue News",
+    "domains": ["bluewin.ch"],
+    "description": "Bluewin is a Swiss internet service provider that offers email and a news platform",
+    "owner": "Entertainment Programm AG",
+    "typology": "Public Media"
+  },
+  {
+    "country": "Switzerland",
+    "organization": "Cash",
+    "domains": ["cash.ch"],
+    "description": "cash is a Swiss financial portal providing comprehensive economic and financial information with real-time market data from the Swiss stock exchange.",
+    "owner": "Ringier AG",
+    "typology": "Private Media"
+  },
+  {
+    "country": "Switzerland",
+    "organization": "Watson",
+    "domains": ["watson.ch"],
+    "description": "Swiss German- and French-language online newspaper published by CH Media that targets mobile users",
+    "owner": "CH Regionalmedien AG",
+    "typology": "Private Media"
   }
 ]

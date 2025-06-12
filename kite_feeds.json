@@ -1402,5 +1402,35 @@
       "https://rss.donga.com/total.xml",
       "https://www.mbn.co.kr/rss/"
     ]
+  },
+  "Switzerland (DE)": {
+      "feeds": [
+        "https://d-nsbc-p.admin.ch/NSBSubscriber/feeds/rss?lang=de&org-nr=201",
+        "https://d-nsbc-p.admin.ch/NSBSubscriber/feeds/rss?lang=de&org-nr=301",
+        "https://d-nsbc-p.admin.ch/NSBSubscriber/feeds/rss?lang=de&org-nr=401",
+        "https://d-nsbc-p.admin.ch/NSBSubscriber/feeds/rss?lang=de&org-nr=501",
+        "https://d-nsbc-p.admin.ch/NSBSubscriber/feeds/rss?lang=de&org-nr=601",
+        "https://d-nsbc-p.admin.ch/NSBSubscriber/feeds/rss?lang=de&org-nr=701",
+        "https://d-nsbc-p.admin.ch/NSBSubscriber/feeds/rss?lang=de&org-nr=801",
+        "https://gmx.ch/feeds/rss/magazine/schweiz/index.rss",
+        "https://onlinereports.ch/api/rss-feed",
+        "https://partner-feeds.beta.20min.ch/rss/20minuten/ostschweiz",
+        "https://partner-feeds.beta.20min.ch/rss/20minuten/schweiz",
+        "https://partner-feeds.beta.20min.ch/rss/20minuten/wirtschaft",
+        "https://partner-feeds.beta.20min.ch/rss/20minuten/zentralschweiz",
+        "https://partner-feeds.publishing.tamedia.ch/rss/derbund/schweiz",
+        "https://partner-feeds.publishing.tamedia.ch/rss/tagesanzeiger/schweiz",
+        "https://polizeiticker.ch/rss",
+        "https://www.api.news.apps.be.ch/api/atom/news?domain=https%3A%2F%2Fwww.be.ch%2Fde%2Fstart%2Fdienstleistungen%2Fmedien%2Fmedienmitteilungen.html&lang=de&ouTagId=be-oe%3Abe&amount=30&maxAgeInDays=124",
+        "https://www.bluewin.ch/de/feed.xml",
+        "https://www.cash.ch/feeds/latest/news",
+        "https://www.presseportal-schweiz.ch/rss.xml",
+        "https://www.sg.ch/_jcr_content/NewsPar.RssFeed.qualident__item0.rdf",
+        "https://www.srf.ch/kultur/bnf/rss/454",
+        "https://www.srf.ch/news/bnf/rss/1890",
+        "https://www.srf.ch/news/bnf/rss/1926",
+        "https://www.srf.ch/sport/bnf/rss/718",
+        "https://www.watson.ch/api/2.0/rss/index.xml?tag=Schweiz"
+      ]
   }
 }
