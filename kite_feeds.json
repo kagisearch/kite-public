@@ -9,7 +9,8 @@
       "pt": "Linux & OSS",
       "it": "Linux & OSS",
       "nl": "Linux & OSS",
-      "zh": "Linux与开源",
+      "zh-CN": "Linux与开源",
+      "zh-TW": "Linux與開源",
       "ja": "Linux & OSS",
       "hi": "Linux & OSS",
       "uk": "Linux & OSS"
@@ -108,7 +109,8 @@
       "pt": "Criptomoeda",
       "it": "Criptovaluta",
       "nl": "Cryptocurrency",
-      "zh": "加密货币",
+      "zh-CN": "加密货币",
+      "zh-TW": "加密货币",
       "ja": "暗号通貨",
       "hi": "क्रिप्टोकरेंसी",
       "uk": "Криптовалюта"
@@ -168,7 +170,8 @@
       "pt": "Europa",
       "it": "Europa",
       "nl": "Europa",
-      "zh": "欧洲",
+      "zh-CN": "欧洲",
+      "zh-TW": "歐洲",
       "ja": "ヨーロッパ",
       "hi": "यूरोप",
       "uk": "Європа"
@@ -247,7 +250,8 @@
       "pt": "Reino Unido",
       "it": "Regno Unito",
       "nl": "VK",
-      "zh": "英国",
+      "zh-CN": "英国",
+      "zh-TW": "英國",
       "ja": "イギリス",
       "hi": "यूके",
       "uk": "Великобританія"
@@ -320,7 +324,8 @@
       "pt": "Ucrânia",
       "it": "Ucraina",
       "nl": "Oekraïne",
-      "zh": "乌克兰",
+      "zh-CN": "乌克兰",
+      "zh-TW": "烏克蘭",
       "ja": "ウクライナ",
       "hi": "यूक्रेन",
       "uk": "Україна"
@@ -366,7 +371,8 @@
       "pt": "Brasil",
       "it": "Brasile",
       "nl": "Brazilië",
-      "zh": "巴西",
+      "zh-CN": "巴西",
+      "zh-TW": "巴西",
       "ja": "ブラジル",
       "hi": "ब्राज़ील",
       "uk": "Бразилія"
@@ -416,7 +422,8 @@
       "pt": "Austrália",
       "it": "Australia",
       "nl": "Australië",
-      "zh": "澳大利亚",
+      "zh-CN": "澳大利亚",
+      "zh-TW": "澳洲",
       "ja": "オーストラリア",
       "hi": "ऑस्ट्रेलिया",
       "uk": "Австралія"
@@ -472,7 +479,8 @@
       "pt": "Estônia",
       "it": "Estonia",
       "nl": "Estland",
-      "zh": "爱沙尼亚",
+      "zh-CN": "爱沙尼亚",
+      "zh-TW": "愛沙尼亞",
       "ja": "エストニア",
       "hi": "एस्टोनिया",
       "uk": "Естонія"
@@ -532,7 +540,8 @@
       "pt": "México",
       "it": "Messico",
       "nl": "Mexico",
-      "zh": "墨西哥",
+      "zh-CN": "墨西哥",
+      "zh-TW": "墨西哥",
       "ja": "メキシコ",
       "hi": "मेक्सिको",
       "uk": "Мексика"
@@ -582,7 +591,8 @@
       "pt": "Alemanha",
       "it": "Germania",
       "nl": "Duitsland",
-      "zh": "德国",
+      "zh-CN": "德国",
+      "zh-TW": "德國",
       "ja": "ドイツ",
       "hi": "जर्मनी",
       "uk": "Німеччина"
@@ -626,7 +636,8 @@
       "pt": "Alemanha | Hesse",
       "it": "Germania | Assia",
       "nl": "Duitsland | Hessen",
-      "zh": "德国 | 黑森州",
+      "zh-CN": "德国 | 黑森州",
+      "zh-TW": "德國 | 黑森州",
       "ja": "ドイツ | ヘッセン州",
       "hi": "जर्मनी | हेस्से",
       "uk": "Німеччина | Гессен"
@@ -671,7 +682,8 @@
       "pt": "Índia",
       "it": "India",
       "nl": "India",
-      "zh": "印度",
+      "zh-CN": "印度",
+      "zh-TW": "印尼",
       "ja": "インド",
       "hi": "भारत",
       "uk": "Індія"
@@ -723,7 +735,8 @@
       "pt": "Itália",
       "it": "Italia",
       "nl": "Italië",
-      "zh": "意大利",
+      "zh-CN": "意大利",
+      "zh-TW": "意大利",
       "ja": "イタリア",
       "hi": "इटली",
       "uk": "Італія"
@@ -806,7 +819,8 @@
       "pt": "Canadá",
       "it": "Canada",
       "nl": "Canada",
-      "zh": "加拿大",
+      "zh-CN": "加拿大",
+      "zh-TW": "加拿大",
       "ja": "カナダ",
       "hi": "कनाडा",
       "uk": "Канада"
@@ -884,7 +898,8 @@
       "pt": "Tailândia",
       "it": "Thailandia",
       "nl": "Thailand",
-      "zh": "泰国",
+      "zh-CN": "泰国",
+      "zh-TW": "泰國",
       "ja": "タイ",
       "hi": "थाईलैंड",
       "uk": "Таїланд"
@@ -947,7 +962,8 @@
       "pt": "Sérvia",
       "it": "Serbia",
       "nl": "Servië",
-      "zh": "塞尔维亚",
+      "zh-CN": "塞尔维亚",
+      "zh-TW": "塞爾維亞",
       "ja": "セルビア",
       "hi": "सर्बिया",
       "uk": "Сербія"
@@ -1026,7 +1042,8 @@
       "pt": "EUA | Vermont",
       "it": "USA | Vermont",
       "nl": "VS | Vermont",
-      "zh": "美国 | 佛蒙特州",
+      "zh-CN": "美国 | 佛蒙特州",
+      "zh-TW": "美國 | 佛蒙特州",
       "ja": "アメリカ | バーモント州",
       "hi": "यूएसए | वर्मोंट",
       "uk": "США | Вермонт"
@@ -1123,7 +1140,8 @@
       "pt": "Japão",
       "it": "Giappone",
       "nl": "Japan",
-      "zh": "日本",
+      "zh-CN": "日本",
+      "zh-CN": "日本",
       "ja": "日本",
       "hi": "जापान",
       "uk": "Японія"
@@ -1169,7 +1187,8 @@
       "pt": "Israel",
       "it": "Israele",
       "nl": "Israël",
-      "zh": "以色列",
+      "zh-CN": "以色列",
+      "zh-TW": "以色列",
       "ja": "イスラエル",
       "hi": "इज़राइल",
       "uk": "Ізраїль"
@@ -1216,7 +1235,8 @@
       "pt": "Nova Zelândia",
       "it": "Nuova Zelanda",
       "nl": "Nieuw-Zeeland",
-      "zh": "新西兰",
+      "zh-CN": "新西兰",
+      "zh-TW": "紐西蘭",
       "ja": "ニュージーランド",
       "hi": "न्यूजीलैंड",
       "uk": "Нова Зеландія"
@@ -1278,7 +1298,8 @@
       "pt": "Portugal",
       "it": "Portogallo",
       "nl": "Portugal",
-      "zh": "葡萄牙",
+      "zh-CN": "葡萄牙",
+      "zh-TW": "葡萄牙",
       "ja": "ポルトガル",
       "hi": "पुर्तगाल",
       "uk": "Португалія"
@@ -1323,7 +1344,8 @@
       "pt": "França",
       "it": "Francia",
       "nl": "Frankrijk",
-      "zh": "法国",
+      "zh-CN": "法国",
+      "zh-TW": "法國",
       "ja": "フランス",
       "hi": "फ्रांस",
       "uk": "Франція"
@@ -1398,7 +1420,8 @@
       "pt": "Polônia",
       "it": "Polonia",
       "nl": "Polen",
-      "zh": "波兰",
+      "zh-CN": "波兰",
+      "zh-TW": "破爛",
       "ja": "ポーランド",
       "hi": "पोलैंड",
       "uk": "Польща"
@@ -1451,7 +1474,8 @@
       "pt": "Eslovênia",
       "it": "Slovenia",
       "nl": "Slovenië",
-      "zh": "斯洛文尼亚",
+      "zh-CN": "斯洛文尼亚",
+      "zh-TW": "斯洛維尼亞",
       "ja": "スロベニア",
       "hi": "स्लोवेनिया",
       "uk": "Словенія"
@@ -1495,7 +1519,8 @@
       "pt": "Espanha",
       "it": "Spagna",
       "nl": "Spanje",
-      "zh": "西班牙",
+      "zh-CN": "西班牙",
+      "zh-TW": "西班牙",
       "ja": "スペイン",
       "hi": "स्पेन",
       "uk": "Іспанія"
@@ -1555,7 +1580,8 @@
       "pt": "Irlanda",
       "it": "Irlanda",
       "nl": "Ierland",
-      "zh": "爱尔兰",
+      "zh-CN": "爱尔兰",
+      "zh-TW": "愛爾蘭",
       "ja": "アイルランド",
       "hi": "आयरलैंड",
       "uk": "Ірландія"
@@ -1598,7 +1624,8 @@
       "pt": "Bélgica",
       "it": "Belgio",
       "nl": "België",
-      "zh": "比利时",
+      "zh-CN": "比利时",
+      "zh-TW": "比利時",
       "ja": "ベルギー",
       "hi": "बेल्जियम",
       "uk": "Бельгія"
@@ -1644,7 +1671,8 @@
       "pt": "Países Baixos",
       "it": "Paesi Bassi",
       "nl": "Nederland",
-      "zh": "荷兰",
+      "zh-CN": "荷兰",
+      "zh-TW": "荷蘭",
       "ja": "オランダ",
       "hi": "नीदरलैंड",
       "uk": "Нідерланди"
@@ -1725,7 +1753,8 @@
       "pt": "Romênia",
       "it": "Romania",
       "nl": "Roemenië",
-      "zh": "罗马尼亚",
+      "zh-CN": "罗马尼亚",
+      "zh-TW": "羅馬尼亞",
       "ja": "ルーマニア",
       "hi": "रोमानिया",
       "uk": "Румунія"
@@ -1771,7 +1800,8 @@
       "pt": "Coreia do Sul",
       "it": "Corea del Sud",
       "nl": "Zuid-Korea",
-      "zh": "韩国",
+      "zh-CN": "韩国",
+      "zh-CN": "韓國",
       "ja": "韓国",
       "hi": "दक्षिण कोरिया",
       "uk": "Південна Корея"
@@ -1832,7 +1862,8 @@
       "pt": "Suíça (DE)",
       "it": "Svizzera (DE)",
       "nl": "Zwitserland (DE)",
-      "zh": "瑞士（德语）",
+      "zh-CN": "瑞士（德语）",
+      "zh-TW": "瑞士（德文）",
       "ja": "スイス（ドイツ語圏）",
       "hi": "स्विट्जरलैंड (DE)",
       "uk": "Швейцарія (DE)"
@@ -1889,7 +1920,8 @@
       "pt": "Economia",
       "it": "Economia",
       "nl": "Economie",
-      "zh": "经济",
+      "zh-CN": "经济",
+      "zh-TW": "經濟",
       "ja": "経済",
       "hi": "अर्थव्यवस्था",
       "uk": "Економіка"
