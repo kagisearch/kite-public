@@ -1944,5 +1944,58 @@
       "https://www.focus-economics.com/news-search/feed/",
       "https://developingeconomics.org/feed/"
     ]
+  },
+  "Sweden": {
+    "source_language": "sv",
+    "display_names": {
+      "en": "Sweden",
+      "sv": "Sverige",
+      "de": "Schweden",
+      "fr": "Suède",
+      "es": "Suecia",
+      "pt": "Suécia",
+      "it": "Svezia",
+      "nl": "Zweden",
+      "zh": "瑞典",
+      "ja": "スウェーデン",
+      "hi": "स्वीडन",
+      "uk": "Швеція"
+    },
+    "feeds": [
+      "https://www.dn.se/rss/",
+      "https://www.svd.se/feed/articles.rss",
+      "https://www.barometern.se/feed",
+      "https://rss.aftonbladet.se/rss2/small/pages/sections/senastenytt/",
+      "https://www.tv4.se/rss",
+      "https://www.gp.se/rss",
+      "https://www.sydsvenskan.se/rss",
+      "https://www.di.se/rss",
+      "https://www.dagensps.se/feed/",
+      "https://www.svt.se/rss.xml",
+      "https://api.sr.se/api/rss/program/83",
+      "https://feeds.thelocal.com/rss/se/today-in-sweden",
+      "https://www.government.se/press-releases/?rss=true",
+      "https://europaportalen.se/rss/artiklar",
+      "https://www.altinget.se/rss",
+      "https://www.dagensarena.se/feed/",
+      "https://www.barometern.se/feed",
+      "https://www.bt.se/feed",
+      "https://www.kristianstadsbladet.se/feed",
+      "https://www.nwt.se/feed/",
+      "https://www.hd.se/feeds/feed.xml",
+      "https://www.na.se/feeds/feed.xml",
+      "https://www.arbetarbladet.se/feeds/feed.xml",
+      "https://www.dalademokraten.se/feeds/feed.xml",
+      "https://www.jp.se/feeds/feed.xml",
+      "https://www.skd.se/feeds/feed.xml",
+      "https://www.dagen.se/rss-allt?lab_viewport=rss",
+      "https://nyheteridag.se/feed/",
+      "https://blogg.tt.se/feed/",
+      "https://www.swedishtechnews.com/rss/",
+      "https://news.google.com/rss/topics/CAAqIggKIhxDQkFTRHdvSkwyMHZNR1F3ZG5GdUVnSnpkaWdBUAE?hl=sv&gl=SE&ceid=SE%3Asv&oc=11",
+      "https://www.reddit.com/r/sweden/.rss",
+      "https://www.reddit.com/r/svenskpolitik/.rss",
+      "https://www.reddit.com/r/stockholm/.rss"
+    ]
   }
 }
