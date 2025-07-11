@@ -51,7 +51,7 @@
     "country": "Germany",
     "organization": "Tagesschau",
     "domains": ["tagesschau.de"],
-    "description": "Tagesschau is a national television news service and digital news platform operated by ARD-aktuell on behalf of the german public-service broadcaster AFD.",
+    "description": "Tagesschau is a national television news service and digital news platform operated by ARD-aktuell on behalf of the german public-service broadcaster ARD.",
     "owner": "Public broadcaster (German public institutions)",
     "typology": "State Funded Media"
   },
@@ -889,7 +889,7 @@
     "organization": "CORRECTIV",
     "domains": ["correctiv.org"],
     "description": "CORRECTIV is a non-profit investigative newsroom, focusing on investigative journalism, fact-checking, and cross-border investigations.",
-    "owner": "David Schraven",
+    "owner": "Non-Profit GmbH (David Schraven and Jeannette Gusko as management)",
     "typology": "Private Media"
   },
   {
@@ -897,7 +897,7 @@
     "organization": "Focus",
     "domains": ["focus.de", "burda.com"],
     "description": "Focus is a German-language news magazine and digital media outlet established in 1993 as an alternative to Der Spiegel. Published by Hubert Burda Media, it operates both as a weekly print magazine headquartered in Berlin and a online news portal through Focus Online, covering politics, business, science, and culture.",
-    "owner": "Burda family",
+    "owner": "Hubert Burda Media",
     "typology": "Private Media"
   },
   {
@@ -921,12 +921,12 @@
     "organization": "Frankfurter Allgemeine Zeitung",
     "domains": ["faz.net", "frankfurterallgemeine.de"],
     "description": "The Frankfurter Allgemeine Zeitung (FAZ) is a daily newspaper known for its conservative editorial stance. It covers business, politics, and culture.",
-    "owner": "FAZIT-Stiftung",
+    "owner": "Fazit-Stiftung Non-Profit GmbH (93.7%)",
     "typology": "Private Media"
   },
   {
     "country": "Germany",
-    "organization": "Der Spiegel",
+    "organization": "Der Spiegel Online",
     "domains": ["spiegel.de"],
     "description": "Der Spiegel is a weekly news magazine and digital news platform established in 1947, known for its investigative journalism and political coverage. The online website has a center left-leaning editorial stance and covers politics, culture, and society.",
     "owner": "Spiegel Employees (50.5%), Mohn family (25.5%), Augstein family (24%)",
@@ -969,7 +969,7 @@
     "organization": "n-tv",
     "domains": ["n-tv.de"],
     "description": "n-tv is a free-to-air television news channel and digital media outlet that focuses on news, business coverage, and documentaries.",
-    "owner": "RTL Deutschland",
+    "owner": "RTL Deutschland (75% Mohn family)",
     "typology": "Private Media"
   },
   {
@@ -977,7 +977,7 @@
     "organization": "RedaktionsNetzwerk Deutschland",
     "domains": ["rnd.de"],
     "description": "RedaktionsNetzwerk Deutschland (RND) is a Hanover-based joint corporate newsroom that provides news content and services across Germany.",
-    "owner": "Social Democratic Party of Germany (25%), Sylvia Madsack (19.99%)",
+    "owner": "Deutsche Druck- und Verlagsgesellschaft (23.1%, Social Democratic Party of Germany), Sylvia Madsack (21.9%)",
     "typology": "Private Media"
   },
   {
@@ -985,7 +985,7 @@
     "organization": "Frankfurter Rundschau",
     "domains": ["fr.de"],
     "description": "Frankfurter Rundschau is a daily newspaper published in Frankfurt. It is known for its left-liberal editorial stance and focuses on political, economic, and cultural coverage with particular emphasis on the Frankfurt Rhine-Main region.",
-    "owner": "Ippen family",
+    "owner": "Zeitungsholding Hessen (90%, Dirk Ippen), Karl-Gerold-Stiftung (10%)",
     "typology": "Private Media"
   },
   {
@@ -993,7 +993,7 @@
     "organization": "Handelsblatt Media Group",
     "domains": ["handelsblatt.com", "handelsblattgroup.com"],
     "description": "Handelsblatt Media Group is a media company based in Düsseldorf that specializes in business and financial information, providing news coverage, analysis, and specialized communication solutions through various digital and print platforms.",
-    "owner": "Dieter von Holtzbrinck",
+    "owner": "DvH Medien GmbH (Dieter von Holtzbrinck)",
     "typology": "Private Media"
   },
   {
@@ -1001,15 +1001,15 @@
     "organization": "Rheinische Post",
     "domains": ["rp-online.de"],
     "description": "Rheinische Post is a major regional daily newspaper based in Düsseldorf, covering news from North Rhine-Westphalia with a focus on the Rhine region. The newspaper provides comprehensive local, regional, and national coverage.",
-    "owner": "",
+    "owner": "Rheinische Post Verlagsgesellschaft mbH",
     "typology": "Private Media"
   },
   {
     "country": "Germany",
     "organization": "Berliner Morgenpost",
     "domains": ["morgenpost.de"],
-    "description": "Berliner Morgenpost is a daily newspaper founded in 1898 and based in Berlin. It is one of Berlin's most-read daily newspapers, known for its conservative editorial stance.",
-    "owner": "Axel-Springer-Verlag Group",
+    "description": "Berliner Morgenpost is a daily newspaper founded in 1898 and based in Berlin. It is one of Berlin's most-read daily newspapers.",
+    "owner": "Funke Mediengruppe",
     "typology": "Private Media"
   },
   {
