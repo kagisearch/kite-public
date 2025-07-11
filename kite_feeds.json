@@ -1944,5 +1944,53 @@
       "https://www.focus-economics.com/news-search/feed/",
       "https://developingeconomics.org/feed/"
     ]
+  },
+  "USA | Virginia": {
+    "source_language": "en",
+    "display_names": {
+      "en": "USA | Virginia",
+      "de": "USA | Virginia",
+      "fr": "USA | Virginie",
+      "es": "EE. UU. | Virginia",
+      "pt": "EUA | Virgínia",
+      "it": "USA | Virginia",
+      "nl": "VS | Virginia",
+      "zh": "美国 | 弗吉尼亚州",
+      "ja": "アメリカ | バージニア州",
+      "hi": "यूएसए | वर्जीनिया",
+      "uk": "США | Вірджинія"
+    },
+    "feeds": [
+	  "https://virginiamercury.com/feed/",
+	  "https://cardinalnews.org/feed/",
+	  "https://northernvirginiamag.com/feed/",
+	  "https://www.virginiascope.com/feed/",
+	  "https://www.bayjournal.com/search/?f=rss&t=article",
+	  "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=site%3Avpm.org",
+	  "https://www.whro.org/index.rss",
+	  "https://feeds.washingtonpost.com/rss/local",
+	  "https://alextimes.com/feed/",
+	  "https://www.arlnow.com/feed",
+	  "https://www.alxnow.com/feed",	  
+	  "https://www.loudountimes.com/search/?f=rss&t=article",
+	  "https://www.winchesterstar.com/search/?f=rss&t=article",
+	  "https://www.dnronline.com/search/?f=rss&t=article",
+	  "https://rocktownnow.com/news/feed/",
+	  "https://hburgcitizen.com/feed/",
+	  "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=site%3Anewsleader.com",
+	  "https://newsvirginian.com/search/?f=rss&t=article",
+	  "https://roanoke.com/search/?f=rss&t=article",
+	  "https://salemtimes-register.com/feed/",
+	  "https://heraldcourier.com/search/?f=rss&t=article",
+	  "https://dailyprogress.com/search/?f=rss&t=article",
+	  "https://www.cvilletomorrow.org/feed",
+	  "https://newsadvance.com/search/?f=rss&t=article",
+	  "http://www.fredericksburgfreepress.com/feed",
+	  "https://farmvilleherald.com/feed",
+	  "https://richmond.com/search/?f=rss&t=article",
+	  "https://www.richmonder.org/feed",
+	  "https://wydaily.com/feed",
+	  "https://www.pilotonline.com/feed/"
+    ]
   }
 }
