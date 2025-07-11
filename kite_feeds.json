@@ -1944,5 +1944,49 @@
       "https://www.focus-economics.com/news-search/feed/",
       "https://developingeconomics.org/feed/"
     ]
+  },
+  "AI": {
+    "source_language": "en",
+    "display_names": {
+      "en": "AI",
+      "de": "KI",
+      "fr": "IA",
+      "es": "IA",
+      "pt": "IA",
+      "it": "IA",
+      "nl": "AI",
+      "zh": "人工智能",
+      "ja": "AI（人工知能）",
+      "hi": "कृत्रिम बुद्धिमत्ता",
+      "uk": "ШІ"
+    },
+    "feeds": [
+      "https://news.google.com/atom/search?q=artificial+intelligence&hl=en-US&gl=US&ceid=US:en",
+      "https://news.google.com/atom/search?q=AI&hl=en-US&gl=US&ceid=US:en",
+      "https://news.google.com/atom/search?q=LLM&hl=en-US&gl=US&ceid=US:en",
+      "https://news.google.com/atom/search?q=AI+safety&hl=en-US&gl=US&ceid=US:en",
+      "https://news.google.com/atom/search?q=AI+regulation&hl=en-US&gl=US&ceid=US:en",
+      "https://news.google.com/atom/search?q=AGI&hl=en-US&gl=US&ceid=US:en",
+      "https://news.google.com/atom/search?q=neural+networks&hl=en-US&gl=US&ceid=US:en",
+      "https://news.google.com/atom/search?q=transformers+AI&hl=en-US&gl=US&ceid=US:en",
+      "https://www.reddit.com/r/MachineLearning/.rss",
+      "https://www.reddit.com/r/ArtificialInteligence/.rss",
+      "https://www.reddit.com/r/LanguageTechnology/.rss",
+      "https://www.reddit.com/r/LLM/.rss",
+      "https://hnrss.org/newest?q=AI",
+      "https://hnrss.org/newest?q=machine+learning",
+      "https://hnrss.org/newest?q=transformers",
+      "https://hnrss.org/newest?q=LLM",
+      "https://openai.com/news/rss.xml",
+      "https://deepmind.google/blog/rss,xml",
+      "https://bair.berkeley.edu/blog/rss.xml",
+      "https://www.technologyreview.com/feed/",
+      "https://www.latent.space/feed.xml",
+      "https://huggingface.co/blog/rss.xml",
+      "https://karpathy.github.io/rss.xml",
+      "https://simonwillison.net/atom/everything/",
+      "https://www.safe.ai/blog/rss.xml",
+      "https://www.lesswrong.com/feed.xml"
+    ]
   }
 }
