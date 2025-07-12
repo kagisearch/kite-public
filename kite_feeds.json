@@ -1944,5 +1944,52 @@
       "https://www.focus-economics.com/news-search/feed/",
       "https://developingeconomics.org/feed/"
     ]
+  },
+  "Cybersecurity": {
+    "source_language": "en",
+    "display_names": {
+      "en": "Cybersecurity",
+      "de": "Cybersicherheit",
+      "fr": "Cybersécurité",
+      "es": "Ciberseguridad",
+      "pt": "Cibersegurança",
+      "it": "Sicurezza informatica",
+      "nl": "Cyberbeveiliging",
+      "zh": "网络安全",
+      "ja": "サイバーセキュリティ",
+      "hi": "साइबर सिक्योरिटी",
+      "uk": "Кібербезпека"
+    },
+    "feeds": [
+      "https://krebsonsecurity.com/feed/",
+      "https://feeds.feedburner.com/TheHackersNews",
+      "https://thehackernews.com/feeds/posts/default",
+      "https://www.bleepingcomputer.com/feed/",
+      "https://isc.sans.edu/rssfeed_full.xml",
+      "https://www.microsoft.com/security/blog/feed/",
+      "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v",
+      "https://blog.talosintelligence.com/rss/",
+      "https://www.rapid7.com/rss.xml",
+      "https://googleprojectzero.blogspot.com/feeds/posts/default",
+      "https://rss.beehiiv.com/feeds/PRWD5bYu4W.xml",
+      "https://www.wired.com/category/security/feed/",
+      "https://news.risky.biz/feed/",
+      "https://www.malwarebytes.com/blog/feed/index.xml",
+      "https://www.darkreading.com/rss.xml",
+      "https://therecord.media/feed/",
+      "https://citizenlab.ca/feed/",
+      "https://www.welivesecurity.com/en/rss/feed/",
+      "https://cybersecuritynews.com/feed/",
+      "https://www.helpnetsecurity.com/feed/",
+      "https://www.cybersecuritydive.com/feeds/news/",
+      "https://cyberscoop.com/feed/",
+      "https://www.reddit.com/r/netsec/.rss",
+      "https://www.reddit.com/r/blueteamsec/.rss",
+      "https://news.google.com/rss/search?q=cybersecurity&hl=en-US&gl=US&ceid=US:en",
+      "https://news.google.com/rss/search?q=data+breach&hl=en-US&gl=US&ceid=US:en",
+      "https://www.reddit.com/r/cybersecurity/.rss",
+      "https://www.fbi.gov/investigate/cyber/RSS",
+      "https://www.cisa.gov/cybersecurity-advisories/all.xml"
+    ]
   }
 }
