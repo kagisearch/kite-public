@@ -2778,5 +2778,20 @@
       "https://www.thenews.com.pk/rss/1/2",
       "https://www.thenews.com.pk/rss/1/3"
     ]
+  },
+  "China": {
+    "feeds": [
+      "https://www.chinanews.com.cn/rss/china.xml",
+      "https://www.chinanews.com.cn/rss/importnews.xml",
+      "https://www.cgtn.com/subscribe/rss/section/china.xml",
+      "https://www.cgtn.com/subscribe/rss/section/politics.xml",
+      "https://www.cgtn.com/subscribe/rss/section/opinion.xml",
+      "http://news.ifeng.com/rss/index.xml",
+      "http://news.ifeng.com/rss/mainland.xml",
+      "http://www.chinadaily.com.cn/rss/china_rss.xml",
+      "http://www.chinadaily.com.cn/rss/bizchina_rss.xml",
+      "https://feedx.net/rss/thepaper.xml",
+      "https://feedx.net/rss/cna.xml"
+    ]
   }
 }
