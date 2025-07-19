@@ -2,7 +2,10 @@
   {
     "country": "Qatar",
     "organization": "Al Jazeera Media Network",
-    "domains": ["aljazeera.com", "aljazeera.net"],
+    "domains": [
+      "aljazeera.com",
+      "aljazeera.net"
+    ],
     "description": "Al Jazeera is an international news network headquartered in Doha, Qatar. It provides news coverage across various categories including politics, business, sports, and international affairs, with a particular focus on Middle Eastern and North African affairs.",
     "owner": "Qatar Media Corporation (QMC)",
     "typology": "State Funded Media"
@@ -10,7 +13,10 @@
   {
     "country": "United Kingdom",
     "organization": "BBC News",
-    "domains": ["bbc.com", "bbc.co.uk"],
+    "domains": [
+      "bbc.com",
+      "bbc.co.uk"
+    ],
     "description": "BBC News is the news division of the British Broadcasting Corporation (BBC), providing news coverage across various categories including politics, business, sports, and international affairs.",
     "owner": "British Broadcasting Corporation (BBC)",
     "typology": "State Funded Media"
@@ -18,7 +24,9 @@
   {
     "country": "France",
     "organization": "France 24",
-    "domains": ["france24.com"],
+    "domains": [
+      "france24.com"
+    ],
     "description": "France 24 is a French international news channel that broadcasts in English and French. It provides news coverage across various categories including politics, business, sports, and international affairs.",
     "owner": "French Ministry of Europe and Foreign Affairs",
     "typology": "State Funded Media"
@@ -26,7 +34,9 @@
   {
     "country": "Russia",
     "organization": "RT",
-    "domains": ["rt.com"],
+    "domains": [
+      "rt.com"
+    ],
     "description": "RT is a Russian international news channel that broadcasts in English. It provides news coverage across various categories including politics, business, sports, and international affairs.",
     "owner": "Russian Ministry of Foreign Affairs",
     "typology": "State Funded Media"
@@ -34,7 +44,10 @@
   {
     "country": "Italy",
     "organization": "Rai News",
-    "domains": ["rainews.it", "rai.it"],
+    "domains": [
+      "rainews.it",
+      "rai.it"
+    ],
     "description": "Rai News is the 24-hour news division and online news portal of RAI (Radiotelevisione Italiana), Italy's national public broadcaster. It provides continuous news coverage through its TV channel Rai News 24, digital platform, and website, offering real-time updates on politics, economy, sports, and current affairs in Italy and internationally.",
     "owner": "RAI - Radiotelevisione Italiana S.p.A.",
     "typology": "State Funded Media"
@@ -42,7 +55,9 @@
   {
     "country": "Germany",
     "organization": "Die Bundesregierung",
-    "domains": ["bundesregierung.de"],
+    "domains": [
+      "bundesregierung.de"
+    ],
     "description": "Die Bundesregierung is the official website and communication platform of the German Federal Government, providing official information, press releases, and updates about government policies, decisions, and activities.",
     "owner": "Federal Republic of Germany",
     "typology": "State Funded Media"
@@ -50,7 +65,9 @@
   {
     "country": "Germany",
     "organization": "Tagesschau",
-    "domains": ["tagesschau.de"],
+    "domains": [
+      "tagesschau.de"
+    ],
     "description": "Tagesschau is a national television news service and digital news platform operated by ARD-aktuell on behalf of the german public-service broadcaster ARD.",
     "owner": "Public broadcaster (German public institutions)",
     "typology": "State Funded Media"
@@ -58,7 +75,10 @@
   {
     "country": "Germany",
     "organization": "Deutschlandfunk",
-    "domains": ["deutschlandfunk.de", "deutschlandradio.de"],
+    "domains": [
+      "deutschlandfunk.de",
+      "deutschlandradio.de"
+    ],
     "description": "Deutschlandfunk is a German public radio broadcaster and part of Deutschlandradio, providing national news, in-depth reporting, analysis and cultural programming.",
     "owner": "Public broadcaster (German public institutions)",
     "typology": "State Funded Media"
@@ -66,7 +86,10 @@
   {
     "country": "Germany",
     "organization": "Rundfunk Berlin-Brandenburg",
-    "domains": ["rbb-online.de", "rbb24.de"],
+    "domains": [
+      "rbb-online.de",
+      "rbb24.de"
+    ],
     "description": "Rundfunk Berlin-Brandenburg (RBB) is a public broadcaster serving the German federal states of Berlin and Brandenburg, established in 2003. Its focused on regional news, current affairs, and cultural programming for these two states.",
     "owner": "Public broadcaster (German public institutions)",
     "typology": "State Funded Media"
@@ -74,7 +97,10 @@
   {
     "country": "Russia",
     "organization": "TASS",
-    "domains": ["tass.com", "tass.ru"],
+    "domains": [
+      "tass.com",
+      "tass.ru"
+    ],
     "description": "TASS is Russia's state-owned news agency established in 1904, providing news coverage, analysis, and multimedia content in Russian and English.",
     "owner": "Government of Russia",
     "typology": "State Funded Media"
@@ -82,7 +108,9 @@
   {
     "country": "Australia",
     "organization": "Australian Broadcasting Corporation",
-    "domains": ["abc.net.au"],
+    "domains": [
+      "abc.net.au"
+    ],
     "description": "The Australian Broadcasting Corporation (ABC) is Australia's national public broadcaster, providing news, entertainment, and educational content across television, radio, digital and online platforms.",
     "owner": "Australian Government",
     "typology": "State Funded Media"
@@ -90,7 +118,9 @@
   {
     "country": "United States",
     "organization": "National Public Radio",
-    "domains": ["npr.org"],
+    "domains": [
+      "npr.org"
+    ],
     "description": "NPR is a non-profit media organization providing public radio broadcasting and digital content across the United States through a network of member stations. It produces and distributes news, cultural programming, and podcasts with a focus on journalism, arts, and education.",
     "owner": "Non-profit organization",
     "typology": "State Funded Media"
@@ -98,7 +128,9 @@
   {
     "country": "United States",
     "organization": "Voice of America",
-    "domains": ["voanews.com"],
+    "domains": [
+      "voanews.com"
+    ],
     "description": "Voice of America is an international multimedia broadcaster funded by the U.S. government, providing news, information, and cultural programming.",
     "owner": "U.S. Agency for Global Media",
     "typology": "State Funded Media"
@@ -106,7 +138,9 @@
   {
     "country": "United States",
     "organization": "Public Broadcasting Service",
-    "domains": ["pbs.org"],
+    "domains": [
+      "pbs.org"
+    ],
     "description": "PBS is America's public broadcaster operating through a network of over 350 local stations, offering educational and cultural programming across television and digital platforms.",
     "owner": "Corporation for Public Broadcasting (non-profit)",
     "typology": "State Funded Media"
@@ -114,7 +148,9 @@
   {
     "country": "Germany",
     "organization": "Deutsche Welle",
-    "domains": ["dw.com"],
+    "domains": [
+      "dw.com"
+    ],
     "description": "Deutsche Welle (DW) is Germany's international public broadcaster providing news, cultural content, and analysis in multiple languages through digital, TV, and radio platforms.",
     "owner": "Federal Government of Germany",
     "typology": "State Funded Media"
@@ -122,7 +158,9 @@
   {
     "country": "Italy",
     "organization": "Adnkronos",
-    "domains": ["adnkronos.com"],
+    "domains": [
+      "adnkronos.com"
+    ],
     "description": "Adnkronos is a news agency founded in 1963 through the merger of Kronos (founded by Pietro Nenni in 1951) and ADN (founded by Amintore Fanfani in 1959). Based in Rome with offices in Milan, it provides real-time news coverage across multiple sectors including politics, economy, sports, health, and international affairs through its multimedia platform.",
     "owner": "Giuseppe Marra Communications (GMC)",
     "typology": "Private Media"
@@ -130,7 +168,9 @@
   {
     "country": "Italy",
     "organization": "Affaritaliani",
-    "domains": ["affaritaliani.it"],
+    "domains": [
+      "affaritaliani.it"
+    ],
     "description": "Affaritaliani.it is an online news outlet founded in 1996 and based in Milan. It operates as a digital-only daily newspaper covering politics, economics, sports, entertainment and current affairs. It was one of Italy's first online-only news publications.",
     "owner": "Uomini e Affari srl",
     "typology": "Private Media"
@@ -138,7 +178,9 @@
   {
     "country": "Italy",
     "organization": "Agenzia Giornalistica Italia",
-    "domains": ["agi.it"],
+    "domains": [
+      "agi.it"
+    ],
     "description": "Agenzia Giornalistica Italia (AGI) is an Italian news agency providing news coverage across multiple categories including politics, economy, foreign affairs, sports, and local news. The agency produces online news content and operates as a primary source of news distribution in Italy.",
     "owner": "ENI S.p.A.",
     "typology": "Private Media"
@@ -146,7 +188,9 @@
   {
     "country": "Italy",
     "organization": "BuoneNotizie",
-    "domains": ["buonenotizie.it"],
+    "domains": [
+      "buonenotizie.it"
+    ],
     "description": "BuoneNotizie.it is a digital news platform founded in 2001 that focuses on constructive journalism and positive news coverage. The site operates without advertising and partners with the Italian Association of Constructive Journalism.",
     "owner": "Unknown",
     "typology": "Private Media"
@@ -154,7 +198,10 @@
   {
     "country": "Italy",
     "organization": "Corriere della Sera",
-    "domains": ["corriere.it", "rcsmediagroup.it"],
+    "domains": [
+      "corriere.it",
+      "rcsmediagroup.it"
+    ],
     "description": "Corriere della Sera is a daily newspaper founded in 1876 by Eugenio Torelli Viollier and based in Milan. It provides comprehensive coverage of national and international news, politics, sports, and current affairs, with a particular focus on Italy's economic and political developments.",
     "owner": "Cairo Communication (59.69%)",
     "typology": "Private Media"
@@ -162,7 +209,9 @@
   {
     "country": "Italy",
     "organization": "Fanpage",
-    "domains": ["fanpage.it"],
+    "domains": [
+      "fanpage.it"
+    ],
     "description": "Fanpage is a digital news outlet founded in 2010 that covers general news, politics, sports, entertainment, and technology. The website specializes in real-time news coverage and video journalism, with a significant presence on social media platforms. It is particularly popular among younger Italian readers and known for its investigative journalism, often presenting news from a progressive, left-leaning perspective.",
     "owner": "Ciaopeople Media Group S.r.l.",
     "typology": "Private Media"
@@ -170,7 +219,9 @@
   {
     "country": "Italy",
     "organization": "La Gazzetta dello Sport",
-    "domains": ["gazzetta.it"],
+    "domains": [
+      "gazzetta.it"
+    ],
     "description": "La Gazzetta dello Sport is Italy's primary sports newspaper and digital media platform, founded in 1896. It provides comprehensive coverage of Italian and international sports, with particular focus on football, cycling, motorsports, basketball and tennis. The publication is known for its distinctive pink-colored paper edition and extensive digital sports news coverage.",
     "owner": "Cairo Communication SpA",
     "typology": "Private Media"
@@ -178,7 +229,9 @@
   {
     "country": "Italy",
     "organization": "HuffPost Italia",
-    "domains": ["huffingtonpost.it"],
+    "domains": [
+      "huffingtonpost.it"
+    ],
     "description": "HuffPost Italia is the Italian edition of HuffPost, operating as a news website and blog that covers politics, economics, current affairs and lifestyle content. Originally launched as a joint venture between BuzzFeed and GEDI Group, it is now fully owned by GEDI and directed by Mattia Feltri since 2020. It provides news coverage from a progressive, left-leaning perspective.",
     "owner": "GEDI Gruppo Editoriale",
     "typology": "Private Media"
@@ -186,7 +239,9 @@
   {
     "country": "Italy",
     "organization": "Il Foglio",
-    "domains": ["ilfoglio.it"],
+    "domains": [
+      "ilfoglio.it"
+    ],
     "description": "Il Foglio is a daily newspaper with a center-right editorial stance, founded by Giuliano Ferrara and currently directed by Claudio Cerasa, headquartered in Rome. The newspaper provides coverage of national and international news, politics, and current affairs, with a digital presence offering both free and subscription-based content.",
     "owner": "Musa Comunicazione (100%)",
     "typology": "Private Media"
@@ -194,7 +249,9 @@
   {
     "country": "Italy",
     "organization": "il manifesto",
-    "domains": ["ilmanifesto.it"],
+    "domains": [
+      "ilmanifesto.it"
+    ],
     "description": "il manifesto is a national daily newspaper established in 1969 as a monthly review before becoming a daily in 1971. It operates as a publishing cooperative of journalists and workers, known for its radical left-wing and communist editorial stance. The newspaper provides both print and digital news coverage, with recent efforts to expand its reach through an English-language edition.",
     "owner": "Publishing cooperative of journalists and workers",
     "typology": "Private Media"
@@ -202,7 +259,9 @@
   {
     "country": "Italy",
     "organization": "il Post",
-    "domains": ["ilpost.it"],
+    "domains": [
+      "ilpost.it"
+    ],
     "description": "il Post is a online daily newspaper founded in 2010 by Luca Sofri. It provides free access to news coverage, analysis, and content spanning world events, culture, and current affairs through articles, reviews, blogs, and photos, without requiring user registration.",
     "owner": "Luca Sofri",
     "typology": "Private Media"
@@ -210,7 +269,9 @@
   {
     "country": "Italy",
     "organization": "Il Resto del Carlino",
-    "domains": ["ilrestodelcarlino.it"],
+    "domains": [
+      "ilrestodelcarlino.it"
+    ],
     "description": "Il Resto del Carlino is a major daily newspaper based in Bologna, serving Emilia-Romagna and central-northern Italy since 1885. It provides local and national news coverage through multiple regional editions, focusing particularly on Bologna, Ferrara, Modena, Reggio Emilia, Rimini, and the Marche region. The paper is known for its center-right editorial stance.",
     "owner": "Monrif Group",
     "typology": "Private Media"
@@ -218,7 +279,9 @@
   {
     "country": "Italy",
     "organization": "Il Secolo XIX",
-    "domains": ["ilsecoloxix.it"],
+    "domains": [
+      "ilsecoloxix.it"
+    ],
     "description": "Il Secolo XIX is a daily newspaper founded in 1886 and based in Genoa, serving the Liguria region with local, national, and international news coverage. The newspaper had a print circulation of 28,718 copies in 2021, down from 103,223 in 2008, and operates both print and digital platforms.",
     "owner": "Blue Media (MSC Group)",
     "typology": "Private Media"
@@ -226,7 +289,10 @@
   {
     "country": "Italy",
     "organization": "Il Sole 24 Ore",
-    "domains": ["ilsole24ore.com", "gruppo24ore.ilsole24ore.com"],
+    "domains": [
+      "ilsole24ore.com",
+      "gruppo24ore.ilsole24ore.com"
+    ],
     "description": "Il Sole 24 Ore is Italy's primary financial and business daily newspaper and media group, providing news coverage, analysis, and professional services focused on economics, finance, business, and regulatory matters. The outlet maintains strong ties to the Italian industrial sector through its ownership by Confindustria, reflecting a business-oriented perspective in its coverage.",
     "owner": "Confindustria",
     "typology": "Private Media"
@@ -234,7 +300,9 @@
   {
     "country": "Italy",
     "organization": "Il Tempo",
-    "domains": ["iltempo.it"],
+    "domains": [
+      "iltempo.it"
+    ],
     "description": "Il Tempo is a daily newspaper based in Rome, founded in 1944. It is known for its conservative-leaning editorial stance and primarily covers news, politics, sports, and culture with a focus on Rome and the surrounding Lazio region. The newspaper maintains both print and digital operations through its website iltempo.it.",
     "owner": "Editrice Romana Srl",
     "typology": "Private Media"
@@ -242,7 +310,9 @@
   {
     "country": "Italy",
     "organization": "La Nazione",
-    "domains": ["lanazione.it"],
+    "domains": [
+      "lanazione.it"
+    ],
     "description": "La Nazione is a daily newspaper founded in 1859, based in Florence and covering news from Tuscany and Umbria regions with 14 different local editions. The newspaper maintains a moderate-conservative editorial stance and publishes daily news covering politics, economy, sports, technology, and local chronicles across its print and digital platforms.",
     "owner": "Monrif Group",
     "typology": "Private Media"
@@ -250,7 +320,9 @@
   {
     "country": "Italy",
     "organization": "La Stampa",
-    "domains": ["lastampa.it"],
+    "domains": [
+      "lastampa.it"
+    ],
     "description": "La Stampa is a major Italian daily newspaper founded in 1867 in Turin. It is one of Italy's oldest newspapers and has historically been associated with the industrial and business community of northern Italy, particularly the Fiat/FIAT Group. The newspaper provides national and international news coverage, with particular focus on politics, economics, and cultural affairs.",
     "owner": "GEDI Gruppo Editoriale (owned by EXOR - Agnelli family)",
     "typology": "Private Media"
@@ -258,7 +330,10 @@
   {
     "country": "Italy",
     "organization": "Mediaset",
-    "domains": ["tgcom24.mediaset.it", "mediasetinfinity.mediaset.it"],
+    "domains": [
+      "tgcom24.mediaset.it",
+      "mediasetinfinity.mediaset.it"
+    ],
     "description": "Mediaset is Italy's largest commercial broadcaster, operating a streaming platform (Mediaset Infinity) and multiple television channels. The company offers free-to-air and premium content including news, entertainment, sports, and fiction programming through both traditional TV broadcasting and digital streaming services. Under Berlusconi family control, its news coverage consistently aligns with center-right political positions.",
     "owner": "MediaForEurope N.V. (majority owned by the Berlusconi family)",
     "typology": "Private Media"
@@ -266,7 +341,9 @@
   {
     "country": "Italy",
     "organization": "News Mondo",
-    "domains": ["newsmondo.it"],
+    "domains": [
+      "newsmondo.it"
+    ],
     "description": "News Mondo is a digital news platform providing 24/7 real-time news coverage and analysis of current events from Italy and around the world. The platform features a team of young professionals and established journalists delivering news content across various categories including current affairs, editorials, and in-depth analysis.",
     "owner": "Unknown",
     "typology": "Private Media"
@@ -274,7 +351,9 @@
   {
     "country": "Italy",
     "organization": "Notizie Italia",
-    "domains": ["notizie-italia.it"],
+    "domains": [
+      "notizie-italia.it"
+    ],
     "description": "Notizie Italia is a digital news platform established in 2023 that aggregates and publishes national news content primarily sourced from major news agencies. The platform provides coverage across various topics including politics, economics, sports, and current events.",
     "owner": "Unknown",
     "typology": "Private Media"
@@ -282,7 +361,9 @@
   {
     "country": "Italy",
     "organization": "Open",
-    "domains": ["open.online"],
+    "domains": [
+      "open.online"
+    ],
     "description": "Open is a digital news outlet founded by journalist Enrico Mentana, operating as a social enterprise based in Milan. The organization focuses on providing real-time news coverage in a simplified format for online audiences.",
     "owner": "Enrico Mentana",
     "typology": "Private Media"
@@ -290,7 +371,9 @@
   {
     "country": "Italy",
     "organization": "OrizzonteScuola SRL",
-    "domains": ["orizzontescuola.it"],
+    "domains": [
+      "orizzontescuola.it"
+    ],
     "description": "OrizzonteScuola is a educational news portal and media service focused on providing news, resources, and consultation services for teachers, school administrators, and education staff. The platform covers education policy updates, job opportunities, regulatory changes, and professional development in the Italian education sector.",
     "owner": "OrizzonteScuola SRL",
     "typology": "Private Media"
@@ -298,7 +381,9 @@
   {
     "country": "Italy",
     "organization": "la Repubblica",
-    "domains": ["repubblica.it"],
+    "domains": [
+      "repubblica.it"
+    ],
     "description": "la Repubblica is a daily newspaper and online news outlet based in Rome, founded in 1976. The publication maintains a center-left political editorial line and covers politics, economics, sports, international news, culture, and science. It is part of GEDI News Network, one of Italy's major media groups.",
     "owner": "GEDI Gruppo Editoriale (owned by Exor)",
     "typology": "Private Media"
@@ -306,7 +391,9 @@
   {
     "country": "Italy",
     "organization": "RTL 102.5",
-    "domains": ["rtl.it"],
+    "domains": [
+      "rtl.it"
+    ],
     "description": "RTL 102.5 is a radio broadcaster that operates as a multimedia platform combining radio, television, and web streaming services. The station offers news, music programming, and entertainment content through its 'Radiovisione' format, which allows simultaneous radio listening and video viewing across multiple platforms including digital terrestrial TV (channel 36), Sky (channel 736), and web streaming.",
     "owner": "Lorenzo Suraci",
     "typology": "Private Media"
@@ -314,7 +401,9 @@
   {
     "country": "Italy",
     "organization": "Sky TG24",
-    "domains": ["skytg24.it"],
+    "domains": [
+      "skytg24.it"
+    ],
     "description": "Sky TG24 is a 24-hour all-news television channel and digital news platform operated by Sky Italia. It broadcasts news, current affairs, and live coverage on channel 50 of digital terrestrial television in Italy, offering free-to-air news coverage alongside premium content through its Insider subscription service.",
     "owner": "Sky Italia (Comcast Corporation)",
     "typology": "Private Media"
@@ -322,7 +411,9 @@
   {
     "country": "Italy",
     "organization": "Today",
-    "domains": ["today.it"],
+    "domains": [
+      "today.it"
+    ],
     "description": "Today.it is a digital news platform operated by Citynews that provides real-time coverage of national and international news, including politics, economics, sports, entertainment, and local news through a network of city-specific editions. The platform focuses on delivering breaking news and in-depth analysis across multiple Italian cities.",
     "owner": "Citynews S.p.A.",
     "typology": "Private Media"
@@ -330,7 +421,9 @@
   {
     "country": "Italy",
     "organization": "l'Unità",
-    "domains": ["unita.it"],
+    "domains": [
+      "unita.it"
+    ],
     "description": "l'Unità is a daily newspaper founded by Antonio Gramsci in 1924. It provides news coverage of politics, economics, current affairs, justice, and international news through its online platform. Currently directed by Piero Sansonetti, the newspaper has historical ties to the Italian left and continues to publish both daily news and in-depth stories.",
     "owner": "Romeo editore srl",
     "typology": "Private Media"
@@ -338,7 +431,9 @@
   {
     "country": "Italy",
     "organization": "Virgilio",
-    "domains": ["virgilio.it"],
+    "domains": [
+      "virgilio.it"
+    ],
     "description": "Virgilio.it operates as a major Italian news aggregator and digital media platform. The site curates and publishes news content from various Italian and international sources, covering politics, economics, sports, entertainment, and local news. While not producing original journalism, it serves as a news distribution channel in Italy through its content aggregation and syndication services.",
     "owner": "Libero Acquisition S.A.r.l.",
     "typology": "Private Media"
@@ -346,7 +441,9 @@
   {
     "country": "Italy",
     "organization": "Il Fatto Quotidiano",
-    "domains": ["ilfattoquotidiano.it"],
+    "domains": [
+      "ilfattoquotidiano.it"
+    ],
     "description": "Il Fatto Quotidiano is a daily newspaper and digital news outlet founded in 2009, known for its investigative journalism and coverage of politics, justice, economics, and corruption. The publication maintains an independent editorial stance with a strong focus on anti-corruption reporting and government accountability. While editorially independent, it has historically shown alignment with some positions of the Five Star Movement (M5S), particularly on anti-corruption and institutional reform.",
     "owner": "Società Editoriale Il Fatto S.p.A.",
     "typology": "Private Media"
@@ -354,7 +451,9 @@
   {
     "country": "Italy",
     "organization": "Avvenire",
-    "domains": ["avvenire.it"],
+    "domains": [
+      "avvenire.it"
+    ],
     "description": "Avvenire is a daily newspaper with a Catholic perspective. The publication covers news, editorials, and analysis on current affairs, culture, religion, politics, economics and world events from a Christian worldview.",
     "owner": "Italian Episcopal Conference - Fondazione di Religione \"Santi Francesco d'Assisi e Caterina da Siena\" (75%)",
     "typology": "Private Media"
@@ -362,7 +461,9 @@
   {
     "country": "India",
     "organization": "TecMint",
-    "domains": ["tecmint.com"],
+    "domains": [
+      "tecmint.com"
+    ],
     "description": "TecMint is a technical blog and community website started by Ravi Saive focused on providing Linux tutorials, system administration guides, and open source software documentation.",
     "owner": "Ravi Saive",
     "typology": "Private Media"
@@ -370,7 +471,10 @@
   {
     "country": "India",
     "organization": "nixCraft",
-    "domains": ["cyberciti.biz", "nixcraft.com"],
+    "domains": [
+      "cyberciti.biz",
+      "nixcraft.com"
+    ],
     "description": "nixCraft is a technical blog focused on Linux, Unix, cybersecurity, and system administration tutorials. The site provides detailed guides, tips, and best practices for system administrators and Linux users, with a particular emphasis on command-line operations and server management.",
     "owner": "Vivek Gite",
     "typology": "Private Media"
@@ -378,7 +482,9 @@
   {
     "country": "India",
     "organization": "It's FOSS",
-    "domains": ["itsfoss.com"],
+    "domains": [
+      "itsfoss.com"
+    ],
     "description": "It's FOSS is a web portal focused on Linux and open source software that provides news, tutorials, tips and educational resources about Linux and open source technologies.",
     "owner": "Abhishek Prakash",
     "typology": "Private Media"
@@ -386,7 +492,9 @@
   {
     "country": "United States",
     "organization": "CloudLinux Blog",
-    "domains": ["cloudlinux.com"],
+    "domains": [
+      "cloudlinux.com"
+    ],
     "description": "Official blog of CloudLinux, a commercial Linux operating system provider specializing in web hosting solutions. The blog provides technical updates, product releases, and documentation for CloudLinux OS, CloudLinux's own distro.",
     "owner": "Cloud Linux Software, Inc.",
     "typology": "Private Media"
@@ -394,7 +502,9 @@
   {
     "country": "United States",
     "organization": "Linux.com",
-    "domains": ["linux.com"],
+    "domains": [
+      "linux.com"
+    ],
     "description": "Linux.com is a web resource providing news, tutorials, certifications, and information focused on Linux and open source technology. The platform offers educational content, professional development resources, discussion forums, and job listings for the open source community.",
     "owner": "The Linux Foundation",
     "typology": "Private Media"
@@ -402,7 +512,9 @@
   {
     "country": "India",
     "organization": "OSTechNix",
-    "domains": ["ostechnix.com"],
+    "domains": [
+      "ostechnix.com"
+    ],
     "description": "OSTechNix is a technology blog funded by Senthilkumar Palani in 2012, focused on publishing tutorials, how-to articles, news, and tips about open-source software, Linux distributions, Unix systems, and programming.",
     "owner": "Senthilkumar Palani",
     "typology": "Private Media"
@@ -410,7 +522,10 @@
   {
     "country": "United States",
     "organization": "Phoronix",
-    "domains": ["phoronix.com", "phoronix-test-suite.com"],
+    "domains": [
+      "phoronix.com",
+      "phoronix-test-suite.com"
+    ],
     "description": "Phoronix is a leading technology website founded in 2004 that provides daily news coverage focused on Linux, open-source software developments, and hardware reviews. While known for its Phoronix Test Suite benchmarking software, the site's primary focus is delivering comprehensive reporting on Linux kernel updates and general Linux news, hardware compatibility, graphics drivers, and performance analysis across different Linux distributions and open-source technologies.",
     "owner": "Michael Larabel",
     "typology": "Private Media"
@@ -431,7 +546,10 @@
   {
     "country": "Global",
     "organization": "Linux Mint Blog",
-    "domains": ["linuxmint.com", "blog.linuxmint.com"],
+    "domains": [
+      "linuxmint.com",
+      "blog.linuxmint.com"
+    ],
     "description": "The Linux Mint Blog is the official news and announcement platform for the Linux Mint operating system project, providing updates about development progress, new releases, and community news. It serves as the primary communication channel between the Linux Mint development team and its user community.",
     "owner": "Linux Mint Project",
     "typology": "Private Media"
@@ -439,7 +557,9 @@
   {
     "country": "Global",
     "organization": "Manjaro Linux Forum",
-    "domains": ["manjaro.org"],
+    "domains": [
+      "manjaro.org"
+    ],
     "description": "Manjaro Linux Forum is the official community discussion platform and news distribution channel for Manjaro Linux, an Arch Linux-based operating system. The forum provides announcements, technical support, and community discussions for Manjaro users through various channels including RSS feeds for updates and announcements.",
     "owner": "Manjaro GmbH & Co. KG",
     "typology": "Private Media"
@@ -447,7 +567,9 @@
   {
     "country": "United States",
     "organization": "Linux Journal",
-    "domains": ["linuxjournal.com"],
+    "domains": [
+      "linuxjournal.com"
+    ],
     "description": "Linux Journal is a monthly technology magazine focused on Linux and open source software, publishing from 1994. It publishes technical articles, tutorials, and news coverage for Linux professionals and enthusiasts.",
     "owner": "Linux Journal LCC (1994-2019), Slashdot Media (2019-)",
     "typology": "Private Media"
@@ -455,7 +577,9 @@
   {
     "country": "United States",
     "organization": "LWN.net",
-    "domains": ["lwn.net"],
+    "domains": [
+      "lwn.net"
+    ],
     "description": "LWN.net is a reader-supported computing webzine focused on Linux, free software, and open source development, providing comprehensive coverage of technical, legal, commercial and security issues in the free software ecosystem. Originally known as Linux Weekly News, it offers both daily and weekly content through a subscription model.",
     "owner": "Eklektix, Inc.",
     "typology": "Private Media"
@@ -463,7 +587,9 @@
   {
     "country": "United States",
     "organization": "Linux Today",
-    "domains": ["linuxtoday.com"],
+    "domains": [
+      "linuxtoday.com"
+    ],
     "description": "Linux Today is a contributor-driven news and information resource focused on Linux operating systems, providing tutorials, guides, and technical news coverage for Linux users and IT professionals",
     "owner": "TechnologyAdvice",
     "typology": "Private Media"
@@ -471,7 +597,9 @@
   {
     "country": "Global",
     "organization": "SparkyLinux",
-    "domains": ["sparkylinux.org"],
+    "domains": [
+      "sparkylinux.org"
+    ],
     "description": "SparkyLinux is a Debian-based Linux distribution project that develops and maintains a fast, lightweight operating system. It offers multiple desktop environment options and two main versions: a stable release based on Debian stable and a rolling release based on Debian testing..",
     "owner": "Sparky Linux Project",
     "typology": "Private Media"
@@ -479,7 +607,9 @@
   {
     "country": "Germany",
     "organization": "SUSE",
-    "domains": ["suse.com"],
+    "domains": [
+      "suse.com"
+    ],
     "description": "SUSE is a multinational open-source software company that develops and sells Linux-based enterprise solutions, including SUSE Linux Enterprise Server, cloud technologies, and software-defined storage. The company provides operating systems, infrastructure software, and development tools for business customers.",
     "owner": "EQT AB (via Marcel LUX III SARL)",
     "typology": "Private Media"
@@ -487,7 +617,9 @@
   {
     "country": "Netherlands/Morocco",
     "organization": "Unixmen",
-    "domains": ["unixmen.com"],
+    "domains": [
+      "unixmen.com"
+    ],
     "description": "Unixmen is a technology website focused on providing Linux tutorials, how-tos, tips & tricks, and open source news. The site covers popular Linux distributions like Ubuntu, Linux Mint, Fedora, and CentOS, offering technical guides and resources for Linux users and system administrators.",
     "owner": "The Eighth Network",
     "typology": "Private Media"
@@ -495,7 +627,9 @@
   {
     "country": "India",
     "organization": "Kali Linux India Blog",
-    "domains": ["kalilinux.in"],
+    "domains": [
+      "kalilinux.in"
+    ],
     "description": "An unofficial blog and community resource focused on Kali Linux, providing tutorials, guides, and news related to penetration testing and cybersecurity tools for Indian users. This is not affiliated with the official Kali Linux project (kali.org) maintained by Offensive Security.",
     "owner": "",
     "typology": "Private Media"
@@ -503,7 +637,9 @@
   {
     "country": "Germany",
     "organization": "Linux Magazine",
-    "domains": ["linux-magazine.com"],
+    "domains": [
+      "linux-magazine.com"
+    ],
     "description": "Linux Magazine is a technical publication focused on Linux and open source software, providing news, tutorials, and in-depth articles about Linux systems administration, security, and development. It offers both print and digital content through its website and RSS feeds, serving the global Linux and open source community.",
     "owner": "Linux New Media AG",
     "typology": "Private Media"
@@ -511,7 +647,9 @@
   {
     "country": "United States",
     "organization": "FOSS Linux",
-    "domains": ["fosslinux.com"],
+    "domains": [
+      "fosslinux.com"
+    ],
     "description": "FOSS Linux is a technology blog focused on providing news, tutorials, reviews and information about Linux distributions and Free and Open Source Software (FOSS). The website specializes in covering Linux-related topics, distribution reviews, and guides for both beginners and advanced users, with particular emphasis on open-source technologies and solutions.",
     "owner": "Vibrant Leaf Media Company",
     "typology": "Private Media"
@@ -519,7 +657,9 @@
   {
     "country": "United States",
     "organization": "LinuxGizmos",
-    "domains": ["linuxgizmos.com"],
+    "domains": [
+      "linuxgizmos.com"
+    ],
     "description": "LinuxGizmos is a technology news website launched in February 2013 that focuses on covering Linux and its derivatives in embedded systems, mobile devices, and IoT applications. The site publishes news, analysis, and technical content about hardware, software, protocols, and standards in the embedded Linux ecosystem.",
     "owner": "KCK Media",
     "typology": "Private Media"
@@ -527,7 +667,9 @@
   {
     "country": "",
     "organization": "blackMORE Ops",
-    "domains": ["blackmoreops.com"],
+    "domains": [
+      "blackmoreops.com"
+    ],
     "description": "blackMORE Ops is a technical blog and educational resource focused on cybersecurity, Kali Linux, information security, and ethical hacking. The site provides tutorials, guides, and technical documentation for security professionals and enthusiasts, with particular emphasis on Kali Linux tools and penetration testing methodologies.",
     "owner": "",
     "typology": "Private Media"
@@ -535,7 +677,9 @@
   {
     "country": "United Kingdom",
     "organization": "GamingOnLinux",
-    "domains": ["gamingonlinux.com"],
+    "domains": [
+      "gamingonlinux.com"
+    ],
     "description": "GamingOnLinux is a specialized gaming news website focused on Linux gaming, Steam Deck, and SteamOS coverage. It provides news, reviews, and technical information about gaming on Linux platforms.",
     "owner": "Liam Dawe",
     "typology": "Private Media"
@@ -543,7 +687,9 @@
   {
     "country": "",
     "organization": "Kali Linux Blog",
-    "domains": ["kali.org"],
+    "domains": [
+      "kali.org"
+    ],
     "description": "Kali Linux is an open-source Debian-based Linux distribution maintained and funded by Offensive Security, specifically designed for digital forensics, penetration testing, and security auditing.",
     "owner": "Offensive Security",
     "typology": "Private Media"
@@ -551,7 +697,9 @@
   {
     "country": "Czech Republic",
     "organization": "Lisenet",
-    "domains": ["lisenet.com"],
+    "domains": [
+      "lisenet.com"
+    ],
     "description": "Lisenet is a technical blog focused on Linux systems administration, security, networking, and IT infrastructure. The site provides study guides for professional certifications like RHCE and LPIC, along with practical tutorials and guides on Kubernetes, Docker, and system administration.",
     "owner": "Tomas Nevar",
     "typology": "Private Media"
@@ -559,7 +707,9 @@
   {
     "country": "United States",
     "organization": "LXer",
-    "domains": ["lxer.com"],
+    "domains": [
+      "lxer.com"
+    ],
     "description": "LXer is an independent Linux and open source news website established in 2004 by Dave Whitinger. The site publishes Linux-related news, opinions, reviews, and community discussions, focusing specifically on free and open source software developments and the Linux ecosystem.",
     "owner": "Dave Whitinger",
     "typology": "Private Media"
@@ -567,7 +717,9 @@
   {
     "country": "India",
     "organization": "DebugPoint.com",
-    "domains": ["debugpoint.com"],
+    "domains": [
+      "debugpoint.com"
+    ],
     "description": "DebugPoint.com is a technology news portal and blog focused primarily on Linux, open source software, and development topics. The site provides tutorials, news coverage, and technical content with a particular emphasis on Linux distributions, software development, and programming tutorials, especially related to Python and system administration.",
     "owner": "Arindam Giri",
     "typology": "Private Media"
@@ -575,7 +727,9 @@
   {
     "country": "",
     "organization": "Linux Stans",
-    "domains": ["linuxstans.com"],
+    "domains": [
+      "linuxstans.com"
+    ],
     "description": "Linux Stans is a technical blog/website focused on providing Linux tutorials, command-line guides, and system administration content.",
     "owner": "",
     "typology": "Private Media"
@@ -583,7 +737,9 @@
   {
     "country": "Taiwan",
     "organization": "DistroWatch",
-    "domains": ["distrowatch.com"],
+    "domains": [
+      "distrowatch.com"
+    ],
     "description": "DistroWatch is a website that provides comprehensive information, news, and statistics about Linux distributions and BSD operating systems. It maintains a database of various distributions, tracks their release cycles, features, and popularity through page hit rankings, serving as a key resource for the Linux/BSD community.",
     "owner": "Ladislav Bodnar",
     "typology": "Private Media"
@@ -591,7 +747,9 @@
   {
     "country": "Taiwan/South Africa",
     "organization": "DistroWatch",
-    "domains": ["distrowatch.com"],
+    "domains": [
+      "distrowatch.com"
+    ],
     "description": "DistroWatch is a website that provides comprehensive news, information, and comparison resources about Linux distributions and BSD operating systems. It maintains distribution rankings based on page hits, offers detailed distribution information pages, and serves as a central hub for tracking releases and updates across the open-source operating system landscape.",
     "owner": "Ladislav Bodnar",
     "typology": "Private Media"
@@ -599,7 +757,10 @@
   {
     "country": "United Kingdom",
     "organization": "OMG! Ubuntu/OMG! Linux",
-    "domains": ["omgubuntu.co.uk", "omglinux.com"],
+    "domains": [
+      "omgubuntu.co.uk",
+      "omglinux.com"
+    ],
     "description": "OMG! Ubuntu is an independent blog focused on covering Ubuntu Linux distribution, its derivatives, and the broader Linux/open-source ecosystem. The site provides news, tutorials, and updates about Ubuntu and related open-source technologies. OMG! Linux is a similar blog focused on Linux and open-source software news.",
     "owner": "Joey-Elijah Sneddon",
     "typology": "Private Media"
@@ -607,7 +768,9 @@
   {
     "country": "Global",
     "organization": "Arch Linux Blog",
-    "domains": ["archlinux.org"],
+    "domains": [
+      "archlinux.org"
+    ],
     "description": "Arch Linux is a lightweight and flexible Linux distribution that provides official news feeds and updates about system changes, package updates, and security advisories for its user base. The project is community-driven and follows a rolling release model, focusing on simplicity, minimalism, and user centrality.",
     "owner": "Arch Linux Community",
     "typology": "Private Media"
@@ -615,7 +778,9 @@
   {
     "country": "",
     "organization": "Linuxiac",
-    "domains": ["linuxiac.com"],
+    "domains": [
+      "linuxiac.com"
+    ],
     "description": "Linuxiac is a media platform funded by Bobby Borisov in 2020 that publishes news, reviews, and how-to articles focused on Linux and Open Source software. The site provides coverage of Linux distributions, software releases, and community projects.",
     "owner": "Bobby Borisov",
     "typology": "Private Media"
@@ -623,7 +788,9 @@
   {
     "country": "United States",
     "organization": "9to5Linux",
-    "domains": ["9to5linux.com"],
+    "domains": [
+      "9to5linux.com"
+    ],
     "description": "9to5Linux is a specialized technology news website focused on Linux operating system news, providing coverage of kernel updates, distribution releases, software updates, and technical tutorials. The site regularly reports on major Linux developments including kernel releases, desktop environments, and open-source applications.",
     "owner": "Marius Nestor",
     "typology": "Private Media"
@@ -631,7 +798,9 @@
   {
     "country": "United States",
     "organization": "LinuxInsider",
-    "domains": ["linuxinsider.com"],
+    "domains": [
+      "linuxinsider.com"
+    ],
     "description": "LinuxInsider is a specialized technology news website focused on providing news, analysis, and reviews of Linux and open-source technologies. The platform offers content targeted at developers, system administrators, business executives, and Linux enthusiasts, covering topics from kernel updates to industry trends and community developments.",
     "owner": "ECT News Network",
     "typology": "Private Media"
@@ -639,7 +808,9 @@
   {
     "country": "United Kingdom",
     "organization": "LinuxLinks",
-    "domains": ["linuxlinks.com"],
+    "domains": [
+      "linuxlinks.com"
+    ],
     "description": "LinuxLinks is a Linux-focused web portal that provides curated collections of open source software reviews, tutorials, and resources. It offers comprehensive guides for Linux newcomers, maintains a directory of Linux distributions, and publishes detailed reviews of open source alternatives to proprietary software, with particular emphasis on remote desktop and system administration tools.",
     "owner": "Steve Emms",
     "typology": "Private Media"
@@ -647,7 +818,9 @@
   {
     "country": "Global",
     "organization": "EndeavourOS",
-    "domains": ["endeavouros.com"],
+    "domains": [
+      "endeavouros.com"
+    ],
     "description": "EndeavourOS is a community-driven Linux distribution based on Arch Linux, created in 2019 as a successor to Antergos. It offers a lightweight, rolling-release operating system with access to the Arch User Repository (AUR), featuring multiple desktop environment options and a terminal-centric approach while maintaining a supportive community focus.",
     "owner": "EndavourOS Project",
     "typology": "Private Media"
@@ -655,7 +828,9 @@
   {
     "country": "United States",
     "organization": "System76 Blog",
-    "domains": ["system76.com"],
+    "domains": [
+      "system76.com"
+    ],
     "description": "System76 is a Linux-focused computer manufacturer based in Denver, Colorado that produces laptops, desktops, and servers with pre-installed Linux operating systems. Their blog provides company updates, product announcements, technical articles, and community engagement content.",
     "owner": "System76",
     "typology": "Private Media"
@@ -663,7 +838,9 @@
   {
     "country": "United States",
     "organization": "Reddit",
-    "domains": ["reddit.com"],
+    "domains": [
+      "reddit.com"
+    ],
     "description": "Reddit is a social news and discussion platform where users submit content and participate in topic-specific communities called subreddits. The platform combines social networking, news aggregation, and forum features, allowing users to vote on content and engage in discussions.",
     "owner": "Advance Publications (30%), Tencent (11%), Sam Altman (9%)",
     "typology": "Private Media"
@@ -671,7 +848,9 @@
   {
     "country": "United States",
     "organization": "Fedora Magazine",
-    "domains": ["fedoramagazine.org"],
+    "domains": [
+      "fedoramagazine.org"
+    ],
     "description": "Fedora Magazine is the official news and information website of the Fedora Project, publishing guides, tutorials, and news about the Fedora Linux operating system and its ecosystem. The content is contributed by community members and published under Creative Commons licensing.",
     "owner": "Fedora Project",
     "typology": "Private Media"
@@ -679,7 +858,10 @@
   {
     "country": "United States",
     "organization": "Fedora Project Forum",
-    "domains": ["fedoraproject.org", "getfedora.org"],
+    "domains": [
+      "fedoraproject.org",
+      "getfedora.org"
+    ],
     "description": "The Fedora Project Forum is the official community platform for the Fedora Linux distribution, providing news, technical discussions, and community engagement for Fedora users and contributors.",
     "owner": "Fedora Project",
     "typology": "Private Media"
@@ -687,7 +869,9 @@
   {
     "country": "Global",
     "organization": "KDE News",
-    "domains": ["kde.org"],
+    "domains": [
+      "kde.org"
+    ],
     "description": "KDE News is the official news portal of the KDE Community, providing updates about KDE software development, applications, releases, and community initiatives.",
     "owner": "KDE e.V.",
     "typology": "Private Media"
@@ -695,7 +879,9 @@
   {
     "country": "International",
     "organization": "KDE Community Blog",
-    "domains": ["kde.org"],
+    "domains": [
+      "kde.org"
+    ],
     "description": "The KDE Community Blog is the official blogging platform of the KDE project, an international free software community that develops open-source software.",
     "owner": "KDE e.V.",
     "typology": "Private Media"
@@ -703,7 +889,9 @@
   {
     "country": "Global",
     "organization": "GNOME Foundation",
-    "domains": ["gnome.org"],
+    "domains": [
+      "gnome.org"
+    ],
     "description": "The GNOME Foundation is a non-profit organization that oversees the development of GNOME, one of the most widely-used open-source desktop environments for Linux and Unix-like systems.",
     "owner": "GNOME Foundation",
     "typology": "Private Media"
@@ -711,7 +899,9 @@
   {
     "country": "Global",
     "organization": "openSUSE News",
-    "domains": ["opensuse.org"],
+    "domains": [
+      "opensuse.org"
+    ],
     "description": "openSUSE News is the official news platform for the openSUSE Project, publishing announcements and updates about the openSUSE Linux distribution, its development, community events, and technical changes.",
     "owner": "openSUSE Project",
     "typology": "Private Media"
@@ -719,7 +909,9 @@
   {
     "country": "United Kingdom",
     "organization": "Ubuntu Blog",
-    "domains": ["ubuntu.com"],
+    "domains": [
+      "ubuntu.com"
+    ],
     "description": "Ubuntu Blog is the official blog of the Ubuntu operating system, providing news, updates, tutorials and insights about Ubuntu's open-source software ecosystem. The blog covers desktop, cloud computing, IoT developments, and technical content related to the Ubuntu distribution and its community.",
     "owner": "Canonical Ltd.",
     "typology": "Private Media"
@@ -727,7 +919,9 @@
   {
     "country": "",
     "organization": "Boiling Steam",
-    "domains": ["boilingsteam.com"],
+    "domains": [
+      "boilingsteam.com"
+    ],
     "description": "Boiling Steam is a specialized gaming blog focused on Linux gaming and Steam Deck coverage with news, podcasts, and analysis.",
     "owner": "Ekianjo",
     "typology": "Private Media"
@@ -735,7 +929,9 @@
   {
     "country": "United States",
     "organization": "Hacker News",
-    "domains": ["news.ycombinator.com"],
+    "domains": [
+      "news.ycombinator.com"
+    ],
     "description": "Hacker News is a social news website focused on computer science, technology, entrepreneurship and startups. It features user-submitted content that can be voted up or down by the community, including tech news, scientific discoveries, and in-depth articles about programming, business, and technology culture.",
     "owner": "Y Combinator",
     "typology": "Private Media"
@@ -743,7 +939,9 @@
   {
     "country": "United States",
     "organization": "Cointelegraph",
-    "domains": ["cointelegraph.com"],
+    "domains": [
+      "cointelegraph.com"
+    ],
     "description": "Established in 2013, Cointelegraph is a digital media platform focused on blockchain technology, cryptocurrency, and fintech news coverage.",
     "owner": "Jay Cassano",
     "typology": "Private Media"
@@ -751,7 +949,9 @@
   {
     "country": "United States",
     "organization": "Kraken Blog",
-    "domains": ["kraken.com"],
+    "domains": [
+      "kraken.com"
+    ],
     "description": "Kraken Blog is the official blog of Kraken, a large cryptocurrency exchange. It provides news, updates, and educational content about Kraken's products, cryptocurrency trading, and blockchain technology.",
     "owner": "Kraken Global Trading Solutions LLC",
     "typology": "Private Media"
@@ -759,7 +959,9 @@
   {
     "country": "United Kingdom",
     "organization": "CoinJournal",
-    "domains": ["coinjournal.net"],
+    "domains": [
+      "coinjournal.net"
+    ],
     "description": "CoinJournal is a cryptocurrency and blockchain news publication that provides news coverage, analysis, and educational content about the crypto economy.",
     "owner": "Oliver Carding, Ian DeMartino",
     "typology": "Private Media"
@@ -767,7 +969,9 @@
   {
     "country": "United States",
     "organization": "CoinDesk",
-    "domains": ["coindesk.com"],
+    "domains": [
+      "coindesk.com"
+    ],
     "description": "CoinDesk is a cryptocurrency and digital assets-focused media outlet established in 2013 that provides news coverage, analysis, and data about Bitcoin, blockchain, and the crypto economy.",
     "owner": "Bullish Global",
     "typology": "Private Media"
@@ -775,7 +979,10 @@
   {
     "country": "United States",
     "organization": "Bloomberg Media",
-    "domains": ["bloomberg.com", "bloombergmedia.com"],
+    "domains": [
+      "bloomberg.com",
+      "bloombergmedia.com"
+    ],
     "description": "Bloomberg Media is a global business and financial news organization. It maintains major editorial hubs in New York, London, Hong Kong, Washington D.C., and Sydney.",
     "owner": "Bloomberg L.P.",
     "typology": "Private Media"
@@ -783,7 +990,9 @@
   {
     "country": "United States",
     "organization": "CryptoSlate",
-    "domains": ["cryptoslate.com"],
+    "domains": [
+      "cryptoslate.com"
+    ],
     "description": "CryptoSlate is a cryptocurrency news and data platform established in 2017 that provides news coverage, market analysis, and insights about digital assets, blockchain technology, and the cryptocurrency industry.",
     "owner": "Nate Whitehill, Matthew Blancarte",
     "typology": "Private Media"
@@ -791,7 +1000,9 @@
   {
     "country": "Canada",
     "organization": "CryptoCurrencyNews",
-    "domains": ["cryptocurrencynews.com"],
+    "domains": [
+      "cryptocurrencynews.com"
+    ],
     "description": "CryptoCurrencyNews is a digital media outlet focused on cryptocurrency news, market analysis, and trends. The platform provides coverage of Bitcoin, Ethereum, blockchain technology, and other digital assets, offering market updates, price analysis, and industry developments for cryptocurrency investors and enthusiasts.",
     "owner": "Market Jar Media Inc.",
     "typology": "Private Media"
@@ -799,7 +1010,9 @@
   {
     "country": "Hungary",
     "organization": "Bitcoinist",
-    "domains": ["bitcoinist.com"],
+    "domains": [
+      "bitcoinist.com"
+    ],
     "description": "Bitcoinist is a cryptocurrency news portal focused on Bitcoin and blockchain technology, providing 24/7 coverage including price analysis, market updates, technical analysis, and industry news.",
     "owner": "Norbert Radoki",
     "typology": "Private Media"
@@ -807,7 +1020,9 @@
   {
     "country": "United States",
     "organization": "The Block",
-    "domains": ["theblock.co"],
+    "domains": [
+      "theblock.co"
+    ],
     "description": "The Block is a New York-based digital media company focused on cryptocurrency and digital assets news, research, and analysis.",
     "owner": "Foresight Ventures",
     "typology": "Private Media"
@@ -815,7 +1030,9 @@
   {
     "country": "United States",
     "organization": "Decrypt",
-    "domains": ["decrypt.co"],
+    "domains": [
+      "decrypt.co"
+    ],
     "description": "Decrypt is a digital media platform focused on covering cryptocurrency, blockchain technology, Web3, and the decentralized internet. The publication provides news coverage, educational content, and analysis of the cryptocurrency industry and emerging blockchain technologies.",
     "owner": "",
     "typology": "Private Media"
@@ -823,7 +1040,9 @@
   {
     "country": "Cyprus",
     "organization": "The Currency Analytics",
-    "domains": ["thecurrencyanalytics.com"],
+    "domains": [
+      "thecurrencyanalytics.com"
+    ],
     "description": "The Currency Analytics is a cryptocurrency news and analysis website that provides coverage of crypto markets, blockchain technology, and altcoins.",
     "owner": "Sydney Ifergan",
     "typology": "Private Media"
@@ -831,7 +1050,9 @@
   {
     "country": "Argentina",
     "organization": "BeInCrypto",
-    "domains": ["beincrypto.com"],
+    "domains": [
+      "beincrypto.com"
+    ],
     "description": "BeInCrypto is a cryptocurrency and blockchain industry news website that provides unbiased news coverage, market analysis, and educational content about Bitcoin, altcoins, and blockchain technology.",
     "owner": "Alena Afanaseva",
     "typology": "Private Media"
@@ -839,7 +1060,9 @@
   {
     "country": "Saint Kitts and Nevis",
     "organization": "Bitcoin.com",
-    "domains": ["bitcoin.com"],
+    "domains": [
+      "bitcoin.com"
+    ],
     "description": "Bitcoin.com is a cryptocurrency news portal and digital wallet developer established in 2015 that provides services for buying, selling, and trading cryptocurrencies like Bitcoin (BTC), Bitcoin Cash (BCH), and other digital assets. The platform combines news coverage, educational resources, and cryptocurrency trading tools.",
     "owner": "Saint Bitts LLC",
     "typology": "Private Media"
@@ -847,7 +1070,9 @@
   {
     "country": "Bulgaria",
     "organization": "CryptoPotato",
-    "domains": ["cryptopotato.com"],
+    "domains": [
+      "cryptopotato.com"
+    ],
     "description": "CryptoPotato is a cryptocurrency news and analysis website that provides daily coverage of Bitcoin and other digital currencies, including price analysis, trading guides, market updates, and educational content for both beginners and experienced crypto traders.",
     "owner": "George Georgiev",
     "typology": "Private Media"
@@ -855,7 +1080,9 @@
   {
     "country": "India",
     "organization": "CoinGape",
-    "domains": ["coingape.com"],
+    "domains": [
+      "coingape.com"
+    ],
     "description": "CoinGape is a cryptocurrency and blockchain technology news website that provides market analysis, price tracking, and coverage of crypto events.",
     "owner": "Sunil Sharma",
     "typology": "Private Media"
@@ -863,7 +1090,9 @@
   {
     "country": "United States",
     "organization": "The Daily Hodl",
-    "domains": ["dailyhodl.com"],
+    "domains": [
+      "dailyhodl.com"
+    ],
     "description": "The Daily Hodl is a cryptocurrency and digital assets news website focused on covering Bitcoin, Ethereum, and blockchain technology developments. .",
     "owner": "Blake Buford, Laurene Williams",
     "typology": "Private Media"
@@ -871,7 +1100,9 @@
   {
     "country": "United Arab Emirates",
     "organization": "crypto.news",
-    "domains": ["crypto.news"],
+    "domains": [
+      "crypto.news"
+    ],
     "description": "A cryptocurrency news website that covers Bitcoin, Ethereum, Ripple and other blockchain ecosystems, providing news updates, market analysis and industry developments.",
     "owner": "",
     "typology": "Private Media"
@@ -879,7 +1110,9 @@
   {
     "country": "Germany",
     "organization": "Die Zeit",
-    "domains": ["zeit.de"],
+    "domains": [
+      "zeit.de"
+    ],
     "description": "Die Zeit is a weekly newspaper known for its liberal/center-left editorial stance and in-depth analysis. It is considered one of Germany's leading quality media publications by journalists, with coverage of politics, economics, culture, and society.",
     "owner": "Dieter von Holtzbrinck Medien (50%), Verlagsgruppe Georg von Holtzbrinck (50%)",
     "typology": "Private Media"
@@ -887,7 +1120,9 @@
   {
     "country": "Germany",
     "organization": "CORRECTIV",
-    "domains": ["correctiv.org"],
+    "domains": [
+      "correctiv.org"
+    ],
     "description": "CORRECTIV is a non-profit investigative newsroom, focusing on investigative journalism, fact-checking, and cross-border investigations.",
     "owner": "Non-Profit GmbH (David Schraven and Jeannette Gusko as management)",
     "typology": "Private Media"
@@ -895,7 +1130,10 @@
   {
     "country": "Germany",
     "organization": "Focus",
-    "domains": ["focus.de", "burda.com"],
+    "domains": [
+      "focus.de",
+      "burda.com"
+    ],
     "description": "Focus is a German-language news magazine and digital media outlet established in 1993 as an alternative to Der Spiegel. Published by Hubert Burda Media, it operates both as a weekly print magazine headquartered in Berlin and a online news portal through Focus Online, covering politics, business, science, and culture.",
     "owner": "Hubert Burda Media",
     "typology": "Private Media"
@@ -903,7 +1141,9 @@
   {
     "country": "Germany",
     "organization": "Süddeutsche Zeitung",
-    "domains": ["sueddeutsche.de"],
+    "domains": [
+      "sueddeutsche.de"
+    ],
     "description": "Süddeutsche Zeitung is a daily newspaper published in Munich since 1945. Known for its liberal-center-left editorial stance, investigative journalism, and extensive coverage of politics, culture, and economics. The paper has played a significant role in major investigative projects like the Panama Papers and Paradise Papers.",
     "owner": "Südwestdeutsche Medien Holding (81.25%), SZ Mitarbeiter KG (18.75%)",
     "typology": "Private Media"
@@ -911,7 +1151,9 @@
   {
     "country": "Germany",
     "organization": "Die Tageszeitung",
-    "domains": ["taz.de"],
+    "domains": [
+      "taz.de"
+    ],
     "description": "Die Tageszeitung (taz) is a daily newspaper founded in 1978 and based in Berlin. It operates as a cooperative since 1992, known for its left-leaning critical journalism. The newspaper focuses on investigative reporting, analysis, and alternative perspectives.",
     "owner": "taz Cooperative - Readers ownership",
     "typology": "Private Media"
@@ -919,7 +1161,10 @@
   {
     "country": "Germany",
     "organization": "Frankfurter Allgemeine Zeitung",
-    "domains": ["faz.net", "frankfurterallgemeine.de"],
+    "domains": [
+      "faz.net",
+      "frankfurterallgemeine.de"
+    ],
     "description": "The Frankfurter Allgemeine Zeitung (FAZ) is a daily newspaper known for its conservative editorial stance. It covers business, politics, and culture.",
     "owner": "Fazit-Stiftung Non-Profit GmbH (93.7%)",
     "typology": "Private Media"
@@ -927,7 +1172,9 @@
   {
     "country": "Germany",
     "organization": "Der Spiegel Online",
-    "domains": ["spiegel.de"],
+    "domains": [
+      "spiegel.de"
+    ],
     "description": "Der Spiegel is a weekly news magazine and digital news platform established in 1947, known for its investigative journalism and political coverage. The online website has a center left-leaning editorial stance and covers politics, culture, and society.",
     "owner": "Spiegel Employees (50.5%), Mohn family (25.5%), Augstein family (24%)",
     "typology": "Private Media"
@@ -935,7 +1182,9 @@
   {
     "country": "Germany",
     "organization": "Stern",
-    "domains": ["stern.de"],
+    "domains": [
+      "stern.de"
+    ],
     "description": "Stern is a weekly news magazine published in Hamburg since 1948 that provides reporting on politics, economy, culture and current affairs. The online website mirrors the print magazine.",
     "owner": "Mohn family (74%)",
     "typology": "Private Media"
@@ -943,7 +1192,9 @@
   {
     "country": "Germany",
     "organization": "t-online",
-    "domains": ["t-online.de"],
+    "domains": [
+      "t-online.de"
+    ],
     "description": "t-online is a digital news portal and email service provider offering comprehensive coverage of news, politics, sports, entertainment, and lifestyle content.",
     "owner": "Udo Müller (24%), Dirk Ströer (20%), other shareholders (56%)",
     "typology": "Private Media"
@@ -951,7 +1202,10 @@
   {
     "country": "Germany",
     "organization": "Der Tagesspiegel",
-    "domains": ["tagesspiegel.de", "tagesspiegel-gruppe.de"],
+    "domains": [
+      "tagesspiegel.de",
+      "tagesspiegel-gruppe.de"
+    ],
     "description": "Der Tagesspiegel is a daily newspaper founded in 1945 as Berlin's first free press publication. It operates as a newspaper with a liberal editorial stance, publishing both print and digital content under the motto 'Rerum cognoscere causas' (Getting to the root of things).",
     "owner": "DvH Medien GmbH (Dieter von Holtzbrinck)",
     "typology": "Private Media"
@@ -959,7 +1213,9 @@
   {
     "country": "Germany",
     "organization": "Zweites Deutsches Fernsehen (ZDF)",
-    "domains": ["zdf.de"],
+    "domains": [
+      "zdf.de"
+    ],
     "description": "ZDF is a public-service television broadcaster based in Mainz that has been operating since 1963. ZDF, like ARD, is well-respected as a journalism powerhouse, financially stable, independent, and fully accountable to the public.",
     "owner": "Public broadcaster (German public institutions)",
     "typology": "Private Media"
@@ -967,7 +1223,9 @@
   {
     "country": "Germany",
     "organization": "n-tv",
-    "domains": ["n-tv.de"],
+    "domains": [
+      "n-tv.de"
+    ],
     "description": "n-tv is a free-to-air television news channel and digital media outlet that focuses on news, business coverage, and documentaries.",
     "owner": "RTL Deutschland (75% Mohn family)",
     "typology": "Private Media"
@@ -975,7 +1233,9 @@
   {
     "country": "Germany",
     "organization": "RedaktionsNetzwerk Deutschland",
-    "domains": ["rnd.de"],
+    "domains": [
+      "rnd.de"
+    ],
     "description": "RedaktionsNetzwerk Deutschland (RND) is a Hanover-based joint corporate newsroom that provides news content and services across Germany.",
     "owner": "Deutsche Druck- und Verlagsgesellschaft (23.1%, Social Democratic Party of Germany), Sylvia Madsack (21.9%)",
     "typology": "Private Media"
@@ -983,7 +1243,9 @@
   {
     "country": "Germany",
     "organization": "Frankfurter Rundschau",
-    "domains": ["fr.de"],
+    "domains": [
+      "fr.de"
+    ],
     "description": "Frankfurter Rundschau is a daily newspaper published in Frankfurt. It is known for its left-liberal editorial stance and focuses on political, economic, and cultural coverage with particular emphasis on the Frankfurt Rhine-Main region.",
     "owner": "Zeitungsholding Hessen (90%, Dirk Ippen), Karl-Gerold-Stiftung (10%)",
     "typology": "Private Media"
@@ -991,7 +1253,10 @@
   {
     "country": "Germany",
     "organization": "Handelsblatt Media Group",
-    "domains": ["handelsblatt.com", "handelsblattgroup.com"],
+    "domains": [
+      "handelsblatt.com",
+      "handelsblattgroup.com"
+    ],
     "description": "Handelsblatt Media Group is a media company based in Düsseldorf that specializes in business and financial information, providing news coverage, analysis, and specialized communication solutions through various digital and print platforms.",
     "owner": "DvH Medien GmbH (Dieter von Holtzbrinck)",
     "typology": "Private Media"
@@ -999,7 +1264,9 @@
   {
     "country": "Germany",
     "organization": "Rheinische Post",
-    "domains": ["rp-online.de"],
+    "domains": [
+      "rp-online.de"
+    ],
     "description": "Rheinische Post is a major regional daily newspaper based in Düsseldorf, covering news from North Rhine-Westphalia with a focus on the Rhine region. The newspaper provides comprehensive local, regional, and national coverage.",
     "owner": "Rheinische Post Verlagsgesellschaft mbH",
     "typology": "Private Media"
@@ -1007,7 +1274,9 @@
   {
     "country": "Germany",
     "organization": "Berliner Morgenpost",
-    "domains": ["morgenpost.de"],
+    "domains": [
+      "morgenpost.de"
+    ],
     "description": "Berliner Morgenpost is a daily newspaper founded in 1898 and based in Berlin. It is one of Berlin's most-read daily newspapers.",
     "owner": "Funke Mediengruppe",
     "typology": "Private Media"
@@ -1015,7 +1284,9 @@
   {
     "country": "Germany",
     "organization": "Augsburger Allgemeine",
-    "domains": ["augsburger-allgemeine.de"],
+    "domains": [
+      "augsburger-allgemeine.de"
+    ],
     "description": "The Augsburger Allgemeine is a regional daily newspaper based in Augsburg, Bavaria, publishing since 1807. It provides comprehensive local and national news coverage for the Augsburg region and surrounding areas, with both print and digital formats.",
     "owner": "Mediengruppe Pressedruck (Presse-Druck- und Verlags-GmbH)",
     "typology": "Private Media"
@@ -1023,7 +1294,9 @@
   {
     "country": "United States",
     "organization": "GameSpot",
-    "domains": ["gamespot.com"],
+    "domains": [
+      "gamespot.com"
+    ],
     "description": "GameSpot is a video gaming website providing comprehensive coverage of the video game industry through news, reviews, previews, downloads, and guides. The site focuses on multiple gaming platforms, offering detailed game reviews and industry analysis.",
     "owner": "Fandom, Inc.",
     "typology": "Private Media"
@@ -1031,7 +1304,10 @@
   {
     "country": "United States",
     "organization": "IGN",
-    "domains": ["ign.com", "world.ign.com"],
+    "domains": [
+      "ign.com",
+      "world.ign.com"
+    ],
     "description": "IGN (Imagine Games Network) is a video game and entertainment media website that covers games, films, anime, television, comics, and technology. ",
     "owner": "Ziff Davis, Inc.",
     "typology": "Private Media"
@@ -1039,7 +1315,9 @@
   {
     "country": "United Kingdom",
     "organization": "Eurogamer",
-    "domains": ["eurogamer.net"],
+    "domains": [
+      "eurogamer.net"
+    ],
     "description": "Eurogamer is a video game journalism website founded in 1999 that provides video game news, reviews, and guides.",
     "owner": "Ziff Davis (via IGN Entertainment)",
     "typology": "Private Media"
@@ -1047,7 +1325,9 @@
   {
     "country": "United States",
     "organization": "Siliconera",
-    "domains": ["siliconera.com"],
+    "domains": [
+      "siliconera.com"
+    ],
     "description": "Siliconera is a specialized video game news website focused on international gaming coverage, particularly Japanese games and releases, providing news, translations, reviews, and exclusive interviews.",
     "owner": "GAMURS Group",
     "typology": "Private Media"
@@ -1055,7 +1335,9 @@
   {
     "country": "United States",
     "organization": "Gematsu",
-    "domains": ["gematsu.com"],
+    "domains": [
+      "gematsu.com"
+    ],
     "description": "Gematsu is a specialized video game news website focused on Japanese gaming industry coverage while also reporting on global gaming news.",
     "owner": "Sal Romano",
     "typology": "Private Media"
@@ -1063,7 +1345,9 @@
   {
     "country": "United States",
     "organization": "Niche Gamer",
-    "domains": ["nichegamer.com"],
+    "domains": [
+      "nichegamer.com"
+    ],
     "description": "Niche Gamer is a gaming news website and community platform focused on covering niche and unique video games globally.",
     "owner": "Brandon Orselli",
     "typology": "Private Media"
@@ -1071,7 +1355,9 @@
   {
     "country": "United Kingdom",
     "organization": "GamesRadar+",
-    "domains": ["gamesradar.com"],
+    "domains": [
+      "gamesradar.com"
+    ],
     "description": "GamesRadar+ is a video game and entertainment media website owned by Future plc that provides news, reviews, features, and guides focused on video games, movies, and TV shows.",
     "owner": "Future plc",
     "typology": "Private Media"
@@ -1079,7 +1365,9 @@
   {
     "country": "United States",
     "organization": "Wccftech",
-    "domains": ["wccftech.com"],
+    "domains": [
+      "wccftech.com"
+    ],
     "description": "Wccftech is a technology news and media website focused on PC hardware, gaming, and mobile technology coverage through news articles, reviews, and guides.",
     "owner": "Abdullah Saad",
     "typology": "Private Media"
@@ -1087,7 +1375,9 @@
   {
     "country": "United Kingdom",
     "organization": "PCGamesN",
-    "domains": ["pcgamesn.com"],
+    "domains": [
+      "pcgamesn.com"
+    ],
     "description": "PCGamesN is a digital media outlet focused on PC gaming news, reviews, guides, and hardware coverage.",
     "owner": "James Binns (via Network N Media)",
     "typology": "Private Media"
@@ -1095,7 +1385,9 @@
   {
     "country": "United States",
     "organization": "Ars Technica",
-    "domains": ["arstechnica.com"],
+    "domains": [
+      "arstechnica.com"
+    ],
     "description": "Ars Technica is a technology news and information website that provides in-depth coverage of IT, scientific advancements, gadgets, and gaming. Founded in 1998, it caters to technology enthusiasts and professionals, offering news, reviews, and analysis on topics ranging from artificial intelligence to space exploration and cybersecurity.",
     "owner": "Condé Nast",
     "typology": "Private Media"
@@ -1103,7 +1395,9 @@
   {
     "country": "United States",
     "organization": "Dot Esports",
-    "domains": ["dotesports.com"],
+    "domains": [
+      "dotesports.com"
+    ],
     "description": "Dot Esports is a digital media outlet founded in 2013 that specializes in esports and gaming coverage, providing news, tournament results, guides, features, and interviews. It serves as a dedicated platform for competitive gaming journalism.",
     "owner": "GAMURS Group",
     "typology": "Private Media"
@@ -1111,7 +1405,9 @@
   {
     "country": "United States",
     "organization": "Xbox",
-    "domains": ["xbox.com"],
+    "domains": [
+      "xbox.com"
+    ],
     "description": "Xbox is Microsoft's gaming and entertainment brand that provides video game consoles, cloud gaming services, and digital content distribution. Their blog and website feature gaming news, product announcements, game previews and reviews, developer interviews, community highlights, and technical support resources. The platform offers gaming hardware, software, streaming services through Xbox Cloud Gaming, and online services via Xbox Live, connecting players across console, PC, and mobile devices.",
     "owner": "Microsoft Corporation",
     "typology": "Private Media"
@@ -1119,7 +1415,9 @@
   {
     "country": "United States",
     "organization": "Gameranx",
-    "domains": ["gameranx.com"],
+    "domains": [
+      "gameranx.com"
+    ],
     "description": "Gameranx is a global video game media publication based in New York that provides daily gaming news, reviews, criticism, and feature articles. It operates a popular YouTube channel created in 2012, offering video content on game news and rankings. The publication aims to celebrate video games and their cultural impact, with a focus on breaking news in the gaming industry.",
     "owner": "Jake Baldino (Co-owner)",
     "typology": "Private Media"
@@ -1127,7 +1425,10 @@
   {
     "country": "United States",
     "organization": "Tom's Hardware",
-    "domains": ["tomshardware.com", "tomshw.it"],
+    "domains": [
+      "tomshardware.com",
+      "tomshw.it"
+    ],
     "description": "Tom's Hardware is a technology news and review website founded in 1996 by Dr. Thomas Pabst, specializing in PC hardware, components, and tech industry coverage. The site provides detailed product reviews, buying guides, and technical analysis for PC enthusiasts, builders, and technology professionals.",
     "owner": "Purch (Future plc)",
     "typology": "Private Media"
@@ -1135,7 +1436,9 @@
   {
     "country": "United Kingdom",
     "organization": "Rock Paper Shotgun",
-    "domains": ["rockpapershotgun.com"],
+    "domains": [
+      "rockpapershotgun.com"
+    ],
     "description": "Rock Paper Shotgun is a specialized gaming news website focused exclusively on PC gaming, providing news, reviews, previews, and analysis of both major releases and indie games.",
     "owner": "Ziff Davis (via IGN Entertainment)",
     "typology": "Private Media"
@@ -1143,7 +1446,9 @@
   {
     "country": "United Kingdom",
     "organization": "Push Square",
-    "domains": ["pushsquare.com"],
+    "domains": [
+      "pushsquare.com"
+    ],
     "description": "Push Square is a specialized gaming news website focused exclusively on PlayStation platforms, providing news coverage, reviews, features, and community content related to PS5, PSVR2, and PlayStation's gaming ecosystem.",
     "owner": "Hookshot Media Ltd",
     "typology": "Private Media"
@@ -1151,7 +1456,9 @@
   {
     "country": "Japan",
     "organization": "PlayStation",
-    "domains": ["playstation.com"],
+    "domains": [
+      "playstation.com"
+    ],
     "description": "PlayStation is Sony's gaming and digital entertainment brand that develops and operates gaming consoles (PS1 through PS5), an online gaming network (PlayStation Network), digital game distribution platform (PlayStation Store), and gaming hardware accessories. Their blog features PlayStation game announcements, release dates, gameplay trailers, developer interviews, hardware updates, PlayStation Plus membership news, and community highlights. The blog provides official news and updates about everything in the PlayStation ecosystem.",
     "owner": "Sony Group Corporation",
     "typology": "Private Media"
@@ -1159,7 +1466,9 @@
   {
     "country": "United States",
     "organization": "Kotaku",
-    "domains": ["kotaku.com"],
+    "domains": [
+      "kotaku.com"
+    ],
     "description": "Kotaku is a video game news and culture website founded in 2004, providing gaming news, reviews, and opinion pieces. It operates as a specialized gaming journalism outlet that covers video game industry news, gaming culture, and related topics.",
     "owner": "G/O Media Inc.",
     "typology": "Private Media"
@@ -1167,7 +1476,9 @@
   {
     "country": "United Kingdom",
     "organization": "Insider Gaming",
-    "domains": ["insider-gaming.com"],
+    "domains": [
+      "insider-gaming.com"
+    ],
     "description": "Insider Gaming is an independent gaming news and media website focused on providing gaming industry coverage, reviews, and exclusive reporting.",
     "owner": "Yannis Ziakas",
     "typology": "Private Media"
@@ -1175,7 +1486,9 @@
   {
     "country": "United States",
     "organization": "MMORPG.com",
-    "domains": ["mmorpg.com"],
+    "domains": [
+      "mmorpg.com"
+    ],
     "description": "MMORPG.com is a specialized gaming news and review website focused on massively multiplayer online role-playing games (MMORPGs) and related genres. The site provides game reviews, industry news, game lists, and community features for MMO gaming enthusiasts.",
     "owner": "MOBA Network AB",
     "typology": "Private Media"
@@ -1183,7 +1496,9 @@
   {
     "country": "United States",
     "organization": "Destructoid",
-    "domains": ["destructoid.com"],
+    "domains": [
+      "destructoid.com"
+    ],
     "description": "Destructoid is a video game journalism website founded in 2006 that provides news, reviews, previews, and community features focused on the gaming industry. The site is known for its mascot Mr. Destructoid and its mix of professional and community-driven content.",
     "owner": "Enthusiast Gaming",
     "typology": "Private Media"
@@ -1191,7 +1506,9 @@
   {
     "country": "United States",
     "organization": "Techaeris",
-    "domains": ["techaeris.com"],
+    "domains": [
+      "techaeris.com"
+    ],
     "description": "Techaeris is a technology news and review website that covers tech products, gaming, audio technology, business tech news, and entertainment content including movies, comics, and books.",
     "owner": "Alex Hernandez",
     "typology": "Private Media"
@@ -1199,7 +1516,9 @@
   {
     "country": "United Kingdom",
     "organization": "GamesIndustry.biz",
-    "domains": ["gamesindustry.biz"],
+    "domains": [
+      "gamesindustry.biz"
+    ],
     "description": "GamesIndustry.biz is a business-focused video game industry news website providing coverage of industry trends, market analysis, business developments, and interviews with gaming professionals.",
     "owner": "Ziff Davis (via IGN Entertainment)",
     "typology": "Private Media"
@@ -1207,7 +1526,9 @@
   {
     "country": "United Kingdom",
     "organization": "Nintendo Life",
-    "domains": ["nintendolife.com"],
+    "domains": [
+      "nintendolife.com"
+    ],
     "description": "Nintendo Life is a specialized gaming news website focused on Nintendo platforms, providing news coverage, reviews, and features about Nintendo games and hardware. The site originated as a GameCube-focused platform and expanded to cover all Nintendo-related content, serving as a dedicated source for Nintendo gaming information and community engagement.",
     "owner": "Hookshot Media Ltd",
     "typology": "Private Media"
@@ -1215,7 +1536,9 @@
   {
     "country": "United Kingdom",
     "organization": "Geek Native",
-    "domains": ["geeknative.com"],
+    "domains": [
+      "geeknative.com"
+    ],
     "description": "Geek Native is a blog-style website focused on tabletop role-playing games (TTRPGs), geek culture, anime, and gaming news. The site provides regular coverage of RPG industry updates, reviews, and weekly news summaries, with particular emphasis on Dungeons & Dragons and indie RPG content.",
     "owner": "",
     "typology": "Private Media"
@@ -1223,7 +1546,9 @@
   {
     "country": "United Kingdom",
     "organization": "VG247",
-    "domains": ["vg247.com"],
+    "domains": [
+      "vg247.com"
+    ],
     "description": "VG247 is a video game news and journalism website focusing on providing coverage of the gaming industry, including news, reviews, and features about video games across multiple platforms.",
     "owner": "Ziff Davis (via IGN Entertainment and Gamer Network Limited)",
     "typology": "Private Media"
@@ -1231,7 +1556,9 @@
   {
     "country": "United States",
     "organization": "Polygon",
-    "domains": ["polygon.com"],
+    "domains": [
+      "polygon.com"
+    ],
     "description": "Polygon is a entertainment website founded in 2012 that covers video games, movies, television, and popular culture.",
     "owner": "Vox Media",
     "typology": "Private Media"
@@ -1239,7 +1566,9 @@
   {
     "country": "United Kingdom",
     "organization": "Financial Times",
-    "domains": ["ft.com"],
+    "domains": [
+      "ft.com"
+    ],
     "description": "The Financial Times is a daily newspaper and digital news outlet focused on business, economic and political coverage. The publication is known for its distinctive salmon-pink newsprint format.",
     "owner": "Nikkei Inc. (employee-owned)",
     "typology": "Private Media"
@@ -1247,7 +1576,9 @@
   {
     "country": "United Kingdom",
     "organization": "The Guardian",
-    "domains": ["theguardian.com"],
+    "domains": [
+      "theguardian.com"
+    ],
     "description": "The Guardian is a newspaper and digital news outlet that delivers investigative journalism with a mainstream left-wing editorial stance. It operates globally and is known for its liberal political perspective and commitment to independent journalism through its unique ownership structure.",
     "owner": "Scott Trust Limited",
     "typology": "Private Media"
@@ -1255,7 +1586,9 @@
   {
     "country": "Singapore",
     "organization": "The Straits Times",
-    "domains": ["straitstimes.com"],
+    "domains": [
+      "straitstimes.com"
+    ],
     "description": "The Straits Times is a daily English-language newspaper in Singapore established in 1845. It provides comprehensive coverage of Singapore, Asian and international news across politics, business, sports, entertainment, and lifestyle sections, serving as Singapore's newspaper of record.",
     "owner": "SPH Media Trust",
     "typology": "Private Media"
@@ -1263,7 +1596,9 @@
   {
     "country": "France",
     "organization": "Le Monde",
-    "domains": ["lemonde.fr"],
+    "domains": [
+      "lemonde.fr"
+    ],
     "description": "Le Monde is a French daily afternoon newspaper founded after WWII, known for its center-left editorial stance and comprehensive coverage of international, national, economic, and cultural news.",
     "owner": "Le Nouveau Monde (Matthieu Pigasse and Daniel Kretinsky) (26.66%), NJJ Presse (Xavier Niel) (26.66%), Berlys Media (Madison Cox) (26.66%), Prisa (20%)",
     "typology": "Private Media"
@@ -1271,7 +1606,9 @@
   {
     "country": "United States",
     "organization": "The New York Times",
-    "domains": ["nytimes.com"],
+    "domains": [
+      "nytimes.com"
+    ],
     "description": "The New York Times is a daily newspaper founded in 1851 that provides news coverage, investigative journalism, and opinion content through print and digital platforms.",
     "owner": "The Ochs-Sulzberger Family (through The New York Times Company)",
     "typology": "Private Media"
@@ -1279,7 +1616,9 @@
   {
     "country": "United States",
     "organization": "ABC News",
-    "domains": ["abcnews.go.com"],
+    "domains": [
+      "abcnews.go.com"
+    ],
     "description": "ABC News is a major American broadcast news division operated by the ABC broadcast network, providing 24/7 news coverage through television, digital platforms, and radio.",
     "owner": "The Walt Disney Company",
     "typology": "Private Media"
@@ -1287,7 +1626,9 @@
   {
     "country": "Japan",
     "organization": "Japan Today",
-    "domains": ["japantoday.com"],
+    "domains": [
+      "japantoday.com"
+    ],
     "description": "Japan Today is a Tokyo-based English-language online newspaper launched in September 2000 that covers news about Japan and international affairs, including national, political, entertainment, business, technology, and sports news.",
     "owner": "Fuji Media Holdings, Inc. (via GPlusMedia Co., Ltd.)",
     "typology": "Private Media"
@@ -1295,7 +1636,9 @@
   {
     "country": "India",
     "organization": "The Hindu",
-    "domains": ["thehindu.com"],
+    "domains": [
+      "thehindu.com"
+    ],
     "description": "The Hindu is an English-language daily newspaper headquartered in Chennai, Tamil Nadu, India. Founded in 1878, it is one of India's oldest continuously published newspapers, known for its coverage of national and international news, with particular emphasis on policy, politics, and economics.",
     "owner": "Kasturi & Sons Limited. (52.04%)",
     "typology": "Private Media"
@@ -1303,7 +1646,9 @@
   {
     "country": "Canada",
     "organization": "The Globe and Mail",
-    "domains": ["theglobeandmail.com"],
+    "domains": [
+      "theglobeandmail.com"
+    ],
     "description": "The Globe and Mail is Canada's national newspaper of record, providing comprehensive coverage of national, international, business, and political news since 1844. The publication offers both print and digital formats, featuring investigative journalism, analysis, and commentary across multiple beats including politics, business, arts and culture.",
     "owner": "Thomson Family",
     "typology": "Private Media"
@@ -1311,7 +1656,10 @@
   {
     "country": "United States",
     "organization": "CBS News",
-    "domains": ["cbsnews.com", "cbssports.com"],
+    "domains": [
+      "cbsnews.com",
+      "cbssports.com"
+    ],
     "description": "CBS News is a major American news division of CBS Broadcasting that provides 24/7 news coverage through television broadcasts, digital platforms, and streaming services.",
     "owner": "Paramount Global",
     "typology": "Private Media"
@@ -1319,7 +1667,9 @@
   {
     "country": "United States",
     "organization": "Newsweek",
-    "domains": ["newsweek.com"],
+    "domains": [
+      "newsweek.com"
+    ],
     "description": "Founded in 1933, Newsweek is a weekly news magazine and digital media outlet providing in-depth analysis, news, and opinion about international issues, technology, business, culture, and politics.",
     "owner": "Dev Pragad (50%), Johnathan Davis (50%)",
     "typology": "Private Media"
@@ -1327,7 +1677,10 @@
   {
     "country": "United Kingdom",
     "organization": "Reuters",
-    "domains": ["reuters.com", "reutersagency.com"],
+    "domains": [
+      "reuters.com",
+      "reutersagency.com"
+    ],
     "description": "Reuters is a global news agency founded in 1851 that provides multimedia news content, financial information, and intelligence services. It is one of the three most influential news agencies globally alongside AP and AFP.",
     "owner": "Thomson Reuters",
     "typology": "Private Media"
@@ -1335,7 +1688,9 @@
   {
     "country": "United States",
     "organization": "Semafor",
-    "domains": ["semafor.com"],
+    "domains": [
+      "semafor.com"
+    ],
     "description": "Semafor is a digital news platform founded in 2022 that provides global reporting on politics, business, technology, and climate. It operates with a free, ad-supported model and generates revenue through advertising and events.",
     "owner": "Ben Smith, Justin B. Smith",
     "typology": "Private Media"
@@ -1343,7 +1698,9 @@
   {
     "country": "Hong Kong",
     "organization": "South China Morning Post",
-    "domains": ["scmp.com"],
+    "domains": [
+      "scmp.com"
+    ],
     "description": "The South China Morning Post is Hong Kong's English-language newspaper of record, covering news, politics, business, and culture across Asia with a focus on China and Hong Kong. Since the change of ownership in 2016, concerns have been raised about the paper's editorial independence and self-censorship.",
     "owner": "Alibaba Group",
     "typology": "Private Media"
@@ -1351,7 +1708,9 @@
   {
     "country": "United States",
     "organization": "Foreign Policy",
-    "domains": ["foreignpolicy.com"],
+    "domains": [
+      "foreignpolicy.com"
+    ],
     "description": "Foreign Policy is a news publication founded in 1970 that focuses on global affairs, current events, and international policy analysis.",
     "owner": "Graham Holdings Company",
     "typology": "Private Media"
@@ -1359,7 +1718,9 @@
   {
     "country": "United States",
     "organization": "The Philadelphia Inquirer",
-    "domains": ["inquirer.com"],
+    "domains": [
+      "inquirer.com"
+    ],
     "description": "The Philadelphia Inquirer is a daily newspaper founded in 1829 serving the Philadelphia metropolitan area. It's known for its investigative journalism and local news coverage.",
     "owner": "The Philadelphia Foundation (non-profit)",
     "typology": "Private Media"
@@ -1367,7 +1728,9 @@
   {
     "country": "United States",
     "organization": "MSNBC",
-    "domains": ["msnbc.com"],
+    "domains": [
+      "msnbc.com"
+    ],
     "description": "MSNBC is a 24-hour cable news channel and digital news platform providing breaking news coverage, political commentary, and in-depth analysis. The network is known for its generally liberal-leaning perspective in its commentary and programming.",
     "owner": "Comcast Corporation (NBCUniversal News Group)",
     "typology": "Private Media"
@@ -1375,7 +1738,9 @@
   {
     "country": "United States",
     "organization": "AlterNet",
-    "domains": ["alternet.org"],
+    "domains": [
+      "alternet.org"
+    ],
     "description": "AlterNet is a progressive news website and blog that publishes original journalism, opinion pieces, and investigative reporting focused on political and social issues. The site is known for its left-leaning perspective and coverage of topics including politics, human rights, environment, and economic inequality.",
     "owner": "Alternet Media, Inc. (John K. Byrne, Michael Rogers)",
     "typology": "Private Media"
@@ -1383,7 +1748,9 @@
   {
     "country": "United States",
     "organization": "The Daily Signal",
-    "domains": ["dailysignal.com"],
+    "domains": [
+      "dailysignal.com"
+    ],
     "description": "The Daily Signal is a conservative political news and commentary website established in 2014. Initially launched as a project of The Heritage Foundation think tank, it became an independent publication in June 2024. The outlet focuses on policy news, political coverage, and conservative analysis.",
     "owner": "Heritage Foundation",
     "typology": "Private Media"
@@ -1391,7 +1758,9 @@
   {
     "country": "Spain",
     "organization": "El País",
-    "domains": ["elpais.com"],
+    "domains": [
+      "elpais.com"
+    ],
     "description": "El País is a Spanish daily newspaper based in Madrid that covers national and international news, economy, politics, sports, culture, society and technology. It has a center-left editorial stance following social democratic ideology, with significant presence in Spain and Latin America through regional and international editions.",
     "owner": "PRISA",
     "typology": "Private Media"
@@ -1399,7 +1768,9 @@
   {
     "country": "United States",
     "organization": "Salon",
-    "domains": ["salon.com"],
+    "domains": [
+      "salon.com"
+    ],
     "description": "Founded in 1995, Salon is an independent digital news and opinion website providing progressive coverage of politics, news, culture, science, and entertainment. The publication has progressive/liberal editorial stance.",
     "owner": "Find.co",
     "typology": "Private Media"
@@ -1407,7 +1778,9 @@
   {
     "country": "United States",
     "organization": "PJ Media",
-    "domains": ["pjmedia.com"],
+    "domains": [
+      "pjmedia.com"
+    ],
     "description": "PJ Media is a conservative news and opinion website founded in 2004 (originally as Pajamas Media). The site publishes content focused on politics, culture, faith, and current events from a right-wing perspective, featuring various columnists and contributors who provide commentary and analysis on US political and social issues.",
     "owner": "Salem Media Group",
     "typology": "Private Media"
@@ -1415,7 +1788,9 @@
   {
     "country": "United States",
     "organization": "The Hill",
-    "domains": ["thehill.com"],
+    "domains": [
+      "thehill.com"
+    ],
     "description": "The Hill is a Washington D.C.-based political newspaper and digital media company founded in 1994, focusing on Congress, politics, policy, and business coverage. ",
     "owner": "Nexstar Media Group",
     "typology": "Private Media"
@@ -1423,7 +1798,9 @@
   {
     "country": "United States",
     "organization": "TIME",
-    "domains": ["time.com"],
+    "domains": [
+      "time.com"
+    ],
     "description": "TIME is a weekly news magazine and digital media platform founded in 1923, covering politics, business, health, science, and entertainment.",
     "owner": "Marc Benioff",
     "typology": "Private Media"
@@ -1431,7 +1808,9 @@
   {
     "country": "United States",
     "organization": "Yahoo",
-    "domains": ["yahoo.com"],
+    "domains": [
+      "yahoo.com"
+    ],
     "description": "Yahoo is a web services provider offering email, search engine, and a comprehensive web portal. Its Yahoo News service aggregates content from major media organizations and wire services while also producing original reporting through its news team.",
     "owner": "Apollo Global Management",
     "typology": "Private Media"
@@ -1439,7 +1818,9 @@
   {
     "country": "United States",
     "organization": "Chicago Tribune",
-    "domains": ["chicagotribune.com"],
+    "domains": [
+      "chicagotribune.com"
+    ],
     "description": "Founded in 1847, the Chicago Tribune is the largest news organization in the Midwest United States, serving as the primary source of news and information for the Chicago area. The newspaper has historically maintained a Republican and conservative editorial perspective.",
     "owner": "Alden Global Capital",
     "typology": "Private Media"
@@ -1447,7 +1828,9 @@
   {
     "country": "United States",
     "organization": "Los Angeles Times",
-    "domains": ["latimes.com"],
+    "domains": [
+      "latimes.com"
+    ],
     "description": "The Los Angeles Times is a daily newspaper founded in 1881 and based in Los Angeles, California. It is the largest metropolitan daily newspaper in the United States.",
     "owner": "Patrick Soon-Shiong",
     "typology": "Private Media"
@@ -1455,7 +1838,9 @@
   {
     "country": "United States",
     "organization": "Just the News",
-    "domains": ["justthenews.com"],
+    "domains": [
+      "justthenews.com"
+    ],
     "description": "Just the News is a Washington D.C.-based digital news outlet founded by journalist John Solomon that provides news coverage through web articles, videos, podcasts and e-books. The platform focuses on political and policy news, particularly coverage of events in the U.S. capital.",
     "owner": "John Solomon",
     "typology": "Private Media"
@@ -1463,7 +1848,9 @@
   {
     "country": "United States",
     "organization": "Rolling Stone",
-    "domains": ["rollingstone.com"],
+    "domains": [
+      "rollingstone.com"
+    ],
     "description": "Rolling Stone is a magazine and media brand founded in 1967 that covers music, politics, and popular culture through investigative reporting, interviews, and cultural commentary.",
     "owner": "Penske Media Corporation",
     "typology": "Private Media"
@@ -1471,7 +1858,10 @@
   {
     "country": "United States",
     "organization": "The Associated Press",
-    "domains": ["ap.org", "apnews.com"],
+    "domains": [
+      "ap.org",
+      "apnews.com"
+    ],
     "description": "The Associated Press is a global not-for-profit news cooperative founded in 1846 that provides independent journalism through text, photos, video and data to media organizations worldwide. Known for its fact-based reporting and accuracy in election coverage since 1848, it is one of the three most influential news agencies globally alongside Reuters and AFP.",
     "owner": "U.S. newspaper and broadcast members (cooperative ownership)",
     "typology": "Private Media"
@@ -1479,7 +1869,9 @@
   {
     "country": "United States",
     "organization": "New York Post",
-    "domains": ["nypost.com"],
+    "domains": [
+      "nypost.com"
+    ],
     "description": "The New York Post is a daily tabloid newspaper based in New York City, established in 1801 by Alexander Hamilton. Known for its conservative editorial stance and sensationalist headlines, it covers local news, politics, sports, entertainment, and business.",
     "owner": "News Corp (Rupert Murdoch)",
     "typology": "Private Media"
@@ -1487,7 +1879,9 @@
   {
     "country": "United States",
     "organization": "WIRED",
-    "domains": ["wired.com"],
+    "domains": [
+      "wired.com"
+    ],
     "description": "WIRED is a monthly technology magazine and digital publication founded in 1993 in San Francisco, focusing on how emerging technologies affect culture, economy, politics, and society. The publication covers technology, science, business, and cultural news, with particular emphasis on digital culture and innovation.",
     "owner": "Condè Nast",
     "typology": "Private Media"
@@ -1495,7 +1889,9 @@
   {
     "country": "United States",
     "organization": "Quartz",
-    "domains": ["qz.com"],
+    "domains": [
+      "qz.com"
+    ],
     "description": "Quartz is a digital news publication founded in 2012 focusing on international business news, economics, technology, and global economy coverage. Originally launched by Atlantic Media, it relies on native advertising and sponsored content for revenue.",
     "owner": "G/O Media",
     "typology": "Private Media"
@@ -1503,7 +1899,9 @@
   {
     "country": "United States",
     "organization": "MarketWatch",
-    "domains": ["marketwatch.com"],
+    "domains": [
+      "marketwatch.com"
+    ],
     "description": "MarketWatch is a financial news website and subsidiary of Dow Jones & Company that provides real-time stock market quotes, business news, financial analysis, and investment tools. It offers market commentary, stock research, and personal finance coverage through its website, targeting both retail and institutional investors.",
     "owner": "News Corp (via Dow Jones & Company)",
     "typology": "Private Media"
@@ -1511,7 +1909,9 @@
   {
     "country": "India",
     "organization": "Firstpost",
-    "domains": ["firstpost.com"],
+    "domains": [
+      "firstpost.com"
+    ],
     "description": "Firstpost is an Indian digital news platform providing coverage of politics, economy, technology, entertainment, and international news with an Indian perspective. The platform features both written content and video programming, including the notable 'Vantage' show with Palki Sharma focusing on global news analysis.",
     "owner": "Network18 Group",
     "typology": "Private Media"
@@ -1519,7 +1919,9 @@
   {
     "country": "United States",
     "organization": "Investor's Business Daily",
-    "domains": ["investors.com"],
+    "domains": [
+      "investors.com"
+    ],
     "description": "Investor's Business Daily (IBD) is a financial news and research website focused on the stock market, providing market analysis, stock screening tools, and investment education. The publication offers coverage of business, technology, and economic news with emphasis on market trends with a conservative political stance.",
     "owner": "News Corp",
     "typology": "Private Media"
@@ -1527,7 +1929,9 @@
   {
     "country": "United States",
     "organization": "The Wall Street Journal",
-    "domains": ["wsj.com"],
+    "domains": [
+      "wsj.com"
+    ],
     "description": "The Wall Street Journal is a daily business and financial news publication that provides comprehensive coverage of U.S. and international news, business, markets, and economics. The newspaper maintains center-right editorial positions.",
     "owner": "News Corp",
     "typology": "Private Media"
@@ -1535,7 +1939,9 @@
   {
     "country": "United States",
     "organization": "Seeking Alpha",
-    "domains": ["seekingalpha.com"],
+    "domains": [
+      "seekingalpha.com"
+    ],
     "description": "Seeking Alpha is a crowdsourced financial markets content and analysis platform where investors and market professionals share research, investment ideas, and discuss stocks.",
     "owner": "Seeking Alpha Ltd.",
     "typology": "Private Media"
@@ -1543,7 +1949,9 @@
   {
     "country": "United States",
     "organization": "PC Magazine",
-    "domains": ["pcmag.com"],
+    "domains": [
+      "pcmag.com"
+    ],
     "description": "PC Magazine is a technology publication established in 1982 that provides product reviews, tech news, and analysis. Originally a print magazine until 2009, it now operates as a digital-only publication offering lab-tested reviews of computers, consumer electronics, software, and tech services.",
     "owner": "Ziff Davis",
     "typology": "Private Media"
@@ -1551,7 +1959,9 @@
   {
     "country": "United States",
     "organization": "Engadget",
-    "domains": ["engadget.com"],
+    "domains": [
+      "engadget.com"
+    ],
     "description": "Engadget is a technology news and review website covering consumer electronics, gadgets, and digital technology. The site publishes detailed product reviews, technology industry news, and analysis of emerging tech trends, with a particular focus on consumer electronics, gaming, and artificial intelligence.",
     "owner": "Yahoo Inc. (Owned by Apollo Global Management)",
     "typology": "Private Media"
@@ -1559,7 +1969,9 @@
   {
     "country": "United States",
     "organization": "Mashable",
-    "domains": ["mashable.com"],
+    "domains": [
+      "mashable.com"
+    ],
     "description": "Mashable is a digital media platform and entertainment company founded in 2005 by Pete Cashmore, covering technology, digital culture, social media, and entertainment news. The site receives over 40 million monthly pageviews and serves as a significant source for web-related news, trends analysis, and digital culture coverage.",
     "owner": "Ziff Davis",
     "typology": "Private Media"
@@ -1567,7 +1979,9 @@
   {
     "country": "United States",
     "organization": "MacRumors",
-    "domains": ["macrumors.com"],
+    "domains": [
+      "macrumors.com"
+    ],
     "description": "MacRumors is a technology news website and blog focused exclusively on Apple products, software, and ecosystem. It publishes news, rumors, leaks, reviews, and guides about upcoming and existing Apple products.",
     "owner": "Arnold Kim",
     "typology": "Private Media"
@@ -1575,7 +1989,9 @@
   {
     "country": "Australia",
     "organization": "Ausdroid",
-    "domains": ["ausdroid.net"],
+    "domains": [
+      "ausdroid.net"
+    ],
     "description": "Ausdroid is an Australian technology news website focused on smartphones, mobile devices, accessories, and personal computing. Originally known as Android Australia, it provides reviews, news coverage, and analysis of mobile and personal technology, with a particular emphasis on the Australian market.",
     "owner": "Chris Rowland",
     "typology": "Private Media"
@@ -1583,7 +1999,9 @@
   {
     "country": "Canada",
     "organization": "MobileSyrup",
-    "domains": ["mobilesyrup.com"],
+    "domains": [
+      "mobilesyrup.com"
+    ],
     "description": "MobileSyrup is a Canadian technology news website focused on mobile technology, smartphones, and general tech coverage. The platform specializes in providing news, reviews, and coverage of the Canadian mobile and tech industry, with particular emphasis on local market analysis, device reviews, and telecom plan comparisons.",
     "owner": "Blue Ant Media",
     "typology": "Private Media"
@@ -1591,7 +2009,9 @@
   {
     "country": "United States",
     "organization": "Android Authority",
-    "domains": ["androidauthority.com"],
+    "domains": [
+      "androidauthority.com"
+    ],
     "description": "Android Authority is a technology news and media website focused on covering Android smartphones, tablets, apps, and the broader Android ecosystem. The site provides news coverage, device reviews, tutorials, and in-depth analysis of Android-related products and developments.",
     "owner": "Darcy Lacouvée",
     "typology": "Private Media"
@@ -1599,7 +2019,9 @@
   {
     "country": "United States",
     "organization": "Liliputing",
-    "domains": ["liliputing.com"],
+    "domains": [
+      "liliputing.com"
+    ],
     "description": "Liliputing is a technology news blog focused on covering mobile technology, with particular emphasis on smartphones, tablets, notebooks, and small form factor computers. The site provides news, reviews, tips, and how-to guides, with notable coverage of custom modifications for devices like Amazon Fire tablets.",
     "owner": "Brad Linder",
     "typology": "Private Media"
@@ -1607,7 +2029,9 @@
   {
     "country": "United States",
     "organization": "GeekWire",
-    "domains": ["geekwire.com"],
+    "domains": [
+      "geekwire.com"
+    ],
     "description": "GeekWire is a technology news site and community focused on covering technology, business, and science news, with particular emphasis on the Pacific Northwest tech ecosystem. The site provides news coverage, analysis, and insights about startups, established tech companies, scientific discoveries, and the broader technology industry.",
     "owner": "John Cook, Todd Bishop, Jonathan Sposato",
     "typology": "Private Media"
@@ -1615,7 +2039,9 @@
   {
     "country": "United States",
     "organization": "Macworld",
-    "domains": ["macworld.com"],
+    "domains": [
+      "macworld.com"
+    ],
     "description": "Macworld is a technology media outlet focused exclusively on Apple products and services, providing news coverage, product reviews, tutorials, and buying advice. Originally started as a print magazine in 1984, it transitioned to digital-only in 2014.",
     "owner": "Foundry (formerly IDG Communications), a subsidiary of Blackstone",
     "typology": "Private Media"
@@ -1623,7 +2049,9 @@
   {
     "country": "United States",
     "organization": "Cult of Mac",
-    "domains": ["cultofmac.com"],
+    "domains": [
+      "cultofmac.com"
+    ],
     "description": "Cult of Mac is a technology news website founded in 2009 that focuses exclusively on Apple-related content, including news, reviews, how-to guides, and product analysis.",
     "owner": "Leander Kahney",
     "typology": "Private Media"
@@ -1631,7 +2059,9 @@
   {
     "country": "United States",
     "organization": "The Mac Observer",
-    "domains": ["macobserver.com"],
+    "domains": [
+      "macobserver.com"
+    ],
     "description": "The Mac Observer is a technology news website and blog focused on covering Apple products, services, and ecosystem, including iPhone, Mac, iPad, and Watch.",
     "owner": "RefactorMedia",
     "typology": "Private Media"
@@ -1639,7 +2069,9 @@
   {
     "country": "United States",
     "organization": "PCWorld",
-    "domains": ["pcworld.com"],
+    "domains": [
+      "pcworld.com"
+    ],
     "description": "PCWorld is a technology-focused digital publication that provides news, reviews, analysis, and advice about personal computers, software, hardware, and related technologies. Originally a print magazine, it transitioned to online-only format in 2013. The publication specializes in helping users navigate PC ecosystems with product recommendations and technical guidance.",
     "owner": "IDG (International Data Group)",
     "typology": "Private Media"
@@ -1647,7 +2079,9 @@
   {
     "country": "United States",
     "organization": "TechCrunch",
-    "domains": ["techcrunch.com"],
+    "domains": [
+      "techcrunch.com"
+    ],
     "description": "TechCrunch is a online technology news outlet founded in 2005 that focuses on reporting about startups, technology companies, venture capital funding, and Silicon Valley. It provides breaking news, analysis, and coverage of the global technology industry through articles, events, and databases tracking startup funding and acquisitions.",
     "owner": "Yahoo! Inc. (Apollo Global Management)",
     "typology": "Private Media"
@@ -1655,7 +2089,10 @@
   {
     "country": "Croatia",
     "organization": "Fudzilla",
-    "domains": ["fudzilla.com", "fudzilla.net"],
+    "domains": [
+      "fudzilla.com",
+      "fudzilla.net"
+    ],
     "description": "Fudzilla is a technology news website focused on hardware reviews, semiconductor industry news, and general tech coverage, with particular emphasis on PC components, processors, and graphics cards. The site publishes daily news updates and detailed technical reviews targeting tech enthusiasts and industry professionals.",
     "owner": "Fuad Abazovic",
     "typology": "Private Media"
@@ -1663,7 +2100,9 @@
   {
     "country": "United Kingdom",
     "organization": "Computer Weekly",
-    "domains": ["computerweekly.com"],
+    "domains": [
+      "computerweekly.com"
+    ],
     "description": "Computer Weekly is an international B2B technology publication focused on information technology news, analysis, and professional resources. The publication provides coverage of IT management, technology news, jobs, and industry developments through its website, with editorial teams based in the UK, Germany, Singapore, and Mexico.",
     "owner": "TechTarget",
     "typology": "Private Media"
@@ -1671,7 +2110,9 @@
   {
     "country": "Ireland",
     "organization": "Silicon Republic",
-    "domains": ["siliconrepublic.com"],
+    "domains": [
+      "siliconrepublic.com"
+    ],
     "description": "Silicon Republic is an Irish technology news website founded in 2001 that covers science, technology, innovation and start-up news, with focus areas including AI, quantum computing, cybersecurity, research, and tech careers. The publication specializes in coverage of Ireland's technology sector while also reporting on international tech developments.",
     "owner": "Ann O'Dea, Darren McAuliffe",
     "typology": "Private Media"
@@ -1679,7 +2120,9 @@
   {
     "country": "United States",
     "organization": "Tech Xplore",
-    "domains": ["techxplore.com"],
+    "domains": [
+      "techxplore.com"
+    ],
     "description": "Tech Xplore is a science and technology news website focused on engineering, electronics, and technology advances. The platform aggregates and publishes research news, technological developments, and innovations from academic institutions and industry.",
     "owner": "Science X Network",
     "typology": "Private Media"
@@ -1687,7 +2130,9 @@
   {
     "country": "United States",
     "organization": "9to5Mac",
-    "domains": ["9to5mac.com"],
+    "domains": [
+      "9to5mac.com"
+    ],
     "description": "9to5Mac is a technology news website focused on covering Apple products, services, and ecosystem. The site provides daily news, rumors, reviews, and analysis of Apple-related developments. It is part of a network of technology news sites including 9to5Google, Electrek, DroneDJ, and SpaceExplored.",
     "owner": "Seth Weintraub (via 925, LLC)",
     "typology": "Private Media"
@@ -1695,7 +2140,9 @@
   {
     "country": "United States",
     "organization": "ZDNET",
-    "domains": ["zdnet.com"],
+    "domains": [
+      "zdnet.com"
+    ],
     "description": "ZDNET is a technology news and analysis website that provides coverage of business technology, software, hardware, innovations and enterprise IT through news articles, reviews, and blogs. The site operates a network of about 50 specialized technology blogs covering various verticals including companies, hardware, software, mobile, security and IT research.",
     "owner": "Red Ventures",
     "typology": "Private Media"
@@ -1703,7 +2150,9 @@
   {
     "country": "United States",
     "organization": "Android Headlines",
-    "domains": ["androidheadlines.com"],
+    "domains": [
+      "androidheadlines.com"
+    ],
     "description": "Android Headlines is a technology news website established in 2010 that specializes in covering Android-related news, providing reviews, guides, and updates about Android devices, with particular focus on smartphones, tablets and other Google ecosystem products. The site publishes independent news coverage and reviews focused on the Android platform and broader tech industry.",
     "owner": "Chris Yackulic",
     "typology": "Private Media"
@@ -1711,7 +2160,9 @@
   {
     "country": "United Kingdom",
     "organization": "The Register",
-    "domains": ["theregister.com"],
+    "domains": [
+      "theregister.com"
+    ],
     "description": "The Register is a technology news website founded in 1994 that specializes in enterprise technology coverage and cybersecurity news. With offices across America, Singapore, UK, Europe, and Australia.",
     "owner": "Situation Publishing Ltd (Drew Cullen, Linus Birtles)",
     "typology": "Private Media"
@@ -1719,7 +2170,9 @@
   {
     "country": "United States",
     "organization": "Fast Company",
-    "domains": ["fastcompany.com"],
+    "domains": [
+      "fastcompany.com"
+    ],
     "description": "Fast Company is a monthly business magazine published in print and online, focusing on technology, business, innovation, and design coverage. The publication produces six print issues annually and maintains an active digital presence through its website, offering news, analysis, and features about business trends and developments.",
     "owner": "Joseph Daniel Mansueto (via Mansueto Ventures)",
     "typology": "Private Media"
@@ -1727,7 +2180,9 @@
   {
     "country": "United Kingdom",
     "organization": "Nature",
-    "domains": ["nature.com"],
+    "domains": [
+      "nature.com"
+    ],
     "description": "Nature is a prestigious weekly peer-reviewed scientific journal established in 1869 that publishes original research across all fields of science and technology.",
     "owner": "Springer Nature (Holtzbrinck Publishing Group, BC Partners)",
     "typology": "Private Media"
@@ -1735,7 +2190,9 @@
   {
     "country": "United States",
     "organization": "AppleInsider",
-    "domains": ["appleinsider.com"],
+    "domains": [
+      "appleinsider.com"
+    ],
     "description": "AppleInsider is a technology news website and blog focused on covering Apple Inc. products, services, and ecosystem. Founded in 1997, it provides news, rumors, reviews, buyer's guides, and price tracking for Apple products.",
     "owner": "Jeff Valvano",
     "typology": "Private Media"
@@ -1743,7 +2200,9 @@
   {
     "country": "United States",
     "organization": "Live Science",
-    "domains": ["livescience.com"],
+    "domains": [
+      "livescience.com"
+    ],
     "description": "Live Science is a science news website that covers scientific discoveries, technological breakthroughs, and research developments across fields including space, health, environment, and technology. The site has received a perfect credibility score from NewsGuard for its journalistic standards and fact-based reporting.",
     "owner": "Future plc",
     "typology": "Private Media"
@@ -1751,7 +2210,9 @@
   {
     "country": "United Kingdom",
     "organization": "The Economist",
-    "domains": ["economist.com"],
+    "domains": [
+      "economist.com"
+    ],
     "description": "The Economist is a weekly newspaper focused on international news, politics, business, finance, science and technology. Its editorial stance is economic liberalism, supporting free markets, free trade and globalization.",
     "owner": "Exor N.V. (43.4%), Rothschild (26.7%), Cadbury Schroder Layton",
     "typology": "Private Media"
@@ -1759,7 +2220,9 @@
   {
     "country": "United Kingdom",
     "organization": "New Scientist",
-    "domains": ["newscientist.com"],
+    "domains": [
+      "newscientist.com"
+    ],
     "description": "New Scientist is a weekly science and technology magazine that covers developments across scientific fields including physics, biology, technology, health, and environmental topics through articles, features, and analysis.",
     "owner": "Daily Mail and General Trust",
     "typology": "Private Media"
@@ -1767,7 +2230,9 @@
   {
     "country": "United States",
     "organization": "Phys.org",
-    "domains": ["phys.org"],
+    "domains": [
+      "phys.org"
+    ],
     "description": "Phys.org is a science news aggregation and distribution website that covers research developments, technological breakthroughs, and scientific innovations across physics, earth science, medicine, nanotechnology, electronics, space, biology, chemistry, computer sciences, engineering, and mathematics. The site primarily republishes press releases and news articles from universities and research institutions.",
     "owner": "Science X Network",
     "typology": "Private Media"
@@ -1775,7 +2240,9 @@
   {
     "country": "",
     "organization": "Sci-News",
-    "domains": ["sci.news"],
+    "domains": [
+      "sci.news"
+    ],
     "description": "Sci-News is a online science news platform that covers breaking developments across multiple scientific fields including physics, astronomy, biology, archaeology, and technology.",
     "owner": "",
     "typology": "Private Media"
@@ -1783,7 +2250,9 @@
   {
     "country": "Australia",
     "organization": "Cosmos Magazine",
-    "domains": ["cosmosmagazine.com"],
+    "domains": [
+      "cosmosmagazine.com"
+    ],
     "description": "Cosmos Magazine is a quarterly science publication that delivers comprehensive coverage of scientific discoveries, research, and analysis across various fields including space, technology, and core sciences.",
     "owner": "CSIRO",
     "typology": "Private Media"
@@ -1791,7 +2260,9 @@
   {
     "country": "Australia",
     "organization": "Science Media Exchange (Scimex)",
-    "domains": ["scimex.org"],
+    "domains": [
+      "scimex.org"
+    ],
     "description": "Scimex is an online science news portal and resource platform providing breaking science news, expert connections, multimedia resources, and event listings specifically designed to help journalists cover scientific stories.",
     "owner": "Australian Science Media Centre (non-profit)",
     "typology": "Private Media"
@@ -1799,7 +2270,9 @@
   {
     "country": "United States",
     "organization": "ScienceBlog.com",
-    "domains": ["scienceblog.com"],
+    "domains": [
+      "scienceblog.com"
+    ],
     "description": "ScienceBlog.com is a science news and research aggregation website that publishes articles covering diverse scientific topics from astronomy to zoology.",
     "owner": "Science 2.0 Corp (non-profit)",
     "typology": "Private Media"
@@ -1807,7 +2280,9 @@
   {
     "country": "",
     "organization": "Charming Science",
-    "domains": ["charmingscience.com"],
+    "domains": [
+      "charmingscience.com"
+    ],
     "description": "Charming Science is a science news website established in 2019 that publishes daily content focused on physics, astronomy, and technology.",
     "owner": "",
     "typology": "Private Media"
@@ -1815,7 +2290,9 @@
   {
     "country": "United States",
     "organization": "ScienceDaily",
-    "domains": ["sciencedaily.com"],
+    "domains": [
+      "sciencedaily.com"
+    ],
     "description": "ScienceDaily is a science news aggregation website founded in 1995 that publishes edited press releases about scientific research and discoveries from universities, scientific journals, and research organizations.",
     "owner": "Dan Hogan and Michele Hogan",
     "typology": "Private Media"
@@ -1823,7 +2300,9 @@
   {
     "country": "United States",
     "organization": "ESPN",
-    "domains": ["espn.com"],
+    "domains": [
+      "espn.com"
+    ],
     "description": "ESPN (Entertainment and Sports Programming Network) is a multinational sports media company that operates multiple television channels, streaming services, websites, and mobile platforms dedicated to sports coverage, news, analysis, and entertainment programming. The company was founded in 1979 and has grown into a comprehensive sports media network with global reach.",
     "owner": "The Walt Disney Company (80% through ABC), Hearst Communications (20%)",
     "typology": "Private Media"
@@ -1831,7 +2310,10 @@
   {
     "country": "United Kingdom",
     "organization": "Sky",
-    "domains": ["sky.com", "skysports.com"],
+    "domains": [
+      "sky.com",
+      "skysports.com"
+    ],
     "description": "Sky is a media and telecommunications company operating across six European countries (UK, Ireland, Germany, Austria, Switzerland and Italy), providing television, broadband internet, and mobile services. With 23 million subscribers as of 2019, it is a major player in European broadcasting and digital media services.",
     "owner": "Comcast Corporation",
     "typology": "Private Media"
@@ -1839,7 +2321,9 @@
   {
     "country": "United Kingdom",
     "organization": "The Independent",
-    "domains": ["independent.co.uk"],
+    "domains": [
+      "independent.co.uk"
+    ],
     "description": "The Independent is a online newspaper founded in 1986 as a print publication before transitioning to digital-only format. Originally established as a broadsheet newspaper, it switched to tabloid format in 2003 before becoming fully digital. The publication provides news coverage across politics, culture, and international affairs.",
     "owner": "Evgeny Lebedev (41%), Sultan Muhammad Abuljadayel (30%), Justin Byam Shaw (26%), Minor shareholders (3%)",
     "typology": "Private Media"
@@ -1847,7 +2331,9 @@
   {
     "country": "United Kingdom",
     "organization": "TEAMtalk",
-    "domains": ["teamtalk.com"],
+    "domains": [
+      "teamtalk.com"
+    ],
     "description": "TEAMtalk is a sports media website focused on football (soccer) news, specializing in transfer news, rumors, and commentary. It provides coverage of Premier League and international football transfers, fixtures, and related content.",
     "owner": "Planet Sport Ltd",
     "typology": "Private Media"
@@ -1855,7 +2341,9 @@
   {
     "country": "United Kingdom",
     "organization": "Football365",
-    "domains": ["football365.com"],
+    "domains": [
+      "football365.com"
+    ],
     "description": "Football365 is a football news website established in 1997 that provides football coverage including news, transfers, match analysis, statistics, and opinion pieces. The site is known for its forthright, sometimes irreverent editorial style and focuses primarily on Premier League and European football coverage.",
     "owner": "Planet Sport Ltd",
     "typology": "Private Media"
@@ -1863,7 +2351,9 @@
   {
     "country": "United States",
     "organization": "SFist",
-    "domains": ["sfist.com"],
+    "domains": [
+      "sfist.com"
+    ],
     "description": "SFist is a digital-first news website focused on San Francisco Bay Area news, covering local politics, restaurants, events, sports, and culture. The site reaches millions of readers and provides both serious news coverage and lighter content about the San Francisco metropolitan area.",
     "owner": "Impress3 Media",
     "typology": "Private Media"
@@ -1871,7 +2361,9 @@
   {
     "country": "United States",
     "organization": "KRON4",
-    "domains": ["kron4.com"],
+    "domains": [
+      "kron4.com"
+    ],
     "description": "KRON4 is a San Francisco Bay Area news station providing local news, weather, and traffic coverage through television broadcasts and digital platforms. The station broadcasts 15.5 hours of news on weekdays and 9 hours on weekends, covering San Francisco, San Jose, Oakland and surrounding areas with a focus on local reporting and breaking news.",
     "owner": "Nexstar Media Group",
     "typology": "Private Media"
@@ -1879,7 +2371,9 @@
   {
     "country": "United States",
     "organization": "ABC7 News Bay Area",
-    "domains": ["abc7news.com"],
+    "domains": [
+      "abc7news.com"
+    ],
     "description": "ABC7 News Bay Area (KGO-TV) is a local television news station serving the San Francisco Bay Area, providing breaking news coverage, weather forecasts, traffic updates, and live video streaming for San Francisco, Oakland, San Jose and Northern California regions. It operates as an ABC owned-and-operated station.",
     "owner": "Walt Disney Television",
     "typology": "Private Media"
@@ -1887,7 +2381,9 @@
   {
     "country": "United States",
     "organization": "KTVU FOX 2",
-    "domains": ["ktvu.com"],
+    "domains": [
+      "ktvu.com"
+    ],
     "description": "KTVU FOX 2 is a television station serving the San Francisco Bay Area. It provides local and breaking news coverage, weather updates, sports reporting, and live streaming services for the region. The station covers major cities including San Francisco, Oakland, and San Jose, offering comprehensive news and information to Bay Area residents.",
     "owner": "Fox Corporation",
     "typology": "Private Media"
@@ -1895,7 +2391,9 @@
   {
     "country": "United States",
     "organization": "The Mercury News",
-    "domains": ["mercurynews.com"],
+    "domains": [
+      "mercurynews.com"
+    ],
     "description": "The Mercury News is a daily newspaper based in San Jose, California, serving Silicon Valley and the San Francisco Bay Area with coverage of local news, sports, business, and entertainment. The paper has a daily circulation of about 93,000 and Sunday circulation of around 151,000 as of 2022, making it one of the major metropolitan newspapers in Northern California.",
     "owner": "Alden Global Capital",
     "typology": "Private Media"
@@ -1903,7 +2401,9 @@
   {
     "country": "United States",
     "organization": "San Mateo Daily Journal",
-    "domains": ["smdailyjournal.com"],
+    "domains": [
+      "smdailyjournal.com"
+    ],
     "description": "The San Mateo Daily Journal is a local newspaper serving the San Francisco Peninsula region, specifically focused on San Mateo County, California. The publication provides local news coverage, business updates, and community information through both print and digital formats.",
     "owner": "",
     "typology": "Private Media"
@@ -1911,7 +2411,9 @@
   {
     "country": "United States",
     "organization": "SFGATE",
-    "domains": ["sfgate.com"],
+    "domains": [
+      "sfgate.com"
+    ],
     "description": "SFGATE is a digital news outlet based in San Francisco, California, providing coverage of Bay Area news, sports, culture, weather, politics, and technology. Originally launched as the San Francisco Chronicle's digital presence, it now operates as a separate digital publication covering both local and state-wide California news.",
     "owner": "Hearst Communications",
     "typology": "Private Media"
@@ -1919,7 +2421,9 @@
   {
     "country": "United States",
     "organization": "Hoodline",
-    "domains": ["hoodline.com"],
+    "domains": [
+      "hoodline.com"
+    ],
     "description": "Hoodline is a hyperlocal news platform providing neighborhood-level coverage across multiple U.S. cities including San Francisco, Oakland, Dallas, and Phoenix, focusing on local politics, business, dining, real estate, and crime news. The platform notably uses AI technology to generate some of its news content.",
     "owner": "Impress3 Media",
     "typology": "Private Media"
@@ -1927,7 +2431,9 @@
   {
     "country": "United States",
     "organization": "The San Francisco Standard",
-    "domains": ["sfstandard.com"],
+    "domains": [
+      "sfstandard.com"
+    ],
     "description": "The San Francisco Standard is an online news organization launched in 2021 that covers daily news, politics, business, food, tech and culture in the San Francisco Bay Area. The publication is funded in part by venture capital and aims to provide local journalism for San Francisco and the surrounding region.",
     "owner": "Michael Moritz (Sequoia Capital)",
     "typology": "Private Media"
@@ -1935,7 +2441,10 @@
   {
     "country": "United States",
     "organization": "Google",
-    "domains": ["google.com", "youtube.com"],
+    "domains": [
+      "google.com",
+      "youtube.com"
+    ],
     "description": "Google News is a news aggregation service developed and operated by Google and launched in 2002. It presents a continuous flow of articles organized from thousands of publishers and magazines worldwide. Youtube is Google's video sharing platform where users can upload, view, and share videos.",
     "owner": "Alphabet Inc.",
     "typology": "Private Media"
@@ -1943,7 +2452,9 @@
   {
     "country": "",
     "organization": "TechNews City",
-    "domains": ["technews.city"],
+    "domains": [
+      "technews.city"
+    ],
     "description": "A technology news website that covers AI developments, big tech companies, and health technology.",
     "owner": "",
     "typology": "Private Media"
@@ -1951,7 +2462,9 @@
   {
     "country": "United States",
     "organization": "CNET",
-    "domains": ["cnet.com"],
+    "domains": [
+      "cnet.com"
+    ],
     "description": "CNET is a technology-focused media website established in 1994 that publishes product reviews, tech news, how-to guides, and multimedia content. It specializes in consumer electronics and digital technology coverage through articles, videos, and podcasts.",
     "owner": "Ziff Davis",
     "typology": "Private Media"
@@ -1959,7 +2472,9 @@
   {
     "country": "Canada",
     "organization": "TheGamer",
-    "domains": ["thegamer.com"],
+    "domains": [
+      "thegamer.com"
+    ],
     "description": "TheGamer is a digital gaming publication founded in 2017 that provides video game news, reviews, guides, and opinion pieces. The website produces content covering gaming industry news, in-depth game guides, reviews, and analysis across multiple gaming platforms.",
     "owner": "Valnet Inc.",
     "typology": "Private Media"
@@ -1967,7 +2482,9 @@
   {
     "country": "India",
     "organization": "New Delhi Television (NDTV)",
-    "domains": ["ndtv.com"],
+    "domains": [
+      "ndtv.com"
+    ],
     "description": "NDTV is a news media company providing news coverage and programming across television and digital platforms, with a significant presence in both domestic and international markets, particularly serving Indian expatriates.",
     "owner": "Adani Enterprises (64.71%)",
     "typology": "Private Media"
@@ -1975,7 +2492,9 @@
   {
     "country": "Israel",
     "organization": "The Times of Israel",
-    "domains": ["timesofisrael.com"],
+    "domains": [
+      "timesofisrael.com"
+    ],
     "description": "The Times of Israel is an Israeli multi-language online newspaper launched in 2012 that provides news coverage focused on Israel, the Middle East, and the Jewish world. It publishes in English, French, Arabic, and Hebrew, offering breaking news, analysis, and opinion pieces about regional and international affairs.",
     "owner": "David Horovitz",
     "typology": "Private Media"
@@ -1983,7 +2502,9 @@
   {
     "country": "Belgium",
     "organization": "Euronews",
-    "domains": ["euronews.com"],
+    "domains": [
+      "euronews.com"
+    ],
     "description": "Euronews is a European multilingual news channel headquartered in Brussels that broadcasts in 17 languages across Europe and beyond. It provides international news coverage, focusing on European affairs, politics, economy, and culture.",
     "owner": "Alpac Capital (97.6%)",
     "typology": "Private Media"
@@ -1991,7 +2512,9 @@
   {
     "country": "United States",
     "organization": "Al-Monitor",
-    "domains": ["al-monitor.com"],
+    "domains": [
+      "al-monitor.com"
+    ],
     "description": "Al-Monitor is a news organization providing analysis and coverage focused on the Middle East region. The outlet produces original reporting and analysis in multiple languages, targeting decision-makers, policy experts, and academics. It specializes in providing in-depth coverage of regional politics, security issues, and socio-economic developments across Middle Eastern countries.",
     "owner": "Jamal Daniel",
     "typology": "Private Media"
@@ -1999,15 +2522,19 @@
   {
     "country": "United Kingdom",
     "organization": "The New Arab",
-    "domains": ["newarab.com"],
+    "domains": [
+      "newarab.com"
+    ],
     "description": "The New Arab is a London-based pan-Arab news outlet providing English and Arabic language coverage of Middle East, North Africa, and international news through its website and daily newspaper.",
     "owner": "Fadaat Media",
     "typology": "Private Media"
-   },
-   {
+  },
+  {
     "country": "Pakistan",
     "organization": "Dawn",
-    "domains": ["dawn.com"],
+    "domains": [
+      "dawn.com"
+    ],
     "description": "Dawn is Pakistan's largest English-language newspaper and widely considered the country's newspaper of record. The newspaper provides comprehensive coverage of national, regional and international news, with particular focus on Pakistani politics, business, and current affairs.",
     "owner": "Haroon-Saigol family",
     "typology": "Private Media"
@@ -2015,7 +2542,9 @@
   {
     "country": "Pakistan",
     "organization": "The Express Tribune",
-    "domains": ["tribune.com.pk"],
+    "domains": [
+      "tribune.com.pk"
+    ],
     "description": "The Express Tribune is an English-language daily newspaper published in Pakistan. It is part of the International Herald Tribune network and provides coverage of national and international news, business, sports, and entertainment with a focus on contemporary Pakistani affairs.",
     "owner": "Lakson Group",
     "typology": "Private Media"
@@ -2023,7 +2552,9 @@
   {
     "country": "Pakistan",
     "organization": "The News International",
-    "domains": ["thenews.com.pk"],
+    "domains": [
+      "thenews.com.pk"
+    ],
     "description": "The News International is one of Pakistan's leading English-language daily newspapers, providing comprehensive coverage of national and international news, politics, business, sports, and entertainment. It is part of the Jang Group of newspapers.",
     "owner": "Jang Group",
     "typology": "Private Media"
@@ -2031,7 +2562,9 @@
   {
     "country": "Pakistan",
     "organization": "The Nation",
-    "domains": ["nation.com.pk"],
+    "domains": [
+      "nation.com.pk"
+    ],
     "description": "The Nation is an English-language daily newspaper published in Pakistan, providing news coverage of national politics, business, sports, and current affairs. It is known for its focus on Pakistani domestic issues and regional developments.",
     "owner": "Nawaiwaqt Group",
     "typology": "Private Media"
@@ -2039,7 +2572,9 @@
   {
     "country": "Pakistan",
     "organization": "Pakistan Today",
-    "domains": ["pakistantoday.com.pk"],
+    "domains": [
+      "pakistantoday.com.pk"
+    ],
     "description": "Pakistan Today is an English-language daily newspaper and digital media outlet providing news coverage of Pakistani politics, business, culture, and international affairs. It operates both print and digital platforms with sections covering various aspects of Pakistani society.",
     "owner": "Arif Nizami",
     "typology": "Private Media"
@@ -2047,7 +2582,9 @@
   {
     "country": "Pakistan",
     "organization": "Daily Times",
-    "domains": ["dailytimes.com.pk"],
+    "domains": [
+      "dailytimes.com.pk"
+    ],
     "description": "Daily Times is an English-language daily newspaper published in Pakistan, providing news coverage of national and international affairs, politics, business, and culture. The publication focuses on progressive journalism and liberal perspectives on Pakistani issues.",
     "owner": "Independent",
     "typology": "Private Media"
@@ -2055,7 +2592,9 @@
   {
     "country": "Pakistan",
     "organization": "ARY News",
-    "domains": ["arynews.tv"],
+    "domains": [
+      "arynews.tv"
+    ],
     "description": "ARY News is a 24-hour Urdu-language news television channel based in Karachi, Pakistan. It is part of the ARY Digital Network and provides breaking news, current affairs, and analysis covering Pakistani politics, business, sports, and international news.",
     "owner": "ARY Group",
     "typology": "Private Media"
@@ -2063,7 +2602,9 @@
   {
     "country": "Pakistan",
     "organization": "Geo News",
-    "domains": ["geo.tv"],
+    "domains": [
+      "geo.tv"
+    ],
     "description": "Geo News is a Pakistani Urdu-language news television channel owned by the Jang Group. It provides 24-hour news coverage including breaking news, current affairs, politics, business, sports, and entertainment, serving as one of Pakistan's most watched news channels.",
     "owner": "Jang Group",
     "typology": "Private Media"
@@ -2071,7 +2612,9 @@
   {
     "country": "Pakistan",
     "organization": "BOL News",
-    "domains": ["bolnews.com"],
+    "domains": [
+      "bolnews.com"
+    ],
     "description": "BOL News is a Pakistani news television channel and digital platform providing news coverage in Urdu and English. It covers national and international news, politics, business, sports, and entertainment with a focus on contemporary Pakistani affairs.",
     "owner": "Shoaib Ahmed Shaikh",
     "typology": "Private Media"
@@ -2079,7 +2622,9 @@
   {
     "country": "Pakistan",
     "organization": "The Financial Daily",
-    "domains": ["thefinancialdaily.com"],
+    "domains": [
+      "thefinancialdaily.com"
+    ],
     "description": "The Financial Daily is a Pakistani business and financial news publication providing coverage of economic developments, market analysis, business news, and financial information relevant to Pakistan's economy and international markets.",
     "owner": "Independent",
     "typology": "Private Media"
@@ -2087,7 +2632,9 @@
   {
     "country": "Canada",
     "organization": "Winnipeg Free Press",
-    "domains": ["winnipegfreepress.com"],
+    "domains": [
+      "winnipegfreepress.com"
+    ],
     "description": "The Winnipeg Free Press is a daily broadsheet newspaper based in Winnipeg, Manitoba, that publishes every day except Sunday. It provides local, national and international coverage through print and digital platforms for the Winnipeg metropolitan area.",
     "owner": "FP Canadian Newspapers Limited Partnership",
     "typology": "Private Media"
@@ -2095,7 +2642,9 @@
   {
     "country": "United States",
     "organization": "The New Yorker",
-    "domains": ["newyorker.com"],
+    "domains": [
+      "newyorker.com"
+    ],
     "description": "The New Yorker is a magazine established in 1925 that publishes journalism, commentary, criticism, essays, fiction, satire, cartoons, and poetry.",
     "owner": "Condé Nast (Advance Publications)",
     "typology": "Private Media"
@@ -2103,7 +2652,9 @@
   {
     "country": "United States",
     "organization": "Slate",
-    "domains": ["slate.com"],
+    "domains": [
+      "slate.com"
+    ],
     "description": "Slate is a daily online magazine and podcast network founded in 1996, focusing on politics, news, business, technology, and culture. It operates with a metered paywall model and is known for its contrarian views ('Slate Pitches') and generally liberal editorial stance. The publication combines analysis, commentary, and cultural coverage with a mix of serious journalism and humor.",
     "owner": "Graham Holdings Company (Washington Post Company)",
     "typology": "Private Media"
@@ -2111,7 +2662,9 @@
   {
     "country": "United States",
     "organization": "The Christian Science Monitor",
-    "domains": ["csmonitor.com"],
+    "domains": [
+      "csmonitor.com"
+    ],
     "description": "The Christian Science Monitor is a nonprofit international news organization founded in 1908 that publishes daily articles online and a weekly magazine, known for its thoughtful global coverage and focus on constructive journalism.",
     "owner": "The First Church of Christ, Scientist",
     "typology": "Private Media"
@@ -2119,7 +2672,9 @@
   {
     "country": "United States",
     "organization": "Reason",
-    "domains": ["reason.com"],
+    "domains": [
+      "reason.com"
+    ],
     "description": "Reason is a monthly magazine and media outlet that covers news, politics, culture, and public policy from a libertarian perspective.",
     "owner": "Reason Foundation (non-profit)",
     "typology": "Private Media"
@@ -2127,7 +2682,9 @@
   {
     "country": "United States",
     "organization": "The American Prospect",
-    "domains": ["prospect.org"],
+    "domains": [
+      "prospect.org"
+    ],
     "description": "The American Prospect is a daily online and bimonthly print magazine focused on American politics and public policy, with a progressive and liberal perspective. It provides analysis of public policy issues and political developments through both digital and print formats.",
     "owner": "The American Prospect, Inc. (non-profit)",
     "typology": "Private Media"
@@ -2135,7 +2692,9 @@
   {
     "country": "United States",
     "organization": "The Intercept",
-    "domains": ["theintercept.com"],
+    "domains": [
+      "theintercept.com"
+    ],
     "description": "The Intercept is an American left-wing nonprofit news organization founded in 2014 that publishes investigative journalism, articles, and podcasts focusing on national security, civil liberties, foreign policy, and criminal justice. It gained prominence for being one of the first outlets to report on Edward Snowden's leaked NSA documents.",
     "owner": "First Look Media (non-profit)",
     "typology": "Private Media"
@@ -2143,7 +2702,9 @@
   {
     "country": "United States",
     "organization": "CNBC",
-    "domains": ["cnbc.com"],
+    "domains": [
+      "cnbc.com"
+    ],
     "description": "CNBC is a business and financial news network headquartered in Englewood Cliffs, New Jersey, providing real-time market coverage, business news, and financial information through television and digital platforms. Their audience includes business leaders, investors, financial advisors, and professionals across multiple sectors.",
     "owner": "NBCUniversal",
     "typology": "Private Media"
@@ -2151,7 +2712,9 @@
   {
     "country": "United States",
     "organization": "Business Insider",
-    "domains": ["businessinsider.com"],
+    "domains": [
+      "businessinsider.com"
+    ],
     "description": "Business Insider is a New York City-based multinational financial and business news website founded in 2007 that covers technology, finance, markets, economy, business news, lifestyle, and science.",
     "owner": "Axel Springer SE (via Insider Inc.)",
     "typology": "Private Media"
@@ -2159,7 +2722,9 @@
   {
     "country": "United States",
     "organization": "Droid Life",
-    "domains": ["droid-life.com"],
+    "domains": [
+      "droid-life.com"
+    ],
     "description": "Droid Life is a technology blog and news website focused on Android smartphones, devices, and ecosystem. The site provides news coverage, product reviews, tips and tricks, app features, and community discussions centered around Android mobile technology, with particular emphasis on detailed device reviews and Android platform developments.",
     "owner": "Kellen Barranger",
     "typology": "Private Media"
@@ -2167,7 +2732,9 @@
   {
     "country": "United Kingdom",
     "organization": "TechRadar",
-    "domains": ["techradar.com"],
+    "domains": [
+      "techradar.com"
+    ],
     "description": "TechRadar is a technology news and reviews website owned by Future plc, providing consumer-focused coverage of gadgets, computing, mobile devices, and other consumer electronics.",
     "owner": "Future plc",
     "typology": "Private Media"
@@ -2175,7 +2742,9 @@
   {
     "country": "United States",
     "organization": "The Verge",
-    "domains": ["theverge.com"],
+    "domains": [
+      "theverge.com"
+    ],
     "description": "The Verge is a technology news and media website founded in 2011 that covers the intersection of technology, science, art, and culture. It produces news coverage, feature stories, investigative reporting, product reviews, and multimedia content through articles, videos, and podcasts, with headquarters in New York City.",
     "owner": "Vox Media",
     "typology": "Private Media"
@@ -2183,7 +2752,9 @@
   {
     "country": "",
     "organization": "Redmond Pie",
-    "domains": ["redmondpie.com"],
+    "domains": [
+      "redmondpie.com"
+    ],
     "description": "Redmond Pie is a technology web publication focused on covering news, updates, and developments related to Apple, Microsoft, Google, and Tesla. The site particularly specializes in iOS device coverage, including jailbreaking tutorials and mobile technology news.",
     "owner": "",
     "typology": "Private Media"
@@ -2191,7 +2762,9 @@
   {
     "country": "",
     "organization": "AndroidPCTV",
-    "domains": ["androidpctv.com"],
+    "domains": [
+      "androidpctv.com"
+    ],
     "description": "A technology website focused on reviewing and providing news about Android TV devices, TV boxes, mini PCs, and tablets. The site offers firmware updates, device reviews, and technical information about various Android-based TV boxes and streaming devices.",
     "owner": "",
     "typology": "Private Media"
@@ -2199,7 +2772,10 @@
   {
     "country": "United States",
     "organization": "Digital Trends",
-    "domains": ["digitaltrends.com", "dtmg.co"],
+    "domains": [
+      "digitaltrends.com",
+      "dtmg.co"
+    ],
     "description": "Digital Trends is a Portland-based tech news and reviews website founded in 2006 that publishes news, product reviews, guides, how-to articles, videos and podcasts focused on technology and consumer electronics. The site is part of Digital Trends Media Group, which operates multiple millennial-focused media brands covering technology, lifestyle, and consumer products.",
     "owner": "Ian Bell",
     "typology": "Private Media"
@@ -2207,7 +2783,9 @@
   {
     "country": "United States",
     "organization": "KnowTechie",
-    "domains": ["knowtechie.com"],
+    "domains": [
+      "knowtechie.com"
+    ],
     "description": "KnowTechie is a technology news blog and website that provides tech news, reviews, how-to guides, and gaming coverage aimed at general tech enthusiasts.",
     "owner": "Kevin Raposo",
     "typology": "Private Media"
@@ -2215,7 +2793,9 @@
   {
     "country": "United States",
     "organization": "9to5Google",
-    "domains": ["9to5google.com"],
+    "domains": [
+      "9to5google.com"
+    ],
     "description": "9to5Google is a technology news website focused on providing daily coverage of Google-related news, including Android devices, Pixel phones, Chrome OS, Google services, and product launches. The site is part of the 9to5 network of technology news websites that includes 9to5Mac and 9to5Toys.",
     "owner": "Seth Weintraub",
     "typology": "Private Media"
@@ -2223,7 +2803,9 @@
   {
     "country": "United States",
     "organization": "VentureBeat",
-    "domains": ["venturebeat.com"],
+    "domains": [
+      "venturebeat.com"
+    ],
     "description": "VentureBeat is a technology news website founded in 2006, based in San Francisco, that publishes news, analysis, interviews, and features focusing on transformative technology, particularly AI and gaming.",
     "owner": "Matt Marshall",
     "typology": "Private Media"
@@ -2231,7 +2813,9 @@
   {
     "country": "United States",
     "organization": "The Markup",
-    "domains": ["themarkup.org"],
+    "domains": [
+      "themarkup.org"
+    ],
     "description": "The Markup is an investigative journalism organization focused on examining technology's impact on society through data-driven reporting and investigations.",
     "owner": "CalMatters",
     "typology": "Private Media"
@@ -2239,7 +2823,9 @@
   {
     "country": "Taiwan",
     "organization": "DIGITIMES Asia",
-    "domains": ["digitimes.com"],
+    "domains": [
+      "digitimes.com"
+    ],
     "description": "DIGITIMES Asia is a Taiwan-based technology media outlet established in 1998 that specializes in coverage of the global semiconductor and tech supply chain ecosystem, with particular focus on Asia. The organization provides news, analysis, and research services focused on technology industry trends, manufacturing, and supply chain developments.",
     "owner": "DIGITIMES Inc.",
     "typology": "Private Media"
@@ -2247,7 +2833,9 @@
   {
     "country": "Belgium",
     "organization": "EU Observer",
-    "domains": ["euobserver.com"],
+    "domains": [
+      "euobserver.com"
+    ],
     "description": "EUobserver is an independent online newspaper established in 2000 that provides daily news coverage focused on the European Union and European affairs. It specializes in EU policy and politics reporting for a professional audience.",
     "owner": "EUobserver ASBL",
     "typology": "Private Media"
@@ -2255,7 +2843,9 @@
   {
     "country": "United Kingdom",
     "organization": "London School of Economics Blog",
-    "domains": ["blogs.lse.ac.uk"],
+    "domains": [
+      "blogs.lse.ac.uk"
+    ],
     "description": "The LSE's European Politics and Policy blog is an academic blog covering European politics, economics, society and public policy. It provides analysis and insights from researchers and experts in European studies.",
     "owner": "London School of Economics and Political Science",
     "typology": "Private Media"
@@ -2263,7 +2853,9 @@
   {
     "country": "Belgium",
     "organization": "Brussels Morning",
-    "domains": ["brusselsmorning.com"],
+    "domains": [
+      "brusselsmorning.com"
+    ],
     "description": "Brussels Morning is an online newspaper focused on EU politics and policy, providing daily coverage of European affairs, international relations, and Brussels-based EU institutions.",
     "owner": "Brussels Morning Newspaper LTD",
     "typology": "Private Media"
@@ -2271,7 +2863,9 @@
   {
     "country": "Hungary",
     "organization": "Daily News Hungary",
-    "domains": ["dailynewshungary.com"],
+    "domains": [
+      "dailynewshungary.com"
+    ],
     "description": "Daily News Hungary is an English-language news website covering Hungarian politics, business, culture and current affairs for an international audience.",
     "owner": "DNH Media Group Kft.",
     "typology": "Private Media"
@@ -2279,7 +2873,9 @@
   {
     "country": "Estonia",
     "organization": "ERR News",
-    "domains": ["err.ee"],
+    "domains": [
+      "err.ee"
+    ],
     "description": "ERR News is the Estonian, English and Russian language news service of Estonian Public Broadcasting, providing daily coverage of Estonian and Baltic regional news, politics, culture and current affairs.",
     "owner": "Estonian Public Broadcasting",
     "typology": "State Funded Media"
@@ -2287,7 +2883,10 @@
   {
     "country": "Estonia",
     "organization": "Postimees",
-    "domains": ["postimees.ee", "pmo.ee"],
+    "domains": [
+      "postimees.ee",
+      "pmo.ee"
+    ],
     "description": "Postimees is Estonia's oldest and largest daily newspaper, founded in 1857. It provides comprehensive coverage of national and international news, politics, business, and culture through Estonian, English and Russian language editions.",
     "owner": "MM Grupp",
     "typology": "Private Media"
@@ -2295,7 +2894,9 @@
   {
     "country": "Estonia",
     "organization": "Delfi",
-    "domains": ["delfi.ee"],
+    "domains": [
+      "delfi.ee"
+    ],
     "description": "Delfi is one of Estonia's largest news portals providing news coverage in Estonian, English, Lithuanian, Latvian, Polish and Russian languages. The platform offers real-time news updates, opinion pieces, and multimedia content covering local and international affairs.",
     "owner": "Ekspress Grupp",
     "typology": "Private Media"
@@ -2303,14 +2904,19 @@
   {
     "country": "Estonia",
     "organization": "Äripäev",
-    "domains": ["aripaev.ee"],
+    "domains": [
+      "aripaev.ee"
+    ],
     "description": "Äripäev is Estonia's leading business newspaper and news portal focused on business, financial and economic news coverage. Founded in 1989, it provides in-depth reporting and analysis of Estonian and international business developments.",
     "owner": "Bonnier Group",
     "typology": "Private Media"
-  },{
+  },
+  {
     "country": "Belgium",
     "organization": "VRT",
-    "domains": ["vrt.be"],
+    "domains": [
+      "vrt.be"
+    ],
     "description": "VRT is the Flemish public broadcaster, providing news and cultural content across television, radio, and digital platforms.",
     "owner": "Flemish Government",
     "typology": "State Funded Media"
@@ -2318,7 +2924,9 @@
   {
     "country": "Belgium",
     "organization": "RTBF",
-    "domains": ["rtbf.be"],
+    "domains": [
+      "rtbf.be"
+    ],
     "description": "RTBF is the public broadcaster for the French-speaking community in Belgium, offering a wide range of news and entertainment content.",
     "owner": "French Community of Belgium",
     "typology": "State Funded Media"
@@ -2326,7 +2934,9 @@
   {
     "country": "Belgium",
     "organization": "Sporza",
-    "domains": ["sporza.be"],
+    "domains": [
+      "sporza.be"
+    ],
     "description": "Sporza is a sports-focused brand of VRT, providing comprehensive sports coverage and live broadcasts.",
     "owner": "VRT",
     "typology": "State Funded Media"
@@ -2334,7 +2944,9 @@
   {
     "country": "Belgium",
     "organization": "Het Laatste Nieuws",
-    "domains": ["hln.be"],
+    "domains": [
+      "hln.be"
+    ],
     "description": "Het Laatste Nieuws is a popular Flemish daily newspaper known for its comprehensive news coverage and entertainment content.",
     "owner": "DPG Media",
     "typology": "Private Media"
@@ -2342,7 +2954,9 @@
   {
     "country": "Belgium",
     "organization": "De Morgen",
-    "domains": ["demorgen.be"],
+    "domains": [
+      "demorgen.be"
+    ],
     "description": "De Morgen is a Flemish daily newspaper offering in-depth news analysis and cultural reporting.",
     "owner": "DPG Media",
     "typology": "Private Media"
@@ -2350,7 +2964,9 @@
   {
     "country": "Belgium",
     "organization": "Le Soir",
-    "domains": ["lesoir.be"],
+    "domains": [
+      "lesoir.be"
+    ],
     "description": "Le Soir is a leading French-language daily newspaper in Belgium, providing comprehensive news coverage and analysis.",
     "owner": "Rossel Group",
     "typology": "Private Media"
@@ -2358,7 +2974,9 @@
   {
     "country": "Belgium",
     "organization": "De Standaard",
-    "domains": ["standaard.be"],
+    "domains": [
+      "standaard.be"
+    ],
     "description": "De Standaard is a Flemish daily newspaper known for its quality journalism and in-depth news coverage.",
     "owner": "Mediahuis",
     "typology": "Private Media"
@@ -2366,7 +2984,9 @@
   {
     "country": "Belgium",
     "organization": "Het Nieuwsblad",
-    "domains": ["nieuwsblad.be"],
+    "domains": [
+      "nieuwsblad.be"
+    ],
     "description": "Nieuwsblad is a Flemish daily newspaper offering a mix of news, sports, and entertainment content.",
     "owner": "Mediahuis",
     "typology": "Private Media"
@@ -2374,7 +2994,9 @@
   {
     "country": "Belgium",
     "organization": "La Libre Belgique",
-    "domains": ["lalibre.be"],
+    "domains": [
+      "lalibre.be"
+    ],
     "description": "La Libre Belgique is a French-language daily newspaper in Belgium, known for its independent news coverage and analysis.",
     "owner": "IPM Group",
     "typology": "Private Media"
@@ -2382,7 +3004,9 @@
   {
     "country": "Belgium",
     "organization": "De Tijd",
-    "domains": ["tijd.be"],
+    "domains": [
+      "tijd.be"
+    ],
     "description": "De Tijd is a Flemish business newspaper providing in-depth financial and economic news.",
     "owner": "Mediafin",
     "typology": "Private Media"
@@ -2390,7 +3014,9 @@
   {
     "country": "Belgium",
     "organization": "Knack",
-    "domains": ["knack.be"],
+    "domains": [
+      "knack.be"
+    ],
     "description": "Knack is a Flemish weekly news magazine offering investigative journalism and in-depth analysis.",
     "owner": "Roularta Media Group",
     "typology": "Private Media"
@@ -2398,7 +3024,9 @@
   {
     "country": "Belgium",
     "organization": "Sudinfo",
-    "domains": ["sudinfo.be"],
+    "domains": [
+      "sudinfo.be"
+    ],
     "description": "Sudinfo is a French-language news platform providing local and national news coverage in Belgium.",
     "owner": "Rossel Group",
     "typology": "Private Media"
@@ -2406,7 +3034,9 @@
   {
     "country": "Belgium",
     "organization": "Gazet van Antwerpen",
-    "domains": ["gva.be"],
+    "domains": [
+      "gva.be"
+    ],
     "description": "Gazet van Antwerpen is a regional newspaper in Belgium, focusing on news from the Antwerp region.",
     "owner": "Mediahuis",
     "typology": "Private Media"
@@ -2414,7 +3044,9 @@
   {
     "country": "Belgium",
     "organization": "Het Belang van Limburg",
-    "domains": ["hbvl.be"],
+    "domains": [
+      "hbvl.be"
+    ],
     "description": "Het Belang van Limburg is a regional newspaper in Belgium, providing news coverage for the Limburg region.",
     "owner": "Mediahuis",
     "typology": "Private Media"
@@ -2422,7 +3054,9 @@
   {
     "country": "Belgium",
     "organization": "BRUZZ",
-    "domains": ["bruzz.be"],
+    "domains": [
+      "bruzz.be"
+    ],
     "description": "BRUZZ is a media platform providing news and cultural content for the Brussels region.",
     "owner": "Vlaams-Brusselse Media",
     "typology": "Public Media"
@@ -2430,7 +3064,9 @@
   {
     "country": "Belgium",
     "organization": "Focus-WTV",
-    "domains": ["focus-wtv.be"],
+    "domains": [
+      "focus-wtv.be"
+    ],
     "description": "Focus-WTV is a regional television station in West Flanders, Belgium, offering local news and entertainment.",
     "owner": "Roularta Media Group",
     "typology": "Private Media"
@@ -2438,7 +3074,9 @@
   {
     "country": "Belgium",
     "organization": "Apache",
-    "domains": ["De Werktitel"],
+    "domains": [
+      "De Werktitel"
+    ],
     "description": "Apache is a small independent investigative journalism platform in Belgium, focusing on in-depth reporting and analysis.",
     "owner": "Coöperatieve vennootschap",
     "typology": "Private Media"
@@ -2446,7 +3084,9 @@
   {
     "country": "New Zealand",
     "organization": "Radio New Zealand",
-    "domains": ["rnz.co.nz"],
+    "domains": [
+      "rnz.co.nz"
+    ],
     "description": "Radio New Zealand (RNZ) is New Zealand's independent public radio service. RNZ broadcasts three nationwide channels, RNZ National, RNZ Concert and the AM network (focused on parliamentary proceedings). RNZ Pacific (which used to operate as Radio New Zealand International or RNZI) is the group's international news broadcaster.",
     "owner": "New Zealand Government",
     "typology": "State Funded Media"
@@ -2454,7 +3094,9 @@
   {
     "country": "New Zealand",
     "organization": "The New Zealand Herald",
-    "domains": ["nzherald.co.nz"],
+    "domains": [
+      "nzherald.co.nz"
+    ],
     "description": "The New Zealand Herald is the largest daily newspaper in New Zealand, providing coverage of local and international news, sports, entertainment, and opinion from Auckland and beyond through both print and digital platforms.",
     "owner": "New Zealand Media and Entertainment",
     "typology": "Private Media"
@@ -2462,7 +3104,9 @@
   {
     "country": "New Zealand",
     "organization": "Stuff",
-    "domains": ["stuff.co.nz"],
+    "domains": [
+      "stuff.co.nz"
+    ],
     "description": "Stuff is New Zealand's most popular news website, providing coverage of breaking news, weather, sport, politics, and entertainment through both its digital platform and associated newspapers.",
     "owner": "Stuff Limited",
     "typology": "Private Media"
@@ -2470,7 +3114,9 @@
   {
     "country": "New Zealand",
     "organization": "Newstalk ZB",
-    "domains": ["newstalkzb.co.nz"],
+    "domains": [
+      "newstalkzb.co.nz"
+    ],
     "description": "Newstalk ZB is a nationwide talk-radio network, operating since 1926, providing news, talkback, interviews, sports coverage, and current affairs programming through both AM and FM frequencies across the country.",
     "owner": "New Zealand Media and Entertainment",
     "typology": "Private Media"
@@ -2478,7 +3124,9 @@
   {
     "country": "New Zealand",
     "organization": "Scoop",
-    "domains": ["scoop.co.nz"],
+    "domains": [
+      "scoop.co.nz"
+    ],
     "description": "Scoop is a New Zealand internet news website, operating since 1999, that publishes press releases and news content with a permissive publishing policy focused on public-interest journalism.",
     "owner": "Scoop Foundation for Public lnterest Journalism",
     "typology": "Private Media"
@@ -2486,7 +3134,9 @@
   {
     "country": "New Zealand",
     "organization": "Newsroom",
-    "domains": ["newsroom.co.nz"],
+    "domains": [
+      "newsroom.co.nz"
+    ],
     "description": "Newsroom is a New Zealand online news publication launched in 2017 that focuses on politics, current affairs, and social issues through its digital platform.",
     "owner": "Newsroom NZ Limited",
     "typology": "Private Media"
@@ -2494,7 +3144,9 @@
   {
     "country": "New Zealand",
     "organization": "Otago Daily Times",
-    "domains": ["odt.co.nz"],
+    "domains": [
+      "odt.co.nz"
+    ],
     "description": "Otago Daily Times is New Zealand's oldest surviving daily newspaper, serving the southern South Island with coverage of local, national and international news through both print and digital platforms.",
     "owner": "Allied Press Limited",
     "typology": "Private Media"
@@ -2502,7 +3154,9 @@
   {
     "country": "Australia",
     "organization": "The Conversation",
-    "domains": ["theconversation.com"],
+    "domains": [
+      "theconversation.com"
+    ],
     "description": "The Conversation is a digital news and analysis platform that publishes articles written by academics and researchers, combining scholarly expertise with journalistic editing to provide in-depth coverage of current affairs, science, health, politics, and culture.",
     "owner": "The Conversation Media Group Ltd",
     "typology": "Private Media"
@@ -2510,7 +3164,9 @@
   {
     "country": "New Zealand",
     "organization": "Interest.co.nz",
-    "domains": ["interest.co.nz"],
+    "domains": [
+      "interest.co.nz"
+    ],
     "description": "Interest.co.nz is a New Zealand financial news and information website that provides coverage of business, economic news, and financial data, along with tools for comparing banking products, mortgages, and investment options.",
     "owner": "JDJL Limited",
     "typology": "Private Media"
@@ -2518,7 +3174,9 @@
   {
     "country": "New Zealand",
     "organization": "Te Ao Māori News",
-    "domains": ["teaonews.co.nz"],
+    "domains": [
+      "teaonews.co.nz"
+    ],
     "description": "Te Ao Māori News is a dedicated news platform that delivers investigative journalism focused on Māori perspectives, covering national, regional, political, and indigenous stories across Aotearoa New Zealand, with content available in both English and Te Reo Māori.",
     "owner": "Māori Television Service",
     "typology": "State Funded Media"
@@ -2526,7 +3184,9 @@
   {
     "country": "New Zealand",
     "organization": "The Post",
-    "domains": ["thepost.co.nz"],
+    "domains": [
+      "thepost.co.nz"
+    ],
     "description": "The Post is a metropolitan daily newspaper published in Wellington, New Zealand",
     "owner": "Stuff Limited",
     "typology": "Private Media"
@@ -2534,7 +3194,9 @@
   {
     "country": "New Zealand",
     "organization": "Gisborne Herald",
-    "domains": ["gisborneherald.co.nz"],
+    "domains": [
+      "gisborneherald.co.nz"
+    ],
     "description": "The Gisborne Herald is a daily newspaper serving the Tairāwhiti region of New Zealand, providing local news, sports, business, lifestyle, and rural coverage through both print and digital platforms.",
     "owner": "New Zealand Media and Entertainment",
     "typology": "Private Media"
@@ -2542,7 +3204,9 @@
   {
     "country": "New Zealand",
     "organization": "The Press",
-    "domains": ["thepress.co.nz"],
+    "domains": [
+      "thepress.co.nz"
+    ],
     "description": "The Press is a daily metropolitan newspaper serving Christchurch and the Canterbury region of New Zealand, providing local, national, and international news coverage through both print and digital platforms.",
     "owner": "Stuff Limited",
     "typology": "Private Media"
@@ -2550,7 +3214,9 @@
   {
     "country": "New Zealand",
     "organization": "Waikato Times",
-    "domains": ["waikatotimes.co.nz"],
+    "domains": [
+      "waikatotimes.co.nz"
+    ],
     "description": "The Waikato Times is a daily newspaper serving Hamilton and the wider Waikato region of New Zealand, providing comprehensive coverage of local news, sports, business, opinion, and lifestyle content through both print and digital platforms.",
     "owner": "Stuff Limited",
     "typology": "Private Media"
@@ -2558,7 +3224,9 @@
   {
     "country": "The Netherlands",
     "organization": "Koninklijk Nederlands Meteorologisch Instituut",
-    "domains": ["knmi.nl"],
+    "domains": [
+      "knmi.nl"
+    ],
     "description": "The Royal Netherlands Meteorological Institute (Dutch: Koninklijk Nederlands Meteorologisch Instituut, KNMI) is the national institute for weather, climate, and seismology. It provides weather information for safety, the economy, and a sustainable environment to the general public, the government, aviation, and shipping.",
     "owner": "Koninklijk Nederlands Meteorologisch Instituut",
     "typology": "State Funded Media"
@@ -2566,7 +3234,9 @@
   {
     "country": "The Netherlands",
     "organization": "Het Financieele Dagblad",
-    "domains": ["fd.nl"],
+    "domains": [
+      "fd.nl"
+    ],
     "description": "Het Financieele Dagblad (FD) is a daily Dutch newspaper focused on economics and business.",
     "owner": "FD Mediagroep",
     "typology": "Private Media"
@@ -2574,7 +3244,9 @@
   {
     "country": "The Netherlands",
     "organization": "Nederlandse Omroep Stichting",
-    "domains": ["nos.nl"],
+    "domains": [
+      "nos.nl"
+    ],
     "description": "The Dutch Broadcasting Foundation (Dutch: Nederlandse Omroep Stichting, NOS) is a public broadcaster established in the Media Act, tasked with providing media content for the national public media service in the areas of news, sports, and events, which are particularly suited for joint coverage.",
     "owner": "Nederlandse Omroep Stichting",
     "typology": "State Funded Media"
@@ -2582,7 +3254,9 @@
   {
     "country": "The Netherlands",
     "organization": "De Rijksoverheid",
-    "domains": ["rijksoverheid.nl"],
+    "domains": [
+      "rijksoverheid.nl"
+    ],
     "description": "De Rijksoverheid is the official website and communication platform of the Dutch goverment, providing official information about government policies and other activities.",
     "owner": "Rijksoverheid",
     "typology": "State Funded Media"
@@ -2590,7 +3264,9 @@
   {
     "country": "The Netherlands",
     "organization": "Follow the Money",
-    "domains": ["ftm.nl"],
+    "domains": [
+      "ftm.nl"
+    ],
     "description": "Follow the Money (FTM) is a Dutch independent news website for financial-economic investigative journalism.",
     "owner": "FTM Media B.V.",
     "typology": "Private Media"
@@ -2598,7 +3274,9 @@
   {
     "country": "The Netherlands",
     "organization": "Politie",
-    "domains": ["politie.nl"],
+    "domains": [
+      "politie.nl"
+    ],
     "description": "The official website and communication platform of the Dutch police, providing actual news about police activities and crimes.",
     "owner": "Rijksoverheid",
     "typology": "State Funded Media"
@@ -2606,7 +3284,9 @@
   {
     "country": "The Netherlands",
     "organization": "Tweakers",
-    "domains": ["tweakers.net"],
+    "domains": [
+      "tweakers.net"
+    ],
     "description": "Tweakers is a Dutch website focused on news and information about technology, including hardware, software, games, and the internet.",
     "owner": "DPG Media",
     "typology": "Private Media"
@@ -2614,7 +3294,9 @@
   {
     "country": "The Netherlands",
     "organization": "Algemeen Dagblad",
-    "domains": ["ad.nl"],
+    "domains": [
+      "ad.nl"
+    ],
     "description": "The Algemeen Dagblad (AD) is the second-largest paid national daily newspaper in the Netherlands.",
     "owner": "DPG Media",
     "typology": "Private Media"
@@ -2622,7 +3304,9 @@
   {
     "country": "The Netherlands",
     "organization": "Brabants Dagblad",
-    "domains": ["bd.nl"],
+    "domains": [
+      "bd.nl"
+    ],
     "description": "The Brabants Dagblad is a Dutch daily newspaper that is published in part of the provinces of North Brabant and the Gelderland region of Bommelerwaard.",
     "owner": "DPG Media",
     "typology": "Private Media"
@@ -2630,7 +3314,9 @@
   {
     "country": "The Netherlands",
     "organization": "BNNVARA",
-    "domains": ["bnnvara.nl"],
+    "domains": [
+      "bnnvara.nl"
+    ],
     "description": "BNNVARA is a Dutch independent, non-profit media organization committed to an open, equal, and just society.",
     "owner": "Omroepvereniging BNNVARA",
     "typology": "State Funded Media"
@@ -2638,7 +3324,9 @@
   {
     "country": "The Netherlands",
     "organization": "De Stentor",
-    "domains": ["destentor.nl"],
+    "domains": [
+      "destentor.nl"
+    ],
     "description": "De Stentor is a Dutch regional newspaper, appearing throughout the eastern part of the Netherlands.",
     "owner": "DPG Media",
     "typology": "Private Media"
@@ -2646,7 +3334,9 @@
   {
     "country": "The Netherlands",
     "organization": "De Gelderlander",
-    "domains": ["gelderlander.nl"],
+    "domains": [
+      "gelderlander.nl"
+    ],
     "description": "De Gelderlander is a Dutch regional newspaper, appearing throughout the province of Gelderland as well as parts of Noord-Brabant, Utrecht and Limburg.",
     "owner": "DPG Media",
     "typology": "Private Media"
@@ -2654,7 +3344,9 @@
   {
     "country": "The Netherlands",
     "organization": "NRC",
-    "domains": ["nrc.nl"],
+    "domains": [
+      "nrc.nl"
+    ],
     "description": "Het NRC is a Dutch daily newspaper that has been published since 1970",
     "owner": "Mediahuis",
     "typology": "Private Media"
@@ -2662,7 +3354,9 @@
   {
     "country": "The Netherlands",
     "organization": "Trouw",
-    "domains": ["trouw.nl"],
+    "domains": [
+      "trouw.nl"
+    ],
     "description": "Trouw is a Dutch daily newspaper that originated as a resistance paper in 1943 and focuses on news, politics, and philosophy of life.",
     "owner": "DPG Media",
     "typology": "Private Media"
@@ -2670,7 +3364,9 @@
   {
     "country": "The Netherlands",
     "organization": "Tubantia",
-    "domains": ["tubantia.nl"],
+    "domains": [
+      "tubantia.nl"
+    ],
     "description": "Tubantia is a regional daily newspaper that provides news from Twente and parts of the Achterhoek.",
     "owner": "DPG Media",
     "typology": "Private Media"
@@ -2678,7 +3374,9 @@
   {
     "country": "The Netherlands",
     "organization": "De Volkskrant",
-    "domains": ["volkskrant.nl"],
+    "domains": [
+      "volkskrant.nl"
+    ],
     "description": "De Volkskrant is a Dutch national daily newspaper that has been published since 1919 and focuses on news, politics, and culture.",
     "owner": "DPG Media",
     "typology": "Private Media"
@@ -2686,7 +3384,9 @@
   {
     "country": "The Netherlands",
     "organization": "RTV Noord",
-    "domains": ["rtvnoord.nl"],
+    "domains": [
+      "rtvnoord.nl"
+    ],
     "description": "RTV Noord is the regional public broadcaster of the province of Groningen that provides radio, television, and online news.",
     "owner": "Stichting RTV Noord",
     "typology": "State Funded Media"
@@ -2694,7 +3394,9 @@
   {
     "country": "The Netherlands",
     "organization": "Omrop Fryslân",
-    "domains": ["omropfryslan.nl"],
+    "domains": [
+      "omropfryslan.nl"
+    ],
     "description": "Omrop Fryslân is the regional public broadcaster of the province of Friesland that provides radio, television, and online news in both Frisian and Dutch.",
     "owner": "Stichting Omrop Fryslân",
     "typology": "State Funded Media"
@@ -2702,7 +3404,9 @@
   {
     "country": "The Netherlands",
     "organization": "NH Nieuws",
-    "domains": ["nhnieuws.nl"],
+    "domains": [
+      "nhnieuws.nl"
+    ],
     "description": "NH Nieuws is the regional public broadcaster of the province of North Holland that provides radio, television, and online news.",
     "owner": "Stichting RTV NH",
     "typology": "State Funded Media"
@@ -2710,7 +3414,9 @@
   {
     "country": "The Netherlands",
     "organization": "RTV Drenthe",
-    "domains": ["rtvdrenthe.nl"],
+    "domains": [
+      "rtvdrenthe.nl"
+    ],
     "description": "RTV Drenthe is the regional public broadcaster of the province of Drenthe that provides radio, television, and online news.",
     "owner": "Stichting RTV Drenthe",
     "typology": "State Funded Media"
@@ -2718,7 +3424,9 @@
   {
     "country": "The Netherlands",
     "organization": "RTV Oost",
-    "domains": ["rtvoost.nl"],
+    "domains": [
+      "rtvoost.nl"
+    ],
     "description": "RTV Oost is the regional public broadcaster of the province of Overijssel that provides radio, television, and online news.",
     "owner": "Stichting RTV Oost",
     "typology": "State Funded Media"
@@ -2726,7 +3434,9 @@
   {
     "country": "The Netherlands",
     "organization": "Omroep Flevoland",
-    "domains": ["omroepflevoland.nl"],
+    "domains": [
+      "omroepflevoland.nl"
+    ],
     "description": "Omroep Flevoland is the regional public broadcaster of the province of Flevoland that provides radio, television, and online news.",
     "owner": "Omroep Flevoland",
     "typology": "State Funded Media"
@@ -2734,7 +3444,9 @@
   {
     "country": "The Netherlands",
     "organization": "RTV Utrecht",
-    "domains": ["rtvutrecht.nl"],
+    "domains": [
+      "rtvutrecht.nl"
+    ],
     "description": "RTV Utrecht is the regional public broadcaster of the province of Utrecht that provides radio, television, and online news.",
     "owner": "SSPOMN",
     "typology": "State Funded Media"
@@ -2742,7 +3454,9 @@
   {
     "country": "The Netherlands",
     "organization": "Omroep West",
-    "domains": ["omroepwest.nl"],
+    "domains": [
+      "omroepwest.nl"
+    ],
     "description": "Omroep West is the regional public broadcaster of the province of South Holland that provides radio, television, and online news. The coverage area of Omroep West specifically includes the Haaglanden region and the northern part of South Holland, as RTV Rijnmond serves the southern part of the province.",
     "owner": "Stichting Regionale Omroep West",
     "typology": "State Funded Media"
@@ -2750,7 +3464,9 @@
   {
     "country": "The Netherlands",
     "organization": "Omroep Zeeland",
-    "domains": ["omroepzeeland.nl"],
+    "domains": [
+      "omroepzeeland.nl"
+    ],
     "description": "Omroep West is the regional public broadcaster of the province of South Holland that provides radio, television, and online news. The coverage area of Omroep West specifically includes the Haaglanden region and the northern part of South Holland, as RTV Rijnmond serves the southern part of the province.",
     "owner": "Stichting Omroep Zeeland",
     "typology": "State Funded Media"
@@ -2758,7 +3474,10 @@
   {
     "country": "The Netherlands",
     "organization": "L1",
-    "domains": ["l1.nl", "l1nieuws.nl"],
+    "domains": [
+      "l1.nl",
+      "l1nieuws.nl"
+    ],
     "description": "L1 is the regional public broadcaster of the province of Limburg that provides radio, television, and online news. The broadcaster operates from Maastricht and delivers news and programs about all of Limburg, often also with attention to the Limburgish dialect and regional culture.",
     "owner": "Omroep Limburg",
     "typology": "State Funded Media"
@@ -2766,7 +3485,9 @@
   {
     "country": "The Netherlands",
     "organization": "Omroep Gelderland",
-    "domains": ["gld.nl"],
+    "domains": [
+      "gld.nl"
+    ],
     "description": "Omroep Gelderland is the regional public broadcaster and emergency broadcaster of the Dutch province of Gelderland.",
     "owner": "Omroep Gelderland Organisatie",
     "typology": "State Funded Media"
@@ -2774,7 +3495,9 @@
   {
     "country": "The Netherlands",
     "organization": "Omroep Brabant",
-    "domains": ["omroepbrabant.nl"],
+    "domains": [
+      "omroepbrabant.nl"
+    ],
     "description": "Omroep Brabant is the regional public broadcaster of the province of North Brabant that provides radio, television, and online news.",
     "owner": "Omroep Brabant Organisatie",
     "typology": "State Funded Media"
@@ -2782,7 +3505,9 @@
   {
     "country": "Spain",
     "organization": "El Salto",
-    "domains": ["elsaltodiario.com"],
+    "domains": [
+      "elsaltodiario.com"
+    ],
     "description": "El Salto is an independent, subscription funded newspaper founded in 2017. Its online version works as daily newspaper covering in Spanish local and international events, investigation and debates.",
     "owner": "Independent",
     "typology": "Private Media"
@@ -2790,7 +3515,9 @@
   {
     "country": "South Korea",
     "organization": "Yonhap News Agency (연합뉴스)",
-    "domains": ["yna.co.kr"],
+    "domains": [
+      "yna.co.kr"
+    ],
     "description": "South Korea's key public news agency providing comprehensive domestic/international news.",
     "owner": "News Agency Promotion Foundation (Public Corp.)",
     "typology": "State Funded Media"
@@ -2798,7 +3525,9 @@
   {
     "country": "South Korea",
     "organization": "Korea Economic Daily (한국경제)",
-    "domains": ["hankyung.com"],
+    "domains": [
+      "hankyung.com"
+    ],
     "description": "Major South Korean business newspaper covering economy, finance, and industry.",
     "owner": "Hankyung Media Group",
     "typology": "Private Media"
@@ -2806,7 +3535,9 @@
   {
     "country": "South Korea",
     "organization": "Yonhap News TV (연합뉴스TV)",
-    "domains": ["yonhapnewstv.co.kr"],
+    "domains": [
+      "yonhapnewstv.co.kr"
+    ],
     "description": "24-hour news channel by Yonhap News Agency covering diverse topics.",
     "owner": "Yonhap News Agency",
     "typology": "State Funded Media"
@@ -2814,7 +3545,9 @@
   {
     "country": "South Korea",
     "organization": "SBS (Seoul Broadcasting System)",
-    "domains": ["sbs.co.kr"],
+    "domains": [
+      "sbs.co.kr"
+    ],
     "description": "Major South Korean national TV/radio network with news, entertainment, drama.",
     "owner": "SBS Media Holdings (Taeyoung Group)",
     "typology": "Private Media"
@@ -2822,7 +3555,9 @@
   {
     "country": "South Korea",
     "organization": "Chosun Ilbo (조선일보)",
-    "domains": ["chosun.com"],
+    "domains": [
+      "chosun.com"
+    ],
     "description": "Major South Korean daily newspaper covering politics, economy, society, culture.",
     "owner": "Chosun Ilbo Co., Ltd.",
     "typology": "Private Media"
@@ -2830,7 +3565,9 @@
   {
     "country": "South Korea",
     "organization": "Policy Briefing Korea (대한민국 정책브리핑)",
-    "domains": ["korea.kr"],
+    "domains": [
+      "korea.kr"
+    ],
     "description": "Official South Korean government portal for policy news and announcements.",
     "owner": "Ministry of Culture, Sports and Tourism (Gov't)",
     "typology": "State Funded Media"
@@ -2838,7 +3575,9 @@
   {
     "country": "South Korea",
     "organization": "Newsis (뉴시스)",
-    "domains": ["newsis.com"],
+    "domains": [
+      "newsis.com"
+    ],
     "description": "Major South Korean private news agency providing news content across various fields.",
     "owner": "Independent",
     "typology": "Private Media"
@@ -2846,7 +3585,9 @@
   {
     "country": "South Korea",
     "organization": "Maeil Business Newspaper (매일경제)",
-    "domains": ["mk.co.kr"],
+    "domains": [
+      "mk.co.kr"
+    ],
     "description": "Leading South Korean daily business newspaper (economy, finance, market).",
     "owner": "Maekyung Media Group",
     "typology": "Private Media"
@@ -2854,7 +3595,9 @@
   {
     "country": "South Korea",
     "organization": "EToday (이투데이)",
-    "domains": ["etoday.co.kr"],
+    "domains": [
+      "etoday.co.kr"
+    ],
     "description": "South Korean economic newspaper focusing on finance, industry, investment.",
     "owner": "Private Ownership",
     "typology": "Private Media"
@@ -2862,7 +3605,9 @@
   {
     "country": "South Korea",
     "organization": "Kukmin Ilbo (국민일보)",
-    "domains": ["kmib.co.kr"],
+    "domains": [
+      "kmib.co.kr"
+    ],
     "description": "South Korean daily newspaper covering general news, founded by Yoido Full Gospel Church.",
     "owner": "Kukmin Cultural Foundation",
     "typology": "Private Media"
@@ -2870,7 +3615,9 @@
   {
     "country": "South Korea",
     "organization": "Consumer Times (컨슈머타임스)",
-    "domains": ["cstimes.com"],
+    "domains": [
+      "cstimes.com"
+    ],
     "description": "Online news outlet focusing on consumer rights, products, and market trends.",
     "owner": "Independent",
     "typology": "Private Media"
@@ -2878,7 +3625,9 @@
   {
     "country": "South Korea",
     "organization": "News Post (뉴스포스트)",
-    "domains": ["newspost.kr"],
+    "domains": [
+      "newspost.kr"
+    ],
     "description": "Internet newspaper covering general news topics (politics, economy, society).",
     "owner": "Independent",
     "typology": "Private Media"
@@ -2886,7 +3635,9 @@
   {
     "country": "South Korea",
     "organization": "Seoul Shinmun (서울신문)",
-    "domains": ["seoul.co.kr"],
+    "domains": [
+      "seoul.co.kr"
+    ],
     "description": "Major South Korean daily newspaper covering general news.",
     "owner": "Hoban Group",
     "typology": "Private Media"
@@ -2894,7 +3645,9 @@
   {
     "country": "South Korea",
     "organization": "Segye Ilbo (세계일보)",
-    "domains": ["segye.com"],
+    "domains": [
+      "segye.com"
+    ],
     "description": "South Korean daily newspaper covering general news, founded by Unification Church.",
     "owner": "Tongil Group (Unification Church affiliated)",
     "typology": "Private Media"
@@ -2902,7 +3655,9 @@
   {
     "country": "South Korea",
     "organization": "OhmyNews (오마이뉴스)",
-    "domains": ["ohmynews.com"],
+    "domains": [
+      "ohmynews.com"
+    ],
     "description": "Online news site known for citizen journalism alongside professional reporting.",
     "owner": "OhmyNews Co., Ltd.",
     "typology": "Private Media"
@@ -2910,7 +3665,9 @@
   {
     "country": "South Korea",
     "organization": "Tongil News (통일뉴스)",
-    "domains": ["tongilnews.com"],
+    "domains": [
+      "tongilnews.com"
+    ],
     "description": "Online news specializing in North Korea, inter-Korean relations, unification.",
     "owner": "Private Ownership",
     "typology": "Private Media"
@@ -2918,7 +3675,9 @@
   {
     "country": "South Korea",
     "organization": "Kyunghyang Shinmun (경향신문)",
-    "domains": ["khan.co.kr"],
+    "domains": [
+      "khan.co.kr"
+    ],
     "description": "Major South Korean daily newspaper known for independent stance; employee-owned.",
     "owner": "independent",
     "typology": "Private Media"
@@ -2926,7 +3685,9 @@
   {
     "country": "South Korea",
     "organization": "Donga Ilbo (동아일보)",
-    "domains": ["donga.com"],
+    "domains": [
+      "donga.com"
+    ],
     "description": "Major South Korean daily newspaper covering broad news topics.",
     "owner": "Dong-A Media Group",
     "typology": "Private Media"
@@ -2934,7 +3695,9 @@
   {
     "country": "South Korea",
     "organization": "MBN (Maeil Broadcasting Network)",
-    "domains": ["mbn.co.kr"],
+    "domains": [
+      "mbn.co.kr"
+    ],
     "description": "Nationwide cable TV channel for news and general programming.",
     "owner": "Maekyung Media Group",
     "typology": "Private Media"
@@ -2942,7 +3705,13 @@
   {
     "country": "Switzerland",
     "organization": "SRG SSR",
-    "domains": ["srgssr.ch", "srf.ch", "rsi.ch", "rts.ch", "rtr.ch"],
+    "domains": [
+      "srgssr.ch",
+      "srf.ch",
+      "rsi.ch",
+      "rts.ch",
+      "rtr.ch"
+    ],
     "description": "SRG SSR is a public service broadcaster in Switzerland. It is built upon a federalist model specific to the country’s political organization.",
     "owner": "Swiss Confederation",
     "typology": "Public Media"
@@ -2950,7 +3719,9 @@
   {
     "country": "Switzerland",
     "organization": "Federal administration of Switzerland",
-    "domains": ["admin.ch"],
+    "domains": [
+      "admin.ch"
+    ],
     "description": "Website of the Federal Administration of the Swiss Confederation (including Federal Council and Departments)",
     "owner": "Swiss Confederation",
     "typology": "State Funded Media"
@@ -2958,7 +3729,9 @@
   {
     "country": "Switzerland",
     "organization": "GMX",
-    "domains": ["gmx.ch"],
+    "domains": [
+      "gmx.ch"
+    ],
     "description": "GMX is a German web portal founded in 1997 that now primarily operates as a news portal and an email service provider.  ",
     "owner": "1&1 Mail & Media GmbH",
     "typology": "Private Media"
@@ -2966,7 +3739,9 @@
   {
     "country": "Switzerland",
     "organization": "OnlineReports GmbH",
-    "domains": ["onlinereports.ch"],
+    "domains": [
+      "onlinereports.ch"
+    ],
     "description": "OnlineReports.ch is an Internet news portal from Basel, which mainly publishes regional research, news and comments.",
     "owner": "Jan Amsler, Alessandra Paone",
     "typology": "Private Media"
@@ -2974,7 +3749,9 @@
   {
     "country": "Switzerland",
     "organization": "20 Minuten",
-    "domains": ["20min.ch"],
+    "domains": [
+      "20min.ch"
+    ],
     "description": "Free daily newspaper in Switzerland",
     "owner": "Express-Zeitung AG",
     "typology": "Private Media"
@@ -2982,7 +3759,9 @@
   {
     "country": "Switzerland",
     "organization": "Der Bund",
-    "domains": ["derbund.ch"],
+    "domains": [
+      "derbund.ch"
+    ],
     "description": "German-language daily newspaper published in Bern",
     "owner": "TX Group",
     "typology": "Private Media"
@@ -2990,7 +3769,9 @@
   {
     "country": "Switzerland",
     "organization": "Tages-Anzeiger",
-    "domains": ["tagesanzeiger.ch"],
+    "domains": [
+      "tagesanzeiger.ch"
+    ],
     "description": "German-language national daily newspaper published in Zurich",
     "owner": "TX Group",
     "typology": "Private Media"
@@ -2998,7 +3779,9 @@
   {
     "country": "Switzerland",
     "organization": "Canton of Bern",
-    "domains": ["be.ch"],
+    "domains": [
+      "be.ch"
+    ],
     "description": "Press releases and news from the Canton of Bern",
     "owner": "Canton of Bern",
     "typology": "State Funded Media"
@@ -3006,7 +3789,9 @@
   {
     "country": "Switzerland",
     "organization": "Canton of St.Gallen",
-    "domains": ["sg.ch"],
+    "domains": [
+      "sg.ch"
+    ],
     "description": "Press releases and news from the Canton of St.Gallen",
     "owner": "Canton of St.Gallen",
     "typology": "State Funded Media"
@@ -3014,7 +3799,9 @@
   {
     "country": "Switzerland",
     "organization": "blue News",
-    "domains": ["bluewin.ch"],
+    "domains": [
+      "bluewin.ch"
+    ],
     "description": "Bluewin is a Swiss internet service provider that offers email and a news platform",
     "owner": "Entertainment Programm AG",
     "typology": "Public Media"
@@ -3022,7 +3809,9 @@
   {
     "country": "Switzerland",
     "organization": "Cash",
-    "domains": ["cash.ch"],
+    "domains": [
+      "cash.ch"
+    ],
     "description": "cash is a Swiss financial portal providing comprehensive economic and financial information with real-time market data from the Swiss stock exchange.",
     "owner": "Ringier AG",
     "typology": "Private Media"
@@ -3030,7 +3819,9 @@
   {
     "country": "Switzerland",
     "organization": "Aargauer Zeitung",
-    "domains": ["aargauerzeitung.ch"],
+    "domains": [
+      "aargauerzeitung.ch"
+    ],
     "description": "A regional Swiss German-language daily newspaper",
     "owner": "CH Regionalmedien AG",
     "typology": "Private Media"
@@ -3038,7 +3829,9 @@
   {
     "country": "Switzerland",
     "organization": "Luzerner Zeitung",
-    "domains": ["luzernerzeitung.ch"],
+    "domains": [
+      "luzernerzeitung.ch"
+    ],
     "description": "A regional Swiss German-language daily newspaper",
     "owner": "CH Regionalmedien AG",
     "typology": "Private Media"
@@ -3046,7 +3839,9 @@
   {
     "country": "Switzerland",
     "organization": "St. Galler Tagblatt",
-    "domains": ["tagblatt.ch"],
+    "domains": [
+      "tagblatt.ch"
+    ],
     "description": "A regional Swiss German-language daily newspaper",
     "owner": "CH Regionalmedien AG",
     "typology": "Private Media"
@@ -3054,7 +3849,9 @@
   {
     "country": "Switzerland",
     "organization": "Neue Zürcher Zeitung",
-    "domains": ["nzz.ch"],
+    "domains": [
+      "nzz.ch"
+    ],
     "description": "A Swiss German-language daily newspaper published in Zurich",
     "owner": "Neue Zürcher Zeitung AG",
     "typology": "Private Media"
@@ -3062,7 +3859,9 @@
   {
     "country": "Switzerland",
     "organization": "Watson",
-    "domains": ["watson.ch"],
+    "domains": [
+      "watson.ch"
+    ],
     "description": "Swiss German- and French-language online newspaper published by CH Media that targets mobile users",
     "owner": "CH Regionalmedien AG",
     "typology": "Private Media"

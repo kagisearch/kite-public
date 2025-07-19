@@ -156,7 +156,7 @@
         "translationContext": "Display name for the Australia news category"
     },
     "category.bayArea": {
-        "text": "Baie de San Francisco",
+        "text": "USA | SF",
         "translationContext": "Display name for the Bay Area news category"
     },
     "category.belgium": {
@@ -783,6 +783,10 @@
         "text": "Mode de filtrage",
         "translationContext": "Label for filter mode selection"
     },
+    "settings.contentFilter.preset.ai": {
+        "text": "IA et Battage Technologique",
+        "translationContext": "Name of AI preset filter"
+    },
     "settings.contentFilter.preset.ai.tooltip": {
         "text": "Filtre le battage médiatique de l'IA, les actualités sur les LLM et les annonces de percées technologiques",
         "translationContext": "Tooltip description for AI preset"
@@ -794,6 +798,10 @@
     "settings.contentFilter.preset.celebrities.tooltip": {
         "text": "Filtre les potins de célébrités, les actualités du divertissement et le contenu des tabloïds.",
         "translationContext": "Tooltip description for celebrities preset"
+    },
+    "settings.contentFilter.preset.climate": {
+        "text": "Anxiété Climatique",
+        "translationContext": "Name of climate preset filter"
     },
     "settings.contentFilter.preset.climate.tooltip": {
         "text": "Filtre les actualités sur le changement climatique et la couverture des crises environnementales",

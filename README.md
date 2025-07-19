@@ -126,7 +126,7 @@ Feel free to add additional information (by editing `media_data.json`) both for 
 
 ## Guidelines for editing Content Filters
 
-Kite allows users to blur or hide articles on topics they prefer not to see. These personal content filters are defined in `contentFilters.json` and are open source and community editable.
+Kite allows users to blur or hide articles on topics they prefer not to see. These personal content filters are defined in `src/lib/data/contentFilters.json` and are open source and community editable.
 
 To edit content filters, submit a pull request editing `contentFilters.json`. Each filter follows this structure:
 

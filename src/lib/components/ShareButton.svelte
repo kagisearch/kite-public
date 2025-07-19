@@ -19,7 +19,7 @@
   }
   
   let { 
-    title = 'Check out this story',
+    title = s('article.shareDefaultTitle') || 'Check out this story',
     description = '',
     batchId,
     categoryId, 

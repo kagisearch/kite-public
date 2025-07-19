@@ -24,7 +24,7 @@
         "translationContext": "Title of the contact section"
     },
     "about.customization.description": {
-        "text": "Personalisiere deinen Feed, indem du Kategorien in den Einstellungen neu anordnest und umschaltest. Möchtest du mitwirken? Der Großteil von Kite ist <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">Open Source</a>, einschließlich unserer Web-App und community-kuratierten Feeds.",
+        "text": "Personalisieren Sie Ihren Feed, indem Sie Kategorien in den Einstellungen neu anordnen und umschalten. Möchten Sie mitwirken? Der Großteil von Kite ist <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">Open Source</a>, einschließlich unserer Web-App und Community-kuratierten Feeds.",
         "translationContext": "Description of customization options with GitHub link"
     },
     "about.customization.title": {
@@ -36,7 +36,7 @@
         "translationContext": "First core principle about daily updates"
     },
     "about.principles.item2": {
-        "text": "Konzentrieren Sie sich auf Fakten und Perspektiven statt auf Meinungen",
+        "text": "Fokus auf Fakten und Perspektiven statt auf Meinungen",
         "translationContext": "Second core principle about facts vs opinions"
     },
     "about.principles.item3": {
@@ -48,7 +48,7 @@
         "translationContext": "Fourth core principle about quality"
     },
     "about.principles.item5": {
-        "text": "Komplette Nachrichtenauswahl in 5 Minuten",
+        "text": "Vollständige Nachrichtenübersicht in 5 Minuten",
         "translationContext": "Fifth core principle about time efficiency"
     },
     "about.principles.item6": {
@@ -68,7 +68,7 @@
         "translationContext": "Text for the I understand button"
     },
     "about.why.description": {
-        "text": "Getrieben von gnadenloser Anzeigenmonetarisierung hat sich Nachrichten zu geistigem Junkfood entwickelt – ein endloser Strom von Clickbait, der unsere Fähigkeit zerstört, tief und klar zu denken. Wir können es besser machen und schaffen, was Nachrichten von Anfang an hätten sein sollen – reine, wesentliche Informationen, die Ihre Intelligenz und Zeit respektieren.",
+        "text": "Getrieben von gnadenloser Anzeigenmonetarisierung sind <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://gwern.net/doc/culture/2010-dobelli.pdf\">Nachrichten</a> zu geistigem Junkfood geworden – ein endloser Strom von Clickbait, der unsere Fähigkeit zerstört, tief und klar zu denken. Wir können es besser machen und schaffen, was Nachrichten von Anfang an hätten sein sollen – reine, wesentliche Informationen, die Ihre Intelligenz und Zeit respektieren.",
         "translationContext": "Description of why Kite exists, including HTML link"
     },
     "about.why.title": {
@@ -100,11 +100,11 @@
         "translationContext": "Alt text for the Kite News logo image in header, Kite should not be translated as it's a brand name"
     },
     "app.migrationNotice": {
-        "text": "Aufgrund unserer kürzlichen Migration auf Svelte 5 sind Geschichten vorübergehend nur in der Standardsprache verfügbar. Die vollständige mehrsprachige Unterstützung wird innerhalb von 24 Stunden wiederhergestellt. Vielen Dank für Ihre Geduld!",
+        "text": "Aufgrund unserer kürzlichen Migration auf Svelte 5 sind Artikel vorübergehend nur in der Standardsprache verfügbar. Die vollständige mehrsprachige Unterstützung wird innerhalb von 24 Stunden wiederhergestellt. Vielen Dank für Ihre Geduld!",
         "translationContext": "Notice about temporary language limitation during Svelte 5 migration"
     },
     "app.motto": {
-        "text": "Gehobene Nachrichten",
+        "text": "Nachrichten. Auf höchstem Niveau.",
         "translationContext": "Motto of the app, should be translated in a natural way"
     },
     "app.temporaryCategoryNotice": {
@@ -116,7 +116,7 @@
         "translationContext": "Title of the app, should not be translated"
     },
     "article.closeStory": {
-        "text": "Geschichte schließen",
+        "text": "Artikel schließen",
         "translationContext": "Button text to close a story"
     },
     "article.didYouKnow": {
@@ -140,7 +140,7 @@
         "translationContext": "Success message shown when URL is copied to clipboard"
     },
     "article.shareStory": {
-        "text": "Geschichte teilen",
+        "text": "Artikel teilen",
         "translationContext": "Tooltip text for the share button"
     },
     "category.ai": {
@@ -156,7 +156,7 @@
         "translationContext": "Display name for the Australia news category"
     },
     "category.bayArea": {
-        "text": "Bay Area",
+        "text": "USA | SF",
         "translationContext": "Display name for the Bay Area news category"
     },
     "category.belgium": {
@@ -180,7 +180,7 @@
         "translationContext": "Display name for the Costa Rica news category"
     },
     "category.cryptocurrency": {
-        "text": "Kryptowährung",
+        "text": "Kryptowährungen",
         "translationContext": "Display name for the Cryptocurrency news category"
     },
     "category.cybersecurity": {
@@ -388,15 +388,15 @@
         "translationContext": "Button to go to settings and adjust content filters"
     },
     "contentFilter.allStoriesFiltered": {
-        "text": "Alle Geschichten in dieser Kategorie wurden gefiltert",
+        "text": "Alle Artikel in dieser Kategorie wurden gefiltert",
         "translationContext": "Title when all stories in a category are filtered out"
     },
     "contentFilter.allStoriesFilteredDescription": {
-        "text": "Ihre Inhaltsfilter haben heute alle Geschichten in dieser Kategorie ausgeblendet.",
+        "text": "Ihre Inhaltsfilter haben heute alle Artikel in dieser Kategorie ausgeblendet.",
         "translationContext": "Description when all stories are filtered, explaining why"
     },
     "contentFilter.clickToReveal": {
-        "text": "Klicken, um die Geschichte anzuzeigen",
+        "text": "Klicken, um den Artikel anzuzeigen",
         "translationContext": "Instruction to reveal filtered story"
     },
     "contentFilter.disableCategory": {
@@ -408,27 +408,27 @@
         "translationContext": "Short message explaining why story is filtered"
     },
     "contentFilter.hiddenStory": {
-        "text": "Diese Geschichte wurde ausgeblendet, da sie Ihren Inhaltsfiltern entspricht:",
+        "text": "Dieser Artikel wurde ausgeblendet, da er Ihren Inhaltsfiltern entspricht:",
         "translationContext": "Message shown when a story is filtered"
     },
     "contentFilter.showStory": {
-        "text": "Geschichte anzeigen",
+        "text": "Artikel anzeigen",
         "translationContext": "Button to reveal a filtered story"
     },
     "contentFilter.storiesFiltered": {
-        "text": "{{count}} Geschichten gefiltert",
+        "text": "{{count}} Artikel gefiltert",
         "translationContext": "Message showing multiple stories are filtered"
     },
     "contentFilter.storiesHidden": {
-        "text": "{{count}} Geschichten verborgen",
+        "text": "{{count}} Artikel verborgen",
         "translationContext": "Message showing multiple stories are hidden"
     },
     "contentFilter.storyFiltered": {
-        "text": "{{count}} Geschichte gefiltert",
+        "text": "{{count}} Artikel gefiltert",
         "translationContext": "Message showing 1 story is filtered"
     },
     "contentFilter.storyHidden": {
-        "text": "{{count}} Geschichte verborgen",
+        "text": "{{count}} Artikel verborgen",
         "translationContext": "Message showing 1 story is hidden"
     },
     "date.format": {
@@ -492,7 +492,7 @@
         "translationContext": "Loading message shown when loading is complete"
     },
     "loading.stories": {
-        "text": "Geschichten werden geladen...",
+        "text": "Artikel werden geladen...",
         "translationContext": "Loading message shown when fetching news stories"
     },
     "onthisday.events": {
@@ -764,7 +764,7 @@
         "translationContext": "Option to blur filtered content"
     },
     "settings.contentFilter.mode.blurDescription": {
-        "text": "Geschichten sind unscharf und können durch Klick aufgedeckt werden",
+        "text": "Artikel sind unscharf und können durch Klick aufgedeckt werden",
         "translationContext": "Description for blur mode"
     },
     "settings.contentFilter.mode.description": {
@@ -776,7 +776,7 @@
         "translationContext": "Option to hide filtered content completely"
     },
     "settings.contentFilter.mode.hideDescription": {
-        "text": "Gefilterte Geschichten werden ausgeblendet.",
+        "text": "Gefilterte Artikel werden ausgeblendet.",
         "translationContext": "Description for hide mode"
     },
     "settings.contentFilter.mode.label": {
@@ -784,7 +784,7 @@
         "translationContext": "Label for filter mode selection"
     },
     "settings.contentFilter.preset.ai": {
-        "text": "KI",
+        "text": "KI & Tech Hype",
         "translationContext": "Name of AI preset filter"
     },
     "settings.contentFilter.preset.ai.tooltip": {
@@ -816,7 +816,7 @@
         "translationContext": "Tooltip description for conflicts preset"
     },
     "settings.contentFilter.preset.crypto": {
-        "text": "Kryptowährung",
+        "text": "Kryptowährungen",
         "translationContext": "Name of cryptocurrency preset filter"
     },
     "settings.contentFilter.preset.crypto.tooltip": {
@@ -852,7 +852,7 @@
         "translationContext": "Name of tabloid sources preset filter"
     },
     "settings.contentFilter.preset.tabloid.tooltip": {
-        "text": "Filtert Geschichten von bekannten Boulevard- und sensationslüsternen Nachrichtenquellen",
+        "text": "Filtert Artikel von bekannten Boulevard- und sensationslüsternen Nachrichtenquellen",
         "translationContext": "Tooltip description for tabloid preset"
     },
     "settings.contentFilter.preset.violence": {
@@ -888,7 +888,7 @@
         "translationContext": "Option to filter by all content"
     },
     "settings.contentFilter.scope.description": {
-        "text": "Wählen Sie aus, welche Teile der Geschichten auf Schlüsselwörter überprüft werden sollen",
+        "text": "Wählen Sie aus, welche Teile der Artikel auf Schlüsselwörter überprüft werden sollen",
         "translationContext": "Description for filter scope selection"
     },
     "settings.contentFilter.scope.label": {
@@ -904,7 +904,7 @@
         "translationContext": "Option to filter by title only"
     },
     "settings.contentFilter.showCount.description": {
-        "text": "Anzahl der gefilterten Geschichten in jeder Kategorie anzeigen",
+        "text": "Anzahl der gefilterten Artikel in jeder Kategorie anzeigen",
         "translationContext": "Description for show filtered count toggle"
     },
     "settings.contentFilter.showCount.label": {
@@ -920,7 +920,7 @@
         "translationContext": "Label for the data/content language setting"
     },
     "settings.dataLanguage.tooltip": {
-        "text": "Nachrichten werden in ihrer ursprünglichen Quellsprache generiert und dann übersetzt. 'Standard' zeigt Geschichten in ihren Originalsprachen ohne Übersetzung an.",
+        "text": "Nachrichten werden in ihrer ursprünglichen Quellsprache generiert und dann übersetzt. 'Standard' zeigt Artikel in ihren Originalsprachen ohne Übersetzung an.",
         "translationContext": "Tooltip explaining how data language translation works"
     },
     "settings.experimental.articleIcons.description": {
@@ -1020,7 +1020,7 @@
         "translationContext": "Title for the article sections settings"
     },
     "settings.shareLanguage.message": {
-        "text": "Schau dir Kite News auf {{language}} an - es wird die Einleitung überspringen und direkt in deiner Sprache laden!",
+        "text": "Schauen Sie sich Kite News auf {{language}} an - es wird die Einleitung überspringen und direkt in Ihrer Sprache laden!",
         "translationContext": "Message to share with others, {{language}} will be replaced with the language name"
     },
     "settings.shareLanguage.success": {
@@ -1028,7 +1028,7 @@
         "translationContext": "Success message when link is copied"
     },
     "settings.storyCount.label": {
-        "text": "Anzahl der angezeigten Geschichten:",
+        "text": "Anzahl der angezeigten Artikel:",
         "translationContext": "Label for the story count setting"
     },
     "settings.tabs.categories": {
@@ -1136,7 +1136,7 @@
         "translationContext": "Shows the count of news items today, {{count}} will be replaced with a number"
     },
     "stats.storiesRead": {
-        "text": "Du hast {{count}} Geschichten gelesen",
+        "text": "Sie haben {{count}} Artikel gelesen",
         "translationContext": "Shows how many stories the user has read, {{count}} will be replaced with a number"
     },
     "stats.weekDay": {
@@ -1144,7 +1144,7 @@
         "translationContext": "Shows the current week and day of the year, {{week}} and {{day}} will be replaced with numbers"
     },
     "stories.noStories": {
-        "text": "Etwas ist schiefgelaufen, hier gibt es keine Geschichten!",
+        "text": "Etwas ist schiefgelaufen, hier gibt es keine Artikel!",
         "translationContext": "Message shown when no stories are found"
     },
     "time.updated.days": {
@@ -1208,7 +1208,7 @@
         "translationContext": "Help text shown below calendar"
     },
     "timeTravel.stories": {
-        "text": "Geschichten",
+        "text": "Artikel",
         "translationContext": "Label for story count in batch selector"
     },
     "timeTravel.title": {

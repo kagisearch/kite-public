@@ -152,7 +152,7 @@
         "translationContext": "Display name for the Australia news category"
     },
     "category.bayArea": {
-        "text": "Bay Area",
+        "text": "USA | Bay",
         "translationContext": "Display name for the Bay Area news category"
     },
     "category.belgium": {
@@ -779,6 +779,10 @@
         "text": "Filter Mode",
         "translationContext": "Label for filter mode selection"
     },
+    "settings.contentFilter.preset.ai": {
+        "text": "AI & Tech Hype",
+        "translationContext": "Name of AI preset filter"
+    },
     "settings.contentFilter.preset.ai.tooltip": {
         "text": "Filters AI hype, LLM news, and tech breakthrough announcements",
         "translationContext": "Tooltip description for AI preset"
@@ -790,6 +794,10 @@
     "settings.contentFilter.preset.celebrities.tooltip": {
         "text": "Filters celebrity gossip, entertainment news, and tabloid content",
         "translationContext": "Tooltip description for celebrities preset"
+    },
+    "settings.contentFilter.preset.climate": {
+        "text": "Climate Anxiety",
+        "translationContext": "Name of climate preset filter"
     },
     "settings.contentFilter.preset.climate.tooltip": {
         "text": "Filters climate change news and environmental crisis coverage",
@@ -1215,9 +1223,33 @@
         "text": "Turbulence meter",
         "translationContext": "Tooltip text for the turbulence meter button"
     },
+    "ui.citations": {
+        "text": "Citations",
+        "translationContext": "Title for citations section"
+    },
+    "ui.clearSearch": {
+        "text": "Clear search",
+        "translationContext": "Aria label for clear search button"
+    },
     "ui.close": {
         "text": "Close",
         "translationContext": "Text for close buttons"
+    },
+    "ui.closeDialog": {
+        "text": "Close dialog",
+        "translationContext": "Aria label for close dialog button"
+    },
+    "ui.imageUnavailable": {
+        "text": "Image unavailable",
+        "translationContext": "Text shown when an image cannot be loaded"
+    },
+    "ui.nextSlide": {
+        "text": "Next slide",
+        "translationContext": "Aria label for next slide button"
+    },
+    "ui.previousSlide": {
+        "text": "Previous slide",
+        "translationContext": "Aria label for previous slide button"
     },
     "view.list": {
         "text": "List view",
