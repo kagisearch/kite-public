@@ -25,29 +25,45 @@ def validate_feed(url: str) -> Tuple[bool, str]:
         Tuple of (is_valid, message)
     """
     try:
-        # First check if URL is accessible with browser-like headers
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-            'Accept': 'application/rss+xml, application/xml, text/xml, */*',
-            'Accept-Language': 'en-US,en;q=0.9',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Cache-Control': 'no-cache',
-            'Pragma': 'no-cache',
-            'Sec-Fetch-Dest': 'empty',
-            'Sec-Fetch-Mode': 'cors',
-            'Sec-Fetch-Site': 'cross-site'
-        }
-        response = requests.get(url, timeout=10, headers=headers, allow_redirects=True)
-        
-        # If we get a 403/blocked, try with a different User-Agent
-        if response.status_code == 403:
-            fallback_headers = {
+        # Try multiple strategies to access the feed
+        strategies = [
+            # Strategy 1: Simple RSS reader headers
+            {
+                'User-Agent': 'FeedReader/1.0 (+https://kite.kagi.com)',
+                'Accept': 'application/rss+xml, application/xml, text/xml, */*'
+            },
+            # Strategy 2: Generic browser 
+            {
+                'User-Agent': 'Mozilla/5.0 (compatible; RSS Bot)',
+                'Accept': 'application/xml, text/xml, */*'
+            },
+            # Strategy 3: Minimal curl-like
+            {
                 'User-Agent': 'curl/7.68.0',
                 'Accept': '*/*'
             }
-            response = requests.get(url, timeout=10, headers=fallback_headers, allow_redirects=True)
+        ]
         
-        response.raise_for_status()
+        response = None
+        last_error = None
+        
+        for i, headers in enumerate(strategies):
+            try:
+                response = requests.get(url, timeout=10, headers=headers, allow_redirects=True)
+                if response.status_code == 200:
+                    break
+                elif response.status_code == 403 and i < len(strategies) - 1:
+                    continue  # Try next strategy
+                else:
+                    response.raise_for_status()
+            except requests.exceptions.RequestException as e:
+                last_error = e
+                if i == len(strategies) - 1:  # Last strategy failed
+                    raise last_error
+                continue
+        
+        if response is None:
+            raise last_error or Exception("All request strategies failed")
         
         # Check content type (should be XML-ish)
         content_type = response.headers.get('content-type', '').lower()
@@ -57,14 +73,26 @@ def validate_feed(url: str) -> Tuple[bool, str]:
         # Parse with feedparser
         feed = feedparser.parse(response.content)
         
-        # Check for parsing errors
+        # Check for parsing errors (be more forgiving of minor issues)
         if hasattr(feed, 'bozo') and feed.bozo and feed.bozo_exception:
-            # Some feeds have minor issues but are still usable
             exception_type = type(feed.bozo_exception).__name__
-            if exception_type in ['CharacterEncodingOverride', 'NonXMLContentType']:
+            # Allow feeds with minor/recoverable parsing issues
+            recoverable_exceptions = [
+                'CharacterEncodingOverride', 
+                'NonXMLContentType',
+                'UndeclaredNamespace',
+                'UnicodeDecodeError'
+            ]
+            
+            if exception_type in recoverable_exceptions:
                 print(f"⚠️  Warning: {exception_type} (feed still usable)")
             else:
-                return False, f"XML parsing error: {feed.bozo_exception}"
+                # For serious XML errors, check if we actually got HTML instead
+                content_preview = response.text[:200].lower()
+                if '<html' in content_preview or '<!doctype html' in content_preview:
+                    return False, f"Server returned HTML instead of XML (possible bot detection)"
+                else:
+                    return False, f"XML parsing error: {feed.bozo_exception}"
         
         # Check if it's a valid feed (has basic RSS/Atom structure)
         if not hasattr(feed, 'feed') or not feed.feed:
