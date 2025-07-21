@@ -1,0 +1,50 @@
+name: Validate RSS Feeds
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'kite_feeds.json'
+
+jobs:
+  validate-feeds:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Validate new RSS feeds
+        run: |
+          # Get list of added feeds in this PR
+          git diff HEAD~1 HEAD -- kite_feeds.json | grep '^+' | grep -oE 'https?://[^"]+' > new_feeds.txt || echo "No new feeds found"
+          
+          if [ ! -s new_feeds.txt ]; then
+            echo "✅ No new RSS feeds to validate"
+            exit 0
+          fi
+          
+          echo "🔍 Validating new RSS feeds..."
+          failed_feeds=()
+          
+          while IFS= read -r feed; do
+            echo "Testing: $feed"
+            if curl -sSf --connect-timeout 10 --max-time 30 "$feed" | head -c 1000 | grep -qi -E '<rss|<feed|<channel'; then
+              echo "✅ Valid: $feed"
+            else
+              echo "❌ Invalid: $feed"
+              failed_feeds+=("$feed")
+            fi
+          done < new_feeds.txt
+          
+          if [ ${#failed_feeds[@]} -gt 0 ]; then
+            echo ""
+            echo "❌ The following RSS feeds failed validation:"
+            printf '%s\n' "${failed_feeds[@]}"
+            exit 1
+          fi
+          
+          echo ""
+          echo "✅ All new RSS feeds are valid" 
