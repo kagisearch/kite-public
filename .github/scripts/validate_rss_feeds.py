@@ -13,7 +13,7 @@ import sys
 def validate_feed(url: str):
     """
     Validate a single RSS/Atom feed URL.
-    Returns: (is_valid, message, is_403_warning)
+    Returns: (is_valid, message, is_bot_protection_warning)
     """
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
@@ -22,7 +22,7 @@ def validate_feed(url: str):
     try:
         response = requests.get(url, timeout=10, headers=headers, allow_redirects=True)
         
-        # Handle 403 as warning, not failure
+        # Handle bot protection as warning, not failure
         if response.status_code == 403:
             return True, "Feed blocked by bot protection (403 Forbidden)", True
         
@@ -47,6 +47,8 @@ def validate_feed(url: str):
         
         return True, f"Valid feed with {len(feed.entries)} entries", False
         
+    except requests.exceptions.Timeout as e:
+        return True, "Feed timed out (possible rate limiting or bot protection)", True
     except requests.exceptions.RequestException as e:
         return False, f"HTTP error: {e}", False
     except Exception as e:
@@ -73,10 +75,10 @@ def main():
     
     for feed_url in feeds:
         print(f"Testing: {feed_url}")
-        is_valid, message, is_403_warning = validate_feed(feed_url)
+        is_valid, message, is_bot_protection_warning = validate_feed(feed_url)
         
         if is_valid:
-            if is_403_warning:
+            if is_bot_protection_warning:
                 print(f"⚠️  Warning: {feed_url} - {message}")
                 warning_feeds.append(feed_url)
             else:
@@ -87,7 +89,7 @@ def main():
     
     # Print summary
     if warning_feeds:
-        print(f"\n⚠️  {len(warning_feeds)} feed(s) blocked by bot protection or unreachable (403 Forbidden):")
+        print(f"\n⚠️  {len(warning_feeds)} feed(s) blocked by bot protection (403/timeouts):")
         for feed in warning_feeds:
             print(f"  {feed}")
         print("  These feeds may work in browsers but block automated requests.")
