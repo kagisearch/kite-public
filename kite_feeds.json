@@ -2649,7 +2649,8 @@
       "https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/business/economy/rss.xml",
       "https://www.ofce.sciences-po.fr/blog/en/feed/",
       "https://www.project-syndicate.org/rss/section/economics",
-      "https://www.thestreet.com/economonitor/.rss/full/"
+      "https://www.thestreet.com/economonitor/.rss/full/",
+      "https://www.reddit.com/r/linuxhardware.rss"
     ]
   },
   "Linux & OSS": {
@@ -2739,7 +2740,6 @@
       "https://www.reddit.com/r/kde.rss",
       "https://www.reddit.com/r/linux_gaming.rss",
       "https://www.reddit.com/r/linux.rss",
-      "https://www.reddit.com/r/linuxhardware.rss",
       "https://www.redhat.com/en/rss/blog",
       "https://www.suse.com/c/feed/",
       "https://www.tecmint.com/feed/",
