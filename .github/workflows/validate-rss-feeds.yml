@@ -32,6 +32,4 @@ jobs:
 
       - name: Validate RSS feeds
         run: |
-          # Make script executable and run validation
-          chmod +x .github/scripts/validate_rss_feeds.py
-          python3 .github/scripts/validate_rss_feeds.py --file new_feeds.txt 
+          python3 .github/scripts/validate_rss_feeds.py 
