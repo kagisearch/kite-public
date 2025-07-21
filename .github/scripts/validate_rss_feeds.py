@@ -25,10 +25,28 @@ def validate_feed(url: str) -> Tuple[bool, str]:
         Tuple of (is_valid, message)
     """
     try:
-        # First check if URL is accessible
-        response = requests.get(url, timeout=10, headers={
-            'User-Agent': 'Kite-RSS-Validator/1.0 (+https://kite.kagi.com)'
-        })
+        # First check if URL is accessible with browser-like headers
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Accept': 'application/rss+xml, application/xml, text/xml, */*',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache',
+            'Sec-Fetch-Dest': 'empty',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Site': 'cross-site'
+        }
+        response = requests.get(url, timeout=10, headers=headers, allow_redirects=True)
+        
+        # If we get a 403/blocked, try with a different User-Agent
+        if response.status_code == 403:
+            fallback_headers = {
+                'User-Agent': 'curl/7.68.0',
+                'Accept': '*/*'
+            }
+            response = requests.get(url, timeout=10, headers=fallback_headers, allow_redirects=True)
+        
         response.raise_for_status()
         
         # Check content type (should be XML-ish)
