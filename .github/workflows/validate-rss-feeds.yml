@@ -31,7 +31,7 @@ jobs:
           
           while IFS= read -r feed; do
             echo "Testing: $feed"
-            if curl -sSf --connect-timeout 10 --max-time 30 "$feed" | head -c 1000 | grep -qi -E '<rss|<feed|<channel'; then
+            if curl -sSf --connect-timeout 10 --max-time 30 "$feed" 2>/dev/null | head -c 1000 | grep -qi -E '<rss|<feed|<channel' 2>/dev/null; then
               echo "✅ Valid: $feed"
             else
               echo "❌ Invalid: $feed"
