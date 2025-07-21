@@ -1644,10 +1644,7 @@
       "https://tagblatt.ch/ostschweiz.rss",
       "https://tagblatt.ch/schweiz.rss",
       "https://tagblatt.ch/wirtschaft.rss",
-      "https://watson.ch/api/2.0/rss/index.xml?tag=Schweiz",
-      "https://www.state.gov/feed/",
-      "https://www.kmu.gov.ua/api/rss",
-      "https://www.president.gov.ua/en/rss/news.rss"
+      "https://watson.ch/api/2.0/rss/index.xml?tag=Schweiz"
     ]
   },
   "Taiwan": {
@@ -1700,8 +1697,7 @@
       "https://www.taiwan.net.tw/rss.aspx?sno=0001001",
       "https://www.ttv.com.tw/rss/RSSHandler.ashx?d=news",
       "https://www.ttv.com.tw/rss/RSSHandler.ashx?d=news&t=P",
-      "https://www.ttv.com.tw/rss/RSSHandler.ashx?d=news&t=Q",
-      "https://www.rbc.ua/static/rss/all.ukr.rss.xml"
+      "https://www.ttv.com.tw/rss/RSSHandler.ashx?d=news&t=Q"
     ]
   },
   "Thailand": {
