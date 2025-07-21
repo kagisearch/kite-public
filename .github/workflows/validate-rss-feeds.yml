@@ -16,35 +16,22 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Validate new RSS feeds
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install feedparser==6.0.10 requests==2.31.0
+
+      - name: Extract new RSS feeds
         run: |
           # Get list of added feeds in this PR
           git diff HEAD~1 HEAD -- kite_feeds.json | grep '^+' | grep -oE 'https?://[^"]+' > new_feeds.txt || echo "No new feeds found"
-          
-          if [ ! -s new_feeds.txt ]; then
-            echo "✅ No new RSS feeds to validate"
-            exit 0
-          fi
-          
-          echo "🔍 Validating new RSS feeds..."
-          failed_feeds=()
-          
-          while IFS= read -r feed; do
-            echo "Testing: $feed"
-            if curl -sSf --connect-timeout 10 --max-time 30 "$feed" 2>/dev/null | head -c 1000 | grep -qi -E '<rss|<feed|<channel' 2>/dev/null; then
-              echo "✅ Valid: $feed"
-            else
-              echo "❌ Invalid: $feed"
-              failed_feeds+=("$feed")
-            fi
-          done < new_feeds.txt
-          
-          if [ ${#failed_feeds[@]} -gt 0 ]; then
-            echo ""
-            echo "❌ The following RSS feeds failed validation:"
-            printf '%s\n' "${failed_feeds[@]}"
-            exit 1
-          fi
-          
-          echo ""
-          echo "✅ All new RSS feeds are valid" 
+
+      - name: Validate RSS feeds
+        run: |
+          # Make script executable and run validation
+          chmod +x .github/scripts/validate_rss_feeds.py
+          python3 .github/scripts/validate_rss_feeds.py --file new_feeds.txt 
