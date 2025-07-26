@@ -1019,6 +1019,10 @@
         "text": "Artikelabschnitte",
         "translationContext": "Title for the article sections settings"
     },
+    "settings.sections.toggleAll": {
+        "text": "Alle umschalten",
+        "translationContext": "Button text to toggle all sections on/off at once"
+    },
     "settings.shareLanguage.message": {
         "text": "Schauen Sie sich Kite News auf {{language}} an - es wird die Einleitung überspringen und direkt in Ihrer Sprache laden!",
         "translationContext": "Message to share with others, {{language}} will be replaced with the language name"

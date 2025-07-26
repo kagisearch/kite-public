@@ -1011,6 +1011,10 @@
         "text": "文章分区",
         "translationContext": "Title for the article sections settings"
     },
+    "settings.sections.toggleAll": {
+        "text": "全部切换",
+        "translationContext": "Button text to toggle all sections on/off at once"
+    },
     "settings.shareLanguage.message": {
         "text": "请查看中文版《风筝新闻》——它将跳过介绍，直接以您的语言加载！",
         "translationContext": "Message to share with others, {{language}} will be replaced with the language name"

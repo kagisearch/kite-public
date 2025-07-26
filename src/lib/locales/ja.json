@@ -1011,6 +1011,10 @@
         "text": "記事セクション",
         "translationContext": "Title for the article sections settings"
     },
+    "settings.sections.toggleAll": {
+        "text": "すべて切り替え",
+        "translationContext": "Button text to toggle all sections on/off at once"
+    },
     "settings.shareLanguage.message": {
         "text": "{{language}}でKite Newsをチェックしてください - イントロをスキップして、直接あなたの言語で読み込まれます！",
         "translationContext": "Message to share with others, {{language}} will be replaced with the language name"

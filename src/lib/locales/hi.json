@@ -1011,6 +1011,10 @@
         "text": "अनुच्छेद अनुभाग",
         "translationContext": "Title for the article sections settings"
     },
+    "settings.sections.toggleAll": {
+        "text": "सभी टॉगल करें",
+        "translationContext": "Button text to toggle all sections on/off at once"
+    },
     "settings.shareLanguage.message": {
         "text": "{{language}} में काइट न्यूज़ देखें - यह परिचय को छोड़ देगा और सीधे आपकी भाषा में लोड होगा!",
         "translationContext": "Message to share with others, {{language}} will be replaced with the language name"

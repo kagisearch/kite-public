@@ -571,6 +571,10 @@
         "text": "文章區塊設定",
         "translationContext": "Title for the article sections settings"
     },
+    "settings.sections.toggleAll": {
+        "text": "全部切換",
+        "translationContext": "Button text to toggle all sections on/off at once"
+    },
     "settings.sections.instructions": {
         "text": "拖曳以重新排序區段。使用開關啟用/停用。",
         "translationContext": "Instructions for managing article sections"

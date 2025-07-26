@@ -56,9 +56,18 @@
 		<h4 class="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
 			{s('settings.sections.title') || 'Article Sections'}
 		</h4>
-		<p class="mb-3 text-xs text-gray-500 dark:text-gray-400">
-			{s('settings.sections.instructions') || 'Drag to reorder sections. Toggle to enable/disable.'}
-		</p>
+		<div class="mb-3 flex justify-between items-center">
+			<p class="text-xs text-gray-500 dark:text-gray-400">
+				{s('settings.sections.instructions') || 'Drag to reorder sections. Toggle to enable/disable.'}
+			</p>
+
+			<button
+				class="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 mr-2"
+				onclick={() => sectionItems.map(section => sections.toggleSection(section.id))}
+			>
+				{s('settings.sections.toggleAll') || 'Toggle All'}
+			</button>
+		</div>
 
 		<div
 			class="space-y-2"
