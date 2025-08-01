@@ -1031,6 +1031,26 @@
         "text": "Number of stories shown:",
         "translationContext": "Label for the story count setting"
     },
+    "settings.storyExpandMode.description": {
+      "text": "Choose how stories expand when viewing a category",
+      "translationContext": "Description for story expand mode setting"
+    },
+    "settings.storyExpandMode.label": {
+      "text": "Story Expand Mode",
+      "translationContext": "Label for story expand mode setting"
+    },
+    "settings.storyExpandMode.always": {
+      "text": "Always expand all",
+      "translationContext": "Option to always expand all stories automatically"
+    },
+    "settings.storyExpandMode.doubleClick": {
+      "text": "Double-click to expand all",
+      "translationContext": "Option to expand all stories via double-click on category"
+    },
+    "settings.storyExpandMode.never": {
+      "text": "Never expand all",
+      "translationContext": "Option to disable bulk story expansion"
+    },
     "settings.tabs.categories": {
         "text": "Categories",
         "translationContext": "Title for the categories settings tab"

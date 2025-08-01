@@ -495,6 +495,26 @@
         "text": "顯示故事數量：",
         "translationContext": "Label for the story count setting"
     },
+    "settings.storyExpandMode.description": {
+      "text": "選擇檢視類別時故事的展開方式",
+      "translationContext": "Description for story expand mode setting"
+    },
+    "settings.storyExpandMode.label": {
+      "text": "故事展開模式",
+      "translationContext": "Label for story expand mode setting"
+    },
+    "settings.storyExpandMode.always": {
+      "text": "始終展開全部",
+      "translationContext": "Option to always expand all stories automatically"
+    },
+    "settings.storyExpandMode.doubleClick": {
+      "text": "雙擊展開全部",
+      "translationContext": "Option to expand all stories via double-click on category"
+    },
+    "settings.storyExpandMode.never": {
+      "text": "從不展開全部",
+      "translationContext": "Option to disable bulk story expansion"
+    },
     "settings.aboutKite.button": {
         "text": "關於 Kite",
         "translationContext": "Text for the About Kite button"

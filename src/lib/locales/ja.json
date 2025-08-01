@@ -1027,6 +1027,26 @@
         "text": "表示するストーリー数:",
         "translationContext": "Label for the story count setting"
     },
+    "settings.storyExpandMode.description": {
+      "text": "カテゴリを表示する際のストーリーの展開方法を選択してください",
+      "translationContext": "Description for story expand mode setting"
+    },
+    "settings.storyExpandMode.label": {
+      "text": "ストーリー展開モード",
+      "translationContext": "Label for story expand mode setting"
+    },
+    "settings.storyExpandMode.always": {
+      "text": "常にすべて展開",
+      "translationContext": "Option to always expand all stories automatically"
+    },
+    "settings.storyExpandMode.doubleClick": {
+      "text": "ダブルクリックですべて展開",
+      "translationContext": "Option to expand all stories via double-click on category"
+    },
+    "settings.storyExpandMode.never": {
+      "text": "すべて展開しない",
+      "translationContext": "Option to disable bulk story expansion"
+    },
     "settings.tabs.categories": {
         "text": "カテゴリー",
         "translationContext": "Title for the categories settings tab"

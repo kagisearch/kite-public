@@ -45,6 +45,7 @@ let storyCountOverride = $state<number | null>(null);
 // Reactive category header position
 const categoryHeaderPosition = $derived(settings.categoryHeaderPosition);
 
+const storyExpandMode = $derived(settings.storyExpandMode);
 
 // Data state
 let categories = $state<Category[]>([]);
@@ -58,6 +59,9 @@ let lastUpdated = $state('');
 let allCategoryStories = $state<Record<string, Story[]>>({});
 let categoryMap = $state<Record<string, string>>({});  // Map category ID to UUID
 let currentBatchId = $state<string>('');
+
+// Component references
+let storyList = $state<StoryList | undefined>();
 
 // State for source overlay
 let showSourceOverlay = $state(false);
@@ -327,6 +331,10 @@ const handleIntroClose = () => settings.setShowIntro(false);
 
 // Handle category change
 function handleCategoryChange(category: string, updateUrl: boolean = true) {
+	if (category === currentCategory) {
+		return;
+	}
+
 	currentCategory = category;
 	
 	// Reset view mode when changing categories (when map view is implemented)
@@ -357,6 +365,10 @@ function handleCategoryChange(category: string, updateUrl: boolean = true) {
 		historyManager.updateUrl({ categoryId: category, storyIndex: null });
 	}
 	
+	if (storyExpandMode === 'always') {
+		storyList?.toggleExpandAll();
+	}
+
 	// Chaos index is already loaded with the batch data
 }
 
@@ -468,8 +480,8 @@ $effect(() => {
 	// Initialize category if needed
 	// Don't reset if we have a temporary category that matches current
 	if (orderedCategories.length > 0 && 
-	    !orderedCategories.find(cat => cat.id === currentCategory) &&
-	    !(temporaryCategory && currentCategory === temporaryCategory)) {
+		!orderedCategories.find(cat => cat.id === currentCategory) &&
+		!(temporaryCategory && currentCategory === temporaryCategory)) {
 		currentCategory = orderedCategories[0].id;
 		return; // Exit early, let the next effect run handle loading
 	}
@@ -578,6 +590,7 @@ if (browser && typeof window !== 'undefined') {
 			categories={orderedCategories}
 			{currentCategory} 
 			onCategoryChange={handleCategoryChange}
+			onCategoryDoubleClick={() => storyList?.toggleExpandAll()}
 			mobilePosition={categoryHeaderPosition}
 			temporaryCategory={temporaryCategory}
 			showTemporaryTooltip={false}
@@ -607,6 +620,7 @@ if (browser && typeof window !== 'undefined') {
 					categories={orderedCategories}
 					{currentCategory} 
 					onCategoryChange={handleCategoryChange}
+					onCategoryDoubleClick={() => storyList?.toggleExpandAll()}
 					mobilePosition="bottom"
 					temporaryCategory={temporaryCategory}
 					showTemporaryTooltip={showTemporaryCategoryTooltip}
@@ -621,11 +635,12 @@ if (browser && typeof window !== 'undefined') {
 						onWikipediaClick={handleWikipediaClick}
 					/>
 				{:else}
-					<StoryList 
+					<StoryList
+						bind:this={storyList}
 						{stories}
 						{currentCategory}
 						batchId={currentBatchId}
-						{expandedStories}
+						bind:expandedStories
 						onStoryToggle={handleStoryToggle}
 						bind:readStories
 						bind:showSourceOverlay
@@ -647,7 +662,7 @@ if (browser && typeof window !== 'undefined') {
 			/>
 		</div>
 	</main>
-{/if}
+	{/if}
 
 <!-- Settings Modal -->
 <Settings 

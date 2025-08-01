@@ -2,6 +2,7 @@
 import { s } from '$lib/client/localization.svelte';
 import { toCamelCase } from '$lib/utils/string.js';
 import { fontSize } from '$lib/stores/fontSize.svelte.js';
+import { settings } from '$lib/stores/settings.svelte.js';
 import type { Category } from '$lib/types';
 import { onMount } from 'svelte';
 import { browser } from '$app/environment';
@@ -13,6 +14,7 @@ interface Props {
 	categories?: Category[];
 	currentCategory?: string;
 	onCategoryChange?: (category: string) => void;
+	onCategoryDoubleClick?: (category: string) => void;
 	mobilePosition?: 'top' | 'bottom';
 	temporaryCategory?: string | null;
 	showTemporaryTooltip?: boolean;
@@ -21,7 +23,8 @@ interface Props {
 let { 
 	categories = [], 
 	currentCategory = 'World', 
-	onCategoryChange, 
+	onCategoryChange,
+	onCategoryDoubleClick,
 	mobilePosition = 'bottom',
 	temporaryCategory = null,
 	showTemporaryTooltip = false
@@ -182,6 +185,7 @@ $effect(() => {
 						class:dark:hover:text-gray-200={currentCategory !== category.id}
 						onclick={() => handleCategoryClick(category.id)}
 						onkeydown={(e) => handleCategoryKeydown(e, category.id)}
+						ondblclick={() => settings.storyExpandMode !== 'never' && onCategoryDoubleClick?.(category.id)}
 					>
 						{getCategoryDisplayName(category)}
 					</button>

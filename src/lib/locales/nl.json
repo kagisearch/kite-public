@@ -1027,6 +1027,26 @@
         "text": "Aantal getoonde verhalen:",
         "translationContext": "Label for the story count setting"
     },
+    "settings.storyExpandMode.description": {
+      "text": "Kies hoe verhalen uitvouwen bij het bekijken van een categorie",
+      "translationContext": "Description for story expand mode setting"
+    },
+    "settings.storyExpandMode.label": {
+      "text": "Verhaal uitvouwmodus",
+      "translationContext": "Label for story expand mode setting"
+    },
+    "settings.storyExpandMode.always": {
+      "text": "Altijd alles uitvouwen",
+      "translationContext": "Option to always expand all stories automatically"
+    },
+    "settings.storyExpandMode.doubleClick": {
+      "text": "Dubbelklik om alles uit te vouwen",
+      "translationContext": "Option to expand all stories via double-click on category"
+    },
+    "settings.storyExpandMode.never": {
+      "text": "Nooit alles uitvouwen",
+      "translationContext": "Option to disable bulk story expansion"
+    },
     "settings.tabs.categories": {
         "text": "Categorieën",
         "translationContext": "Title for the categories settings tab"

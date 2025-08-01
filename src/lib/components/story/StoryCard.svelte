@@ -24,6 +24,7 @@ interface Props {
 	priority?: boolean; // For high-priority stories (first few visible)
 	isFiltered?: boolean;
 	filterKeywords?: string[];
+	shouldAutoScroll?: boolean;
 }
 
 let { 
@@ -32,7 +33,8 @@ let {
 	batchId,
 	categoryId,
 	isRead = false, 
-	isExpanded = false, 
+	isExpanded = false,
+	shouldAutoScroll = false, 
 	onToggle, 
 	onReadToggle, 
 	showSourceOverlay = $bindable(false),
@@ -89,11 +91,9 @@ function handleReadClick(e: Event) {
 	if (onReadToggle) onReadToggle();
 }
 
-
-
 // Scroll to story when expanded
 $effect(() => {
-	if (isExpanded && browser && storyElement) {
+	if (isExpanded && browser && storyElement && shouldAutoScroll) {
 		// Small delay to ensure the content is rendered
 		setTimeout(() => {
 			// Calculate dynamic header height and offsets

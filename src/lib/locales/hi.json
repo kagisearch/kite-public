@@ -1027,6 +1027,26 @@
         "text": "प्रदर्शित कहानियों की संख्या:",
         "translationContext": "Label for the story count setting"
     },
+    "settings.storyExpandMode.description": {
+      "text": "चुनें कि कैटेगरी देखते समय कहानियां कैसे विस्तृत होती हैं",
+      "translationContext": "Description for story expand mode setting"
+    },
+    "settings.storyExpandMode.label": {
+      "text": "कहानी विस्तार मोड",
+      "translationContext": "Label for story expand mode setting"
+    },
+    "settings.storyExpandMode.always": {
+      "text": "हमेशा सभी को विस्तृत करें",
+      "translationContext": "Option to always expand all stories automatically"
+    },
+    "settings.storyExpandMode.doubleClick": {
+      "text": "सभी को विस्तृत करने के लिए डबल-क्लिक करें",
+      "translationContext": "Option to expand all stories via double-click on category"
+    },
+    "settings.storyExpandMode.never": {
+      "text": "कभी भी सभी को विस्तृत न करें",
+      "translationContext": "Option to disable bulk story expansion"
+    },
     "settings.tabs.categories": {
         "text": "श्रेणियाँ",
         "translationContext": "Title for the categories settings tab"

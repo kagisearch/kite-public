@@ -2,6 +2,7 @@ import { browser } from "$app/environment";
 
 export type FontSize = "small" | "normal" | "large";
 export type CategoryHeaderPosition = "top" | "bottom";
+export type StoryExpandMode = "always" | "doubleClick" | "never";
 
 interface SettingsState {
   isOpen: boolean;
@@ -10,6 +11,7 @@ interface SettingsState {
   categoryHeaderPosition: CategoryHeaderPosition;
   showIntro: boolean;
   activeTab?: string;
+  storyExpandMode: StoryExpandMode;
 }
 
 // Initialize settings state
@@ -19,6 +21,7 @@ const settingsState = $state<SettingsState>({
   storyCount: 10,
   categoryHeaderPosition: "bottom",
   showIntro: false,
+  storyExpandMode: "doubleClick",
 });
 
 // Helper functions
@@ -76,6 +79,15 @@ export const settings = {
     return settingsState.activeTab;
   },
 
+  get storyExpandMode() {
+    return settingsState.storyExpandMode;
+  },
+
+  setStoryExpandMode(mode: StoryExpandMode) {
+    settingsState.storyExpandMode = mode;
+    saveToStorage("storyExpandMode", mode);
+  },
+
   open(tab?: string) {
     settingsState.isOpen = true;
     if (tab) {
@@ -131,6 +143,7 @@ export const settings = {
     settingsState.storyCount = Math.max(3, Math.min(12, storyCount));
     settingsState.categoryHeaderPosition = categoryHeaderPosition;
     settingsState.showIntro = !introShown;
+    settingsState.storyExpandMode = loadFromStorage("storyExpandMode", "doubleClick") as StoryExpandMode;
 
     applyFontSize(fontSize);
   },

@@ -3,6 +3,7 @@ import { s } from '$lib/client/localization.svelte';
 import StoryCard from './story/StoryCard.svelte';
 import type { Story } from '$lib/types';
 import { storyCount } from '$lib/stores/storyCount.svelte.js';
+import { settings } from '$lib/stores/settings.svelte.js';
 import { contentFilter } from '$lib/stores/contentFilter.svelte.js';
 import { filterStories, type FilteredStory } from '$lib/utils/contentFilter';
 
@@ -27,7 +28,7 @@ let {
 	currentCategory, 
 	batchId,
 	readStories = $bindable({}),
-	expandedStories = {},
+	expandedStories = $bindable({}),
 	onStoryToggle,
 	showSourceOverlay = $bindable(false),
 	currentSource = $bindable(null),
@@ -55,6 +56,25 @@ function markAllAsRead() {
 	displayedStories.forEach(story => {
 		readStories[story.title] = true;
 	});
+}
+
+// Expand or collapse all stories
+export function toggleExpandAll() {
+	const expand = !allStoriesExpanded;
+
+	// When collapsing, this is simple - just collapse all
+	if (!expand) {
+		expandedStories = {};
+		return;
+	}
+
+	// Expand all at once
+	const newExpanded: Record<string, boolean> = { ...expandedStories };
+	displayedStories.forEach(story => {
+		const id = story.cluster_number?.toString() || story.title;
+		newExpanded[id] = true;
+	});
+	expandedStories = newExpanded;
 }
 
 // Apply content filtering and story count limit
@@ -89,7 +109,15 @@ const { displayedStories, filteredCount, hiddenStories } = $derived.by(() => {
 
 // Check if all stories are read
 const allStoriesRead = $derived(
-	displayedStories.every(story => readStories[story.title])
+		displayedStories.every(story => readStories[story.title])
+);
+
+// Check if all stories are expanded
+const allStoriesExpanded = $derived(
+		displayedStories.length > 0 &&
+				displayedStories.every(story =>
+						expandedStories[story.cluster_number?.toString() || story.title]
+				)
 );
 </script>
 
@@ -139,6 +167,7 @@ const allStoriesRead = $derived(
 				categoryId={currentCategory}
 				isRead={readStories[story.title] || false}
 				isExpanded={expandedStories[story.cluster_number?.toString() || story.title] || false}
+				shouldAutoScroll={!allStoriesExpanded}
 				onToggle={() => handleStoryToggle(story)}
 				onReadToggle={() => handleReadToggle(story)}
 				priority={index < 3}
@@ -167,8 +196,8 @@ const allStoriesRead = $derived(
 					{/if}
 				</p>
 			</div>
-		{/if}
-		
+        {/if}
+
 		<!-- Mark all as read button -->
 		{#if !allStoriesRead && displayedStories.length > 0}
 			<div class="mt-6 w-full text-center">
