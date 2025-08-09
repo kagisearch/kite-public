@@ -4123,7 +4123,8 @@
             "francelive.fr",
             "maville.com",
             "actu.fr",
-            "publihebdos.com"
+            "publihebdos.com",
+            "courrierdelouest.fr"
         ],
         "description": "Ouest-France is generally considered a regional daily with a centrist editorial line, rooted in the principles of humanism, Christian democracy, and social liberalism.",
         "owner": "The group Ouest-France is the property of the Association pour le soutien des principes de la démocratie humaniste (ASPDH), which underscores its commitment to these values.",
@@ -4175,5 +4176,232 @@
         "description": "Radio France is a French public radio group, wholly owned by the state, that operates numerous national and local stations, four musical ensembles, and a record label, and is committed to providing independent, pluralistic, and high-quality public service broadcasting.",
         "owner": "Radio France",
         "typology": "State Funded Media"
+    },
+    {
+        "country": "France",
+        "organization": "SARL Libération",
+        "domains": [
+            "liberation.fr",
+            "libe.com",
+            "libe.fr"
+        ],
+        "description": "Libération is a French daily newspaper known for its progressive and left-leaning political stance. It often focuses on investigative journalism, social issues, and cultural topics, maintaining a critical perspective on traditional institutions and power structures.",
+        "owner": "Presse Independante SAS",
+        "typology": "Private Media"
+    },
+    {
+    "country": "France",
+    "organization": "Agence France-Presse (AFP)",
+    "domains": [
+      "afp.com",
+      "factuel.afp.com"
+    ],
+    "description": "AFP is a global news agency founded in 1944 that provides text, photo, video, and graphics to media and institutions worldwide. It operates under a specific French statute designed to safeguard editorial independence.",
+    "owner": "Agence France-Presse (independent statutory entity)",
+    "typology": "Public agency (statutory, editorially independent)"
+    },
+    {
+    "country": "France",
+    "organization": "Bayard",
+    "domains": [
+      "la-croix.com",
+      "bayard.eu",
+      "notretemps.com",
+      "pelerin.com"
+    ],
+    "description": "La Croix is a national daily newspaper covering general news, society and culture from a Christian perspective. It is the flagship news brand of Bayard.",
+    "owner": "Bayard (owned by the Augustinians of the Assumption)",
+    "typology": "Private Media"
+    },
+    {
+    "country": "France",
+    "organization": "Groupe La Dépêche du Midi",
+    "domains": [
+      "ladepeche.fr",
+      "petitbleu.fr",
+      "nrpyrenees.fr",
+      "centrepresseaveyron.fr"
+    ],
+    "description": "La Dépêche du Midi is a historic regional daily based in Toulouse covering Occitanie and surrounding areas. The group operates several local titles and digital editions.",
+    "owner": "Groupe La Dépêche du Midi (Baylet family)",
+    "typology": "Private Media"
+    },
+    {
+    "country": "France",
+    "organization": "Le Canard enchaîné",
+    "domains": [
+      "lecanardenchaine.fr"
+    ],
+    "description": "Le Canard enchaîné is a weekly satirical and investigative newspaper founded in 1915. It carries no advertising and is known for editorial independence.",
+    "owner": "Employee/shareholder-owned company",
+    "typology": "Private Media"
+    },
+    {
+    "country": "France",
+    "organization": "Groupe EBRA",
+    "domains": [
+      "ledauphine.com",
+      "leprogres.fr",
+      "lejsl.com",
+      "bienpublic.com",
+      "estrepublicain.fr",
+      "dna.fr",
+      "lalsace.fr",
+      "republicain-lorrain.fr",
+      "vosgesmatin.fr"
+    ],
+    "description": "EBRA is a leading French regional press group that publishes nine daily newspapers across Eastern and Southeastern France. Its titles focus on local news with robust digital operations.",
+    "owner": "Groupe EBRA (owned by Crédit Mutuel Alliance Fédérale)",
+    "typology": "Private Media"
+    },
+    {
+    "country": "France",
+    "organization": "Humanoid",
+    "domains": [
+      "numerama.com",
+      "humanoid.fr",
+      "frandroid.com",
+      "madmoizelle.com"
+    ],
+    "description": "Humanoid Group edits several digital media brands including Numerama, Frandroid, and Madmoizelle, focusing on technology, culture, and lifestyle. It is known for its innovative approach to digital journalism.",
+    "owner": "Groupe EBRA (owned by Crédit Mutuel Alliance Fédérale)",
+    "typology": "Private Media"
+    },
+    {
+    "country": "France",
+    "organization": "Le Gorafi",
+    "domains": [
+      "legorafi.fr"
+    ],
+    "description": "Le Gorafi is a French satirical 'news' website launched in 2012 that publishes parody articles. It mimics news formats to comment humorously on current events.",
+    "owner": "DC Company (media group)",
+    "typology": "Private Media"
+    },
+    {
+    "country": "France",
+    "organization": "Les Jours SAS",
+    "domains": [
+      "lesjours.fr"
+    ],
+    "description": "Les Jours is an ad-free, subscription-based digital media outlet created by former journalists from Libération. It publishes long-form reporting organized into thematic ‘series’.",
+    "owner": "Les Jours SAS (founders, staff and reader-shareholders)",
+    "typology": "Private Media"
+    },
+    {
+    "country": "France",
+    "organization": "CMI France",
+    "domains": [
+      "marianne.net",
+      "cmi-france.fr"
+    ],
+    "description": "Marianne is a weekly current affairs magazine with a republican and sovereigntist editorial line. It offers politics, society and culture coverage with both print and digital editions.",
+    "owner": "CMI France (part of International Media Invest – Daniel Křetínský)",
+    "typology": "Private Media"
+    },
+    {
+    "country": "France",
+    "organization": "CMI France",
+    "domains": [
+      "elle.fr",
+      "usbeketrica.com",
+      "programme-television.org",
+      "FranceDimanche.fr",
+      "femina.fr",
+      "loopsider.com"
+    ],
+    "description": "Czech Media Invest (CMI) is a Czech holding company controlling one of the largest Czech press groups, Czech News Center. CMI is mainly owned by Daniel Křetínský and Patrik Tkáč, via another holding company, EP Corporate Group. It offers politics, society and culture coverage with both print and digital editions.",
+    "owner": "CMI France (part of International Media Invest – Daniel Křetínský)",
+    "typology": "Private Media"
+    },
+    {
+    "country": "France",
+    "organization": "CMI France",
+    "domains": [
+      "franc-tireur.fr"
+    ],
+    "description": "Founded in 2021 by Caroline Fourest and Raphaël Enthoven, Franc-Tireur is a combative journal that employs a team of sharp editorialists to critically analyze weekly news and controversies, aiming to expose propagandas, misinformation, and deceits. It stands firmly against populism, conspiracy theories, racism, extremism, and all forms of identity-based extremism.",
+    "owner": "CMI France (part of International Media Invest – Daniel Křetínský)",
+    "typology": "Private Media"
+    },      
+    {
+    "country": "France",
+    "organization": "Slate.fr SAS",
+    "domains": [
+      "slate.fr"
+    ],
+    "description": "Slate.fr is the French edition of the Slate web magazine, with its own newsroom and editorial leadership. It covers politics, society, culture and ideas with analysis and commentary.",
+    "owner": "Slate.fr SAS (French investors; historically with a minority stake from The Slate Group, U.S.)",
+    "typology": "Private Media"
+    },
+    {
+    "country": "France",
+    "organization": "Groupe Nice-Matin",
+    "domains": [
+      "varmatin.com",
+      "nicematin.com",
+      "monacomatin.mc"
+    ],
+    "description": "Var-Matin is the local daily of the Var department, part of the Nice-Matin group alongside Nice-Matin and Monaco-Matin. The group operates strong regional digital platforms.",
+    "owner": "Groupe Nice-Matin (100% NJJ Holding – Xavier Niel)",
+    "typology": "Private Media"
+    },
+    {
+    "country": "France",
+    "organization": "Presse Antilles Guyane",
+    "domains": [
+      "franceguyane.fr",
+      "franceantilles.fr",
+      "martinique.franceantilles.fr",
+      "guadeloupe.franceantilles.fr"
+    ],
+    "description": "France Antilels Guyane group operates newspaper and regional digital platforms in France overseas territories.",
+    "owner": "Groupe Presse Antilles Guyane (100% NJJ Holding – Xavier Niel)",
+    "typology": "Private Media"
+    },
+    {
+    "country": "France",
+    "organization": "Le Média Positif",
+    "domains": [
+      "lemediapositif.com"
+    ],
+    "description": "Le Média Positif is a 'good news' media brand highlighting positive initiatives, innovation and inspiring stories. It grew primarily through social platforms before developing its site.",
+    "owner": "Le Média Positif (independent publisher)",
+    "typology": "Private Media"
+    },
+    {
+    "country": "France",
+    "organization": "Groupe La Montagne",
+    "domains": [
+      "lamontagne.fr",
+      "lepopulaire.fr",
+      "centrepresseaveyron.fr",
+      "larep.fr",
+      "leberry.fr",
+      "lyonnne.fr",
+      "lechorepublicain.fr",
+      "lejdc.fr",
+      "leveil.fr",
+      "lepays.fr"  
+      ],
+    "description": "La Montagne is a regional daily newspaper based in Clermont-Ferrand, covering the Auvergne region. It is part of the Groupe Centre France.",
+    "owner": "Groupe Centre France (family-owned)",
+    "typology": "Private Media"
+    },
+    {
+    "country": "France",
+    "organization": "Rossel France",
+    "domains": [
+      "lavoixdunord.fr",
+      "lunion.fr",
+      "lepharedunkerquois.fr",
+      "courrier-picard.fr",
+      "nordlittoral.fr",
+      "lindicateurdesflandres.fr"
+
+    ],
+    "description": "La Voix du Nord is a regional daily newspaper based in Lille, covering northern France. It is part of the Groupe Voix du Nord.",
+    "owner": "Groupe Rossel (Belgian media group) )",
+    "typology": "Private Media"
     }
+
 ]
