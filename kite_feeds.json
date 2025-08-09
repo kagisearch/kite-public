@@ -1213,6 +1213,37 @@
       "https://www.watanserb.com/en/tag/gaza/feed/"
     ]
   },
+  "Philippines": {
+    "category_type": "country",
+    "source_language": "en",
+    "display_names": {
+      "en": "Philippines",
+      "de": "Philippinen",
+      "fr": "Philippines",
+      "es": "Filipinas",
+      "pt": "Filipinas",
+      "it": "Filippine",
+      "nl": "Filipijnen",
+      "sv": "Filippinerna",
+      "zh": "菲律宾",
+      "ja": "フィリピン",
+      "hi": "फ़िलिपींस",
+      "uk": "Філіппіни"
+    },
+    "feeds": [
+      "https://news.google.com/atom/topics/CAAqJQgKIh9DQkFTRVFvSUwyMHZNRFYyT0dNU0JXVnVMVWRDS0FBUAE?hl=en-PH&gl=PH&ceid=PH:en",
+      "https://www.philstar.com/rss/headlines",
+      "https://rappler.com/feed/?rss",
+      "https://www.inquirer.net/fullfeed",
+      "https://www.abs-cbn.com/feed",
+      "https://www.manilatimes.net/news/feed/",
+      "https://www.bworldonline.com/feed/",
+      "https://www.sunstar.com.ph/api/v1/collections/home.rss",
+      "https://cebudailynews.inquirer.net/feed",
+      "https://mindanaotimes.com.ph/feed/",
+      "https://interaksyon.philstar.com/feed/"
+    ]
+  },
   "Poland": {
     "category_type": "country",
     "source_language": "pl",
