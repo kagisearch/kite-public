@@ -2984,5 +2984,26 @@
       "https://www.thenews.com.pk/rss/1/2",
       "https://www.thenews.com.pk/rss/1/3"
     ]
+  },
+    "Microsoft": {
+    "source_language": "en",
+    "display_names": {
+      "en": "Windows & Azure",
+      "de": "Windows & Azure",
+      "fr": "Windows & Azure",
+      "es": "Windows & Azure",
+      "pt": "Windows & Azure",
+      "it": "Windows & Azure",
+      "nl": "Windows & Azure"
+    },
+    "feeds": [
+      "https://msrc.microsoft.com/blog/feed",
+      "https://blogs.microsoft.com/feed/",
+      "https://news.microsoft.com/feed/",
+      "http://feeds.windowscentral.com/wmexperts",
+      "https://blogs.windows.com/feed/",
+      "https://www.microsoft.com/releasecommunications/api/v2/m365/rss/",
+      "https://devblogs.microsoft.com/landing"
+    ]
   }
 }
