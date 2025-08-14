@@ -58,6 +58,52 @@
       "https://www.werribeenews.com.au/feed/"
     ]
   },
+"Austria": {
+    "category_type": "country",
+    "source_language": "de",
+    "display_names": {
+      "en": "Austria",
+      "de": "Österreich",
+      "fr": "Autriche",
+      "es": "Austria",
+      "pt": "Áustria",
+      "it": "Austria",
+      "nl": "Oostenrijk",
+      "zh-Hans": "奥地利",
+      "zh-Hant": "奧地利",
+      "ja": "オーストリア",
+      "hi": "ऑस्ट्रिया",
+      "uk": "Австрія"
+    },
+    "feeds": [
+      "https://www.derstandard.at/rss",
+      "https://www.derstandard.at/rss/international",
+      "https://www.derstandard.at/rss/inland",
+      "https://www.derstandard.at/rss/wirtschaft",
+      "https://www.derstandard.at/rss/sport",
+      "https://www.derstandard.at/rss/wissenschaft",
+      "http://diepresse.com/rss/",
+      "http://diepresse.com/rss/ausland",
+      "http://diepresse.com/rss/innenpolitik",
+      "http://diepresse.com/rss/wirtschaft",
+      "http://diepresse.com/rss/sport",
+      "http://diepresse.com/rss/kultur",
+      "https://www.selektiv.at/feed/",
+      "https://rss.orf.at/news.xml",
+      "https://rss.orf.at/sport.xml",
+      "https://rss.orf.at/science.xml",
+      "https://kurier.at/politik/inland/xml/rssd",
+      "https://kurier.at/politik/ausland/xml/rssd",
+      "https://kurier.at/wirtschaft/wirtschaftspolitik/xml/rssd",
+      "https://kurier.at/wirtschaft/finanzen/xml/rssd",
+      "https://kurier.at/wirtschaft/wirtschaftspolitik/xml/rssd",
+      "https://kurier.at/sport/xml/rssd",
+      "https://kurier.at/kultur/xml/rssd",
+      "https://www.moment.at/feed",
+      "https://www.wienerzeitung.at/rss.xml",
+      "https://www.fma.gv.at/category/news/feed/"
+    ]
+  },
   "Belgium": {
     "category_type": "country",
     "source_language": "nl",
