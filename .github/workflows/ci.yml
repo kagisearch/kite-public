@@ -10,9 +10,35 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  changes:
+    name: Determine relevant changes
+    runs-on: ubuntu-latest
+    outputs:
+      app: ${{ steps.filter.outputs.app }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Filter paths
+        id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            app:
+              - 'src/**'
+              - 'package.json'
+              - 'bun.lock'
+              - 'svelte.config.*'
+              - 'vite.config.*'
+              - 'tsconfig*.json'
+              - 'vitest*.ts'
+              - 'tailwind.config.*'
+              - 'static/**'
+
   setup:
     name: Install Dependencies
     runs-on: ubuntu-latest
+    needs: changes
+    if: needs.changes.outputs.app == 'true'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -33,7 +59,8 @@ jobs:
 
   type-check:
     name: Type & Svelte Check
-    needs: setup
+    needs: [setup, changes]
+    if: needs.changes.outputs.app == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -58,7 +85,8 @@ jobs:
 
   tests:
     name: Vitest (unit & integration)
-    needs: setup
+    needs: [setup, changes]
+    if: needs.changes.outputs.app == 'true'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -79,4 +107,4 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Run tests with coverage
-        run: bun run test:coverage 
+        run: bun run test:coverage
