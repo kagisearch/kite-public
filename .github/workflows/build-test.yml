@@ -58,6 +58,9 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
+      - name: SvelteKit sync
+        run: bunx --yes svelte-kit sync
+
       - name: Build application
         run: bun run build
 
@@ -91,14 +94,17 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
+      - name: SvelteKit sync
+        run: bunx --yes svelte-kit sync
+
       - name: Run unit tests
-        run: bun run test:unit
+        run: bunx --yes vitest run --config vitest.config.unit.ts
 
       - name: Run integration tests
         run: bun run test:integration
 
-      - name: Generate coverage report
-        run: bun run test:coverage
+      - name: Generate unit coverage report
+        run: bunx --yes vitest run --config vitest.config.unit.ts --coverage
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
