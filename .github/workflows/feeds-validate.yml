@@ -1,0 +1,70 @@
+name: Feed Validation
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'kite_feeds.json'
+  pull_request:
+    paths:
+      - 'kite_feeds.json'
+
+concurrency:
+  group: feeds-validate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Restore Bun cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: Install dependencies (if any)
+        run: bun install --frozen-lockfile
+
+      - name: Run feed validator
+        id: run_validator
+        shell: bash
+        run: |
+          set -o pipefail
+          exit_code=0
+          bun scripts/validate-feeds.ts 2> /tmp/feed_diag.log 1> /tmp/feed_patch.diff || exit_code=$?
+          echo "exit_code=$exit_code" >> $GITHUB_OUTPUT
+          
+          # Ensure log files exist even if empty
+          touch /tmp/feed_diag.log /tmp/feed_patch.diff
+
+      - name: Reviewdog Reporter
+        uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
+
+      - name: Run reviewdog diagnostics
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          reviewdog -efm="%f:%l:%m" -name="feed-validator" -reporter=github-pr-review -filter-mode=file -fail-on-error=false < /tmp/feed_diag.log
+
+      - name: Apply diff to working tree
+        if: fromJSON(steps.run_validator.outputs.exit_code) != 0
+        run: |
+          patch -p1 < /tmp/feed_patch.diff
+
+      - name: Suggest fixes via action-suggester
+        if: fromJSON(steps.run_validator.outputs.exit_code) != 0
+        uses: reviewdog/action-suggester@v1
+        with:
+          tool_name: feed-validator
+          level: error 

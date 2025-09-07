@@ -1,0 +1,157 @@
+name: Code Quality Checks
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**/*.json'
+      - 'src/**/*.{html,js,ts,svelte,css}'
+  pull_request:
+    paths:
+      - '**/*.json'
+      - 'src/**/*.{html,js,ts,svelte,css}'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Restore Bun cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      ########################################################################
+      # Prettier formatting check
+      ########################################################################
+      - name: Run Prettier (write mode)
+        id: prettier
+        shell: bash
+        run: |
+          set -e
+          
+          # Ensure we have full git history for diff
+          git fetch origin main --depth=50 || true
+          
+          # Collect changed files for the current push or PR
+          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+            changed_files=$(git diff --name-only origin/main...HEAD -- '*.json' '*.ts' '*.tsx' '*.js' '*.jsx' '*.svelte' '*.css' '*.html' 2>/dev/null || git diff --name-only HEAD~1 HEAD -- '*.json' '*.ts' '*.tsx' '*.js' '*.jsx' '*.svelte' '*.css' '*.html')
+          else
+            changed_files=$(git diff --name-only HEAD~1 HEAD -- '*.json' '*.ts' '*.tsx' '*.js' '*.jsx' '*.svelte' '*.css' '*.html')
+          fi
+
+          if [ -z "$changed_files" ]; then
+            echo "No files to format with Prettier."
+            exit 0
+          fi
+
+          # Filter to only existing files and run Prettier
+          existing_files=""
+          for file in $changed_files; do
+            if [ -f "$file" ]; then
+              existing_files="$existing_files $file"
+            fi
+          done
+          
+          if [ -n "$existing_files" ]; then
+            echo "$existing_files" | xargs bunx prettier --write
+          fi
+
+      - name: Suggest Prettier fixes
+        if: github.event_name == 'pull_request'
+        uses: reviewdog/action-suggester@v1
+        with:
+          tool_name: prettier
+          level: info
+
+      ########################################################################
+      # JSON validation
+      ########################################################################
+      - name: Install jq for JSON validation
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Validate JSON files
+        id: jsonval
+        shell: bash
+        run: |
+          set +e
+          echo "🔎 Validating JSON files..."
+          
+          # Ensure we have full git history for diff
+          git fetch origin main --depth=50 || true
+          
+          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+            json_files=$(git diff --name-only origin/main...HEAD -- '*.json' 2>/dev/null || git diff --name-only HEAD~1 HEAD -- '*.json')
+          else
+            json_files=$(git diff --name-only HEAD~1 HEAD -- '*.json')
+          fi
+
+          if [ -z "$json_files" ]; then
+            echo "No JSON files changed" > /tmp/json_diag.log
+            exit 0
+          fi
+
+          diag=""
+          for file in $json_files; do
+            if [ -f "$file" ]; then
+              jq empty "$file" 2>/dev/null
+              if [ $? -ne 0 ]; then
+                diag+="$file:1: Invalid JSON\n"
+              fi
+            fi
+          done
+          echo -e "$diag" | tee /tmp/json_diag.log
+
+      - name: Annotate JSON validation
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          reviewdog -efm="%f:%l:%m" -name="json-validator" -reporter=${{ github.event_name == 'pull_request' && 'github-pr-review' || 'github-check' }} -fail-on-error=false < /tmp/json_diag.log 
+
+      ########################################################################
+      # Biome Lint (advisory)
+      ########################################################################
+      - name: Run Biome lint
+        shell: bash
+        run: |
+          set +e
+          bunx biome lint . --formatter compact > /tmp/biome.log || true
+
+      - name: Annotate Biome results
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          reviewdog -efm="%f:%l:%c %m" -name="biome-lint" -reporter=${{ github.event_name == 'pull_request' && 'github-pr-review' || 'github-check' }} -fail-on-error=false < /tmp/biome.log
+
+      ########################################################################
+      # media_data.json validation via reviewdog (advisory)
+      ########################################################################
+      - name: Validate media_data.json
+        run: |
+          bun scripts/validate-media.ts 2> /tmp/media_diag.log || true
+
+      - name: Annotate media-data issues
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          reviewdog -efm="%f:%l:%m" -name="media-validator" -reporter=${{ github.event_name == 'pull_request' && 'github-pr-review' || 'github-check' }} -fail-on-error=false < /tmp/media_diag.log
