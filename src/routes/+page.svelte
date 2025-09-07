@@ -46,6 +46,7 @@
   import { onMount } from "svelte";
 
   // App state
+  // ci: workflow demo trigger comment
   let dataLoaded = $state(false);
   let offlineMode = $state(false);
   let lastLoadedCategory = $state(""); // Track last loaded category to prevent duplicates

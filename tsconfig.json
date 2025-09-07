@@ -9,8 +9,24 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
+		"module": "ESNext",
 		"moduleResolution": "bundler",
+		"noEmit": true,
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true
-	}
+	},
+	"include": [
+		"src/**/*",
+		"scripts/**/*",
+		"vite.config.ts",
+		"vitest.config*.ts",
+		"*.d.ts"
+	],
+	"exclude": [
+		"node_modules",
+		"build",
+		"dist",
+		".svelte-kit/**",
+		"static/**"
+	]
 }

@@ -29,6 +29,9 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Build SvelteKit site (static)
+        env:
+          KIT_ADAPTER: static
+          BASE_PATH: kite
         run: bun run build
 
       - name: Upload Pages artifact
