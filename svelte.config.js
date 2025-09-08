@@ -13,6 +13,11 @@ const config = {
       process.env.KIT_ADAPTER === "static"
         ? adapterStatic({ fallback: "404.html" })
         : adapterNode(),
+    prerender: {
+      // Avoid failing preview/static builds due to dynamic routes not discovered during crawl
+      handleUnseenRoutes: 'ignore',
+      handleHttpError: 'warn'
+    },
     // Narrow type of BASE_PATH to satisfy SvelteKit's template-literal type
     // "" | `/${string}` | undefined
     paths: {

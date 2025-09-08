@@ -102,8 +102,28 @@ jobs:
       - name: Run unit tests
         run: bunx --yes vitest run --config vitest.config.unit.ts
 
+      - name: Build for preview server
+        run: bun run build
+
+      - name: Start preview server
+        env:
+          NODE_ENV: production
+        run: |
+          nohup bun run preview -- --port 5173 --host 0.0.0.0 > preview.log 2>&1 & echo $! > preview.pid
+
+      - name: Wait for health endpoint
+        run: |
+          for i in {1..60}; do
+            if curl -sf http://127.0.0.1:5173/api/health > /dev/null; then
+              echo "Server is up"; exit 0; fi; sleep 1; done; echo "Server did not start"; cat preview.log; exit 1
+
       - name: Run integration tests
         run: bun run test:integration
+
+      - name: Stop preview server
+        if: always()
+        run: |
+          if [ -f preview.pid ]; then kill $(cat preview.pid) || true; fi
 
       - name: Generate unit coverage report
         run: bunx --yes vitest run --config vitest.config.unit.ts --coverage
@@ -139,7 +159,7 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Run TypeScript check
-        run: bun run check
+        run: bunx --yes svelte-kit sync && bunx --yes svelte-check --tsconfig ./tsconfig.svelte-check.json
 
       - name: Run Svelte check
-        run: bun run check:watch --once || bun run check
+        run: bunx --yes svelte-check --tsconfig ./tsconfig.svelte-check.json

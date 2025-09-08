@@ -84,7 +84,7 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Run TypeScript & Svelte checks
-        run: bun run check
+        run: bunx --yes svelte-kit sync && bunx --yes svelte-check --tsconfig ./tsconfig.svelte-check.json
 
   tests:
     name: Vitest (unit & integration)
@@ -108,6 +108,9 @@ jobs:
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
+
+      - name: SvelteKit sync
+        run: bunx --yes svelte-kit sync
 
       - name: Run unit tests with coverage
         run: bunx --yes vitest run --config vitest.config.unit.ts --coverage

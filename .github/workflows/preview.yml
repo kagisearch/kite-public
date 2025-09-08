@@ -39,6 +39,9 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
+      - name: SvelteKit sync
+        run: bunx --yes svelte-kit sync
+
       - name: Build SvelteKit site (static)
         env:
           KIT_ADAPTER: static
