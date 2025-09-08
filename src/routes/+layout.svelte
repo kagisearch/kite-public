@@ -18,19 +18,24 @@
   import { MetaTags, deepMerge } from "svelte-meta-tags";
 
   // Props from layout load
-  let { data, children }: { data: PageData; children: Snippet } = $props();
+  type LayoutData = PageData & {
+    baseMetaTags?: Record<string, any>;
+    pageMetaTags?: Record<string, any>;
+    strings?: Record<string, any>;
+  };
+  let { data, children }: { data: LayoutData; children: Snippet } = $props();
 
   // Merge base meta tags with page-specific ones
   // Use pageMetadata store for client-side updates, fallback to page.data for SSR
   let metaTags = $derived(
-    deepMerge(data.baseMetaTags, pageMetadata || page.data.pageMetaTags || {}),
+    deepMerge(data.baseMetaTags ?? {}, pageMetadata ?? (page.data as any).pageMetaTags ?? {}),
   );
 
   onMount(async () => {
     // Initialize all stores
     theme.init();
     language.init();
-    language.initStrings(data.strings); // Initialize with page data
+    if (data.strings) language.initStrings(data.strings); // Initialize with page data if provided
     dataLanguage.init();
     fontSize.init();
     categories.init();

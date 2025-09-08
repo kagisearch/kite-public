@@ -45,10 +45,12 @@ const localStorageMock = {
 };
 global.localStorage = localStorageMock as any;
 
-// Mock OverlayScrollbars
+// Mock OverlayScrollbars and overlayscrollbars-svelte interop
 vi.mock('overlayscrollbars', () => ({
-  OverlayScrollbars: vi.fn(() => ({
-    options: vi.fn(),
-    destroy: vi.fn()
-  }))
+  OverlayScrollbars: {
+    valid: vi.fn(() => true),
+  }
+}));
+vi.mock('overlayscrollbars-svelte', () => ({
+  useOverlayScrollbars: vi.fn(() => [vi.fn()])
 }));

@@ -17,5 +17,6 @@ export default defineConfig({
       $lib: path.resolve('./src/lib'),
       '$app/environment': path.resolve('./src/app.ts'),
     },
+    conditions: ['node'],
   },
 });
