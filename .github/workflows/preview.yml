@@ -21,7 +21,7 @@ jobs:
     if: github.event.action != 'closed'
     runs-on: ubuntu-latest
     environment:
-      name: preview
+      name: github-pages
     steps:
       - run: echo "Awaiting approval for PR preview deploy"
 
