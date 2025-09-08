@@ -112,5 +112,5 @@ jobs:
       - name: SvelteKit sync
         run: bunx --yes svelte-kit sync
 
-      - name: Run unit tests with coverage
-        run: bunx --yes vitest run --config vitest.config.unit.ts --coverage
+      - name: Run unit tests with coverage (Node)
+        run: npx --yes vitest run --config vitest.config.unit.ts --coverage --pool forks --environment node

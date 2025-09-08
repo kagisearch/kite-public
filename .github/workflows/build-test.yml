@@ -66,13 +66,6 @@ jobs:
       - name: Build application
         run: bun run build
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-output
-          path: build/
-          retention-days: 1
-
   test:
     name: Run Tests
     runs-on: ubuntu-latest
@@ -99,8 +92,8 @@ jobs:
       - name: SvelteKit sync
         run: bunx --yes svelte-kit sync
 
-      - name: Run unit tests with coverage
-        run: bunx --yes vitest run --config vitest.config.unit.ts --coverage
+      - name: Run unit tests with coverage (Node)
+        run: npx --yes vitest run --config vitest.config.unit.ts --coverage --pool forks --environment node
 
       - name: Build for preview server
         run: bun run build
