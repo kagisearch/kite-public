@@ -25,7 +25,7 @@ jobs:
     steps:
       - run: echo "Awaiting approval for PR preview deploy"
 
-  build:
+  deploy:
     if: github.event.action != 'closed'
     needs: approval
     runs-on: ubuntu-latest
@@ -48,11 +48,6 @@ jobs:
           BASE_PATH: kite-public/pr-preview/pr-${{ github.event.pull_request.number }}
         run: bun run build
 
-  deploy:
-    if: github.event.action != 'closed'
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - name: Deploy PR Preview to gh-pages
         uses: rossjrw/pr-preview-action@v1
         with:
