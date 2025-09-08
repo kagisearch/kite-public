@@ -99,8 +99,8 @@ jobs:
       - name: SvelteKit sync
         run: bunx --yes svelte-kit sync
 
-      - name: Run unit tests
-        run: bunx --yes vitest run --config vitest.config.unit.ts
+      - name: Run unit tests with coverage
+        run: bunx --yes vitest run --config vitest.config.unit.ts --coverage
 
       - name: Build for preview server
         run: bun run build
@@ -124,9 +124,6 @@ jobs:
         if: always()
         run: |
           if [ -f preview.pid ]; then kill $(cat preview.pid) || true; fi
-
-      - name: Generate unit coverage report
-        run: bunx --yes vitest run --config vitest.config.unit.ts --coverage
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4

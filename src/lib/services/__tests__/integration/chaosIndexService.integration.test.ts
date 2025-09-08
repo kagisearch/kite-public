@@ -23,10 +23,10 @@ describe("ChaosIndexService Integration Tests", () => {
         expect(typeof result.chaosDescription).toBe("string");
         expect(result.chaosDescription.length).toBeGreaterThan(0);
 
-        if (result.chaosLastUpdated !== null) {
-          expect(typeof result.chaosLastUpdated).toBe("string");
+        const lastUpdated = result.chaosLastUpdated;
+        if (typeof lastUpdated === "string") {
           // Should be a valid ISO date string
-          expect(() => new Date(result.chaosLastUpdated!)).not.toThrow();
+          expect(() => new Date(lastUpdated)).not.toThrow();
         }
       }
     });
@@ -40,7 +40,7 @@ describe("ChaosIndexService Integration Tests", () => {
 
       // If we have history data
       if (result.length > 0) {
-        result.forEach((entry) => {
+        for (const entry of result) {
           expect(entry).toHaveProperty("date");
           expect(entry).toHaveProperty("score");
           expect(entry).toHaveProperty("summary");
@@ -53,7 +53,7 @@ describe("ChaosIndexService Integration Tests", () => {
           expect(entry.score).toBeLessThanOrEqual(100);
 
           expect(typeof entry.summary).toBe("string");
-        });
+        }
 
         // Verify entries are consistently sorted by date (either asc or desc)
         const times = result.map((e) => new Date(e.date).getTime());
