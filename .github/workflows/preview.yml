@@ -2,15 +2,16 @@ name: Preview Site
 
 on:
   pull_request:
-    types: [opened, reopened, synchronize, closed]
+    types: [opened, reopened, synchronize]
     paths:
       - '**/*.svelte'
       - '**/*.ts'
+  workflow_dispatch:
 
 permissions:
-  contents: write
-  deployments: write
-  pull-requests: write
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: preview-${{ github.event.pull_request.number }}
@@ -18,7 +19,6 @@ concurrency:
 
 jobs:
   build:
-    if: github.event.action != 'closed'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -33,51 +33,21 @@ jobs:
       - name: Build SvelteKit site (static)
         env:
           KIT_ADAPTER: static
-          BASE_PATH: kite/pr-preview/pr-${{ github.event.pull_request.number }}
+          BASE_PATH: kite/pr-${{ github.event.pull_request.number || 'manual' }}
         run: bun run build
 
-      - name: Start GitHub Deployment
-        id: start_deploy
-        uses: bobheadxi/deployments@v1
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          step: start
-          token: ${{ secrets.GITHUB_TOKEN }}
-          env: pr-${{ github.event.pull_request.number }}
-          ref: ${{ github.head_ref }}
+          path: './build'
 
-      - name: Deploy PR Preview to gh-pages
-        uses: rossjrw/pr-preview-action@v1
-        with:
-          source-dir: ./build
-          preview-branch: gh-pages
-          umbrella-dir: pr-preview
-          action: auto
-
-      - name: Finish GitHub Deployment
-        if: always()
-        uses: bobheadxi/deployments@v1
-        with:
-          step: finish
-          token: ${{ secrets.GITHUB_TOKEN }}
-          status: ${{ job.status }}
-          env: ${{ steps.start_deploy.outputs.env }}
-          deployment_id: ${{ steps.start_deploy.outputs.deployment_id }}
-          env_url: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/pr-preview/pr-${{ github.event.pull_request.number }}/
-
-  cleanup:
-    if: github.event.action == 'closed'
+  deploy:
+    needs: build
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Remove PR Preview
-        uses: rossjrw/pr-preview-action@v1
-        with:
-          preview-branch: gh-pages
-          umbrella-dir: pr-preview
-          action: remove
-
-      - name: Deactivate GitHub Deployment
-        uses: bobheadxi/deployments@v1
-        with:
-          step: deactivate-env
-          token: ${{ secrets.GITHUB_TOKEN }}
-          env: pr-${{ github.event.pull_request.number }}
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

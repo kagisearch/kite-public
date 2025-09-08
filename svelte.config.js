@@ -22,7 +22,10 @@ const config = {
         : "",
     },
     csrf: {
-      checkOrigin: false,
+      trustedOrigins: [
+        'self',
+        /^https:\/\/.*\.github\.io$/,
+      ],
     },
   },
 };

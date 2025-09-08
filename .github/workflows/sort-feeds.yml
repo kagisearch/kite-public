@@ -12,6 +12,7 @@ on:
     paths:
       - 'kite_feeds.json'
       - 'media_data.json'
+  workflow_dispatch:
 
 concurrency:
   group: sort-feeds-${{ github.ref }}

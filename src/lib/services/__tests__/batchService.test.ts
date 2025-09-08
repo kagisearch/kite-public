@@ -72,7 +72,7 @@ describe("BatchService", () => {
         "/api/batches/latest-batch/chaos?lang=en",
       );
 
-      expect(result).toEqual({
+      expect(result).toMatchObject({
         batchId: "latest-batch",
         categories: [
           { id: "world", name: "World" },

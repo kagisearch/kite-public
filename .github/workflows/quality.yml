@@ -10,6 +10,7 @@ on:
     paths:
       - '**/*.json'
       - 'src/**/*.{html,js,ts,svelte,css}'
+  workflow_dispatch:
 
 permissions:
   contents: read
