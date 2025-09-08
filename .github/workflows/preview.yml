@@ -2,23 +2,31 @@ name: Preview Site
 
 on:
   pull_request:
-    types: [opened, reopened, synchronize]
+    types: [opened, reopened, synchronize, closed]
     paths:
       - '**/*.svelte'
       - '**/*.ts'
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
+  pull-requests: write
 
 concurrency:
   group: preview-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 jobs:
+  approval:
+    if: github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    environment: preview
+    steps:
+      - run: echo "Awaiting approval for PR preview deploy"
+
   build:
+    if: github.event.action != 'closed'
+    needs: approval
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -33,21 +41,29 @@ jobs:
       - name: Build SvelteKit site (static)
         env:
           KIT_ADAPTER: static
-          BASE_PATH: kite/pr-${{ github.event.pull_request.number || 'manual' }}
+          BASE_PATH: kite/pr-preview/pr-${{ github.event.pull_request.number }}
         run: bun run build
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: './build'
-
   deploy:
+    if: github.event.action != 'closed'
     needs: build
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Deploy PR Preview to gh-pages
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: ./build
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+          action: auto
+
+  cleanup:
+    if: github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove PR Preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+          action: remove
