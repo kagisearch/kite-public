@@ -16,19 +16,22 @@
   import "overlayscrollbars/overlayscrollbars.css";
   import { onMount, type Snippet } from "svelte";
   import { MetaTags, deepMerge } from "svelte-meta-tags";
+  import type { MetaTagsProps } from "svelte-meta-tags";
+  import { base } from "$app/paths";
 
   // Props from layout load
   type LayoutData = PageData & {
-    baseMetaTags?: Record<string, any>;
-    pageMetaTags?: Record<string, any>;
-    strings?: Record<string, any>;
+    baseMetaTags?: MetaTagsProps;
+    pageMetaTags?: MetaTagsProps;
+    strings?: Record<string, unknown>;
   };
-  let { data, children }: { data: LayoutData; children: Snippet } = $props();
+  const { data, children }: { data: LayoutData; children: Snippet } = $props();
 
   // Merge base meta tags with page-specific ones
   // Use pageMetadata store for client-side updates, fallback to page.data for SSR
-  let metaTags = $derived(
-    deepMerge(data.baseMetaTags ?? {}, pageMetadata ?? (page.data as any).pageMetaTags ?? {}),
+  const fallbackPageMetaTags = (page.data as unknown as Partial<LayoutData>)?.pageMetaTags ?? {};
+  const metaTags = $derived(
+    deepMerge(data.baseMetaTags ?? {}, pageMetadata ?? fallbackPageMetaTags),
   );
 
   onMount(async () => {
