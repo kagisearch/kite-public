@@ -9,7 +9,7 @@ class MediaService {
   /**
    * Load media data for source information
    */
-  async loadMediaData(language: string = "default"): Promise<MediaInfo[]> {
+  async loadMediaData(language = "default"): Promise<MediaInfo[]> {
     try {
       const response = await fetch(`${this.baseUrl}/media?lang=${language}`);
       if (!response.ok) {
@@ -28,7 +28,7 @@ class MediaService {
    */
   async getMediaInfoForDomain(
     domain: string,
-    language: string = "default",
+    language = "default",
   ): Promise<MediaInfo | null> {
     try {
       const mediaData = await this.loadMediaData(language);
@@ -44,7 +44,7 @@ class MediaService {
    */
   async loadMediaDataForHost(
     host: string,
-    language: string = "default",
+    language = "default",
   ): Promise<MediaInfo | null> {
     try {
       const response = await fetch(

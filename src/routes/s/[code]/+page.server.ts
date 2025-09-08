@@ -26,10 +26,9 @@ export const load: PageServerLoad = async ({ params, fetch }) => {
     if (data.url) {
       // Redirect to the full URL
       throw redirect(301, data.url);
-    } else {
-      // No URL returned, redirect to home
-      throw redirect(302, '/');
     }
+    // No URL returned, redirect to home
+    throw redirect(302, '/');
   } catch (error) {
     // If not a redirect error, log it and redirect to home
     if (!(error instanceof Error && 'status' in error)) {

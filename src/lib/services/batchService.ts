@@ -35,7 +35,7 @@ class BatchService {
    * Load all data for initial page load
    */
   async loadInitialData(
-    language: string = "default",
+    language = "default",
     providedBatchInfo?: {
       id: string;
       createdAt: string;
@@ -56,7 +56,7 @@ class BatchService {
     try {
       let batchId: string;
       let batchCreatedAt: string;
-      let totalReadCount: number = 0;
+      let totalReadCount = 0;
 
       // Step 1: Get the batch (either time travel or latest)
       const currentBatchId = this.getCurrentBatchId();
@@ -104,13 +104,19 @@ class BatchService {
       if (!response.ok) {
         throw new Error(`Failed to load categories: ${response.statusText}`);
       }
-      const data = await response.json();
+      type ApiCategory = {
+        categoryId: string;
+        id: string;
+        categoryName: string;
+      };
+      const data: { categories: ApiCategory[]; hasOnThisDay?: boolean } =
+        await response.json();
 
       // Create a mapping of categoryId to UUID
       const categoryMap: Record<string, string> = {};
 
       // Transform the response to match the expected Category interface
-      const categories: Category[] = data.categories.map((cat: any) => {
+      const categories: Category[] = data.categories.map((cat) => {
         categoryMap[cat.categoryId] = cat.id; // Store the UUID mapping
         return {
           id: cat.categoryId,

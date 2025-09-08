@@ -18,9 +18,7 @@ interface FaviconResult {
   source: "google" | "favicone" | "placeholder";
 }
 
-interface FaviconCallback {
-  (result: FaviconResult): void;
-}
+type FaviconCallback = (result: FaviconResult) => void;
 
 // Cache for favicon results
 const faviconCache = new Map<string, FaviconResult>();
@@ -113,7 +111,12 @@ export async function fetchFavicon(
     if (!callbacks.has(domain)) {
       callbacks.set(domain, new Set());
     }
-    callbacks.get(domain)!.add(callback);
+    const domainCallbacks = callbacks.get(domain);
+    if (domainCallbacks) {
+      domainCallbacks.add(callback);
+    } else {
+      callbacks.set(domain, new Set([callback]));
+    }
   }
 
   // Check if request is already pending
@@ -266,14 +269,13 @@ async function fetchHighQualityInBackground(domain: string): Promise<void> {
  */
 function notifyCallbacks(domain: string, result: FaviconResult): void {
   const domainCallbacks = callbacks.get(domain);
-  if (domainCallbacks) {
-    domainCallbacks.forEach((callback) => {
-      try {
-        callback(result);
-      } catch (error) {
-        console.error("Error in favicon callback:", error);
-      }
-    });
+  if (!domainCallbacks) return;
+  for (const callback of domainCallbacks) {
+    try {
+      callback(result);
+    } catch (error) {
+      console.error("Error in favicon callback:", error);
+    }
   }
 }
 

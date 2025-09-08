@@ -1,6 +1,14 @@
 import '@testing-library/jest-dom/vitest';
 import { vi } from 'vitest';
 
+// Provide minimal runtime shim for Svelte 5 runes used in .svelte.ts during tests
+{
+  const g = globalThis as Record<string, unknown>;
+  if (typeof g.$state !== 'function') {
+    g.$state = ((v: unknown) => v) as unknown;
+  }
+}
+
 // Mock browser APIs
 global.ResizeObserver = vi.fn().mockImplementation(() => ({
   observe: vi.fn(),

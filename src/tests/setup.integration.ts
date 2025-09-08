@@ -1,8 +1,3 @@
-import { vi } from 'vitest';
-
-// Make vi available globally
-(global as any).vi = vi;
-
 // Store the original fetch
 const originalFetch = global.fetch;
 

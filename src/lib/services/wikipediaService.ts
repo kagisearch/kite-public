@@ -1,5 +1,5 @@
 // Wikipedia content cache
-const wikipediaCache = new Map<string, any>();
+const wikipediaCache = new Map<string, WikipediaContent>();
 
 export interface WikipediaContent {
   extract: string;
@@ -7,6 +7,27 @@ export interface WikipediaContent {
   originalImage: { source: string } | null;
   title: string;
   wikiUrl: string;
+}
+
+async function resolveWikipediaUrl(wikiId: string): Promise<string> {
+  if (/^Q\d+$/.test(wikiId)) {
+    const wikidataUrl = `https://www.wikidata.org/w/api.php?action=wbgetentities&ids=${wikiId}&props=sitelinks&sitefilter=enwiki&format=json&origin=*`;
+    const wikidataResponse = await fetch(wikidataUrl);
+    if (!wikidataResponse.ok) {
+      throw new Error("Failed to fetch Wikidata entity");
+    }
+    const wikidataData: {
+      entities?: Record<string, { sitelinks?: { enwiki?: { title?: string } } }>;
+    } = await wikidataResponse.json();
+    const entity = wikidataData.entities?.[wikiId];
+    const enwikiTitle = entity?.sitelinks?.enwiki?.title;
+    if (!enwikiTitle) {
+      throw new Error("No English Wikipedia page found for this entity");
+    }
+    console.log(`Resolved Q-ID ${wikiId} to Wikipedia page: ${enwikiTitle}`);
+    return `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(enwikiTitle)}`;
+  }
+  return `https://en.wikipedia.org/api/rest_v1/page/summary/${wikiId}`;
 }
 
 /**
@@ -18,46 +39,25 @@ export async function fetchWikipediaContent(
 ): Promise<WikipediaContent> {
   // Check cache first
   if (wikipediaCache.has(wikiId)) {
-    return wikipediaCache.get(wikiId)!;
+    const cached = wikipediaCache.get(wikiId);
+    if (cached) return cached;
   }
 
   try {
-    let url: string;
-    let data: any;
-
-    // Check if this is a Wikidata Q-ID
-    if (/^Q\d+$/.test(wikiId)) {
-      // First, resolve the Q-ID to get the actual Wikipedia page
-      const wikidataUrl = `https://www.wikidata.org/w/api.php?action=wbgetentities&ids=${wikiId}&props=sitelinks&sitefilter=enwiki&format=json&origin=*`;
-      const wikidataResponse = await fetch(wikidataUrl);
-
-      if (!wikidataResponse.ok) {
-        throw new Error("Failed to fetch Wikidata entity");
-      }
-
-      const wikidataData = await wikidataResponse.json();
-      const entity = wikidataData.entities?.[wikiId];
-      const enwikiTitle = entity?.sitelinks?.enwiki?.title;
-
-      if (!enwikiTitle) {
-        throw new Error("No English Wikipedia page found for this entity");
-      }
-
-      // Now fetch the Wikipedia content using the resolved title
-      url = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(enwikiTitle)}`;
-      console.log(`Resolved Q-ID ${wikiId} to Wikipedia page: ${enwikiTitle}`);
-    } else {
-      // Regular Wikipedia page ID
-      url = `https://en.wikipedia.org/api/rest_v1/page/summary/${wikiId}`;
-    }
-
+    const url = await resolveWikipediaUrl(wikiId);
     const response = await fetch(url);
 
     if (!response.ok) {
       throw new Error("Failed to fetch Wikipedia content");
     }
 
-    data = await response.json();
+    const data: {
+      extract?: string;
+      thumbnail?: { source: string } | null;
+      originalimage?: { source: string } | null;
+      title?: string;
+      content_urls?: { desktop?: { page?: string } };
+    } = await response.json();
     const result: WikipediaContent = {
       extract: data.extract || "No summary available.",
       thumbnail: data.thumbnail || null,

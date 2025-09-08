@@ -37,13 +37,13 @@ describe("BatchService Integration Tests", () => {
       // Verify categoryMap entries
       const categoryIds = Object.keys(result.categoryMap);
       expect(categoryIds.length).toBeGreaterThan(0);
-      categoryIds.forEach((categoryId) => {
+      for (const categoryId of categoryIds) {
         expect(typeof result.categoryMap[categoryId]).toBe("string");
         // UUID should match pattern
         expect(result.categoryMap[categoryId]).toMatch(
           /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i,
         );
-      });
+      }
 
       // If chaos index is present, verify its structure
       if (result.chaosIndex !== undefined) {

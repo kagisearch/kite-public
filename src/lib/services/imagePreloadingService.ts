@@ -256,11 +256,11 @@ class ImagePreloadingService {
       (entries) => {
         if (!this.canPreload()) return;
 
-        entries.forEach((entry) => {
+        for (const entry of entries) {
           if (entry.isIntersecting) {
             onIntersect(entry);
           }
-        });
+        }
       },
       {
         rootMargin: this.config.viewportMargin,

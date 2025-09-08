@@ -1,10 +1,7 @@
 import { defineConfig } from 'vitest/config';
-import { sveltekit } from '@sveltejs/kit/vite';
-import { svelteTesting } from '@testing-library/svelte/vite';
-import path from 'path';
+import path from 'node:path';
 
 export default defineConfig({
-  plugins: [sveltekit(), svelteTesting()],
   test: {
     globals: true,
     projects: [
@@ -15,6 +12,7 @@ export default defineConfig({
           include: ['src/**/*.{test,spec}.{js,ts}'],
           exclude: ['src/**/*.integration.test.{js,ts}'],
           environment: 'jsdom',
+          pool: 'threads',
           setupFiles: ['./src/tests/setup.ts'],
         },
       },
