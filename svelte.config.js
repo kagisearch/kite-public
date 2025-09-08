@@ -23,8 +23,7 @@ const config = {
     },
     csrf: {
       trustedOrigins: [
-        'self',
-        /^https:\/\/.*\.github\.io$/,
+        "https://xytronix.github.io",
       ],
     },
   },
