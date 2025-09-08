@@ -5,6 +5,7 @@ on:
     paths:
       - 'kite_feeds.json'
       - 'media_data.json'
+      - 'src/lib/locales/*.json'
     branches:
       - main
       - 'feature/**'
@@ -12,6 +13,7 @@ on:
     paths:
       - 'kite_feeds.json'
       - 'media_data.json'
+      - 'src/lib/locales/*.json'
   workflow_dispatch:
 
 concurrency:
@@ -46,28 +48,77 @@ jobs:
     - name: Install dependencies
       run: bun install --frozen-lockfile
 
-    - name: Sort feeds, media and locales
+    - name: Detect changed targets
+      id: detect
+      shell: bash
       run: |
         set -e
-        echo "🔄 Sorting data files..."
+        if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+          git fetch origin main
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD)
+        else
+          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD || true)
+        fi
+        echo "Changed files:\n$CHANGED_FILES"
+
+        FEEDS_CHANGED=false
+        MEDIA_CHANGED=false
+        LOCALES_CHANGED=false
+        echo "$CHANGED_FILES" | grep -q '^kite_feeds.json$' && FEEDS_CHANGED=true || true
+        echo "$CHANGED_FILES" | grep -q '^media_data.json$' && MEDIA_CHANGED=true || true
+        echo "$CHANGED_FILES" | grep -E -q '^src/lib/locales/.+\.json$' && LOCALES_CHANGED=true || true
+
+        echo "feeds_changed=$FEEDS_CHANGED" >> $GITHUB_OUTPUT
+        echo "media_changed=$MEDIA_CHANGED" >> $GITHUB_OUTPUT
+        echo "locales_changed=$LOCALES_CHANGED" >> $GITHUB_OUTPUT
+
+    - name: Sort feeds
+      if: steps.detect.outputs.feeds_changed == 'true'
+      run: |
+        set -e
+        echo "🔄 Sorting feeds..."
         bun scripts/sort-feeds.ts || { echo "❌ Failed to sort feeds"; exit 1; }
+        echo "✅ Feeds sorted"
+
+    - name: Sort media
+      if: steps.detect.outputs.media_changed == 'true'
+      run: |
+        set -e
+        echo "🔄 Sorting media..."
         bun scripts/sort-media.ts || { echo "❌ Failed to sort media"; exit 1; }
+        echo "✅ Media sorted"
+
+    - name: Sort locales
+      if: steps.detect.outputs.locales_changed == 'true'
+      run: |
+        set -e
+        echo "🔄 Sorting locales..."
         bun scripts/sort-locales.ts || { echo "❌ Failed to sort locales"; exit 1; }
-        echo "✅ All data files sorted successfully"
+        echo "✅ Locales sorted"
 
     - name: Generate issues for reviewdog
       if: github.event_name == 'pull_request'
       run: |
-        # Generate structured issues from all scripts
-        bun scripts/sort-feeds.ts --output-issues > feeds-issues.json
-        bun scripts/sort-media.ts --output-issues > media-issues.json
-        bun scripts/sort-locales.ts --output-issues > locales-issues.json
-        
-        # Combine all issues
-        jq -s 'map(.issues[]) | map(select(.severity == "warning" or .severity == "error"))' \
-          feeds-issues.json media-issues.json locales-issues.json > all-issues.json
-        
-        echo "Generated $(jq length all-issues.json) issues for review"
+        ISSUE_FILES=()
+        if [ "${{ steps.detect.outputs.feeds_changed }}" = "true" ]; then
+          bun scripts/sort-feeds.ts --output-issues > feeds-issues.json
+          ISSUE_FILES+=(feeds-issues.json)
+        fi
+        if [ "${{ steps.detect.outputs.media_changed }}" = "true" ]; then
+          bun scripts/sort-media.ts --output-issues > media-issues.json
+          ISSUE_FILES+=(media-issues.json)
+        fi
+        if [ "${{ steps.detect.outputs.locales_changed }}" = "true" ]; then
+          bun scripts/sort-locales.ts --output-issues > locales-issues.json
+          ISSUE_FILES+=(locales-issues.json)
+        fi
+
+        if [ ${#ISSUE_FILES[@]} -gt 0 ]; then
+          jq -s 'map(.issues[]) | map(select(.severity == "warning" or .severity == "error"))' "${ISSUE_FILES[@]}" > all-issues.json
+          echo "Generated $(jq length all-issues.json) issues for review"
+        else
+          echo "No relevant files changed; skipping issue generation"
+        fi
 
     - name: Check for changes
       id: verify-changed-files

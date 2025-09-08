@@ -153,12 +153,57 @@ jobs:
       ########################################################################
       # media_data.json validation via reviewdog (advisory)
       ########################################################################
-      - name: Validate media_data.json
+      - name: Validate data files (gated by changes)
         run: |
-          bun scripts/validate-media.ts 2> /tmp/media_diag.log || true
+          changed_media=false
+          changed_feeds=false
+          changed_locales=false
+          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+            base_sha=$(jq -r '.pull_request.base.sha // empty' "$GITHUB_EVENT_PATH")
+            head_sha=$(jq -r '.pull_request.head.sha // empty' "$GITHUB_EVENT_PATH")
+            if [ -n "$base_sha" ] && [ -n "$head_sha" ]; then
+              git fetch origin "$base_sha" --depth=1 || true
+              git fetch origin "$head_sha" --depth=1 || true
+              diff_files=$(git diff --name-only "$base_sha" "$head_sha")
+              echo "$diff_files" | grep -q '^media_data.json$' && changed_media=true || true
+              echo "$diff_files" | grep -q '^kite_feeds.json$' && changed_feeds=true || true
+              echo "$diff_files" | grep -E -q '^src/lib/locales/.+\.json$' && changed_locales=true || true
+            fi
+          else
+            diff_files=$(git diff --name-only HEAD~1 HEAD || true)
+            echo "$diff_files" | grep -q '^media_data.json$' && changed_media=true || true
+            echo "$diff_files" | grep -q '^kite_feeds.json$' && changed_feeds=true || true
+            echo "$diff_files" | grep -E -q '^src/lib/locales/.+\.json$' && changed_locales=true || true
+          fi
+
+          if [ "$changed_media" = true ]; then
+            bun scripts/validate-media.ts 2> /tmp/media_diag.log || true
+          else
+            echo "media_data.json unchanged; skipping validator" > /tmp/media_diag.log
+          fi
+
+          # Gate feeds/locales checks via sort scripts in advisory mode
+          if [ "$changed_feeds" = true ]; then
+            bun scripts/sort-feeds.ts --output-issues > feeds-issues.json || true
+            # Run enhanced feed validator for network/content checks; advisory annotations
+            bun scripts/validate-feeds.ts > /tmp/feeds_diff.patch 2> /tmp/feeds_diag.log || true
+          fi
+          if [ "$changed_locales" = true ]; then
+            bun scripts/sort-locales.ts --output-issues > locales-issues.json || true
+          fi
 
       - name: Annotate media-data issues
+        if: always()
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           reviewdog -efm="%f:%l:%m" -name="media-validator" -reporter=${{ github.event_name == 'pull_request' && 'github-pr-review' || 'github-check' }} -fail-on-error=false < /tmp/media_diag.log
+
+      - name: Annotate feed validation
+        if: always()
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -f /tmp/feeds_diag.log ]; then
+            reviewdog -efm="%f:%l:%m" -name="feed-validator" -reporter=${{ github.event_name == 'pull_request' && 'github-pr-review' || 'github-check' }} -fail-on-error=false < /tmp/feeds_diag.log
+          fi

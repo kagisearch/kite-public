@@ -45,7 +45,7 @@ jobs:
       - name: Build SvelteKit site (static)
         env:
           KIT_ADAPTER: static
-          BASE_PATH: kite/pr-preview/pr-${{ github.event.pull_request.number }}
+          BASE_PATH: kite-public/pr-preview/pr-${{ github.event.pull_request.number }}
         run: bun run build
 
   deploy:

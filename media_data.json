@@ -745,16 +745,6 @@
         "typology": "Private Media"
     },
     {
-        "country": "Taiwan/South Africa",
-        "organization": "DistroWatch",
-        "domains": [
-            "distrowatch.com"
-        ],
-        "description": "DistroWatch is a website that provides comprehensive news, information, and comparison resources about Linux distributions and BSD operating systems. It maintains distribution rankings based on page hits, offers detailed distribution information pages, and serves as a central hub for tracking releases and updates across the open-source operating system landscape.",
-        "owner": "Ladislav Bodnar",
-        "typology": "Private Media"
-    },
-    {
         "country": "United Kingdom",
         "organization": "OMG! Ubuntu/OMG! Linux",
         "domains": [
@@ -873,16 +863,6 @@
             "kde.org"
         ],
         "description": "KDE News is the official news portal of the KDE Community, providing updates about KDE software development, applications, releases, and community initiatives.",
-        "owner": "KDE e.V.",
-        "typology": "Private Media"
-    },
-    {
-        "country": "International",
-        "organization": "KDE Community Blog",
-        "domains": [
-            "kde.org"
-        ],
-        "description": "The KDE Community Blog is the official blogging platform of the KDE project, an international free software community that develops open-source software.",
         "owner": "KDE e.V.",
         "typology": "Private Media"
     },
@@ -3995,7 +3975,6 @@
             "france3.fr",
             "france4.fr",
             "france5.fr",
-            "franceinfo.fr",
             "francetvinfo.fr"
         ],
         "description": "France Télévisions is the French public television broadcaster. It operates several nationwide channels including France 2 (the primary channel), France 3 (focusing on regional content).",
@@ -4024,7 +4003,6 @@
             "investir.fr",
             "radioclassique.fr",
             "lopinion.fr",
-            "investir.fr",
             "historia.fr",
             "boursier.com",
             "connaissancedesarts.com",
@@ -4086,7 +4064,6 @@
             "europe2.fr",
             "lejdd.fr",
             "rfm.fr",
-            "elle.fr",
             "lejdnews.fr"
         ],
         "description": "The Canal+ group is a French multinational company active in the media and telecommunications sector, founded in 1984 and controlled by the Bolloré group since 2012.",
@@ -4302,7 +4279,6 @@
     "country": "France",
     "organization": "CMI France",
     "domains": [
-      "elle.fr",
       "usbeketrica.com",
       "programme-television.org",
       "FranceDimanche.fr",
@@ -4374,7 +4350,6 @@
     "domains": [
       "lamontagne.fr",
       "lepopulaire.fr",
-      "centrepresseaveyron.fr",
       "larep.fr",
       "leberry.fr",
       "lyonnne.fr",
