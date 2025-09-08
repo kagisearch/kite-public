@@ -1,6 +1,8 @@
 import fs from 'node:fs';
-import { runScript, ScriptResult } from './shared-runner.js';
-import { Issue, findLineNumber } from './shared-types.js';
+import { runScript } from './shared-runner.js';
+import type { ScriptResult } from './shared-runner.js';
+import type { Issue } from './shared-types.js';
+import { findLineNumber } from './shared-types.js';
 import { logProcessing, logSuccess, logNoChange, logAnalysis } from './console-utils.js';
 
 const FILE = 'media_data.json';
@@ -24,9 +26,11 @@ async function findUnusedMediaDomains(data: Entry[]): Promise<string[]> {
   
   // Get all domains from media data
   const allDomains = new Set<string>();
-  data.forEach(entry => {
-    entry.domains.forEach(domain => allDomains.add(domain.toLowerCase()));
-  });
+  for (const entry of data) {
+    for (const domain of entry.domains) {
+      allDomains.add(domain.toLowerCase());
+    }
+  }
   
   // Read kite_feeds.json to check which domains are actually used in feeds
   const FEEDS_FILE = 'kite_feeds.json';
@@ -115,7 +119,7 @@ function main(): Entry[] {
     return a.organization.localeCompare(b.organization);
   });
 
-  const newRaw = JSON.stringify(processed, null, 2) + '\n';
+  const newRaw = `${JSON.stringify(processed, null, 2)}\n`;
   if (newRaw !== raw) {
     fs.writeFileSync(FILE, newRaw, 'utf8');
     logSuccess('media_data.json sorted and deduplicated');

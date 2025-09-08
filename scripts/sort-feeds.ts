@@ -1,5 +1,6 @@
 import fs from 'node:fs';
-import { runScript, ScriptResult } from './shared-runner.js';
+import { runScript } from './shared-runner.js';
+import type { ScriptResult } from './shared-runner.js';
 import { analyzeTranslations, generateTranslationIssues } from './translation-analyzer.js';
 import { logProcessing, logSuccess, logNoChange, logBullet } from './console-utils.js';
 
@@ -63,7 +64,7 @@ function main() {
     out[name] = { ...cat, feeds };
   }
 
-  const newRaw = JSON.stringify(out, null, 2) + '\n';
+  const newRaw = `${JSON.stringify(out, null, 2)}\n`;
   if (newRaw !== raw) {
     fs.writeFileSync(FEEDS_FILE, newRaw, 'utf-8');
     logSuccess(`${FEEDS_FILE} sorted. Duplicates removed: ${totalDupes}`);

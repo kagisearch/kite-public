@@ -54,7 +54,7 @@ export function logNoChange(message: string): void {
 /**
  * Log a bullet point with custom icon
  */
-export function logBullet(message: string, icon: string = '🔹'): void {
+export function logBullet(message: string, icon = '🔹'): void {
   console.log(`  ${icon} ${message}`);
 }
 
@@ -69,7 +69,7 @@ export function formatCount(count: number, singular: string, plural?: string): s
 /**
  * Format a list of items with truncation
  */
-export function formatList(items: string[], maxItems: number = 5): string {
+export function formatList(items: string[], maxItems = 5): string {
   if (items.length <= maxItems) {
     return items.join(', ');
   }
@@ -82,7 +82,7 @@ export function formatList(items: string[], maxItems: number = 5): string {
 /**
  * Create a section header with emoji
  */
-export function logSectionHeader(title: string, emoji: string = '📊'): void {
+export function logSectionHeader(title: string, emoji = '📊'): void {
   console.log(`\n${emoji} ${title}:`);
 }
 
@@ -101,13 +101,15 @@ export function logSummaryLine(count: number, description: string, emoji: string
 export function logDetailedItems(
   title: string,
   items: string[],
-  emoji: string = '📝',
-  maxItems: number = 10
+  emoji = '📝',
+  maxItems = 10
 ): void {
   if (items.length === 0) return;
 
   console.log(`\n${emoji} ${title}:`);
-  items.slice(0, maxItems).forEach(item => console.log(`  - ${item}`));
+  for (const item of items.slice(0, maxItems)) {
+    console.log(`  - ${item}`);
+  }
 
   if (items.length > maxItems) {
     console.log(`  ... and ${items.length - maxItems} more`);

@@ -47,14 +47,18 @@ async function checkUrl(url: string, timeoutMs = 15000): Promise<ValidationIssue
 			return { url, message: 'Response does not appear to be RSS/Atom XML' };
 		}
 		return null;
-	} catch (err: any) {
-		return { url, message: err.name === 'AbortError' ? 'Request timed out' : `Fetch error: ${err.message}` };
+	} catch (err: unknown) {
+		if (err && typeof err === 'object' && 'name' in err && (err as { name?: string }).name === 'AbortError') {
+			return { url, message: 'Request timed out' };
+		}
+		const message = err instanceof Error ? err.message : String(err);
+		return { url, message: `Fetch error: ${message}` };
 	}
 }
 
 async function main() {
 	const dataRaw = await readFile('kite_feeds.json', 'utf-8');
-	const data = JSON.parse(dataRaw);
+	const data = JSON.parse(dataRaw) as Record<string, { feeds?: string[] }>;
 
 	let duplicatesFound = false;
 
@@ -62,13 +66,13 @@ async function main() {
 	const allFeeds: string[] = [];
 	const duplicateDiagnostics: DuplicateIssue[] = [];
 
-	for (const [categoryName, category] of Object.entries<any>(data)) {
+	for (const [categoryName, category] of Object.entries(data)) {
 		if (!Array.isArray(category?.feeds)) continue;
 		const seen = new Set<string>();
 		for (const feed of category.feeds) {
 			if (seen.has(feed)) {
 				duplicatesFound = true;
-				duplicateDiagnostics.push({ url: feed, message: 'Duplicate feed within category ' + categoryName, category: categoryName });
+				duplicateDiagnostics.push({ url: feed, message: `Duplicate feed within category ${categoryName}`, category: categoryName });
 			} else {
 				seen.add(feed);
 			}

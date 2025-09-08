@@ -1,13 +1,15 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { runScript, ScriptResult } from './shared-runner.js';
+import { runScript } from './shared-runner.js';
+import type { ScriptResult } from './shared-runner.js';
 import { 
   detectDuplicateKeys, 
   removeDuplicateKeys,
   getLocaleAnalyses,
-  LocaleAnalysis 
 } from './translation-analyzer.js';
-import { Issue, findKeyRange, findLineNumber } from './shared-types.js';
+import type { LocaleAnalysis } from './translation-analyzer.js';
+import type { Issue } from './shared-types.js';
+import { findKeyRange, findLineNumber } from './shared-types.js';
 import { logSuccess, logWarning } from './console-utils.js';
 
 const LOCALE_DIR = 'src/lib/locales';
@@ -112,7 +114,7 @@ function main(): LocaleAnalysis[] {
     }
 
     const sorted = sortObject(data);
-    const newRaw = JSON.stringify(sorted, null, 2) + '\n';
+    const newRaw = `${JSON.stringify(sorted, null, 2)}\n`;
     if (newRaw !== raw) {
       fs.writeFileSync(full, newRaw, 'utf-8');
       logSuccess(`${file} sorted`);

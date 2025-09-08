@@ -1,4 +1,5 @@
-import { Issue, ScriptOutput, outputIssues } from './shared-types.js';
+import type { Issue, ScriptOutput } from './shared-types.js';
+import { outputIssues } from './shared-types.js';
 
 export interface ScriptConfig {
   type: 'feeds' | 'media' | 'locales';
@@ -45,8 +46,9 @@ export async function runScript(
     const result = await analysisFunction();
     showConsoleSummary(config.name, result);
     
-  } catch (e: any) {
-    console.error('❌ Error:', e?.message || e);
+  } catch (e: unknown) {
+    const message = e instanceof Error ? e.message : String(e);
+    console.error('❌ Error:', message);
     process.exit(1);
   }
 }

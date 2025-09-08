@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { glob } from 'glob';
-import { Issue, findLineNumber, findKeyRange } from './shared-types.js';
+import type { Issue } from './shared-types.js';
+import { findLineNumber, findKeyRange } from './shared-types.js';
 
 const LOCALES_DIR = 'src/lib/locales';
 const BASE_LOCALE = 'en.json';
@@ -100,12 +101,12 @@ export async function analyzeTranslations(): Promise<TranslationIssues> {
  */
 async function findUnusedKeys(enKeys: Set<string>): Promise<string[]> {
   const sourceFiles = await glob('src/**/*.{svelte,ts,js}', { ignore: 'node_modules/**' });
-  const sourceContents = sourceFiles.map(file => fs.readFileSync(file, 'utf-8')).join('\n');
+  const sourceContents = sourceFiles.map((file: string) => fs.readFileSync(file, 'utf-8')).join('\n');
   
   const unusedKeys: string[] = [];
   for (const key of enKeys) {
     // Look for translation function calls: s('key'), s("key"), s(`key`)
-    const keyRegex = new RegExp(`s\\s*\\(\\s*['"\`]${key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}['"\`]\\s*[,)]`, 'g');
+    const keyRegex = new RegExp(`s\\s*\\(\\s*['"\`]${key.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\$&')}['"\`]\\s*[,)]`, 'g');
     if (!keyRegex.test(sourceContents)) {
       unusedKeys.push(key);
     }
@@ -119,11 +120,11 @@ async function findUnusedKeys(enKeys: Set<string>): Promise<string[]> {
  */
 export function detectDuplicateKeys(raw: string): string[] {
   const duplicates: string[] = [];
-  const keyPattern = /"([^"]+)":\s*{/g;
+  const keyPattern = /"([^"]+)":\s*\{/g;
   const keys: string[] = [];
-  let match;
+  let match: RegExpExecArray | null = keyPattern.exec(raw);
   
-  while ((match = keyPattern.exec(raw)) !== null) {
+  while (match !== null) {
     const key = match[1];
     if (keys.includes(key)) {
       if (!duplicates.includes(key)) {
@@ -132,6 +133,7 @@ export function detectDuplicateKeys(raw: string): string[] {
     } else {
       keys.push(key);
     }
+    match = keyPattern.exec(raw);
   }
   
   return duplicates;
@@ -149,7 +151,7 @@ export function removeDuplicateKeys(raw: string): string {
   let result = raw;
   
   for (const duplicateKey of duplicates) {
-    const escapedKey = duplicateKey.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const escapedKey = duplicateKey.replace(/[.*+?^${}()|[\\]\\\\]/g, '\\$&');
     const keyPattern = new RegExp(
       `"${escapedKey}":\\s*{(?:[^{}]*(?:{[^{}]*}[^{}]*)*)*}(?=\\s*[,}])`,
       'g'
@@ -159,14 +161,14 @@ export function removeDuplicateKeys(raw: string): string {
     
     if (matches.length > 1) {
       // Sort matches by position (reverse order to avoid index shifting)
-      matches.sort((a, b) => (b.index || 0) - (a.index || 0));
+      matches.sort((a, b) => ( (b.index ?? 0) - (a.index ?? 0) ));
       
       // Remove all but the last occurrence
       for (let i = 1; i < matches.length; i++) {
-        const match = matches[i];
-        if (match.index !== undefined) {
-          let startIndex = match.index;
-          let endIndex = match.index + match[0].length;
+        const m = matches[i];
+        if (m.index !== undefined) {
+          let startIndex = m.index;
+          let endIndex = m.index + m[0].length;
           
           // Handle comma removal
           const beforeComma = result.slice(Math.max(0, startIndex - 10), startIndex).match(/,\s*$/);

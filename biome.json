@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.0.5/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.0.6/schema.json",
   "files": {
     "include": ["src/**/*", "*.js", "*.ts", "*.json", "*.svelte"],
     "ignore": [
@@ -8,8 +8,7 @@
       ".svelte-kit/**",
       "dist/**",
       "coverage/**",
-      "*.min.js",
-      "src/routes/+page.svelte"
+      "*.min.js"
     ],
     "ignoreUnknown": true
   },
@@ -81,27 +80,6 @@
           },
           "suspicious": {
             "noExplicitAny": "off"
-          }
-        }
-      }
-    },
-    {
-      "includes": ["src/routes/+page.svelte"],
-      "linter": {
-        "rules": {
-          "style": {
-            "useConst": "off",
-            "useImportType": "off",
-            "noNonNullAssertion": "off",
-            "noInferrableTypes": "off",
-            "noUselessElse": "warn"
-          },
-          "complexity": {
-            "noForEach": "off",
-            "useOptionalChain": "warn"
-          },
-          "suspicious": {
-            "noExplicitAny": "warn"
           }
         }
       }

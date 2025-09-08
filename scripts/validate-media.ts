@@ -24,11 +24,13 @@ async function main() {
   const issues: Issue[] = [];
   const domainSet = new Map<string, number>();
 
-  let currentLine = 1;
+  const currentLine = 1;
   const lineMap: number[] = [];
-  raw.split(/\n/).forEach((_, idx) => lineMap.push(idx + 1));
+  for (const [idx] of raw.split(/\n/).entries()) {
+    lineMap.push(idx + 1);
+  }
 
-  entries.forEach((entry, idx) => {
+  for (const [idx, entry] of entries.entries()) {
     const baseLine = lineMap[idx];
     const required: (keyof MediaEntry)[] = [
       'country',
@@ -38,24 +40,24 @@ async function main() {
       'owner',
       'typology',
     ];
-    required.forEach((key) => {
+    for (const key of required) {
       if (entry[key] === undefined || entry[key] === null || (key === 'domains' && !(entry.domains?.length))) {
         issues.push({
           message: `Missing ${String(key)} for record #${idx + 1}`,
           line: baseLine,
         });
       }
-    });
+    }
 
-    (entry.domains || []).forEach((d) => {
+    for (const d of entry.domains || []) {
       const lower = d.toLowerCase();
       if (domainSet.has(lower)) {
         issues.push({ message: `Duplicate domain ${d} (record #${idx + 1})`, line: baseLine });
       } else {
         domainSet.set(lower, idx);
       }
-    });
-  });
+    }
+  }
 
   for (const issue of issues) {
     console.error(`media_data.json:${issue.line}:${issue.message}`);
@@ -63,7 +65,11 @@ async function main() {
 
   // ---- compare with kite_feeds.json -----
   const mediaDomains = new Set<string>();
-  entries.forEach((e) => (e.domains || []).forEach((d) => mediaDomains.add(d.toLowerCase())));
+  for (const e of entries) {
+    for (const d of e.domains || []) {
+      mediaDomains.add(d.toLowerCase());
+    }
+  }
 
   // collect only feeds added in this commit/PR
   let diffCmd = 'git diff -U0 --no-color ';
@@ -82,14 +88,16 @@ async function main() {
     .filter(Boolean);
 
   const unknownDomains = new Set<string>();
-  addedUrls.forEach((url) => {
+  for (const url of addedUrls) {
     try {
       const host = new URL(url).hostname.toLowerCase();
       if (!mediaDomains.has(host)) unknownDomains.add(host);
     } catch {}
-  });
+  }
 
-  unknownDomains.forEach((d) => console.error(`kite_feeds.json:1: Domain ${d} missing in media_data.json`));
+  for (const d of unknownDomains) {
+    console.error(`kite_feeds.json:1: Domain ${d} missing in media_data.json`);
+  }
 
   // exit code 0 (advisory)
 }
