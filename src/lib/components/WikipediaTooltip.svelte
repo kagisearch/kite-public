@@ -15,6 +15,7 @@
     size,
   } from "@skeletonlabs/floating-ui-svelte";
   import { OverlayScrollbarsComponent } from "overlayscrollbars-svelte";
+  import type { OverlayScrollbars } from "overlayscrollbars";
   import { onMount, onDestroy } from "svelte";
   import Portal from "svelte-portal";
 
@@ -26,7 +27,7 @@
     ) => void;
   }
 
-  let { onWikipediaClick }: Props = $props();
+  const { onWikipediaClick }: Props = $props();
 
   // State for dynamic sizing
   let tooltipMaxHeight = $state(300);
@@ -77,7 +78,11 @@
   let hideTimeout: number | null = null;
 
   // OverlayScrollbars instance
-  let tooltipScrollbars: any = $state();
+  interface TooltipScrollbarsRef {
+    osInstance: () => OverlayScrollbars | null;
+  }
+  // biome-ignore lint/style/useConst: Will be reassigned via bind:this
+  let tooltipScrollbars: TooltipScrollbarsRef | null = $state(null);
 
   // Detect mobile device
   function detectMobile() {
@@ -166,9 +171,8 @@
 
           // Update scrollbars after content loads
           setTimeout(() => {
-            if (tooltipScrollbars?.osInstance) {
-              tooltipScrollbars.osInstance().update(true);
-            }
+            const instance = tooltipScrollbars?.osInstance?.();
+            instance?.update(true);
           }, 10);
         }
       } catch (error) {

@@ -7,6 +7,7 @@
     title?: string;
   }
 
+  // biome-ignore lint/style/useConst: Svelte props must remain let to stay reactive
   let { isOpen, onClose, title = "Test Modal" }: Props = $props();
 </script>
 

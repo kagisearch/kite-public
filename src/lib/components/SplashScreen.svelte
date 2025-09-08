@@ -12,7 +12,7 @@
     errorMessage?: string;
   }
 
-  let {
+  const {
     showProgress = false,
     progress = 0,
     stage = "",

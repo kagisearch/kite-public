@@ -18,6 +18,7 @@
     onComplete?: () => void;
   }
 
+  // biome-ignore lint/style/useConst: Svelte props must remain let to stay reactive
   let { visible = false, categories = [], onComplete }: Props = $props();
 
   // State
@@ -25,8 +26,9 @@
   const totalSteps = 3;
 
   // OverlayScrollbars setup
+  // biome-ignore lint/style/useConst: bound via Svelte bind:this lifecycle
   let scrollableElement: HTMLElement | undefined = $state(undefined);
-  let [initialize, instance] = useOverlayScrollbars({
+  const [initialize, instance] = useOverlayScrollbars({
     defer: true,
     options: {
       scrollbars: {

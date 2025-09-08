@@ -4,6 +4,7 @@
   import { onMount, onDestroy } from "svelte";
 
   interface Props {
+    // biome-ignore lint/suspicious/noExplicitAny: lottie-web requires raw JSON data
     animationData: any;
     loop?: boolean;
     autoplay?: boolean;
@@ -13,7 +14,7 @@
     loopFrameOffset?: number; // Number of frames to cut from the end before looping
   }
 
-  let {
+  const {
     animationData,
     loop = true,
     autoplay = true,

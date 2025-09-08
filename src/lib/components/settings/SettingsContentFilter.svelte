@@ -15,12 +15,16 @@
 
   // State
   let newKeyword = $state("");
+  // biome-ignore lint/style/useConst: bound via Svelte bind:this lifecycle
   let inputElement = $state<HTMLInputElement>();
   let previousLanguage = $state(dataLanguage.current);
   let showResetConfirm = $state(false);
+  // biome-ignore lint/style/useConst: bound via Svelte bind:this lifecycle
   let resetButtonElement = $state<HTMLButtonElement>();
   let showImportConfirm = $state(false);
+  // biome-ignore lint/style/useConst: bound via Svelte bind:this lifecycle
   let importButtonElement = $state<HTMLButtonElement>();
+  // biome-ignore lint/style/useConst: bound via Svelte bind:this lifecycle
   let fileInputElement = $state<HTMLInputElement>();
   let importWarning = $state<string | undefined>();
   let pendingImportData = $state<string | undefined>();
@@ -66,7 +70,9 @@
       .split(",")
       .map((k) => k.trim())
       .filter((k) => k);
-    keywords.forEach((k) => contentFilter.addCustomKeyword(k));
+    for (const k of keywords) {
+      contentFilter.addCustomKeyword(k);
+    }
     newKeyword = "";
 
     // Focus back on input
@@ -110,14 +116,15 @@
   });
 
   // Helper to get keywords for a preset in the current language
+  // biome-ignore lint/suspicious/noExplicitAny: preset shape from store
   function getPresetKeywords(preset: any): string[] {
     if (Array.isArray(preset.keywords)) {
       return preset.keywords;
     }
     return (
       preset.keywords[dataLanguage.current] ||
-      preset.keywords["default"] ||
-      preset.keywords["en"] ||
+      preset.keywords.default ||
+      preset.keywords.en ||
       []
     );
   }
@@ -126,13 +133,13 @@
   const customKeywords = $derived.by(() => {
     // Get all keywords from active presets
     const presetKeywords = new Set<string>();
-    contentFilter.activePresets.forEach((presetId) => {
+    for (const presetId of contentFilter.activePresets) {
       const preset = contentFilter.presets.find((p) => p.id === presetId);
       if (preset) {
         const keywords = getPresetKeywords(preset);
-        keywords.forEach((k) => presetKeywords.add(k));
+        for (const k of keywords) presetKeywords.add(k);
       }
-    });
+    }
 
     // Return keywords that are not from presets
     return contentFilter.keywords.filter((k) => !presetKeywords.has(k));

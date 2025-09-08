@@ -17,6 +17,7 @@
     lastUpdated: string;
   }
 
+  // biome-ignore lint/style/useConst: Svelte props must remain let to stay reactive
   let { score, summary, lastUpdated }: Props = $props();
 
   // State
@@ -26,8 +27,10 @@
     Array<{ date: string; score: number; summary: string }>
   >([]);
   let isLoadingHistory = $state(false);
+  // biome-ignore lint/style/useConst: Svelte bind:this reassignments
   let chartCanvas = $state<HTMLCanvasElement>();
   let chartInstance: Chart | null = null;
+  // biome-ignore lint/style/useConst: Svelte bind:this reassignments
   let scrollContainer = $state<HTMLElement>();
 
   // Modal behavior
@@ -67,6 +70,7 @@
   }
 
   // Import Lottie animations (these will be added from LottieFiles)
+  // biome-ignore lint/suspicious/noExplicitAny: Lottie JSON lacks a strict TS type
   let weatherAnimations = $state<Record<string, any>>({});
 
   // Load animations dynamically
@@ -95,15 +99,11 @@
 
   // Get weather animation based on score
   function getWeatherAnimation(): string {
-    if (score <= 20)
-      return "snow"; // Cool - peaceful/cold
-    else if (score <= 40)
-      return "sunnyCloudy"; // Mild - partly cloudy
-    else if (score <= 60)
-      return "storm"; // Warm - storm brewing
-    else if (score <= 80)
-      return "smallFire"; // Hot - small fire
-    else return "bigFire"; // Burning - big fire
+    if (score <= 20) return "snow"; // Cool - peaceful/cold
+    if (score <= 40) return "sunnyCloudy"; // Mild - partly cloudy
+    if (score <= 60) return "storm"; // Warm - storm brewing
+    if (score <= 80) return "smallFire"; // Hot - small fire
+    return "bigFire"; // Burning - big fire
   }
 
   // Handle click to show modal
@@ -248,7 +248,7 @@
   }
 
   // Get chart color based on score
-  function getChartColor(score: number, alpha: number = 1): string {
+  function getChartColor(score: number, alpha = 1): string {
     if (score <= 20) return `rgba(59, 130, 246, ${alpha})`; // blue
     if (score <= 40) return `rgba(34, 197, 94, ${alpha})`; // green
     if (score <= 60) return `rgba(251, 191, 36, ${alpha})`; // yellow

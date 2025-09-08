@@ -36,6 +36,7 @@
     initialCategoryId?: string | null;
   }
 
+  // biome-ignore lint/style/useConst: Svelte props must remain let to stay reactive
   let { onDataLoaded, onError, initialBatchId, initialCategoryId }: Props =
     $props();
 
@@ -190,7 +191,7 @@
       );
 
       // If we have a category from URL that's not enabled, we need to include it
-      let categoriesToLoad = [...enabledCategoriesForLoading];
+      const categoriesToLoad = [...enabledCategoriesForLoading];
       let temporaryCategoryId: string | null = null;
 
       // Check against ALL enabled categories (including OnThisDay) to determine if it's temporary
@@ -276,11 +277,11 @@
       let maxTimestamp = 0;
       let totalReadCountSum = 0;
 
-      categoryResults.forEach((result) => {
+      for (const result of categoryResults) {
         allCategoryStories[result.categoryId] = result.stories;
         maxTimestamp = Math.max(maxTimestamp, result.timestamp);
         totalReadCountSum += result.readCount;
-      });
+      }
 
       // Set initial display to target category (from URL or first enabled)
       stories = allCategoryStories[targetCategory] || [];
@@ -298,10 +299,14 @@
       // Only preload images for the first category to keep initial load fast
       const firstCategoryStories = allCategoryStories[targetCategory] || [];
       console.log(
-        `📦 Preloading images for first category: ${targetCategory} (${firstCategoryStories.length} stories)`,
+        "📦 Preloading images for first category:",
+        targetCategory,
+        `(${firstCategoryStories.length} stories)`,
       );
       console.log(
-        `📚 Total categories loaded: ${Object.keys(allCategoryStories).length} (${Object.values(allCategoryStories).flat().length} total stories)`,
+        "📚 Total categories loaded:",
+        Object.keys(allCategoryStories).length,
+        `(${Object.values(allCategoryStories).flat().length} total stories)`,
       );
 
       if (firstCategoryStories.length > 0) {
@@ -403,7 +408,7 @@
       );
 
       // If we have a category from URL that's not enabled, we need to include it
-      let categoriesToLoad = [...enabledCategoriesForLoading];
+      const categoriesToLoad = [...enabledCategoriesForLoading];
       let temporaryCategoryId: string | null = null;
 
       // Check against ALL enabled categories (including OnThisDay) to determine if it's temporary
@@ -488,11 +493,11 @@
       let maxTimestamp = 0;
       let totalReadCountSum = 0;
 
-      categoryResults.forEach((result) => {
+      for (const result of categoryResults) {
         allCategoryStories[result.categoryId] = result.stories;
         maxTimestamp = Math.max(maxTimestamp, result.timestamp);
         totalReadCountSum += result.readCount;
-      });
+      }
 
       // Set initial display to current category (from URL or first enabled)
       stories = allCategoryStories[currentCategory] || [];
@@ -544,7 +549,7 @@
 
   // Load data when component mounts
   onMount(() => {
-    console.log(`🚀 DataLoader mounted - loading initial data`);
+    console.log("🚀 DataLoader mounted - loading initial data");
     loadInitialData();
 
     // Register reload callback

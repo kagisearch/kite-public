@@ -22,7 +22,7 @@
     onShowAbout?: () => void;
   }
 
-  let {
+  const {
     visible = false,
     categories = [],
     onClose,
@@ -54,7 +54,12 @@
 
   // Expose debug method to enable preloading tab
   if (typeof window !== "undefined") {
-    (window as any).kiteSettingsDebug = {
+    (window as unknown as {
+      kiteSettingsDebug: {
+        enablePreloadingTab: () => boolean;
+        disablePreloadingTab: () => boolean;
+      };
+    }).kiteSettingsDebug = {
       enablePreloadingTab: () => {
         showPreloadingTab = true;
         // Save to localStorage for persistence
@@ -78,8 +83,9 @@
   const modal = createModalBehavior();
 
   // OverlayScrollbars setup
+  // biome-ignore lint/style/useConst: reassigned via bind:this
   let scrollableElement: HTMLElement | undefined = $state(undefined);
-  let [initialize, instance] = useOverlayScrollbars({
+  const [initialize, instance] = useOverlayScrollbars({
     defer: true,
     options: {
       scrollbars: {
@@ -90,6 +96,7 @@
   });
 
   // Focus management
+  // biome-ignore lint/style/useConst: reassigned via bind:this
   let dialogElement: HTMLElement | undefined = $state(undefined);
   let firstFocusableElement: HTMLElement | undefined = $state(undefined);
   let lastFocusableElement: HTMLElement | undefined = $state(undefined);

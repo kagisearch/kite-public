@@ -7,7 +7,7 @@
   /**
    * Props
    */
-  let {
+  const {
     text = "",
     position = "top",
     disabled = false,
@@ -25,7 +25,9 @@
    * Reactive state
    */
   let visible = $state(false);
+  // biome-ignore lint/style/useConst: reassigned by Svelte via bind:this
   let tooltipElement: HTMLDivElement | null = $state(null);
+  // biome-ignore lint/style/useConst: reassigned by Svelte via bind:this
   let triggerElement: HTMLDivElement | null = $state(null);
   let timeoutId: number;
   let mobileTimeoutId: number;

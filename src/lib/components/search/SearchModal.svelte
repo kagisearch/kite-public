@@ -1,11 +1,16 @@
 <script lang="ts">
   import { browser } from "$app/environment";
   import { s } from "$lib/client/localization.svelte";
-  import { SearchService, type SearchResult } from "$lib/services/search";
+  import { SearchService } from "$lib/services/search/SearchService";
+  import type { SearchResult, FilterSuggestion, FilterContext } from "$lib/services/search/types";
   import type { Story, Category } from "$lib/types";
   import { scrollLock } from "$lib/utils/scrollLock";
   import SearchInput from "./SearchInput.svelte";
   import SearchResults from "./SearchResults.svelte";
+  // Define a minimal instance interface to avoid importing component type
+  interface SearchInputInstance {
+    getElement(): HTMLDivElement | null;
+  }
 
   interface Props {
     visible: boolean;
@@ -21,6 +26,7 @@
     ) => void;
   }
 
+  // biome-ignore lint/style/useConst: Svelte props must remain let to stay reactive
   let {
     visible,
     allCategoryStories,
@@ -31,12 +37,15 @@
 
   // Initialize search service
   let searchService: SearchService;
-  let searchInput = $state<SearchInput>();
+  // biome-ignore lint/style/useConst: bound via Svelte bind:this lifecycle
+  let searchInput = $state<SearchInputInstance>();
 
   // Local state
+  // biome-ignore lint/style/useConst: state object mutated reactively
   let searchState = $state({
     query: "",
-    filters: [] as any[], // TODO: fix type
+    // Filter type comes from service; keep broad but typed
+    filters: [] as Array<{ isValid: boolean }>,
     results: [] as SearchResult[],
     localResults: [] as SearchResult[],
     historicalResults: [] as SearchResult[],
@@ -50,11 +59,11 @@
     totalCount: 0,
   });
 
-  let filterSuggestions = $state<any[]>([]);
+  let filterSuggestions = $state<FilterSuggestion[]>([]);
   let filterSuggestionIndex = $state(0);
   let showFilterSuggestions = $state(false);
   let isLoadingBatch = $state(false);
-  let currentFilterContext = $state<any>(null);
+  let currentFilterContext = $state<FilterContext | null>(null);
 
   // Initialize search service when categories change
   $effect(() => {
@@ -103,6 +112,7 @@
   const isMac = $derived(
     browser &&
       (("userAgentData" in navigator &&
+        // biome-ignore lint/suspicious/noExplicitAny: browser UA typings vary
         (navigator as any).userAgentData?.platform === "macOS") ||
         navigator.userAgent.toUpperCase().indexOf("MAC") >= 0),
   );
@@ -204,7 +214,7 @@
 
   function handleFilterKeyboard(event: KeyboardEvent) {
     switch (event.key) {
-      case "ArrowDown":
+      case "ArrowDown": {
         event.preventDefault();
         event.stopPropagation();
         // Stop at the last suggestion, don't loop
@@ -213,16 +223,18 @@
           filterSuggestions.length - 1,
         );
         break;
+      }
 
-      case "ArrowUp":
+      case "ArrowUp": {
         event.preventDefault();
         event.stopPropagation();
         // Stop at the first suggestion, don't loop
         filterSuggestionIndex = Math.max(filterSuggestionIndex - 1, 0);
         break;
+      }
 
       case "Enter":
-      case "Tab":
+      case "Tab": {
         event.preventDefault();
         event.stopPropagation();
         const selected = filterSuggestions[filterSuggestionIndex];
@@ -230,11 +242,13 @@
           handleApplySuggestion(selected);
         }
         break;
+      }
 
-      case "Escape":
+      case "Escape": {
         event.preventDefault();
         showFilterSuggestions = false;
         break;
+      }
     }
   }
 
@@ -292,6 +306,7 @@
     }
   }
 
+  // biome-ignore lint/suspicious/noExplicitAny: suggestion type comes from service context
   function handleApplySuggestion(suggestion: any) {
     if (!searchService || !currentFilterContext) return;
 

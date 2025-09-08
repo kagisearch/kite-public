@@ -4,7 +4,7 @@
   import { scrollLock } from "$lib/utils/scrollLock";
   import { useOverlayScrollbars } from "overlayscrollbars-svelte";
   import "overlayscrollbars/overlayscrollbars.css";
-  import { onMount, onDestroy } from "svelte";
+  import { onMount, onDestroy, type Snippet } from "svelte";
   import { fade, fly } from "svelte/transition";
 
   // Props
@@ -21,10 +21,10 @@
     zIndex?: number;
     ariaLabel?: string;
     class?: string;
-    children?: any;
+    children?: Snippet;
   }
 
-  let {
+  const {
     isOpen = false,
     onClose,
     title = "",
@@ -41,12 +41,14 @@
   }: Props = $props();
 
   // Modal element references
+  // biome-ignore lint/style/useConst: Svelte binds reassign
   let modalElement: HTMLDivElement | undefined = $state();
+  // biome-ignore lint/style/useConst: Svelte binds reassign
   let contentElement: HTMLDivElement | undefined = $state();
   let previousActiveElement: Element | null = null;
 
   // OverlayScrollbars setup
-  let [initialize] = useOverlayScrollbars({
+  const [initialize] = useOverlayScrollbars({
     defer: true,
     options: {
       scrollbars: {

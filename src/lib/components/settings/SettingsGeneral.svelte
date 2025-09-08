@@ -18,6 +18,7 @@
     onShowAbout?: () => void;
   }
 
+  // biome-ignore lint/style/useConst: Svelte props must remain let to stay reactive
   let { onShowAbout }: Props = $props();
 
   // Font size options for display
@@ -97,7 +98,9 @@
 
   // Category header position change handler
   function handleCategoryHeaderPositionChange(position: string) {
-    settings.setCategoryHeaderPosition(position as any);
+    settings.setCategoryHeaderPosition(
+      position as import("$lib/stores/settings.svelte").CategoryHeaderPosition,
+    );
     currentCategoryHeaderPosition = position;
   }
 

@@ -49,7 +49,10 @@ describe("BaseModal", () => {
     });
 
     const backdrop = container.querySelector(".fixed.inset-0");
-    await fireEvent.click(backdrop!);
+    expect(backdrop).not.toBeNull();
+    if (backdrop) {
+      await fireEvent.click(backdrop);
+    }
 
     expect(onClose).toHaveBeenCalled();
   });
@@ -65,7 +68,10 @@ describe("BaseModal", () => {
     });
 
     const backdrop = container.querySelector(".fixed.inset-0");
-    await fireEvent.click(backdrop!);
+    expect(backdrop).not.toBeNull();
+    if (backdrop) {
+      await fireEvent.click(backdrop);
+    }
 
     expect(onClose).not.toHaveBeenCalled();
   });

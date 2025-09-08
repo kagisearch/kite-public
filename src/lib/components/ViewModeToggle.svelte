@@ -7,7 +7,7 @@
     onViewModeChange: (mode: "list" | "map") => void;
   }
 
-  let { viewMode, onViewModeChange }: Props = $props();
+  const { viewMode, onViewModeChange }: Props = $props();
 
   function handleListClick() {
     onViewModeChange("list");

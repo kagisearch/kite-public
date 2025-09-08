@@ -2,7 +2,7 @@
   import { browser } from "$app/environment";
   import { s } from "$lib/client/localization.svelte";
   import { features } from "$lib/config/features";
-  import type { SearchResult } from "$lib/services/search";
+  import type { SearchResult } from "$lib/services/search/types";
   import {
     IconClock,
     IconTag,
@@ -30,6 +30,7 @@
     onLoadMore?: () => void;
   }
 
+  // biome-ignore lint/style/useConst: Svelte props must remain let to stay reactive
   let {
     results,
     selectedIndex,
@@ -45,6 +46,7 @@
     onLoadMore,
   }: Props = $props();
 
+  // biome-ignore lint/style/useConst: bound via Svelte bind:this lifecycle
   let resultsContainer = $state<HTMLDivElement | null>(null);
   let lastSelectedIndex = $state(0);
   let currentFilterTip = $state(0);
@@ -215,10 +217,7 @@
       // Add text before match
       result += text.slice(lastIndex, index);
       // Add highlighted match
-      result +=
-        '<mark class="bg-yellow-200 dark:bg-yellow-800">' +
-        text.slice(index, index + query.length) +
-        "</mark>";
+      result += `<mark class="bg-yellow-200 dark:bg-yellow-800">${text.slice(index, index + query.length)}</mark>`;
       lastIndex = index + query.length;
       index = lowerText.indexOf(lowerQuery, lastIndex);
     }
@@ -242,7 +241,7 @@
   function getSnippetWithHighlight(
     text: string,
     query: string,
-    maxLength: number = 150,
+    maxLength = 150,
   ): string {
     const cleanText = removeCitations(text);
 
@@ -281,8 +280,8 @@
       snippet = cleanText.slice(start, end);
 
       // Add ellipsis
-      if (start > 0) snippet = "..." + snippet;
-      if (end < cleanText.length) snippet = snippet + "...";
+      if (start > 0) snippet = `...${snippet}`;
+      if (end < cleanText.length) snippet = `${snippet}...`;
     }
 
     // Highlight the match

@@ -15,14 +15,20 @@
   // Props
   interface Props {
     isOpen?: boolean;
-    currentSource?: any;
-    sourceArticles?: any[];
-    currentMediaInfo?: any;
+    currentSource?: { name?: string } | null;
+    sourceArticles?: Array<{ image?: string; link: string; title: string; date: string | number | Date }>;
+    currentMediaInfo?: {
+      country?: string;
+      owner?: string;
+      organization?: string;
+      typology?: string;
+      description?: string;
+    } | null;
     isLoadingMediaInfo?: boolean;
     onClose?: () => void;
   }
 
-  let {
+  const {
     isOpen = false,
     currentSource,
     sourceArticles = [],
@@ -32,9 +38,11 @@
   }: Props = $props();
 
   // State for showing source info
+  // biome-ignore lint/style/useConst: toggled via event handlers
   let showSourceInfo = $state(false);
 
   // Focus management
+  // biome-ignore lint/style/useConst: reassigned via bind:this
   let dialogElement: HTMLElement | undefined = $state(undefined);
   let firstFocusableElement: HTMLElement | undefined = $state(undefined);
   let lastFocusableElement: HTMLElement | undefined = $state(undefined);
@@ -46,8 +54,9 @@
   });
 
   // OverlayScrollbars setup
+  // biome-ignore lint/style/useConst: reassigned via bind:this
   let scrollableElement: HTMLElement | undefined = $state(undefined);
-  let [initialize, instance] = useOverlayScrollbars({
+  const [initialize, instance] = useOverlayScrollbars({
     defer: true,
     options: {
       scrollbars: {
@@ -266,9 +275,8 @@
                   </h4>
                 </a>
                 <p class="text-sm text-gray-500 dark:text-gray-400">
-                  {getTimeAgo(article.date)} · {new Date(
-                    article.date,
-                  ).toLocaleDateString()}
+                  {getTimeAgo(String(article.date))} ·
+                  {new Date(article.date as string | number | Date).toLocaleDateString()}
                 </p>
               </div>
             </article>

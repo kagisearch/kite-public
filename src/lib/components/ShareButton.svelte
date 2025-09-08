@@ -23,6 +23,7 @@
     class?: string;
   }
 
+  // biome-ignore lint/style/useConst: Svelte props must remain let to stay reactive
   let {
     title = s("article.shareDefaultTitle") || "Check out this story",
     description = "",

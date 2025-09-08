@@ -1,5 +1,6 @@
 <script lang="ts">
   import type { OnThisDayEvent } from "$lib/types";
+  // biome-ignore lint/style/useImportType: used as component in markup
   import WikipediaTooltip from "./WikipediaTooltip.svelte";
   import OnThisDayEventTimeline from "./onthisday/OnThisDayEventTimeline.svelte";
   import OnThisDayPeopleCarousel from "./onthisday/OnThisDayPeopleCarousel.svelte";
@@ -14,7 +15,7 @@
     ) => void;
   }
 
-  let { stories, onWikipediaClick }: Props = $props();
+  const { stories, onWikipediaClick }: Props = $props();
 
   // Split stories into events and people
   const events = $derived(stories.filter((story) => story.type === "event"));
@@ -25,6 +26,7 @@
   );
 
   // Reference to Wikipedia tooltip component
+  // biome-ignore lint/style/useConst: reassigned via bind:this
   let wikipediaTooltip: WikipediaTooltip | null = $state(null);
 
   // Handle Wikipedia interactions

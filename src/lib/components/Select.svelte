@@ -8,6 +8,7 @@
     IconSearch,
     IconX,
   } from "@tabler/icons-svelte";
+  // biome-ignore lint/style/useImportType: component is used in template
   import { OverlayScrollbarsComponent } from "overlayscrollbars-svelte";
   import { onMount, tick } from "svelte";
   import Portal from "svelte-portal";
@@ -17,6 +18,7 @@
     value: string;
     label: string;
     gender?: "M" | "F" | "N"; // Optional gender field
+    // biome-ignore lint/suspicious/noExplicitAny: dynamic Svelte component type
     icon?: any; // Optional Tabler icon component
   };
 
@@ -35,14 +37,17 @@
 
   // Internal state
   let container: HTMLDivElement;
+  // biome-ignore lint/style/useConst: reassigned via bind:this
   let dropdown: HTMLDivElement | null = $state(null);
+  // biome-ignore lint/style/useConst: reassigned via bind:this
   let fieldset: HTMLDivElement | null = $state(null);
+  // biome-ignore lint/style/useConst: reassigned via bind:this
   let search: HTMLInputElement | null = $state(null);
   let isOpen = $state(false);
   let filter = $state("");
   let uniqueId = $state("");
+  // biome-ignore lint/style/useConst: reassigned via bind:this
   let overlayScrollbars: OverlayScrollbarsComponent | null = $state(null);
-  let closeTimeout: number | null = $state(null);
 
   // Generate unique ID for aria attributes
   try {
@@ -53,7 +58,7 @@
   }
 
   // Filtered options based on search filter
-  let filteredOptions = $derived(
+  const filteredOptions = $derived(
     filter
       ? options.filter((option) =>
           option.label.toLowerCase().includes(filter.toLowerCase()),
@@ -62,14 +67,14 @@
   );
 
   // Current selected option
-  let selectedOption = $derived(
+  const selectedOption = $derived(
     options.find((option) => option.value === value),
   );
-  let displayValue = $derived(
+  const displayValue = $derived(
     selectedOption ? selectedOption.label : placeholder,
   );
-  let displayGender = $derived(selectedOption?.gender);
-  let genderClass = $derived(
+  const displayGender = $derived(selectedOption?.gender);
+  const genderClass = $derived(
     displayGender === "M"
       ? "text-blue-400/70 dark:text-blue-400/80"
       : displayGender === "F"
@@ -192,12 +197,12 @@
     if (!isOpen) return;
 
     // Ignore clicks on the container (button) itself - these are handled by toggleDropdown
-    if (container && container.contains(event.target as Node)) {
+    if (container?.contains(event.target as Node)) {
       return;
     }
 
     // Ignore clicks on the dropdown contents
-    if (dropdown && dropdown.contains(event.target as Node)) {
+    if (dropdown?.contains(event.target as Node)) {
       return;
     }
 
@@ -307,7 +312,7 @@
 
     const scrollableParents = getScrollableParents(container);
 
-    scrollableParents.forEach((parent) => {
+    for (const parent of scrollableParents) {
       const listener = () => {
         if (isOpen) {
           // Check if select is still visible, close dropdown if not
@@ -321,14 +326,14 @@
 
       parent.addEventListener("scroll", listener, { passive: true });
       parentScrollListeners.push({ element: parent, listener });
-    });
+    }
   }
 
   // Remove all parent scroll listeners
   function removeParentScrollListeners() {
-    parentScrollListeners.forEach(({ element, listener }) => {
+    for (const { element, listener } of parentScrollListeners) {
       element.removeEventListener("scroll", listener);
-    });
+    }
     parentScrollListeners = [];
   }
 
@@ -358,7 +363,6 @@
       window.removeEventListener("resize", positionDropdown);
       window.removeEventListener("scroll", windowScrollHandler);
       removeParentScrollListeners();
-      if (closeTimeout) window.clearTimeout(closeTimeout);
     };
   });
 

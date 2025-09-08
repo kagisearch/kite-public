@@ -27,6 +27,7 @@
     categories?: Category[];
   }
 
+  // biome-ignore lint/style/useConst: Svelte props must remain let to stay reactive
   let { categories: allCategories = [] }: Props = $props();
 
   // Track dragging state
@@ -42,6 +43,7 @@
 
   // Category metadata and filtering
   let categoryMetadata = $state<CategoryMetadata[]>([]);
+  // biome-ignore lint/style/useConst: modified by UI events
   let categoryFilter = $state("all");
 
   // Filter options for the Select component
@@ -166,12 +168,13 @@
       other: 0,
     };
 
-    disabledItems.forEach((item) => {
+    for (const item of disabledItems) {
       const type = getCategoryType(item.id);
       if (type in counts) {
+        // biome-ignore lint/suspicious/noExplicitAny: dynamic key increment
         (counts as any)[type]++;
       }
-    });
+    }
 
     return counts;
   }
@@ -184,7 +187,7 @@
       label:
         option.value === "all"
           ? `All Categories (${counts.all})`
-          : `${option.label} (${(counts as any)[option.value] || 0})`,
+          : `${option.label} (${(counts as Record<string, number>)[option.value] || 0})`,
     }));
   });
 
@@ -211,7 +214,7 @@
     const newItems = e.detail.items;
 
     // Extract the new enabled categories in their drag order
-    const newEnabled = newItems.map((item: any) => item.id);
+    const newEnabled = newItems.map((item: { id: string }) => item.id);
 
     // Update enabled/disabled states
     categories.setEnabled(newEnabled);
@@ -219,7 +222,7 @@
     // Update the global order to preserve the exact drag order within enabled categories
     // Build new order: enabled categories in drag order + disabled categories in original order
     const currentDisabled = categories.disabled;
-    const disabledInOrder = categories.order.filter((id) =>
+    const disabledInOrder = categories.order.filter((id: string) =>
       currentDisabled.includes(id),
     );
 
@@ -260,7 +263,7 @@
     const newItems = e.detail.items;
 
     // Extract the new disabled categories in their drag order
-    const newDisabled = newItems.map((item: any) => item.id);
+    const newDisabled = newItems.map((item: { id: string }) => item.id);
 
     // When working with filtered items, we need to preserve the order of categories
     // that aren't currently visible in the filter
@@ -279,7 +282,7 @@
 
     // Update the global order to preserve the exact drag order within disabled categories
     const currentEnabled = categories.enabled;
-    const enabledInOrder = categories.order.filter((id) =>
+    const enabledInOrder = categories.order.filter((id: string) =>
       currentEnabled.includes(id),
     );
 
