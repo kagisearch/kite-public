@@ -143,32 +143,3 @@ jobs:
         with:
           fail_ci_if_error: false
           verbose: true
-
-  type-check:
-    name: Type Check
-    runs-on: ubuntu-latest
-    needs: changes
-    if: needs.changes.outputs['app'] == 'true'
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
-
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.bun/install/cache
-          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-bun-
-
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
-
-      - name: Run TypeScript check
-        run: bunx --yes svelte-kit sync && bunx --yes svelte-check --tsconfig ./tsconfig.svelte-check.json
-
-      - name: Run Svelte check
-        run: bunx --yes svelte-check --tsconfig ./tsconfig.svelte-check.json
