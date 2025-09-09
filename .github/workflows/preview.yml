@@ -87,11 +87,21 @@ jobs:
           if [ -d "$DIR" ] && [ -z "$(ls -A "$DIR")" ]; then
             rmdir "$DIR"
           fi
-          if ! git diff --quiet; then
+          # Also remove accidental bare repo folder if present
+          if [ -d "bare_pr_preview" ]; then
+            git rm -r --ignore-unmatch -f bare_pr_preview || true
+            rm -rf bare_pr_preview || true
+          fi
+          # Stage only the preview directory (or its deletion)
+          if [ -d "$DIR" ]; then
+            git add -A -- "$DIR"
+          else
+            git rm -r --ignore-unmatch "$DIR" || true
+          fi
+          if ! git diff --cached --quiet; then
             git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git config --local user.name "github-actions[bot]"
-            git add -A
-            git commit -m "chore(preview): remove leftover .nojekyll for PR ${{ github.event.pull_request.number }}"
+            git commit -m "chore(preview): cleanup PR ${{ github.event.pull_request.number }} leftovers"
             git push origin gh-pages
           else
             echo "No leftover files to clean."
