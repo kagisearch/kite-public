@@ -15,9 +15,47 @@ import { logSuccess, logWarning } from './console-utils.js';
 const LOCALE_DIR = 'src/lib/locales';
 const BASE = 'en.json';
 
+// Desired order of key categories (prefixes)
+const KEY_CATEGORY_ORDER = [
+  'auth',
+  'user', 
+  'profile',
+  'settings',
+  'nav',
+  'menu',
+  'button',
+  'form',
+  'error',
+  'success',
+  'warning',
+  'info',
+  'common',
+  'misc'
+];
+
+function getKeyCategory(key: string): string {
+  const parts = key.split('.');
+  return parts[0] || 'misc';
+}
+
+function getCategoryRank(category: string): number {
+  const idx = KEY_CATEGORY_ORDER.indexOf(category);
+  return idx === -1 ? KEY_CATEGORY_ORDER.length : idx;
+}
+
 function sortObject<T extends Record<string, unknown>>(obj: T): T {
   return Object.keys(obj)
-    .sort((a, b) => a.localeCompare(b))
+    .sort((a, b) => {
+      const categoryA = getKeyCategory(a);
+      const categoryB = getKeyCategory(b);
+      
+      // First sort by category rank
+      const rankDiff = getCategoryRank(categoryA) - getCategoryRank(categoryB);
+      if (rankDiff !== 0) return rankDiff;
+      
+      // Then sort alphabetically within category
+      return a.localeCompare(b);
+    })
     .reduce((acc, key) => {
       // @ts-expect-error index
       acc[key] = obj[key];

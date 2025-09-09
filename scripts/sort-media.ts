@@ -114,8 +114,15 @@ function main(): Entry[] {
   }));
 
   processed.sort((a, b) => {
+    // First sort by typology (category)
+    const t = a.typology.localeCompare(b.typology);
+    if (t !== 0) return t;
+    
+    // Then by country
     const c = a.country.localeCompare(b.country);
     if (c !== 0) return c;
+    
+    // Finally by organization
     return a.organization.localeCompare(b.organization);
   });
 
