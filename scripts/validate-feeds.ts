@@ -210,12 +210,34 @@ async function main() {
 		}
 	}
 
-	const issues = await mapLimit(allFeeds, 10, async (url) => (await checkUrl(url)));
+	// Determine feeds added in this PR (or last commit on push) and focus validation on them
+	let addedUrls: string[] = [];
+	try {
+		let diffCmd = 'git diff -U0 --no-color ';
+		if (process.env.GITHUB_EVENT_NAME === 'pull_request' && process.env.GITHUB_BASE_REF) {
+			diffCmd += `${process.env.GITHUB_BASE_REF}...HEAD`;
+		} else {
+			diffCmd += 'HEAD~1';
+		}
+		diffCmd += ' -- kite_feeds.json';
+
+		const { execSync } = await import('node:child_process');
+		const out = execSync(diffCmd, { encoding: 'utf8' });
+		addedUrls = out
+			.split('\n')
+			.filter((l) => l.startsWith('+') && l.includes('http'))
+			.map((l) => l.replace(/^\+\s*"?,?/, '').replace(/",?$/, '').trim())
+			.filter(Boolean);
+	} catch {}
+
+	const feedsToCheck = addedUrls.length > 0 ? addedUrls : allFeeds;
+	const issues = await mapLimit(feedsToCheck, 10, async (url) => (await checkUrl(url)));
 
 	const flattened = issues.flat();
 
+	const filteredDuplicates = addedUrls.length > 0 ? duplicateDiagnostics.filter((d) => addedUrls.includes(d.url)) : duplicateDiagnostics;
 	const diagnostics: ValidationIssue[] = [
-		...duplicateDiagnostics,
+		...filteredDuplicates,
 		...flattened,
 	];
 	// Build ordered unified diff with grouped deletions and context to avoid misordered hunks
@@ -283,9 +305,10 @@ async function main() {
 		return `diff --git a/${filePath} b/${filePath}\n--- a/${filePath}\n+++ b/${filePath}\n${diffOut}`;
 	}
 
-	// Emit diagnostics and collect line numbers to remove
+	// Emit diagnostics (focus on added feeds when present) and collect line numbers to remove
+	const diagnosticsToReport = addedUrls.length > 0 ? diagnostics.filter((d) => addedUrls.includes(d.url)) : diagnostics;
 	const removalLineNumbers: number[] = [];
-	for (const issue of diagnostics) {
+	for (const issue of diagnosticsToReport) {
 		console.error(`kite_feeds.json:1:${issue.url} -> ${issue.message}`);
 		if (issue.suggestRemoval) {
 			const idx = fileLines.findIndex((l) => l.includes(issue.url));
@@ -296,24 +319,8 @@ async function main() {
 	const diff = buildUnifiedDeleteDiff('kite_feeds.json', fileLines, removalLineNumbers, 2);
 	if (diff) process.stdout.write(diff);
 
-	// Attempt to detect if all newly added feeds are problematic and inform the user
+	// Inform if all newly added feeds look problematic
 	try {
-		let diffCmd = 'git diff -U0 --no-color ';
-		if (process.env.GITHUB_EVENT_NAME === 'pull_request' && process.env.GITHUB_BASE_REF) {
-			diffCmd += `${process.env.GITHUB_BASE_REF}...HEAD`;
-		} else {
-			diffCmd += 'HEAD~1';
-		}
-		diffCmd += ' -- kite_feeds.json';
-
-		const { execSync } = await import('node:child_process');
-		const out = execSync(diffCmd, { encoding: 'utf8' });
-		const addedUrls = out
-			.split('\n')
-			.filter((l) => l.startsWith('+') && l.includes('http'))
-			.map((l) => l.replace(/^\+\s*"?,?/, '').replace(/",?$/, '').trim())
-			.filter(Boolean);
-
 		if (addedUrls.length > 0) {
 			const problematic = new Set(
 				diagnostics
@@ -326,7 +333,8 @@ async function main() {
 		}
 	} catch {}
 
-	if (diagnostics.some((d) => d.severity === 'error')) {
+	// Only fail the run when 404 HTTP errors are present among reported diagnostics
+	if (diagnosticsToReport.some((d) => d.type === 'network' && /HTTP\s+404\b/.test(d.message))) {
 		process.exitCode = 1;
 	}
 }

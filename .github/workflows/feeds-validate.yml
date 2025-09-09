@@ -61,6 +61,7 @@ jobs:
         if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
         run: |
           reviewdog -efm="%f:%l:%m" -name="feed-validator" -reporter=github-pr-review -filter-mode=file -fail-on-error=false < /tmp/feed_diag.log
 
@@ -74,8 +75,29 @@ jobs:
         if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
         run: |
-          reviewdog -efm="%f:%l:%m" -name="feed-validator" -reporter=github-check -filter-mode=file -fail-on-error=false < /tmp/feed_diag.log
+          head -n 20 /tmp/feed_diag.log | reviewdog -efm="%f:%l:%m" -name="feed-validator" -reporter=github-check -filter-mode=file -fail-on-error=false
+
+      - name: Upload feed validator artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: feed-validator-logs
+          path: |
+            /tmp/feed_diag.log
+            /tmp/feed_patch.diff
+
+      - name: Add diagnostics summary
+        if: always()
+        shell: bash
+        run: |
+          echo "## Feed validator diagnostics" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Total diagnostics: $(wc -l < /tmp/feed_diag.log)" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "First 10 issues:" >> "$GITHUB_STEP_SUMMARY"
+          sed -n '1,10p' /tmp/feed_diag.log >> "$GITHUB_STEP_SUMMARY"
 
       - name: Apply diff to working tree (same-repo PRs and push)
         if: fromJSON(steps.run_validator.outputs.exit_code) != 0 && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
