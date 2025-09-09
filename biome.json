@@ -1,15 +1,7 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.0.6/schema.json",
   "files": {
-    "include": ["src/**/*", "*.js", "*.ts", "*.json", "*.svelte"],
-    "ignore": [
-      "node_modules/**",
-      "build/**",
-      ".svelte-kit/**",
-      "dist/**",
-      "coverage/**",
-      "*.min.js"
-    ],
+    "includes": ["src/**/*", "*.js", "*.ts", "*.json", "*.svelte"],
     "ignoreUnknown": true
   },
   "formatter": {
