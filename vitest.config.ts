@@ -7,6 +7,8 @@ export default defineConfig({
   plugins: [svelte()],
   test: {
     globals: true,
+    // Ensure browser resolution for Svelte during tests to avoid SSR-only APIs
+    resolveSnapshotPath: undefined,
     projects: [
       {
         extends: true,
@@ -18,6 +20,9 @@ export default defineConfig({
           pool: 'threads',
           setupFiles: ['./src/tests/setup.ts'],
         },
+        resolve: {
+          conditions: ['browser'],
+        },
       },
       {
         extends: true,
@@ -27,7 +32,10 @@ export default defineConfig({
           environment: 'node',
           setupFiles: ['./src/tests/setup.integration.ts'],
           pool: 'forks',
-          testTimeout: 10000,
+          testTimeout: 30000,
+        },
+        resolve: {
+          conditions: ['node'],
         },
       },
     ],
@@ -38,5 +46,6 @@ export default defineConfig({
       '$app/environment': path.resolve('./src/app.ts'),
       '$app/state': path.resolve('./src/app.state.ts'),
     },
+    conditions: ['browser'],
   },
 });

@@ -1,10 +1,10 @@
 import type { Story } from "$lib/types";
+import { getApiBaseUrl } from "$lib/utils/apiUrl";
 
 /**
  * Service for loading story data
  */
 class StoriesService {
-  private baseUrl = "/api";
 
   /**
    * Load stories for a specific category from a batch
@@ -17,9 +17,8 @@ class StoriesService {
   ): Promise<{ stories: Story[]; readCount: number; timestamp: number }> {
     try {
       // Load stories for this category with language parameter
-      const response = await fetch(
-        `${this.baseUrl}/batches/${batchId}/categories/${categoryUuid}/stories?limit=${limit}&lang=${language}`,
-      );
+      const baseUrl = getApiBaseUrl();
+      const response = await fetch(`${baseUrl}/batches/${batchId}/categories/${categoryUuid}/stories?limit=${limit}&lang=${language}`);
       if (!response.ok) {
         throw new Error(`Failed to load stories: ${response.statusText}`);
       }

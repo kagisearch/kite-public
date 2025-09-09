@@ -1,21 +1,25 @@
-import { browser } from "$app/environment";
-
 /**
- * Get the base URL for API calls
- * In browser, uses relative URLs
- * In tests, uses full URLs with localhost
+ * Return the base URL for API calls.
+ * - If VITE_API_BASE is provided at build time, use it (trim trailing slash).
+ * - Otherwise default to the app's internal proxy prefix: "/api".
  */
 export function getApiBaseUrl(): string {
-  // In browser, use relative URLs
-  if (browser) {
-    return "/api";
+  // Prefer Node env when available (e.g., Vitest integration), then Vite's import.meta.env
+  const processLike = typeof process !== 'undefined'
+    ? (process as unknown as { env?: Record<string, unknown> })
+    : undefined;
+  const nodeEnvValue = typeof processLike?.env?.VITE_API_BASE === 'string'
+    ? (processLike?.env?.VITE_API_BASE as string)
+    : undefined;
+  if (nodeEnvValue && nodeEnvValue.length > 0) {
+    return nodeEnvValue.replace(/\/+$/, "");
   }
-
-  // In Node/tests, use full URL
-  if (typeof process !== "undefined" && process.env.VITE_API_BASE_URL) {
-    return process.env.VITE_API_BASE_URL + "/api";
+  // Avoid dynamic access to import.meta.env in Vite SSR
+  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+  const metaEnv = (import.meta as { env: Record<string, unknown> }).env;
+  const metaEnvBase = metaEnv && (metaEnv.VITE_API_BASE as string | undefined);
+  if (typeof metaEnvBase === "string" && metaEnvBase.length > 0) {
+    return metaEnvBase.replace(/\/+$/, "");
   }
-
-  // Fallback to localhost
-  return "http://localhost:5173/api";
+  return "/api";
 }

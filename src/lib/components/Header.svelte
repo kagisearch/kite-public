@@ -11,6 +11,7 @@
   import { timeTravel } from "$lib/stores/timeTravel.svelte.js";
   import ChaosIndex from "./ChaosIndex.svelte";
   import { IconSearch, IconClock } from "@tabler/icons-svelte";
+  import { base } from "$app/paths";
 
   // Props
   interface Props {
@@ -261,8 +262,8 @@
     <div class="flex items-center">
       <img
         src={theme.isDark
-          ? "/svg/kagi_news_compact_dark.svg"
-          : "/svg/kagi_news_compact.svg"}
+          ? `${base}/svg/kagi_news_compact_dark.svg`
+          : `${base}/svg/kagi_news_compact.svg`}
         alt={s("app.logo.newsAlt") || "Kite News"}
         class="mr-2 h-7 sm:h-8 w-20 sm:w-22 logo relative z-50"
         onclick={handleLogoClick}
@@ -332,7 +333,7 @@
         type="button"
       >
         <img
-          src="/svg/font-size.svg"
+          src={`${base}/svg/font-size.svg`}
           alt=""
           class="h-5 w-5 sm:h-6 sm:w-6 text-gray-600 dark:text-gray-400 dark:invert"
           aria-hidden="true"
@@ -346,7 +347,7 @@
         type="button"
       >
         <img
-          src="/svg/gear.svg"
+          src={`${base}/svg/gear.svg`}
           alt=""
           class="h-5 w-5 sm:h-6 sm:w-6 text-gray-600 dark:text-gray-400 dark:invert"
           aria-hidden="true"

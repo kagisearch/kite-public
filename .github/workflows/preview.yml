@@ -46,6 +46,7 @@ jobs:
         env:
           KIT_ADAPTER: static
           BASE_PATH: kite-public/pr-preview/pr-${{ github.event.pull_request.number }}
+          VITE_API_BASE: https://kite.kagi.com/api
         run: bun run build
 
       - name: Deploy PR Preview to gh-pages

@@ -7,6 +7,7 @@
   import { dataLanguage } from "$lib/stores/dataLanguage.svelte.js";
   import type { SupportedLanguage } from "$lib/stores/language.svelte";
   import { IconInfoCircle } from "@tabler/icons-svelte";
+  import { base } from "$app/paths";
 
   // Props
   interface Props {
@@ -15,7 +16,7 @@
     showTranslateLink?: boolean;
   }
 
-  let {
+  const {
     showTooltip = false,
     showLoadingSpinner = false,
     showTranslateLink = false,
@@ -109,7 +110,7 @@
             "Translated with Kagi Translate"}</span
         >
         <img
-          src="/svg/translate.svg"
+          src={`${base}/svg/translate.svg`}
           alt="Kagi Translate"
           class="ml-1 h-3 w-3"
         />

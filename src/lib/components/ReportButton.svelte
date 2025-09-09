@@ -2,6 +2,7 @@
   import { browser } from "$app/environment";
   import { s } from "$lib/client/localization.svelte";
   import BaseModal from "./BaseModal.svelte";
+  import { getApiBaseUrl } from "$lib/utils/apiUrl";
   import {
     IconAlertTriangle,
     IconLoader2,
@@ -95,7 +96,7 @@
     errorMessage = "";
 
     try {
-      const response = await fetch("/api/reports", {
+      const response = await fetch(`${getApiBaseUrl()}/reports`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -12,6 +12,7 @@
   import { formatTimeAgo } from "$lib/utils/formatTimeAgo";
   import SplashScreen from "./SplashScreen.svelte";
   import { onMount } from "svelte";
+  import { getApiBaseUrl } from "$lib/utils/apiUrl";
 
   // Props
   interface Props {
@@ -83,7 +84,7 @@
       if (initialBatchId) {
         // First, get the latest batch to compare
         const latestResponse = await fetch(
-          `/api/batches/latest?lang=${dataLanguage.current}`,
+          `${getApiBaseUrl()}/batches/latest?lang=${dataLanguage.current}`,
         );
         if (latestResponse.ok) {
           const latestBatch = await latestResponse.json();
@@ -101,7 +102,7 @@
             // We need to get the batch info to set the correct date
             try {
               const batchResponse = await fetch(
-                `/api/batches/${initialBatchId}`,
+                `${getApiBaseUrl()}/batches/${initialBatchId}`,
               );
               if (batchResponse.ok) {
                 const batchData = await batchResponse.json();

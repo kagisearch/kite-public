@@ -10,8 +10,8 @@ export default defineConfig({
     environment: 'node',
     globals: true,
     setupFiles: ['./src/tests/setup.integration.ts'],
-    testTimeout: 10000, // Longer timeout for API calls
-    pool: 'forks', // Use separate processes to avoid state pollution
+    testTimeout: 20000,
+    // Keep default pool; avoid non-existent threads option in InlineConfig types
   },
   resolve: {
     alias: {

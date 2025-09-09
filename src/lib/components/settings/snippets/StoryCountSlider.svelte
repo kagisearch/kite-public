@@ -7,7 +7,7 @@
     id?: string;
   }
 
-  let { id = "story-count-range" }: Props = $props();
+  const { id = "story-count-range" }: Props = $props();
 </script>
 
 <div class="space-y-2">

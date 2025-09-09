@@ -1,11 +1,11 @@
 import { timeTravelBatch } from "$lib/stores/timeTravelBatch.svelte";
+import { getApiBaseUrl } from "$lib/utils/apiUrl";
 import type { Category } from "$lib/types";
 
 /**
  * Service for managing batch data and time travel functionality
  */
 class BatchService {
-  private baseUrl = "/api";
 
   /**
    * Set a specific batch ID for time travel
@@ -69,9 +69,8 @@ class BatchService {
         totalReadCount = providedBatchInfo.totalReadCount || 0;
       } else if (currentBatchId) {
         // Time travel mode - use specific batch
-        const batchResponse = await fetch(
-          `${this.baseUrl}/batches/${currentBatchId}`,
-        );
+        const baseUrl = getApiBaseUrl();
+        const batchResponse = await fetch(`${baseUrl}/batches/${currentBatchId}`);
         if (!batchResponse.ok) {
           throw new Error(
             `Failed to get batch ${currentBatchId}: ${batchResponse.statusText}`,
@@ -83,9 +82,8 @@ class BatchService {
         totalReadCount = batch.totalReadCount || 0;
       } else {
         // Live mode - get latest batch
-        const batchResponse = await fetch(
-          `${this.baseUrl}/batches/latest?lang=${language}`,
-        );
+        const baseUrl = getApiBaseUrl();
+        const batchResponse = await fetch(`${baseUrl}/batches/latest?lang=${language}`);
         if (!batchResponse.ok) {
           throw new Error(
             `Failed to get latest batch: ${batchResponse.statusText}`,
@@ -98,9 +96,8 @@ class BatchService {
       }
 
       // Step 2: Get categories for that batch with language parameter
-      const response = await fetch(
-        `${this.baseUrl}/batches/${batchId}/categories?lang=${language}`,
-      );
+      const baseUrl = getApiBaseUrl();
+      const response = await fetch(`${baseUrl}/batches/${batchId}/categories?lang=${language}`);
       if (!response.ok) {
         throw new Error(`Failed to load categories: ${response.statusText}`);
       }
@@ -136,9 +133,8 @@ class BatchService {
       // Step 3: Load chaos index for this batch
       let chaosData = null;
       try {
-        const chaosResponse = await fetch(
-          `${this.baseUrl}/batches/${batchId}/chaos?lang=${language}`,
-        );
+        const baseUrl = getApiBaseUrl();
+        const chaosResponse = await fetch(`${baseUrl}/batches/${batchId}/chaos?lang=${language}`);
         if (chaosResponse.ok) {
           chaosData = await chaosResponse.json();
         }

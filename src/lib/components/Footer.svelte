@@ -2,6 +2,7 @@
   import { s } from "$lib/client/localization.svelte";
   import { dataLanguage } from "$lib/stores/dataLanguage.svelte.js";
   import { theme } from "$lib/stores/theme.svelte.js";
+  import { base } from "$app/paths";
 
   // Props
   interface Props {
@@ -68,8 +69,8 @@
     >
       <img
         src={theme.isDark
-          ? "/svg/kagi_news_icon_dark.svg"
-          : "/svg/kagi_news_icon.svg"}
+          ? `${base}/svg/kagi_news_icon_dark.svg`
+          : `${base}/svg/kagi_news_icon.svg`}
         alt={s("app.logo.iconAlt") || "Kagi News"}
         class="h-5 w-5"
       />
@@ -87,7 +88,7 @@
       class="flex items-center space-x-2 text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200"
       title={s("footer.rssFeed") || "RSS feed"}
     >
-      <img src="/svg/rss.svg" alt="" class="h-5 w-5 dark:invert" />
+      <img src={`${base}/svg/rss.svg`} alt="" class="h-5 w-5 dark:invert" />
       <span class="text-xs sm:text-sm">
         <span class="sm:hidden">{s("footer.rssFeedMobile") || "RSS"}</span>
         <span class="hidden sm:inline">{s("footer.rssFeed") || "RSS Feed"}</span

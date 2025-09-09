@@ -8,6 +8,7 @@
   } from "$lib/utils/citationContext";
   import { openMapLocation, getMapServiceName } from "$lib/utils/mapUtils";
   import CitationText from "./CitationText.svelte";
+  import { base } from "$app/paths";
 
   // Props
   interface Props {
@@ -87,7 +88,7 @@
       title={s("article.location") || `View on ${mapServiceName}`}
       aria-label="View {story.location} on {mapServiceName}"
     >
-      <img src="/svg/map.svg" alt="Map icon" class="mr-2 h-5 w-5" />
+      <img src={`${base}/svg/map.svg`} alt="Map icon" class="mr-2 h-5 w-5" />
       <span>
         <CitationText
           text={displayLocation}

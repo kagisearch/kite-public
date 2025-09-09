@@ -1,17 +1,18 @@
 import type { MediaInfo, LoadMediaDataResponse } from "$lib/types";
+import { getApiBaseUrl } from "$lib/utils/apiUrl";
 
 /**
  * Service for media/source information
  */
 class MediaService {
-  private baseUrl = "/api";
 
   /**
    * Load media data for source information
    */
   async loadMediaData(language = "default"): Promise<MediaInfo[]> {
     try {
-      const response = await fetch(`${this.baseUrl}/media?lang=${language}`);
+      const baseUrl = getApiBaseUrl();
+      const response = await fetch(`${baseUrl}/media?lang=${language}`);
       if (!response.ok) {
         throw new Error(`Failed to load media data: ${response.statusText}`);
       }
@@ -47,9 +48,8 @@ class MediaService {
     language = "default",
   ): Promise<MediaInfo | null> {
     try {
-      const response = await fetch(
-        `${this.baseUrl}/media/${host}?lang=${language}`,
-      );
+      const baseUrl = getApiBaseUrl();
+      const response = await fetch(`${baseUrl}/media/${host}?lang=${language}`);
       if (!response.ok) {
         if (response.status === 404) {
           return null; // No media info found for this host

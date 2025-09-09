@@ -15,7 +15,7 @@
     showLoadingSpinner?: boolean;
   }
 
-  let { showTooltip = false, showLoadingSpinner = false }: Props = $props();
+  const { showTooltip = false, showLoadingSpinner = false }: Props = $props();
 
   // Language options - exclude "default" since UI needs a specific language
   const languageOptions = $derived(

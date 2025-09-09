@@ -38,7 +38,8 @@ class CategoryMetadataService {
     }
 
     try {
-      const response = await fetch("/api/categories/metadata");
+      const { getApiBaseUrl } = await import("$lib/utils/apiUrl");
+      const response = await fetch(`${getApiBaseUrl()}/categories/metadata`);
       if (!response.ok) {
         throw new Error(
           `Failed to load category metadata: ${response.statusText}`,

@@ -12,6 +12,7 @@
   import { IconShare, IconCheck, IconLoader2 } from "@tabler/icons-svelte";
   import { onMount, onDestroy } from "svelte";
   import Portal from "svelte-portal";
+  import { getApiBaseUrl } from "$lib/utils/apiUrl";
 
   interface Props {
     title?: string;
@@ -99,7 +100,7 @@
 
       // Try to get short URL from API
       try {
-        const response = await fetch("/api/shorten", {
+        const response = await fetch(`${getApiBaseUrl()}/shorten`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
