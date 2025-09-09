@@ -81,15 +81,37 @@ class BatchService {
         batchCreatedAt = batch.createdAt;
         totalReadCount = batch.totalReadCount || 0;
       } else {
-        // Live mode - get latest batch
+        // Live mode - get latest batch with basic retry/backoff on transient errors
         const baseUrl = getApiBaseUrl();
-        const batchResponse = await fetch(`${baseUrl}/batches/latest?lang=${language}`);
-        if (!batchResponse.ok) {
-          throw new Error(
-            `Failed to get latest batch: ${batchResponse.statusText}`,
-          );
+        const endpoint = `${baseUrl}/batches/latest?lang=${language}`;
+        let lastError: unknown = null;
+        let batch: { id: string; createdAt: string; totalReadCount?: number } | null = null;
+        const maxAttempts = 3;
+        const baseDelayMs = 300;
+        for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+          try {
+            const res = await fetch(endpoint);
+            if (res.ok) {
+              batch = await res.json();
+              break;
+            }
+            // Retry on 5xx only
+            if (res.status >= 500 && res.status < 600) {
+              lastError = new Error(`Failed to get latest batch: ${res.status} ${res.statusText}`);
+            } else {
+              throw new Error(`Failed to get latest batch: ${res.status} ${res.statusText}`);
+            }
+          } catch (e) {
+            lastError = e;
+          }
+          // Exponential backoff with jitter
+          const jitter = Math.floor(Math.random() * 100);
+          const delay = baseDelayMs * (2 ** (attempt - 1)) + jitter;
+          await new Promise((r) => setTimeout(r, delay));
         }
-        const batch = await batchResponse.json();
+        if (!batch) {
+          throw lastError instanceof Error ? lastError : new Error(String(lastError ?? 'Unknown error'));
+        }
         batchId = batch.id;
         batchCreatedAt = batch.createdAt;
         totalReadCount = batch.totalReadCount || 0;
