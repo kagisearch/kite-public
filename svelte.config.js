@@ -27,10 +27,6 @@ const config = {
       base: process.env.BASE_PATH
         ? `/${process.env.BASE_PATH.replace(/^\/+|\/$/g, "")}`
         : "",
-      // Ensure asset URLs are rooted at the same base path
-      assets: process.env.BASE_PATH
-        ? `/${process.env.BASE_PATH.replace(/^\/+|\/$/g, "")}`
-        : "",
     },
     csrf: {
       trustedOrigins: [
