@@ -2,11 +2,18 @@
  * Shared console utilities for consistent formatting across scripts
  */
 
+let routeInfoLogsToStderr = false;
+
+export function setInfoLogsToStderr(enable: boolean): void {
+  routeInfoLogsToStderr = enable;
+}
+
 /**
  * Log a success message with checkmark
  */
 export function logSuccess(message: string): void {
-  console.log(`✅ ${message}`);
+  const writer = routeInfoLogsToStderr ? console.error : console.log;
+  writer(`✅ ${message}`);
 }
 
 /**
@@ -27,35 +34,40 @@ export function logError(message: string): void {
  * Log an info message with info icon
  */
 export function logInfo(message: string): void {
-  console.log(`ℹ️  ${message}`);
+  const writer = routeInfoLogsToStderr ? console.error : console.log;
+  writer(`ℹ️  ${message}`);
 }
 
 /**
  * Log a processing message with appropriate icon
  */
 export function logProcessing(message: string): void {
-  console.log(`📄 ${message}`);
+  const writer = routeInfoLogsToStderr ? console.error : console.log;
+  writer(`📄 ${message}`);
 }
 
 /**
  * Log a search/analysis message
  */
 export function logAnalysis(message: string): void {
-  console.log(`🔍 ${message}`);
+  const writer = routeInfoLogsToStderr ? console.error : console.log;
+  writer(`🔍 ${message}`);
 }
 
 /**
  * Log a balance/no-change message
  */
 export function logNoChange(message: string): void {
-  console.log(`⚖️  ${message}`);
+  const writer = routeInfoLogsToStderr ? console.error : console.log;
+  writer(`⚖️  ${message}`);
 }
 
 /**
  * Log a bullet point with custom icon
  */
 export function logBullet(message: string, icon = '🔹'): void {
-  console.log(`  ${icon} ${message}`);
+  const writer = routeInfoLogsToStderr ? console.error : console.log;
+  writer(`  ${icon} ${message}`);
 }
 
 /**
@@ -83,7 +95,8 @@ export function formatList(items: string[], maxItems = 5): string {
  * Create a section header with emoji
  */
 export function logSectionHeader(title: string, emoji = '📊'): void {
-  console.log(`\n${emoji} ${title}:`);
+  const writer = routeInfoLogsToStderr ? console.error : console.log;
+  writer(`\n${emoji} ${title}:`);
 }
 
 /**
@@ -91,7 +104,8 @@ export function logSectionHeader(title: string, emoji = '📊'): void {
  */
 export function logSummaryLine(count: number, description: string, emoji: string): void {
   if (count > 0) {
-    console.log(`  ${emoji} ${formatCount(count, description)}`);
+    const writer = routeInfoLogsToStderr ? console.error : console.log;
+    writer(`  ${emoji} ${formatCount(count, description)}`);
   }
 }
 
@@ -108,10 +122,12 @@ export function logDetailedItems(
 
   console.log(`\n${emoji} ${title}:`);
   for (const item of items.slice(0, maxItems)) {
-    console.log(`  - ${item}`);
+    const writer = routeInfoLogsToStderr ? console.error : console.log;
+    writer(`  - ${item}`);
   }
 
   if (items.length > maxItems) {
-    console.log(`  ... and ${items.length - maxItems} more`);
+    const writer = routeInfoLogsToStderr ? console.error : console.log;
+    writer(`  ... and ${items.length - maxItems} more`);
   }
 }

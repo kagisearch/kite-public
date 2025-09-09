@@ -200,12 +200,12 @@ jobs:
 
           # Gate feeds/locales checks via sort scripts in advisory mode
           if [ "$changed_feeds" = true ]; then
-            bun scripts/sort-feeds.ts --output-issues > feeds-issues.json || true
+            bun scripts/sort-feeds.ts --output-issues --output-file feeds-issues.json || true
             # Run enhanced feed validator for network/content checks; advisory annotations
             bun scripts/validate-feeds.ts > /tmp/feeds_diff.patch 2> /tmp/feeds_diag.log || true
           fi
           if [ "$changed_locales" = true ]; then
-            bun scripts/sort-locales.ts --output-issues > locales-issues.json || true
+            bun scripts/sort-locales.ts --output-issues --output-file locales-issues.json || true
           fi
 
       - name: Annotate media-data issues

@@ -1,5 +1,6 @@
 import type { Issue, ScriptOutput } from './shared-types.js';
 import { outputIssues } from './shared-types.js';
+import { setInfoLogsToStderr } from './console-utils.js';
 
 export interface ScriptConfig {
   type: 'feeds' | 'media' | 'locales';
@@ -31,6 +32,8 @@ export async function runScript(
     
     // If --output-issues flag is present, generate issues for reviewdog
     if (process.argv.includes('--output-issues')) {
+      // Route non-JSON logs to stderr to keep stdout clean when redirecting
+      setInfoLogsToStderr(true);
       const result = await analysisFunction();
       const output: ScriptOutput = {
         type: config.type,

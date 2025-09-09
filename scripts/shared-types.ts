@@ -22,8 +22,33 @@ export interface ScriptOutput {
 }
 
 export function outputIssues(output: ScriptOutput) {
-  if (process.argv.includes('--output-issues')) {
-    console.log(JSON.stringify(output, null, 2));
+  if (!process.argv.includes('--output-issues')) return;
+
+  const outFlagIndex = process.argv.indexOf('--output-file');
+  const outPath = outFlagIndex !== -1 ? process.argv[outFlagIndex + 1] : undefined;
+
+  const json = JSON.stringify(output, null, 2);
+
+  if (!outPath) {
+    // Fallback to stdout JSON
+    console.log(json);
+    return;
+  }
+
+  // Atomic write: write to temp then rename
+  const path = require('node:path');
+  const fs = require('node:fs');
+  const dir = path.dirname(outPath);
+  const base = path.basename(outPath);
+  const temp = path.join(dir, `.${base}.tmp-${Date.now()}-${Math.random().toString(36).slice(2)}`);
+  try {
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(temp, json, 'utf-8');
+    fs.renameSync(temp, outPath);
+  } catch (e) {
+    try { fs.unlinkSync(temp); } catch {}
+    // If atomic write fails, fallback to stdout to not break pipeline
+    console.log(json);
   }
 }
 
