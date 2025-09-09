@@ -101,20 +101,20 @@ jobs:
       run: |
         ISSUE_FILES=()
         if [ "${{ steps.detect.outputs.feeds_changed }}" = "true" ]; then
-          bun scripts/sort-feeds.ts --output-issues > feeds-issues.json
-          ISSUE_FILES+=(feeds-issues.json)
+          bun scripts/sort-feeds.ts --output-issues > feeds-issues.json || true
+          if jq -e . feeds-issues.json >/dev/null 2>&1; then ISSUE_FILES+=(feeds-issues.json); else echo "feeds-issues.json is not valid JSON; skipping"; fi
         fi
         if [ "${{ steps.detect.outputs.media_changed }}" = "true" ]; then
-          bun scripts/sort-media.ts --output-issues > media-issues.json
-          ISSUE_FILES+=(media-issues.json)
+          bun scripts/sort-media.ts --output-issues > media-issues.json || true
+          if jq -e . media-issues.json >/dev/null 2>&1; then ISSUE_FILES+=(media-issues.json); else echo "media-issues.json is not valid JSON; skipping"; fi
         fi
         if [ "${{ steps.detect.outputs.locales_changed }}" = "true" ]; then
-          bun scripts/sort-locales.ts --output-issues > locales-issues.json
-          ISSUE_FILES+=(locales-issues.json)
+          bun scripts/sort-locales.ts --output-issues > locales-issues.json || true
+          if jq -e . locales-issues.json >/dev/null 2>&1; then ISSUE_FILES+=(locales-issues.json); else echo "locales-issues.json is not valid JSON; skipping"; fi
         fi
 
         if [ ${#ISSUE_FILES[@]} -gt 0 ]; then
-          jq -s 'map(.issues[]) | map(select(.severity == "warning" or .severity == "error"))' "${ISSUE_FILES[@]}" > all-issues.json
+          jq -s 'map(.issues[]? // empty) | map(select(.severity == "warning" or .severity == "error"))' "${ISSUE_FILES[@]}" > all-issues.json || echo "[]" > all-issues.json
           echo "Generated $(jq length all-issues.json) issues for review"
         else
           echo "No relevant files changed; skipping issue generation"

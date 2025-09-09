@@ -55,11 +55,20 @@ jobs:
           # Ensure we have full git history for diff
           git fetch origin main --depth=50 || true
           
-          # Collect changed files for the current push or PR
+          # Collect changed files for the current push or PR (handle shallow/initial commits)
+          globs=( '*.json' '*.ts' '*.tsx' '*.js' '*.jsx' '*.svelte' '*.css' '*.html' )
           if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
-            changed_files=$(git diff --name-only origin/main...HEAD -- '*.json' '*.ts' '*.tsx' '*.js' '*.jsx' '*.svelte' '*.css' '*.html' 2>/dev/null || git diff --name-only HEAD~1 HEAD -- '*.json' '*.ts' '*.tsx' '*.js' '*.jsx' '*.svelte' '*.css' '*.html')
+            changed_files="$(git diff --name-only origin/main...HEAD -- "${globs[@]}" 2>/dev/null || true)"
+            if [ -z "$changed_files" ] && git rev-parse --verify HEAD~1 >/dev/null 2>&1; then
+              changed_files="$(git diff --name-only HEAD~1 HEAD -- "${globs[@]}" 2>/dev/null || true)"
+            fi
           else
-            changed_files=$(git diff --name-only HEAD~1 HEAD -- '*.json' '*.ts' '*.tsx' '*.js' '*.jsx' '*.svelte' '*.css' '*.html')
+            if git rev-parse --verify HEAD~1 >/dev/null 2>&1; then
+              changed_files="$(git diff --name-only HEAD~1 HEAD -- "${globs[@]}" 2>/dev/null || true)"
+            else
+              # Initial commit or shallow checkout without parent; lint all tracked files
+              changed_files="$(git ls-files "${globs[@]}")"
+            fi
           fi
 
           if [ -z "$changed_files" ]; then
@@ -103,9 +112,16 @@ jobs:
           git fetch origin main --depth=50 || true
           
           if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
-            json_files=$(git diff --name-only origin/main...HEAD -- '*.json' 2>/dev/null || git diff --name-only HEAD~1 HEAD -- '*.json')
+            json_files="$(git diff --name-only origin/main...HEAD -- '*.json' 2>/dev/null || true)"
+            if [ -z "$json_files" ] && git rev-parse --verify HEAD~1 >/dev/null 2>&1; then
+              json_files="$(git diff --name-only HEAD~1 HEAD -- '*.json' 2>/dev/null || true)"
+            fi
           else
-            json_files=$(git diff --name-only HEAD~1 HEAD -- '*.json')
+            if git rev-parse --verify HEAD~1 >/dev/null 2>&1; then
+              json_files="$(git diff --name-only HEAD~1 HEAD -- '*.json' 2>/dev/null || true)"
+            else
+              json_files="$(git ls-files '*.json')"
+            fi
           fi
 
           if [ -z "$json_files" ]; then
@@ -197,7 +213,11 @@ jobs:
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          reviewdog -efm="%f:%l:%m" -name="media-validator" -reporter=${{ github.event_name == 'pull_request' && 'github-pr-review' || 'github-check' }} -fail-on-error=false < /tmp/media_diag.log
+          if [ -f /tmp/media_diag.log ]; then
+            reviewdog -efm="%f:%l:%m" -name="media-validator" -reporter=${{ github.event_name == 'pull_request' && 'github-pr-review' || 'github-check' }} -fail-on-error=false < /tmp/media_diag.log
+          else
+            echo "/tmp/media_diag.log missing; skipping media annotations"
+          fi
 
       - name: Annotate feed validation
         if: always()
