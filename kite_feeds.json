@@ -86,8 +86,6 @@
       "https://kurier.at/politik/ausland/xml/rssd",
       "https://kurier.at/politik/inland/xml/rssd",
       "https://kurier.at/sport/xml/rssd",
-      "https://kurier.at/wirtschaft/finanzen/xml/rssd",
-      "https://kurier.at/wirtschaft/wirtschaftspolitik/xml/rssd",
       "https://rss.orf.at/news.xml",
       "https://rss.orf.at/science.xml",
       "https://rss.orf.at/sport.xml",
@@ -123,7 +121,6 @@
     "feeds": [
       "http://rss.rtbf.be/article/rss/highlight_rtbfinfo_info-belgique.xml?source=internal",
       "http://rss.rtbf.be/article/rss/highlight_rtbfinfo_info-regions.xml?source=internal",
-      "http://www.belgianaffairs.be/rss.xml",
       "https://businessam.be/feed/",
       "https://businessam.be/politiek/feed/",
       "https://focus-wtv.be/feed/home.xml",

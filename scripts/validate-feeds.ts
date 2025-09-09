@@ -63,7 +63,8 @@ function parseRssLikeItems(xml: string): { title: string; content: string; pubDa
 		const title = (block.match(/<title[\s\S]*?>([\s\S]*?)<\/title>/i)?.[1] || '').trim();
 		const contentEncoded = block.match(/<content:encoded[\s\S]*?>([\s\S]*?)<\/content:encoded>/i)?.[1] || '';
 		const description = block.match(/<description[\s\S]*?>([\s\S]*?)<\/description>/i)?.[1] || '';
-		const raw = contentEncoded || description;
+		const text = block.match(/<text[\s\S]*?>([\s\S]*?)<\/text>/i)?.[1] || '';
+		const raw = contentEncoded || description || text;
 		const content = stripHtml(raw);
 		const pubStr = block.match(/<pubDate[\s\S]*?>([\s\S]*?)<\/pubDate>/i)?.[1]?.trim() ?? '';
 		const pubDate = pubStr ? new Date(pubStr as string) : undefined;
