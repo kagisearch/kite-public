@@ -18,7 +18,12 @@ const config = {
     prerender: {
       // Avoid failing preview/static builds due to dynamic routes not discovered during crawl
       handleUnseenRoutes: 'ignore',
-      handleHttpError: 'warn'
+      handleHttpError: 'warn',
+      // Ensure key entry pages are prerendered so __data.json exists on Pages
+      entries: [
+        '/',
+        '/latest'
+      ]
     },
     // Narrow type of BASE_PATH to satisfy SvelteKit's template-literal type
     // "" | `/${string}` | undefined
