@@ -9,6 +9,8 @@ const config = {
   preprocess: vitePreprocess(),
 
   kit: {
+    // Avoid leading-underscore dir on GitHub Pages; prevents Jekyll conflicts
+    appDir: 'app',
     adapter:
       process.env.KIT_ADAPTER === "static"
         ? adapterStatic({ fallback: "index.html" })
@@ -23,6 +25,10 @@ const config = {
     paths: {
       /** @type {"" | `/${string}` | undefined} */
       base: process.env.BASE_PATH
+        ? `/${process.env.BASE_PATH.replace(/^\/+|\/$/g, "")}`
+        : "",
+      // Ensure asset URLs are rooted at the same base path
+      assets: process.env.BASE_PATH
         ? `/${process.env.BASE_PATH.replace(/^\/+|\/$/g, "")}`
         : "",
     },

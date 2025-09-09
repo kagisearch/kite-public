@@ -74,3 +74,25 @@ jobs:
           preview-branch: gh-pages
           umbrella-dir: pr-preview
           action: remove
+
+      - name: Remove leftover .nojekyll and empty dir
+        run: |
+          set -e
+          git fetch origin gh-pages:gh-pages
+          git checkout gh-pages
+          DIR="pr-preview/pr-${{ github.event.pull_request.number }}"
+          if [ -f "$DIR/.nojekyll" ]; then
+            rm -f "$DIR/.nojekyll"
+          fi
+          if [ -d "$DIR" ] && [ -z "$(ls -A "$DIR")" ]; then
+            rmdir "$DIR"
+          fi
+          if ! git diff --quiet; then
+            git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git add -A
+            git commit -m "chore(preview): remove leftover .nojekyll for PR ${{ github.event.pull_request.number }}"
+            git push origin gh-pages
+          else
+            echo "No leftover files to clean."
+          fi
