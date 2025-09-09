@@ -60,7 +60,14 @@ jobs:
   cleanup:
     if: github.event.action == 'closed'
     runs-on: ubuntu-latest
+    environment:
+      name: pr-previews
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Remove PR Preview
         uses: rossjrw/pr-preview-action@v1
         with:
