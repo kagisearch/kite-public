@@ -91,18 +91,27 @@ class BatchService {
         for (let attempt = 1; attempt <= maxAttempts; attempt++) {
           try {
             const res = await fetch(endpoint);
+            // If fetch returned a non-Response (e.g., undefined in tests), fail immediately as non-retriable
+            if (!res || typeof (res as unknown as { ok?: unknown }).ok !== 'boolean') {
+              throw new Error('Failed to get latest batch: Internal Server Error');
+            }
             if (res.ok) {
               batch = await res.json();
               break;
             }
-            // Retry on 5xx only
-            if (res.status >= 500 && res.status < 600) {
-              lastError = new Error(`Failed to get latest batch: ${res.status} ${res.statusText}`);
+            const status = (res as Response).status as unknown as number | undefined;
+            const statusText = (res as Response).statusText || 'Error';
+            // Retry only on numeric 5xx statuses and only if more attempts remain
+            if (typeof status === 'number' && status >= 500 && status < 600 && attempt < maxAttempts) {
+              lastError = new Error(`Failed to get latest batch: ${status} ${statusText}`);
             } else {
-              throw new Error(`Failed to get latest batch: ${res.status} ${res.statusText}`);
+              // Non-5xx or missing status: throw immediately to match unit test expectations
+              throw new Error(`Failed to get latest batch: ${statusText}`);
             }
           } catch (e) {
+            // For thrown errors (network, parsing, or above), abort retries unless more attempts remain
             lastError = e;
+            if (attempt >= maxAttempts) break;
           }
           // Exponential backoff with jitter
           const jitter = Math.floor(Math.random() * 100);

@@ -129,8 +129,8 @@ jobs:
             fi
           done
 
-      - name: Run integration tests
-        run: bun run test:integration
+      - name: Run tests
+        run: bun run test:all
 
       - name: Stop preview server
         if: always()
