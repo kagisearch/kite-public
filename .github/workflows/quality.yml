@@ -161,6 +161,8 @@ jobs:
 
       - name: Annotate JSON validation (checks for forks/push)
         if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           reviewdog -efm="%f:%l:%m" -name="json-validator" -reporter=github-check -fail-on-error=false < /tmp/json_diag.log 
 
@@ -188,6 +190,8 @@ jobs:
 
       - name: Annotate Biome results (checks for forks/push)
         if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           reviewdog -efm="%f:%l:%c %m" -name="biome-lint" -reporter=github-check -fail-on-error=false < /tmp/biome.log
 
@@ -252,6 +256,8 @@ jobs:
 
       - name: Annotate media-data issues (checks for forks/push)
         if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ -f /tmp/media_diag.log ]; then
             reviewdog -efm="%f:%l:%m" -name="media-validator" -reporter=github-check -fail-on-error=false < /tmp/media_diag.log
@@ -276,6 +282,8 @@ jobs:
 
       - name: Annotate feed validation (checks for forks/push)
         if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ -f /tmp/feeds_diag.log ]; then
             reviewdog -efm="%f:%l:%m" -name="feed-validator" -reporter=github-check -fail-on-error=false < /tmp/feeds_diag.log
