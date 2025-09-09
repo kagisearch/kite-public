@@ -18,7 +18,7 @@ concurrency:
 
 jobs:
   approval:
-    if: github.event.action != 'closed'
+    if: github.event.action != 'closed' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     environment:
       name: pr-previews
@@ -26,7 +26,7 @@ jobs:
       - run: echo "Awaiting approval for PR preview deploy"
 
   deploy:
-    if: github.event.action != 'closed'
+    if: github.event.action != 'closed' && github.event.pull_request.head.repo.full_name == github.repository
     needs: approval
     runs-on: ubuntu-latest
     steps:
@@ -58,7 +58,7 @@ jobs:
           action: auto
 
   cleanup:
-    if: github.event.action == 'closed'
+    if: github.event.action == 'closed' && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     environment:
       name: pr-previews

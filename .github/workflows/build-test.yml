@@ -6,6 +6,9 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 concurrency:
   group: build-test-${{ github.ref }}
   cancel-in-progress: true
@@ -71,6 +74,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: changes
     if: needs.changes.outputs['app'] == 'true'
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -109,6 +115,19 @@ jobs:
           for i in {1..60}; do
             if curl -sf http://127.0.0.1:5173/api/health > /dev/null; then
               echo "Server is up"; exit 0; fi; sleep 1; done; echo "Server did not start"; cat preview.log; exit 1
+
+      - name: Smoke test key routes
+        run: |
+          set -e
+          for path in "/" "/latest"; do
+            echo "Fetching http://127.0.0.1:5173$path"
+            status=$(curl -s -o /tmp/page.html -w "%{http_code}" "http://127.0.0.1:5173$path" || true)
+            if [ "$status" -lt 200 ] || [ "$status" -ge 400 ]; then
+              echo "Route $path returned status $status"
+              echo "--- preview.log (tail) ---" && tail -n 200 preview.log || true
+              exit 1
+            fi
+          done
 
       - name: Run integration tests
         run: bun run test:integration

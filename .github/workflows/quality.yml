@@ -88,8 +88,8 @@ jobs:
             echo "$existing_files" | xargs bunx prettier --write
           fi
 
-      - name: Suggest Prettier fixes
-        if: github.event_name == 'pull_request'
+      - name: Suggest Prettier fixes (same-repo PRs only)
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         uses: reviewdog/action-suggester@v1
         with:
           tool_name: prettier
@@ -140,16 +140,29 @@ jobs:
           done
           echo -e "$diag" | tee /tmp/json_diag.log
 
-      - name: Setup reviewdog
+      - name: Setup reviewdog (same-repo PRs)
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         uses: reviewdog/action-setup@v1
         with:
           reviewdog_version: latest
 
-      - name: Annotate JSON validation
+      - name: Annotate JSON validation (PR review)
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          reviewdog -efm="%f:%l:%m" -name="json-validator" -reporter=${{ github.event_name == 'pull_request' && 'github-pr-review' || 'github-check' }} -fail-on-error=false < /tmp/json_diag.log 
+          reviewdog -efm="%f:%l:%m" -name="json-validator" -reporter=github-pr-review -fail-on-error=false < /tmp/json_diag.log 
+
+      - name: Setup reviewdog (checks for forks/push)
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
+        uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
+
+      - name: Annotate JSON validation (checks for forks/push)
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
+        run: |
+          reviewdog -efm="%f:%l:%m" -name="json-validator" -reporter=github-check -fail-on-error=false < /tmp/json_diag.log 
 
       ########################################################################
       # Biome Lint (advisory)
@@ -160,11 +173,23 @@ jobs:
           set +e
           bunx biome lint . --formatter compact > /tmp/biome.log || true
 
-      - name: Annotate Biome results
+      - name: Annotate Biome results (PR review)
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          reviewdog -efm="%f:%l:%c %m" -name="biome-lint" -reporter=${{ github.event_name == 'pull_request' && 'github-pr-review' || 'github-check' }} -fail-on-error=false < /tmp/biome.log
+          reviewdog -efm="%f:%l:%c %m" -name="biome-lint" -reporter=github-pr-review -fail-on-error=false < /tmp/biome.log
+
+      - name: Setup reviewdog (checks for forks/push)
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
+        uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
+
+      - name: Annotate Biome results (checks for forks/push)
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
+        run: |
+          reviewdog -efm="%f:%l:%c %m" -name="biome-lint" -reporter=github-check -fail-on-error=false < /tmp/biome.log
 
       ########################################################################
       # media_data.json validation via reviewdog (advisory)
@@ -208,22 +233,50 @@ jobs:
             bun scripts/sort-locales.ts --output-issues --output-file locales-issues.json || true
           fi
 
-      - name: Annotate media-data issues
-        if: always()
+      - name: Annotate media-data issues (PR review)
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ -f /tmp/media_diag.log ]; then
-            reviewdog -efm="%f:%l:%m" -name="media-validator" -reporter=${{ github.event_name == 'pull_request' && 'github-pr-review' || 'github-check' }} -fail-on-error=false < /tmp/media_diag.log
+            reviewdog -efm="%f:%l:%m" -name="media-validator" -reporter=github-pr-review -fail-on-error=false < /tmp/media_diag.log
           else
             echo "/tmp/media_diag.log missing; skipping media annotations"
           fi
 
-      - name: Annotate feed validation
-        if: always()
+      - name: Setup reviewdog (checks for forks/push)
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
+        uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
+
+      - name: Annotate media-data issues (checks for forks/push)
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
+        run: |
+          if [ -f /tmp/media_diag.log ]; then
+            reviewdog -efm="%f:%l:%m" -name="media-validator" -reporter=github-check -fail-on-error=false < /tmp/media_diag.log
+          else
+            echo "/tmp/media_diag.log missing; skipping media annotations"
+          fi
+
+      - name: Annotate feed validation (PR review)
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ -f /tmp/feeds_diag.log ]; then
-            reviewdog -efm="%f:%l:%m" -name="feed-validator" -reporter=${{ github.event_name == 'pull_request' && 'github-pr-review' || 'github-check' }} -fail-on-error=false < /tmp/feeds_diag.log
+            reviewdog -efm="%f:%l:%m" -name="feed-validator" -reporter=github-pr-review -fail-on-error=false < /tmp/feeds_diag.log
+          fi
+
+      - name: Setup reviewdog (checks for forks/push)
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
+        uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
+
+      - name: Annotate feed validation (checks for forks/push)
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
+        run: |
+          if [ -f /tmp/feeds_diag.log ]; then
+            reviewdog -efm="%f:%l:%m" -name="feed-validator" -reporter=github-check -fail-on-error=false < /tmp/feeds_diag.log
           fi

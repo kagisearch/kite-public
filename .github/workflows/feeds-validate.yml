@@ -9,6 +9,11 @@ on:
     paths:
       - 'kite_feeds.json'
 
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
 concurrency:
   group: feeds-validate-${{ github.ref }}
   cancel-in-progress: true
@@ -46,24 +51,37 @@ jobs:
           # Ensure log files exist even if empty
           touch /tmp/feed_diag.log /tmp/feed_patch.diff
 
-      - name: Reviewdog Reporter
+      - name: Reviewdog Reporter (same-repo PRs)
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         uses: reviewdog/action-setup@v1
         with:
           reviewdog_version: latest
 
-      - name: Run reviewdog diagnostics
+      - name: Run reviewdog diagnostics (PR review)
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           reviewdog -efm="%f:%l:%m" -name="feed-validator" -reporter=github-pr-review -filter-mode=file -fail-on-error=false < /tmp/feed_diag.log
 
-      - name: Apply diff to working tree
-        if: fromJSON(steps.run_validator.outputs.exit_code) != 0
+      - name: Reviewdog setup (checks for forks/push)
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
+        uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
+
+      - name: Run reviewdog diagnostics (checks for forks/push)
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
+        run: |
+          reviewdog -efm="%f:%l:%m" -name="feed-validator" -reporter=github-check -filter-mode=file -fail-on-error=false < /tmp/feed_diag.log
+
+      - name: Apply diff to working tree (same-repo PRs and push)
+        if: fromJSON(steps.run_validator.outputs.exit_code) != 0 && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
         run: |
           patch -p1 < /tmp/feed_patch.diff
 
-      - name: Suggest fixes via action-suggester
-        if: fromJSON(steps.run_validator.outputs.exit_code) != 0
+      - name: Suggest fixes via action-suggester (same-repo PRs only)
+        if: fromJSON(steps.run_validator.outputs.exit_code) != 0 && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
         uses: reviewdog/action-suggester@v1
         with:
           tool_name: feed-validator
