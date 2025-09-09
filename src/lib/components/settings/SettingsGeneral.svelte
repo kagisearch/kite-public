@@ -8,6 +8,7 @@
     type StoryOpenMode,
   } from "$lib/stores/settings.svelte.js";
   import { theme } from "$lib/stores/theme.svelte.js";
+  import { base } from "$app/paths";
   import DataLanguageSelector from "./snippets/DataLanguageSelector.svelte";
   import LanguageSelector from "./snippets/LanguageSelector.svelte";
   import StoryCountSlider from "./snippets/StoryCountSlider.svelte";
@@ -273,8 +274,8 @@
       >
         <img
           src={theme.current === "dark"
-            ? "/svg/kagi_news_icon_dark.svg"
-            : "/svg/kagi_news_icon.svg"}
+            ? `${base}/svg/kagi_news_icon_dark.svg`
+            : `${base}/svg/kagi_news_icon.svg`}
           alt={s("app.logo.iconAlt") || "Kite"}
           class="h-4 w-4"
         />

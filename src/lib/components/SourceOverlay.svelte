@@ -3,6 +3,7 @@
   import FaviconImage from "$lib/components/common/FaviconImage.svelte";
   import { getTimeAgo } from "$lib/utils/getTimeAgo";
   import { scrollLock } from "$lib/utils/scrollLock.js";
+  import { base } from "$app/paths";
   import {
     IconMapPin,
     IconUser,
@@ -258,7 +259,7 @@
           {#each sourceArticles as article}
             <article class="flex space-x-4">
               <img
-                src={article.image || "/svg/placeholder.svg"}
+                src={article.image || `${base}/svg/placeholder.svg`}
                 alt="Article"
                 class="h-24 w-24 rounded object-cover"
               />

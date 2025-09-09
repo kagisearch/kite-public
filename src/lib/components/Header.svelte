@@ -369,7 +369,7 @@
     style="left: {kiteStartPosition.x}px; top: {kiteStartPosition.y}px;"
   >
     <img
-      src={theme.current === "dark" ? "/svg/kite_dark.svg" : "/svg/kite.svg"}
+      src={theme.current === "dark" ? `${base}/svg/kite_dark.svg` : `${base}/svg/kite.svg`}
       alt=""
       class="flying-kite"
       aria-hidden="true"

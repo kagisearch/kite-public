@@ -35,8 +35,7 @@ const config = {
     },
     csrf: {
       trustedOrigins: [
-        "https://kagisearch.github.io",
-        "https://xytronix.github.io"
+        "https://kagisearch.github.io"
       ],
     },
   },

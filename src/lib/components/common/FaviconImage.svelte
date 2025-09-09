@@ -4,6 +4,7 @@
     getImmediateFaviconUrl,
   } from "$lib/services/faviconService";
   import { onMount } from "svelte";
+  import { base } from "$app/paths";
 
   interface Props {
     domain: string;
@@ -64,7 +65,7 @@
   onerror={(e) => {
     // Fallback to placeholder on error
     const target = e.currentTarget as HTMLImageElement;
-    target.src = "/svg/placeholder.svg";
+    target.src = `${base}/svg/placeholder.svg`;
   }}
 />
 
