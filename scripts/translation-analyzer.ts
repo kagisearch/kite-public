@@ -1,6 +1,5 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { glob } from 'glob';
 import type { Issue } from './shared-types.js';
 import { findLineNumber, findKeyRange } from './shared-types.js';
 
@@ -100,8 +99,27 @@ export async function analyzeTranslations(): Promise<TranslationIssues> {
  * Find translation keys that are not used in the source code
  */
 async function findUnusedKeys(enKeys: Set<string>): Promise<string[]> {
-  const sourceFiles = await glob('src/**/*.{svelte,ts,js}', { ignore: 'node_modules/**' });
-  const sourceContents = sourceFiles.map((file: string) => fs.readFileSync(file, 'utf-8')).join('\n');
+  function collectSourceFiles(rootDir: string): string[] {
+    const results: string[] = [];
+    const stack: string[] = [rootDir];
+    while (stack.length > 0) {
+      const dir = stack.pop() as string;
+      const entries = fs.readdirSync(dir, { withFileTypes: true });
+      for (const entry of entries) {
+        const full = path.join(dir, entry.name);
+        if (entry.isDirectory()) {
+          if (entry.name === 'node_modules' || entry.name.startsWith('.')) continue;
+          stack.push(full);
+        } else if (entry.isFile()) {
+          if (/\.(svelte|ts|js)$/.test(entry.name)) results.push(full);
+        }
+      }
+    }
+    return results;
+  }
+
+  const sourceFiles = collectSourceFiles(path.join('src'));
+  const sourceContents = sourceFiles.map((file) => fs.readFileSync(file, 'utf-8')).join('\n');
   
   const unusedKeys: string[] = [];
   for (const key of enKeys) {

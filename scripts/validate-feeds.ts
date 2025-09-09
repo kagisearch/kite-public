@@ -217,29 +217,83 @@ async function main() {
 		...duplicateDiagnostics,
 		...flattened,
 	];
-	// Build diff suggestions
+	// Build ordered unified diff with grouped deletions and context to avoid misordered hunks
 	const fileLines = dataRaw.split('\n');
-	let diff = '';
 
+	function lowerBound(arr: number[], target: number): number {
+		let lo = 0;
+		let hi = arr.length;
+		while (lo < hi) {
+			const mid = (lo + hi) >> 1;
+			if (arr[mid] < target) lo = mid + 1; else hi = mid;
+		}
+		return lo;
+	}
+
+	function buildUnifiedDeleteDiff(filePath: string, lines: string[], removalLineNumbers: number[], contextLines = 2): string {
+		const uniqueSorted = Array.from(new Set(removalLineNumbers)).sort((a, b) => a - b);
+		if (uniqueSorted.length === 0) return '';
+
+		const removeSet = new Set(uniqueSorted);
+		const groups: Array<{ start: number; end: number }> = [];
+		let gStart = uniqueSorted[0];
+		let gPrev = gStart;
+		for (let i = 1; i < uniqueSorted.length; i++) {
+			const cur = uniqueSorted[i];
+			if (cur === gPrev + 1) {
+				gPrev = cur;
+			} else {
+				groups.push({ start: gStart, end: gPrev });
+				gStart = cur;
+				gPrev = cur;
+			}
+		}
+		groups.push({ start: gStart, end: gPrev });
+
+		let diffOut = '';
+		let prevOldContextEnd = 0;
+
+		for (const grp of groups) {
+			const pre: number[] = [];
+			for (let i = grp.start - 1; i >= 1 && pre.length < contextLines && i > prevOldContextEnd; i--) {
+				if (!removeSet.has(i)) pre.push(i);
+			}
+			pre.reverse();
+
+			const post: number[] = [];
+			for (let i = grp.end + 1; i <= lines.length && post.length < contextLines; i++) {
+				if (!removeSet.has(i)) post.push(i);
+			}
+
+			const oldStart = pre.length > 0 ? pre[0] : grp.start;
+			const oldCount = pre.length + (grp.end - grp.start + 1) + post.length;
+			const removedBeforeOldStart = lowerBound(uniqueSorted, oldStart);
+			const newStart = oldStart - removedBeforeOldStart;
+			const newCount = oldCount - (grp.end - grp.start + 1);
+
+			diffOut += `@@ -${oldStart},${oldCount} +${newStart},${newCount} @@\n`;
+			for (const li of pre) diffOut += ` ${lines[li - 1]}\n`;
+			for (let li = grp.start; li <= grp.end; li++) diffOut += `-${lines[li - 1]}\n`;
+			for (const li of post) diffOut += ` ${lines[li - 1]}\n`;
+
+			prevOldContextEnd = post.length > 0 ? post[post.length - 1] : grp.end;
+		}
+
+		return `diff --git a/${filePath} b/${filePath}\n--- a/${filePath}\n+++ b/${filePath}\n${diffOut}`;
+	}
+
+	// Emit diagnostics and collect line numbers to remove
+	const removalLineNumbers: number[] = [];
 	for (const issue of diagnostics) {
-		// Emit diagnostic to stderr for reviewdog efm parser
 		console.error(`kite_feeds.json:1:${issue.url} -> ${issue.message}`);
-
-		// Generate removal suggestion patch
 		if (issue.suggestRemoval) {
 			const idx = fileLines.findIndex((l) => l.includes(issue.url));
-			if (idx !== -1) {
-				const lineNum = idx + 1;
-				const lineContent = fileLines[idx];
-				diff += `@@ -${lineNum},1 +0,0 @@\n-${lineContent}\n`;
-			}
+			if (idx !== -1) removalLineNumbers.push(idx + 1);
 		}
 	}
 
-	if (diff) {
-		// Output unified diff header
-		process.stdout.write(`diff --git a/kite_feeds.json b/kite_feeds.json\n--- a/kite_feeds.json\n+++ b/kite_feeds.json\n${diff}`);
-	}
+	const diff = buildUnifiedDeleteDiff('kite_feeds.json', fileLines, removalLineNumbers, 2);
+	if (diff) process.stdout.write(diff);
 
 	// Attempt to detect if all newly added feeds are problematic and inform the user
 	try {

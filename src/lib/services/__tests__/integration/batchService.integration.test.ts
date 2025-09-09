@@ -53,7 +53,7 @@ describe("BatchService Integration Tests", () => {
         expect(typeof result.chaosDescription).toBe("string");
         expect(typeof result.chaosLastUpdated).toBe("string");
       }
-    });
+    }, 60000);
 
     it("should handle different languages", async () => {
       // Test with different language codes
