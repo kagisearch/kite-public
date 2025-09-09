@@ -4,7 +4,7 @@
         "translationContext": "First paragraph of the approach section"
     },
     "about.approach.description2": {
-        "text": "हम संसाधनों की विविधता और पारदर्शिता के लिए प्रयास करते हैं और विचारों को व्यापक बनाने के लिए आपके <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/Kagi News-public\">योगदान</a> का स्वागत करते हैं। यह बहु-स्रोत दृष्टिकोण किसी एक दृष्टिकोण से परे पूरी तस्वीर को प्रकट करने में मदद करता है।",
+        "text": "हम संसाधनों की विविधता और पारदर्शिता के लिए प्रयास करते हैं और विचारों को व्यापक बनाने के लिए आपके <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">योगदान</a> का स्वागत करते हैं। यह बहु-स्रोत दृष्टिकोण किसी एक दृष्टिकोण से परे पूरी तस्वीर को प्रकट करने में मदद करता है।",
         "translationContext": "Second paragraph of the approach section with GitHub link"
     },
     "about.approach.description3": {
@@ -24,7 +24,7 @@
         "translationContext": "Title of the contact section"
     },
     "about.customization.description": {
-        "text": "सेटिंग्स में श्रेणियों को पुनर्व्यवस्थित और टॉगल करके अपनी फ़ीड को वैयक्तिकृत करें। योगदान करना चाहते हैं? काइट का अधिकांश हिस्सा, हमारी वेब ऐप और समुदाय-क्यूरेटेड फ़ीड सहित, <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/Kagi News-public\">ओपन सोर्स</a> है।",
+        "text": "सेटिंग्स में श्रेणियों को पुनर्व्यवस्थित और टॉगल करके अपनी फ़ीड को वैयक्तिकृत करें। योगदान करना चाहते हैं? काइट का अधिकांश हिस्सा, हमारी वेब ऐप और समुदाय-क्यूरेटेड फ़ीड सहित, <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">ओपन सोर्स</a> है।",
         "translationContext": "Description of customization options with GitHub link"
     },
     "about.customization.title": {

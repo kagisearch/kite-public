@@ -4,7 +4,7 @@
         "translationContext": "First paragraph of the approach section"
     },
     "about.approach.description2": {
-        "text": "Nos esforzamos por la diversidad y la transparencia de recursos y agradecemos sus <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/Kagi News-public\">contribuciones</a> para ampliar las perspectivas. Este enfoque multisource ayuda a mostrar el panorama completo más allá de cualquier punto de vista único.",
+        "text": "Nos esforzamos por la diversidad y la transparencia de recursos y agradecemos sus <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">contribuciones</a> para ampliar las perspectivas. Este enfoque multisource ayuda a mostrar el panorama completo más allá de cualquier punto de vista único.",
         "translationContext": "Second paragraph of the approach section with GitHub link"
     },
     "about.approach.description3": {
@@ -24,7 +24,7 @@
         "translationContext": "Title of the contact section"
     },
     "about.customization.description": {
-        "text": "Personaliza tu feed reorganizando y activando o desactivando categorías en la configuración. ¿Quieres contribuir? Gran parte de Kagi News es <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/Kagi News-public\">código abierto</a>, incluyendo nuestra aplicación web y los feeds seleccionados por la comunidad.",
+        "text": "Personaliza tu feed reorganizando y activando o desactivando categorías en la configuración. ¿Quieres contribuir? Gran parte de Kagi News es <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">código abierto</a>, incluyendo nuestra aplicación web y los feeds seleccionados por la comunidad.",
         "translationContext": "Description of customization options with GitHub link"
     },
     "about.customization.title": {

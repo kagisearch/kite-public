@@ -4,7 +4,7 @@
         "translationContext": "First paragraph of the approach section"
     },
     "about.approach.description2": {
-        "text": "We streven naar diversiteit en transparantie van middelen en verwelkomen uw <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/Kagi News-public\">bijdragen</a> om perspectieven te verbreden. Deze multi-bronnen aanpak helpt het volledige beeld te onthullen, verder dan elk enkel gezichtspunt.",
+        "text": "We streven naar diversiteit en transparantie van middelen en verwelkomen uw <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">bijdragen</a> om perspectieven te verbreden. Deze multi-bronnen aanpak helpt het volledige beeld te onthullen, verder dan elk enkel gezichtspunt.",
         "translationContext": "Second paragraph of the approach section with GitHub link"
     },
     "about.approach.description3": {
@@ -24,7 +24,7 @@
         "translationContext": "Title of the contact section"
     },
     "about.customization.description": {
-        "text": "Personaliseer je feed door categorieën te herordenen en te wisselen in de instellingen. Wil je bijdragen? Het grootste deel van Kagi News is <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/Kagi News-public\">open source</a>, inclusief onze webapp en door de gemeenschap samengestelde feeds.",
+        "text": "Personaliseer je feed door categorieën te herordenen en te wisselen in de instellingen. Wil je bijdragen? Het grootste deel van Kagi News is <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">open source</a>, inclusief onze webapp en door de gemeenschap samengestelde feeds.",
         "translationContext": "Description of customization options with GitHub link"
     },
     "about.customization.title": {

@@ -4,7 +4,7 @@
         "translationContext": "First paragraph of the approach section"
     },
     "about.approach.description2": {
-        "text": "Мы стремимся к разнообразию и прозрачности источников и приветствуем ваши <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/Kagi News-public\">вклады</a> для расширения кругозора. Этот многоисточниковый подход помогает раскрыть полную картину, выходящую за рамки одной точки зрения.",
+        "text": "Мы стремимся к разнообразию и прозрачности источников и приветствуем ваши <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">вклады</a> для расширения кругозора. Этот многоисточниковый подход помогает раскрыть полную картину, выходящую за рамки одной точки зрения.",
         "translationContext": "Second paragraph of the approach section with GitHub link"
     },
     "about.approach.description3": {
@@ -24,7 +24,7 @@
         "translationContext": "Title of the contact section"
     },
     "about.customization.description": {
-        "text": "Персонализируйте свою ленту, изменяя порядок и переключая категории в настройках. Хотите внести вклад? Большинство Kagi News является <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/Kagi News-public\">открытым исходным кодом</a>, включая наше веб-приложение и ленты, курируемые сообществом.",
+        "text": "Персонализируйте свою ленту, изменяя порядок и переключая категории в настройках. Хотите внести вклад? Большинство Kagi News является <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">открытым исходным кодом</a>, включая наше веб-приложение и ленты, курируемые сообществом.",
         "translationContext": "Description of customization options with GitHub link"
     },
     "about.customization.title": {

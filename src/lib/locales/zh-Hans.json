@@ -4,7 +4,7 @@
         "translationContext": "First paragraph of the approach section"
     },
     "about.approach.description2": {
-        "text": "我们致力于资源的多样性和透明度，并欢迎您<a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/Kagi News-public\">贡献</a>以拓宽视角。这种多源方法有助于揭示超越任何单一观点的全貌。",
+        "text": "我们致力于资源的多样性和透明度，并欢迎您<a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">贡献</a>以拓宽视角。这种多源方法有助于揭示超越任何单一观点的全貌。",
         "translationContext": "Second paragraph of the approach section with GitHub link"
     },
     "about.approach.description3": {
@@ -24,7 +24,7 @@
         "translationContext": "Title of the contact section"
     },
     "about.customization.description": {
-        "text": "在设置中重新排序和切换类别，以个性化你的订阅源。想要贡献？Kagi News 的大部分内容都是<a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/Kagi News-public\">开源的</a>，包括我们的网络应用和社区精选的订阅源。",
+        "text": "在设置中重新排序和切换类别，以个性化你的订阅源。想要贡献？Kagi News 的大部分内容都是<a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">开源的</a>，包括我们的网络应用和社区精选的订阅源。",
         "translationContext": "Description of customization options with GitHub link"
     },
     "about.customization.title": {
