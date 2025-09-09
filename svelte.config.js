@@ -11,7 +11,7 @@ const config = {
   kit: {
     adapter:
       process.env.KIT_ADAPTER === "static"
-        ? adapterStatic({ fallback: "404.html" })
+        ? adapterStatic({ fallback: "index.html" })
         : adapterNode(),
     prerender: {
       // Avoid failing preview/static builds due to dynamic routes not discovered during crawl
