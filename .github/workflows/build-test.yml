@@ -147,7 +147,8 @@ jobs:
             http://127.0.0.1:5173/latest
           configPath: './.lighthouserc.json'
           uploadArtifacts: true
-          temporaryPublicStorage: true
+          temporaryPublicStorage: false
+          artifactName: 'lighthouse-results'
 
       - name: Run tests
         run: bun run test:all
@@ -157,9 +158,3 @@ jobs:
         run: |
           if [ -f preview.pid ]; then kill $(cat preview.pid) || true; fi
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
-        with:
-          fail_ci_if_error: false
-          verbose: true
