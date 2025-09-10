@@ -3165,5 +3165,55 @@
       "https://www.schneier.com/feed/atom/",
       "https://www.wired.com/feed/category/security/latest/rss"
     ]
+  },
+  "Programming": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {
+      "en": "Programming",
+      "de": "Programmierung",
+      "fr": "Programmation",
+      "es": "Programación",
+      "pt": "Programação",
+      "it": "Programmazione",
+      "nl": "Programmeren",
+      "zh-Hans": "编程",
+      "zh-Hant": "程式設計",
+      "ja": "プログラミング",
+      "hi": "प्रोग्रामिंग",
+      "uk": "Програмування"
+    },
+    "feeds": [
+		"https://dev.to/feed",
+		"https://css-tricks.com/feed",
+		"https://blog.codepen.io/feed",  
+		"https://www.smashingmagazine.com/feed/",
+		"https://www.sitepoint.com/sitepoint.rss",
+		"https://feeds.dzone.com/home",
+		"https://www.infoq.com/feed/",
+		"https://github.blog/feed/",
+		"https://hacks.mozilla.org/feed/",
+		"https://techcrunch.com/tag/programming/feed/",
+		"https://devblogs.microsoft.com/feed/",
+		"https://developers.googleblog.com/atom.xml",
+		"https://www.javacodegeeks.com/feed",
+		"https://reactjs.org/feed.xml",
+		"https://blog.golang.org/feed.atom",
+		"https://android-developers.googleblog.com/atom.xml",
+		"https://towardsdatascience.com/feed",
+		"https://feeds.feedburner.com/codinghorror",
+		"https://thecrazyprogrammer.com/feed",
+		"https://techbeamers.com/feed",
+		"https://mindflash.org/feed",
+		"https://overreacted.io/rss.xml",
+		"http://feeds.hanselman.com/ScottHanselman",
+		"https://www.joelonsoftware.com/feed/",
+		"https://stackoverflow.blog/feed/",
+		"https://martinfowler.com/feed.atom",
+		"https://slack.engineering/feed",
+		"https://blog.jetbrains.com/feed",
+		"https://about.gitlab.com/atom.xml",
+		"https://medium.com/feed/better-programming"
+	]
   }
 }
