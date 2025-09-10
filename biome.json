@@ -1,7 +1,20 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.2.4/schema.json",
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true,
+    "defaultBranch": "main"
+  },
   "files": {
-    "includes": ["src/**/*", "*.js", "*.ts", "*.json", "*.svelte"],
+    "includes": [
+      "src/**/*",
+      "*.js",
+      "*.ts",
+      "*.json",
+      "*.svelte",
+      "*.html"
+    ],
     "ignoreUnknown": true
   },
   "formatter": {
@@ -58,7 +71,9 @@
   },
   "overrides": [
     {
-      "includes": ["src/lib/components/MapView.svelte"],
+      "includes": [
+        "src/lib/components/MapView.svelte"
+      ],
       "linter": {
         "enabled": false
       },
@@ -67,7 +82,9 @@
       }
     },
     {
-      "includes": ["**/*.svelte"],
+      "includes": [
+        "**/*.svelte"
+      ],
       "linter": {
         "rules": {
           "style": {
@@ -86,7 +103,12 @@
       }
     },
     {
-      "includes": ["**/*.config.js", "**/*.config.ts", "vite.config.*", "tailwind.config.*"],
+      "includes": [
+        "**/*.config.js",
+        "**/*.config.ts",
+        "vite.config.*",
+        "tailwind.config.*"
+      ],
       "linter": {
         "rules": {
           "style": {
@@ -99,7 +121,12 @@
       }
     },
     {
-      "includes": ["**/*.test.ts", "**/*.test.js", "**/*.spec.ts", "**/*.spec.js"],
+      "includes": [
+        "**/*.test.ts",
+        "**/*.test.js",
+        "**/*.spec.ts",
+        "**/*.spec.js"
+      ],
       "linter": {
         "rules": {
           "suspicious": {
@@ -109,4 +136,4 @@
       }
     }
   ]
-} 
+}
