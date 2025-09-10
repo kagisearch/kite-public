@@ -393,6 +393,19 @@
       localStorage.setItem("introShown", "true");
       localStorage.setItem("kite-onboarding-completed", "true");
 
+      // Allow bypassing IntroScreen via query param for automation/Lighthouse
+      try {
+        const currentUrl = new URL(window.location.href);
+        const skipIntro =
+          currentUrl.searchParams.get("skip_intro") ||
+          currentUrl.searchParams.get("lhci");
+        if (skipIntro === "1" || skipIntro === "true") {
+          settings.setShowIntro(false);
+        }
+      } catch (e) {
+        // no-op
+      }
+
       // Check if this is a shared article URL
       const urlParams = parseInitialUrl();
       const url = new URL(window.location.href);

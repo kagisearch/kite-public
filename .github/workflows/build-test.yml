@@ -143,12 +143,34 @@ jobs:
         uses: treosh/lighthouse-ci-action@v12
         with:
           urls: |
-            http://127.0.0.1:5173
-            http://127.0.0.1:5173/latest
+            http://127.0.0.1:5173?skip_intro=1
+            http://127.0.0.1:5173/latest?skip_intro=1
           configPath: './.lighthouserc.json'
           uploadArtifacts: true
           temporaryPublicStorage: false
           artifactName: 'lighthouse-results'
+
+      - name: Create Lighthouse index.html
+        run: |
+          set -e
+          mkdir -p .lighthouseci
+          cd .lighthouseci
+          echo '<!doctype html><meta charset="utf-8"><title>Lighthouse Reports</title><h1>Lighthouse Reports</h1><ul>' > index.html
+          for f in *.html; do
+            if [ -f "$f" ]; then
+              echo "<li><a href=\"$f\">$f</a></li>" >> index.html
+            fi
+          done
+          echo '</ul>' >> index.html
+
+      - name: Deploy Lighthouse reports to gh-pages (PRs)
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: ./.lighthouseci
+          preview-branch: gh-pages
+          umbrella-dir: lhci
+          action: auto
 
       - name: Run tests
         run: bun run test:all

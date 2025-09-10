@@ -75,6 +75,13 @@ jobs:
           umbrella-dir: pr-preview
           action: remove
 
+      - name: Remove LHCI Preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          preview-branch: gh-pages
+          umbrella-dir: lhci
+          action: remove
+
       - name: Remove leftover .nojekyll and empty dir
         run: |
           set -e
@@ -105,4 +112,31 @@ jobs:
             git push origin gh-pages
           else
             echo "No leftover files to clean."
+          fi
+
+      - name: Remove leftover LHCI dir if needed
+        run: |
+          set -e
+          git fetch origin gh-pages:gh-pages
+          git checkout gh-pages
+          DIR="lhci/pr-${{ github.event.pull_request.number }}"
+          if [ -f "$DIR/.nojekyll" ]; then
+            rm -f "$DIR/.nojekyll"
+          fi
+          if [ -d "$DIR" ] && [ -z "$(ls -A "$DIR")" ]; then
+            rmdir "$DIR"
+          fi
+          # Stage only the preview directory (or its deletion)
+          if [ -d "$DIR" ]; then
+            git add -A -- "$DIR"
+          else
+            git rm -r --ignore-unmatch "$DIR" || true
+          fi
+          if ! git diff --cached --quiet; then
+            git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git commit -m "chore(lhci): cleanup PR ${{ github.event.pull_request.number }} LHCI leftovers"
+            git push origin gh-pages
+          else
+            echo "No LHCI leftover files to clean."
           fi
