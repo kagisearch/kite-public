@@ -40,7 +40,6 @@
   let dateClickCount = $state(0);
 
   // Loading state for exiting time travel
-  // biome-ignore lint/style/useConst: toggled during reload flow
   let isExitingTimeTravel = $state(false);
 
   // Kite animation state

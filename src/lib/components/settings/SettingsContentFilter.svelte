@@ -15,16 +15,12 @@
 
   // State
   let newKeyword = $state("");
-  // biome-ignore lint/style/useConst: bound via Svelte bind:this lifecycle
   let inputElement = $state<HTMLInputElement>();
   let previousLanguage = $state(dataLanguage.current);
   let showResetConfirm = $state(false);
-  // biome-ignore lint/style/useConst: bound via Svelte bind:this lifecycle
   let resetButtonElement = $state<HTMLButtonElement>();
   let showImportConfirm = $state(false);
-  // biome-ignore lint/style/useConst: bound via Svelte bind:this lifecycle
   let importButtonElement = $state<HTMLButtonElement>();
-  // biome-ignore lint/style/useConst: bound via Svelte bind:this lifecycle
   let fileInputElement = $state<HTMLInputElement>();
   let importWarning = $state<string | undefined>();
   let pendingImportData = $state<string | undefined>();
@@ -116,7 +112,6 @@
   });
 
   // Helper to get keywords for a preset in the current language
-  // biome-ignore lint/suspicious/noExplicitAny: preset shape from store
   function getPresetKeywords(preset: any): string[] {
     if (Array.isArray(preset.keywords)) {
       return preset.keywords;

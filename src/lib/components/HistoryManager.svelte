@@ -18,7 +18,6 @@
     onNavigate?: (params: NavigationParams) => void;
   }
 
-  // biome-ignore lint/style/useConst: Svelte props must remain let to stay reactive
   let {
     batchId = $bindable(),
     categoryId = $bindable(),

@@ -81,7 +81,6 @@
   interface TooltipScrollbarsRef {
     osInstance: () => OverlayScrollbars | null;
   }
-  // biome-ignore lint/style/useConst: Will be reassigned via bind:this
   let tooltipScrollbars: TooltipScrollbarsRef | null = $state(null);
 
   // Detect mobile device

@@ -37,7 +37,6 @@
     initialCategoryId?: string | null;
   }
 
-  // biome-ignore lint/style/useConst: Svelte props must remain let to stay reactive
   let { onDataLoaded, onError, initialBatchId, initialCategoryId }: Props =
     $props();
 

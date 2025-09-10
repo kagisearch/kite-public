@@ -4,7 +4,6 @@
   import { onMount, onDestroy } from "svelte";
 
   interface Props {
-    // biome-ignore lint/suspicious/noExplicitAny: lottie-web requires raw JSON data
     animationData: any;
     loop?: boolean;
     autoplay?: boolean;

@@ -14,7 +14,6 @@
     onBlur?: () => void;
   }
 
-  // biome-ignore lint/style/useConst: Svelte bindable props must remain let
   let {
     value = $bindable(),
     suggestions,

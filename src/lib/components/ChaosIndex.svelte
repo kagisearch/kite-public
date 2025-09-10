@@ -17,7 +17,6 @@
     lastUpdated: string;
   }
 
-  // biome-ignore lint/style/useConst: Svelte props must remain let to stay reactive
   let { score, summary, lastUpdated }: Props = $props();
 
   // State
@@ -27,10 +26,8 @@
     Array<{ date: string; score: number; summary: string }>
   >([]);
   let isLoadingHistory = $state(false);
-  // biome-ignore lint/style/useConst: Svelte bind:this reassignments
   let chartCanvas = $state<HTMLCanvasElement>();
   let chartInstance: Chart | null = null;
-  // biome-ignore lint/style/useConst: Svelte bind:this reassignments
   let scrollContainer = $state<HTMLElement>();
 
   // Modal behavior
@@ -70,7 +67,6 @@
   }
 
   // Import Lottie animations (these will be added from LottieFiles)
-  // biome-ignore lint/suspicious/noExplicitAny: Lottie JSON lacks a strict TS type
   let weatherAnimations = $state<Record<string, any>>({});
 
   // Load animations dynamically

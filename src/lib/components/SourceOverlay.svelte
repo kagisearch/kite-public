@@ -39,11 +39,9 @@
   }: Props = $props();
 
   // State for showing source info
-  // biome-ignore lint/style/useConst: toggled via event handlers
   let showSourceInfo = $state(false);
 
   // Focus management
-  // biome-ignore lint/style/useConst: reassigned via bind:this
   let dialogElement: HTMLElement | undefined = $state(undefined);
   let firstFocusableElement: HTMLElement | undefined = $state(undefined);
   let lastFocusableElement: HTMLElement | undefined = $state(undefined);
@@ -55,7 +53,6 @@
   });
 
   // OverlayScrollbars setup
-  // biome-ignore lint/style/useConst: reassigned via bind:this
   let scrollableElement: HTMLElement | undefined = $state(undefined);
   const [initialize, instance] = useOverlayScrollbars({
     defer: true,

@@ -8,7 +8,6 @@
     IconSearch,
     IconX,
   } from "@tabler/icons-svelte";
-  // biome-ignore lint/style/useImportType: component is used in template
   import { OverlayScrollbarsComponent } from "overlayscrollbars-svelte";
   import { onMount, tick } from "svelte";
   import Portal from "svelte-portal";
@@ -18,7 +17,6 @@
     value: string;
     label: string;
     gender?: "M" | "F" | "N"; // Optional gender field
-    // biome-ignore lint/suspicious/noExplicitAny: dynamic Svelte component type
     icon?: any; // Optional Tabler icon component
   };
 
@@ -37,16 +35,12 @@
 
   // Internal state
   let container: HTMLDivElement;
-  // biome-ignore lint/style/useConst: reassigned via bind:this
   let dropdown: HTMLDivElement | null = $state(null);
-  // biome-ignore lint/style/useConst: reassigned via bind:this
   let fieldset: HTMLDivElement | null = $state(null);
-  // biome-ignore lint/style/useConst: reassigned via bind:this
   let search: HTMLInputElement | null = $state(null);
   let isOpen = $state(false);
   let filter = $state("");
   let uniqueId = $state("");
-  // biome-ignore lint/style/useConst: reassigned via bind:this
   let overlayScrollbars: OverlayScrollbarsComponent | null = $state(null);
 
   // Generate unique ID for aria attributes

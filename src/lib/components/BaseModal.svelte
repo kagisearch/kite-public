@@ -41,9 +41,7 @@
   }: Props = $props();
 
   // Modal element references
-  // biome-ignore lint/style/useConst: Svelte binds reassign
   let modalElement: HTMLDivElement | undefined = $state();
-  // biome-ignore lint/style/useConst: Svelte binds reassign
   let contentElement: HTMLDivElement | undefined = $state();
   let previousActiveElement: Element | null = null;
 

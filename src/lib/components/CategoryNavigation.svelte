@@ -20,7 +20,6 @@
     showTemporaryTooltip?: boolean;
   }
 
-  // biome-ignore lint/style/useConst: Svelte props must remain let to stay reactive
   let {
     categories = [],
     currentCategory = "World",
@@ -34,9 +33,7 @@
   // Overflow detection state
   let hasOverflow = $state(false);
   let tabsElement: HTMLElement;
-  // biome-ignore lint/style/useConst: bound via Svelte bind:this lifecycle
   let temporaryCategoryElement = $state<HTMLElement | null>(null);
-  // biome-ignore lint/style/useConst: dynamically assigned via bind:this
   let categoryElements = $state<Record<string, HTMLElement>>({});
 
   // Expose a function to get the reference element for the tooltip

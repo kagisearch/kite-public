@@ -30,7 +30,6 @@
     onLoadMore?: () => void;
   }
 
-  // biome-ignore lint/style/useConst: Svelte props must remain let to stay reactive
   let {
     results,
     selectedIndex,
@@ -46,7 +45,6 @@
     onLoadMore,
   }: Props = $props();
 
-  // biome-ignore lint/style/useConst: bound via Svelte bind:this lifecycle
   let resultsContainer = $state<HTMLDivElement | null>(null);
   let lastSelectedIndex = $state(0);
   let currentFilterTip = $state(0);

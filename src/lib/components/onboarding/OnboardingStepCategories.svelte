@@ -8,7 +8,6 @@
     categories?: Category[];
   }
 
-  // biome-ignore lint/style/useConst: Svelte props must remain let to stay reactive
   let { categories = [] }: Props = $props();
 </script>
 

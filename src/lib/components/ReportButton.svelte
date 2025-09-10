@@ -16,7 +16,6 @@
     class?: string;
   }
 
-  // biome-ignore lint/style/useConst: Svelte props must remain let to stay reactive
   let { clusterId, title, class: className = "" }: Props = $props();
 
   let showModal = $state(false);

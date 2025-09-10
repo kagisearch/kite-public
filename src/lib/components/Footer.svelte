@@ -10,7 +10,6 @@
     onShowAbout?: () => void;
   }
 
-  // biome-ignore lint/style/useConst: Svelte props must remain let to stay reactive
   let { currentCategory = "World", onShowAbout }: Props = $props();
 
   // Handle about click

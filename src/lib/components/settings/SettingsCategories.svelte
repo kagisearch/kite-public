@@ -27,7 +27,6 @@
     categories?: Category[];
   }
 
-  // biome-ignore lint/style/useConst: Svelte props must remain let to stay reactive
   let { categories: allCategories = [] }: Props = $props();
 
   // Track dragging state
@@ -43,7 +42,6 @@
 
   // Category metadata and filtering
   let categoryMetadata = $state<CategoryMetadata[]>([]);
-  // biome-ignore lint/style/useConst: modified by UI events
   let categoryFilter = $state("all");
 
   // Filter options for the Select component
@@ -171,7 +169,6 @@
     for (const item of disabledItems) {
       const type = getCategoryType(item.id);
       if (type in counts) {
-        // biome-ignore lint/suspicious/noExplicitAny: dynamic key increment
         (counts as any)[type]++;
       }
     }

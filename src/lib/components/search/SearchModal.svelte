@@ -26,7 +26,6 @@
     ) => void;
   }
 
-  // biome-ignore lint/style/useConst: Svelte props must remain let to stay reactive
   let {
     visible,
     allCategoryStories,
@@ -37,11 +36,9 @@
 
   // Initialize search service
   let searchService: SearchService;
-  // biome-ignore lint/style/useConst: bound via Svelte bind:this lifecycle
   let searchInput = $state<SearchInputInstance>();
 
   // Local state
-  // biome-ignore lint/style/useConst: state object mutated reactively
   let searchState = $state({
     query: "",
     // Filter type comes from service; keep broad but typed
@@ -112,7 +109,6 @@
   const isMac = $derived(
     browser &&
       (("userAgentData" in navigator &&
-        // biome-ignore lint/suspicious/noExplicitAny: browser UA typings vary
         (navigator as any).userAgentData?.platform === "macOS") ||
         navigator.userAgent.toUpperCase().indexOf("MAC") >= 0),
   );
@@ -306,7 +302,6 @@
     }
   }
 
-  // biome-ignore lint/suspicious/noExplicitAny: suggestion type comes from service context
   function handleApplySuggestion(suggestion: any) {
     if (!searchService || !currentFilterContext) return;
 
