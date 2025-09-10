@@ -1,0 +1,14 @@
+{
+  "ci": {
+    "collect": {
+      "numberOfRuns": 1
+    },
+    "assert": {
+      "assertions": {}
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}
+bun
