@@ -69,6 +69,16 @@ jobs:
       - name: Build application
         run: bun run build
 
+      - name: Analyze bundle size
+        uses: preactjs/compressed-size-action@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          pattern: './build/**/*.{js,css,html}'
+          exclude: '{**/*.map,**/node_modules/**}'
+          strip-hash: '\\b\\w{8}\\b'
+          minimum-change-threshold: 100
+
+
   test:
     name: Run Tests
     runs-on: ubuntu-latest
@@ -128,6 +138,16 @@ jobs:
               exit 1
             fi
           done
+
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            http://127.0.0.1:5173
+            http://127.0.0.1:5173/latest
+          configPath: './.lighthouserc.json'
+          uploadArtifacts: true
+          temporaryPublicStorage: true
 
       - name: Run tests
         run: bun run test:all

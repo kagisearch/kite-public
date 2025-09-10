@@ -28,14 +28,18 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for better diff detection
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
 
-      - name: Restore Bun cache
+      - name: Cache Bun dependencies
         uses: actions/cache@v4
         with:
-          path: ~/.bun/install/cache
+          path: |
+            ~/.bun/install/cache
+            node_modules
           key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
           restore-keys: |
             ${{ runner.os }}-bun-
@@ -43,40 +47,37 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      ########################################################################
-      # Prettier formatting check
-      ########################################################################
-      - name: Run Prettier (write mode)
-        id: prettier
+      - name: Setup reviewdog
+        uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
+
+      # Get changed files for all subsequent steps
+      - name: Get changed files
+        id: changed-files
         shell: bash
         run: |
           set -e
           
-          # Ensure we have full git history for diff
-          git fetch origin main --depth=50 || true
-          
-          # Collect changed files for the current push or PR (handle shallow/initial commits)
+          # Define file patterns to check
           globs=( '*.json' '*.ts' '*.tsx' '*.js' '*.jsx' '*.svelte' '*.css' '*.html' )
+          
+          # Get changed files based on event type
           if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
-            changed_files="$(git diff --name-only origin/main...HEAD -- "${globs[@]}" 2>/dev/null || true)"
-            if [ -z "$changed_files" ] && git rev-parse --verify HEAD~1 >/dev/null 2>&1; then
-              changed_files="$(git diff --name-only HEAD~1 HEAD -- "${globs[@]}" 2>/dev/null || true)"
-            fi
+            # For PRs, compare against the base branch
+            base_sha="${{ github.event.pull_request.base.sha }}"
+            head_sha="${{ github.event.pull_request.head.sha }}"
+            changed_files="$(git diff --name-only "$base_sha".."$head_sha" -- "${globs[@]}" 2>/dev/null || true)"
           else
+            # For pushes, compare with previous commit or list all files if initial commit
             if git rev-parse --verify HEAD~1 >/dev/null 2>&1; then
               changed_files="$(git diff --name-only HEAD~1 HEAD -- "${globs[@]}" 2>/dev/null || true)"
             else
-              # Initial commit or shallow checkout without parent; lint all tracked files
               changed_files="$(git ls-files "${globs[@]}")"
             fi
           fi
-
-          if [ -z "$changed_files" ]; then
-            echo "No files to format with Prettier."
-            exit 0
-          fi
-
-          # Filter to only existing files and run Prettier
+          
+          # Filter to existing files and save to output
           existing_files=""
           for file in $changed_files; do
             if [ -f "$file" ]; then
@@ -84,12 +85,30 @@ jobs:
             fi
           done
           
-          if [ -n "$existing_files" ]; then
-            echo "$existing_files" | xargs bunx prettier --write
+          echo "files<<EOF" >> $GITHUB_OUTPUT
+          echo "$existing_files" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+          
+          # Also check for specific file types
+          json_files=$(echo "$existing_files" | tr ' ' '\n' | grep '\.json$' || true)
+          echo "json_files<<EOF" >> $GITHUB_OUTPUT
+          echo "$json_files" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      ########################################################################
+      # Prettier formatting check
+      ########################################################################
+      - name: Run Prettier (write mode)
+        if: steps.changed-files.outputs.files != ''
+        shell: bash
+        run: |
+          files="${{ steps.changed-files.outputs.files }}"
+          if [ -n "$files" ]; then
+            echo "$files" | xargs bunx prettier --write
           fi
 
       - name: Suggest Prettier fixes (same-repo PRs only)
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && steps.changed-files.outputs.files != ''
         uses: reviewdog/action-suggester@v1
         with:
           tool_name: prettier
@@ -99,230 +118,166 @@ jobs:
       # JSON validation
       ########################################################################
       - name: Install jq for JSON validation
+        if: steps.changed-files.outputs.json_files != ''
         run: sudo apt-get update && sudo apt-get install -y jq
 
       - name: Validate JSON files
-        id: jsonval
+        if: steps.changed-files.outputs.json_files != ''
         shell: bash
         run: |
           set +e
           echo "🔎 Validating JSON files..."
           
-          # Ensure we have full git history for diff
-          git fetch origin main --depth=50 || true
+          json_files="${{ steps.changed-files.outputs.json_files }}"
           
-          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
-            json_files="$(git diff --name-only origin/main...HEAD -- '*.json' 2>/dev/null || true)"
-            if [ -z "$json_files" ] && git rev-parse --verify HEAD~1 >/dev/null 2>&1; then
-              json_files="$(git diff --name-only HEAD~1 HEAD -- '*.json' 2>/dev/null || true)"
-            fi
-          else
-            if git rev-parse --verify HEAD~1 >/dev/null 2>&1; then
-              json_files="$(git diff --name-only HEAD~1 HEAD -- '*.json' 2>/dev/null || true)"
-            else
-              json_files="$(git ls-files '*.json')"
-            fi
-          fi
-
           if [ -z "$json_files" ]; then
-            echo "No JSON files changed" > /tmp/json_diag.log
+            echo "No JSON files to validate" > /tmp/json_diag.log
             exit 0
           fi
 
           diag=""
           for file in $json_files; do
             if [ -f "$file" ]; then
-              jq empty "$file" 2>/dev/null
-              if [ $? -ne 0 ]; then
-                diag+="$file:1: Invalid JSON\n"
+              if ! jq empty "$file" 2>/dev/null; then
+                diag+="$file:1: Invalid JSON syntax\n"
               fi
             fi
           done
           echo -e "$diag" | tee /tmp/json_diag.log
 
-      - name: Setup reviewdog (same-repo PRs)
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
-        uses: reviewdog/action-setup@v1
-        with:
-          reviewdog_version: latest
-
-      - name: Annotate JSON validation (PR review)
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+      - name: Annotate JSON validation
+        if: steps.changed-files.outputs.json_files != ''
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          reviewdog -efm="%f:%l:%m" -name="json-validator" -reporter=github-pr-review -fail-on-error=false < /tmp/json_diag.log 
-
-      - name: Setup reviewdog (checks for forks/push)
-        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
-        uses: reviewdog/action-setup@v1
-        with:
-          reviewdog_version: latest
-
-      - name: Annotate JSON validation (checks for forks/push)
-        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
-        env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          reviewdog -efm="%f:%l:%m" -name="json-validator" -reporter=github-check -fail-on-error=false < /tmp/json_diag.log 
+          if [ "${{ github.event_name }}" = "pull_request" ] && [ "${{ github.event.pull_request.head.repo.full_name }}" = "${{ github.repository }}" ]; then
+            reporter="github-pr-review"
+          else
+            reporter="github-check"
+          fi
+          reviewdog -efm="%f:%l:%m" -name="json-validator" -reporter="$reporter" -fail-on-error=false < /tmp/json_diag.log 
 
       ########################################################################
       # Biome Lint (advisory)
       ########################################################################
       - name: Run Biome lint
+        if: steps.changed-files.outputs.files != ''
         shell: bash
         run: |
           set +e
           
-          # Ensure we have full git history for diff
-          git fetch origin main --depth=50 || true
+          files="${{ steps.changed-files.outputs.files }}"
           
-          # Collect changed files for the current push or PR (handle shallow/initial commits)
-          globs=( '*.json' '*.ts' '*.tsx' '*.js' '*.jsx' '*.svelte' '*.css' '*.html' )
-          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
-            changed_files="$(git diff --name-only origin/main...HEAD -- "${globs[@]}" 2>/dev/null || true)"
-            if [ -z "$changed_files" ] && git rev-parse --verify HEAD~1 >/dev/null 2>&1; then
-              changed_files="$(git diff --name-only HEAD~1 HEAD -- "${globs[@]}" 2>/dev/null || true)"
-            fi
-          else
-            if git rev-parse --verify HEAD~1 >/dev/null 2>&1; then
-              changed_files="$(git diff --name-only HEAD~1 HEAD -- "${globs[@]}" 2>/dev/null || true)"
-            else
-              # Initial commit or shallow checkout without parent; lint all tracked files
-              changed_files="$(git ls-files "${globs[@]}")"
-            fi
-          fi
-
-          if [ -z "$changed_files" ]; then
+          if [ -z "$files" ]; then
             echo "No files to lint with Biome."
             touch /tmp/biome.log
             exit 0
           fi
 
-          # Filter to only existing files and run Biome
-          existing_files=""
-          for file in $changed_files; do
-            if [ -f "$file" ]; then
-              existing_files="$existing_files $file"
-            fi
-          done
-          
-          if [ -n "$existing_files" ]; then
-            echo "$existing_files" | xargs bunx biome lint --formatter compact > /tmp/biome.log || true
+          # Use Biome's built-in changed file detection when possible
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            bunx biome lint --changed --since=origin/${{ github.event.pull_request.base.ref }} --formatter=compact > /tmp/biome.log 2>&1 || true
           else
-            touch /tmp/biome.log
+            echo "$files" | xargs bunx biome lint --formatter=compact > /tmp/biome.log 2>&1 || true
           fi
 
-      - name: Annotate Biome results (PR review)
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+      - name: Annotate Biome results
+        if: steps.changed-files.outputs.files != ''
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          reviewdog -efm="%f:%l:%c %m" -name="biome-lint" -reporter=github-pr-review -fail-on-error=false < /tmp/biome.log
-
-      - name: Setup reviewdog (checks for forks/push)
-        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
-        uses: reviewdog/action-setup@v1
-        with:
-          reviewdog_version: latest
-
-      - name: Annotate Biome results (checks for forks/push)
-        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
-        env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          reviewdog -efm="%f:%l:%c %m" -name="biome-lint" -reporter=github-check -fail-on-error=false < /tmp/biome.log
+          if [ "${{ github.event_name }}" = "pull_request" ] && [ "${{ github.event.pull_request.head.repo.full_name }}" = "${{ github.repository }}" ]; then
+            reporter="github-pr-review"
+          else
+            reporter="github-check"
+          fi
+          reviewdog -efm="%f:%l:%c %m" -name="biome-lint" -reporter="$reporter" -fail-on-error=false < /tmp/biome.log
 
       ########################################################################
-      # media_data.json validation via reviewdog (advisory)
+      # Data file validation (advisory)
       ########################################################################
-      - name: Validate data files (gated by changes)
+      - name: Check for data file changes
+        id: data-changes
+        shell: bash
         run: |
+          # Get all changed files from the previous step
+          all_files="${{ steps.changed-files.outputs.files }}"
+          
+          # Check for specific data files
           changed_media=false
           changed_feeds=false
           changed_locales=false
-          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
-            base_sha=$(jq -r '.pull_request.base.sha // empty' "$GITHUB_EVENT_PATH")
-            head_sha=$(jq -r '.pull_request.head.sha // empty' "$GITHUB_EVENT_PATH")
-            if [ -n "$base_sha" ] && [ -n "$head_sha" ]; then
-              git fetch origin "$base_sha" --depth=1 || true
-              git fetch origin "$head_sha" --depth=1 || true
-              diff_files=$(git diff --name-only "$base_sha" "$head_sha")
-              echo "$diff_files" | grep -q '^media_data.json$' && changed_media=true || true
-              echo "$diff_files" | grep -q '^kite_feeds.json$' && changed_feeds=true || true
-              echo "$diff_files" | grep -E -q '^src/lib/locales/.+\.json$' && changed_locales=true || true
-            fi
+          
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            base_sha="${{ github.event.pull_request.base.sha }}"
+            head_sha="${{ github.event.pull_request.head.sha }}"
+            diff_files=$(git diff --name-only "$base_sha".."$head_sha")
           else
-            diff_files=$(git diff --name-only HEAD~1 HEAD || true)
-            echo "$diff_files" | grep -q '^media_data.json$' && changed_media=true || true
-            echo "$diff_files" | grep -q '^kite_feeds.json$' && changed_feeds=true || true
-            echo "$diff_files" | grep -E -q '^src/lib/locales/.+\.json$' && changed_locales=true || true
+            if git rev-parse --verify HEAD~1 >/dev/null 2>&1; then
+              diff_files=$(git diff --name-only HEAD~1 HEAD)
+            else
+              diff_files=$(git ls-files)
+            fi
           fi
+          
+          echo "$diff_files" | grep -q '^media_data\.json$' && changed_media=true || true
+          echo "$diff_files" | grep -q '^kite_feeds\.json$' && changed_feeds=true || true
+          echo "$diff_files" | grep -E -q '^src/lib/locales/.+\.json$' && changed_locales=true || true
+          
+          echo "media=$changed_media" >> $GITHUB_OUTPUT
+          echo "feeds=$changed_feeds" >> $GITHUB_OUTPUT
+          echo "locales=$changed_locales" >> $GITHUB_OUTPUT
 
-          if [ "$changed_media" = true ]; then
+      - name: Validate data files
+        shell: bash
+        run: |
+          # Validate media data if changed
+          if [ "${{ steps.data-changes.outputs.media }}" = "true" ]; then
+            echo "Validating media_data.json..."
             bun scripts/validate-media.ts 2> /tmp/media_diag.log || true
           else
             echo "media_data.json unchanged; skipping validator" > /tmp/media_diag.log
           fi
 
-          # Gate feeds/locales checks via sort scripts in advisory mode
-          if [ "$changed_feeds" = true ]; then
+          # Validate feeds if changed
+          if [ "${{ steps.data-changes.outputs.feeds }}" = "true" ]; then
+            echo "Validating kite_feeds.json..."
             bun scripts/sort-feeds.ts --output-issues --output-file feeds-issues.json || true
-            # Run enhanced feed validator for network/content checks; advisory annotations
             bun scripts/validate-feeds.ts > /tmp/feeds_diff.patch 2> /tmp/feeds_diag.log || true
+          else
+            echo "kite_feeds.json unchanged; skipping validator" > /tmp/feeds_diag.log
           fi
-          if [ "$changed_locales" = true ]; then
+          
+          # Validate locales if changed
+          if [ "${{ steps.data-changes.outputs.locales }}" = "true" ]; then
+            echo "Validating locale files..."
             bun scripts/sort-locales.ts --output-issues --output-file locales-issues.json || true
           fi
 
-      - name: Annotate media-data issues (PR review)
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+      - name: Annotate media validation issues
+        if: steps.data-changes.outputs.media == 'true'
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ -f /tmp/media_diag.log ]; then
-            reviewdog -efm="%f:%l:%m" -name="media-validator" -reporter=github-pr-review -fail-on-error=false < /tmp/media_diag.log
-          else
-            echo "/tmp/media_diag.log missing; skipping media annotations"
+            if [ "${{ github.event_name }}" = "pull_request" ] && [ "${{ github.event.pull_request.head.repo.full_name }}" = "${{ github.repository }}" ]; then
+              reporter="github-pr-review"
+            else
+              reporter="github-check"
+            fi
+            reviewdog -efm="%f:%l:%m" -name="media-validator" -reporter="$reporter" -fail-on-error=false < /tmp/media_diag.log
           fi
 
-      - name: Setup reviewdog (checks for forks/push)
-        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
-        uses: reviewdog/action-setup@v1
-        with:
-          reviewdog_version: latest
-
-      - name: Annotate media-data issues (checks for forks/push)
-        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
-        env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if [ -f /tmp/media_diag.log ]; then
-            reviewdog -efm="%f:%l:%m" -name="media-validator" -reporter=github-check -fail-on-error=false < /tmp/media_diag.log
-          else
-            echo "/tmp/media_diag.log missing; skipping media annotations"
-          fi
-
-      - name: Annotate feed validation (PR review)
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+      - name: Annotate feed validation issues
+        if: steps.data-changes.outputs.feeds == 'true'
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ -f /tmp/feeds_diag.log ]; then
-            reviewdog -efm="%f:%l:%m" -name="feed-validator" -reporter=github-pr-review -fail-on-error=false < /tmp/feeds_diag.log
-          fi
-
-      - name: Setup reviewdog (checks for forks/push)
-        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
-        uses: reviewdog/action-setup@v1
-        with:
-          reviewdog_version: latest
-
-      - name: Annotate feed validation (checks for forks/push)
-        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
-        env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if [ -f /tmp/feeds_diag.log ]; then
-            reviewdog -efm="%f:%l:%m" -name="feed-validator" -reporter=github-check -fail-on-error=false < /tmp/feeds_diag.log
+            if [ "${{ github.event_name }}" = "pull_request" ] && [ "${{ github.event.pull_request.head.repo.full_name }}" = "${{ github.repository }}" ]; then
+              reporter="github-pr-review"
+            else
+              reporter="github-check"
+            fi
+            reviewdog -efm="%f:%l:%m" -name="feed-validator" -reporter="$reporter" -fail-on-error=false < /tmp/feeds_diag.log
           fi

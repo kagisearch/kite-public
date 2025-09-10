@@ -51,33 +51,23 @@ jobs:
           # Ensure log files exist even if empty
           touch /tmp/feed_diag.log /tmp/feed_patch.diff
 
-      - name: Reviewdog Reporter (same-repo PRs)
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+      - name: Setup reviewdog
         uses: reviewdog/action-setup@v1
         with:
           reviewdog_version: latest
 
-      - name: Run reviewdog diagnostics (PR review)
-        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+      - name: Run reviewdog diagnostics
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: true
         run: |
-          reviewdog -efm="%f:%l:%m" -name="feed-validator" -reporter=github-pr-review -filter-mode=file -fail-on-error=false < /tmp/feed_diag.log
-
-      - name: Reviewdog setup (checks for forks/push)
-        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
-        uses: reviewdog/action-setup@v1
-        with:
-          reviewdog_version: latest
-
-      - name: Run reviewdog diagnostics (checks for forks/push)
-        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.repository
-        env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        continue-on-error: true
-        run: |
-          head -n 20 /tmp/feed_diag.log | reviewdog -efm="%f:%l:%m" -name="feed-validator" -reporter=github-check -filter-mode=file -fail-on-error=false
+          if [ "${{ github.event_name }}" = "pull_request" ] && [ "${{ github.event.pull_request.head.repo.full_name }}" = "${{ github.repository }}" ]; then
+            reporter="github-pr-review"
+            cat /tmp/feed_diag.log | reviewdog -efm="%f:%l:%m" -name="feed-validator" -reporter="$reporter" -filter-mode=file -fail-on-error=false
+          else
+            reporter="github-check"
+            head -n 20 /tmp/feed_diag.log | reviewdog -efm="%f:%l:%m" -name="feed-validator" -reporter="$reporter" -filter-mode=file -fail-on-error=false
+          fi
 
       - name: Upload feed validator artifacts
         if: always()
