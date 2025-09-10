@@ -173,7 +173,45 @@ jobs:
         shell: bash
         run: |
           set +e
-          bunx biome lint . --formatter compact > /tmp/biome.log || true
+          
+          # Ensure we have full git history for diff
+          git fetch origin main --depth=50 || true
+          
+          # Collect changed files for the current push or PR (handle shallow/initial commits)
+          globs=( '*.json' '*.ts' '*.tsx' '*.js' '*.jsx' '*.svelte' '*.css' '*.html' )
+          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+            changed_files="$(git diff --name-only origin/main...HEAD -- "${globs[@]}" 2>/dev/null || true)"
+            if [ -z "$changed_files" ] && git rev-parse --verify HEAD~1 >/dev/null 2>&1; then
+              changed_files="$(git diff --name-only HEAD~1 HEAD -- "${globs[@]}" 2>/dev/null || true)"
+            fi
+          else
+            if git rev-parse --verify HEAD~1 >/dev/null 2>&1; then
+              changed_files="$(git diff --name-only HEAD~1 HEAD -- "${globs[@]}" 2>/dev/null || true)"
+            else
+              # Initial commit or shallow checkout without parent; lint all tracked files
+              changed_files="$(git ls-files "${globs[@]}")"
+            fi
+          fi
+
+          if [ -z "$changed_files" ]; then
+            echo "No files to lint with Biome."
+            touch /tmp/biome.log
+            exit 0
+          fi
+
+          # Filter to only existing files and run Biome
+          existing_files=""
+          for file in $changed_files; do
+            if [ -f "$file" ]; then
+              existing_files="$existing_files $file"
+            fi
+          done
+          
+          if [ -n "$existing_files" ]; then
+            echo "$existing_files" | xargs bunx biome lint --formatter compact > /tmp/biome.log || true
+          else
+            touch /tmp/biome.log
+          fi
 
       - name: Annotate Biome results (PR review)
         if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
