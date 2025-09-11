@@ -1,4 +1,5 @@
 import { browser } from "$app/environment";
+import { asset } from "$app/paths";
 
 export type ThemeOption = "light" | "dark" | "system";
 
@@ -32,14 +33,12 @@ function applyTheme(theme: ThemeOption) {
   // Update favicon based on browser's theme preference (not app theme)
   const favicon = document.querySelector('link[rel="icon"]') as HTMLLinkElement;
   if (favicon) {
-    const baseEl = document.querySelector('base');
-    const hrefBase = (baseEl?.getAttribute('href') || '/').replace(/\/$/, '');
     const browserPrefersDark = window.matchMedia(
       "(prefers-color-scheme: dark)",
     ).matches;
     favicon.href = browserPrefersDark
-      ? `${hrefBase}/svg/kagi_news_icon_dark.svg`
-      : `${hrefBase}/svg/kagi_news_icon.svg`;
+      ? asset('/svg/kagi_news_icon_dark.svg')
+      : asset('/svg/kagi_news_icon.svg');
   }
 }
 
@@ -96,11 +95,9 @@ export const theme = {
         'link[rel="icon"]',
       ) as HTMLLinkElement;
       if (favicon) {
-        const baseEl = document.querySelector('base');
-        const hrefBase = (baseEl?.getAttribute('href') || '/').replace(/\/$/, '');
         favicon.href = mediaQuery.matches
-          ? `${hrefBase}/svg/kagi_news_icon_dark.svg`
-          : `${hrefBase}/svg/kagi_news_icon.svg`;
+          ? asset('/svg/kagi_news_icon_dark.svg')
+          : asset('/svg/kagi_news_icon.svg');
       }
     });
   },
