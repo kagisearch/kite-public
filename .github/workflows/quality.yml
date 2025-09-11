@@ -165,21 +165,16 @@ jobs:
         shell: bash
         run: |
           set +e
-          
+
           files="${{ steps.changed-files.outputs.files }}"
-          
+
           if [ -z "$files" ]; then
             echo "No files to lint with Biome."
             touch /tmp/biome.log
             exit 0
           fi
 
-          # Use Biome's built-in changed file detection when possible
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            bunx biome lint --changed --since=origin/${{ github.event.pull_request.base.ref }} --formatter=compact > /tmp/biome.log 2>&1 || true
-          else
-            echo "$files" | xargs bunx biome lint --formatter=compact > /tmp/biome.log 2>&1 || true
-          fi
+          echo "$files" | xargs bunx biome lint --formatter=compact > /tmp/biome.log 2>&1 || true
 
       - name: Annotate Biome results
         if: steps.changed-files.outputs.files != ''
@@ -192,6 +187,13 @@ jobs:
             reporter="github-check"
           fi
           reviewdog -efm="%f:%l:%c %m" -name="biome-lint" -reporter="$reporter" -fail-on-error=false < /tmp/biome.log
+
+      - name: Upload Biome log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: biome-logs
+          path: /tmp/biome.log
 
       ########################################################################
       # Data file validation (advisory)
