@@ -17,7 +17,6 @@
   import { onMount, type Snippet } from "svelte";
   import { MetaTags, deepMerge } from "svelte-meta-tags";
   import type { MetaTagsProps } from "svelte-meta-tags";
-  import { base } from "$app/paths";
 
   // Props from layout load
   type LayoutData = PageData & {

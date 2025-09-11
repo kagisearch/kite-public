@@ -11,7 +11,7 @@
   import { timeTravel } from "$lib/stores/timeTravel.svelte.js";
   import ChaosIndex from "./ChaosIndex.svelte";
   import { IconSearch, IconClock } from "@tabler/icons-svelte";
-  import { base } from "$app/paths";
+  import { asset } from "$app/paths";
 
   // Props
   interface Props {
@@ -261,8 +261,8 @@
     <div class="flex items-center">
       <img
         src={theme.isDark
-          ? `${base}/svg/kagi_news_compact_dark.svg`
-          : `${base}/svg/kagi_news_compact.svg`}
+          ? asset('/svg/kagi_news_compact_dark.svg')
+          : asset('/svg/kagi_news_compact.svg')}
         alt={s("app.logo.newsAlt") || "Kite News"}
         class="mr-2 h-7 sm:h-8 w-20 sm:w-22 logo relative z-50"
         onclick={handleLogoClick}
@@ -332,7 +332,7 @@
         type="button"
       >
         <img
-          src={`${base}/svg/font-size.svg`}
+          src={asset('/svg/font-size.svg')}
           alt=""
           class="h-5 w-5 sm:h-6 sm:w-6 text-gray-600 dark:text-gray-400 dark:invert"
           aria-hidden="true"
@@ -346,7 +346,7 @@
         type="button"
       >
         <img
-          src={`${base}/svg/gear.svg`}
+          src={asset('/svg/gear.svg')}
           alt=""
           class="h-5 w-5 sm:h-6 sm:w-6 text-gray-600 dark:text-gray-400 dark:invert"
           aria-hidden="true"
@@ -368,7 +368,7 @@
     style="left: {kiteStartPosition.x}px; top: {kiteStartPosition.y}px;"
   >
     <img
-      src={theme.current === "dark" ? `${base}/svg/kite_dark.svg` : `${base}/svg/kite.svg`}
+      src={theme.current === "dark" ? asset('/svg/kite_dark.svg') : asset('/svg/kite.svg')}
       alt=""
       class="flying-kite"
       aria-hidden="true"

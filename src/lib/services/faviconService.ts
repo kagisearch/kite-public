@@ -12,7 +12,7 @@
  * - Cache results to avoid repeated fetches
  */
 
-import { base } from "$app/paths";
+import { asset } from "$app/paths";
 
 interface FaviconResult {
   url: string;
@@ -286,7 +286,7 @@ function notifyCallbacks(domain: string, result: FaviconResult): void {
  */
 function getPlaceholderResult(): FaviconResult {
   return {
-    url: `${base}/svg/placeholder.svg`,
+    url: asset('/svg/placeholder.svg'),
     quality: "low",
     source: "placeholder",
   };

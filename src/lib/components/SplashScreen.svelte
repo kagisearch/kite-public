@@ -2,7 +2,7 @@
   import { s } from "$lib/client/localization.svelte";
   import { theme } from "$lib/stores/theme.svelte.js";
   import { onMount } from "svelte";
-  import { base } from "$app/paths";
+  import { asset } from "$app/paths";
 
   // Props
   interface Props {
@@ -62,7 +62,7 @@
     <div class="relative mx-auto mb-4 h-40 w-40">
       <!-- Spin body (rotates clockwise) -->
       <img
-        src={`${base}/svg/spin_body.svg`}
+        src={asset('/svg/spin_body.svg')}
         alt=""
         class="absolute inset-0 h-full w-full animate-spin-slow"
         class:brightness-75={hasError}
@@ -74,8 +74,8 @@
       <!-- Spin circle (rotates counter-clockwise) -->
       <img
         src={theme.isDark
-          ? `${base}/svg/spin_circle_dark.svg`
-          : `${base}/svg/spin_circle_light.svg`}
+          ? asset('/svg/spin_circle_dark.svg')
+          : asset('/svg/spin_circle_light.svg')}
         alt=""
         class="absolute inset-0 h-full w-full animate-spin-reverse"
         class:brightness-75={hasError}

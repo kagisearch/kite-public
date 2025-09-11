@@ -44,7 +44,7 @@
   } from "$lib/utils/imagePreloader";
   import { generateStoryId } from "$lib/utils/storyId";
   import { onMount } from "svelte";
-  import { base } from "$app/paths";
+  import { asset } from "$app/paths";
 
   // Local ref types to avoid importing component types in script
   type StoryListRef = { toggleExpandAll: () => void };
@@ -373,7 +373,7 @@
   onMount(() => {
     // Preload search doggo icon to prevent flicker
     const doggoImg = new Image();
-    doggoImg.src = `${base}/doggo_default.svg`;
+    doggoImg.src = asset('/doggo_default.svg');
 
     // Check for data language in URL first
     const urlParams = parseInitialUrl();
@@ -925,7 +925,7 @@
 
 <svelte:head>
   <!-- Preload search doggo icon to prevent flicker -->
-  <link rel="preload" as="image" href={`${base}/doggo_default.svg`} />
+  <link rel="preload" as="image" href={asset('/doggo_default.svg')} />
 </svelte:head>
 
 {#if !dataLoaded}

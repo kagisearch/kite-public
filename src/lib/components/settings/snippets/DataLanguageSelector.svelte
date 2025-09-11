@@ -7,7 +7,7 @@
   import { dataLanguage } from "$lib/stores/dataLanguage.svelte.js";
   import type { SupportedLanguage } from "$lib/stores/language.svelte";
   import { IconInfoCircle } from "@tabler/icons-svelte";
-  import { base } from "$app/paths";
+  import { asset } from "$app/paths";
 
   // Props
   interface Props {
@@ -110,7 +110,7 @@
             "Translated with Kagi Translate"}</span
         >
         <img
-          src={`${base}/svg/translate.svg`}
+          src={asset('/svg/translate.svg')}
           alt="Kagi Translate"
           class="ml-1 h-3 w-3"
         />

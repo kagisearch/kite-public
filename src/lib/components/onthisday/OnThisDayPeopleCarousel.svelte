@@ -1,6 +1,6 @@
 <script lang="ts">
   import { browser } from "$app/environment";
-  import { base } from "$app/paths";
+  import { asset } from "$app/paths";
   import { s } from "$lib/client/localization.svelte";
   import { batchService } from "$lib/services/batchService";
   import { fetchWikipediaContent } from "$lib/services/wikipediaService";
@@ -92,7 +92,7 @@
       cached ? "FOUND" : "NOT FOUND",
       cached,
     );
-    return cached || `${base}/svg/placeholder.svg`;
+    return cached || asset('/svg/placeholder.svg');
   }
 
   // Carousel functions
