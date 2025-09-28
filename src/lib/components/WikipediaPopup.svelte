@@ -10,7 +10,7 @@
     onClose: () => void;
   }
 
-  let { visible, title, content, imageUrl, onClose }: Props = $props();
+  const { visible, title, content, imageUrl, onClose }: Props = $props();
 </script>
 
 <BaseModal

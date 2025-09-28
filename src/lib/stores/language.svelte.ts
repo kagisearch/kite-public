@@ -1,4 +1,5 @@
 import { browser } from "$app/environment";
+import { getApiBaseUrl } from "$lib/utils/apiUrl";
 
 export type SupportedLanguage =
   | "default"
@@ -28,7 +29,7 @@ export type SupportedLanguage =
 
 interface LanguageState {
   current: SupportedLanguage;
-  currentStrings: Record<string, any>;
+  currentStrings: Record<string, unknown>;
   currentLocale: string;
 }
 
@@ -64,7 +65,7 @@ async function loadLocaleData(lang: string) {
   if (!browser) return;
 
   try {
-    const response = await fetch(`/api/locale/${lang}`);
+    const response = await fetch(`${getApiBaseUrl()}/locale/${lang}`);
     if (response.ok) {
       const data = await response.json();
       languageState.currentStrings = data.strings;
@@ -119,7 +120,7 @@ export const language = {
     applyLanguage(storedLanguage);
   },
 
-  initStrings(initialStrings: Record<string, any>) {
+  initStrings(initialStrings: Record<string, unknown>) {
     if (!browser) return;
 
     // Initialize with page data

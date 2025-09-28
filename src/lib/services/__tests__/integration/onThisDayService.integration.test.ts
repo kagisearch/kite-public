@@ -14,7 +14,7 @@ describe("OnThisDayService Integration Tests", () => {
 
       // OnThisDay might not always have data
       if (events.length > 0) {
-        events.forEach((event) => {
+        for (const event of events) {
           expect(event).toHaveProperty("year");
           expect(event).toHaveProperty("content");
           expect(event).toHaveProperty("sort_year");
@@ -29,7 +29,7 @@ describe("OnThisDayService Integration Tests", () => {
           if (event.content.includes("<a")) {
             expect(event.content).toMatch(/data-wiki-id="[^"]+"/);
           }
-        });
+        }
 
         // Events should be sorted by sort_year
         for (let i = 1; i < events.length; i++) {
@@ -52,18 +52,18 @@ describe("OnThisDayService Integration Tests", () => {
       expect(events.length + people.length).toBe(allEvents.length);
 
       // Verify events are historical events
-      events.forEach((event) => {
+      for (const event of events) {
         expect(event.type).toBe("event");
         // Events usually have years in the past
         expect(event.sort_year).toBeLessThan(new Date().getFullYear());
-      });
+      }
 
       // Verify people entries
-      people.forEach((person) => {
+      for (const person of people) {
         expect(["person", "people"]).toContain(person.type);
         // People entries often include birth/death information
         expect(person.content.length).toBeGreaterThan(0);
-      });
+      }
     });
 
     it("should handle empty OnThisDay data gracefully", async () => {

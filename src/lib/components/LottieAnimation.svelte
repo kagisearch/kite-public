@@ -13,7 +13,7 @@
     loopFrameOffset?: number; // Number of frames to cut from the end before looping
   }
 
-  let {
+  const {
     animationData,
     loop = true,
     autoplay = true,

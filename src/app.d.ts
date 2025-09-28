@@ -64,7 +64,7 @@ declare global {
       period_end: string | null;
       billing_account_id: number;
     };
-    orion_subscription?: any | null;
+    orion_subscription?: unknown | null;
   }
 
   interface KagiUserResponse {
@@ -88,4 +88,3 @@ declare module "*.css" {
   export default content;
 }
 
-export {};

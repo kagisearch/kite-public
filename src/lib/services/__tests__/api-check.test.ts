@@ -1,15 +1,19 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 
 describe("API Availability Check", () => {
   it("should verify if API is running", async () => {
     // Skip this check if fetch is mocked (unit tests)
-    if (
-      typeof fetch === "function" &&
-      fetch.toString().includes("mockImplementation")
-    ) {
-      console.log("Skipping API check in unit test environment");
-      expect(true).toBe(true);
-      return;
+    if (typeof fetch === "function") {
+      const isMocked =
+        // Vitest mock function
+        (vi as unknown as { isMockFunction?: (fn: unknown) => boolean }).isMockFunction?.(fetch) ||
+        // or presence of mock property
+        Object.prototype.hasOwnProperty.call(fetch as unknown as Record<string, unknown>, "mock");
+      if (isMocked) {
+        console.log("Skipping API check in unit test environment");
+        expect(true).toBe(true);
+        return;
+      }
     }
 
     try {

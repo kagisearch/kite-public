@@ -1,5 +1,6 @@
 <script lang="ts">
   import { browser } from "$app/environment";
+  import { asset } from "$app/paths";
   import { s } from "$lib/client/localization.svelte";
   import { batchService } from "$lib/services/batchService";
   import { fetchWikipediaContent } from "$lib/services/wikipediaService";
@@ -12,7 +13,7 @@
   let { people }: Props = $props();
 
   // People images cache (for carousel)
-  let peopleImagesCache = new Map<string, string>();
+  const peopleImagesCache = new Map<string, string>();
   let imagesLoaded = $state(0); // Counter to trigger reactivity when images load
 
   // People carousel state
@@ -91,7 +92,7 @@
       cached ? "FOUND" : "NOT FOUND",
       cached,
     );
-    return cached || "/svg/placeholder.svg";
+    return cached || asset('/svg/placeholder.svg');
   }
 
   // Carousel functions

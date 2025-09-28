@@ -1,25 +1,24 @@
 import type { OnThisDayEvent, LoadOnThisDayResponse } from "$lib/types";
 import { batchService } from "./batchService";
+import { getApiBaseUrl } from "$lib/utils/apiUrl";
 
 /**
  * Service for OnThisDay functionality
  */
 class OnThisDayService {
-  private baseUrl = "/api";
 
   /**
    * Load OnThisDay events
    */
-  async loadOnThisDayEvents(
-    language: string = "default",
-  ): Promise<OnThisDayEvent[]> {
+  async loadOnThisDayEvents(language = "default"): Promise<OnThisDayEvent[]> {
     try {
       // If we have a specific batch ID (time travel), use it
       // Otherwise, use the latest batch endpoint
       const currentBatchId = batchService.getCurrentBatchId();
+      const baseUrl = getApiBaseUrl();
       const endpoint = currentBatchId
-        ? `${this.baseUrl}/batches/${currentBatchId}/onthisday`
-        : `${this.baseUrl}/batches/latest/onthisday?lang=${language}`;
+        ? `${baseUrl}/batches/${currentBatchId}/onthisday`
+        : `${baseUrl}/batches/latest/onthisday?lang=${language}`;
 
       const response = await fetch(endpoint);
       if (!response.ok) {

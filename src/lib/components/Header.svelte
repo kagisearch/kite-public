@@ -11,6 +11,7 @@
   import { timeTravel } from "$lib/stores/timeTravel.svelte.js";
   import ChaosIndex from "./ChaosIndex.svelte";
   import { IconSearch, IconClock } from "@tabler/icons-svelte";
+  import { asset } from "$app/paths";
 
   // Props
   interface Props {
@@ -26,7 +27,7 @@
     onSearchClick?: () => void;
   }
 
-  let {
+  const {
     totalReadCount = 0,
     totalStoriesRead = 0,
     offlineMode = false,
@@ -49,8 +50,9 @@
   const isMac =
     browser &&
     (("userAgentData" in navigator &&
-      (navigator as any).userAgentData?.platform === "macOS") ||
-      navigator.userAgent.toUpperCase().indexOf("MAC") >= 0);
+      (navigator as unknown as { userAgentData?: { platform?: string } })
+        .userAgentData?.platform === "macOS") ||
+      navigator.userAgent.toUpperCase().includes("MAC"));
   const searchTooltip = $derived(
     s("header.search") + (isMac ? " (⌘K)" : " (Ctrl+K)"),
   );
@@ -123,34 +125,36 @@
         day: "numeric",
       }).format(now);
       return capitalizeFirst(dateStr);
-    } else if (dateClickCount === 1) {
+    }
+    if (dateClickCount === 1) {
       return getLastUpdated();
-    } else if (dateClickCount === 2) {
+    }
+    if (dateClickCount === 2) {
       return (
         s("stats.newsToday", { count: totalReadCount.toString() }) ||
         `News today: ${totalReadCount}`
       );
-    } else if (dateClickCount === 3) {
+    }
+    if (dateClickCount === 3) {
       const key =
         totalStoriesRead === 1 ? "stats.storyRead" : "stats.storiesRead";
       return (
         s(key, { count: totalStoriesRead.toString() }) ||
         `Stories read: ${totalStoriesRead}`
       );
-    } else {
-      const now = new Date();
-      const start = new Date(now.getFullYear(), 0, 1);
-      const week = Math.ceil(
-        (now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24 * 7),
-      );
-      const day = Math.ceil(
-        (now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24),
-      );
-      return (
-        s("stats.weekDay", { week: week.toString(), day: day.toString() }) ||
-        `Week ${week}, Day ${day}`
-      );
     }
+    const now = new Date();
+    const start = new Date(now.getFullYear(), 0, 1);
+    const week = Math.ceil(
+      (now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24 * 7),
+    );
+    const day = Math.ceil(
+      (now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24),
+    );
+    return (
+      s("stats.weekDay", { week: week.toString(), day: day.toString() }) ||
+      `Week ${week}, Day ${day}`
+    );
   });
 </script>
 
@@ -257,8 +261,8 @@
     <div class="flex items-center">
       <img
         src={theme.isDark
-          ? "/svg/kagi_news_compact_dark.svg"
-          : "/svg/kagi_news_compact.svg"}
+          ? asset('/svg/kagi_news_compact_dark.svg')
+          : asset('/svg/kagi_news_compact.svg')}
         alt={s("app.logo.newsAlt") || "Kite News"}
         class="mr-2 h-7 sm:h-8 w-20 sm:w-22 logo relative z-50"
         onclick={handleLogoClick}
@@ -328,7 +332,7 @@
         type="button"
       >
         <img
-          src="/svg/font-size.svg"
+          src={asset('/svg/font-size.svg')}
           alt=""
           class="h-5 w-5 sm:h-6 sm:w-6 text-gray-600 dark:text-gray-400 dark:invert"
           aria-hidden="true"
@@ -342,7 +346,7 @@
         type="button"
       >
         <img
-          src="/svg/gear.svg"
+          src={asset('/svg/gear.svg')}
           alt=""
           class="h-5 w-5 sm:h-6 sm:w-6 text-gray-600 dark:text-gray-400 dark:invert"
           aria-hidden="true"
@@ -364,7 +368,7 @@
     style="left: {kiteStartPosition.x}px; top: {kiteStartPosition.y}px;"
   >
     <img
-      src={theme.current === "dark" ? "/svg/kite_dark.svg" : "/svg/kite.svg"}
+      src={theme.current === "dark" ? asset('/svg/kite_dark.svg') : asset('/svg/kite.svg')}
       alt=""
       class="flying-kite"
       aria-hidden="true"

@@ -3,12 +3,14 @@ import { dataService } from "../dataService";
 import { imagePreloadingService } from "../imagePreloadingService";
 import { describe, it, expect, beforeEach, vi } from "vitest";
 
+type TestArticle = { image?: string | null | undefined };
+type TestStory = { articles?: TestArticle[] };
+
 // Mock the dependencies
 vi.mock("$lib/utils/imagePreloader", () => ({
   preloadImages: vi.fn(() => Promise.resolve()),
-  extractStoryImages: vi.fn(
-    (story: any) =>
-      story.articles?.map((a: any) => a.image).filter(Boolean) || [],
+  extractStoryImages: vi.fn((story: TestStory) =>
+    (story.articles?.map((a: TestArticle) => a.image).filter(Boolean) || []) as string[],
   ),
   isImageCached: vi.fn(() => false),
   clearImageCache: vi.fn(),
@@ -54,8 +56,8 @@ describe("ImagePreloadingService", () => {
     vi.mocked(imagePreloader.preloadImages).mockResolvedValue([]);
     vi.mocked(imagePreloader.isImageCached).mockReturnValue(false);
     vi.mocked(imagePreloader.extractStoryImages).mockImplementation(
-      (story: any) =>
-        story.articles?.map((a: any) => a.image).filter(Boolean) || [],
+      (story: TestStory) =>
+        (story.articles?.map((a: TestArticle) => a.image).filter(Boolean) || []) as string[],
     );
 
     // Mock dataService to not be in time travel mode

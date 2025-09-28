@@ -8,6 +8,7 @@
     type StoryOpenMode,
   } from "$lib/stores/settings.svelte.js";
   import { theme } from "$lib/stores/theme.svelte.js";
+  import { asset } from "$app/paths";
   import DataLanguageSelector from "./snippets/DataLanguageSelector.svelte";
   import LanguageSelector from "./snippets/LanguageSelector.svelte";
   import StoryCountSlider from "./snippets/StoryCountSlider.svelte";
@@ -97,7 +98,9 @@
 
   // Category header position change handler
   function handleCategoryHeaderPositionChange(position: string) {
-    settings.setCategoryHeaderPosition(position as any);
+    settings.setCategoryHeaderPosition(
+      position as import("$lib/stores/settings.svelte").CategoryHeaderPosition,
+    );
     currentCategoryHeaderPosition = position;
   }
 
@@ -270,8 +273,8 @@
       >
         <img
           src={theme.current === "dark"
-            ? "/svg/kagi_news_icon_dark.svg"
-            : "/svg/kagi_news_icon.svg"}
+            ? asset('/svg/kagi_news_icon_dark.svg')
+            : asset('/svg/kagi_news_icon.svg')}
           alt={s("app.logo.iconAlt") || "Kite"}
           class="h-4 w-4"
         />

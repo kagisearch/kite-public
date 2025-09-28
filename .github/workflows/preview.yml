@@ -1,0 +1,142 @@
+name: Preview Site
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+    paths:
+      - '**/*.svelte'
+      - '**/*.ts'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  approval:
+    if: github.event.action != 'closed' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    environment:
+      name: pr-previews
+    steps:
+      - run: echo "Awaiting approval for PR preview deploy"
+
+  deploy:
+    if: github.event.action != 'closed' && github.event.pull_request.head.repo.full_name == github.repository
+    needs: approval
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: SvelteKit sync
+        run: bunx --yes svelte-kit sync
+
+      - name: Build SvelteKit site (static)
+        env:
+          KIT_ADAPTER: static
+          BASE_PATH: kite-public/pr-preview/pr-${{ github.event.pull_request.number }}
+          VITE_API_BASE: https://kite.kagi.com/api
+        run: bun run build
+
+      - name: Deploy PR Preview to gh-pages
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: ./build
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+          action: auto
+
+  cleanup:
+    if: github.event.action == 'closed' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    environment:
+      name: pr-previews
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Remove PR Preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+          action: remove
+
+      - name: Remove LHCI Preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          preview-branch: gh-pages
+          umbrella-dir: lhci
+          action: remove
+
+      - name: Remove leftover .nojekyll and empty dir
+        run: |
+          set -e
+          git fetch origin gh-pages:gh-pages
+          git checkout gh-pages
+          DIR="pr-preview/pr-${{ github.event.pull_request.number }}"
+          if [ -f "$DIR/.nojekyll" ]; then
+            rm -f "$DIR/.nojekyll"
+          fi
+          if [ -d "$DIR" ] && [ -z "$(ls -A "$DIR")" ]; then
+            rmdir "$DIR"
+          fi
+          # Also remove accidental bare repo folder if present
+          if [ -d "bare_pr_preview" ]; then
+            git rm -r --ignore-unmatch -f bare_pr_preview || true
+            rm -rf bare_pr_preview || true
+          fi
+          # Stage only the preview directory (or its deletion)
+          if [ -d "$DIR" ]; then
+            git add -A -- "$DIR"
+          else
+            git rm -r --ignore-unmatch "$DIR" || true
+          fi
+          if ! git diff --cached --quiet; then
+            git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git commit -m "chore(preview): cleanup PR ${{ github.event.pull_request.number }} leftovers"
+            git push origin gh-pages
+          else
+            echo "No leftover files to clean."
+          fi
+
+      - name: Remove leftover LHCI dir if needed
+        run: |
+          set -e
+          git fetch origin gh-pages:gh-pages
+          git checkout gh-pages
+          DIR="lhci/pr-${{ github.event.pull_request.number }}"
+          if [ -f "$DIR/.nojekyll" ]; then
+            rm -f "$DIR/.nojekyll"
+          fi
+          if [ -d "$DIR" ] && [ -z "$(ls -A "$DIR")" ]; then
+            rmdir "$DIR"
+          fi
+          # Stage only the preview directory (or its deletion)
+          if [ -d "$DIR" ]; then
+            git add -A -- "$DIR"
+          else
+            git rm -r --ignore-unmatch "$DIR" || true
+          fi
+          if ! git diff --cached --quiet; then
+            git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git commit -m "chore(lhci): cleanup PR ${{ github.event.pull_request.number }} LHCI leftovers"
+            git push origin gh-pages
+          else
+            echo "No LHCI leftover files to clean."
+          fi

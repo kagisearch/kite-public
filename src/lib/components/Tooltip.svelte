@@ -7,7 +7,7 @@
   /**
    * Props
    */
-  let {
+  const {
     text = "",
     position = "top",
     disabled = false,

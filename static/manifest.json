@@ -1,44 +1,44 @@
-{                                                                                                                                                                                                                                                                                                                                                               
-   "name": "Kagi News",                                                                                                                                                                                                                                                                                                                                          
-   "short_name": "Kagi News",                                                                                                                                                                                                                                                                                                                                         
-   "description": "News. Elevated.",                                                                                                                                                                                                                                                                                                                             
-   "start_url": "/",                                                                                                                                                                                                                                                                                                                                             
-   "display": "standalone",                                                                                                                                                                                                                                                                                                                                      
-   "background_color": "#ffffff",                                                                                                                                                                                                                                                                                                                                
-   "theme_color": "#ffffff",                                                                                                                                                                                                                                                                                                                                     
-      "icons": [
-     {
-       "src": "/kite-icon.png",
-       "sizes": "192x192",
-       "type": "image/png",
-       "purpose": "any"
-     },
-     {
-       "src": "/kite-icon.png",
-       "sizes": "512x512",
-       "type": "image/png",
-       "purpose": "any"
-     },
-     {
-       "src": "/kite-icon.png",
-       "sizes": "512x512",
-       "type": "image/png",
-       "purpose": "maskable"
-     }
-   ],                                                                                                                                                                                                                                                                                                                                                            
-      "shortcuts": [
-     {
-       "name": "World News",
-       "url": "/?category=World",
-       "icons": [{ "src": "/svg/map.svg", "sizes": "96x96" }]
-     },
-     {
-       "name": "Technology",
-       "url": "/?category=Technology",
-       "icons": [{ "src": "/svg/gear.svg", "sizes": "96x96" }]
-     }
-   ],                                                                                                                                                                                                                                                                                                                                                            
-   "categories": ["news"],                                                                                                                                                                                                                                                                                                                                       
-   "orientation": "portrait",                                                                                                                                                                                                                                                                                                                                    
-   "prefer_related_applications": false                                                                                                                                                                                                                                                                                                                          
- }                                                                                                                                                                                                                                                                                                                                                               
+{
+  "name": "Kagi News",
+  "short_name": "Kagi News",
+  "description": "News. Elevated.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "kite-icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "kite-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "kite-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "World News",
+      "url": "./?category=World",
+      "icons": [{ "src": "svg/map.svg", "sizes": "96x96" }]
+    },
+    {
+      "name": "Technology",
+      "url": "./?category=Technology",
+      "icons": [{ "src": "svg/gear.svg", "sizes": "96x96" }]
+    }
+  ],
+  "categories": ["news"],
+  "orientation": "portrait",
+  "prefer_related_applications": false
+}

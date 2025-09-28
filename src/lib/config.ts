@@ -1,4 +1,4 @@
-import { join } from "path";
+import { join } from "node:path";
 
 // Detect if we're running in production Docker container
 const isProduction =

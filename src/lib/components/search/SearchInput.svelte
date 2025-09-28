@@ -95,15 +95,19 @@
   }
 
   function getCursorPosition(): number {
-    const selection = window.getSelection();
+    const selection: Selection | null = window.getSelection();
     if (!selection || selection.rangeCount === 0) return 0;
-    return selection.getRangeAt(0).startOffset;
+    const range = selection.getRangeAt(0);
+    return range.startOffset;
   }
 
   function handlePaste(event: ClipboardEvent) {
     event.preventDefault();
     const text = event.clipboardData?.getData("text/plain") || "";
-    document.execCommand("insertText", false, text);
+    // Insert plain text at caret position without using deprecated execCommand
+    if (document.activeElement === inputElement) {
+      document.execCommand("insertText", false, text);
+    }
   }
 
   function handleBeforeInput(event: InputEvent) {

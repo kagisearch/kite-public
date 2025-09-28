@@ -1,0 +1,182 @@
+name: Build & Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-test-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  changes:
+    name: Determine relevant changes
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    outputs:
+      app: ${{ contains(fromJSON(steps.filter.outputs.changes), 'app') && 'true' || 'false' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Filter paths
+        id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            app:
+              - 'src/**'
+              - 'package.json'
+              - 'bun.lock'
+              - 'svelte.config.*'
+              - 'vite.config.*'
+              - 'tsconfig*.json'
+              - 'vitest*.ts'
+              - 'tailwind.config.*'
+              - 'static/**'
+
+  build:
+    name: Build Application
+    runs-on: ubuntu-latest
+    needs: changes
+    if: needs.changes.outputs['app'] == 'true'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: SvelteKit sync
+        run: bunx --yes svelte-kit sync
+
+      - name: Build application
+        run: bun run build
+
+      - name: Analyze bundle size
+        uses: preactjs/compressed-size-action@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          pattern: './build/**/*.{js,css,html}'
+          exclude: '{**/*.map,**/node_modules/**}'
+          strip-hash: '\\b\\w{8}\\b'
+          minimum-change-threshold: 100
+
+
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    needs: changes
+    if: needs.changes.outputs['app'] == 'true'
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: SvelteKit sync
+        run: bunx --yes svelte-kit sync
+
+      - name: Run unit tests with coverage
+        run: npx --yes vitest run --config vitest.config.unit.ts --coverage
+
+      - name: Build for preview server
+        run: bun run build
+
+      - name: Start preview server
+        env:
+          NODE_ENV: production
+        run: |
+          nohup bun run preview -- --port 5173 --host 0.0.0.0 > preview.log 2>&1 & echo $! > preview.pid
+
+      - name: Wait for health endpoint
+        run: |
+          for i in {1..60}; do
+            if curl -sf http://127.0.0.1:5173/api/health > /dev/null; then
+              echo "Server is up"; exit 0; fi; sleep 1; done; echo "Server did not start"; cat preview.log; exit 1
+
+      - name: Smoke test key routes
+        run: |
+          set -e
+          for path in "/" "/latest"; do
+            echo "Fetching http://127.0.0.1:5173$path"
+            status=$(curl -s -o /tmp/page.html -w "%{http_code}" "http://127.0.0.1:5173$path" || true)
+            if [ "$status" -lt 200 ] || [ "$status" -ge 400 ]; then
+              echo "Route $path returned status $status"
+              echo "--- preview.log (tail) ---" && tail -n 200 preview.log || true
+              exit 1
+            fi
+          done
+
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            http://127.0.0.1:5173?skip_intro=1
+            http://127.0.0.1:5173/latest?skip_intro=1
+          configPath: './.lighthouserc.json'
+          uploadArtifacts: true
+          temporaryPublicStorage: false
+          artifactName: 'lighthouse-results'
+
+      - name: Create Lighthouse index.html
+        run: |
+          set -e
+          mkdir -p .lighthouseci
+          cd .lighthouseci
+          echo '<!doctype html><meta charset="utf-8"><title>Lighthouse Reports</title><h1>Lighthouse Reports</h1><ul>' > index.html
+          for f in *.html; do
+            if [ -f "$f" ]; then
+              echo "<li><a href=\"$f\">$f</a></li>" >> index.html
+            fi
+          done
+          echo '</ul>' >> index.html
+
+      - name: Deploy Lighthouse reports to gh-pages (PRs)
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: ./.lighthouseci
+          preview-branch: gh-pages
+          umbrella-dir: lhci
+          action: auto
+
+      - name: Run tests
+        run: bun run test:all
+
+      - name: Stop preview server
+        if: always()
+        run: |
+          if [ -f preview.pid ]; then kill $(cat preview.pid) || true; fi
+

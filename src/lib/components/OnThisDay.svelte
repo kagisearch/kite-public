@@ -14,7 +14,7 @@
     ) => void;
   }
 
-  let { stories, onWikipediaClick }: Props = $props();
+  const { stories, onWikipediaClick }: Props = $props();
 
   // Split stories into events and people
   const events = $derived(stories.filter((story) => story.type === "event"));

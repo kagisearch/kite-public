@@ -44,15 +44,34 @@
   } from "$lib/utils/imagePreloader";
   import { generateStoryId } from "$lib/utils/storyId";
   import { onMount } from "svelte";
+  import { asset } from "$app/paths";
+
+  // Local ref types to avoid importing component types in script
+  type StoryListRef = { toggleExpandAll: () => void };
+  type HistoryManagerRef = { updateUrl: (params: { categoryId?: string; storyIndex?: number | null }) => void };
+  type CategoryNavigationRef = { getCategoryElement: (id: string) => HTMLElement | null };
+
+  type SourceInfo = {
+    name?: string;
+    country?: string;
+    owner?: string;
+    organization?: string;
+    typology?: string;
+    description?: string;
+  };
+  type SourceArticle = { image?: string; link: string; title: string; date: string | number | Date };
+
+  // Global window types are declared in src/global.d.ts
 
   // App state
+  // ci: workflow demo trigger comment
   let dataLoaded = $state(false);
-  let offlineMode = $state(false);
+  const offlineMode = $state(false);
   let lastLoadedCategory = $state(""); // Track last loaded category to prevent duplicates
   let temporaryCategory = $state<string | null>(null);
   let showTemporaryCategoryTooltip = $state(false);
   let temporaryCategoryElement = $state<HTMLElement | null>(null);
-  let desktopCategoryNavigation = $state<CategoryNavigation>();
+  let desktopCategoryNavigation = $state<CategoryNavigationRef | undefined>();
   let storyCountOverride = $state<number | null>(null);
   let showOnboarding = $state(false);
   let showSearchModal = $state(false);
@@ -105,13 +124,13 @@
   let currentBatchCreatedAt = $state<string>("");
 
   // Component references
-  let storyList = $state<StoryList | undefined>();
+  let storyList = $state<StoryListRef | undefined>();
 
   // State for source overlay
   let showSourceOverlay = $state(false);
-  let currentSource = $state<any>(null);
-  let sourceArticles = $state<any[]>([]);
-  let currentMediaInfo = $state<any>(null);
+  let currentSource = $state<SourceInfo | null>(null);
+  let sourceArticles = $state<SourceArticle[]>([]);
+  let currentMediaInfo = $state<SourceInfo | null>(null);
   let isLoadingMediaInfo = $state(false);
 
   // State for chaos index
@@ -135,7 +154,7 @@
   // State for story URL management - Initialize with empty reactive objects
   let expandedStories = $state<Record<string, boolean>>({});
   let isLatestBatch = $state(true);
-  let historyManager = $state<HistoryManager>();
+  let historyManager = $state<HistoryManagerRef | undefined>();
 
   // Compute current story index from expanded stories
   const currentStoryIndex = $derived.by(() => {
@@ -354,7 +373,7 @@
   onMount(() => {
     // Preload search doggo icon to prevent flicker
     const doggoImg = new Image();
-    doggoImg.src = "/doggo_default.svg";
+    doggoImg.src = asset('/doggo_default.svg');
 
     // Check for data language in URL first
     const urlParams = parseInitialUrl();
@@ -373,6 +392,19 @@
     if (browser) {
       localStorage.setItem("introShown", "true");
       localStorage.setItem("kite-onboarding-completed", "true");
+
+      // Allow bypassing IntroScreen via query param for automation/Lighthouse
+      try {
+        const currentUrl = new URL(window.location.href);
+        const skipIntro =
+          currentUrl.searchParams.get("skip_intro") ||
+          currentUrl.searchParams.get("lhci");
+        if (skipIntro === "1" || skipIntro === "true") {
+          settings.setShowIntro(false);
+        }
+      } catch (e) {
+        // no-op
+      }
 
       // Check if this is a shared article URL
       const urlParams = parseInitialUrl();
@@ -397,9 +429,9 @@
         const storyIds = await kiteDB.getReadStoryIds();
         // Convert Set back to Record format for UI compatibility
         readStories = {};
-        storyIds.forEach((id) => {
+        for (const id of storyIds) {
           readStories[id] = true;
-        });
+        }
         totalStoriesRead = storyIds.size;
       } catch (error) {
         console.error("Error loading saved stories:", error);
@@ -482,7 +514,7 @@
   };
 
   // Handle category change
-  function handleCategoryChange(category: string, updateUrl: boolean = true) {
+  function handleCategoryChange(category: string, updateUrl = true) {
     if (category === currentCategory) {
       return;
     }
@@ -648,7 +680,7 @@
     }, 100);
   }
 
-  function handleStoryToggle(storyId: string, updateUrl: boolean = true) {
+  function handleStoryToggle(storyId: string, updateUrl = true) {
     // Check current state
     const currentlyExpanded = expandedStories[storyId];
 
@@ -767,7 +799,7 @@
       // Directly set the expanded stories from navigation
       // Use requestAnimationFrame to ensure state updates properly
       requestAnimationFrame(() => {
-        expandedStories = updates.expandedStories!;
+        expandedStories = updates.expandedStories ?? {};
       });
     }
     if (updates.storyCountOverride !== undefined) {
@@ -821,14 +853,13 @@
     ) {
       temporaryCategoryElement =
         desktopCategoryNavigation.getCategoryElement(temporaryCategory);
-    } else {
-      temporaryCategoryElement = null;
     }
+    temporaryCategoryElement = null;
   });
 
   // Debug helper for testing (only in development)
   if (browser && typeof window !== "undefined") {
-    (window as any).kiteDebug = {
+    window.kiteDebug = {
       getCacheStats: getImageCacheStats,
       clearCache: clearImageCache,
       preloadCurrentCategory: () =>
@@ -839,53 +870,43 @@
       getPreloadedCategories: () => Object.keys(allCategoryStories),
       getImageUrls: () => {
         const allUrls: string[] = [];
-        stories.forEach((story) => {
+        for (const story of stories) {
           allUrls.push(...extractStoryImages(story));
-        });
+        }
         return [...new Set(allUrls)];
       },
       getAllImageUrls: () => {
         const allUrls: string[] = [];
-        Object.values(allCategoryStories)
-          .flat()
-          .forEach((story) => {
-            allUrls.push(...extractStoryImages(story));
-          });
+        for (const story of Object.values(allCategoryStories).flat()) {
+          allUrls.push(...extractStoryImages(story));
+        }
         return [...new Set(allUrls)];
       },
       showPreloadingSettings: () => {
         console.log("🔧 Enabling preloading settings tab");
-        if (
-          (window as any).kiteSettingsDebug &&
-          (window as any).kiteSettingsDebug.enablePreloadingTab
-        ) {
-          (window as any).kiteSettingsDebug.enablePreloadingTab();
+        if (window.kiteSettingsDebug?.enablePreloadingTab) {
+          window.kiteSettingsDebug.enablePreloadingTab();
           console.log(
             "✅ Preloading settings tab enabled permanently. Open settings to see it.",
           );
           return "✅ Preloading tab enabled permanently. Open settings to see it.";
-        } else {
-          console.log(
-            "❌ Settings component not available. Please refresh and try again.",
-          );
-          return "❌ Settings component not available. Please refresh and try again.";
         }
+        console.log(
+          "❌ Settings component not available. Please refresh and try again.",
+        );
+        return "❌ Settings component not available. Please refresh and try again.";
       },
       hidePreloadingSettings: () => {
         console.log("🔧 Disabling preloading settings tab");
-        if (
-          (window as any).kiteSettingsDebug &&
-          (window as any).kiteSettingsDebug.disablePreloadingTab
-        ) {
-          (window as any).kiteSettingsDebug.disablePreloadingTab();
+        if (window.kiteSettingsDebug?.disablePreloadingTab) {
+          window.kiteSettingsDebug.disablePreloadingTab();
           console.log("✅ Preloading settings tab disabled.");
           return "✅ Preloading tab disabled.";
-        } else {
-          console.log(
-            "❌ Settings component not available. Please refresh and try again.",
-          );
-          return "❌ Settings component not available. Please refresh and try again.";
         }
+        console.log(
+          "❌ Settings component not available. Please refresh and try again.",
+        );
+        return "❌ Settings component not available. Please refresh and try again.";
       },
       resetOnboarding: () => {
         localStorage.removeItem("kite-onboarding-completed");
@@ -904,7 +925,7 @@
 
 <svelte:head>
   <!-- Preload search doggo icon to prevent flicker -->
-  <link rel="preload" as="image" href="/doggo_default.svg" />
+  <link rel="preload" as="image" href={asset('/doggo_default.svg')} />
 </svelte:head>
 
 {#if !dataLoaded}

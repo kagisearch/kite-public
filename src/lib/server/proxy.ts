@@ -3,16 +3,16 @@ import type { RequestHandler } from '@sveltejs/kit';
 const KITE_API_BASE = 'https://kite.kagi.com/api';
 
 export function createProxy(endpoint: string): RequestHandler {
-  return async ({ request, params, url }) => {
+  return async ({ request, params, url, fetch }) => {
     try {
       // Build the target URL
       let targetPath = endpoint;
       
       // Replace route parameters
       if (params) {
-        Object.entries(params).forEach(([key, value]) => {
+        for (const [key, value] of Object.entries(params)) {
           targetPath = targetPath.replace(`[${key}]`, String(value));
-        });
+        }
       }
       
       // Append query parameters
@@ -21,20 +21,16 @@ export function createProxy(endpoint: string): RequestHandler {
         targetUrl.searchParams.append(key, value);
       });
       
-      // Create proxy request with same method, headers, and body
-      const proxyRequest = new Request(targetUrl.toString(), {
+      // Prepare init preserving method/headers/body
+      const init: RequestInit = {
         method: request.method,
         headers: request.headers,
-        body: request.method !== 'GET' && request.method !== 'HEAD' 
-          ? await request.blob() 
-          : undefined
-      });
-      
-      // Remove host header to avoid conflicts
-      proxyRequest.headers.delete('host');
-      
-      // Make the request to kite.kagi.com
-      const response = await fetch(proxyRequest);
+      };
+      if (request.method !== 'GET' && request.method !== 'HEAD') {
+        init.body = request.body ?? (await request.blob());
+      }
+      // Make the request to kite.kagi.com using the SvelteKit provided fetch
+      const response = await fetch(targetUrl.toString(), init);
       
       // Create a new headers object and remove problematic encoding headers
       const headers = new Headers(response.headers);

@@ -63,9 +63,11 @@
           // Update favicon for dark mode
           const favicon = document.querySelector('link[rel="icon"]');
           if (favicon) {
+            // Use %sveltekit.assets% so paths work under a base path
+            const assetsBase = "%sveltekit.assets%";
             favicon.href = darkModePreferred
-              ? "/svg/kagi_news_icon_dark.svg"
-              : "/svg/kagi_news_icon.svg";
+              ? `${assetsBase}/svg/kagi_news_icon_dark.svg`
+              : `${assetsBase}/svg/kagi_news_icon.svg`;
           }
         } catch (e) {
           console.error("Theme detection error:", e);

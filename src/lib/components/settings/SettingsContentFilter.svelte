@@ -66,7 +66,9 @@
       .split(",")
       .map((k) => k.trim())
       .filter((k) => k);
-    keywords.forEach((k) => contentFilter.addCustomKeyword(k));
+    for (const k of keywords) {
+      contentFilter.addCustomKeyword(k);
+    }
     newKeyword = "";
 
     // Focus back on input
@@ -116,8 +118,8 @@
     }
     return (
       preset.keywords[dataLanguage.current] ||
-      preset.keywords["default"] ||
-      preset.keywords["en"] ||
+      preset.keywords.default ||
+      preset.keywords.en ||
       []
     );
   }
@@ -126,13 +128,13 @@
   const customKeywords = $derived.by(() => {
     // Get all keywords from active presets
     const presetKeywords = new Set<string>();
-    contentFilter.activePresets.forEach((presetId) => {
+    for (const presetId of contentFilter.activePresets) {
       const preset = contentFilter.presets.find((p) => p.id === presetId);
       if (preset) {
         const keywords = getPresetKeywords(preset);
-        keywords.forEach((k) => presetKeywords.add(k));
+        for (const k of keywords) presetKeywords.add(k);
       }
-    });
+    }
 
     // Return keywords that are not from presets
     return contentFilter.keywords.filter((k) => !presetKeywords.has(k));

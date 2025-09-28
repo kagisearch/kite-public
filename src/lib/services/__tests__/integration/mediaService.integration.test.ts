@@ -9,7 +9,7 @@ describe("MediaService Integration Tests", () => {
       expect(Array.isArray(mediaData)).toBe(true);
 
       if (mediaData.length > 0) {
-        mediaData.forEach((media) => {
+        for (const media of mediaData) {
           expect(media).toHaveProperty("country");
           expect(media).toHaveProperty("organization");
           expect(media).toHaveProperty("domains");
@@ -26,11 +26,11 @@ describe("MediaService Integration Tests", () => {
           expect(typeof media.typology).toBe("string");
 
           // Each domain should be a string (can be hostname or organization name)
-          media.domains.forEach((domain) => {
+          for (const domain of media.domains) {
             expect(typeof domain).toBe("string");
             expect(domain.length).toBeGreaterThan(0);
-          });
-        });
+          }
+        }
       }
     });
   });

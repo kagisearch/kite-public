@@ -3,6 +3,7 @@
   import FaviconImage from "$lib/components/common/FaviconImage.svelte";
   import { getTimeAgo } from "$lib/utils/getTimeAgo";
   import { scrollLock } from "$lib/utils/scrollLock.js";
+  import { asset } from "$app/paths";
   import {
     IconMapPin,
     IconUser,
@@ -15,14 +16,20 @@
   // Props
   interface Props {
     isOpen?: boolean;
-    currentSource?: any;
-    sourceArticles?: any[];
-    currentMediaInfo?: any;
+    currentSource?: { name?: string } | null;
+    sourceArticles?: Array<{ image?: string; link: string; title: string; date: string | number | Date }>;
+    currentMediaInfo?: {
+      country?: string;
+      owner?: string;
+      organization?: string;
+      typology?: string;
+      description?: string;
+    } | null;
     isLoadingMediaInfo?: boolean;
     onClose?: () => void;
   }
 
-  let {
+  const {
     isOpen = false,
     currentSource,
     sourceArticles = [],
@@ -47,7 +54,7 @@
 
   // OverlayScrollbars setup
   let scrollableElement: HTMLElement | undefined = $state(undefined);
-  let [initialize, instance] = useOverlayScrollbars({
+  const [initialize, instance] = useOverlayScrollbars({
     defer: true,
     options: {
       scrollbars: {
@@ -249,7 +256,7 @@
           {#each sourceArticles as article}
             <article class="flex space-x-4">
               <img
-                src={article.image || "/svg/placeholder.svg"}
+                src={article.image || asset('/svg/placeholder.svg')}
                 alt="Article"
                 class="h-24 w-24 rounded object-cover"
               />
@@ -266,9 +273,8 @@
                   </h4>
                 </a>
                 <p class="text-sm text-gray-500 dark:text-gray-400">
-                  {getTimeAgo(article.date)} · {new Date(
-                    article.date,
-                  ).toLocaleDateString()}
+                  {getTimeAgo(String(article.date))} ·
+                  {new Date(article.date as string | number | Date).toLocaleDateString()}
                 </p>
               </div>
             </article>

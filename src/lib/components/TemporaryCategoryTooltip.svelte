@@ -15,7 +15,7 @@
     referenceElement: HTMLElement | null;
   }
 
-  let { show, referenceElement }: Props = $props();
+  const { show, referenceElement }: Props = $props();
 
   let localShowTooltip = $state(false);
   let timeoutId: NodeJS.Timeout | null = null;

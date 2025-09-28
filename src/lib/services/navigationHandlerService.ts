@@ -94,7 +94,8 @@ export class NavigationHandlerService {
           dataService.setTimeTravelBatch(null);
           await dataReloadService.reloadData();
           return updates; // Let the reload handle everything else
-        } else if (switchingToSpecific) {
+        }
+        if (switchingToSpecific) {
           // We need to check if this is actually a historical batch
           // For now, we'll rely on the DataLoader's logic which already checked
           // Don't set time travel mode here - let DataLoader handle it

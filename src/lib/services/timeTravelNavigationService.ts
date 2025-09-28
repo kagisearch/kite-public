@@ -44,7 +44,7 @@ class TimeTravelNavigationService {
     // Set the date if provided
     if (batchDate) {
       const date = new Date(batchDate);
-      if (!isNaN(date.getTime())) {
+      if (!Number.isNaN(date.getTime())) {
         timeTravel.selectDate(date);
       } else {
         console.warn("Invalid batch date:", batchDate);

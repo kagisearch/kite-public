@@ -5,7 +5,7 @@ import { onThisDayService } from "./onThisDayService";
 import { storiesService } from "./storiesService";
 
 // Global reload event handlers
-let reloadCallbacks: (() => Promise<void>)[] = [];
+const reloadCallbacks: Array<() => Promise<void>> = [];
 
 export const dataReloadService = {
   // Register a callback to be called on reload
@@ -39,7 +39,7 @@ class DataService {
   }
 
   async loadInitialData(
-    language: string = "default",
+    language = "default",
     providedBatchInfo?: { id: string; createdAt: string },
   ) {
     return batchService.loadInitialData(language, providedBatchInfo);
@@ -51,8 +51,8 @@ class DataService {
   async loadStories(
     batchId: string,
     categoryUuid: string,
-    limit: number = 12,
-    language: string = "default",
+    limit = 12,
+    language = "default",
   ) {
     return storiesService.loadStories(batchId, categoryUuid, limit, language);
   }
@@ -60,33 +60,33 @@ class DataService {
   /**
    * OnThisDay functionality
    */
-  async loadOnThisDayEvents(language: string = "default") {
+  async loadOnThisDayEvents(language = "default") {
     return onThisDayService.loadOnThisDayEvents(language);
   }
 
   /**
    * Media/Source functionality
    */
-  async loadMediaData(language: string = "default") {
+  async loadMediaData(language = "default") {
     return mediaService.loadMediaData(language);
   }
 
-  async getMediaInfoForDomain(domain: string, language: string = "default") {
+  async getMediaInfoForDomain(domain: string, language = "default") {
     return mediaService.getMediaInfoForDomain(domain, language);
   }
 
-  async loadMediaDataForHost(host: string, language: string = "default") {
+  async loadMediaDataForHost(host: string, language = "default") {
     return mediaService.loadMediaDataForHost(host, language);
   }
 
   /**
    * Chaos Index functionality
    */
-  async loadChaosIndex(language: string = "default") {
+  async loadChaosIndex(language = "default") {
     return chaosIndexService.loadChaosIndex(language);
   }
 
-  async getChaosIndexHistory(language: string = "default", days: number = 30) {
+  async getChaosIndexHistory(language = "default", days = 30) {
     return chaosIndexService.getChaosIndexHistory(language, days);
   }
 }

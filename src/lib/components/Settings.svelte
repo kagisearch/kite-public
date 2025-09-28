@@ -22,7 +22,7 @@
     onShowAbout?: () => void;
   }
 
-  let {
+  const {
     visible = false,
     categories = [],
     onClose,
@@ -54,7 +54,12 @@
 
   // Expose debug method to enable preloading tab
   if (typeof window !== "undefined") {
-    (window as any).kiteSettingsDebug = {
+    (window as unknown as {
+      kiteSettingsDebug: {
+        enablePreloadingTab: () => boolean;
+        disablePreloadingTab: () => boolean;
+      };
+    }).kiteSettingsDebug = {
       enablePreloadingTab: () => {
         showPreloadingTab = true;
         // Save to localStorage for persistence
@@ -79,7 +84,7 @@
 
   // OverlayScrollbars setup
   let scrollableElement: HTMLElement | undefined = $state(undefined);
-  let [initialize, instance] = useOverlayScrollbars({
+  const [initialize, instance] = useOverlayScrollbars({
     defer: true,
     options: {
       scrollbars: {

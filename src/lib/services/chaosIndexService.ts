@@ -1,24 +1,25 @@
 import { batchService } from "./batchService";
+import { getApiBaseUrl } from "$lib/utils/apiUrl";
 
 /**
  * Service for Chaos Index functionality
  */
 class ChaosIndexService {
-  private baseUrl = "/api";
 
   /**
    * Load chaos index data
    */
-  async loadChaosIndex(language: string = "default"): Promise<{
+  async loadChaosIndex(language = "default"): Promise<{
     chaosIndex: number;
     chaosDescription: string;
     chaosLastUpdated: string | null;
   } | null> {
     try {
       const currentBatchId = batchService.getCurrentBatchId();
+      const baseUrl = getApiBaseUrl();
       const endpoint = currentBatchId
-        ? `${this.baseUrl}/batches/${currentBatchId}/chaos?lang=${language}`
-        : `${this.baseUrl}/batches/latest/chaos?lang=${language}`;
+        ? `${baseUrl}/batches/${currentBatchId}/chaos?lang=${language}`
+        : `${baseUrl}/batches/latest/chaos?lang=${language}`;
 
       const response = await fetch(endpoint);
       if (!response.ok) {
@@ -40,13 +41,12 @@ class ChaosIndexService {
    * Get historical chaos index data
    */
   async getChaosIndexHistory(
-    language: string = "default",
-    days: number = 30,
+    language = "default",
+    days = 30,
   ): Promise<Array<{ date: string; score: number; summary: string }>> {
     try {
-      const response = await fetch(
-        `${this.baseUrl}/chaos/history?lang=${language}&days=${days}`,
-      );
+      const baseUrl = getApiBaseUrl();
+      const response = await fetch(`${baseUrl}/chaos/history?lang=${language}&days=${days}`);
 
       if (!response.ok) {
         throw new Error(

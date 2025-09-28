@@ -14,7 +14,7 @@
 
   // OverlayScrollbars setup
   let scrollableElement: HTMLElement | undefined = $state(undefined);
-  let [initialize, instance] = useOverlayScrollbars({
+  const [initialize, instance] = useOverlayScrollbars({
     defer: true,
   });
 

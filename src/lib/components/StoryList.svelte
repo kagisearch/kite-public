@@ -18,9 +18,9 @@
     expandedStories?: Record<string, boolean>;
     onStoryToggle?: (storyId: string) => void;
     showSourceOverlay?: boolean;
-    currentSource?: any;
-    sourceArticles?: any[];
-    currentMediaInfo?: any;
+    currentSource?: unknown;
+    sourceArticles?: unknown[];
+    currentMediaInfo?: unknown;
     isLoadingMediaInfo?: boolean;
     storyCountOverride?: number | null;
     isSharedView?: boolean;
@@ -82,7 +82,7 @@
 
   // Mark all as read
   async function markAllAsRead() {
-    displayedStories.forEach(async (story) => {
+    for (const story of displayedStories) {
       const storyId = generateStoryId(story, batchId, currentCategory);
       readStories[storyId] = true;
       // Persist to database
@@ -92,7 +92,7 @@
         batchId,
         currentCategory,
       );
-    });
+    }
   }
 
   // Expand or collapse all stories
@@ -107,10 +107,10 @@
 
     // Expand all at once
     const newExpanded: Record<string, boolean> = { ...expandedStories };
-    displayedStories.forEach((story) => {
+    for (const story of displayedStories) {
       const id = story.cluster_number?.toString() || story.title;
       newExpanded[id] = true;
-    });
+    }
     expandedStories = newExpanded;
   }
 

@@ -1,11 +1,16 @@
 <script lang="ts">
   import { browser } from "$app/environment";
   import { s } from "$lib/client/localization.svelte";
-  import { SearchService, type SearchResult } from "$lib/services/search";
+  import { SearchService } from "$lib/services/search/SearchService";
+  import type { SearchResult, FilterSuggestion, FilterContext } from "$lib/services/search/types";
   import type { Story, Category } from "$lib/types";
   import { scrollLock } from "$lib/utils/scrollLock";
   import SearchInput from "./SearchInput.svelte";
   import SearchResults from "./SearchResults.svelte";
+  // Define a minimal instance interface to avoid importing component type
+  interface SearchInputInstance {
+    getElement(): HTMLDivElement | null;
+  }
 
   interface Props {
     visible: boolean;
@@ -31,12 +36,13 @@
 
   // Initialize search service
   let searchService: SearchService;
-  let searchInput = $state<SearchInput>();
+  let searchInput = $state<SearchInputInstance>();
 
   // Local state
   let searchState = $state({
     query: "",
-    filters: [] as any[], // TODO: fix type
+    // Filter type comes from service; keep broad but typed
+    filters: [] as Array<{ isValid: boolean }>,
     results: [] as SearchResult[],
     localResults: [] as SearchResult[],
     historicalResults: [] as SearchResult[],
@@ -50,11 +56,11 @@
     totalCount: 0,
   });
 
-  let filterSuggestions = $state<any[]>([]);
+  let filterSuggestions = $state<FilterSuggestion[]>([]);
   let filterSuggestionIndex = $state(0);
   let showFilterSuggestions = $state(false);
   let isLoadingBatch = $state(false);
-  let currentFilterContext = $state<any>(null);
+  let currentFilterContext = $state<FilterContext | null>(null);
 
   // Initialize search service when categories change
   $effect(() => {
@@ -204,7 +210,7 @@
 
   function handleFilterKeyboard(event: KeyboardEvent) {
     switch (event.key) {
-      case "ArrowDown":
+      case "ArrowDown": {
         event.preventDefault();
         event.stopPropagation();
         // Stop at the last suggestion, don't loop
@@ -213,16 +219,18 @@
           filterSuggestions.length - 1,
         );
         break;
+      }
 
-      case "ArrowUp":
+      case "ArrowUp": {
         event.preventDefault();
         event.stopPropagation();
         // Stop at the first suggestion, don't loop
         filterSuggestionIndex = Math.max(filterSuggestionIndex - 1, 0);
         break;
+      }
 
       case "Enter":
-      case "Tab":
+      case "Tab": {
         event.preventDefault();
         event.stopPropagation();
         const selected = filterSuggestions[filterSuggestionIndex];
@@ -230,11 +238,13 @@
           handleApplySuggestion(selected);
         }
         break;
+      }
 
-      case "Escape":
+      case "Escape": {
         event.preventDefault();
         showFilterSuggestions = false;
         break;
+      }
     }
   }
 
