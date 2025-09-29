@@ -15,16 +15,48 @@
   import { useOverlayScrollbars } from "overlayscrollbars-svelte";
   import "overlayscrollbars/overlayscrollbars.css";
   import { onMount, type Snippet } from "svelte";
+  import { PUBLIC_MAINTENANCE_MODE, PUBLIC_MAINTENANCE_START, PUBLIC_MAINTENANCE_END, PUBLIC_MAINTENANCE_AUTO, PUBLIC_MAINTENANCE_MESSAGE } from '$env/static/public';
+  import MaintenanceScreen from '$lib/components/MaintenanceScreen.svelte';
   import { MetaTags, deepMerge } from "svelte-meta-tags";
 
   // Props from layout load
-  let { data, children }: { data: PageData; children: Snippet } = $props();
+  const { data, children }: { data: PageData & {
+    maintenanceMode?: boolean;
+    maintenanceStart?: string;
+    maintenanceEnd?: string;
+    maintenanceAuto?: boolean;
+    maintenanceMessage?: string;
+  }; children: Snippet } = $props();
 
   // Merge base meta tags with page-specific ones
   // Use pageMetadata store for client-side updates, fallback to page.data for SSR
-  let metaTags = $derived(
+  const metaTags = $derived(
     deepMerge(data.baseMetaTags, pageMetadata || page.data.pageMetaTags || {}),
   );
+
+  // Minimal maintenance gating derived from server-provided flags and PUBLIC env
+  const maintenanceActive = $derived.by(() => {
+    const serverMaintenance = data.maintenanceMode;
+    const maintenanceAuto = (data.maintenanceAuto ?? false) || PUBLIC_MAINTENANCE_AUTO === 'true';
+    const maintenanceStart = data.maintenanceStart || PUBLIC_MAINTENANCE_START;
+    const maintenanceEnd = data.maintenanceEnd || PUBLIC_MAINTENANCE_END;
+
+    if (maintenanceStart && maintenanceEnd) {
+      const now = new Date();
+      const startTime = new Date(maintenanceStart);
+      const endTime = new Date(maintenanceEnd);
+      const hasStarted = now >= startTime;
+      const hasEnded = now >= endTime;
+
+      if (hasStarted && hasEnded) {
+        return serverMaintenance || PUBLIC_MAINTENANCE_MODE === 'true';
+      }
+
+      return maintenanceAuto ? (hasStarted && !hasEnded) : (hasStarted || serverMaintenance);
+    }
+
+    return serverMaintenance || PUBLIC_MAINTENANCE_MODE === 'true';
+  });
 
   onMount(async () => {
     // Initialize all stores
@@ -68,4 +100,8 @@
 
 <MetaTags {...metaTags} />
 
-{@render children()}
+{#if maintenanceActive}
+  <MaintenanceScreen />
+{:else}
+  {@render children()}
+{/if}
