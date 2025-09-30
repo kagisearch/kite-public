@@ -109,7 +109,7 @@
       "https://www.wienerzeitung.at/rss.xml"
     ]
   },
-  "Belgium": {
+  "Belgium (nl)": {
     "category_type": "country",
     "source_language": "nl",
     "display_names": {
@@ -130,13 +130,9 @@
       "zh-Hant": "比利時"
     },
     "feeds": [
-      "http://rss.rtbf.be/article/rss/highlight_rtbfinfo_info-belgique.xml?source=internal",
-      "http://rss.rtbf.be/article/rss/highlight_rtbfinfo_info-regions.xml?source=internal",
-      "http://www.belgianaffairs.be/rss.xml",
       "https://businessam.be/feed/",
       "https://businessam.be/politiek/feed/",
       "https://focus-wtv.be/feed/home.xml",
-      "https://news.google.com/atom/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNREUxTkdvU0FtVnVLQUFQAQ?hl=fr&gl=BE&ceid=BE:fr",
       "https://news.google.com/atom/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNREUxTkdvU0FtVnVLQUFQAQ?hl=nl&gl=BE&ceid=BE:nl",
       "https://sporza.be/nl.rss.xml",
       "https://trends.knack.be/feed/",
@@ -149,6 +145,44 @@
       "https://www.hbvl.be/rss",
       "https://www.hln.be/home/rss.xml",
       "https://www.knack.be/feed/",
+      "https://www.nieuwsblad.be/rss",
+      "https://www.nieuwsblad.be/rss/section/3dfcee99-2971-4c4c-a603-8c41ae86398b",
+      "https://www.nieuwsblad.be/rss/section/55178e67-15a8-4ddd-a3d8-bfe5708f8932",
+      "https://www.nieuwsblad.be/rss/section/c0c3b215-10be-4f82-86d6-8b8584a5639d",
+      "https://www.standaard.be/binnenland/rss/",
+      "https://www.standaard.be/economie/rss/",
+      "https://www.tijd.be/rss",
+      "https://www.tijd.be/rss/politiek_belgie.xml",
+      "https://www.tijd.be/rss/top_stories.xml",
+      "https://www.vrt.be/vrtnieuws/nl.rss.articles.xml"
+    ]
+  },
+  "Belgium (fr)": {
+    "category_type": "country",
+    "source_language": "fr",
+    "display_names": {
+      "en": "Belgium",
+      "ar": "بلجيكا",
+      "de": "Belgien",
+      "es": "Bélgica",
+      "fr": "Belgique",
+      "he": "בלגיה",
+      "hi": "बेल्जियम",
+      "it": "Belgio",
+      "ja": "ベルギー",
+      "nl": "België",
+      "pt": "Bélgica",
+      "ru": "Бельгия",
+      "uk": "Бельгія",
+      "zh-Hans": "比利时",
+      "zh-Hant": "比利時"
+    },
+    "feeds": [
+      "http://rss.rtbf.be/article/rss/highlight_rtbfinfo_info-belgique.xml?source=internal",
+      "http://rss.rtbf.be/article/rss/highlight_rtbfinfo_info-regions.xml?source=internal",
+      "https://news.google.com/atom/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNREUxTkdvU0FtVnVLQUFQAQ?hl=fr&gl=BE&ceid=BE:fr",
+      "https://trends.knack.be/feed/",
+      "https://www.apache.be/feed/artikels",
       "https://www.lalibre.be/arc/outboundfeeds/rss/?outputType=xml",
       "https://www.lalibre.be/arc/outboundfeeds/rss/section/belgique/?outputType=xml",
       "https://www.lesoir.be/rss/11/cible_principale",
@@ -156,17 +190,7 @@
       "https://www.lesoir.be/rss/2/cible_principale",
       "https://www.lesoir.be/rss/31869/cible_principale",
       "https://www.lesoir.be/rss/9/cible_principale",
-      "https://www.nieuwsblad.be/rss",
-      "https://www.nieuwsblad.be/rss/section/3dfcee99-2971-4c4c-a603-8c41ae86398b",
-      "https://www.nieuwsblad.be/rss/section/55178e67-15a8-4ddd-a3d8-bfe5708f8932",
-      "https://www.nieuwsblad.be/rss/section/c0c3b215-10be-4f82-86d6-8b8584a5639d",
-      "https://www.standaard.be/binnenland/rss/",
-      "https://www.standaard.be/economie/rss/",
       "https://www.sudinfo.be/feed/10127",
-      "https://www.tijd.be/rss",
-      "https://www.tijd.be/rss/politiek_belgie.xml",
-      "https://www.tijd.be/rss/top_stories.xml",
-      "https://www.vrt.be/vrtnieuws/nl.rss.articles.xml"
     ]
   },
   "Brazil": {
