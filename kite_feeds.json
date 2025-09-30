@@ -61,6 +61,37 @@
       "https://www.werribeenews.com.au/feed/"
     ]
   },
+  "Latvia": {
+  "category_type": "country",
+  "source_language": "lv",
+  "display_names": {
+    "en": "Latvia",
+    "lv": "Latvija",
+    "ar": "لاتفيا",
+    "de": "Lettland",
+    "es": "Letonia",
+    "fr": "Lettonie",
+    "he": "לטביה",
+    "hi": "लातविया",
+    "it": "Lettonia",
+    "ja": "ラトビア",
+    "ko": "라트비아",
+    "nl": "Letland",
+    "pl": "Łotwa",
+    "pt": "Letónia",
+    "ru": "Латвия",
+    "uk": "Латвія",
+    "zh-Hans": "拉脫維亞"
+  },
+  "feeds": [
+    "https://eng.lsm.lv/rss/?lang=en&catid=315",
+    "https://eng.lsm.lv/rss/?lang=en&catid=278",
+    "https://eng.lsm.lv/rss/?lang=en&catid=277",
+    "https://eng.lsm.lv/rss/?lang=en&catid=276",
+    "https://eng.lsm.lv/rss/?lang=en&catid=333",
+    "https://eng.lsm.lv/rss/?lang=en&catid=318"
+  ]
+},
   "Austria": {
     "category_type": "country",
     "source_language": "de",
