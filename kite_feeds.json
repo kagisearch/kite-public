@@ -1995,37 +1995,35 @@
       "https://www.xataka.com/index.xml"
     ]
   },
-  {
-    "Singapore": {
-      "category_type": "country",
-      "source_language": "sg",
-      "display_names": {
-        "en": "Singapore",
-        "ar": "سنغافورة",
-        "de": "Singapur",
-        "es": "Singapur",
-        "fr": "Singapour",
-        "he": "סינגפור",
-        "hi": "सिंगापुर",
-        "it": "Singapore",
-        "ja": "シンガポール",
-        "nl": "Singapore",
-        "pt": "Cingapura",
-        "ru": "Сингапур",
-        "uk": "Сінгапур",
-        "zh-Hans": "新加坡",
-        "zh-Hant": "新加坡"
-      },
-      "feeds": [
-        "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml",
-        "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=10416",
-        "https://www.straitstimes.com/news/singapore/rss.xml",
-        "https://www.straitstimes.com/rss_breaking_news.opml",
-        "https://www.mfa.gov.sg/rss/travel-advisories",
-        "https://www.businesstimes.com.sg/rss/singapore",
-        "https://lawgazette.com.sg/feed/"
-      ]
-    }
+  "Singapore": {
+    "category_type": "country",
+    "source_language": "sg",
+    "display_names": {
+      "en": "Singapore",
+      "ar": "سنغافورة",
+      "de": "Singapur",
+      "es": "Singapur",
+      "fr": "Singapour",
+      "he": "סינגפור",
+      "hi": "सिंगापुर",
+      "it": "Singapore",
+      "ja": "シンガポール",
+      "nl": "Singapore",
+      "pt": "Cingapura",
+      "ru": "Сингапур",
+      "uk": "Сінгапур",
+      "zh-Hans": "新加坡",
+      "zh-Hant": "新加坡"
+    },
+    "feeds": [
+      "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml",
+      "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=10416",
+      "https://www.straitstimes.com/news/singapore/rss.xml",
+      "https://www.straitstimes.com/rss_breaking_news.opml",
+      "https://www.mfa.gov.sg/rss/travel-advisories",
+      "https://www.businesstimes.com.sg/rss/singapore",
+      "https://lawgazette.com.sg/feed/"
+    ]
   },
   "Sweden": {
     "category_type": "country",
