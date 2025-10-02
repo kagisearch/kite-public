@@ -3695,6 +3695,46 @@
       "https://www.unixmen.com/feed/"
     ]
   },
+    "Tech": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {
+      "en": "Tech",
+      "ar": "التكنولوجيا",
+      "de": "Techn",
+      "es": "tecnología",
+      "fr": "Technologie",
+      "he": "טק",
+      "hi": "तकनीक",
+      "it": "Tecnologia",
+      "ja": "技術",
+      "nl": "Technologie",
+      "pt": "Tecnologia",
+      "ru": "Технология",
+      "uk": "Tech",
+      "zh-Hans": "科技",
+      "zh-Hant": "科技"
+    },
+    "feeds": [
+      "https://feed.alternativeto.net/news/all",
+      "https://www.testingcatalog.com/rss/",
+      "https://beebom.com/feed/",
+      "https://www.xda-developers.com/feed/",
+      "https://techcrunch.com/feed/",
+      "https://www.theverge.com/rss/index.xml",
+      "https://mashable.com/feeds/rss/all",
+      "https://www.engadget.com/rss.xml",
+      "https://www.wired.com/feed/tag/ai/latest/rss",
+      "https://thenextweb.com/feed",
+      "https://9to5google.com/feed/", 
+      "https://www.androidauthority.com/feed/",
+      "https://www.fastcompany.com/latest/rss",
+      "https://9to5linux.com/feed/atom",
+      "https://www.omgubuntu.co.uk/feed",
+      "https://itsfoss.com/rss/",
+      "https://arstechnica.com/feed/",
+    ]
+  },
   "Microsoft": {
     "category_type": "topic",
     "source_language": "en",
