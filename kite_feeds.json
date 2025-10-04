@@ -718,7 +718,7 @@
       "ru": "Коста-Рика",
       "uk": "Коста-Ріка",
       "zh-Hans": "哥斯达黎加",
-      "zh-Hant": "哥斯達黎加"
+      "zh-Hant": "哥斯大黎加"
     },
     "feeds": [
       "https://caribeactual.com/feed/",
@@ -769,7 +769,7 @@
       "ru": "Хорватия",
       "uk": "Хорватія",
       "zh-Hans": "克罗地亚",
-      "zh-Hant": "克羅地亞"
+      "zh-Hant": "克羅埃西亞"
     },
     "feeds": [
       "https://direktno.hr/rss/publish/latest/",
@@ -1566,7 +1566,7 @@
       "ru": "Германия | Гессен",
       "uk": "Німеччина | Гессен",
       "zh-Hans": "德国 | 黑森州",
-      "zh-Hant": "德國 | 黑森州"
+      "zh-Hant": "德國 | 黑森邦"
     },
     "feeds": [
       "https://byc-news.de/feed/",
@@ -2058,8 +2058,8 @@
       "pt": "Linux e OSS",
       "ru": "Linux и OSS",
       "uk": "Linux та OSS",
-      "zh-Hans": "Linux与开源软件",
-      "zh-Hant": "Linux與開源軟體"
+      "zh-Hans": "Linux 与开源软件",
+      "zh-Hant": "Linux 與開源軟體"
     },
     "feeds": [
       "http://blog.linuxmint.com/?feed=rss2",
@@ -3102,7 +3102,7 @@
       "ru": "Южная Корея",
       "uk": "Південна Корея",
       "zh-Hans": "韩国",
-      "zh-Hant": "南韓"
+      "zh-Hant": "韓國"
     },
     "feeds": [
       "http://news.google.co.kr/news?pz=1&hdlOnly=1&cf=all&ned=kr&hl=ko&topic=b&output=rss",
@@ -3402,7 +3402,24 @@
       "https://www.taiwan.net.tw/rss.aspx?sno=0001001",
       "https://www.ttv.com.tw/rss/RSSHandler.ashx?d=news",
       "https://www.ttv.com.tw/rss/RSSHandler.ashx?d=news&t=P",
-      "https://www.ttv.com.tw/rss/RSSHandler.ashx?d=news&t=Q"
+      "https://www.ttv.com.tw/rss/RSSHandler.ashx?d=news&t=Q",
+      "https://public.twreporter.org/rss/twreporter-rss.xml",
+      "https://www.mirrormedia.mg/rss/rss.xml",
+      "https://www.storm.mg/api/getRss/channel_id/100?path=https%3A%2F%2Fwww.storm.mg%2Farticle",
+      "https://www.storm.mg/api/getRss/channel_id/109?path=https%3A%2F%2Fwww.storm.mg%2Farticle",
+      "https://www.storm.mg/api/getRss/channel_id/10?path=https%3A%2F%2Fwww.storm.mg%2Farticle",
+      "https://www.storm.mg/api/getRss/channel_id/11?path=https%3A%2F%2Fwww.storm.mg%2Farticle",
+      "https://www.storm.mg/api/getRss/channel_id/123?path=https%3A%2F%2Fwww.storm.mg%2Farticle",
+      "https://www.storm.mg/api/getRss/channel_id/17?path=https%3A%2F%2Fwww.storm.mg%2Farticle",
+      "https://www.storm.mg/api/getRss/channel_id/2?path=https%3A%2F%2Fwww.storm.mg%2Farticle",
+      "https://www.storm.mg/api/getRss/channel_id/4?path=https%3A%2F%2Fwww.storm.mg%2Farticle",
+      "https://www.storm.mg/api/getRss/channel_id/5?path=https%3A%2F%2Fwww.storm.mg%2Farticle",
+      "https://www.storm.mg/api/getRss/channel_id/62?path=https%3A%2F%2Fwww.storm.mg%2Farticle",
+      "https://www.storm.mg/api/getRss/channel_id/69?path=https%3A%2F%2Fwww.storm.mg%2Farticle",
+      "https://www.storm.mg/api/getRss/channel_id/7?path=https%3A%2F%2Fwww.storm.mg%2Farticle",
+      "https://www.storm.mg/api/getRss/channel_id/8?path=https%3A%2F%2Fwww.storm.mg%2Farticle",
+      "https://www.storm.mg/api/getRss/channel_id/9?path=https%3A%2F%2Fwww.storm.mg%2Farticle",
+      "https://www.taigitv.org.tw/xml/newsfeed.xml"
     ]
   },
   "Thailand": {
