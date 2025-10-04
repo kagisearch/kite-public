@@ -1777,6 +1777,10 @@
       "https://www.thehindu.com/sport/feeder/default.rss",
       "https://www.thehindubusinessline.com/?service=rss",
       "https://www.thehindubusinessline.com/feeder/default.rss",
+      "https://zeenews.india.com/rss/india-national-news.xml",
+      "https://www.business-standard.com/rss/latest.rss",
+      "https://www.amarujala.com/rss/breaking-news.xml",
+      "https://prod-qt-images.s3.amazonaws.com/production/thequint/feed.xml",
       "https://www.theweek.in/news/india.rss.html"
     ]
   },
