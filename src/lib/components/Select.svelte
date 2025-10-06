@@ -1,374 +1,347 @@
 <script lang="ts">
-  import { browser } from "$app/environment";
-  import { s } from "$lib/client/localization.svelte";
-  import {
-    IconCheck,
-    IconChevronDown,
-    IconChevronUp,
-    IconSearch,
-    IconX,
-  } from "@tabler/icons-svelte";
-  import { OverlayScrollbarsComponent } from "overlayscrollbars-svelte";
-  import { onMount, tick } from "svelte";
-  import Portal from "svelte-portal";
+import { IconCheck, IconChevronDown, IconChevronUp, IconSearch, IconX } from '@tabler/icons-svelte';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-svelte';
+import { onMount, tick } from 'svelte';
+import Portal from 'svelte-portal';
+import { browser } from '$app/environment';
+import { s } from '$lib/client/localization.svelte';
 
-  // Define the Option type
-  type Option = {
-    value: string;
-    label: string;
-    gender?: "M" | "F" | "N"; // Optional gender field
-    icon?: any; // Optional Tabler icon component
-  };
+// Define the Option type
+type Option = {
+	value: string;
+	label: string;
+	gender?: 'M' | 'F' | 'N'; // Optional gender field
+	icon?: any; // Optional Tabler icon component
+};
 
-  let {
-    value = $bindable(""),
-    options = $bindable<Option[]>([]),
-    placeholder = $bindable("Select an option"),
-    className = $bindable(""),
-    searchable = $bindable(false),
-    onChange = $bindable((selectedValue: string) => {}),
-    id = $bindable(""),
-    label = $bindable(""),
-    hideLabel = $bindable(false),
-    height = $bindable("h-10"),
-  } = $props();
+let {
+	value = $bindable(''),
+	options = $bindable<Option[]>([]),
+	placeholder = $bindable('Select an option'),
+	className = $bindable(''),
+	searchable = $bindable(false),
+	onChange = $bindable((_selectedValue: string) => {}),
+	id = $bindable(''),
+	label = $bindable(''),
+	hideLabel = $bindable(false),
+	height = $bindable('h-10'),
+} = $props();
 
-  // Internal state
-  let container: HTMLDivElement;
-  let dropdown: HTMLDivElement | null = $state(null);
-  let fieldset: HTMLDivElement | null = $state(null);
-  let search: HTMLInputElement | null = $state(null);
-  let isOpen = $state(false);
-  let filter = $state("");
-  let uniqueId = $state("");
-  let overlayScrollbars: OverlayScrollbarsComponent | null = $state(null);
-  let closeTimeout: number | null = $state(null);
+// Internal state
+let container: HTMLDivElement;
+let dropdown: HTMLDivElement | null = $state(null);
+let fieldset: HTMLDivElement | null = $state(null);
+let search: HTMLInputElement | null = $state(null);
+let isOpen = $state(false);
+let filter = $state('');
+let uniqueId = $state('');
+let overlayScrollbars: OverlayScrollbarsComponent | null = $state(null);
+let closeTimeout: number | null = $state(null);
 
-  // Generate unique ID for aria attributes
-  try {
-    uniqueId = id || crypto.randomUUID();
-  } catch (e) {
-    console.error(e);
-    uniqueId = crypto.getRandomValues(new Uint32Array(36)).toString();
-  }
+// Generate unique ID for aria attributes
+try {
+	uniqueId = id || crypto.randomUUID();
+} catch (e) {
+	console.error(e);
+	uniqueId = crypto.getRandomValues(new Uint32Array(36)).toString();
+}
 
-  // Filtered options based on search filter
-  let filteredOptions = $derived(
-    filter
-      ? options.filter((option) =>
-          option.label.toLowerCase().includes(filter.toLowerCase()),
-        )
-      : options,
-  );
+// Filtered options based on search filter
+let filteredOptions = $derived(
+	filter
+		? options.filter((option) => option.label.toLowerCase().includes(filter.toLowerCase()))
+		: options,
+);
 
-  // Current selected option
-  let selectedOption = $derived(
-    options.find((option) => option.value === value),
-  );
-  let displayValue = $derived(
-    selectedOption ? selectedOption.label : placeholder,
-  );
-  let displayGender = $derived(selectedOption?.gender);
-  let genderClass = $derived(
-    displayGender === "M"
-      ? "text-blue-400/70 dark:text-blue-400/80"
-      : displayGender === "F"
-        ? "text-pink-400/70 dark:text-pink-400/80"
-        : displayGender === "N"
-          ? "text-purple-400/70 dark:text-purple-400/80"
-          : "",
-  );
+// Current selected option
+let selectedOption = $derived(options.find((option) => option.value === value));
+let displayValue = $derived(selectedOption ? selectedOption.label : placeholder);
+let displayGender = $derived(selectedOption?.gender);
+let genderClass = $derived(
+	displayGender === 'M'
+		? 'text-blue-400/70 dark:text-blue-400/80'
+		: displayGender === 'F'
+			? 'text-pink-400/70 dark:text-pink-400/80'
+			: displayGender === 'N'
+				? 'text-purple-400/70 dark:text-purple-400/80'
+				: '',
+);
 
-  // Focus an element safely with type checking
-  function focusElement(element: HTMLElement | null) {
-    if (element && typeof element.focus === "function") {
-      element.focus();
-    }
-  }
+// Focus an element safely with type checking
+function focusElement(element: HTMLElement | null) {
+	if (element && typeof element.focus === 'function') {
+		element.focus();
+	}
+}
 
-  // Position the dropdown relative to the container when portaled
-  async function positionDropdown() {
-    if (!dropdown || !container) return;
+// Position the dropdown relative to the container when portaled
+async function positionDropdown() {
+	if (!dropdown || !container) return;
 
-    await tick(); // Wait for DOM to update
+	await tick(); // Wait for DOM to update
 
-    const rect = container.getBoundingClientRect();
-    const viewportHeight = window.innerHeight;
-    const viewportWidth = window.innerWidth;
+	const rect = container.getBoundingClientRect();
+	const viewportHeight = window.innerHeight;
+	const viewportWidth = window.innerWidth;
 
-    // First set the width to ensure proper height calculation
-    dropdown.style.width = `${Math.max(rect.width, 120)}px`; // minimum width of 120px
+	// First set the width to ensure proper height calculation
+	dropdown.style.width = `${Math.max(rect.width, 120)}px`; // minimum width of 120px
 
-    // Get dropdown dimensions after setting width
-    const dropdownHeight = dropdown.offsetHeight || 300;
-    const dropdownWidth = dropdown.offsetWidth || rect.width;
+	// Get dropdown dimensions after setting width
+	const dropdownHeight = dropdown.offsetHeight || 300;
+	const dropdownWidth = dropdown.offsetWidth || rect.width;
 
-    // Calculate space available below and above
-    const spaceBelow = viewportHeight - rect.bottom;
-    const spaceAbove = rect.top;
+	// Calculate space available below and above
+	const spaceBelow = viewportHeight - rect.bottom;
+	const spaceAbove = rect.top;
 
-    // Use position above when there's not enough space below
-    // or when there's more space above than below and the dropdown doesn't fit below
-    const positionAbove =
-      (spaceBelow < dropdownHeight && spaceAbove > dropdownHeight) ||
-      (spaceBelow < dropdownHeight && spaceAbove > spaceBelow);
+	// Use position above when there's not enough space below
+	// or when there's more space above than below and the dropdown doesn't fit below
+	const positionAbove =
+		(spaceBelow < dropdownHeight && spaceAbove > dropdownHeight) ||
+		(spaceBelow < dropdownHeight && spaceAbove > spaceBelow);
 
-    // Set fixed positioning
-    dropdown.style.position = "fixed";
+	// Set fixed positioning
+	dropdown.style.position = 'fixed';
 
-    if (positionAbove) {
-      // Position above with 5px gap
-      dropdown.style.bottom = `${viewportHeight - rect.top + 5}px`;
-      dropdown.style.top = "auto";
-    } else {
-      // Position below with 5px gap
-      dropdown.style.top = `${rect.bottom + 5}px`;
-      dropdown.style.bottom = "auto";
-    }
+	if (positionAbove) {
+		// Position above with 5px gap
+		dropdown.style.bottom = `${viewportHeight - rect.top + 5}px`;
+		dropdown.style.top = 'auto';
+	} else {
+		// Position below with 5px gap
+		dropdown.style.top = `${rect.bottom + 5}px`;
+		dropdown.style.bottom = 'auto';
+	}
 
-    // Set horizontal position (default to left-aligned)
-    dropdown.style.left = `${rect.left}px`;
+	// Set horizontal position (default to start-aligned)
+	dropdown.style.left = `${rect.left}px`;
 
-    // Adjust if dropdown would go off-screen to the right
-    if (rect.left + dropdownWidth > viewportWidth) {
-      // Try to align with right edge of container
-      const rightAligned = Math.max(0, rect.right - dropdownWidth);
-      dropdown.style.left = `${rightAligned}px`;
-    }
-  }
+	// Adjust if dropdown would go off-screen to the right
+	if (rect.left + dropdownWidth > viewportWidth) {
+		// Try to align with right edge of container
+		const rightAligned = Math.max(0, rect.right - dropdownWidth);
+		dropdown.style.left = `${rightAligned}px`;
+	}
+}
 
-  // Handle opening and closing the dropdown
-  async function toggleDropdown(event?: MouseEvent | KeyboardEvent) {
-    if (event) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+// Handle opening and closing the dropdown
+async function toggleDropdown(event?: MouseEvent | KeyboardEvent) {
+	if (event) {
+		event.preventDefault();
+		event.stopPropagation();
+	}
 
-    isOpen = !isOpen;
+	isOpen = !isOpen;
 
-    if (isOpen) {
-      // Wait for dropdown to be created and then position it
-      await tick();
-      positionDropdown();
+	if (isOpen) {
+		// Wait for dropdown to be created and then position it
+		await tick();
+		positionDropdown();
 
-      // Update parent scroll listeners when dropdown opens
-      addParentScrollListeners();
+		// Update parent scroll listeners when dropdown opens
+		addParentScrollListeners();
 
-      // Only auto-focus if opened with keyboard (arrow keys or Enter)
-      if (event && event instanceof KeyboardEvent) {
-        setTimeout(() => {
-          if (event.key === "ArrowUp") {
-            // Focus last option for ArrowUp
-            const options = fieldset?.querySelectorAll('button[role="option"]');
-            if (options && options.length > 0) {
-              focusElement(options[options.length - 1] as HTMLElement);
-            }
-          } else {
-            // Focus first option for other keys
-            const firstOption = fieldset?.querySelector(
-              'button[role="option"]',
-            ) as HTMLElement;
-            if (firstOption) {
-              focusElement(firstOption);
-            } else if (searchable) {
-              // If no options or searchable, focus the search input
-              focusElement(search);
-            }
-          }
-        }, 10);
-      } else if (searchable) {
-        // Always focus search field if searchable (standard pattern)
-        setTimeout(() => {
-          focusElement(search);
-        }, 10);
-      }
-      // If opened with mouse, leave focus on button
-    }
-  }
+		// Only auto-focus if opened with keyboard (arrow keys or Enter)
+		if (event && event instanceof KeyboardEvent) {
+			setTimeout(() => {
+				if (event.key === 'ArrowUp') {
+					// Focus last option for ArrowUp
+					const options = fieldset?.querySelectorAll('button[role="option"]');
+					if (options && options.length > 0) {
+						focusElement(options[options.length - 1] as HTMLElement);
+					}
+				} else {
+					// Focus first option for other keys
+					const firstOption = fieldset?.querySelector('button[role="option"]') as HTMLElement;
+					if (firstOption) {
+						focusElement(firstOption);
+					} else if (searchable) {
+						// If no options or searchable, focus the search input
+						focusElement(search);
+					}
+				}
+			}, 10);
+		} else if (searchable) {
+			// Always focus search field if searchable (standard pattern)
+			setTimeout(() => {
+				focusElement(search);
+			}, 10);
+		}
+		// If opened with mouse, leave focus on button
+	}
+}
 
-  // Close dropdown when clicking outside
-  function handleOutsideClick(event: MouseEvent) {
-    // Always check if the dropdown is open first
-    if (!isOpen) return;
+// Close dropdown when clicking outside
+function handleOutsideClick(event: MouseEvent) {
+	// Always check if the dropdown is open first
+	if (!isOpen) return;
 
-    // Ignore clicks on the container (button) itself - these are handled by toggleDropdown
-    if (container && container.contains(event.target as Node)) {
-      return;
-    }
+	// Ignore clicks on the container (button) itself - these are handled by toggleDropdown
+	if (container?.contains(event.target as Node)) {
+		return;
+	}
 
-    // Ignore clicks on the dropdown contents
-    if (dropdown && dropdown.contains(event.target as Node)) {
-      return;
-    }
+	// Ignore clicks on the dropdown contents
+	if (dropdown?.contains(event.target as Node)) {
+		return;
+	}
 
-    // If we got here, it's a click outside both the button and dropdown, so close it
-    closeDropdown();
-  }
+	// If we got here, it's a click outside both the button and dropdown, so close it
+	closeDropdown();
+}
 
-  function closeDropdown(
-    options: { preventFocus?: boolean; preventScroll?: boolean } = {},
-  ) {
-    isOpen = false;
-    filter = "";
+function closeDropdown(options: { preventFocus?: boolean; preventScroll?: boolean } = {}) {
+	isOpen = false;
+	filter = '';
 
-    // Only return focus if not prevented and if the select is still visible
-    if (!options.preventFocus && isSelectVisible()) {
-      setTimeout(() => {
-        const button = container?.querySelector("button") as HTMLElement;
-        if (button) {
-          // Use focus with preventScroll to avoid unwanted scrolling
-          button.focus({ preventScroll: true });
-        }
-      }, 0);
-    }
-  }
+	// Only return focus if not prevented and if the select is still visible
+	if (!options.preventFocus && isSelectVisible()) {
+		setTimeout(() => {
+			const button = container?.querySelector('button') as HTMLElement;
+			if (button) {
+				// Use focus with preventScroll to avoid unwanted scrolling
+				button.focus({ preventScroll: true });
+			}
+		}, 0);
+	}
+}
 
-  // Handle option selection
-  function handleSelect(option: Option) {
-    value = option.value;
-    closeDropdown();
-    onChange(option.value);
-  }
+// Handle option selection
+function handleSelect(option: Option) {
+	value = option.value;
+	closeDropdown();
+	onChange(option.value);
+}
 
-  // Track parent scroll listeners
-  let parentScrollListeners: Array<{ element: Element; listener: () => void }> =
-    [];
+// Track parent scroll listeners
+let parentScrollListeners: Array<{ element: Element; listener: () => void }> = [];
 
-  // Find all scrollable parent elements
-  function getScrollableParents(element: Element): Element[] {
-    const parents: Element[] = [];
-    let parent = element.parentElement;
+// Find all scrollable parent elements
+function getScrollableParents(element: Element): Element[] {
+	const parents: Element[] = [];
+	let parent = element.parentElement;
 
-    while (parent && parent !== document.body) {
-      const style = window.getComputedStyle(parent);
-      const overflow = style.overflow + style.overflowY + style.overflowX;
+	while (parent && parent !== document.body) {
+		const style = window.getComputedStyle(parent);
+		const overflow = style.overflow + style.overflowY + style.overflowX;
 
-      // Check if element is scrollable
-      if (overflow.includes("scroll") || overflow.includes("auto")) {
-        parents.push(parent);
-      }
+		// Check if element is scrollable
+		if (overflow.includes('scroll') || overflow.includes('auto')) {
+			parents.push(parent);
+		}
 
-      parent = parent.parentElement;
-    }
+		parent = parent.parentElement;
+	}
 
-    return parents;
-  }
+	return parents;
+}
 
-  // Check if the select button is actually visible (not just in viewport bounds)
-  function isSelectVisible(): boolean {
-    if (!container) return false;
+// Check if the select button is actually visible (not just in viewport bounds)
+function isSelectVisible(): boolean {
+	if (!container) return false;
 
-    const rect = container.getBoundingClientRect();
-    const viewportHeight =
-      window.innerHeight || document.documentElement.clientHeight;
-    const viewportWidth =
-      window.innerWidth || document.documentElement.clientWidth;
+	const rect = container.getBoundingClientRect();
+	const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+	const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
 
-    // First check if it's completely outside viewport
-    if (
-      rect.bottom <= 0 ||
-      rect.top >= viewportHeight ||
-      rect.right <= 0 ||
-      rect.left >= viewportWidth
-    ) {
-      return false;
-    }
+	// First check if it's completely outside viewport
+	if (
+		rect.bottom <= 0 ||
+		rect.top >= viewportHeight ||
+		rect.right <= 0 ||
+		rect.left >= viewportWidth
+	) {
+		return false;
+	}
 
-    // Check if the element is actually visible by testing a point in the center
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
+	// Check if the element is actually visible by testing a point in the center
+	const centerX = rect.left + rect.width / 2;
+	const centerY = rect.top + rect.height / 2;
 
-    // Make sure the center point is within viewport
-    if (
-      centerX < 0 ||
-      centerX >= viewportWidth ||
-      centerY < 0 ||
-      centerY >= viewportHeight
-    ) {
-      return false;
-    }
+	// Make sure the center point is within viewport
+	if (centerX < 0 || centerX >= viewportWidth || centerY < 0 || centerY >= viewportHeight) {
+		return false;
+	}
 
-    // Use elementFromPoint to check if our container is actually visible at its center
-    const elementAtPoint = document.elementFromPoint(centerX, centerY);
+	// Use elementFromPoint to check if our container is actually visible at its center
+	const elementAtPoint = document.elementFromPoint(centerX, centerY);
 
-    // Check if the element at that point is our container or a child of our container
-    return !!(
-      elementAtPoint &&
-      (elementAtPoint === container || container.contains(elementAtPoint))
-    );
-  }
+	// Check if the element at that point is our container or a child of our container
+	return !!(elementAtPoint && (elementAtPoint === container || container.contains(elementAtPoint)));
+}
 
-  // Add scroll listeners to all parent containers
-  function addParentScrollListeners() {
-    if (!container) return;
+// Add scroll listeners to all parent containers
+function addParentScrollListeners() {
+	if (!container) return;
 
-    // Remove existing listeners first
-    removeParentScrollListeners();
+	// Remove existing listeners first
+	removeParentScrollListeners();
 
-    const scrollableParents = getScrollableParents(container);
+	const scrollableParents = getScrollableParents(container);
 
-    scrollableParents.forEach((parent) => {
-      const listener = () => {
-        if (isOpen) {
-          // Check if select is still visible, close dropdown if not
-          if (!isSelectVisible()) {
-            closeDropdown({ preventFocus: true });
-          } else {
-            positionDropdown();
-          }
-        }
-      };
+	scrollableParents.forEach((parent) => {
+		const listener = () => {
+			if (isOpen) {
+				// Check if select is still visible, close dropdown if not
+				if (!isSelectVisible()) {
+					closeDropdown({ preventFocus: true });
+				} else {
+					positionDropdown();
+				}
+			}
+		};
 
-      parent.addEventListener("scroll", listener, { passive: true });
-      parentScrollListeners.push({ element: parent, listener });
-    });
-  }
+		parent.addEventListener('scroll', listener, { passive: true });
+		parentScrollListeners.push({ element: parent, listener });
+	});
+}
 
-  // Remove all parent scroll listeners
-  function removeParentScrollListeners() {
-    parentScrollListeners.forEach(({ element, listener }) => {
-      element.removeEventListener("scroll", listener);
-    });
-    parentScrollListeners = [];
-  }
+// Remove all parent scroll listeners
+function removeParentScrollListeners() {
+	parentScrollListeners.forEach(({ element, listener }) => {
+		element.removeEventListener('scroll', listener);
+	});
+	parentScrollListeners = [];
+}
 
-  // Mount event listeners
-  onMount(() => {
-    // Use mousedown to catch all interactions, including ones on buttons
-    document.addEventListener("mousedown", handleOutsideClick);
-    window.addEventListener("resize", positionDropdown);
+// Mount event listeners
+onMount(() => {
+	// Use mousedown to catch all interactions, including ones on buttons
+	document.addEventListener('mousedown', handleOutsideClick);
+	window.addEventListener('resize', positionDropdown);
 
-    // Window scroll handler with visibility check
-    const windowScrollHandler = () => {
-      if (isOpen) {
-        if (!isSelectVisible()) {
-          closeDropdown({ preventFocus: true });
-        } else {
-          positionDropdown();
-        }
-      }
-    };
-    window.addEventListener("scroll", windowScrollHandler);
+	// Window scroll handler with visibility check
+	const windowScrollHandler = () => {
+		if (isOpen) {
+			if (!isSelectVisible()) {
+				closeDropdown({ preventFocus: true });
+			} else {
+				positionDropdown();
+			}
+		}
+	};
+	window.addEventListener('scroll', windowScrollHandler);
 
-    // Add parent scroll listeners
-    addParentScrollListeners();
+	// Add parent scroll listeners
+	addParentScrollListeners();
 
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-      window.removeEventListener("resize", positionDropdown);
-      window.removeEventListener("scroll", windowScrollHandler);
-      removeParentScrollListeners();
-      if (closeTimeout) window.clearTimeout(closeTimeout);
-    };
-  });
+	return () => {
+		document.removeEventListener('mousedown', handleOutsideClick);
+		window.removeEventListener('resize', positionDropdown);
+		window.removeEventListener('scroll', windowScrollHandler);
+		removeParentScrollListeners();
+		if (closeTimeout) window.clearTimeout(closeTimeout);
+	};
+});
 
-  // Update dropdown position when options change (which affects dropdown size)
-  $effect(() => {
-    if (isOpen) {
-      filteredOptions;
-      requestAnimationFrame(positionDropdown);
-    }
-  });
+// Update dropdown position when options change (which affects dropdown size)
+$effect(() => {
+	if (isOpen) {
+		filteredOptions;
+		requestAnimationFrame(positionDropdown);
+	}
+});
 </script>
 
 {#if label && !hideLabel}
@@ -498,19 +471,19 @@
                 bind:this={search}
                 type="search"
                 bind:value={filter}
-                class="focus:ring-opacity-50 dark:focus:ring-opacity-30 focus:ring-focus-ring w-full rounded-lg border border-gray-300 px-3 py-2 pl-9 text-sm shadow-sm focus:border-blue-300 focus:ring focus:outline-none dark:border-gray-600 dark:bg-gray-600 dark:text-gray-200 dark:focus:border-blue-600"
+                class="focus:ring-opacity-50 dark:focus:ring-opacity-30 focus:ring-focus-ring w-full rounded-lg border border-gray-300 px-3 py-2 ps-9 text-sm shadow-sm focus:border-blue-300 focus:ring focus:outline-none dark:border-gray-600 dark:bg-gray-600 dark:text-gray-200 dark:focus:border-blue-600"
                 placeholder={s("common.search") || "Search"}
                 aria-label={s("common.search") || "Search"}
               />
               <div
-                class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
+                class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3"
               >
                 <IconSearch class="icon-color-muted size-4" />
               </div>
               {#if filter}
                 <button
                   type="button"
-                  class="absolute inset-y-0 right-0 flex cursor-pointer items-center pr-3 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300"
+                  class="absolute inset-y-0 end-0 flex cursor-pointer items-center pe-3 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300"
                   onmousedown={(e) => {
                     e.stopPropagation();
                     filter = "";
@@ -552,7 +525,7 @@
                 {#each filteredOptions as option}
                   <button
                     type="button"
-                    class="focus-visible:ring-focus-ring relative flex w-full cursor-pointer items-center px-4 py-2 pl-8 text-left text-sm hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus-visible:bg-gray-100 focus-visible:ring-2 focus-visible:ring-inset dark:text-gray-200 dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus-visible:bg-gray-600"
+                    class="focus-visible:ring-focus-ring relative flex w-full cursor-pointer items-center px-4 py-2 ps-8 text-start text-sm hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus-visible:bg-gray-100 focus-visible:ring-2 focus-visible:ring-inset dark:text-gray-200 dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus-visible:bg-gray-600"
                     role="option"
                     aria-selected={value === option.value}
                     tabindex="0"
@@ -632,7 +605,7 @@
                   >
                     {#if value === option.value}
                       <span
-                        class="absolute left-2 font-normal text-gray-900 dark:text-gray-200"
+                        class="absolute start-2 font-normal text-gray-900 dark:text-gray-200"
                       >
                         <IconCheck class="size-5 stroke-[2.5]" />
                       </span>

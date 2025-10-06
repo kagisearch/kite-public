@@ -1,19 +1,19 @@
 <script lang="ts">
-  import { imagePreloadingService } from "$lib/services/imagePreloadingService";
-  import { preloadingConfig } from "$lib/stores/preloadingConfig.svelte";
+import { imagePreloadingService } from '$lib/services/imagePreloadingService';
+import { preloadingConfig } from '$lib/stores/preloadingConfig.svelte';
 
-  // Get current cache stats
-  let cacheStats = $state(imagePreloadingService.getCacheStats());
+// Get current cache stats
+let cacheStats = $state(imagePreloadingService.getCacheStats());
 
-  // Update cache stats periodically
-  let statsInterval: ReturnType<typeof setInterval>;
-  $effect(() => {
-    statsInterval = setInterval(() => {
-      cacheStats = imagePreloadingService.getCacheStats();
-    }, 1000);
+// Update cache stats periodically
+let statsInterval: ReturnType<typeof setInterval>;
+$effect(() => {
+	statsInterval = setInterval(() => {
+		cacheStats = imagePreloadingService.getCacheStats();
+	}, 1000);
 
-    return () => clearInterval(statsInterval);
-  });
+	return () => clearInterval(statsInterval);
+});
 </script>
 
 <div class="space-y-4">
@@ -80,7 +80,7 @@
         )}
       class="w-full"
     />
-    <div class="text-xs text-gray-500 dark:text-gray-400 text-right">
+    <div class="text-xs text-gray-500 dark:text-gray-400 text-end">
       {preloadingConfig.categoryPreloadDelay}ms
     </div>
   </div>
@@ -107,7 +107,7 @@
         preloadingConfig.setPreloadTimeout(parseInt(e.currentTarget.value))}
       class="w-full"
     />
-    <div class="text-xs text-gray-500 dark:text-gray-400 text-right">
+    <div class="text-xs text-gray-500 dark:text-gray-400 text-end">
       {preloadingConfig.preloadTimeout === 0
         ? "Disabled"
         : `${preloadingConfig.preloadTimeout}ms`}

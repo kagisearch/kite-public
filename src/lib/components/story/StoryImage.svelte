@@ -1,88 +1,81 @@
 <script lang="ts">
-  import {
-    getImageSrc,
-    isImageCached,
-    onCacheUpdate,
-    getProxiedImageUrl,
-  } from "$lib/utils/imagePreloader";
-  import { onMount } from "svelte";
+import { onMount } from 'svelte';
+import {
+	getImageSrc,
+	getProxiedImageUrl,
+	isImageCached,
+	onCacheUpdate,
+} from '$lib/utils/imagePreloader';
 
-  // Props
-  interface Props {
-    article: any;
-    imagesPreloaded?: boolean;
-    showCaption?: boolean;
-  }
+// Props
+interface Props {
+	article: any;
+	imagesPreloaded?: boolean;
+	showCaption?: boolean;
+}
 
-  let {
-    article,
-    imagesPreloaded = false,
-    showCaption = false,
-  }: Props = $props();
+let { article, imagesPreloaded = false, showCaption = false }: Props = $props();
 
-  // State for image loading
-  let imageLoaded = $state(false);
-  let imageError = $state(false);
-  let currentImageSrc = $state("");
-  let cacheVersion = $state(0); // Force reactivity
+// State for image loading
+let imageLoaded = $state(false);
+let imageError = $state(false);
+let currentImageSrc = $state('');
+let cacheVersion = $state(0); // Force reactivity
 
-  // Get the image source reactively
-  const imageSrc = $derived(() => {
-    cacheVersion; // Subscribe to cache changes
-    return getImageSrc(article.image);
-  });
+// Get the image source reactively
+const imageSrc = $derived(() => {
+	cacheVersion; // Subscribe to cache changes
+	return getImageSrc(article.image);
+});
 
-  // Update currentImageSrc when imageSrc changes
-  $effect(() => {
-    const newSrc = imageSrc();
-    if (newSrc !== currentImageSrc) {
-      currentImageSrc = newSrc;
-      imageLoaded = false;
-      imageError = false;
-    }
-  });
+// Update currentImageSrc when imageSrc changes
+$effect(() => {
+	const newSrc = imageSrc();
+	if (newSrc !== currentImageSrc) {
+		currentImageSrc = newSrc;
+		imageLoaded = false;
+		imageError = false;
+	}
+});
 
-  // Determine loading strategy
-  const shouldLoadEagerly = $derived(
-    imagesPreloaded || (article.image && isImageCached(article.image)),
-  );
+// Determine loading strategy
+const shouldLoadEagerly = $derived(
+	imagesPreloaded || (article.image && isImageCached(article.image)),
+);
 
-  // Handle image load
-  function handleImageLoad() {
-    imageLoaded = true;
-    imageError = false;
-  }
+// Handle image load
+function handleImageLoad() {
+	imageLoaded = true;
+	imageError = false;
+}
 
-  // Handle image error
-  function handleImageError() {
-    imageError = true;
-    imageLoaded = false;
+// Handle image error
+function handleImageError() {
+	imageError = true;
+	imageLoaded = false;
 
-    // If we're using a cached version and it failed, try the proxied URL
-    if (currentImageSrc.startsWith("data:")) {
-      const proxiedUrl = getProxiedImageUrl(article.image);
-      console.warn(
-        "Cached image failed, falling back to proxied URL:",
-        proxiedUrl,
-      );
-      currentImageSrc = proxiedUrl;
-      imageError = false; // Reset error state to try loading again
-    } else {
-      console.error("Image failed to load even with proxy:", currentImageSrc);
-    }
-  }
+	// If we're using a cached version and it failed, try the proxied URL
+	if (currentImageSrc.startsWith('data:')) {
+		const proxiedUrl = getProxiedImageUrl(article.image);
+		console.warn('Cached image failed, falling back to proxied URL:', proxiedUrl);
+		currentImageSrc = proxiedUrl;
+		imageError = false; // Reset error state to try loading again
+	} else {
+		console.error('Image failed to load even with proxy:', currentImageSrc);
+	}
+}
 
-  // Subscribe to cache updates
-  onMount(() => {
-    if (!article.image) return;
+// Subscribe to cache updates
+onMount(() => {
+	if (!article.image) return;
 
-    // Subscribe to cache updates
-    const unsubscribe = onCacheUpdate(() => {
-      cacheVersion++; // Trigger reactivity
-    });
+	// Subscribe to cache updates
+	const unsubscribe = onCacheUpdate(() => {
+		cacheVersion++; // Trigger reactivity
+	});
 
-    return unsubscribe;
-  });
+	return unsubscribe;
+});
 </script>
 
 {#if !imageError}

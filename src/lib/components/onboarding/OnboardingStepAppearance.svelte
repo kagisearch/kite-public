@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { s } from "$lib/client/localization.svelte";
-  import DataLanguageSelector from "../settings/snippets/DataLanguageSelector.svelte";
-  import LanguageSelector from "../settings/snippets/LanguageSelector.svelte";
-  import StoryCountSlider from "../settings/snippets/StoryCountSlider.svelte";
-  import ThemeSelector from "../settings/snippets/ThemeSelector.svelte";
+import { s } from '$lib/client/localization.svelte';
+import DataLanguageSelector from '../settings/snippets/DataLanguageSelector.svelte';
+import LanguageSelector from '../settings/snippets/LanguageSelector.svelte';
+import StoryCountSlider from '../settings/snippets/StoryCountSlider.svelte';
+import ThemeSelector from '../settings/snippets/ThemeSelector.svelte';
 </script>
 
 <div class="space-y-6">

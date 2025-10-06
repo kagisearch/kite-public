@@ -1,14 +1,14 @@
 <script lang="ts">
-  import { s } from "$lib/client/localization.svelte";
-  import type { Category } from "$lib/types";
-  import SettingsCategories from "../settings/SettingsCategories.svelte";
+import { s } from '$lib/client/localization.svelte';
+import type { Category } from '$lib/types';
+import SettingsCategories from '../settings/SettingsCategories.svelte';
 
-  // Props
-  interface Props {
-    categories?: Category[];
-  }
+// Props
+interface Props {
+	categories?: Category[];
+}
 
-  let { categories = [] }: Props = $props();
+let { categories = [] }: Props = $props();
 </script>
 
 <div class="space-y-6">

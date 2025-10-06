@@ -1,71 +1,58 @@
 <script lang="ts">
-  import { s } from "$lib/client/localization.svelte";
-  import { experimental } from "$lib/stores/experimental.svelte.js";
-  import {
-    replaceWithNumberedCitations,
-    type CitationMapping,
-  } from "$lib/utils/citationContext";
-  import CitationText from "./CitationText.svelte";
+import { s } from '$lib/client/localization.svelte';
+import { experimental } from '$lib/stores/experimental.svelte.js';
+import { type CitationMapping, replaceWithNumberedCitations } from '$lib/utils/citationContext';
+import CitationText from './CitationText.svelte';
 
-  // Props
-  interface Props {
-    story: any;
-    isRead?: boolean;
-    onTitleClick?: () => void;
-    onReadClick?: (e: Event) => void;
-    citationMapping?: CitationMapping;
-  }
+// Props
+interface Props {
+	story: any;
+	isRead?: boolean;
+	onTitleClick?: () => void;
+	onReadClick?: (e: Event) => void;
+	citationMapping?: CitationMapping;
+}
 
-  let {
-    story,
-    isRead = false,
-    onTitleClick,
-    onReadClick,
-    citationMapping,
-  }: Props = $props();
+let { story, isRead = false, onTitleClick, onReadClick, citationMapping }: Props = $props();
 
-  // Define colors ordered by perceptual distinctness
-  // These are maximally distinct colors that work well together
-  const DISTINCT_COLORS = [
-    { name: "red", light: "#e74c3c", dark: "#ff6b6b" },
-    { name: "blue", light: "#3498db", dark: "#74b9ff" },
-    { name: "green", light: "#2ecc71", dark: "#55efc4" },
-    { name: "purple", light: "#9b59b6", dark: "#a29bfe" },
-    { name: "orange", light: "#f39c12", dark: "#fdcb6e" },
-    { name: "teal", light: "#1abc9c", dark: "#00cec9" },
-    { name: "pink", light: "#e91e63", dark: "#fd79a8" },
-    { name: "indigo", light: "#3f51b5", dark: "#7986cb" },
-    { name: "amber", light: "#ff9800", dark: "#ffb74d" },
-  ];
+// Define colors ordered by perceptual distinctness
+// These are maximally distinct colors that work well together
+const DISTINCT_COLORS = [
+	{ name: 'red', light: '#e74c3c', dark: '#ff6b6b' },
+	{ name: 'blue', light: '#3498db', dark: '#74b9ff' },
+	{ name: 'green', light: '#2ecc71', dark: '#55efc4' },
+	{ name: 'purple', light: '#9b59b6', dark: '#a29bfe' },
+	{ name: 'orange', light: '#f39c12', dark: '#fdcb6e' },
+	{ name: 'teal', light: '#1abc9c', dark: '#00cec9' },
+	{ name: 'pink', light: '#e91e63', dark: '#fd79a8' },
+	{ name: 'indigo', light: '#3f51b5', dark: '#7986cb' },
+	{ name: 'amber', light: '#ff9800', dark: '#ffb74d' },
+];
 
-  // Generate topic color class using a smarter selection algorithm
-  function getTopicColorClass(category: string): string {
-    // Create a simple hash from the category string
-    let hash = 0;
-    for (let i = 0; i < category.length; i++) {
-      const char = category.charCodeAt(i);
-      hash = (hash << 5) - hash + char;
-      hash = hash & hash; // Convert to 32-bit integer
-    }
+// Generate topic color class using a smarter selection algorithm
+function getTopicColorClass(category: string): string {
+	// Create a simple hash from the category string
+	let hash = 0;
+	for (let i = 0; i < category.length; i++) {
+		const char = category.charCodeAt(i);
+		hash = (hash << 5) - hash + char;
+		hash = hash & hash; // Convert to 32-bit integer
+	}
 
-    // Use the hash to select from our distinct colors
-    const colorIndex = Math.abs(hash) % DISTINCT_COLORS.length;
-    return `topic-color-${colorIndex}`;
-  }
+	// Use the hash to select from our distinct colors
+	const colorIndex = Math.abs(hash) % DISTINCT_COLORS.length;
+	return `topic-color-${colorIndex}`;
+}
 
-  // Get emoji from story data when experimental settings are enabled
-  const categoryEmoji = $derived(
-    experimental.showCategoryIcons ? story.emoji : "",
-  );
-  const articleEmoji = $derived(
-    experimental.showArticleIcons ? story.emoji : "",
-  );
+// Get emoji from story data when experimental settings are enabled
+const categoryEmoji = $derived(experimental.showCategoryIcons ? story.emoji : '');
+const articleEmoji = $derived(experimental.showArticleIcons ? story.emoji : '');
 
-  // Convert title citations to numbered format if mapping is available
-  const displayTitle = $derived.by(() => {
-    if (!citationMapping) return story.title;
-    return replaceWithNumberedCitations(story.title, citationMapping);
-  });
+// Convert title citations to numbered format if mapping is available
+const displayTitle = $derived.by(() => {
+	if (!citationMapping) return story.title;
+	return replaceWithNumberedCitations(story.title, citationMapping);
+});
 </script>
 
 <!-- Story Header -->
@@ -74,9 +61,9 @@
     class="category-label inline-flex items-center rounded py-1 text-xs text-gray-700 dark:text-gray-300 uppercase"
   >
     {#if categoryEmoji}
-      <span class="mr-1">{categoryEmoji}</span>
+      <span class="me-1">{categoryEmoji}</span>
     {/if}
-    <span class={getTopicColorClass(story.category)}>
+    <span class={getTopicColorClass(story.category)} dir="auto">
       {story.category}
     </span>
   </span>
@@ -86,16 +73,15 @@
 <div class="flex items-start">
   <div class="flex-grow">
     <button
-      class="dark:text-dark-text mb-2 flex cursor-pointer items-center text-xl text-gray-800 text-left w-full bg-transparent border-none p-0 focus-visible-ring rounded"
+      class="dark:text-dark-text mb-2 flex cursor-pointer items-center text-xl text-gray-800 text-start w-full bg-transparent border-none p-0 focus-visible-ring rounded"
       class:font-semibold={!isRead}
       onclick={onTitleClick}
-      id="story-title-{story.cluster_number}"
       aria-label="Expand story: {story.title}"
     >
       {#if articleEmoji}
-        <span class="mr-2">{articleEmoji}</span>
+        <span class="me-2">{articleEmoji}</span>
       {/if}
-      <span
+      <span dir="auto"
         ><CitationText
           text={displayTitle}
           showFavicons={false}
@@ -109,7 +95,7 @@
   </div>
 
   <!-- Read Status Button -->
-  <div class="-mt-3 ml-4 flex-shrink-0">
+  <div class="-mt-3 ms-4 flex-shrink-0">
     <button
       onclick={onReadClick}
       class="focus-visible-ring rounded"

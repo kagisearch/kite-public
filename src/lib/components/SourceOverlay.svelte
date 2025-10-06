@@ -1,176 +1,169 @@
 <script lang="ts">
-  import { s } from "$lib/client/localization.svelte";
-  import FaviconImage from "$lib/components/common/FaviconImage.svelte";
-  import { getTimeAgo } from "$lib/utils/getTimeAgo";
-  import { scrollLock } from "$lib/utils/scrollLock.js";
-  import {
-    IconMapPin,
-    IconUser,
-    IconBuilding,
-    IconTag,
-  } from "@tabler/icons-svelte";
-  import { useOverlayScrollbars } from "overlayscrollbars-svelte";
-  import "overlayscrollbars/overlayscrollbars.css";
+import { IconBuilding, IconMapPin, IconTag, IconUser } from '@tabler/icons-svelte';
+import { useOverlayScrollbars } from 'overlayscrollbars-svelte';
+import { s } from '$lib/client/localization.svelte';
+import FaviconImage from '$lib/components/common/FaviconImage.svelte';
+import { getTimeAgo } from '$lib/utils/getTimeAgo';
+import { scrollLock } from '$lib/utils/scrollLock.js';
+import 'overlayscrollbars/overlayscrollbars.css';
 
-  // Props
-  interface Props {
-    isOpen?: boolean;
-    currentSource?: any;
-    sourceArticles?: any[];
-    currentMediaInfo?: any;
-    isLoadingMediaInfo?: boolean;
-    onClose?: () => void;
-  }
+// Props
+interface Props {
+	isOpen?: boolean;
+	currentSource?: any;
+	sourceArticles?: any[];
+	currentMediaInfo?: any;
+	isLoadingMediaInfo?: boolean;
+	onClose?: () => void;
+}
 
-  let {
-    isOpen = false,
-    currentSource,
-    sourceArticles = [],
-    currentMediaInfo,
-    isLoadingMediaInfo = false,
-    onClose,
-  }: Props = $props();
+let {
+	isOpen = false,
+	currentSource,
+	sourceArticles = [],
+	currentMediaInfo,
+	isLoadingMediaInfo = false,
+	onClose,
+}: Props = $props();
 
-  // State for showing source info
-  let showSourceInfo = $state(false);
+// State for showing source info
+let showSourceInfo = $state(false);
 
-  // Focus management
-  let dialogElement: HTMLElement | undefined = $state(undefined);
-  let firstFocusableElement: HTMLElement | undefined = $state(undefined);
-  let lastFocusableElement: HTMLElement | undefined = $state(undefined);
-  let previousActiveElement: Element | null = null;
+// Focus management
+let dialogElement: HTMLElement | undefined = $state(undefined);
+let firstFocusableElement: HTMLElement | undefined = $state(undefined);
+let lastFocusableElement: HTMLElement | undefined = $state(undefined);
+let previousActiveElement: Element | null = null;
 
-  // Use the fetched media info
-  const mediaInfo = $derived.by(() => {
-    return currentMediaInfo || null;
-  });
+// Use the fetched media info
+const mediaInfo = $derived.by(() => {
+	return currentMediaInfo || null;
+});
 
-  // OverlayScrollbars setup
-  let scrollableElement: HTMLElement | undefined = $state(undefined);
-  let [initialize, instance] = useOverlayScrollbars({
-    defer: true,
-    options: {
-      scrollbars: {
-        autoHide: "leave",
-        autoHideDelay: 100,
-      },
-    },
-  });
+// OverlayScrollbars setup
+let scrollableElement: HTMLElement | undefined = $state(undefined);
+let [initialize, instance] = useOverlayScrollbars({
+	defer: true,
+	options: {
+		scrollbars: {
+			autoHide: 'leave',
+			autoHideDelay: 100,
+		},
+	},
+});
 
-  // Initialize OverlayScrollbars
-  $effect(() => {
-    if (scrollableElement) {
-      initialize(scrollableElement);
-    }
-  });
+// Initialize OverlayScrollbars
+$effect(() => {
+	if (scrollableElement) {
+		initialize(scrollableElement);
+	}
+});
 
-  // Handle escape key
-  function handleKeydown(e: KeyboardEvent) {
-    if (e.key === "Escape" && isOpen) {
-      handleClose();
-    }
-  }
+// Handle escape key
+function handleKeydown(e: KeyboardEvent) {
+	if (e.key === 'Escape' && isOpen) {
+		handleClose();
+	}
+}
 
-  // Focus trap handler
-  function handleFocusTrap(e: KeyboardEvent) {
-    if (e.key !== "Tab") return;
+// Focus trap handler
+function handleFocusTrap(e: KeyboardEvent) {
+	if (e.key !== 'Tab') return;
 
-    if (!firstFocusableElement || !lastFocusableElement) return;
+	if (!firstFocusableElement || !lastFocusableElement) return;
 
-    if (e.shiftKey) {
-      // Shift + Tab
-      if (document.activeElement === firstFocusableElement) {
-        e.preventDefault();
-        lastFocusableElement.focus();
-      }
-    } else {
-      // Tab
-      if (document.activeElement === lastFocusableElement) {
-        e.preventDefault();
-        firstFocusableElement.focus();
-      }
-    }
-  }
+	if (e.shiftKey) {
+		// Shift + Tab
+		if (document.activeElement === firstFocusableElement) {
+			e.preventDefault();
+			lastFocusableElement.focus();
+		}
+	} else {
+		// Tab
+		if (document.activeElement === lastFocusableElement) {
+			e.preventDefault();
+			firstFocusableElement.focus();
+		}
+	}
+}
 
-  // Get focusable elements
-  function getFocusableElements(): HTMLElement[] {
-    if (!dialogElement) return [];
+// Get focusable elements
+function getFocusableElements(): HTMLElement[] {
+	if (!dialogElement) return [];
 
-    const focusableSelectors = [
-      "button:not([disabled])",
-      "[href]:not([disabled])",
-      "input:not([disabled])",
-      "select:not([disabled])",
-      "textarea:not([disabled])",
-      '[tabindex]:not([tabindex="-1"]):not([disabled])',
-    ];
+	const focusableSelectors = [
+		'button:not([disabled])',
+		'[href]:not([disabled])',
+		'input:not([disabled])',
+		'select:not([disabled])',
+		'textarea:not([disabled])',
+		'[tabindex]:not([tabindex="-1"]):not([disabled])',
+	];
 
-    return Array.from(
-      dialogElement.querySelectorAll(focusableSelectors.join(", ")),
-    ) as HTMLElement[];
-  }
+	return Array.from(dialogElement.querySelectorAll(focusableSelectors.join(', '))) as HTMLElement[];
+}
 
-  // Update focusable elements
-  function updateFocusableElements() {
-    const focusableElements = getFocusableElements();
-    firstFocusableElement = focusableElements[0];
-    lastFocusableElement = focusableElements[focusableElements.length - 1];
-  }
+// Update focusable elements
+function updateFocusableElements() {
+	const focusableElements = getFocusableElements();
+	firstFocusableElement = focusableElements[0];
+	lastFocusableElement = focusableElements[focusableElements.length - 1];
+}
 
-  // Handle visibility changes for scroll lock and focus management
-  $effect(() => {
-    if (typeof document !== "undefined") {
-      if (isOpen) {
-        // Store the previously active element
-        previousActiveElement = document.activeElement;
+// Handle visibility changes for scroll lock and focus management
+$effect(() => {
+	if (typeof document !== 'undefined') {
+		if (isOpen) {
+			// Store the previously active element
+			previousActiveElement = document.activeElement;
 
-        // Lock background scroll
-        scrollLock.lock();
+			// Lock background scroll
+			scrollLock.lock();
 
-        // Set up keyboard listeners
-        document.addEventListener("keydown", handleKeydown);
-        document.addEventListener("keydown", handleFocusTrap);
+			// Set up keyboard listeners
+			document.addEventListener('keydown', handleKeydown);
+			document.addEventListener('keydown', handleFocusTrap);
 
-        // Set initial focus after DOM updates
-        setTimeout(() => {
-          updateFocusableElements();
-          if (firstFocusableElement) {
-            firstFocusableElement.focus();
-          }
-        }, 0);
-      } else {
-        // Clean up listeners
-        document.removeEventListener("keydown", handleKeydown);
-        document.removeEventListener("keydown", handleFocusTrap);
+			// Set initial focus after DOM updates
+			setTimeout(() => {
+				updateFocusableElements();
+				if (firstFocusableElement) {
+					firstFocusableElement.focus();
+				}
+			}, 0);
+		} else {
+			// Clean up listeners
+			document.removeEventListener('keydown', handleKeydown);
+			document.removeEventListener('keydown', handleFocusTrap);
 
-        // Unlock background scroll
-        scrollLock.unlock();
+			// Unlock background scroll
+			scrollLock.unlock();
 
-        // Return focus to the previously active element without scrolling
-        if (previousActiveElement && "focus" in previousActiveElement) {
-          (previousActiveElement as HTMLElement).focus({ preventScroll: true });
-        }
-      }
+			// Return focus to the previously active element without scrolling
+			if (previousActiveElement && 'focus' in previousActiveElement) {
+				(previousActiveElement as HTMLElement).focus({ preventScroll: true });
+			}
+		}
 
-      return () => {
-        document.removeEventListener("keydown", handleKeydown);
-        document.removeEventListener("keydown", handleFocusTrap);
-        scrollLock.unlock();
-      };
-    }
-  });
+		return () => {
+			document.removeEventListener('keydown', handleKeydown);
+			document.removeEventListener('keydown', handleFocusTrap);
+			scrollLock.unlock();
+		};
+	}
+});
 
-  // Handle close
-  function handleClose() {
-    if (onClose) onClose();
-  }
+// Handle close
+function handleClose() {
+	if (onClose) onClose();
+}
 
-  // Handle backdrop click
-  function handleBackdropClick(event: MouseEvent) {
-    if (event.target === event.currentTarget) {
-      handleClose();
-    }
-  }
+// Handle backdrop click
+function handleBackdropClick(event: MouseEvent) {
+	if (event.target === event.currentTarget) {
+		handleClose();
+	}
+}
 </script>
 
 {#if isOpen}
@@ -209,6 +202,7 @@
             <h3
               id="source-overlay-title"
               class="dark:text-dark-text text-xl font-bold"
+              dir="auto"
             >
               {currentSource?.name || "Unknown Source"}
             </h3>
@@ -261,7 +255,7 @@
                   class="hover:underline"
                   onclick={(e) => e.stopPropagation()}
                 >
-                  <h4 class="dark:text-dark-text font-semibold">
+                  <h4 class="dark:text-dark-text font-semibold" dir="auto">
                     {article.title}
                   </h4>
                 </a>
@@ -328,6 +322,7 @@
                         </div>
                         <div
                           class="text-gray-600 dark:text-gray-400 break-words"
+                          dir="auto"
                         >
                           {mediaInfo?.country}
                         </div>
@@ -347,6 +342,7 @@
                         </div>
                         <div
                           class="text-gray-600 dark:text-gray-400 break-words"
+                          dir="auto"
                         >
                           {mediaInfo?.owner ||
                             s("source.info.notSpecified") ||
@@ -368,6 +364,7 @@
                         </div>
                         <div
                           class="text-gray-600 dark:text-gray-400 break-words"
+                          dir="auto"
                         >
                           {mediaInfo?.organization}
                         </div>
@@ -388,6 +385,7 @@
                         </div>
                         <div
                           class="text-gray-600 dark:text-gray-400 break-words"
+                          dir="auto"
                         >
                           {mediaInfo?.typology}
                         </div>
@@ -407,6 +405,7 @@
                       </h4>
                       <p
                         class="text-gray-600 dark:text-gray-400 leading-relaxed"
+                        dir="auto"
                       >
                         {mediaInfo?.description}
                       </p>

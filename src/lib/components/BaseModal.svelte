@@ -1,172 +1,169 @@
 <script lang="ts">
-  import { browser } from "$app/environment";
-  import { s } from "$lib/client/localization.svelte";
-  import { scrollLock } from "$lib/utils/scrollLock";
-  import { useOverlayScrollbars } from "overlayscrollbars-svelte";
-  import "overlayscrollbars/overlayscrollbars.css";
-  import { onMount, onDestroy } from "svelte";
-  import { fade, fly } from "svelte/transition";
+import { useOverlayScrollbars } from 'overlayscrollbars-svelte';
+import { browser } from '$app/environment';
+import { s } from '$lib/client/localization.svelte';
+import { scrollLock } from '$lib/utils/scrollLock';
+import 'overlayscrollbars/overlayscrollbars.css';
+import { onDestroy, onMount } from 'svelte';
+import { fade, fly } from 'svelte/transition';
 
-  // Props
-  interface Props {
-    isOpen: boolean;
-    onClose: () => void;
-    title?: string;
-    size?: "sm" | "md" | "lg" | "xl" | "full";
-    position?: "center" | "top" | "bottom";
-    closeOnBackdrop?: boolean;
-    closeOnEscape?: boolean;
-    showCloseButton?: boolean;
-    lockScroll?: boolean;
-    zIndex?: number;
-    ariaLabel?: string;
-    class?: string;
-    children?: any;
-  }
+// Props
+interface Props {
+	isOpen: boolean;
+	onClose: () => void;
+	title?: string;
+	size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+	position?: 'center' | 'top' | 'bottom';
+	closeOnBackdrop?: boolean;
+	closeOnEscape?: boolean;
+	showCloseButton?: boolean;
+	lockScroll?: boolean;
+	zIndex?: number;
+	ariaLabel?: string;
+	class?: string;
+	children?: any;
+}
 
-  let {
-    isOpen = false,
-    onClose,
-    title = "",
-    size = "md",
-    position = "center",
-    closeOnBackdrop = true,
-    closeOnEscape = true,
-    showCloseButton = true,
-    lockScroll = true,
-    zIndex = 1000,
-    ariaLabel,
-    class: className = "",
-    children,
-  }: Props = $props();
+let {
+	isOpen = false,
+	onClose,
+	title = '',
+	size = 'md',
+	position = 'center',
+	closeOnBackdrop = true,
+	closeOnEscape = true,
+	showCloseButton = true,
+	lockScroll = true,
+	zIndex = 1000,
+	ariaLabel,
+	class: className = '',
+	children,
+}: Props = $props();
 
-  // Modal element references
-  let modalElement: HTMLDivElement | undefined = $state();
-  let contentElement: HTMLDivElement | undefined = $state();
-  let previousActiveElement: Element | null = null;
+// Modal element references
+let modalElement: HTMLDivElement | undefined = $state();
+let contentElement: HTMLDivElement | undefined = $state();
+let previousActiveElement: Element | null = null;
 
-  // OverlayScrollbars setup
-  let [initialize] = useOverlayScrollbars({
-    defer: true,
-    options: {
-      scrollbars: {
-        autoHide: "scroll",
-        theme: "os-theme-dark os-theme-light",
-      },
-    },
-  });
+// OverlayScrollbars setup
+let [initialize] = useOverlayScrollbars({
+	defer: true,
+	options: {
+		scrollbars: {
+			autoHide: 'scroll',
+			theme: 'os-theme-dark os-theme-light',
+		},
+	},
+});
 
-  // Size classes
-  const sizeClasses = {
-    sm: "max-w-sm",
-    md: "max-w-2xl",
-    lg: "max-w-4xl",
-    xl: "max-w-6xl",
-    full: "max-w-full mx-4",
-  };
+// Size classes
+const sizeClasses = {
+	sm: 'max-w-sm',
+	md: 'max-w-2xl',
+	lg: 'max-w-4xl',
+	xl: 'max-w-6xl',
+	full: 'max-w-full mx-4',
+};
 
-  // Position classes
-  const positionClasses = {
-    center: "items-center justify-center",
-    top: "items-start justify-center pt-16",
-    bottom: "items-end justify-center",
-  };
+// Position classes
+const positionClasses = {
+	center: 'items-center justify-center',
+	top: 'items-start justify-center pt-16',
+	bottom: 'items-end justify-center',
+};
 
-  // Transition config
-  const backdropTransition = { duration: 150 };
-  const modalTransition =
-    position === "bottom"
-      ? { y: 200, duration: 200 }
-      : position === "top"
-        ? { y: -50, duration: 200 }
-        : { duration: 200 };
+// Transition config
+const backdropTransition = { duration: 150 };
+const modalTransition =
+	position === 'bottom'
+		? { y: 200, duration: 200 }
+		: position === 'top'
+			? { y: -50, duration: 200 }
+			: { duration: 200 };
 
-  // Handle backdrop click
-  function handleBackdropClick(e: MouseEvent) {
-    if (closeOnBackdrop && e.target === e.currentTarget) {
-      onClose();
-    }
-  }
+// Handle backdrop click
+function handleBackdropClick(e: MouseEvent) {
+	if (closeOnBackdrop && e.target === e.currentTarget) {
+		onClose();
+	}
+}
 
-  // Handle escape key
-  function handleKeydown(e: KeyboardEvent) {
-    if (closeOnEscape && e.key === "Escape" && isOpen) {
-      e.preventDefault();
-      onClose();
-    }
-  }
+// Handle escape key
+function handleKeydown(e: KeyboardEvent) {
+	if (closeOnEscape && e.key === 'Escape' && isOpen) {
+		e.preventDefault();
+		onClose();
+	}
+}
 
-  // Focus management
-  function trapFocus(e: KeyboardEvent) {
-    if (!modalElement || e.key !== "Tab") return;
+// Focus management
+function trapFocus(e: KeyboardEvent) {
+	if (!modalElement || e.key !== 'Tab') return;
 
-    const focusableElements = modalElement.querySelectorAll<HTMLElement>(
-      "button:not([disabled]), [href]:not([disabled]), input:not([disabled]), " +
-        'select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]):not([disabled])',
-    );
+	const focusableElements = modalElement.querySelectorAll<HTMLElement>(
+		'button:not([disabled]), [href]:not([disabled]), input:not([disabled]), ' +
+			'select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]):not([disabled])',
+	);
 
-    if (focusableElements.length === 0) return;
+	if (focusableElements.length === 0) return;
 
-    const firstElement = focusableElements[0];
-    const lastElement = focusableElements[focusableElements.length - 1];
+	const firstElement = focusableElements[0];
+	const lastElement = focusableElements[focusableElements.length - 1];
 
-    if (e.shiftKey && document.activeElement === firstElement) {
-      e.preventDefault();
-      lastElement.focus();
-    } else if (!e.shiftKey && document.activeElement === lastElement) {
-      e.preventDefault();
-      firstElement.focus();
-    }
-  }
+	if (e.shiftKey && document.activeElement === firstElement) {
+		e.preventDefault();
+		lastElement.focus();
+	} else if (!e.shiftKey && document.activeElement === lastElement) {
+		e.preventDefault();
+		firstElement.focus();
+	}
+}
 
-  // Manage scroll lock and focus
-  $effect(() => {
-    if (browser) {
-      if (isOpen) {
-        // Store current active element
-        previousActiveElement = document.activeElement;
+// Manage scroll lock and focus
+$effect(() => {
+	if (browser) {
+		if (isOpen) {
+			// Store current active element
+			previousActiveElement = document.activeElement;
 
-        // Lock scroll if enabled
-        if (lockScroll) {
-          scrollLock.lock();
-        }
+			// Lock scroll if enabled
+			if (lockScroll) {
+				scrollLock.lock();
+			}
 
-        // Focus modal after a tick
-        setTimeout(() => {
-          if (modalElement) {
-            modalElement.focus();
-          }
-        }, 50);
-      } else {
-        // Unlock scroll
-        if (lockScroll) {
-          scrollLock.unlock();
-        }
+			// Focus modal after a tick
+			setTimeout(() => {
+				if (modalElement) {
+					modalElement.focus();
+				}
+			}, 50);
+		} else {
+			// Unlock scroll
+			if (lockScroll) {
+				scrollLock.unlock();
+			}
 
-        // Restore focus without scrolling
-        if (
-          previousActiveElement &&
-          previousActiveElement instanceof HTMLElement
-        ) {
-          previousActiveElement.focus({ preventScroll: true });
-        }
-      }
-    }
-  });
+			// Restore focus without scrolling
+			if (previousActiveElement && previousActiveElement instanceof HTMLElement) {
+				previousActiveElement.focus({ preventScroll: true });
+			}
+		}
+	}
+});
 
-  // Initialize OverlayScrollbars on content element
-  $effect(() => {
-    if (contentElement && isOpen) {
-      initialize(contentElement);
-    }
-  });
+// Initialize OverlayScrollbars on content element
+$effect(() => {
+	if (contentElement && isOpen) {
+		initialize(contentElement);
+	}
+});
 
-  // Cleanup on destroy
-  onDestroy(() => {
-    if (browser && isOpen && lockScroll) {
-      scrollLock.unlock();
-    }
-  });
+// Cleanup on destroy
+onDestroy(() => {
+	if (browser && isOpen && lockScroll) {
+		scrollLock.unlock();
+	}
+});
 </script>
 
 <svelte:window onkeydown={handleKeydown} />

@@ -1,62 +1,70 @@
 <script lang="ts">
-  import { s } from "$lib/client/localization.svelte";
-  import Tooltip from "$lib/components/Tooltip.svelte";
-  import type { SectionConfig } from "$lib/constants/sections";
-  import { sections } from "$lib/stores/sections.svelte.js";
-  import { dragHandleZone, dragHandle } from "svelte-dnd-action";
-  import { flip } from "svelte/animate";
+import { flip } from 'svelte/animate';
+import { dragHandle, dragHandleZone } from 'svelte-dnd-action';
+import { s } from '$lib/client/localization.svelte';
+import Tooltip from '$lib/components/Tooltip.svelte';
+import type { SectionConfig } from '$lib/constants/sections';
+import { sections } from '$lib/stores/sections.svelte.js';
 
-  // Local state for sections with required ID field
-  let sectionItems = $state<(SectionConfig & { id: string })[]>([]);
-  const flipDurationMs = 200;
-  let showResetConfirmation = $state(false);
+// Local state for sections with required ID field
+let sectionItems = $state<(SectionConfig & { id: string })[]>([]);
+const flipDurationMs = 200;
+let showResetConfirmation = $state(false);
 
-  // Initialize sections when store changes
-  $effect(() => {
-    // Convert sections to drag-drop format
-    sectionItems = sections.list
-      .sort((a, b) => a.order - b.order)
-      .map((section) => ({ ...section, id: section.id }));
-  });
+// Initialize sections when store changes
+$effect(() => {
+	// Convert sections to drag-drop format
+	console.log('[SettingsSections Component] $effect triggered - sections.list changed');
+	console.log(
+		'[SettingsSections Component] First 3 sections:',
+		sections.list.slice(0, 3).map((s) => ({
+			id: s.id,
+			order: s.order,
+		})),
+	);
+	sectionItems = sections.list
+		.sort((a, b) => a.order - b.order)
+		.map((section) => ({ ...section, id: section.id }));
+});
 
-  // Handle drag and drop
-  function handleConsider(e: CustomEvent) {
-    sectionItems = e.detail.items;
-  }
+// Handle drag and drop
+function handleConsider(e: CustomEvent) {
+	sectionItems = e.detail.items;
+}
 
-  function handleFinalize(e: CustomEvent) {
-    sectionItems = e.detail.items;
-    updateSectionOrder();
-  }
+function handleFinalize(e: CustomEvent) {
+	sectionItems = e.detail.items;
+	updateSectionOrder();
+}
 
-  function updateSectionOrder() {
-    // Update the order of all sections based on their new positions
-    sectionItems.forEach((section, index) => {
-      sections.setOrder(section.id, index + 1);
-    });
-  }
+function updateSectionOrder() {
+	// Update the order of all sections based on their new positions
+	sectionItems.forEach((section, index) => {
+		sections.setOrder(section.id, index + 1);
+	});
+}
 
-  // Toggle section enabled state
-  function toggleSection(sectionId: string) {
-    sections.toggleSection(sectionId);
-  }
+// Toggle section enabled state
+function toggleSection(sectionId: string) {
+	sections.toggleSection(sectionId);
+}
 
-  // Reset to defaults
-  function resetToDefaults() {
-    sections.reset();
-    showResetConfirmation = true;
+// Reset to defaults
+function resetToDefaults() {
+	sections.reset();
+	showResetConfirmation = true;
 
-    // Hide confirmation after 1 second
-    setTimeout(() => {
-      showResetConfirmation = false;
-    }, 1000);
-  }
+	// Hide confirmation after 1 second
+	setTimeout(() => {
+		showResetConfirmation = false;
+	}, 1000);
+}
 
-  // Get localized section name
-  function getSectionName(id: string): string {
-    const key = `section.${id}`;
-    return s(key) || id.charAt(0).toUpperCase() + id.slice(1);
-  }
+// Get localized section name
+function getSectionName(id: string): string {
+	const key = `section.${id}`;
+	return s(key) || id.charAt(0).toUpperCase() + id.slice(1);
+}
 </script>
 
 <div class="space-y-4">
@@ -71,7 +79,7 @@
       </p>
 
       <button
-        class="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 mr-2"
+        class="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 me-2"
         onclick={() =>
           sectionItems.map((section) => sections.toggleSection(section.id))}
       >
@@ -146,7 +154,7 @@
                   disabled
                 >
                   <span
-                    class="inline-block h-4 w-4 transform rounded-full bg-white transition translate-x-6"
+                    class="inline-block h-4 w-4 transform rounded-full bg-white transition ltr:translate-x-6 rtl:-translate-x-6"
                   ></span>
                 </button>
               </Tooltip>
@@ -164,8 +172,10 @@
             >
               <span
                 class="inline-block h-4 w-4 transform rounded-full bg-white transition"
-                class:translate-x-6={section.enabled}
-                class:translate-x-1={!section.enabled}
+                class:ltr:translate-x-6={section.enabled}
+                class:rtl:-translate-x-6={section.enabled}
+                class:ltr:translate-x-1={!section.enabled}
+                class:rtl:-translate-x-1={!section.enabled}
               ></span>
             </button>
           {/if}

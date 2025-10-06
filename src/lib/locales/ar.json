@@ -1,0 +1,2306 @@
+{
+  "settings.aboutKite.button": {
+    "text": "حول Kagi News",
+    "translationContext": "Text for the About Kagi News button"
+  },
+  "settings.categories.allCategories": {
+    "text": "جميع الفئات",
+    "translationContext": "Label for showing all categories option in settings"
+  },
+  "settings.categories.contribute": {
+    "text": "+ ساهم بفئات",
+    "translationContext": "Link text for contributing categories"
+  },
+  "settings.categories.disable": {
+    "text": "انقر للتعطيل، اسحب لإعادة الترتيب",
+    "translationContext": "Tooltip for enabled category items that can be disabled"
+  },
+  "settings.categories.disabled": {
+    "text": "الفئات المعطلة",
+    "translationContext": "Title for the disabled (hidden) categories section"
+  },
+  "settings.categories.enable": {
+    "text": "انقر للتفعيل، اسحب لإعادة الترتيب",
+    "translationContext": "Tooltip for disabled category items that can be enabled"
+  },
+  "settings.categories.enabled": {
+    "text": "الفئات المفعلة",
+    "translationContext": "Title for the enabled categories section"
+  },
+  "settings.categories.filterByType": {
+    "text": "تصفية حسب النوع...",
+    "translationContext": "Placeholder text for category type filter dropdown"
+  },
+  "settings.categories.instructions": {
+    "text": "اسحب لإعادة الترتيب، أو انقر للتفعيل/التعطيل. اسحب بين الأقسام لنقل الفئات.",
+    "translationContext": "Instructions for managing categories"
+  },
+  "settings.categories.lastCategory": {
+    "text": "لا يمكن تعطيل الفئة الأخيرة",
+    "translationContext": "Tooltip shown when trying to disable the last enabled category"
+  },
+  "settings.categories.noDisabled": {
+    "text": "جميع الفئات مفعلة",
+    "translationContext": "Shows when no categories are disabled"
+  },
+  "settings.categories.noEnabled": {
+    "text": "لا توجد فئات مُفعَّلة",
+    "translationContext": "Shows when no categories are enabled"
+  },
+  "settings.categories.noFiltered": {
+    "text": "لا توجد فئات معطلة من هذا النوع",
+    "translationContext": "Message shown when no categories of the selected filter type are in the disabled section"
+  },
+  "settings.categories.types.all": {
+    "text": "كل الأنواع",
+    "translationContext": "Option to show all category types in filter"
+  },
+  "settings.categories.types.city": {
+    "text": "مدن",
+    "translationContext": "Label for city category type"
+  },
+  "settings.categories.types.core": {
+    "text": "أساسية",
+    "translationContext": "Label for core category type (main news categories)"
+  },
+  "settings.categories.types.country": {
+    "text": "دول",
+    "translationContext": "Label for country category type"
+  },
+  "settings.categories.types.other": {
+    "text": "أخرى",
+    "translationContext": "Label for categories without a specific type"
+  },
+  "settings.categories.types.region": {
+    "text": "مناطق",
+    "translationContext": "Label for region category type"
+  },
+  "settings.categories.types.topic": {
+    "text": "مواضيع",
+    "translationContext": "Label for topic category type"
+  },
+  "settings.categoryHeaderPosition.bottom": {
+    "text": "أسفل",
+    "translationContext": "Option for bottom position"
+  },
+  "settings.categoryHeaderPosition.description": {
+    "text": "اختر مكان عرض شريط تصفح الفئات على الأجهزة المحمولة.",
+    "translationContext": "Description for category header position setting"
+  },
+  "settings.categoryHeaderPosition.label": {
+    "text": "موضع ترويسة الفئة",
+    "translationContext": "Label for category header position setting"
+  },
+  "settings.categoryHeaderPosition.top": {
+    "text": "أعلى",
+    "translationContext": "Option for top position"
+  },
+  "settings.contentFilter.activeFilters": {
+    "text": "الفلاتر النشطة",
+    "translationContext": "Label for current active filters list"
+  },
+  "settings.contentFilter.clearAll": {
+    "text": "مسح كل الفلاتر",
+    "translationContext": "Button to clear all filters"
+  },
+  "settings.contentFilter.contribute": {
+    "text": "إضافة المزيد من الفلاتر",
+    "translationContext": "Link to contribute new filter presets on GitHub"
+  },
+  "settings.contentFilter.customKeywords": {
+    "text": "مخصص",
+    "translationContext": "Label for custom keywords that are not from presets"
+  },
+  "settings.contentFilter.export": {
+    "text": "تصدير الإعدادات",
+    "translationContext": "Button to export filter settings to a file"
+  },
+  "settings.contentFilter.exportImport.description": {
+    "text": "صدّر إعدادات الفلتر إلى ملف أو استورد من نسخة احتياطية سابقة",
+    "translationContext": "Description of export/import functionality"
+  },
+  "settings.contentFilter.exportImport.title": {
+    "text": "النسخ الاحتياطي والاستعادة",
+    "translationContext": "Section title for export/import functionality"
+  },
+  "settings.contentFilter.import": {
+    "text": "استيراد الإعدادات",
+    "translationContext": "Button to import filter settings from a file"
+  },
+  "settings.contentFilter.importConfirm.action": {
+    "text": "استيراد",
+    "translationContext": "Button to confirm import action"
+  },
+  "settings.contentFilter.importConfirm.backup": {
+    "text": "نصيحة: صدّر إعداداتك الحالية أولاً لإنشاء نسخة احتياطية.",
+    "translationContext": "Tip about creating a backup before importing"
+  },
+  "settings.contentFilter.importConfirm.title": {
+    "text": "استيراد الإعدادات؟",
+    "translationContext": "Title of import confirmation dialog"
+  },
+  "settings.contentFilter.importConfirm.versionNewer": {
+    "text": "هذا التكوين من إصدار أحدث. قد لا تعمل بعض الإعدادات بشكل صحيح.",
+    "translationContext": "Warning when importing from a newer version"
+  },
+  "settings.contentFilter.importConfirm.versionOlder": {
+    "text": "هذا التكوين من إصدار أقدم. قد تكون بعض الميزات مفقودة.",
+    "translationContext": "Warning when importing from an older version"
+  },
+  "settings.contentFilter.importConfirm.warning": {
+    "text": "سيؤدي هذا إلى استبدال جميع إعدادات الفلتر الحالية.",
+    "translationContext": "Warning message about overwriting current settings"
+  },
+  "settings.contentFilter.importError.invalidFormat": {
+    "text": "تنسيق تكوين غير صالح",
+    "translationContext": "Error when import file is not valid JSON"
+  },
+  "settings.contentFilter.importError.parseFailed": {
+    "text": "فشل في تحليل ملف التكوين",
+    "translationContext": "Error when import file cannot be parsed"
+  },
+  "settings.contentFilter.keywords.description": {
+    "text": "أضف كلماتك الرئيسية للتصفية، مفصولة بفواصل",
+    "translationContext": "Description for keywords input"
+  },
+  "settings.contentFilter.keywords.label": {
+    "text": "الكلمات الرئيسية المخصصة",
+    "translationContext": "Label for keywords input"
+  },
+  "settings.contentFilter.keywords.placeholder": {
+    "text": "مثال: اسم مشهور، موضوع",
+    "translationContext": "Placeholder for keywords input"
+  },
+  "settings.contentFilter.mode.blur": {
+    "text": "تمويه مع تحذير",
+    "translationContext": "Option to blur filtered content"
+  },
+  "settings.contentFilter.mode.blurDescription": {
+    "text": "يتم تمويه القصص ويمكن كشفها عند النقر",
+    "translationContext": "Description for blur mode"
+  },
+  "settings.contentFilter.mode.description": {
+    "text": "اختر كيفية التعامل مع المحتوى المصفى",
+    "translationContext": "Description for filter mode selection"
+  },
+  "settings.contentFilter.mode.hide": {
+    "text": "إخفاء تمامًا",
+    "translationContext": "Option to hide filtered content completely"
+  },
+  "settings.contentFilter.mode.hideDescription": {
+    "text": "تتم إزالة القصص المصفاة من العرض",
+    "translationContext": "Description for hide mode"
+  },
+  "settings.contentFilter.mode.label": {
+    "text": "وضع التصفية",
+    "translationContext": "Label for filter mode selection"
+  },
+  "settings.contentFilter.preset.ai": {
+    "text": "ضجيج الذكاء الاصطناعي والتقنية",
+    "translationContext": "Name of AI preset filter"
+  },
+  "settings.contentFilter.preset.ai.tooltip": {
+    "text": "يصفي ضجيج الذكاء الاصطناعي، أخبار نماذج اللغة الكبيرة، وإعلانات الاختراقات التقنية",
+    "translationContext": "Tooltip description for AI preset"
+  },
+  "settings.contentFilter.preset.celebrities": {
+    "text": "أخبار المشاهير",
+    "translationContext": "Name of celebrities preset filter"
+  },
+  "settings.contentFilter.preset.celebrities.tooltip": {
+    "text": "يصفي ثرثرة المشاهير، أخبار الترفيه، ومحتوى الصحف الشعبية",
+    "translationContext": "Tooltip description for celebrities preset"
+  },
+  "settings.contentFilter.preset.climate": {
+    "text": "قلق المناخ",
+    "translationContext": "Name of climate preset filter"
+  },
+  "settings.contentFilter.preset.climate.tooltip": {
+    "text": "يصفي أخبار تغير المناخ وتغطية الأزمات البيئية",
+    "translationContext": "Tooltip description for climate preset"
+  },
+  "settings.contentFilter.preset.conflicts": {
+    "text": "النزاعات",
+    "translationContext": "Name of conflicts preset filter"
+  },
+  "settings.contentFilter.preset.conflicts.tooltip": {
+    "text": "يصفي أخبار الحرب، النزاعات العسكرية، والعنف المرتبط بها من مناطق مختلفة",
+    "translationContext": "Tooltip description for conflicts preset"
+  },
+  "settings.contentFilter.preset.crypto": {
+    "text": "العملات المشفرة",
+    "translationContext": "Name of cryptocurrency preset filter"
+  },
+  "settings.contentFilter.preset.crypto.tooltip": {
+    "text": "يصفي المحتوى المتعلق بالعملات المشفرة، البلوك تشين، والويب 3",
+    "translationContext": "Tooltip description for crypto preset"
+  },
+  "settings.contentFilter.preset.health": {
+    "text": "الأزمات الصحية",
+    "translationContext": "Name of health crises preset filter"
+  },
+  "settings.contentFilter.preset.health.tooltip": {
+    "text": "يصفي أخبار الجوائح، تفشي الفيروسات، والمحتوى المتعلق بالطوارئ الصحية",
+    "translationContext": "Tooltip description for health preset"
+  },
+  "settings.contentFilter.preset.politics": {
+    "text": "السياسة",
+    "translationContext": "Name of politics preset filter"
+  },
+  "settings.contentFilter.preset.politics.tooltip": {
+    "text": "يصفي المحتوى السياسي بما في ذلك الانتخابات، الأحزاب السياسية، والمسؤولين الحكوميين",
+    "translationContext": "Tooltip description for politics preset"
+  },
+  "settings.contentFilter.preset.sports": {
+    "text": "الرياضة",
+    "translationContext": "Name of sports preset filter"
+  },
+  "settings.contentFilter.preset.sports.tooltip": {
+    "text": "يصفي الأخبار الرياضية، النتائج، وتغطية المنافسات الرياضية",
+    "translationContext": "Tooltip description for sports preset"
+  },
+  "settings.contentFilter.preset.tabloid": {
+    "text": "مصادر الصحف الشعبية",
+    "translationContext": "Name of tabloid sources preset filter"
+  },
+  "settings.contentFilter.preset.tabloid.tooltip": {
+    "text": "يصفي القصص من مصادر الأخبار الشعبية والمثيرة المعروفة",
+    "translationContext": "Tooltip description for tabloid preset"
+  },
+  "settings.contentFilter.preset.violence": {
+    "text": "العنف",
+    "translationContext": "Name of violence preset filter"
+  },
+  "settings.contentFilter.preset.violence.tooltip": {
+    "text": "يصفي العنف الصريح، حوادث إطلاق النار، والمحتوى المتعلق بالوفاة",
+    "translationContext": "Tooltip description for violence preset"
+  },
+  "settings.contentFilter.presets.description": {
+    "text": "حدد فلترًا أو أكثر من الفلاتر المعدة مسبقًا لإخفاء الموضوعات الشائعة بسرعة",
+    "translationContext": "Description for filter presets section"
+  },
+  "settings.contentFilter.presets.label": {
+    "text": "فلاتر مسبقة الإعداد",
+    "translationContext": "Label for filter presets section"
+  },
+  "settings.contentFilter.reset": {
+    "text": "إعادة التعيين إلى الإعدادات الافتراضية",
+    "translationContext": "Button to reset content filter to defaults"
+  },
+  "settings.contentFilter.resetModal.description": {
+    "text": "سيؤدي هذا إلى مسح جميع الفلاتر وإعادة تعيين الإعدادات إلى الوضع الافتراضي.",
+    "translationContext": "Description for reset confirmation modal"
+  },
+  "settings.contentFilter.resetModal.title": {
+    "text": "إعادة تعيين فلاتر المحتوى؟",
+    "translationContext": "Title for reset confirmation modal"
+  },
+  "settings.contentFilter.scope.all": {
+    "text": "كل المحتوى",
+    "translationContext": "Option to filter by all content"
+  },
+  "settings.contentFilter.scope.description": {
+    "text": "اختر أجزاء القصص التي سيتم التحقق من الكلمات الرئيسية فيها",
+    "translationContext": "Description for filter scope selection"
+  },
+  "settings.contentFilter.scope.label": {
+    "text": "نطاق التصفية",
+    "translationContext": "Label for filter scope selection"
+  },
+  "settings.contentFilter.scope.summary": {
+    "text": "العنوان والملخص",
+    "translationContext": "Option to filter by title and summary"
+  },
+  "settings.contentFilter.scope.title": {
+    "text": "العنوان فقط",
+    "translationContext": "Option to filter by title only"
+  },
+  "settings.contentFilter.showCount.description": {
+    "text": "عرض عدد القصص المصفاة في كل فئة",
+    "translationContext": "Description for show filtered count toggle"
+  },
+  "settings.contentFilter.showCount.label": {
+    "text": "عرض عدد المصفى",
+    "translationContext": "Label for show filtered count toggle"
+  },
+  "settings.contentFilter.tab.description": {
+    "text": "خصص موجز الأخبار الخاص بك عن طريق تصفية الموضوعات التي تفضل عدم رؤيتها. استخدم الإعدادات المسبقة للفلاتر الشائعة أو أنشئ كلماتك الرئيسية المخصصة.",
+    "translationContext": "Description shown at the top of content filter settings tab"
+  },
+  "settings.dataLanguage.label": {
+    "text": "لغة المحتوى",
+    "translationContext": "Label for the data/content language setting"
+  },
+  "settings.dataLanguage.tooltip": {
+    "text": "يتحكم في لغة الأخبار ومحتواها.\n\n• الافتراضي: معظم الفئات بلغة متصفحك ({{browserLang}})، والبلدان باللغة المحلية\n• المصدر: كل المحتوى باللغة الأصلية\n• أخرى: كل المحتوى مترجم إلى اللغة المحددة",
+    "translationContext": "Tooltip explaining how data language translation works, with browser language variable"
+  },
+  "settings.experimental.articleIcons.description": {
+    "text": "عند التمكين، سيتم عرض أيقونات صغيرة بجوار المقالات لتوفير سياق مرئي.",
+    "translationContext": "Description for article icons setting"
+  },
+  "settings.experimental.articleIcons.label": {
+    "text": "عرض الأيقونات بجوار المقالات",
+    "translationContext": "Label for article icons setting"
+  },
+  "settings.experimental.categoryIcons.description": {
+    "text": "عند التمكين، سيتم عرض أيقونات صغيرة بجوار تسميات الفئات لتوفير سياق مرئي.",
+    "translationContext": "Description for category icons setting"
+  },
+  "settings.experimental.categoryIcons.label": {
+    "text": "عرض الأيقونات في تسميات الفئات",
+    "translationContext": "Label for category icons setting"
+  },
+  "settings.experimental.chaosIndex.description": {
+    "text": "عرض قراءة لدرجة حرارة الاستقرار العالمي بناءً على الأحداث الجارية.",
+    "translationContext": "Description for chaos index setting"
+  },
+  "settings.experimental.chaosIndex.label": {
+    "text": "عرض مؤشر التوتر العالمي",
+    "translationContext": "Label for chaos index setting"
+  },
+  "settings.experimental.citations.description": {
+    "text": "عرض الاستشهادات المضمنة التي توضح أي مصادر الأخبار أبلغت عن معلومات محددة.",
+    "translationContext": "Description for citations setting"
+  },
+  "settings.experimental.citations.label": {
+    "text": "عرض استشهادات المصدر",
+    "translationContext": "Label for citations setting"
+  },
+  "settings.experimental.disableCategorySwipe.description": {
+    "text": "عند التمكين، سيتم تعطيل التمرير الأفقي لتغيير الفئات على الأجهزة المحمولة.",
+    "translationContext": "Description for disable category swipe setting"
+  },
+  "settings.experimental.disableCategorySwipe.label": {
+    "text": "تعطيل التمرير الأفقي للفئات",
+    "translationContext": "Label for disable category swipe setting"
+  },
+  "settings.experimental.warning": {
+    "text": "هذه ميزات تجريبية قد يتم تغييرها أو إزالتها في أي وقت.",
+    "translationContext": "Warning text for experimental features"
+  },
+  "settings.fontSize.label": {
+    "text": "حجم الخط",
+    "translationContext": "Label for the font size setting"
+  },
+  "settings.fontSize.large": {
+    "text": "كبير",
+    "translationContext": "Option for large font size"
+  },
+  "settings.fontSize.normal": {
+    "text": "عادي",
+    "translationContext": "Option for normal font size"
+  },
+  "settings.fontSize.small": {
+    "text": "صغير",
+    "translationContext": "Option for small font size"
+  },
+  "settings.fontSize.xl": {
+    "text": "كبير جدًا",
+    "translationContext": "Option for extra large font size"
+  },
+  "settings.fontSize.xs": {
+    "text": "صغير جدًا",
+    "translationContext": "Option for extra small font size"
+  },
+  "settings.language.default": {
+    "text": "افتراضي",
+    "translationContext": "Option for default language"
+  },
+  "settings.language.label": {
+    "text": "اللغة",
+    "translationContext": "Label for the language setting"
+  },
+  "settings.language.poweredBy": {
+    "text": "تُرجم بواسطة Kagi Translate",
+    "translationContext": "Text for the Kagi Translate powered by link"
+  },
+  "settings.language.source": {
+    "text": "المصدر",
+    "translationContext": "Option for showing content in original source language"
+  },
+  "settings.mapsProvider.apple": {
+    "text": "خرائط Apple",
+    "translationContext": "Option to use Apple Maps"
+  },
+  "settings.mapsProvider.auto": {
+    "text": "تلقائي",
+    "translationContext": "Option for automatic maps provider selection based on login status"
+  },
+  "settings.mapsProvider.description": {
+    "text": "اختر خدمة الخرائط التي تريد استخدامها لروابط المواقع",
+    "translationContext": "Description explaining what the maps provider setting does"
+  },
+  "settings.mapsProvider.google": {
+    "text": "خرائط Google",
+    "translationContext": "Option to use Google Maps"
+  },
+  "settings.mapsProvider.kagi": {
+    "text": "خرائط Kagi",
+    "translationContext": "Option to use Kagi Maps"
+  },
+  "settings.mapsProvider.label": {
+    "text": "مزود الخرائط",
+    "translationContext": "Label for the maps provider setting"
+  },
+  "settings.mapsProvider.openstreetmap": {
+    "text": "OpenStreetMap",
+    "translationContext": "Option to use OpenStreetMap"
+  },
+  "settings.sections.instructions": {
+    "text": "اسحب لإعادة ترتيب الأقسام. استخدم المفتاح للتفعيل/التعطيل.",
+    "translationContext": "Instructions for managing article sections"
+  },
+  "settings.sections.orderReset": {
+    "text": "تمت إعادة تعيين الترتيب!",
+    "translationContext": "Confirmation message shown after resetting section order"
+  },
+  "settings.sections.resetOrder": {
+    "text": "إعادة التعيين إلى الترتيب الافتراضي",
+    "translationContext": "Button text to reset section order to defaults"
+  },
+  "settings.sections.sourcesRequired": {
+    "text": "يتم عرض المصادر دائمًا للحفاظ على الشفافية والمصداقية",
+    "translationContext": "Tooltip explaining why sources section cannot be disabled"
+  },
+  "settings.sections.switch": {
+    "text": "تفعيل/تعطيل",
+    "translationContext": "Aria label for the enable/disable switch for sections"
+  },
+  "settings.sections.title": {
+    "text": "أقسام المقال",
+    "translationContext": "Title for the article sections settings"
+  },
+  "settings.sections.toggleAll": {
+    "text": "تبديل الكل",
+    "translationContext": "Button text to toggle all sections on/off at once"
+  },
+  "settings.shareLanguage.message": {
+    "text": "اطلع على أخبار Kagi News باللغة {language} - سيتخطى المقدمة ويتم تحميله مباشرة بلغتك!",
+    "translationContext": "Message to share with others, {language} will be replaced with the language name"
+  },
+  "settings.shareLanguage.success": {
+    "text": "تم نسخ الرابط إلى الحافظة!",
+    "translationContext": "Success message when link is copied"
+  },
+  "settings.storyCount.label": {
+    "text": "عدد القصص المعروضة",
+    "translationContext": "Label for the story count setting"
+  },
+  "settings.storyExpandMode.always": {
+    "text": "توسيع الكل دائمًا",
+    "translationContext": "Option to always expand all stories automatically"
+  },
+  "settings.storyExpandMode.description": {
+    "text": "اختر كيفية توسيع القصص عند عرض فئة",
+    "translationContext": "Description for story expand mode setting"
+  },
+  "settings.storyExpandMode.doubleClick": {
+    "text": "انقر نقرًا مزدوجًا لتوسيع الكل",
+    "translationContext": "Option to expand all stories via double-click on category"
+  },
+  "settings.storyExpandMode.label": {
+    "text": "وضع توسيع القصة",
+    "translationContext": "Label for story expand mode setting"
+  },
+  "settings.storyExpandMode.never": {
+    "text": "عدم توسيع الكل أبدًا",
+    "translationContext": "Option to disable bulk story expansion"
+  },
+  "settings.storyOpenMode.description": {
+    "text": "اختر ما إذا كنت تريد السماح بفتح قصص متعددة في وقت واحد أو قصة واحدة فقط",
+    "translationContext": "Description for story open mode setting"
+  },
+  "settings.storyOpenMode.label": {
+    "text": "وضع فتح القصة",
+    "translationContext": "Label for story open mode setting"
+  },
+  "settings.storyOpenMode.multiple": {
+    "text": "قصص متعددة",
+    "translationContext": "Option to allow multiple stories open at once"
+  },
+  "settings.storyOpenMode.single": {
+    "text": "قصة واحدة في كل مرة",
+    "translationContext": "Option to allow only one story open at a time"
+  },
+  "settings.subsections.about": {
+    "text": "حول",
+    "translationContext": "Subsection heading for about and info section"
+  },
+  "settings.subsections.appearance": {
+    "text": "المظهر",
+    "translationContext": "Subsection heading for appearance-related settings"
+  },
+  "settings.subsections.localization": {
+    "text": "اللغة والمنطقة",
+    "translationContext": "Subsection heading for language and localization settings"
+  },
+  "settings.subsections.navigation": {
+    "text": "التنقل",
+    "translationContext": "Subsection heading for navigation and URL settings"
+  },
+  "settings.subsections.readingExperience": {
+    "text": "تجربة القراءة",
+    "translationContext": "Subsection heading for story display and reading settings"
+  },
+  "settings.sync.clear.button": {
+    "text": "مسح جميع البيانات المتزامنة",
+    "translationContext": "Button text to clear all synced data"
+  },
+  "settings.sync.clear.clearing": {
+    "text": "جارٍ المسح...",
+    "translationContext": "Text shown while clearing data"
+  },
+  "settings.sync.clear.confirmButton": {
+    "text": "حذف",
+    "translationContext": "Confirm button text for deleting synced data"
+  },
+  "settings.sync.clear.confirmMessage": {
+    "text": "سيؤدي هذا إلى حذف جميع إعداداتك المتزامنة وسجل القراءة بشكل دائم من خوادم Kagi. ستبقى بياناتك المحلية سليمة.",
+    "translationContext": "Confirmation message when clearing synced data"
+  },
+  "settings.sync.clear.confirmTitle": {
+    "text": "هل تريد حذف جميع البيانات المتزامنة؟",
+    "translationContext": "Title for confirmation dialog when clearing synced data"
+  },
+  "settings.sync.clear.confirmWarning": {
+    "text": "لا يمكن التراجع عن هذا الإجراء.",
+    "translationContext": "Warning message in confirmation dialog"
+  },
+  "settings.sync.clear.deleting": {
+    "text": "جارٍ حذف بياناتك...",
+    "translationContext": "Loading message shown while deleting synced data"
+  },
+  "settings.sync.clear.description": {
+    "text": "أنت المتحكم في بياناتك. يمكنك تصدير أو حذف بياناتك السحابية في أي وقت. الحذف لا يؤثر على البيانات المحلية.",
+    "translationContext": "Description of data management section"
+  },
+  "settings.sync.clear.errorFailed": {
+    "text": "فشل مسح البيانات",
+    "translationContext": "Generic error message when clearing data fails"
+  },
+  "settings.sync.clear.errorNotLoggedIn": {
+    "text": "يجب عليك تسجيل الدخول لمسح البيانات المتزامنة",
+    "translationContext": "Error message when trying to clear data while not logged in"
+  },
+  "settings.sync.clear.success": {
+    "text": "تم حذف جميع البيانات المتزامنة بنجاح.",
+    "translationContext": "Success message after clearing synced data"
+  },
+  "settings.sync.clear.title": {
+    "text": "إدارة البيانات",
+    "translationContext": "Title for data management section"
+  },
+  "settings.sync.export.button": {
+    "text": "تصدير البيانات",
+    "translationContext": "Button text to export synced data"
+  },
+  "settings.sync.export.errorFailed": {
+    "text": "فشل تصدير البيانات",
+    "translationContext": "Generic error message when exporting data fails"
+  },
+  "settings.sync.export.errorNotLoggedIn": {
+    "text": "يجب عليك تسجيل الدخول لتصدير البيانات المتزامنة",
+    "translationContext": "Error message when trying to export data while not logged in"
+  },
+  "settings.sync.export.exporting": {
+    "text": "جارٍ التصدير...",
+    "translationContext": "Text shown while exporting data"
+  },
+  "settings.sync.info.description": {
+    "text": "يمكن لأخبار Kagi مزامنة إعداداتك وسجل القراءة عبر جميع أجهزتك. يتم تخزين هذه البيانات بشكل آمن على خوادم Kagi وربطها بحساب Kagi Search الخاص بك.\n\nلا تُستخدم بياناتك المتزامنة لأي غرض آخر، ولا تتم مشاركتها مع أي شخص، ويتم تخزينها فقط لتوفير خدمة المزامنة لك. لديك السيطرة الكاملة على ما تتم مزامنته ويمكنك حذف بياناتك في أي وقت.",
+    "translationContext": "Description of sync and privacy features"
+  },
+  "settings.sync.notLoggedIn.description": {
+    "text": "سجل الدخول إلى حساب Kagi الخاص بك لمزامنة إعداداتك وسجل القراءة عبر الأجهزة.",
+    "translationContext": "Description when user is not logged in"
+  },
+  "settings.sync.notLoggedIn.signIn": {
+    "text": "تسجيل الدخول",
+    "translationContext": "Sign in button text"
+  },
+  "settings.sync.notLoggedIn.title": {
+    "text": "يتطلب تسجيل الدخول",
+    "translationContext": "Title when user is not logged in"
+  },
+  "settings.sync.readHistory.description": {
+    "text": "القصص التي قرأتها عبر جميع الفئات",
+    "translationContext": "Description of what read history gets synced"
+  },
+  "settings.sync.readHistory.enableInfo": {
+    "text": "عند التمكين، سيتم رفع سجل القراءة الخاص بك ومزامنته عبر جميع أجهزتك",
+    "translationContext": "Info shown when sync is disabled, explaining what happens when enabled"
+  },
+  "settings.sync.readHistory.label": {
+    "text": "مزامنة سجل القراءة",
+    "translationContext": "Label for read history sync toggle"
+  },
+  "settings.sync.settings.description": {
+    "text": "حجم الخط، وعدد القصص، والتفضيلات الأخرى",
+    "translationContext": "Description of what settings get synced"
+  },
+  "settings.sync.settings.enableInfo": {
+    "text": "عند التمكين، سيتم رفع إعداداتك الحالية ومشاركتها عبر جميع أجهزتك",
+    "translationContext": "Info shown when sync is disabled, explaining what happens when enabled"
+  },
+  "settings.sync.settings.label": {
+    "text": "مزامنة الإعدادات",
+    "translationContext": "Label for settings sync toggle"
+  },
+  "settings.sync.toggles.title": {
+    "text": "تفضيلات المزامنة",
+    "translationContext": "Title for sync preferences section"
+  },
+  "settings.tabs.categories": {
+    "text": "الفئات",
+    "translationContext": "Title for the categories settings tab"
+  },
+  "settings.tabs.contentFilter": {
+    "text": "فلتر المحتوى",
+    "translationContext": "Title for the content filter settings tab"
+  },
+  "settings.tabs.experimental": {
+    "text": "تجريبي",
+    "translationContext": "Title for the experimental settings tab"
+  },
+  "settings.tabs.general": {
+    "text": "عام",
+    "translationContext": "Title for the general settings tab"
+  },
+  "settings.tabs.sections": {
+    "text": "الأقسام",
+    "translationContext": "Title for the sections settings tab"
+  },
+  "settings.tabs.syncPrivacy": {
+    "text": "المزامنة",
+    "translationContext": "Title for the sync and privacy settings tab"
+  },
+  "settings.theme.dark": {
+    "text": "داكن",
+    "translationContext": "Option for dark theme"
+  },
+  "settings.theme.label": {
+    "text": "السمة",
+    "translationContext": "Label for the theme setting"
+  },
+  "settings.theme.light": {
+    "text": "فاتح",
+    "translationContext": "Option for light theme"
+  },
+  "settings.theme.system": {
+    "text": "النظام",
+    "translationContext": "Option for system theme"
+  },
+  "settings.uiLanguage.label": {
+    "text": "لغة الواجهة",
+    "translationContext": "Label for the UI language setting"
+  },
+  "settings.uiLanguage.tooltip": {
+    "text": "يتحكم في لغة الأزرار والقوائم ونصوص الواجهة.",
+    "translationContext": "Tooltip explaining how UI language works"
+  },
+  "settings.useLatestUrls.description": {
+    "text": "استخدم عناوين URL التي تحتوي على /latest للأخبار الحالية حتى تعرض الإشارات المرجعية دائمًا أحدث محتوى",
+    "translationContext": "Description explaining what the latest URLs setting does"
+  },
+  "settings.useLatestUrls.disabled": {
+    "text": "معطّل",
+    "translationContext": "Option when latest URLs are disabled"
+  },
+  "settings.useLatestUrls.enabled": {
+    "text": "مفعّل",
+    "translationContext": "Option when latest URLs are enabled"
+  },
+  "settings.useLatestUrls.label": {
+    "text": "استخدام أحدث عناوين URL",
+    "translationContext": "Label for the setting that controls URL format"
+  },
+  "common.back": {
+    "text": "رجوع",
+    "translationContext": "Back button text"
+  },
+  "common.cancel": {
+    "text": "إلغاء",
+    "translationContext": "Cancel button text"
+  },
+  "common.close": {
+    "text": "إغلاق",
+    "translationContext": "Close button text"
+  },
+  "common.reset": {
+    "text": "إعادة تعيين",
+    "translationContext": "Reset button text"
+  },
+  "about.approach.description1": {
+    "text": "العالم لا يعيش في غرف الصدى. الواقع يظهر من تصادم وجهات النظر والآراء المختلفة - هكذا نفصل الإشارة عن الضوضاء.",
+    "translationContext": "First paragraph of the approach section"
+  },
+  "about.approach.description2": {
+    "text": "نسعى جاهدين لتنوع وشفافية المصادر ونرحب بـ <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">مساهماتكم</a> لتوسيع الآفاق. هذا النهج متعدد المصادر يساعد على كشف الصورة الكاملة بما يتجاوز أي وجهة نظر فردية.",
+    "translationContext": "Second paragraph of the approach section with GitHub link"
+  },
+  "about.approach.description3": {
+    "text": "يقرأ Kagi News خلاصات RSS العامة لآلاف المصادر الإخبارية العالمية (التي ينسقها المجتمع) ويلخصها في موجز يومي مثالي. تحصل على كل منظور مهم وتسلسل زمني في 5 دقائق فقط. هذا كل شيء. لا مزيد من التمرير اللامتناهي. لا لاختطاف الانتباه. لأننا نستحق الأفضل.",
+    "translationContext": "Third paragraph of the approach section"
+  },
+  "about.approach.title": {
+    "text": "فهم نهجنا",
+    "translationContext": "Title of the approach section"
+  },
+  "about.contact.description": {
+    "text": "للملاحظات، يرجى استخدام <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://kagifeedback.org\">Kagi Feedback</a>. للدعم، <a href=\"mailto:support@kagi.com\" class=\"text-blue-600 hover:underline dark:text-blue-400\">support@kagi.com</a>.",
+    "translationContext": "Contact information with links"
+  },
+  "about.contact.title": {
+    "text": "اتصل بنا",
+    "translationContext": "Title of the contact section"
+  },
+  "about.customization.description": {
+    "text": "خصص موجزك عن طريق إعادة ترتيب الفئات وتبديلها في الإعدادات. هل تريد المساهمة؟ معظم Kagi News <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">مفتوح المصدر</a>، بما في ذلك تطبيق الويب الخاص بنا والخلاصات التي ينسقها المجتمع.",
+    "translationContext": "Description of customization options with GitHub link"
+  },
+  "about.customization.title": {
+    "text": "التخصيص",
+    "translationContext": "Title of the customization section"
+  },
+  "about.principles.item1": {
+    "text": "تحديث يومي واحد (حوالي منتصف النهار بتوقيت UTC)، مما يخلق نقطة نهاية طبيعية لاستهلاكك للأخبار",
+    "translationContext": "First core principle about daily updates"
+  },
+  "about.principles.item2": {
+    "text": "التركيز على الحقائق ووجهات النظر بدلاً من الآراء",
+    "translationContext": "Second core principle about facts vs opinions"
+  },
+  "about.principles.item3": {
+    "text": "لا مساومة على الخصوصية - عادات القراءة الخاصة بك هي ملكك وحدك",
+    "translationContext": "Third core principle about privacy"
+  },
+  "about.principles.item4": {
+    "text": "الجودة والعمق على الكمية",
+    "translationContext": "Fourth core principle about quality"
+  },
+  "about.principles.item5": {
+    "text": "وجبة إخبارية كاملة في 5 دقائق",
+    "translationContext": "Fifth core principle about time efficiency"
+  },
+  "about.principles.item6": {
+    "text": "التحرر من اقتصاد الانتباه - عش اللحظة، وليس في تمرير لا نهاية له",
+    "translationContext": "Sixth core principle about attention economy"
+  },
+  "about.principles.title": {
+    "text": "المبادئ الأساسية",
+    "translationContext": "Title of the core principles section"
+  },
+  "about.subtitle": {
+    "text": "تطبيق أخبار من Kagi",
+    "translationContext": "Kagi is a company, should not be translated"
+  },
+  "about.understand.button": {
+    "text": "لقد فهمت",
+    "translationContext": "Text for the I understand button"
+  },
+  "about.why.description": {
+    "text": "بسبب تحقيق الدخل المستمر من الإعلانات، أصبحت الأخبار <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://gwern.net/doc/culture/2010-dobelli.pdf\">طعامًا عقليًا غير صحي</a> - سيل لا نهاية له من الطُعم الذي يدمر قدرتنا على <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"http://www.aaronsw.com/weblog/hatethenews\">التفكير بعمق ووضوح</a>. يمكننا أن نفعل ما هو أفضل، ونخلق ما كان يجب أن تكون عليه الأخبار طوال الوقت - معلومات نقية وأساسية تحترم ذكاءك ووقتك.",
+    "translationContext": "Description of why Kagi News exists, including HTML link"
+  },
+  "about.why.title": {
+    "text": "لماذا Kagi News؟ لأن الأخبار معطلة.",
+    "translationContext": "Title of the Why Kagi News section"
+  },
+  "app.beta": {
+    "text": "تجريبي",
+    "translationContext": "Beta label shown next to the app title"
+  },
+  "app.disclaimerAutoGenerated": {
+    "text": "قد تحتوي الملخصات على أخطاء.",
+    "translationContext": "Disclaimer about AI-generated content"
+  },
+  "app.disclaimerVerify": {
+    "text": "يرجى التحقق من المعلومات الهامة.",
+    "translationContext": "Reminder to verify information, goes after 'Summaries are AI/LLM-generated and Kagi News can make mistakes.'"
+  },
+  "app.logo.alt": {
+    "text": "شعار Kagi News",
+    "translationContext": "Alt text for the Kagi News logo image, Kagi News should not be translated as it's a brand name"
+  },
+  "app.logo.iconAlt": {
+    "text": "أيقونة Kagi News",
+    "translationContext": "Alt text for the Kagi News icon image, Kagi News should not be translated as it's a brand name"
+  },
+  "app.logo.newsAlt": {
+    "text": "شعار أخبار Kagi News",
+    "translationContext": "Alt text for the Kagi News News logo image in header, Kagi News should not be translated as it's a brand name"
+  },
+  "app.motto": {
+    "text": "الأخبار. بمستوى أرقى.",
+    "translationContext": "Motto of the app, should be translated in a natural way"
+  },
+  "app.temporaryCategoryNotice": {
+    "text": "عرض هذه الفئة مؤقتًا من رابط مشترك",
+    "translationContext": "Notice shown when a user accesses a shared link for a category they haven't enabled."
+  },
+  "app.title": {
+    "text": "Kagi News",
+    "translationContext": "Title of the app, should not be translated"
+  },
+  "article.closeStory": {
+    "text": "إغلاق القصة",
+    "translationContext": "Button text to close a story"
+  },
+  "article.didYouKnow": {
+    "text": "هل تعلم؟",
+    "translationContext": "Title for the Did You Know section"
+  },
+  "article.location": {
+    "text": "فتح الموقع في الخرائط",
+    "translationContext": "Title/tooltip for the location link"
+  },
+  "article.markAllAsRead": {
+    "text": "تمييز الكل كمقروء",
+    "translationContext": "Button text to mark all stories as read"
+  },
+  "article.readStatus": {
+    "text": "انقر لتبديل حالة القراءة",
+    "translationContext": "Title/tooltip for the read status toggle button"
+  },
+  "article.reportInaccuracy": {
+    "text": "الإبلاغ عن عدم دقة",
+    "translationContext": "Tooltip text for the report button"
+  },
+  "article.reportModal.addSource": {
+    "text": "إضافة مصدر آخر",
+    "translationContext": "Button text to add another source URL field"
+  },
+  "article.reportModal.cancel": {
+    "text": "إلغاء",
+    "translationContext": "Cancel button text"
+  },
+  "article.reportModal.characterCount": {
+    "text": "{{count}} / {{max}} حرفًا",
+    "translationContext": "Character count display with placeholders for current count and maximum"
+  },
+  "article.reportModal.description": {
+    "text": "يرجى وصف المشكلة",
+    "translationContext": "Label for the description field"
+  },
+  "article.reportModal.descriptionPlaceholder": {
+    "text": "اشرح ما هو غير دقيق أو إشكالي في هذا الملخص...",
+    "translationContext": "Placeholder text for the description field"
+  },
+  "article.reportModal.error": {
+    "text": "فشل إرسال البلاغ. يرجى المحاولة مرة أخرى.",
+    "translationContext": "Generic error message for report submission failure"
+  },
+  "article.reportModal.issueType": {
+    "text": "ما الخطأ؟",
+    "translationContext": "Label for the issue type selection"
+  },
+  "article.reportModal.issueType.factualError": {
+    "text": "خطأ في الحقائق",
+    "translationContext": "Option for reporting factual errors"
+  },
+  "article.reportModal.issueType.misleading": {
+    "text": "ملخص مضلل",
+    "translationContext": "Option for reporting misleading summaries"
+  },
+  "article.reportModal.issueType.other": {
+    "text": "مشكلة أخرى",
+    "translationContext": "Option for reporting other types of issues"
+  },
+  "article.reportModal.issueType.outdated": {
+    "text": "معلومات قديمة",
+    "translationContext": "Option for reporting outdated content"
+  },
+  "article.reportModal.reportId": {
+    "text": "معرّف البلاغ: {{id}}",
+    "translationContext": "Display of the report ID after successful submission"
+  },
+  "article.reportModal.reportingFor": {
+    "text": "الإبلاغ عن مشكلة في:",
+    "translationContext": "Label showing which story is being reported"
+  },
+  "article.reportModal.source": {
+    "text": "المصادر (اختياري)",
+    "translationContext": "Label for the source URL field"
+  },
+  "article.reportModal.sourceHelper": {
+    "text": "أضف روابط لمصادر موثوقة تدعم بلاغك",
+    "translationContext": "Helper text explaining the purpose of source URLs"
+  },
+  "article.reportModal.sourcePlaceholder": {
+    "text": "https://example.com/article",
+    "translationContext": "Placeholder text for the source URL field"
+  },
+  "article.reportModal.submit": {
+    "text": "إرسال البلاغ",
+    "translationContext": "Submit button text"
+  },
+  "article.reportModal.submitting": {
+    "text": "جارٍ الإرسال...",
+    "translationContext": "Button text while report is being submitted"
+  },
+  "article.reportModal.subtitle": {
+    "text": "ساعدنا على التحسين بالإبلاغ عن أي مشاكل في ملخص هذه القصة",
+    "translationContext": "Subtitle explaining the purpose of the report modal"
+  },
+  "article.reportModal.success": {
+    "text": "شكرًا لملاحظاتك. تم إرسال بلاغك بنجاح.",
+    "translationContext": "Success message after report submission"
+  },
+  "article.reportModal.title": {
+    "text": "الإبلاغ عن عدم الدقة",
+    "translationContext": "Title of the report modal"
+  },
+  "article.shareCopied": {
+    "text": "تم النسخ!",
+    "translationContext": "Success message shown when URL is copied to clipboard"
+  },
+  "article.shareStory": {
+    "text": "مشاركة القصة",
+    "translationContext": "Tooltip text for the share button"
+  },
+  "category.ai": {
+    "text": "الذكاء الاصطناعي",
+    "translationContext": "Display name for the AI news category"
+  },
+  "category.apple": {
+    "text": "Apple",
+    "translationContext": "Display name for the Apple news category"
+  },
+  "category.australia": {
+    "text": "أستراليا",
+    "translationContext": "Display name for the Australia news category"
+  },
+  "category.bayArea": {
+    "text": "الولايات المتحدة | منطقة الخليج",
+    "translationContext": "Display name for the Bay Area news category"
+  },
+  "category.belgium": {
+    "text": "بلجيكا",
+    "translationContext": "Display name for the Belgium news category"
+  },
+  "category.bitcoin": {
+    "text": "بيتكوين",
+    "translationContext": "Display name for the Bitcoin news category"
+  },
+  "category.brazil": {
+    "text": "البرازيل",
+    "translationContext": "Display name for the Brazil news category"
+  },
+  "category.business": {
+    "text": "أعمال",
+    "translationContext": "Display name for the Business news category"
+  },
+  "category.canada": {
+    "text": "كندا",
+    "translationContext": "Display name for the Canada news category"
+  },
+  "category.china": {
+    "text": "الصين",
+    "translationContext": "Display name for the China news category"
+  },
+  "category.chinaTaiwan": {
+    "text": "تايوان",
+    "translationContext": "Display name for the Taiwan news category"
+  },
+  "category.colombia": {
+    "text": "كولومبيا",
+    "translationContext": "Display name for the Colombia news category"
+  },
+  "category.costaRica": {
+    "text": "كوستاريكا",
+    "translationContext": "Display name for the Costa Rica news category"
+  },
+  "category.cryptocurrency": {
+    "text": "العملات المشفرة",
+    "translationContext": "Display name for the Cryptocurrency news category"
+  },
+  "category.cybersecurity": {
+    "text": "الأمن السيبراني",
+    "translationContext": "Display name for the Cybersecurity news category"
+  },
+  "category.czechRepublic": {
+    "text": "جمهورية التشيك",
+    "translationContext": "Display name for the Czech Republic news category"
+  },
+  "category.denmark": {
+    "text": "الدنمارك",
+    "translationContext": "Display name for the Denmark news category"
+  },
+  "category.economy": {
+    "text": "اقتصاد",
+    "translationContext": "Display name for the Economy news category"
+  },
+  "category.egypt": {
+    "text": "مصر",
+    "translationContext": "Display name for the Egypt news category"
+  },
+  "category.entertainment": {
+    "text": "ترفيه",
+    "translationContext": "Display name for the Entertainment news category"
+  },
+  "category.estonia": {
+    "text": "إستونيا",
+    "translationContext": "Display name for the Estonia news category"
+  },
+  "category.europe": {
+    "text": "أوروبا",
+    "translationContext": "Display name for the Europe news category"
+  },
+  "category.finland": {
+    "text": "فنلندا",
+    "translationContext": "Display name for the Finland news category"
+  },
+  "category.france": {
+    "text": "فرنسا",
+    "translationContext": "Display name for the France news category"
+  },
+  "category.gaming": {
+    "text": "ألعاب",
+    "translationContext": "Display name for the Gaming news category"
+  },
+  "category.germany": {
+    "text": "ألمانيا",
+    "translationContext": "Display name for the Germany news category"
+  },
+  "category.germanyHesse": {
+    "text": "ألمانيا | هسن",
+    "translationContext": "Display name for the Germany Hesse regional news category"
+  },
+  "category.health": {
+    "text": "صحة",
+    "translationContext": "Display name for the Health news category"
+  },
+  "category.hongKong": {
+    "text": "هونغ كونغ",
+    "translationContext": "Display name for the Hong Kong news category"
+  },
+  "category.india": {
+    "text": "الهند",
+    "translationContext": "Display name for the India news category"
+  },
+  "category.indonesia": {
+    "text": "إندونيسيا",
+    "translationContext": "Display name for the Indonesia news category"
+  },
+  "category.ireland": {
+    "text": "أيرلندا",
+    "translationContext": "Display name for the Ireland news category"
+  },
+  "category.israel": {
+    "text": "إسرائيل",
+    "translationContext": "Display name for the Israel news category"
+  },
+  "category.italy": {
+    "text": "إيطاليا",
+    "translationContext": "Display name for the Italy news category"
+  },
+  "category.japan": {
+    "text": "اليابان",
+    "translationContext": "Display name for the Japan news category"
+  },
+  "category.kenya": {
+    "text": "كينيا",
+    "translationContext": "Display name for the Kenya news category"
+  },
+  "category.korea": {
+    "text": "كوريا",
+    "translationContext": "Display name for the Korea news category"
+  },
+  "category.linuxOss": {
+    "text": "لينكس والبرمجيات مفتوحة المصدر",
+    "translationContext": "Display name for the Linux and Open Source Software news category"
+  },
+  "category.malaysia": {
+    "text": "ماليزيا",
+    "translationContext": "Display name for the Malaysia news category"
+  },
+  "category.mexico": {
+    "text": "المكسيك",
+    "translationContext": "Display name for the Mexico news category"
+  },
+  "category.middleEast": {
+    "text": "الشرق الأوسط",
+    "translationContext": "Display name for the Middle East news category"
+  },
+  "category.netherlands": {
+    "text": "هولندا",
+    "translationContext": "Display name for the Netherlands news category"
+  },
+  "category.newZealand": {
+    "text": "نيوزيلندا",
+    "translationContext": "Display name for the New Zealand news category"
+  },
+  "category.nigeria": {
+    "text": "نيجيريا",
+    "translationContext": "Display name for the Nigeria news category"
+  },
+  "category.norway": {
+    "text": "النرويج",
+    "translationContext": "Display name for the Norway news category"
+  },
+  "category.pakistan": {
+    "text": "باكستان",
+    "translationContext": "Display name for the Pakistan news category"
+  },
+  "category.philippines": {
+    "text": "الفلبين",
+    "translationContext": "Display name for the Philippines news category"
+  },
+  "category.poland": {
+    "text": "بولندا",
+    "translationContext": "Display name for the Poland news category"
+  },
+  "category.politics": {
+    "text": "سياسة",
+    "translationContext": "Display name for the Politics news category"
+  },
+  "category.portugal": {
+    "text": "البرتغال",
+    "translationContext": "Display name for the Portugal news category"
+  },
+  "category.romania": {
+    "text": "رومانيا",
+    "translationContext": "Display name for the Romania news category"
+  },
+  "category.russia": {
+    "text": "روسيا",
+    "translationContext": "Display name for the Russia news category"
+  },
+  "category.science": {
+    "text": "علوم",
+    "translationContext": "Display name for the Science news category"
+  },
+  "category.serbia": {
+    "text": "صربيا",
+    "translationContext": "Display name for the Serbia news category"
+  },
+  "category.singapore": {
+    "text": "سنغافورة",
+    "translationContext": "Display name for the Singapore news category"
+  },
+  "category.slovenia": {
+    "text": "سلوفينيا",
+    "translationContext": "Display name for the Slovenia news category"
+  },
+  "category.southAfrica": {
+    "text": "جنوب أفريقيا",
+    "translationContext": "Display name for the South Africa news category"
+  },
+  "category.southKorea": {
+    "text": "كوريا الجنوبية",
+    "translationContext": "Display name for the South Korea news category"
+  },
+  "category.spain": {
+    "text": "إسبانيا",
+    "translationContext": "Display name for the Spain news category"
+  },
+  "category.sports": {
+    "text": "رياضة",
+    "translationContext": "Display name for the Sports news category"
+  },
+  "category.sweden": {
+    "text": "السويد",
+    "translationContext": "Display name for the Sweden news category"
+  },
+  "category.switzerland": {
+    "text": "سويسرا",
+    "translationContext": "Display name for the Switzerland news category"
+  },
+  "category.switzerlandDe": {
+    "text": "سويسرا (DE)",
+    "translationContext": "Display name for the Switzerland (DE) news category"
+  },
+  "category.technology": {
+    "text": "تقنية",
+    "translationContext": "Display name for the Technology news category"
+  },
+  "category.thailand": {
+    "text": "تايلاند",
+    "translationContext": "Display name for the Thailand news category"
+  },
+  "category.theNetherlands": {
+    "text": "هولندا",
+    "translationContext": "Display name for the The Netherlands news category"
+  },
+  "category.todayInHistory": {
+    "text": "حدث في مثل هذا اليوم",
+    "translationContext": "Display name for the OnThisDay category"
+  },
+  "category.turkey": {
+    "text": "تركيا",
+    "translationContext": "Display name for the Turkey news category"
+  },
+  "category.uk": {
+    "text": "المملكة المتحدة",
+    "translationContext": "Display name for the United Kingdom news category"
+  },
+  "category.ukraine": {
+    "text": "أوكرانيا",
+    "translationContext": "Display name for the Ukraine news category"
+  },
+  "category.usa": {
+    "text": "الولايات المتحدة",
+    "translationContext": "Display name for the USA news category"
+  },
+  "category.usaAlabama": {
+    "text": "الولايات المتحدة | ألاباما",
+    "translationContext": "Display name for the USA Alabama news category"
+  },
+  "category.usaAlaska": {
+    "text": "الولايات المتحدة | ألاسكا",
+    "translationContext": "Display name for the USA Alaska news category"
+  },
+  "category.usaArizona": {
+    "text": "الولايات المتحدة | أريزونا",
+    "translationContext": "Display name for the USA Arizona news category"
+  },
+  "category.usaArkansas": {
+    "text": "الولايات المتحدة | أركنساس",
+    "translationContext": "Display name for the USA Arkansas news category"
+  },
+  "category.usaCalifornia": {
+    "text": "الولايات المتحدة | كاليفورنيا",
+    "translationContext": "Display name for the USA California news category"
+  },
+  "category.usaColorado": {
+    "text": "الولايات المتحدة | كولورادو",
+    "translationContext": "Display name for the USA Colorado news category"
+  },
+  "category.usaConnecticut": {
+    "text": "الولايات المتحدة | كونيتيكت",
+    "translationContext": "Display name for the USA Connecticut news category"
+  },
+  "category.usaDelaware": {
+    "text": "الولايات المتحدة | ديلاوير",
+    "translationContext": "Display name for the USA Delaware news category"
+  },
+  "category.usaFlorida": {
+    "text": "الولايات المتحدة | فلوريدا",
+    "translationContext": "Display name for the USA Florida news category"
+  },
+  "category.usaGeorgia": {
+    "text": "الولايات المتحدة | جورجيا",
+    "translationContext": "Display name for the USA Georgia news category"
+  },
+  "category.usaHawaii": {
+    "text": "الولايات المتحدة | هاواي",
+    "translationContext": "Display name for the USA Hawaii news category"
+  },
+  "category.usaIdaho": {
+    "text": "الولايات المتحدة | أيداهو",
+    "translationContext": "Display name for the USA Idaho news category"
+  },
+  "category.usaIllinois": {
+    "text": "الولايات المتحدة | إلينوي",
+    "translationContext": "Display name for the USA Illinois news category"
+  },
+  "category.usaIndiana": {
+    "text": "الولايات المتحدة | إنديانا",
+    "translationContext": "Display name for the USA Indiana news category"
+  },
+  "category.usaIowa": {
+    "text": "الولايات المتحدة | آيوا",
+    "translationContext": "Display name for the USA Iowa news category"
+  },
+  "category.usaKansas": {
+    "text": "الولايات المتحدة | كانساس",
+    "translationContext": "Display name for the USA Kansas news category"
+  },
+  "category.usaKentucky": {
+    "text": "الولايات المتحدة | كنتاكي",
+    "translationContext": "Display name for the USA Kentucky news category"
+  },
+  "category.usaLouisiana": {
+    "text": "الولايات المتحدة | لويزيانا",
+    "translationContext": "Display name for the USA Louisiana news category"
+  },
+  "category.usaMaine": {
+    "text": "الولايات المتحدة | مين",
+    "translationContext": "Display name for the USA Maine news category"
+  },
+  "category.usaMaryland": {
+    "text": "الولايات المتحدة | ماريلاند",
+    "translationContext": "Display name for the USA Maryland news category"
+  },
+  "category.usaMassachusetts": {
+    "text": "الولايات المتحدة | ماساتشوستس",
+    "translationContext": "Display name for the USA Massachusetts news category"
+  },
+  "category.usaMichigan": {
+    "text": "الولايات المتحدة | ميشيغان",
+    "translationContext": "Display name for the USA Michigan news category"
+  },
+  "category.usaMinnesota": {
+    "text": "الولايات المتحدة | مينيسوتا",
+    "translationContext": "Display name for the USA Minnesota news category"
+  },
+  "category.usaMississippi": {
+    "text": "الولايات المتحدة | مسيسيبي",
+    "translationContext": "Display name for the USA Mississippi news category"
+  },
+  "category.usaMissouri": {
+    "text": "الولايات المتحدة | ميزوري",
+    "translationContext": "Display name for the USA Missouri news category"
+  },
+  "category.usaMontana": {
+    "text": "الولايات المتحدة | مونتانا",
+    "translationContext": "Display name for the USA Montana news category"
+  },
+  "category.usaNebraska": {
+    "text": "الولايات المتحدة | نبراسكا",
+    "translationContext": "Display name for the USA Nebraska news category"
+  },
+  "category.usaNevada": {
+    "text": "الولايات المتحدة | نيفادا",
+    "translationContext": "Display name for the USA Nevada news category"
+  },
+  "category.usaNewHampshire": {
+    "text": "الولايات المتحدة | نيوهامبشير",
+    "translationContext": "Display name for the USA New Hampshire news category"
+  },
+  "category.usaNewJersey": {
+    "text": "الولايات المتحدة | نيوجيرسي",
+    "translationContext": "Display name for the USA New Jersey news category"
+  },
+  "category.usaNewMexico": {
+    "text": "الولايات المتحدة | نيومكسيكو",
+    "translationContext": "Display name for the USA New Mexico news category"
+  },
+  "category.usaNewYork": {
+    "text": "الولايات المتحدة | نيويورك",
+    "translationContext": "Display name for the USA New York news category"
+  },
+  "category.usaNorthCarolina": {
+    "text": "الولايات المتحدة | كارولينا الشمالية",
+    "translationContext": "Display name for the USA North Carolina news category"
+  },
+  "category.usaNorthDakota": {
+    "text": "الولايات المتحدة | داكوتا الشمالية",
+    "translationContext": "Display name for the USA North Dakota news category"
+  },
+  "category.usaOhio": {
+    "text": "الولايات المتحدة | أوهايو",
+    "translationContext": "Display name for the USA Ohio news category"
+  },
+  "category.usaOklahoma": {
+    "text": "الولايات المتحدة | أوكلاهوما",
+    "translationContext": "Display name for the USA Oklahoma news category"
+  },
+  "category.usaOregon": {
+    "text": "الولايات المتحدة | أوريغون",
+    "translationContext": "Display name for the USA Oregon news category"
+  },
+  "category.usaPennsylvania": {
+    "text": "الولايات المتحدة | بنسلفانيا",
+    "translationContext": "Display name for the USA Pennsylvania news category"
+  },
+  "category.usaRhodeIsland": {
+    "text": "الولايات المتحدة | رود آيلاند",
+    "translationContext": "Display name for the USA Rhode Island news category"
+  },
+  "category.usaSouthCarolina": {
+    "text": "الولايات المتحدة | كارولينا الجنوبية",
+    "translationContext": "Display name for the USA South Carolina news category"
+  },
+  "category.usaSouthDakota": {
+    "text": "الولايات المتحدة | داكوتا الجنوبية",
+    "translationContext": "Display name for the USA South Dakota news category"
+  },
+  "category.usaTennessee": {
+    "text": "الولايات المتحدة | تينيسي",
+    "translationContext": "Display name for the USA Tennessee news category"
+  },
+  "category.usaTexas": {
+    "text": "الولايات المتحدة | تكساس",
+    "translationContext": "Display name for the USA Texas news category"
+  },
+  "category.usaUtah": {
+    "text": "الولايات المتحدة | يوتا",
+    "translationContext": "Display name for the USA Utah news category"
+  },
+  "category.usaVermont": {
+    "text": "الولايات المتحدة | فيرمونت",
+    "translationContext": "Display name for the USA Vermont regional news category"
+  },
+  "category.usaVirginia": {
+    "text": "الولايات المتحدة | فيرجينيا",
+    "translationContext": "Display name for the USA Virginia regional news category"
+  },
+  "category.usaWashington": {
+    "text": "الولايات المتحدة | واشنطن",
+    "translationContext": "Display name for the USA Washington news category"
+  },
+  "category.usaWestVirginia": {
+    "text": "الولايات المتحدة | فيرجينيا الغربية",
+    "translationContext": "Display name for the USA West Virginia news category"
+  },
+  "category.usaWisconsin": {
+    "text": "الولايات المتحدة | ويسكونسن",
+    "translationContext": "Display name for the USA Wisconsin news category"
+  },
+  "category.usaWyoming": {
+    "text": "الولايات المتحدة | وايومنغ",
+    "translationContext": "Display name for the USA Wyoming news category"
+  },
+  "category.vietnam": {
+    "text": "فيتنام",
+    "translationContext": "Display name for the Vietnam news category"
+  },
+  "category.world": {
+    "text": "العالم",
+    "translationContext": "Display name for the World news category"
+  },
+  "citation.commonKnowledge.description": {
+    "text": "هذه المعلومات هي معرفة عامة لم يتم سحبها من مصدر إخباري محدد، ولكنها مدرجة للسياق واكتمال القصة.",
+    "translationContext": "Description explaining what common knowledge citations are"
+  },
+  "citation.commonKnowledge.title": {
+    "text": "معرفة عامة",
+    "translationContext": "Title for common knowledge citations marked with [*]"
+  },
+  "citation.source": {
+    "text": "المصدر:",
+    "translationContext": "Label shown before a single citation source"
+  },
+  "citation.sources": {
+    "text": "المصادر:",
+    "translationContext": "Label shown before multiple citation sources"
+  },
+  "contentFilter.adjustFilters": {
+    "text": "تعديل الفلاتر",
+    "translationContext": "Button to go to settings and adjust content filters"
+  },
+  "contentFilter.allStoriesFiltered": {
+    "text": "تمت تصفية جميع القصص في هذه الفئة",
+    "translationContext": "Title when all stories in a category are filtered out"
+  },
+  "contentFilter.allStoriesFilteredDescription": {
+    "text": "أخفت فلاتر المحتوى الخاصة بك جميع القصص في هذه الفئة لهذا اليوم.",
+    "translationContext": "Description when all stories are filtered, explaining why"
+  },
+  "contentFilter.clickToReveal": {
+    "text": "انقر لإظهار القصة",
+    "translationContext": "Instruction to reveal filtered story"
+  },
+  "contentFilter.disableCategory": {
+    "text": "تعطيل الفئة",
+    "translationContext": "Button to go to settings and disable this news category"
+  },
+  "contentFilter.filteredBecause": {
+    "text": "مخفي بسبب الفلتر:",
+    "translationContext": "Short message explaining why story is filtered"
+  },
+  "contentFilter.hiddenStory": {
+    "text": "تم إخفاء هذه القصة لأنها تطابق فلاتر المحتوى الخاصة بك:",
+    "translationContext": "Message shown when a story is filtered"
+  },
+  "contentFilter.linkedStoryClickToReveal": {
+    "text": "اضغط للإظهار على أي حال",
+    "translationContext": "Instruction to reveal a linked/pre-opened filtered story"
+  },
+  "contentFilter.linkedStoryFilteredBecause": {
+    "text": "القصة التي أردت عرضها محجوبة بواسطة مُرشِّح المحتوى الخاص بك:",
+    "translationContext": "Message shown when a linked/pre-opened story is filtered"
+  },
+  "contentFilter.showStory": {
+    "text": "إظهار القصة",
+    "translationContext": "Button to reveal a filtered story"
+  },
+  "contentFilter.storiesFiltered": {
+    "text": "تمت تصفية {{count}} قصة",
+    "translationContext": "Message showing multiple stories are filtered"
+  },
+  "contentFilter.storiesHidden": {
+    "text": "تم إخفاء {{count}} قصة",
+    "translationContext": "Message showing multiple stories are hidden"
+  },
+  "contentFilter.storyFiltered": {
+    "text": "تمت تصفية قصة واحدة",
+    "translationContext": "Message showing 1 story is filtered"
+  },
+  "contentFilter.storyHidden": {
+    "text": "تم إخفاء قصة واحدة",
+    "translationContext": "Message showing 1 story is hidden"
+  },
+  "date.format": {
+    "text": "{{weekday}}، {{day}} {{month}}",
+    "translationContext": "Format for displaying dates. {weekday} will be replaced with the day of the week, {month} with the month name, and {day} with the day number."
+  },
+  "footer.about": {
+    "text": "حول Kagi News",
+    "translationContext": "Link text for about page"
+  },
+  "footer.aboutMobile": {
+    "text": "حول",
+    "translationContext": "Shorter link text for about page on mobile devices"
+  },
+  "footer.contribute": {
+    "text": "ساهم",
+    "translationContext": "Link text for contributing to the project"
+  },
+  "footer.rssFeed": {
+    "text": "خلاصة RSS",
+    "translationContext": "Link text for RSS feed"
+  },
+  "footer.rssFeedMobile": {
+    "text": "RSS",
+    "translationContext": "Shorter link text for RSS feed on mobile devices"
+  },
+  "header.fontSize": {
+    "text": "حجم الخط",
+    "translationContext": "Tooltip and aria-label for the font size adjustment button in the header"
+  },
+  "header.search": {
+    "text": "بحث",
+    "translationContext": "Tooltip for search button in header"
+  },
+  "header.settings": {
+    "text": "الإعدادات",
+    "translationContext": "Title attribute for the settings button"
+  },
+  "header.timeTravel": {
+    "text": "السفر عبر الزمن",
+    "translationContext": "Tooltip for time travel button in header"
+  },
+  "loading.categories": {
+    "text": "جارٍ تحميل الفئات...",
+    "translationContext": "Loading message shown when fetching news categories"
+  },
+  "loading.chaosIndex": {
+    "text": "جارٍ حساب مؤشر الفوضى...",
+    "translationContext": "Loading message shown when calculating the world chaos index"
+  },
+  "loading.default": {
+    "text": "جارٍ التحميل...",
+    "translationContext": "Default loading message"
+  },
+  "loading.error": {
+    "text": "خطأ في تحميل البيانات",
+    "translationContext": "Loading message shown when an error occurs"
+  },
+  "loading.errorFallback": {
+    "text": "الاستمرار بوظائف محدودة...",
+    "translationContext": "Message shown when there's an error but the app continues with fallback data"
+  },
+  "loading.finishing": {
+    "text": "جارٍ الإنهاء...",
+    "translationContext": "Loading message shown when nearly complete"
+  },
+  "loading.images": {
+    "text": "جارٍ التحميل المسبق للصور...",
+    "translationContext": "Loading message shown when preloading story images"
+  },
+  "loading.initializing": {
+    "text": "جارٍ التهيئة...",
+    "translationContext": "Loading message shown when the app is starting up"
+  },
+  "loading.ready": {
+    "text": "جاهز!",
+    "translationContext": "Loading message shown when loading is complete"
+  },
+  "loading.stories": {
+    "text": "جارٍ تحميل القصص...",
+    "translationContext": "Loading message shown when fetching news stories"
+  },
+  "meta.categoryDescription": {
+    "text": "آخر أخبار {category} على Kagi News",
+    "translationContext": "Meta description for category pages. {category} will be replaced with the actual category name."
+  },
+  "meta.description": {
+    "text": "يقوم Kagi News بتلخيص آلاف المصادر الإخبارية من جميع أنحاء العالم في موجز يومي مثالي. احصل على كل منظور مهم في 5 دقائق فقط. لا مزيد من التمرير اللامتناهي. لا لاختطاف الانتباه.",
+    "translationContext": "Default meta description for SEO"
+  },
+  "meta.news": {
+    "text": "أخبار",
+    "translationContext": "The word 'News' used in titles"
+  },
+  "navigation.backToTop": {
+    "text": "العودة إلى الأعلى",
+    "translationContext": "Accessibility label for the button that scrolls back to the top of the page"
+  },
+  "notification.newBatch.action": {
+    "text": "عرض",
+    "translationContext": "Action button label on toast notification to view the new batch of news"
+  },
+  "notification.newBatch.message": {
+    "text": "أخبار جديدة متاحة!",
+    "translationContext": "Toast notification message when a new batch of news is published"
+  },
+  "onboarding.button.back": {
+    "text": "→ رجوع",
+    "translationContext": "Back button text"
+  },
+  "onboarding.button.getStarted": {
+    "text": "ابدأ الآن",
+    "translationContext": "Get started button text"
+  },
+  "onboarding.button.next": {
+    "text": "التالي ←",
+    "translationContext": "Next button text"
+  },
+  "onboarding.button.skip": {
+    "text": "تخط",
+    "translationContext": "Skip button text"
+  },
+  "onboarding.categories.subtitle": {
+    "text": "يتابع Kagi News الأخبار من جميع أنحاء العالم، ويغطي الأحداث الوطنية والإقليمية والمحلية. حدد الفئات التي تهمك:",
+    "translationContext": "Subtitle for onboarding step 2"
+  },
+  "onboarding.categories.title": {
+    "text": "اختر مواضيعك",
+    "translationContext": "Title for onboarding step 2"
+  },
+  "onboarding.sections.subtitle": {
+    "text": "تتضمن مقالات Kagi News أقسامًا مختلفة مثل الملخصات والنقاط الرئيسية والجداول الزمنية ووجهات النظر المختلفة. يمكنك إعادة ترتيب هذه الأقسام عن طريق السحب أو تعطيلها بالكامل بناءً على تفضيلات القراءة لديك.",
+    "translationContext": "Subtitle for onboarding step 3"
+  },
+  "onboarding.sections.title": {
+    "text": "تفضيلات المحتوى",
+    "translationContext": "Title for onboarding step 3"
+  },
+  "onboarding.welcome.subtitle": {
+    "text": "دعنا نخصص تجربة الأخبار الخاصة بك. أولاً، اختر تفضيلاتك:",
+    "translationContext": "Subtitle for onboarding step 1"
+  },
+  "onboarding.welcome.title": {
+    "text": "مرحبًا بك في Kagi News!",
+    "translationContext": "Title for onboarding step 1"
+  },
+  "onthisday.events": {
+    "text": "الأحداث",
+    "translationContext": "Title for the events section in Today in History"
+  },
+  "onthisday.people": {
+    "text": "الأشخاص",
+    "translationContext": "Title for the people section in Today in History"
+  },
+  "quote.format.authorSaid": {
+    "text": "قال {{author}}",
+    "translationContext": "Quote author prefix. {author} is the person who said the quote"
+  },
+  "quote.format.full": {
+    "text": "في {{attribution}}، قال {{author}} \"{{quote}}\"",
+    "translationContext": "Full quote format with attribution and author. {attribution} is the source/publication, {author} is the person, {quote} is the actual quote"
+  },
+  "quote.format.inAttribution": {
+    "text": "في {{attribution}}",
+    "translationContext": "Quote attribution prefix for the source/publication only. {attribution} is the source/publication"
+  },
+  "search.close": {
+    "text": "إغلاق",
+    "translationContext": "Keyboard shortcut hint for Escape key"
+  },
+  "search.close_search": {
+    "text": "إغلاق البحث",
+    "translationContext": "Aria label for close search button"
+  },
+  "search.dismiss_tips": {
+    "text": "لا تظهر هذه النصائح مرة أخرى",
+    "translationContext": "Tooltip for dismissing filter tips permanently"
+  },
+  "search.filter_category_hint": {
+    "text": "تصفية حسب فئة الأخبار (مثال: category:Technology)",
+    "translationContext": "Hint for category filter"
+  },
+  "search.filter_date_hint": {
+    "text": "ابحث ضمن نطاق زمني (مثال: from:2025-01-01 to:today)",
+    "translationContext": "Hint for date filters"
+  },
+  "search.for": {
+    "text": "عن",
+    "translationContext": "Preposition used in 'results for query'"
+  },
+  "search.get_started_description": {
+    "text": "اكتب للبحث أو استخدم الفلاتر",
+    "translationContext": "Description shown when search modal is empty"
+  },
+  "search.get_started_title": {
+    "text": "ابدأ البحث",
+    "translationContext": "Title shown when search modal is empty"
+  },
+  "search.historical": {
+    "text": "تاريخي",
+    "translationContext": "Label for results from historical batches"
+  },
+  "search.historical_included": {
+    "text": "تم تضمين {{count}} نتائج تاريخية",
+    "translationContext": "Shows number of historical search results included. {{count}} is replaced with the number."
+  },
+  "search.historical_needs_3_chars": {
+    "text": "البحث التاريخي يتطلب 3 أحرف أو أكثر",
+    "translationContext": "Message shown when query is too short for historical search"
+  },
+  "search.load_more": {
+    "text": "تحميل المزيد من النتائج",
+    "translationContext": "Button text to load more search results"
+  },
+  "search.loading_historical_data": {
+    "text": "جارٍ تحميل البيانات التاريخية...",
+    "translationContext": "Loading message when fetching historical search results"
+  },
+  "search.loading_more": {
+    "text": "جارٍ تحميل المزيد من النتائج...",
+    "translationContext": "Loading message while fetching more results"
+  },
+  "search.navigate": {
+    "text": "تنقل",
+    "translationContext": "Keyboard shortcut hint for arrow keys"
+  },
+  "search.no_results": {
+    "text": "لم يتم العثور على نتائج",
+    "translationContext": "Message when no results are found"
+  },
+  "search.no_results_description": {
+    "text": "حاول تعديل مصطلحات البحث أو الفلاتر للعثور على ما تبحث عنه.",
+    "translationContext": "Description for empty search results"
+  },
+  "search.no_results_description_simple": {
+    "text": "جرب مصطلحات بحث مختلفة للعثور على ما تبحث عنه.",
+    "translationContext": "Simple no results message when historical search is disabled"
+  },
+  "search.no_results_title": {
+    "text": "لم يتم العثور على نتائج",
+    "translationContext": "Title for empty search results"
+  },
+  "search.of": {
+    "text": "من",
+    "translationContext": "Preposition used in 'X of Y results'"
+  },
+  "search.placeholder_1": {
+    "text": "دع بحثك يحلق...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_10": {
+    "text": "اربط بحثك معًا...",
+    "translationContext": "Search placeholder easter egg referencing kite strings"
+  },
+  "search.placeholder_2": {
+    "text": "حلّق عبر الأخبار...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_3": {
+    "text": "التقط رياح المعلومات...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_4": {
+    "text": "أبحر في تيارات الأخبار...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_5": {
+    "text": "ارتفع فوق الضوضاء...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_6": {
+    "text": "طر عبر قصص اليوم...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_7": {
+    "text": "انزلق في تيار الأخبار...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_8": {
+    "text": "ارتقِ ببحثك الإخباري...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_9": {
+    "text": "طفو عبر العناوين...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.result_plural": {
+    "text": "نتائج",
+    "translationContext": "Plural form of results"
+  },
+  "search.result_single": {
+    "text": "نتيجة",
+    "translationContext": "Singular form of result"
+  },
+  "search.search": {
+    "text": "بحث",
+    "translationContext": "Keyboard shortcut hint for Cmd/Ctrl+K"
+  },
+  "search.search_news_stories": {
+    "text": "بحث في القصص الإخبارية",
+    "translationContext": "Aria label for search input field"
+  },
+  "search.searching": {
+    "text": "جارٍ البحث...",
+    "translationContext": "Loading message while searching"
+  },
+  "search.searching_historical": {
+    "text": "جارٍ البحث في السجل التاريخي...",
+    "translationContext": "Loading message while searching historical data"
+  },
+  "search.select": {
+    "text": "تحديد",
+    "translationContext": "Keyboard shortcut hint for Enter key"
+  },
+  "search.shortcuts_hint": {
+    "text": "اكتب \"cat\" للفئات، وتواريخ مثل \"yesterday\" أو \"last week\"",
+    "translationContext": "Hint for search shortcuts"
+  },
+  "search.shortcuts_title": {
+    "text": "اختصارات سريعة",
+    "translationContext": "Title for shortcuts section"
+  },
+  "search.showing": {
+    "text": "عرض",
+    "translationContext": "Label used in 'Showing X of Y results'"
+  },
+  "search.showing_of": {
+    "text": "عرض {{shown}} من {{total}} نتائج",
+    "translationContext": "Message showing current vs total results. {{shown}} and {{total}} are replaced with numbers."
+  },
+  "search.source_plural": {
+    "text": "مصادر",
+    "translationContext": "Plural form of 'sources' for news sources"
+  },
+  "search.source_single": {
+    "text": "مصدر",
+    "translationContext": "Singular form of 'source' for news sources"
+  },
+  "search.try_searching_for": {
+    "text": "جرب البحث عن:",
+    "translationContext": "Prompt before showing search examples"
+  },
+  "search.try_these": {
+    "text": "جرب هذه الفلاتر",
+    "translationContext": "Section title for filter suggestions"
+  },
+  "section.actionItems": {
+    "text": "بنود العمل",
+    "translationContext": "Title for the action items section"
+  },
+  "section.businessAngle": {
+    "text": "الزاوية التجارية",
+    "translationContext": "Title for the business angle section"
+  },
+  "section.designPrinciples": {
+    "text": "مبادئ التصميم",
+    "translationContext": "Title for the design principles section"
+  },
+  "section.didYouKnow": {
+    "text": "هل تعلم؟",
+    "translationContext": "Title for the Did You Know section"
+  },
+  "section.gameplayMechanics": {
+    "text": "آليات اللعب",
+    "translationContext": "Title for the gameplay mechanics section"
+  },
+  "section.highlights": {
+    "text": "أبرز النقاط",
+    "translationContext": "Title for the highlights section"
+  },
+  "section.historicalBackground": {
+    "text": "الخلفية التاريخية",
+    "translationContext": "Title for the historical background section"
+  },
+  "section.humanitarianImpact": {
+    "text": "الأثر الإنساني",
+    "translationContext": "Title for the humanitarian impact section"
+  },
+  "section.industryImpact": {
+    "text": "تأثير الصناعة",
+    "translationContext": "Title for the industry impact section"
+  },
+  "section.internationalReactions": {
+    "text": "ردود الفعل الدولية",
+    "translationContext": "Title for the international reactions section"
+  },
+  "section.leagueStandings": {
+    "text": "ترتيب الدوري",
+    "translationContext": "Title for the league standings section"
+  },
+  "section.otherDetails": {
+    "text": "تفاصيل أخرى",
+    "translationContext": "Title for the other details section in article settings"
+  },
+  "section.performanceStatistics": {
+    "text": "إحصائيات الأداء",
+    "translationContext": "Title for the performance statistics section"
+  },
+  "section.perspectives": {
+    "text": "وجهات نظر",
+    "translationContext": "Title for the perspectives section"
+  },
+  "section.primaryImage": {
+    "text": "الصورة الأساسية",
+    "translationContext": "Title for the primary image section in article settings"
+  },
+  "section.quotes": {
+    "text": "اقتباسات",
+    "translationContext": "Title for the quotes section in article settings"
+  },
+  "section.scientificSignificance": {
+    "text": "الأهمية العلمية",
+    "translationContext": "Title for the scientific significance section"
+  },
+  "section.secondaryImage": {
+    "text": "الصورة الثانوية",
+    "translationContext": "Title for the secondary image section in article settings"
+  },
+  "section.sources": {
+    "text": "المصادر",
+    "translationContext": "Title for the sources section"
+  },
+  "section.suggestedQnA": {
+    "text": "أسئلة سريعة",
+    "translationContext": "Title for the suggested Q&A section"
+  },
+  "section.summary": {
+    "text": "ملخص",
+    "translationContext": "Title for the summary section in article settings"
+  },
+  "section.technicalDetails": {
+    "text": "التفاصيل التقنية",
+    "translationContext": "Title for the technical details section"
+  },
+  "section.technicalSpecifications": {
+    "text": "المواصفات التقنية",
+    "translationContext": "Title for the technical specifications section"
+  },
+  "section.timeline": {
+    "text": "التسلسل الزمني للأحداث",
+    "translationContext": "Title for the timeline section"
+  },
+  "section.travelAdvisory": {
+    "text": "إرشادات السفر",
+    "translationContext": "Title for the travel advisory section"
+  },
+  "section.userExperienceImpact": {
+    "text": "تأثير تجربة المستخدم",
+    "translationContext": "Title for the user experience impact section"
+  },
+  "shared.viewAllArticles": {
+    "text": "→ عرض جميع المقالات من {{{date}}}",
+    "translationContext": "Button to exit shared article view and see all articles from a specific date. {{date}} will be replaced with a localized date."
+  },
+  "source.contribute.button": {
+    "text": "ساهم بالمعلومات",
+    "translationContext": "Button text for contributing source information"
+  },
+  "source.contribute.description": {
+    "text": "ليس لدينا معلومات مفصلة عن هذا المصدر الإخباري بعد. يمكن أن تساعد مساهمتك الآخرين على البقاء على اطلاع بملكية وسائل الإعلام والتحيز.",
+    "translationContext": "Description for source contribution section"
+  },
+  "source.contribute.title": {
+    "text": "ساعد في تحسين قاعدة بياناتنا",
+    "translationContext": "Title for source contribution section"
+  },
+  "source.info.country": {
+    "text": "الدولة",
+    "translationContext": "Label for source country"
+  },
+  "source.info.description": {
+    "text": "الوصف",
+    "translationContext": "Label for source description"
+  },
+  "source.info.loading": {
+    "text": "جارٍ تحميل معلومات المصدر...",
+    "translationContext": "Loading message shown while fetching source information"
+  },
+  "source.info.mediaClassification": {
+    "text": "تصنيف الوسائط",
+    "translationContext": "Label for source media classification"
+  },
+  "source.info.notSpecified": {
+    "text": "غير محدد",
+    "translationContext": "Text shown when information is not available"
+  },
+  "source.info.organization": {
+    "text": "المنظمة",
+    "translationContext": "Label for source organization"
+  },
+  "source.info.owner": {
+    "text": "المالك",
+    "translationContext": "Label for source owner"
+  },
+  "source.info.title": {
+    "text": "معلومات المصدر",
+    "translationContext": "Title for source information section"
+  },
+  "sources.article": {
+    "text": "مقال واحد",
+    "translationContext": "Shows singular article count from a source, {{count}} will be replaced with a number"
+  },
+  "sources.articles": {
+    "text": "{{count}} مقالات",
+    "translationContext": "Shows plural article count from a source, {{count}} will be replaced with a number"
+  },
+  "sources.showArticlesFrom": {
+    "text": "عرض المقالات من {source}",
+    "translationContext": "Title/aria-label for the source button, {source} will be replaced with the source name"
+  },
+  "sources.summary": {
+    "text": "{{publishers}} ناشرًا، {{articles}} مقالًا",
+    "translationContext": "Shows count of publishers and articles, {{publishers}} and {{articles}} will be replaced with numbers"
+  },
+  "stats.newsToday": {
+    "text": "{{count}} خبر اليوم",
+    "translationContext": "Shows the count of news items today, {count} will be replaced with a number"
+  },
+  "stats.storiesRead": {
+    "text": "لقد قرأت {{count}} قصة",
+    "translationContext": "Shows how many stories the user has read, {count} will be replaced with a number"
+  },
+  "stats.storyRead": {
+    "text": "لقد قرأت قصة واحدة",
+    "translationContext": "Shows when the user has read exactly 1 story, {count} will be replaced with 1"
+  },
+  "stats.weekDay": {
+    "text": "الأسبوع {{week}}، اليوم {{day}}",
+    "translationContext": "Shows the current week and day of the year, {week} and {day} will be replaced with numbers"
+  },
+  "stories.noStories": {
+    "text": "حدث خطأ ما، لا توجد قصص هنا!",
+    "translationContext": "Message shown when no stories are found"
+  },
+  "time.updated.days": {
+    "text": "تم التحديث قبل {{count}} أيام",
+    "translationContext": "Shown when content was updated multiple days ago, {count} will be replaced with the number of days"
+  },
+  "time.updated.hours": {
+    "text": "تم التحديث قبل {{count}} ساعات",
+    "translationContext": "Shown when content was updated multiple hours ago, {count} will be replaced with the number of hours"
+  },
+  "time.updated.justNow": {
+    "text": "تم التحديث الآن",
+    "translationContext": "Shown when content was updated very recently"
+  },
+  "time.updated.minutes": {
+    "text": "تم التحديث قبل {{count}} دقائق",
+    "translationContext": "Shown when content was updated multiple minutes ago, {count} will be replaced with the number of minutes"
+  },
+  "time.updated.oneDay": {
+    "text": "تم التحديث قبل يوم واحد",
+    "translationContext": "Shown when content was updated exactly 1 day ago"
+  },
+  "time.updated.oneHour": {
+    "text": "تم التحديث قبل ساعة واحدة",
+    "translationContext": "Shown when content was updated exactly 1 hour ago"
+  },
+  "time.updated.oneMinute": {
+    "text": "تم التحديث قبل دقيقة واحدة",
+    "translationContext": "Shown when content was updated exactly 1 minute ago"
+  },
+  "time.updated.seconds": {
+    "text": "تم التحديث قبل {{count}} ثوانٍ",
+    "translationContext": "Shown when content was updated seconds ago, {count} will be replaced with the number of seconds"
+  },
+  "timeTravel.latest": {
+    "text": "الأحدث",
+    "translationContext": "Label for the most recent batch of the day"
+  },
+  "timeTravel.loadingData": {
+    "text": "جارٍ تحميل البيانات التاريخية...",
+    "translationContext": "Loading message when fetching historical data"
+  },
+  "timeTravel.nextMonth": {
+    "text": "الشهر التالي",
+    "translationContext": "Aria label for next month button"
+  },
+  "timeTravel.previousMonth": {
+    "text": "الشهر السابق",
+    "translationContext": "Aria label for previous month button"
+  },
+  "timeTravel.returningToLive": {
+    "text": "العودة إلى البث المباشر...",
+    "translationContext": "Loading message when exiting time travel mode"
+  },
+  "timeTravel.selectBatch": {
+    "text": "حدد تحديثًا إخباريًا",
+    "translationContext": "Title when selecting from multiple batches"
+  },
+  "timeTravel.selectDate": {
+    "text": "حدد تاريخًا لعرض الأخبار من ذلك اليوم",
+    "translationContext": "Help text shown below calendar"
+  },
+  "timeTravel.stories": {
+    "text": "قصص",
+    "translationContext": "Label for story count in batch selector"
+  },
+  "timeTravel.title": {
+    "text": "السفر عبر الزمن",
+    "translationContext": "Title of the time travel modal"
+  },
+  "timeTravel.today": {
+    "text": "اليوم",
+    "translationContext": "Button to navigate to today"
+  },
+  "turbulence.title": {
+    "text": "مقياس الاضطراب العالمي",
+    "translationContext": "Title for the world turbulence meter popup"
+  },
+  "turbulence.tooltip": {
+    "text": "مقياس الاضطراب",
+    "translationContext": "Tooltip text for the turbulence meter button"
+  },
+  "ui.back": {
+    "text": "رجوع",
+    "translationContext": "Text for back buttons"
+  },
+  "ui.cancel": {
+    "text": "إلغاء",
+    "translationContext": "Text for cancel buttons"
+  },
+  "ui.citations": {
+    "text": "الاستشهادات",
+    "translationContext": "Title for citations section"
+  },
+  "ui.clearSearch": {
+    "text": "مسح البحث",
+    "translationContext": "Aria label for clear search button"
+  },
+  "ui.close": {
+    "text": "إغلاق",
+    "translationContext": "Text for close buttons"
+  },
+  "ui.closeDialog": {
+    "text": "إغلاق الحوار",
+    "translationContext": "Aria label for close dialog button"
+  },
+  "ui.disable": {
+    "text": "تعطيل",
+    "translationContext": "Text for disabling features"
+  },
+  "ui.enable": {
+    "text": "تمكين",
+    "translationContext": "Text for enabling features"
+  },
+  "ui.imageUnavailable": {
+    "text": "الصورة غير متوفرة",
+    "translationContext": "Text shown when an image cannot be loaded"
+  },
+  "ui.nextSlide": {
+    "text": "الشريحة التالية",
+    "translationContext": "Aria label for next slide button"
+  },
+  "ui.ok": {
+    "text": "موافق",
+    "translationContext": "Text for OK buttons"
+  },
+  "ui.previousSlide": {
+    "text": "الشريحة السابقة",
+    "translationContext": "Aria label for previous slide button"
+  },
+  "ui.skipToMainContent": {
+    "text": "الانتقال إلى المحتوى الرئيسي",
+    "translationContext": "Accessibility link to skip navigation and jump to main content"
+  },
+  "ui.success": {
+    "text": "تم بنجاح!",
+    "translationContext": "Text for success messages"
+  },
+  "view.list": {
+    "text": "عرض القائمة",
+    "translationContext": "Title/aria-label for the list view button"
+  },
+  "view.map": {
+    "text": "عرض الخريطة",
+    "translationContext": "Title/aria-label for the map view button"
+  },
+  "wikipedia.readMore": {
+    "text": "اقرأ المزيد على ويكيبيديا",
+    "translationContext": "Text for the link to read more on Wikipedia"
+  },
+  "worldTension.aboutTitle": {
+    "text": "حول التوتر العالمي",
+    "translationContext": "Title for the world tension explanation"
+  },
+  "worldTension.backToIndex": {
+    "text": "→ العودة إلى المؤشر",
+    "translationContext": "Button text to return from explanation to main view"
+  },
+  "worldTension.burning": {
+    "text": "مشتعل",
+    "translationContext": "Temperature description for extreme world tension (81-100%)"
+  },
+  "worldTension.chaosIndex": {
+    "text": "مؤشر الفوضى",
+    "translationContext": "Label for the chaos index chart"
+  },
+  "worldTension.cool": {
+    "text": "هادئ",
+    "translationContext": "Temperature description for low world tension (0-20%)"
+  },
+  "worldTension.critical": {
+    "text": "حرج",
+    "translationContext": "Status label for 61-80% range (deprecated, use hot)"
+  },
+  "worldTension.elevated": {
+    "text": "مرتفع",
+    "translationContext": "Status label for 21-40% range (deprecated, use mild)"
+  },
+  "worldTension.explanation1": {
+    "text": "يوفر مؤشر التوتر العالمي قراءة لدرجة حرارة الاستقرار العالمي بناءً على الأحداث الجارية.",
+    "translationContext": "First paragraph of world tension explanation"
+  },
+  "worldTension.explanation2": {
+    "text": "من خلال تحليل العناوين الرئيسية من جميع أنحاء العالم، نتتبع أنماط النزاع والأزمات وعدم الاستقرار لإنشاء مقياس بسيط يوضح مدى \"سخونة\" الشؤون العالمية في أي لحظة.",
+    "translationContext": "Second paragraph of world tension explanation"
+  },
+  "worldTension.explanation3": {
+    "text": "فكر فيه كمقياس حرارة عالمي - عندما ترتفع التوترات بسبب النزاعات أو الكوارث أو الاضطرابات السياسية، ترتفع درجة الحرارة. خلال فترات الهدوء والاستقرار والتعاون، تنخفض.",
+    "translationContext": "Third paragraph of world tension explanation"
+  },
+  "worldTension.extreme": {
+    "text": "شديد",
+    "translationContext": "Status label for 81-100% range (deprecated, use burning)"
+  },
+  "worldTension.high": {
+    "text": "عالٍ",
+    "translationContext": "Status label for 41-60% range (deprecated, use warm)"
+  },
+  "worldTension.hot": {
+    "text": "ساخن",
+    "translationContext": "Temperature description for serious world tension (61-80%)"
+  },
+  "worldTension.mild": {
+    "text": "معتدل",
+    "translationContext": "Temperature description for normal world tension (21-40%)"
+  },
+  "worldTension.scale.burning": {
+    "text": "81-100° مشتعل - أزمة قصوى (نادرة)",
+    "translationContext": "Scale description for 81-100% tension"
+  },
+  "worldTension.scale.cool": {
+    "text": "0-20° هادئ - فترة هدوء، نشاط روتيني",
+    "translationContext": "Scale description for 0-20% tension"
+  },
+  "worldTension.scale.hot": {
+    "text": "61-80° ساخن - أوضاع خطيرة",
+    "translationContext": "Scale description for 61-80% tension"
+  },
+  "worldTension.scale.mild": {
+    "text": "21-40° معتدل - توترات عالمية طبيعية",
+    "translationContext": "Scale description for 21-40% tension"
+  },
+  "worldTension.scale.warm": {
+    "text": "41-60° دافئ - مخاوف مرتفعة",
+    "translationContext": "Scale description for 41-60% tension"
+  },
+  "worldTension.stable": {
+    "text": "مستقر",
+    "translationContext": "Status label for 0-20% range (deprecated, use cool)"
+  },
+  "worldTension.title": {
+    "text": "التوتر العالمي",
+    "translationContext": "Title for the world tension modal"
+  },
+  "worldTension.trendTitle": {
+    "text": "اتجاه 30 يومًا",
+    "translationContext": "Title for the historical trend chart"
+  },
+  "worldTension.updated": {
+    "text": "مُحدّث",
+    "translationContext": "Prefix for last update time"
+  },
+  "worldTension.warm": {
+    "text": "دافئ",
+    "translationContext": "Temperature description for elevated world tension (41-60%)"
+  },
+  "worldTension.whatIsThis": {
+    "text": "ما هذا؟",
+    "translationContext": "Button text to show explanation of world tension"
+  }
+}

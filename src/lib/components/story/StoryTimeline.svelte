@@ -1,44 +1,39 @@
 <script lang="ts">
-  import { s } from "$lib/client/localization.svelte";
-  import type { Article } from "$lib/types";
-  import { getCitedArticlesForText } from "$lib/utils/citationAggregator";
-  import {
-    replaceWithNumberedCitations,
-    type CitationMapping,
-  } from "$lib/utils/citationContext";
-  import { parseTimelineEvent } from "$lib/utils/textParsing";
-  import CitationText from "./CitationText.svelte";
+import { s } from '$lib/client/localization.svelte';
+import type { Article } from '$lib/types';
+import { getCitedArticlesForText } from '$lib/utils/citationAggregator';
+import { type CitationMapping, replaceWithNumberedCitations } from '$lib/utils/citationContext';
+import { parseTimelineEvent } from '$lib/utils/textParsing';
+import CitationText from './CitationText.svelte';
 
-  // Props
-  interface Props {
-    timeline: Array<any>; // Can be objects with date/description or strings with "::" separator
-    articles?: Article[];
-    citationMapping?: CitationMapping;
-  }
+// Props
+interface Props {
+	timeline: Array<any>; // Can be objects with date/description or strings with "::" separator
+	articles?: Article[];
+	citationMapping?: CitationMapping;
+	storyLocalizer?: (key: string) => string;
+}
 
-  let { timeline, articles = [], citationMapping }: Props = $props();
+let { timeline, articles = [], citationMapping, storyLocalizer = s }: Props = $props();
 
-  // Parse timeline events and prepare display data
-  const displayEvents = $derived.by(() => {
-    return timeline.map((event) => {
-      const parsed = parseTimelineEvent(event);
-      if (citationMapping && parsed.content) {
-        return {
-          ...parsed,
-          content: replaceWithNumberedCitations(
-            parsed.content,
-            citationMapping,
-          ),
-        };
-      }
-      return parsed;
-    });
-  });
+// Parse timeline events and prepare display data
+const displayEvents = $derived.by(() => {
+	return timeline.map((event) => {
+		const parsed = parseTimelineEvent(event);
+		if (citationMapping && parsed.content) {
+			return {
+				...parsed,
+				content: replaceWithNumberedCitations(parsed.content, citationMapping),
+			};
+		}
+		return parsed;
+	});
+});
 </script>
 
 <section class="mt-6">
   <h3 class="mb-2 text-xl font-semibold text-gray-800 dark:text-gray-200">
-    {s("section.timeline") || "Timeline"}
+    {storyLocalizer("section.timeline") || "Timeline"}
   </h3>
   <div class="timeline">
     {#each displayEvents as event, index}
@@ -55,11 +50,11 @@
         </div>
         <div class="timeline-content">
           {#if event.date}
-            <div class="timeline-date">
+            <div class="timeline-date" dir="auto">
               {event.date}
             </div>
           {/if}
-          <div class="timeline-description">
+          <div class="timeline-description" dir="auto">
             <CitationText
               text={event.content}
               showFavicons={false}
@@ -67,6 +62,7 @@
               inline={true}
               articles={eventCitations.citedArticles}
               {citationMapping}
+              {storyLocalizer}
             />
           </div>
         </div>
@@ -95,8 +91,10 @@
     position: relative;
     flex-shrink: 0;
     width: 32px;
-    height: 32px;
+    /* Remove fixed height to let it grow with content */
     margin-right: 16px;
+    /* Stretch to match content height */
+    align-self: stretch;
   }
 
   .timeline-dot {
@@ -113,13 +111,16 @@
     font-size: 12px;
     font-weight: 600;
     color: white;
+    /* Ensure dot stays on top of the line */
+    z-index: 1;
   }
 
   .timeline-marker::after {
     content: "";
     position: absolute;
     width: 2px;
-    height: calc(100% + 48px);
+    /* Use 100% height to fill the entire marker container */
+    height: calc(100% + 24px);
     background-color: var(--color-header);
     left: 15px;
     top: 28px;
@@ -132,7 +133,7 @@
   .timeline-content {
     flex: 1;
     padding-top: 2px;
-    min-height: 70px; /* Ensure consistent height whether date exists or not */
+    min-height: 32px; /* Reduced min-height since we're handling height dynamically */
   }
 
   .timeline-date {

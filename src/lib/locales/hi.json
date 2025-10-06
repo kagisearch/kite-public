@@ -1,2178 +1,2374 @@
 {
-    "about.approach.description1": {
-        "text": "दुनिया इको चैंबर में नहीं रहती। वास्तविकता विभिन्न दृष्टिकोणों और विचारों के टकराव से उत्पन्न होती है - इसी तरह हम शोर से संकेत को अलग करते हैं।",
-        "translationContext": "First paragraph of the approach section"
-    },
-    "about.approach.description2": {
-        "text": "हम संसाधनों की विविधता और पारदर्शिता के लिए प्रयास करते हैं और विचारों को व्यापक बनाने के लिए आपके <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">योगदान</a> का स्वागत करते हैं। यह बहु-स्रोत दृष्टिकोण किसी एक दृष्टिकोण से परे पूरी तस्वीर को प्रकट करने में मदद करता है।",
-        "translationContext": "Second paragraph of the approach section with GitHub link"
-    },
-    "about.approach.description3": {
-        "text": "काइट हजारों (समुदाय-क्यूरेटेड) विश्व-व्यापी समाचार स्रोतों के सार्वजनिक आरएसएस फ़ीड पढ़ता है और उन्हें एक सही दैनिक ब्रीफिंग मेंL बदल देता है। आपको सिर्फ 5 मिनट में हर महत्वपूर्ण दृष्टिकोण और टाइमलाइन मिलती है। बस इतना ही। कोई अंतहीन स्क्रॉलिंग नहीं। कोई ध्यान भटकाना नहीं। क्योंकि हम बेहतर के हकदार हैं।",
-        "translationContext": "Third paragraph of the approach section"
-    },
-    "about.approach.title": {
-        "text": "हमारे दृष्टिकोण को समझना",
-        "translationContext": "Title of the approach section"
-    },
-    "about.contact.description": {
-        "text": "प्रतिक्रिया के लिए, कृपया <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://kagifeedback.org\">कागी फीडबैक</a> का उपयोग करें। सहायता के लिए, <a href=\"mailto:support@kagi.com\" class=\"text-blue-600 hover:underline dark:text-blue-400\">support@kagi.com</a>।",
-        "translationContext": "Contact information with links"
-    },
-    "about.contact.title": {
-        "text": "संपर्क करें",
-        "translationContext": "Title of the contact section"
-    },
-    "about.customization.description": {
-        "text": "सेटिंग्स में श्रेणियों को पुनर्व्यवस्थित और टॉगल करके अपनी फ़ीड को वैयक्तिकृत करें। योगदान करना चाहते हैं? काइट का अधिकांश हिस्सा, हमारी वेब ऐप और समुदाय-क्यूरेटेड फ़ीड सहित, <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">ओपन सोर्स</a> है।",
-        "translationContext": "Description of customization options with GitHub link"
-    },
-    "about.customization.title": {
-        "text": "अनुकूलन",
-        "translationContext": "Title of the customization section"
-    },
-    "about.principles.item1": {
-        "text": "एक दैनिक अपडेट (दोपहर यूटीसी), जो आपकी समाचार खपत के लिए एक स्वाभाविक समापन बिंदु बनाता है",
-        "translationContext": "First core principle about daily updates"
-    },
-    "about.principles.item2": {
-        "text": "राय के बजाय तथ्यों और दृष्टिकोणों पर ध्यान दें",
-        "translationContext": "Second core principle about facts vs opinions"
-    },
-    "about.principles.item3": {
-        "text": "निजता से कोई समझौता नहीं - आपकी पढ़ने की आदतें सिर्फ़ आपकी हैं",
-        "translationContext": "Third core principle about privacy"
-    },
-    "about.principles.item4": {
-        "text": "मात्रा से ज़्यादा गुणवत्ता और गहनता",
-        "translationContext": "Fourth core principle about quality"
-    },
-    "about.principles.item5": {
-        "text": "5 मिनट में पूरी ख़बरों की ख़ुराक",
-        "translationContext": "Fifth core principle about time efficiency"
-    },
-    "about.principles.item6": {
-        "text": "अटेंशन इकोनॉमी से मुक्ति - अंतहीन स्क्रॉल में नहीं, बल्कि वर्तमान क्षण में जिएँ",
-        "translationContext": "Sixth core principle about attention economy"
-    },
-    "about.principles.title": {
-        "text": "मुख्य सिद्धांत",
-        "translationContext": "Title of the core principles section"
-    },
-    "about.subtitle": {
-        "text": "कागी द्वारा समाचार ऐप",
-        "translationContext": "Kagi is a company, should not be translated"
-    },
-    "about.understand.button": {
-        "text": "मैं समझ गया",
-        "translationContext": "Text for the I understand button"
-    },
-    "about.why.description": {
-        "text": "लगातार विज्ञापन के मुद्रीकरण से प्रेरित होकर, समाचार मानसिक जंक फ़ूड <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://gwern.net/doc/culture/2010-dobelli.pdf\">बन</a> गया है - क्लिकबेट की एक अंतहीन धारा जो हमारी गहराई से और स्पष्ट रूप से सोचने की क्षमता को नष्ट कर देती है। हम बेहतर कर सकते हैं, और वह बना सकते हैं जो समाचार को हमेशा से होना चाहिए था - शुद्ध,Bआवश्यक जानकारी जो आपकी बुद्धिमत्ता और समय का सम्मान करती है।",
-        "translationContext": "Description of why Kagi News exists, including HTML link"
-    },
-    "about.why.title": {
-        "text": "क्यों काइट? क्योंकि खबरें टूटी-फूटी हैं।",
-        "translationContext": "Title of the Why Kagi News section"
-    },
-    "app.beta": {
-        "text": "बीटा",
-        "translationContext": "Beta label shown next to the app title"
-    },
-    "app.disclaimerAutoGenerated": {
-        "text": "सारांश में त्रुटियाँ हो सकती हैं।",
-        "translationContext": "Disclaimer about AI-generated content"
-    },
-    "app.disclaimerVerify": {
-        "text": "कृपया महत्वपूर्ण जानकारी सत्यापित करें।",
-        "translationContext": "Reminder to verify information, goes after 'Summaries are AI/LLM-generated and Kagi News can make mistakes.'"
-    },
-    "app.logo.alt": {
-        "text": "काइट लोगो",
-        "translationContext": "Alt text for the Kagi News logo image, Kagi News should not be translated as it's a brand name"
-    },
-    "app.logo.iconAlt": {
-        "text": "Kagi News आइकन",
-        "translationContext": "Alt text for the Kagi News icon image, Kagi News should not be translated as it's a brand name"
-    },
-    "app.logo.newsAlt": {
-        "text": "काइट न्यूज़ लोगो",
-        "translationContext": "Alt text for the Kagi News News logo image in header, Kagi News should not be translated as it's a brand name"
-    },
-    "app.migrationNotice": {
-        "text": "हमारे हाल ही में Svelte 5 पर माइग्रेशन के कारण, कहानियाँ अस्थायी रूप से केवल डिफ़ॉल्ट भाषा में उपलब्ध हैं। पूर्ण बहुभाषी समर्थन 24 घंटे के भीतर बहाल कर दिया जाएगा। आपके धैर्य के लिए धन्यवाद!",
-        "translationContext": "Notice about temporary language limitation during Svelte 5 migration"
-    },
-    "app.motto": {
-        "text": "ख़बरें। सबसे अलग।",
-        "translationContext": "Motto of the app, should be translated in a natural way"
-    },
-    "app.temporaryCategoryNotice": {
-        "text": "साझा लिंक से यह श्रेणी अस्थायी रूप से दिखाई जा रही है",
-        "translationContext": "Notice shown when a user accesses a shared link for a category they haven't enabled."
-    },
-    "app.title": {
-        "text": "Kagi News",
-        "translationContext": "Title of the app, should not be translated"
-    },
-    "article.closeStory": {
-        "text": "कहानी बंद करें",
-        "translationContext": "Button text to close a story"
-    },
-    "article.didYouKnow": {
-        "text": "क्या आप जानते थे?",
-        "translationContext": "Title for the Did You Know section"
-    },
-    "article.location": {
-        "text": "मानचित्रों में स्थान खोलें",
-        "translationContext": "Title/tooltip for the location link"
-    },
-    "article.markAllAsRead": {
-        "text": "सभी कहानियों को पढ़ा गया के रूप में चिह्नित करें",
-        "translationContext": "Button text to mark all stories as read"
-    },
-    "article.readStatus": {
-        "text": "पढ़ने की स्थिति बदलने के लिए क्लिक करें",
-        "translationContext": "Title/tooltip for the read status toggle button"
-    },
-    "article.reportInaccuracy": {
-        "text": "गलत जानकारी की शिकायत करें",
-        "translationContext": "Tooltip text for the report button"
-    },
-    "article.reportModal.addSource": {
-        "text": "एक और स्रोत जोड़ें",
-        "translationContext": "Button text to add another source URL field"
-    },
-    "article.reportModal.cancel": {
-        "text": "रद्द करें",
-        "translationContext": "Cancel button text"
-    },
-    "article.reportModal.characterCount": {
-        "text": "{{count}} / {{max}} वर्ण",
-        "translationContext": "Character count display with placeholders for current count and maximum"
-    },
-    "article.reportModal.description": {
-        "text": "कृपया समस्या का वर्णन करें",
-        "translationContext": "Label for the description field"
-    },
-    "article.reportModal.descriptionPlaceholder": {
-        "text": "बताएं कि इस सारांश के बारे में क्या गलत या समस्याग्रस्त है...",
-        "translationContext": "Placeholder text for the description field"
-    },
-    "article.reportModal.error": {
-        "text": "रिपोर्ट सबमिट करने में विफल। कृपया पुन: प्रयास करें।",
-        "translationContext": "Generic error message for report submission failure"
-    },
-    "article.reportModal.issueType": {
-        "text": "क्या समस्या है?",
-        "translationContext": "Label for the issue type selection"
-    },
-    "article.reportModal.issueType.factualError": {
-        "text": "तथ्यात्मक त्रुटि",
-        "translationContext": "Option for reporting factual errors"
-    },
-    "article.reportModal.issueType.misleading": {
-        "text": "भ्रामक सारांश",
-        "translationContext": "Option for reporting misleading summaries"
-    },
-    "article.reportModal.issueType.other": {
-        "text": "अन्य समस्या",
-        "translationContext": "Option for reporting other types of issues"
-    },
-    "article.reportModal.issueType.outdated": {
-        "text": "पुरानी जानकारी",
-        "translationContext": "Option for reporting outdated content"
-    },
-    "article.reportModal.reportId": {
-        "text": "रिपोर्ट आईडी: {{id}}",
-        "translationContext": "Display of the report ID after successful submission"
-    },
-    "article.reportModal.reportingFor": {
-        "text": "इसके साथ समस्या की रिपोर्ट करें:",
-        "translationContext": "Label showing which story is being reported"
-    },
-    "article.reportModal.source": {
-        "text": "स्रोत (वैकल्पिक)",
-        "translationContext": "Label for the source URL field"
-    },
-    "article.reportModal.sourceHelper": {
-        "text": "अपनी रिपोर्ट का समर्थन करने वाले विश्वसनीय स्रोतों के लिंक जोड़ें",
-        "translationContext": "Helper text explaining the purpose of source URLs"
-    },
-    "article.reportModal.sourcePlaceholder": {
-        "text": "https://example.com/article",
-        "translationContext": "Placeholder text for the source URL field"
-    },
-    "article.reportModal.submit": {
-        "text": "रिपोर्ट सबमिट करें",
-        "translationContext": "Submit button text"
-    },
-    "article.reportModal.submitting": {
-        "text": "प्रस्तुत किया जा रहा है...",
-        "translationContext": "Button text while report is being submitted"
-    },
-    "article.reportModal.subtitle": {
-        "text": "इस कहानी के सारांश में किसी भी समस्या की रिपोर्ट करके हमें बेहतर बनाने में मदद करें",
-        "translationContext": "Subtitle explaining the purpose of the report modal"
-    },
-    "article.reportModal.success": {
-        "text": "आपके फ़ीडबैक के लिए धन्यवाद। आपकी रिपोर्ट सबमिट कर दी गई है।",
-        "translationContext": "Success message after report submission"
-    },
-    "article.reportModal.title": {
-        "text": "गलत जानकारी की शिकायत करें",
-        "translationContext": "Title of the report modal"
-    },
-    "article.shareCopied": {
-        "text": "कॉपी किया गया!",
-        "translationContext": "Success message shown when URL is copied to clipboard"
-    },
-    "article.shareStory": {
-        "text": "कहानी साझा करें",
-        "translationContext": "Tooltip text for the share button"
-    },
-    "category.ai": {
-        "text": "कृत्रिम बुद्धिमत्ता",
-        "translationContext": "Display name for the AI news category"
-    },
-    "category.apple": {
-        "text": "एप्पल वर्ल्ड",
-        "translationContext": "Display name for the Apple news category"
-    },
-    "category.australia": {
-        "text": "ऑस्ट्रेलिया",
-        "translationContext": "Display name for the Australia news category"
-    },
-    "category.bayArea": {
-        "text": "बे एरिया",
-        "translationContext": "Display name for the Bay Area news category"
-    },
-    "category.belgium": {
-        "text": "बेल्जियम",
-        "translationContext": "Display name for the Belgium news category"
-    },
-    "category.bitcoin": {
-        "text": "Bitcoin",
-        "translationContext": "Display name for the Bitcoin news category"
-    },
-    "category.brazil": {
-        "text": "ब्राज़ील",
-        "translationContext": "Display name for the Brazil news category"
-    },
-    "category.business": {
-        "text": "व्यापार",
-        "translationContext": "Display name for the Business news category"
-    },
-    "category.canada": {
-        "text": "कनाडा",
-        "translationContext": "Display name for the Canada news category"
-    },
-    "category.china": {
-        "text": "China",
-        "translationContext": "Display name for the China news category"
-    },
-    "category.chinaTaiwan": {
-        "text": "Taiwan",
-        "translationContext": "Display name for the Taiwan news category"
-    },
-    "category.colombia": {
-        "text": "Colombia",
-        "translationContext": "Display name for the Colombia news category"
-    },
-    "category.costaRica": {
-        "text": "कोस्टा रिका",
-        "translationContext": "Display name for the Costa Rica news category"
-    },
-    "category.cryptocurrency": {
-        "text": "क्रिप्टोकरेंसी",
-        "translationContext": "Display name for the Cryptocurrency news category"
-    },
-    "category.cybersecurity": {
-        "text": "साइबर सिक्योरिटी",
-        "translationContext": "Display name for the Cybersecurity news category"
-    },
-    "category.czechRepublic": {
-        "text": "Czech Republic",
-        "translationContext": "Display name for the Czech Republic news category"
-    },
-    "category.denmark": {
-        "text": "Denmark",
-        "translationContext": "Display name for the Denmark news category"
-    },
-    "category.economy": {
-        "text": "अर्थव्यवस्था",
-        "translationContext": "Display name for the Economy news category"
-    },
-    "category.egypt": {
-        "text": "Egypt",
-        "translationContext": "Display name for the Egypt news category"
-    },
-    "category.entertainment": {
-        "text": "मनोरंजन",
-        "translationContext": "Display name for the Entertainment news category"
-    },
-    "category.estonia": {
-        "text": "एस्टोनिया",
-        "translationContext": "Display name for the Estonia news category"
-    },
-    "category.europe": {
-        "text": "यूरोप",
-        "translationContext": "Display name for the Europe news category"
-    },
-    "category.finland": {
-        "text": "Finland",
-        "translationContext": "Display name for the Finland news category"
-    },
-    "category.france": {
-        "text": "फ्रांस",
-        "translationContext": "Display name for the France news category"
-    },
-    "category.gaming": {
-        "text": "गेमिंग",
-        "translationContext": "Display name for the Gaming news category"
-    },
-    "category.germany": {
-        "text": "जर्मनी",
-        "translationContext": "Display name for the Germany news category"
-    },
-    "category.germanyHesse": {
-        "text": "जर्मनी | हेस्से",
-        "translationContext": "Display name for the Germany Hesse regional news category"
-    },
-    "category.health": {
-        "text": "स्वास्थ्य",
-        "translationContext": "Display name for the Health news category"
-    },
-    "category.hongKong": {
-        "text": "Hong Kong",
-        "translationContext": "Display name for the Hong Kong news category"
-    },
-    "category.india": {
-        "text": "भारत",
-        "translationContext": "Display name for the India news category"
-    },
-    "category.indonesia": {
-        "text": "Indonesia",
-        "translationContext": "Display name for the Indonesia news category"
-    },
-    "category.ireland": {
-        "text": "आयरलैंड",
-        "translationContext": "Display name for the Ireland news category"
-    },
-    "category.israel": {
-        "text": "इज़राइल",
-        "translationContext": "Display name for the Israel news category"
-    },
-    "category.italy": {
-        "text": "इटली",
-        "translationContext": "Display name for the Italy news category"
-    },
-    "category.japan": {
-        "text": "जापान",
-        "translationContext": "Display name for the Japan news category"
-    },
-    "category.kenya": {
-        "text": "Kenya",
-        "translationContext": "Display name for the Kenya news category"
-    },
-    "category.korea": {
-        "text": "Korea",
-        "translationContext": "Display name for the Korea news category"
-    },
-    "category.linuxOss": {
-        "text": "Linux & OSS",
-        "translationContext": "Display name for the Linux & OSS news category"
-    },
-    "category.malaysia": {
-        "text": "Malaysia",
-        "translationContext": "Display name for the Malaysia news category"
-    },
-    "category.mexico": {
-        "text": "मेक्सिको",
-        "translationContext": "Display name for the Mexico news category"
-    },
-    "category.middleEast": {
-        "text": "Middle East",
-        "translationContext": "Display name for the Middle East news category"
-    },
-    "category.netherlands": {
-        "text": "नीदरलैंड्स",
-        "translationContext": "Display name for the Netherlands news category"
-    },
-    "category.newZealand": {
-        "text": "न्यूजीलैंड",
-        "translationContext": "Display name for the New Zealand news category"
-    },
-    "category.nigeria": {
-        "text": "Nigeria",
-        "translationContext": "Display name for the Nigeria news category"
-    },
-    "category.norway": {
-        "text": "Norway",
-        "translationContext": "Display name for the Norway news category"
-    },
-    "category.pakistan": {
-        "text": "पाकिस्तान",
-        "translationContext": "Display name for the Pakistan news category"
-    },
-    "category.philippines": {
-        "text": "Philippines",
-        "translationContext": "Display name for the Philippines news category"
-    },
-    "category.poland": {
-        "text": "पोलैंड",
-        "translationContext": "Display name for the Poland news category"
-    },
-    "category.politics": {
-        "text": "राजनीति",
-        "translationContext": "Display name for the Politics news category"
-    },
-    "category.portugal": {
-        "text": "पुर्तगाल",
-        "translationContext": "Display name for the Portugal news category"
-    },
-    "category.romania": {
-        "text": "रोमानिया",
-        "translationContext": "Display name for the Romania news category"
-    },
-    "category.russia": {
-        "text": "Russia",
-        "translationContext": "Display name for the Russia news category"
-    },
-    "category.science": {
-        "text": "विज्ञान",
-        "translationContext": "Display name for the Science news category"
-    },
-    "category.serbia": {
-        "text": "सर्बिया",
-        "translationContext": "Display name for the Serbia news category"
-    },
-    "category.singapore": {
-        "text": "Singapore",
-        "translationContext": "Display name for the Singapore news category"
-    },
-    "category.slovenia": {
-        "text": "स्लोवेनिया",
-        "translationContext": "Display name for the Slovenia news category"
-    },
-    "category.southAfrica": {
-        "text": "South Africa",
-        "translationContext": "Display name for the South Africa news category"
-    },
-    "category.southKorea": {
-        "text": "दक्षिण कोरिया",
-        "translationContext": "Display name for the South Korea news category"
-    },
-    "category.spain": {
-        "text": "स्पेन",
-        "translationContext": "Display name for the Spain news category"
-    },
-    "category.sports": {
-        "text": "खेल",
-        "translationContext": "Display name for the Sports news category"
-    },
-    "category.sweden": {
-        "text": "स्वीडन",
-        "translationContext": "Display name for the Sweden news category"
-    },
-    "category.switzerland": {
-        "text": "Switzerland",
-        "translationContext": "Display name for the Switzerland news category"
-    },
-    "category.switzerlandDe": {
-        "text": "स्विट्जरलैंड (DE)",
-        "translationContext": "Display name for the Switzerland (DE) news category"
-    },
-    "category.technology": {
-        "text": "प्रौद्योगिकी",
-        "translationContext": "Display name for the Technology news category"
-    },
-    "category.thailand": {
-        "text": "थाईलैंड",
-        "translationContext": "Display name for the Thailand news category"
-    },
-    "category.theNetherlands": {
-        "text": "नीदरलैंड",
-        "translationContext": "Display name for the The Netherlands news category"
-    },
-    "category.todayInHistory": {
-        "text": "आज का इतिहास",
-        "translationContext": "Display name for the OnThisDay category"
-    },
-    "category.turkey": {
-        "text": "Turkey",
-        "translationContext": "Display name for the Turkey news category"
-    },
-    "category.uk": {
-        "text": "यूके",
-        "translationContext": "Display name for the UK news category"
-    },
-    "category.ukraine": {
-        "text": "यूक्रेन",
-        "translationContext": "Display name for the Ukraine news category"
-    },
-    "category.usa": {
-        "text": "संयुक्त राज्य अमेरिका",
-        "translationContext": "Display name for the USA news category"
-    },
-    "category.usaAlabama": {
-        "text": "USA | Alabama",
-        "translationContext": "Display name for the USA Alabama news category"
-    },
-    "category.usaAlaska": {
-        "text": "USA | Alaska",
-        "translationContext": "Display name for the USA Alaska news category"
-    },
-    "category.usaArizona": {
-        "text": "USA | Arizona",
-        "translationContext": "Display name for the USA Arizona news category"
-    },
-    "category.usaArkansas": {
-        "text": "USA | Arkansas",
-        "translationContext": "Display name for the USA Arkansas news category"
-    },
-    "category.usaCalifornia": {
-        "text": "USA | California",
-        "translationContext": "Display name for the USA California news category"
-    },
-    "category.usaColorado": {
-        "text": "USA | Colorado",
-        "translationContext": "Display name for the USA Colorado news category"
-    },
-    "category.usaConnecticut": {
-        "text": "USA | Connecticut",
-        "translationContext": "Display name for the USA Connecticut news category"
-    },
-    "category.usaDelaware": {
-        "text": "USA | Delaware",
-        "translationContext": "Display name for the USA Delaware news category"
-    },
-    "category.usaFlorida": {
-        "text": "USA | Florida",
-        "translationContext": "Display name for the USA Florida news category"
-    },
-    "category.usaGeorgia": {
-        "text": "USA | Georgia",
-        "translationContext": "Display name for the USA Georgia news category"
-    },
-    "category.usaHawaii": {
-        "text": "USA | Hawaii",
-        "translationContext": "Display name for the USA Hawaii news category"
-    },
-    "category.usaIdaho": {
-        "text": "USA | Idaho",
-        "translationContext": "Display name for the USA Idaho news category"
-    },
-    "category.usaIllinois": {
-        "text": "USA | Illinois",
-        "translationContext": "Display name for the USA Illinois news category"
-    },
-    "category.usaIndiana": {
-        "text": "USA | Indiana",
-        "translationContext": "Display name for the USA Indiana news category"
-    },
-    "category.usaIowa": {
-        "text": "USA | Iowa",
-        "translationContext": "Display name for the USA Iowa news category"
-    },
-    "category.usaKansas": {
-        "text": "USA | Kansas",
-        "translationContext": "Display name for the USA Kansas news category"
-    },
-    "category.usaKentucky": {
-        "text": "USA | Kentucky",
-        "translationContext": "Display name for the USA Kentucky news category"
-    },
-    "category.usaLouisiana": {
-        "text": "USA | Louisiana",
-        "translationContext": "Display name for the USA Louisiana news category"
-    },
-    "category.usaMaine": {
-        "text": "USA | Maine",
-        "translationContext": "Display name for the USA Maine news category"
-    },
-    "category.usaMaryland": {
-        "text": "USA | Maryland",
-        "translationContext": "Display name for the USA Maryland news category"
-    },
-    "category.usaMassachusetts": {
-        "text": "USA | Massachusetts",
-        "translationContext": "Display name for the USA Massachusetts news category"
-    },
-    "category.usaMichigan": {
-        "text": "USA | Michigan",
-        "translationContext": "Display name for the USA Michigan news category"
-    },
-    "category.usaMinnesota": {
-        "text": "USA | Minnesota",
-        "translationContext": "Display name for the USA Minnesota news category"
-    },
-    "category.usaMississippi": {
-        "text": "USA | Mississippi",
-        "translationContext": "Display name for the USA Mississippi news category"
-    },
-    "category.usaMissouri": {
-        "text": "USA | Missouri",
-        "translationContext": "Display name for the USA Missouri news category"
-    },
-    "category.usaMontana": {
-        "text": "USA | Montana",
-        "translationContext": "Display name for the USA Montana news category"
-    },
-    "category.usaNebraska": {
-        "text": "USA | Nebraska",
-        "translationContext": "Display name for the USA Nebraska news category"
-    },
-    "category.usaNevada": {
-        "text": "USA | Nevada",
-        "translationContext": "Display name for the USA Nevada news category"
-    },
-    "category.usaNewHampshire": {
-        "text": "USA | New Hampshire",
-        "translationContext": "Display name for the USA New Hampshire news category"
-    },
-    "category.usaNewJersey": {
-        "text": "USA | New Jersey",
-        "translationContext": "Display name for the USA New Jersey news category"
-    },
-    "category.usaNewMexico": {
-        "text": "USA | New Mexico",
-        "translationContext": "Display name for the USA New Mexico news category"
-    },
-    "category.usaNewYork": {
-        "text": "USA | New York",
-        "translationContext": "Display name for the USA New York news category"
-    },
-    "category.usaNorthCarolina": {
-        "text": "USA | North Carolina",
-        "translationContext": "Display name for the USA North Carolina news category"
-    },
-    "category.usaNorthDakota": {
-        "text": "USA | North Dakota",
-        "translationContext": "Display name for the USA North Dakota news category"
-    },
-    "category.usaOhio": {
-        "text": "USA | Ohio",
-        "translationContext": "Display name for the USA Ohio news category"
-    },
-    "category.usaOklahoma": {
-        "text": "USA | Oklahoma",
-        "translationContext": "Display name for the USA Oklahoma news category"
-    },
-    "category.usaOregon": {
-        "text": "USA | Oregon",
-        "translationContext": "Display name for the USA Oregon news category"
-    },
-    "category.usaPennsylvania": {
-        "text": "USA | Pennsylvania",
-        "translationContext": "Display name for the USA Pennsylvania news category"
-    },
-    "category.usaRhodeIsland": {
-        "text": "USA | Rhode Island",
-        "translationContext": "Display name for the USA Rhode Island news category"
-    },
-    "category.usaSouthCarolina": {
-        "text": "USA | South Carolina",
-        "translationContext": "Display name for the USA South Carolina news category"
-    },
-    "category.usaSouthDakota": {
-        "text": "USA | South Dakota",
-        "translationContext": "Display name for the USA South Dakota news category"
-    },
-    "category.usaTennessee": {
-        "text": "USA | Tennessee",
-        "translationContext": "Display name for the USA Tennessee news category"
-    },
-    "category.usaTexas": {
-        "text": "USA | Texas",
-        "translationContext": "Display name for the USA Texas news category"
-    },
-    "category.usaUtah": {
-        "text": "USA | Utah",
-        "translationContext": "Display name for the USA Utah news category"
-    },
-    "category.usaVermont": {
-        "text": "यूएसए | वर्मोंट",
-        "translationContext": "Display name for the USA | Vermont news category"
-    },
-    "category.usaVirginia": {
-        "text": "यूएसए | वर्जीनिया",
-        "translationContext": "Display name for the USA | Virginia news category"
-    },
-    "category.usaWashington": {
-        "text": "USA | Washington",
-        "translationContext": "Display name for the USA Washington news category"
-    },
-    "category.usaWestVirginia": {
-        "text": "USA | West Virginia",
-        "translationContext": "Display name for the USA West Virginia news category"
-    },
-    "category.usaWisconsin": {
-        "text": "USA | Wisconsin",
-        "translationContext": "Display name for the USA Wisconsin news category"
-    },
-    "category.usaWyoming": {
-        "text": "USA | Wyoming",
-        "translationContext": "Display name for the USA Wyoming news category"
-    },
-    "category.vietnam": {
-        "text": "Vietnam",
-        "translationContext": "Display name for the Vietnam news category"
-    },
-    "category.world": {
-        "text": "विश्व",
-        "translationContext": "Display name for the World news category"
-    },
-    "citation.commonKnowledge.description": {
-        "text": "यह जानकारी सामान्य ज्ञान है जो किसी विशिष्ट समाचार स्रोत से नहीं ली गई है, लेकिन कहानी के संदर्भ और पूर्णता के लिए शामिल की गई है।",
-        "translationContext": "Description explaining what common knowledge citations are"
-    },
-    "citation.commonKnowledge.title": {
-        "text": "सामान्य ज्ञान",
-        "translationContext": "Title for common knowledge citations marked with [*]"
-    },
-    "citation.source": {
-        "text": "स्रोत:",
-        "translationContext": "Label shown before a single citation source"
-    },
-    "citation.sources": {
-        "text": "स्रोत:",
-        "translationContext": "Label shown before multiple citation sources"
-    },
-    "common.back": {
-        "text": "वापस",
-        "translationContext": "Back button text"
-    },
-    "common.cancel": {
-        "text": "रद्द करें",
-        "translationContext": "Cancel button text"
-    },
-    "common.close": {
-        "text": "बंद करें",
-        "translationContext": "Close button text"
-    },
-    "common.reset": {
-        "text": "रीसेट करें",
-        "translationContext": "Reset button text"
-    },
-    "contentFilter.adjustFilters": {
-        "text": "फ़िल्टर समायोजित करें",
-        "translationContext": "Button to go to settings and adjust content filters"
-    },
-    "contentFilter.allStoriesFiltered": {
-        "text": "इस श्रेणी की सभी कहानियों को फ़िल्टर कर दिया गया था",
-        "translationContext": "Title when all stories in a category are filtered out"
-    },
-    "contentFilter.allStoriesFilteredDescription": {
-        "text": "आपके सामग्री फ़िल्टर ने आज इस श्रेणी की सभी कहानियों को छिपा दिया है।",
-        "translationContext": "Description when all stories are filtered, explaining why"
-    },
-    "contentFilter.clickToReveal": {
-        "text": "कहानी दिखाने के लिए क्लिक करें",
-        "translationContext": "Instruction to reveal filtered story"
-    },
-    "contentFilter.disableCategory": {
-        "text": "श्रेणी अक्षम करें",
-        "translationContext": "Button to go to settings and disable this news category"
-    },
-    "contentFilter.filteredBecause": {
-        "text": "फ़िल्टर के कारण छिपाया गया:",
-        "translationContext": "Short message explaining why story is filtered"
-    },
-    "contentFilter.hiddenStory": {
-        "text": "यह कहानी छिपाई गई थी क्योंकि यह आपके सामग्री फ़िल्टर से मेल खाती है:",
-        "translationContext": "Message shown when a story is filtered"
-    },
-    "contentFilter.showStory": {
-        "text": "कहानी दिखाएँ",
-        "translationContext": "Button to reveal a filtered story"
-    },
-    "contentFilter.storiesFiltered": {
-        "text": "{{count}} कहानियाँ फ़िल्टर की गईं",
-        "translationContext": "Message showing multiple stories are filtered"
-    },
-    "contentFilter.storiesHidden": {
-        "text": "{{count}} कहानियाँ छिपी हुई हैं",
-        "translationContext": "Message showing multiple stories are hidden"
-    },
-    "contentFilter.storyFiltered": {
-        "text": "{{count}} कहानी फ़िल्टर की गई",
-        "translationContext": "Message showing 1 story is filtered"
-    },
-    "contentFilter.storyHidden": {
-        "text": "{{count}} कहानी छिपी हुई",
-        "translationContext": "Message showing 1 story is hidden"
-    },
-    "date.format": {
-        "text": "{{weekday}}, {{month}} {{day}}",
-        "translationContext": "Format for displaying dates. {{weekday}} will be replaced with the day of the week, {{month}} with the month name, and {{day}} with the day number."
-    },
-    "footer.about": {
-        "text": "काइट के बारे में",
-        "translationContext": "Link text for about page"
-    },
-    "footer.aboutMobile": {
-        "text": "जानकारी",
-        "translationContext": "Shorter link text for about page on mobile devices"
-    },
-    "footer.contribute": {
-        "text": "योगदान करें",
-        "translationContext": "Link text for contributing to the project"
-    },
-    "footer.rssFeed": {
-        "text": "आरएसएस फ़ीड",
-        "translationContext": "Link text for RSS feed"
-    },
-    "footer.rssFeedMobile": {
-        "text": "आरएसएस",
-        "translationContext": "Shorter link text for RSS feed on mobile devices"
-    },
-    "header.fontSize": {
-        "text": "फ़ॉन्ट आकार",
-        "translationContext": "Tooltip and aria-label for the font size adjustment button in the header"
-    },
-    "header.settings": {
-        "text": "सेटिंग्स",
-        "translationContext": "Title attribute for the settings button"
-    },
-    "header.timeTravel": {
-        "text": "समय यात्रा",
-        "translationContext": "Tooltip for time travel button in header"
-    },
-    "loading.categories": {
-        "text": "श्रेणियाँ लोड हो रही हैं...",
-        "translationContext": "Loading message shown when fetching news categories"
-    },
-    "loading.chaosIndex": {
-        "text": "अव्यवस्था सूचकांक की गणना हो रही है...",
-        "translationContext": "Loading message shown when calculating the world chaos index"
-    },
-    "loading.default": {
-        "text": "लोड हो रहा है...",
-        "translationContext": "Default loading message"
-    },
-    "loading.error": {
-        "text": "डेटा लोड करने में त्रुटि",
-        "translationContext": "Loading message shown when an error occurs"
-    },
-    "loading.errorFallback": {
-        "text": "सीमित कार्यक्षमता के साथ जारी है...",
-        "translationContext": "Message shown when there's an error but the app continues with fallback data"
-    },
-    "loading.finishing": {
-        "text": "लगभग पूरा हो गया है...",
-        "translationContext": "Loading message shown when nearly complete"
-    },
-    "loading.images": {
-        "text": "चित्र प्रीलोड हो रहे हैं...",
-        "translationContext": "Loading message shown when preloading story images"
-    },
-    "loading.initializing": {
-        "text": "प्रारंभ हो रहा है...",
-        "translationContext": "Loading message shown when the app is starting up"
-    },
-    "loading.ready": {
-        "text": "तैयार!",
-        "translationContext": "Loading message shown when loading is complete"
-    },
-    "loading.stories": {
-        "text": "कहानियां लोड हो रही हैं...",
-        "translationContext": "Loading message shown when fetching news stories"
-    },
-    "onboarding.button.back": {
-        "text": "← वापस",
-        "translationContext": "Back button text"
-    },
-    "onboarding.button.getStarted": {
-        "text": "शुरू करें",
-        "translationContext": "Get started button text"
-    },
-    "onboarding.button.next": {
-        "text": "आगे बढ़ें →",
-        "translationContext": "Next button text"
-    },
-    "onboarding.button.skip": {
-        "text": "छोड़ें",
-        "translationContext": "Skip button text"
-    },
-    "onboarding.categories.subtitle": {
-        "text": "कागी न्यूज़ दुनिया भर से समाचारों का अनुसरण करता है, जिसमें राष्ट्रीय, क्षेत्रीय और स्थानीय घटनाओं को शामिल किया जाता है। उन श्रेणियों का चयन करें जिनमें आपकी रुचि है:",
-        "translationContext": "Subtitle for onboarding step 2"
-    },
-    "onboarding.categories.title": {
-        "text": "विषय चुनें",
-        "translationContext": "Title for onboarding step 2"
-    },
-    "onboarding.sections.subtitle": {
-        "text": "कागी समाचार लेखों में सारांश, मुख्य बिंदु, समय-सीमा और विभिन्न दृष्टिकोण जैसे विभिन्न खंड शामिल हैं। आप इन खंडों को खींचकर पुनर्व्यवस्थित कर सकते हैं या अपनी पढ़ने की प्राथमिकताओं के आधार पर उन्हें पूरी तरह से अक्षम कर सकते हैं।",
-        "translationContext": "Subtitle for onboarding step 3"
-    },
-    "onboarding.sections.title": {
-        "text": "सामग्री प्राथमिकताएँ",
-        "translationContext": "Title for onboarding step 3"
-    },
-    "onboarding.welcome.subtitle": {
-        "text": "आइए आपके समाचार अनुभव को निजीकृत करें। सबसे पहले, अपनी प्राथमिकताएं चुनें:",
-        "translationContext": "Subtitle for onboarding step 1"
-    },
-    "onboarding.welcome.title": {
-        "text": "कागी न्यूज़ में आपका स्वागत है!",
-        "translationContext": "Title for onboarding step 1"
-    },
-    "onthisday.events": {
-        "text": "घटनाएँ",
-        "translationContext": "Title for the events section in Today in History"
-    },
-    "onthisday.people": {
-        "text": "लोग",
-        "translationContext": "Title for the people section in Today in History"
-    },
-    "quote.format.authorSaid": {
-        "text": "{{author}} ने कहा",
-        "translationContext": "Quote author prefix. {author} is the person who said the quote"
-    },
-    "quote.format.full": {
-        "text": "{{attribution}} में, {{author}} ने कहा, \"{{quote}}\"",
-        "translationContext": "Full quote format with attribution and author. {attribution} is the source/publication, {author} is the person, {quote} is the actual quote"
-    },
-    "quote.format.inAttribution": {
-        "text": "{{attribution}} में",
-        "translationContext": "Quote attribution prefix for the source/publication only. {attribution} is the source/publication"
-    },
-    "section.actionItems": {
-        "text": "कार्य मद",
-        "translationContext": "Title for the action items section"
-    },
-    "section.businessAngle": {
-        "text": "व्यवसाय का दृष्टिकोण",
-        "translationContext": "Title for the business angle section"
-    },
-    "section.designPrinciples": {
-        "text": "डिज़ाइन सिद्धांत",
-        "translationContext": "Title for the design principles section"
-    },
-    "section.didYouKnow": {
-        "text": "क्या आप जानते हैं?",
-        "translationContext": "Title for the Did You Know section"
-    },
-    "section.gameplayMechanics": {
-        "text": "गेमप्ले यांत्रिकी",
-        "translationContext": "Title for the gameplay mechanics section"
-    },
-    "section.highlights": {
-        "text": "मुख्य अंश",
-        "translationContext": "Title for the highlights section"
-    },
-    "section.historicalBackground": {
-        "text": "ऐतिहासिक पृष्ठभूमि",
-        "translationContext": "Title for the historical background section"
-    },
-    "section.humanitarianImpact": {
-        "text": "मानवीय प्रभाव",
-        "translationContext": "Title for the humanitarian impact section"
-    },
-    "section.industryImpact": {
-        "text": "उद्योग पर प्रभाव",
-        "translationContext": "Title for the industry impact section"
-    },
-    "section.internationalReactions": {
-        "text": "अंतर्राष्ट्रीय प्रतिक्रियाएँ",
-        "translationContext": "Title for the international reactions section"
-    },
-    "section.leagueStandings": {
-        "text": "लीग स्टैंडिंग",
-        "translationContext": "Title for the league standings section"
-    },
-    "section.otherDetails": {
-        "text": "अन्य विवरण",
-        "translationContext": "Title for the other details section in article settings"
-    },
-    "section.performanceStatistics": {
-        "text": "प्रदर्शन के आँकड़े",
-        "translationContext": "Title for the performance statistics section"
-    },
-    "section.perspectives": {
-        "text": "परिप्रेक्ष्य",
-        "translationContext": "Title for the perspectives section"
-    },
-    "section.primaryImage": {
-        "text": "प्राथमिक छवि",
-        "translationContext": "Title for the primary image section in article settings"
-    },
-    "section.quotes": {
-        "text": "उद्धरण",
-        "translationContext": "Title for the quotes section in article settings"
-    },
-    "section.scientificSignificance": {
-        "text": "वैज्ञानिक महत्व",
-        "translationContext": "Title for the scientific significance section"
-    },
-    "section.secondaryImage": {
-        "text": "माध्यमिक छवि",
-        "translationContext": "Title for the secondary image section in article settings"
-    },
-    "section.sources": {
-        "text": "स्रोत",
-        "translationContext": "Title for the sources section"
-    },
-    "section.suggestedQnA": {
-        "text": "त्वरित प्रश्न",
-        "translationContext": "Title for the suggested Q&A section"
-    },
-    "section.summary": {
-        "text": "सारांश",
-        "translationContext": "Title for the summary section in article settings"
-    },
-    "section.technicalDetails": {
-        "text": "तकनीकी जानकारी",
-        "translationContext": "Title for the technical details section"
-    },
-    "section.technicalSpecifications": {
-        "text": "तकनीकी विनिर्देश",
-        "translationContext": "Title for the technical specifications section"
-    },
-    "section.timeline": {
-        "text": "घटनाओं का घटनाक्रम",
-        "translationContext": "Title for the timeline section"
-    },
-    "section.travelAdvisory": {
-        "text": "यात्रा संबंधी परामर्श",
-        "translationContext": "Title for the travel advisory section"
-    },
-    "section.userExperienceImpact": {
-        "text": "उपयोगकर्ता अनुभव का प्रभाव",
-        "translationContext": "Title for the user experience impact section"
-    },
-    "settings.aboutKite.button": {
-        "text": "काइट के बारे में",
-        "translationContext": "Text for the About Kagi News button"
-    },
-    "settings.categories.contribute": {
-        "text": "+ श्रेणियाँ योगदान करें",
-        "translationContext": "Link text for contributing categories"
-    },
-    "settings.categories.disable": {
-        "text": "अक्षम करने के लिए क्लिक करें, पुनः व्यवस्थित करने के लिए खींचें",
-        "translationContext": "Tooltip for enabled category items that can be disabled"
-    },
-    "settings.categories.disabled": {
-        "text": "अक्षम श्रेणियाँ",
-        "translationContext": "Title for the disabled (hidden) categories section"
-    },
-    "settings.categories.enable": {
-        "text": "सक्षम करने के लिए क्लिक करें, पुनः व्यवस्थित करने के लिए खींचें",
-        "translationContext": "Tooltip for disabled category items that can be enabled"
-    },
-    "settings.categories.enabled": {
-        "text": "सक्रिय श्रेणियाँ",
-        "translationContext": "Title for the enabled categories section"
-    },
-    "settings.categories.filterByType": {
-        "text": "प्रकार के अनुसार फ़िल्टर करें...",
-        "translationContext": "Placeholder text for category type filter dropdown"
-    },
-    "settings.categories.instructions": {
-        "text": "पुनः क्रमित करने के लिए खींचें, या सक्षम/अक्षम करने के लिए क्लिक करें। श्रेणियों को ले जाने के लिए अनुभागों के बीच खींचें।",
-        "translationContext": "Instructions for managing categories"
-    },
-    "settings.categories.lastCategory": {
-        "text": "अंतिम श्रेणी को अक्षम नहीं किया जा सकता",
-        "translationContext": "Tooltip shown when trying to disable the last enabled category"
-    },
-    "settings.categories.noDisabled": {
-        "text": "सभी श्रेणियां सक्षम",
-        "translationContext": "Shows when no categories are disabled"
-    },
-    "settings.categories.types.all": {
-        "text": "सभी प्रकार",
-        "translationContext": "Option to show all category types in filter"
-    },
-    "settings.categories.types.city": {
-        "text": "शहर",
-        "translationContext": "Label for city category type"
-    },
-    "settings.categories.types.core": {
-        "text": "मुख्य",
-        "translationContext": "Label for core category type (main news categories)"
-    },
-    "settings.categories.types.country": {
-        "text": "देश",
-        "translationContext": "Label for country category type"
-    },
-    "settings.categories.types.other": {
-        "text": "अन्य",
-        "translationContext": "Label for categories without a specific type"
-    },
-    "settings.categories.types.region": {
-        "text": "क्षेत्र",
-        "translationContext": "Label for region category type"
-    },
-    "settings.categories.types.topic": {
-        "text": "विषय",
-        "translationContext": "Label for topic category type"
-    },
-    "settings.categoryHeaderPosition.bottom": {
-        "text": "नीचे",
-        "translationContext": "Option for bottom position"
-    },
-    "settings.categoryHeaderPosition.description": {
-        "text": "मोबाइल उपकरणों पर श्रेणी नेविगेशन बार कहाँ प्रदर्शित करना है, चुनें।",
-        "translationContext": "Description for category header position setting"
-    },
-    "settings.categoryHeaderPosition.label": {
-        "text": "श्रेणी शीर्ष लेख स्थिति",
-        "translationContext": "Label for category header position setting"
-    },
-    "settings.categoryHeaderPosition.top": {
-        "text": "शीर्ष",
-        "translationContext": "Option for top position"
-    },
-    "settings.contentFilter.activeFilters": {
-        "text": "सक्रिय फ़िल्टर",
-        "translationContext": "Label for current active filters list"
-    },
-    "settings.contentFilter.clearAll": {
-        "text": "सभी फ़िल्टर हटाएँ",
-        "translationContext": "Button to clear all filters"
-    },
-    "settings.contentFilter.contribute": {
-        "text": "और फ़िल्टर जोड़ें",
-        "translationContext": "Link to contribute new filter presets on GitHub"
-    },
-    "settings.contentFilter.customKeywords": {
-        "text": "कस्टम",
-        "translationContext": "Label for custom keywords that are not from presets"
-    },
-    "settings.contentFilter.export": {
-        "text": "सेटिंग्स निर्यात करें",
-        "translationContext": "Button to export filter settings to a file"
-    },
-    "settings.contentFilter.exportImport.description": {
-        "text": "अपनी फ़िल्टर सेटिंग को किसी फ़ाइल में निर्यात करें या पिछले बैकअप से आयात करें",
-        "translationContext": "Description of export/import functionality"
-    },
-    "settings.contentFilter.exportImport.title": {
-        "text": "बैकअप और पुनर्स्थापना",
-        "translationContext": "Section title for export/import functionality"
-    },
-    "settings.contentFilter.import": {
-        "text": "सेटिंग्स आयात करें",
-        "translationContext": "Button to import filter settings from a file"
-    },
-    "settings.contentFilter.importConfirm.action": {
-        "text": "आयात करें",
-        "translationContext": "Button to confirm import action"
-    },
-    "settings.contentFilter.importConfirm.backup": {
-        "text": "युक्ति: बैकअप बनाने के लिए पहले अपनी वर्तमान सेटिंग्स निर्यात करें।",
-        "translationContext": "Tip about creating a backup before importing"
-    },
-    "settings.contentFilter.importConfirm.title": {
-        "text": "सेटिंग्स आयात करें?",
-        "translationContext": "Title of import confirmation dialog"
-    },
-    "settings.contentFilter.importConfirm.versionNewer": {
-        "text": "यह कॉन्फ़िगरेशन नए वर्ज़न का है। कुछ सेटिंग्स सही से काम नहीं कर सकती हैं।",
-        "translationContext": "Warning when importing from a newer version"
-    },
-    "settings.contentFilter.importConfirm.versionOlder": {
-        "text": "यह कॉन्फ़िगरेशन पुराने संस्करण से है। कुछ सुविधाएँ गायब हो सकती हैं।",
-        "translationContext": "Warning when importing from an older version"
-    },
-    "settings.contentFilter.importConfirm.warning": {
-        "text": "यह सभी मौजूदा फ़िल्टर सेटिंग्स को बदल देगा।",
-        "translationContext": "Warning message about overwriting current settings"
-    },
-    "settings.contentFilter.importError.invalidFormat": {
-        "text": "अमान्य कॉन्फ़िगरेशन प्रारूप",
-        "translationContext": "Error when import file is not valid JSON"
-    },
-    "settings.contentFilter.importError.parseFailed": {
-        "text": "कॉन्फ़िगरेशन फ़ाइल को पार्स करने में विफल।",
-        "translationContext": "Error when import file cannot be parsed"
-    },
-    "settings.contentFilter.keywords.description": {
-        "text": "फ़िल्टर करने के लिए अपने कीवर्ड जोड़ें, कॉमा से अलग करें",
-        "translationContext": "Description for keywords input"
-    },
-    "settings.contentFilter.keywords.label": {
-        "text": "कस्टम कीवर्ड",
-        "translationContext": "Label for keywords input"
-    },
-    "settings.contentFilter.keywords.placeholder": {
-        "text": "उदा. हस्ती का नाम, विषय",
-        "translationContext": "Placeholder for keywords input"
-    },
-    "settings.contentFilter.mode.blur": {
-        "text": "चेतावनी के साथ धुंधला करें",
-        "translationContext": "Option to blur filtered content"
-    },
-    "settings.contentFilter.mode.blurDescription": {
-        "text": "कहानियां धुंधली हैं और क्लिक करने पर सामने आ सकती हैं",
-        "translationContext": "Description for blur mode"
-    },
-    "settings.contentFilter.mode.description": {
-        "text": "फ़िल्टर की गई सामग्री को कैसे हैंडल किया जाए, चुनें",
-        "translationContext": "Description for filter mode selection"
-    },
-    "settings.contentFilter.mode.hide": {
-        "text": "पूरी तरह छिपाएँ",
-        "translationContext": "Option to hide filtered content completely"
-    },
-    "settings.contentFilter.mode.hideDescription": {
-        "text": "फ़िल्टर की गई कहानियों को दृश्य से हटा दिया गया है",
-        "translationContext": "Description for hide mode"
-    },
-    "settings.contentFilter.mode.label": {
-        "text": "फ़िल्टर मोड",
-        "translationContext": "Label for filter mode selection"
-    },
-    "settings.contentFilter.preset.ai": {
-        "text": "एआई और टेक प्रचार",
-        "translationContext": "Name of AI preset filter"
-    },
-    "settings.contentFilter.preset.ai.tooltip": {
-        "text": "एआई की चर्चा, एलएलएम समाचार और तकनीकी सफलताओं की घोषणाओं को फ़िल्टर करता है",
-        "translationContext": "Tooltip description for AI preset"
-    },
-    "settings.contentFilter.preset.celebrities": {
-        "text": "सेलिब्रिटी समाचार",
-        "translationContext": "Name of celebrities preset filter"
-    },
-    "settings.contentFilter.preset.celebrities.tooltip": {
-        "text": "सेलिब्रिटी गॉसिप, मनोरंजन समाचार और टैब्लॉइड सामग्री को फ़िल्टर करता है",
-        "translationContext": "Tooltip description for celebrities preset"
-    },
-    "settings.contentFilter.preset.climate": {
-        "text": "जलवायु चिंता",
-        "translationContext": "Name of climate preset filter"
-    },
-    "settings.contentFilter.preset.climate.tooltip": {
-        "text": "जलवायु परिवर्तन समाचार और पर्यावरणीय संकट कवरेज को फ़िल्टर करता है",
-        "translationContext": "Tooltip description for climate preset"
-    },
-    "settings.contentFilter.preset.conflicts": {
-        "text": "संघर्ष",
-        "translationContext": "Name of conflicts preset filter"
-    },
-    "settings.contentFilter.preset.conflicts.tooltip": {
-        "text": "विभिन्न क्षेत्रों से युद्ध, सैन्य संघर्षों और संबंधित हिंसा को फ़िल्टर करता है",
-        "translationContext": "Tooltip description for conflicts preset"
-    },
-    "settings.contentFilter.preset.crypto": {
-        "text": "क्रिप्टोकरेंसी",
-        "translationContext": "Name of cryptocurrency preset filter"
-    },
-    "settings.contentFilter.preset.crypto.tooltip": {
-        "text": "क्रिप्टोकरेंसी, ब्लॉकचेन और वेब3 से संबंधित सामग्री को फ़िल्टर करता है",
-        "translationContext": "Tooltip description for crypto preset"
-    },
-    "settings.contentFilter.preset.health": {
-        "text": "स्वास्थ्य संकट",
-        "translationContext": "Name of health crises preset filter"
-    },
-    "settings.contentFilter.preset.health.tooltip": {
-        "text": "महामारी संबंधी समाचार, वायरस के प्रकोप और संबंधित स्वास्थ्य आपातकालीन सामग्री को फ़िल्टर करता है",
-        "translationContext": "Tooltip description for health preset"
-    },
-    "settings.contentFilter.preset.politics": {
-        "text": "राजनीति",
-        "translationContext": "Name of politics preset filter"
-    },
-    "settings.contentFilter.preset.politics.tooltip": {
-        "text": "चुनावों, राजनीतिक दलों और सरकारी अधिकारियों सहित राजनीतिक सामग्री को फ़िल्टर करता है",
-        "translationContext": "Tooltip description for politics preset"
-    },
-    "settings.contentFilter.preset.sports": {
-        "text": "खेल",
-        "translationContext": "Name of sports preset filter"
-    },
-    "settings.contentFilter.preset.sports.tooltip": {
-        "text": "खेल समाचारों, स्कोर और एथलेटिक प्रतियोगिताओं की कवरेज को फ़िल्टर करता है",
-        "translationContext": "Tooltip description for sports preset"
-    },
-    "settings.contentFilter.preset.tabloid": {
-        "text": "टैब्लॉइड स्रोत",
-        "translationContext": "Name of tabloid sources preset filter"
-    },
-    "settings.contentFilter.preset.tabloid.tooltip": {
-        "text": "टैब्लॉइड और सनसनीखेज समाचार स्रोतों से कहानियों को फ़िल्टर करता है",
-        "translationContext": "Tooltip description for tabloid preset"
-    },
-    "settings.contentFilter.preset.violence": {
-        "text": "हिंसा",
-        "translationContext": "Name of violence preset filter"
-    },
-    "settings.contentFilter.preset.violence.tooltip": {
-        "text": "ग्राफिक हिंसा, गोलीबारी और मृत्यु से संबंधित सामग्री को फ़िल्टर करता है",
-        "translationContext": "Tooltip description for violence preset"
-    },
-    "settings.contentFilter.presets.description": {
-        "text": "सामान्य विषयों को तुरंत छिपाने के लिए एक या अधिक प्रीसेट फ़िल्टर चुनें",
-        "translationContext": "Description for filter presets section"
-    },
-    "settings.contentFilter.presets.label": {
-        "text": "फ़िल्टर प्रीसेट",
-        "translationContext": "Label for filter presets section"
-    },
-    "settings.contentFilter.reset": {
-        "text": "डिफ़ॉल्ट पर रीसेट करें",
-        "translationContext": "Button to reset content filter to defaults"
-    },
-    "settings.contentFilter.resetModal.description": {
-        "text": "इससे सभी फ़िल्टर हट जाएँगे और सेटिंग्स डिफ़ॉल्ट पर रीसेट हो जाएँगी।",
-        "translationContext": "Description for reset confirmation modal"
-    },
-    "settings.contentFilter.resetModal.title": {
-        "text": "सामग्री फ़िल्टर रीसेट करें?",
-        "translationContext": "Title for reset confirmation modal"
-    },
-    "settings.contentFilter.scope.all": {
-        "text": "सभी सामग्री",
-        "translationContext": "Option to filter by all content"
-    },
-    "settings.contentFilter.scope.description": {
-        "text": "कीवर्ड के लिए कहानियों के किन हिस्सों की जाँच करनी है चुनें",
-        "translationContext": "Description for filter scope selection"
-    },
-    "settings.contentFilter.scope.label": {
-        "text": "फ़िल्टर का दायरा",
-        "translationContext": "Label for filter scope selection"
-    },
-    "settings.contentFilter.scope.summary": {
-        "text": "शीर्षक और सारांश",
-        "translationContext": "Option to filter by title and summary"
-    },
-    "settings.contentFilter.scope.title": {
-        "text": "केवल शीर्षक",
-        "translationContext": "Option to filter by title only"
-    },
-    "settings.contentFilter.showCount.description": {
-        "text": "प्रत्येक श्रेणी में फ़िल्टर की गई कहानियों की संख्या प्रदर्शित करें",
-        "translationContext": "Description for show filtered count toggle"
-    },
-    "settings.contentFilter.showCount.label": {
-        "text": "फ़िल्टर की गई संख्या दिखाएँ",
-        "translationContext": "Label for show filtered count toggle"
-    },
-    "settings.contentFilter.tab.description": {
-        "text": "उन विषयों को फ़िल्टर करके अपनी न्यूज़ फ़ीड को अनुकूलित करें जिन्हें आप नहीं देखना चाहते हैं। सामान्य फ़िल्टर के लिए प्रीसेट का उपयोग करें या अपने स्वयं के कस्टम कीवर्ड बनाएं।",
-        "translationContext": "Description shown at the top of content filter settings tab"
-    },
-    "settings.dataLanguage.label": {
-        "text": "सामग्री की भाषा",
-        "translationContext": "Label for the data/content language setting"
-    },
-    "settings.dataLanguage.tooltip": {
-        "text": "समाचारों को उनकी मूल स्रोत भाषा में तैयार किया जाता है, फिर अनुवाद किया जाता है। 'डिफ़ॉल्ट' कहानियों को बिना अनुवाद के उनकी मूल भाषाओं में दिखाता है।",
-        "translationContext": "Tooltip explaining how data language translation works"
-    },
-    "settings.experimental.articleIcons.description": {
-        "text": "सक्षम होने पर, दृश्य संदर्भ प्रदान करने के लिए लेखों के आगे छोटे आइकन प्रदर्शित किए जाएंगे।",
-        "translationContext": "Description for article icons setting"
-    },
-    "settings.experimental.articleIcons.label": {
-        "text": "लेखों के आगे आइकन दिखाएं",
-        "translationContext": "Label for article icons setting"
-    },
-    "settings.experimental.categoryIcons.description": {
-        "text": "सक्षम होने पर, विज़ुअल संदर्भ प्रदान करने के लिए श्रेणी लेबल के आगे छोटे आइकन प्रदर्शित किए जाएंगे।",
-        "translationContext": "Description for category icons setting"
-    },
-    "settings.experimental.categoryIcons.label": {
-        "text": "श्रेणी लेबल में आइकॉन दिखाएं",
-        "translationContext": "Label for category icons setting"
-    },
-    "settings.experimental.chaosIndex.description": {
-        "text": "वर्तमान घटनाओं के आधार पर वैश्विक स्थिरता का वैश्विक तापमान पठन प्रदर्शित करें।",
-        "translationContext": "Description for chaos index setting"
-    },
-    "settings.experimental.chaosIndex.label": {
-        "text": "विश्व तनाव सूचकांक दिखाएँ",
-        "translationContext": "Label for chaos index setting"
-    },
-    "settings.experimental.citations.description": {
-        "text": "यह दिखाने के लिए इनलाइन उद्धरण दिखाएं कि किन समाचार स्रोतों ने विशिष्ट जानकारी की रिपोर्ट की है।",
-        "translationContext": "Description for citations setting"
-    },
-    "settings.experimental.citations.label": {
-        "text": "स्रोत उद्धरण दिखाएँ",
-        "translationContext": "Label for citations setting"
-    },
-    "settings.experimental.disableCategorySwipe.description": {
-        "text": "जब सक्षम किया जाता है, तो मोबाइल उपकरणों पर श्रेणियां बदलने के लिए क्षैतिज स्वाइप करना अक्षम हो जाएगा।",
-        "translationContext": "Description for disable category swipe setting"
-    },
-    "settings.experimental.disableCategorySwipe.label": {
-        "text": "क्षैतिज श्रेणी स्वाइप अक्षम करें",
-        "translationContext": "Label for disable category swipe setting"
-    },
-    "settings.experimental.warning": {
-        "text": "ये प्रायोगिक सुविधाएँ हैं जिन्हें किसी भी समय बदला या हटाया जा सकता है।",
-        "translationContext": "Warning text for experimental features"
-    },
-    "settings.fontSize.label": {
-        "text": "फ़ॉन्ट आकार",
-        "translationContext": "Label for the font size setting"
-    },
-    "settings.fontSize.large": {
-        "text": "बड़ा",
-        "translationContext": "Option for large font size"
-    },
-    "settings.fontSize.normal": {
-        "text": "सामान्य",
-        "translationContext": "Option for normal font size"
-    },
-    "settings.fontSize.small": {
-        "text": "छोटा",
-        "translationContext": "Option for small font size"
-    },
-    "settings.fontSize.xl": {
-        "text": "अतिरिक्त बड़ा",
-        "translationContext": "Option for extra large font size"
-    },
-    "settings.fontSize.xs": {
-        "text": "अतिरिक्त छोटा",
-        "translationContext": "Option for extra small font size"
-    },
-    "settings.language.default": {
-        "text": "डिफ़ॉल्ट",
-        "translationContext": "Option for default language"
-    },
-    "settings.language.label": {
-        "text": "भाषा",
-        "translationContext": "Label for the language setting"
-    },
-    "settings.language.poweredBy": {
-        "text": "कागी ट्रांसलेट के साथ अनुवादित",
-        "translationContext": "Text for the Kagi Translate powered by link"
-    },
-    "settings.sections.instructions": {
-        "text": "अनुभागों को फिर से व्यवस्थित करने के लिए खींचें। सक्षम/अक्षम करने के लिए स्विच का उपयोग करें।",
-        "translationContext": "Instructions for managing article sections"
-    },
-    "settings.sections.orderReset": {
-        "text": "क्रम रीसेट किया गया!",
-        "translationContext": "Confirmation message shown after resetting section order"
-    },
-    "settings.sections.resetOrder": {
-        "text": "डिफ़ॉल्ट क्रम पर रीसेट करें",
-        "translationContext": "Button text to reset section order to defaults"
-    },
-    "settings.sections.sourcesRequired": {
-        "text": "पारदर्शिता और विश्वसनीयता बनाए रखने के लिए स्रोत हमेशा दिखाए जाते हैं",
-        "translationContext": "Tooltip explaining why sources section cannot be disabled"
-    },
-    "settings.sections.switch": {
-        "text": "सक्षम/अक्षम करें",
-        "translationContext": "Aria label for the enable/disable switch for sections"
-    },
-    "settings.sections.title": {
-        "text": "अनुच्छेद अनुभाग",
-        "translationContext": "Title for the article sections settings"
-    },
-    "settings.sections.toggleAll": {
-        "text": "सभी टॉगल करें",
-        "translationContext": "Button text to toggle all sections on/off at once"
-    },
-    "settings.shareLanguage.message": {
-        "text": "{{language}} में काइट न्यूज़ देखें - यह परिचय को छोड़ देगा और सीधे आपकी भाषा में लोड होगा!",
-        "translationContext": "Message to share with others, {{language}} will be replaced with the language name"
-    },
-    "settings.shareLanguage.success": {
-        "text": "लिंक क्लिपबोर्ड पर कॉपी हो गया!",
-        "translationContext": "Success message when link is copied"
-    },
-    "settings.storyCount.label": {
-        "text": "प्रदर्शित कहानियों की संख्या",
-        "translationContext": "Label for the story count setting"
-    },
-    "settings.storyExpandMode.always": {
-        "text": "हमेशा सभी को विस्तृत करें",
-        "translationContext": "Option to always expand all stories automatically"
-    },
-    "settings.storyExpandMode.description": {
-        "text": "चुनें कि कैटेगरी देखते समय कहानियां कैसे विस्तृत होती हैं",
-        "translationContext": "Description for story expand mode setting"
-    },
-    "settings.storyExpandMode.doubleClick": {
-        "text": "सभी को विस्तृत करने के लिए डबल-क्लिक करें",
-        "translationContext": "Option to expand all stories via double-click on category"
-    },
-    "settings.storyExpandMode.label": {
-        "text": "कहानी विस्तार मोड",
-        "translationContext": "Label for story expand mode setting"
-    },
-    "settings.storyExpandMode.never": {
-        "text": "कभी भी सभी को विस्तृत न करें",
-        "translationContext": "Option to disable bulk story expansion"
-    },
-    "settings.tabs.categories": {
-        "text": "श्रेणियाँ",
-        "translationContext": "Title for the categories settings tab"
-    },
-    "settings.tabs.contentFilter": {
-        "text": "सामग्री फ़िल्टर",
-        "translationContext": "Title for the content filter settings tab"
-    },
-    "settings.tabs.experimental": {
-        "text": "प्रायोगिक",
-        "translationContext": "Title for the experimental settings tab"
-    },
-    "settings.tabs.general": {
-        "text": "सामान्य",
-        "translationContext": "Title for the general settings tab"
-    },
-    "settings.tabs.sections": {
-        "text": "अनुभाग",
-        "translationContext": "Title for the sections settings tab"
-    },
-    "settings.theme.dark": {
-        "text": "गहरा",
-        "translationContext": "Option for dark theme"
-    },
-    "settings.theme.label": {
-        "text": "विषय",
-        "translationContext": "Label for the theme setting"
-    },
-    "settings.theme.light": {
-        "text": "हल्का",
-        "translationContext": "Option for light theme"
-    },
-    "settings.theme.system": {
-        "text": "सिस्टम",
-        "translationContext": "Option for system theme"
-    },
-    "settings.uiLanguage.label": {
-        "text": "इंटरफ़ेस भाषा",
-        "translationContext": "Label for the UI language setting"
-    },
-    "settings.uiLanguage.tooltip": {
-        "text": "बटनों, मेनू और इंटरफ़ेस टेक्स्ट की भाषा नियंत्रित करता है।",
-        "translationContext": "Tooltip explaining how UI language works"
-    },
-    "source.contribute.button": {
-        "text": "जानकारी योगदान करें",
-        "translationContext": "Button text for contributing source information"
-    },
-    "source.contribute.description": {
-        "text": "हमारे पास अभी इस समाचार स्रोत के बारे में विस्तृत जानकारी नहीं है। आपका योगदान मीडिया स्वामित्व और पूर्वाग्रह के बारे में अन्य लोगों को सूचित रहने में मदद कर सकता है।",
-        "translationContext": "Description for source contribution section"
-    },
-    "source.contribute.title": {
-        "text": "हमारे डेटाबेस को बेहतर बनाने में सहायता करें",
-        "translationContext": "Title for source contribution section"
-    },
-    "source.info.country": {
-        "text": "देश",
-        "translationContext": "Label for source country"
-    },
-    "source.info.description": {
-        "text": "विवरण",
-        "translationContext": "Label for source description"
-    },
-    "source.info.loading": {
-        "text": "स्रोत जानकारी लोड हो रही है...",
-        "translationContext": "Loading message shown while fetching source information"
-    },
-    "source.info.mediaClassification": {
-        "text": "मीडिया वर्गीकरण",
-        "translationContext": "Label for source media classification"
-    },
-    "source.info.notSpecified": {
-        "text": "निर्दिष्ट नहीं है",
-        "translationContext": "Text shown when information is not available"
-    },
-    "source.info.organization": {
-        "text": "संगठन",
-        "translationContext": "Label for source organization"
-    },
-    "source.info.owner": {
-        "text": "मालिक",
-        "translationContext": "Label for source owner"
-    },
-    "source.info.title": {
-        "text": "स्रोत जानकारी",
-        "translationContext": "Title for source information section"
-    },
-    "sources.article": {
-        "text": "{{count}} लेख",
-        "translationContext": "Shows singular article count from a source, {{count}} will be replaced with a number"
-    },
-    "sources.articles": {
-        "text": "{{count}} लेख",
-        "translationContext": "Shows the count of articles from a source, {{count}} will be replaced with a number"
-    },
-    "sources.showArticlesFrom": {
-        "text": "{{source}} से लेख दिखाएँ",
-        "translationContext": "Title/aria-label for the source button, {{source}} will be replaced with the source name"
-    },
-    "stats.newsToday": {
-        "text": "आज की {{count}} खबरें",
-        "translationContext": "Shows the count of news items today, {{count}} will be replaced with a number"
-    },
-    "stats.storiesRead": {
-        "text": "आपने {{count}} कहानियाँ पढ़ी हैं",
-        "translationContext": "Shows how many stories the user has read, {{count}} will be replaced with a number"
-    },
-    "stats.storyRead": {
-        "text": "आपने 1 कहानी पढ़ी है",
-        "translationContext": "Shows when the user has read exactly 1 story, {count} will be replaced with 1"
-    },
-    "stats.weekDay": {
-        "text": "सप्ताह {{{week}}}, दिन {{{day}}}",
-        "translationContext": "Shows the current week and day of the year, {{week}} and {{day}} will be replaced with numbers"
-    },
-    "stories.noStories": {
-        "text": "कुछ ग़लत हो गया, यहाँ कोई कहानियाँ नहीं हैं!",
-        "translationContext": "Message shown when no stories are found"
-    },
-    "time.updated.days": {
-        "text": "{{count}} दिन पहले अपडेट किया गया",
-        "translationContext": "Shown when content was updated multiple days ago, {{count}} will be replaced with the number of days"
-    },
-    "time.updated.hours": {
-        "text": "{{count}} घंटे पहले अपडेट किया गया",
-        "translationContext": "Shown when content was updated multiple hours ago, {{count}} will be replaced with the number of hours"
-    },
-    "time.updated.justNow": {
-        "text": "अभी अपडेट किया गया",
-        "translationContext": "Shown when content was updated very recently"
-    },
-    "time.updated.minutes": {
-        "text": "{{count}} मिनट पहले अपडेट किया गया",
-        "translationContext": "Shown when content was updated multiple minutes ago, {{count}} will be replaced with the number of minutes"
-    },
-    "time.updated.oneDay": {
-        "text": "1 दिन पहले अपडेट किया गया",
-        "translationContext": "Shown when content was updated exactly 1 day ago"
-    },
-    "time.updated.oneHour": {
-        "text": "1 घंटे पहले अपडेट किया गया",
-        "translationContext": "Shown when content was updated exactly 1 hour ago"
-    },
-    "time.updated.oneMinute": {
-        "text": "1 मिनट पहले अपडेट किया गया",
-        "translationContext": "Shown when content was updated exactly 1 minute ago"
-    },
-    "time.updated.seconds": {
-        "text": "{{count}} सेकंड पहले अपडेट किया गया",
-        "translationContext": "Shown when content was updated seconds ago, {{count}} will be replaced with the number of seconds"
-    },
-    "timeTravel.latest": {
-        "text": "नवीनतम",
-        "translationContext": "Label for the most recent batch of the day"
-    },
-    "timeTravel.loadingData": {
-        "text": "पुराना डेटा लोड हो रहा है...",
-        "translationContext": "Loading message when fetching historical data"
-    },
-    "timeTravel.nextMonth": {
-        "text": "अगला माह",
-        "translationContext": "Aria label for next month button"
-    },
-    "timeTravel.previousMonth": {
-        "text": "पिछला महीना",
-        "translationContext": "Aria label for previous month button"
-    },
-    "timeTravel.returningToLive": {
-        "text": "लाइव पर वापस लौट रहे हैं...",
-        "translationContext": "Loading message when exiting time travel mode"
-    },
-    "timeTravel.selectBatch": {
-        "text": "समाचार अपडेट चुनें",
-        "translationContext": "Title when selecting from multiple batches"
-    },
-    "timeTravel.selectDate": {
-        "text": "उस दिन की खबरें देखने के लिए एक तिथि चुनें",
-        "translationContext": "Help text shown below calendar"
-    },
-    "timeTravel.stories": {
-        "text": "कहानियां",
-        "translationContext": "Label for story count in batch selector"
-    },
-    "timeTravel.title": {
-        "text": "समय यात्रा",
-        "translationContext": "Title of the time travel modal"
-    },
-    "timeTravel.today": {
-        "text": "आज",
-        "translationContext": "Button to navigate to today"
-    },
-    "turbulence.title": {
-        "text": "विश्व अशांति मीटर",
-        "translationContext": "Title for the world turbulence meter popup"
-    },
-    "turbulence.tooltip": {
-        "text": "विक्षोभ मीटर",
-        "translationContext": "Tooltip text for the turbulence meter button"
-    },
-    "ui.citations": {
-        "text": "संदर्भ",
-        "translationContext": "Title for citations section"
-    },
-    "ui.clearSearch": {
-        "text": "खोज साफ़ करें",
-        "translationContext": "Aria label for clear search button"
-    },
-    "ui.close": {
-        "text": "बंद करें",
-        "translationContext": "Text for close buttons"
-    },
-    "ui.closeDialog": {
-        "text": "संवाद बंद करें",
-        "translationContext": "Aria label for close dialog button"
-    },
-    "ui.imageUnavailable": {
-        "text": "छवि अनुपलब्ध",
-        "translationContext": "Text shown when an image cannot be loaded"
-    },
-    "ui.nextSlide": {
-        "text": "अगली स्लाइड",
-        "translationContext": "Aria label for next slide button"
-    },
-    "ui.previousSlide": {
-        "text": "पिछली स्लाइड",
-        "translationContext": "Aria label for previous slide button"
-    },
-    "view.list": {
-        "text": "सूची दृश्य",
-        "translationContext": "Title/aria-label for the list view button"
-    },
-    "view.map": {
-        "text": "मानचित्र दृश्य",
-        "translationContext": "Title/aria-label for the map view button"
-    },
-    "wikipedia.readMore": {
-        "text": "विकिपीडिया पर और पढ़ें",
-        "translationContext": "Text for the link to read more on Wikipedia"
-    },
-    "worldTension.aboutTitle": {
-        "text": "विश्व तनाव के बारे में",
-        "translationContext": "Title for the world tension explanation"
-    },
-    "worldTension.backToIndex": {
-        "text": "← इंडेक्स पर वापस",
-        "translationContext": "Button text to return from explanation to main view"
-    },
-    "worldTension.burning": {
-        "text": "अत्युग्र",
-        "translationContext": "Temperature description for extreme world tension (81-100%)"
-    },
-    "worldTension.chaosIndex": {
-        "text": "अराजकता सूचकांक",
-        "translationContext": "Label for the chaos index chart"
-    },
-    "worldTension.cool": {
-        "text": "शांत",
-        "translationContext": "Temperature description for low world tension (0-20%)"
-    },
-    "worldTension.critical": {
-        "text": "गंभीर",
-        "translationContext": "Status label for 61-80% range (deprecated, use hot)"
-    },
-    "worldTension.elevated": {
-        "text": "बढ़ा हुआ",
-        "translationContext": "Status label for 21-40% range (deprecated, use mild)"
-    },
-    "worldTension.explanation1": {
-        "text": "विश्व तनाव सूचकांक वर्तमान घटनाओं के आधार पर वैश्विक स्थिरता का आकलन प्रस्तुत करता है।",
-        "translationContext": "First paragraph of world tension explanation"
-    },
-    "worldTension.explanation2": {
-        "text": "दुनिया भर की सुर्खियों का विश्लेषण करके, हम संघर्ष, संकट और अस्थिरता के पैटर्न को ट्रैक करते हैं, ताकि एक साधारण मीट्रिक बनाया जा सके जो यह दर्शाता है कि किसी भी समय वैश्विक मामले कितने \"गरमागरम\" हैं।",
-        "translationContext": "Second paragraph of world tension explanation"
-    },
-    "worldTension.explanation3": {
-        "text": "इसे एक वैश्विक थर्मामीटर के रूप में समझें - जब संघर्षों, आपदाओं या राजनीतिक उथल-पुथल के कारण तनाव बढ़ता है, तो तापमान बढ़ जाता है। स्थिरता और सहयोग के शांत समय के दौरान, यह ठंडा हो जाता है।",
-        "translationContext": "Third paragraph of world tension explanation"
-    },
-    "worldTension.extreme": {
-        "text": "अत्यंत",
-        "translationContext": "Status label for 81-100% range (deprecated, use burning)"
-    },
-    "worldTension.high": {
-        "text": "उच्च",
-        "translationContext": "Status label for 41-60% range (deprecated, use warm)"
-    },
-    "worldTension.hot": {
-        "text": "गर्म",
-        "translationContext": "Temperature description for moderate world tension (41-60%)"
-    },
-    "worldTension.mild": {
-        "text": "हल्का",
-        "translationContext": "Temperature description for normal world tension (21-40%)"
-    },
-    "worldTension.onFire": {
-        "text": "आगराही",
-        "translationContext": "Temperature description for extreme world tension (81-100%)"
-    },
-    "worldTension.scale.burning": {
-        "text": "81-100° अत्यधिक गर्म - चरम संकट (दुर्लभ)",
-        "translationContext": "Scale description for 81-100% tension"
-    },
-    "worldTension.scale.cool": {
-        "text": "शांत - अपेक्षाकृत स्थिर",
-        "translationContext": "Scale description for 0-20% tension"
-    },
-    "worldTension.scale.hot": {
-        "text": "गर्म - उल्लेखनीय विवाद",
-        "translationContext": "Scale description for 41-60% tension"
-    },
-    "worldTension.scale.mild": {
-        "text": "21-40° हल्का - सामान्य वैश्विक तनाव",
-        "translationContext": "Scale description for 21-40% tension"
-    },
-    "worldTension.scale.onFire": {
-        "text": "आग लगी है - वैश्विक आपातकाल",
-        "translationContext": "Scale description for 81-100% tension"
-    },
-    "worldTension.scale.veryHot": {
-        "text": "अत्यधिक गर्म - प्रमुख संकट",
-        "translationContext": "Scale description for 61-80% tension"
-    },
-    "worldTension.scale.warm": {
-        "text": "41-60° गर्म - बढ़ी हुई चिंताएँ",
-        "translationContext": "Scale description for 41-60% tension"
-    },
-    "worldTension.scale.warming": {
-        "text": "गर्मी - मामूली तनाव",
-        "translationContext": "Scale description for 21-40% tension"
-    },
-    "worldTension.stable": {
-        "text": "स्थिर",
-        "translationContext": "Status label for 0-20% range (deprecated, use cool)"
-    },
-    "worldTension.title": {
-        "text": "विश्व तनाव",
-        "translationContext": "Title for the world tension modal"
-    },
-    "worldTension.trendTitle": {
-        "text": "30-दिन का रुझान",
-        "translationContext": "Title for the historical trend chart"
-    },
-    "worldTension.updated": {
-        "text": "अपडेट किया गया",
-        "translationContext": "Prefix for last update time"
-    },
-    "worldTension.veryHot": {
-        "text": "अत्यंत तनावपूर्ण",
-        "translationContext": "Temperature description for high world tension (61-80%)"
-    },
-    "worldTension.warm": {
-        "text": "गर्म",
-        "translationContext": "Temperature description for elevated world tension (41-60%)"
-    },
-    "worldTension.warming": {
-        "text": "गर्माहट",
-        "translationContext": "Temperature description for mild world tension (21-40%)"
-    },
-    "worldTension.whatIsThis": {
-        "text": "यह क्या है?",
-        "translationContext": "Button text to show explanation of world tension"
-    },
-    "header.search": {
-        "text": "खोज",
-        "translationContext": "Tooltip for search button in header"
-    },
-    "search.placeholder": {
-        "text": "कहानियां खोजें...",
-        "translationContext": "Placeholder text for search input"
-    },
-    "search.noResults": {
-        "text": "कोई परिणाम नहीं मिला",
-        "translationContext": "Message shown when search returns no results"
-    },
-    "search.title": {
-        "text": "कहानियां खोजें",
-        "translationContext": "Title shown in empty search modal"
-    },
-    "search.hint": {
-        "text": "सभी श्रेणियों में खोजने के लिए टाइप करें",
-        "translationContext": "Hint text shown in empty search modal"
-    },
-    "search.navigate": {
-        "text": "नेविगेट करें",
-        "translationContext": "Label for arrow key navigation"
-    },
-    "search.select": {
-        "text": "चुनें",
-        "translationContext": "Label for enter key selection"
-    },
-    "search.toggle": {
-        "text": "खोज टॉगल करें",
-        "translationContext": "Label for keyboard shortcut to toggle search"
-    },
-    "search.allBatches": {
-        "text": "सभी दिनांकों में खोजें",
-        "translationContext": "Label for toggle to search across all news batches"
-    },
-    "search.resultsFound": {
-        "text": "परिणाम मिले",
-        "translationContext": "Label showing number of search results"
-    },
-    "search.current": {
-        "text": "वर्तमान",
-        "translationContext": "Label for results from current batch"
-    },
-    "search.historical": {
-        "text": "ऐतिहासिक",
-        "translationContext": "Label for results from historical batches"
-    },
-    "search.searchingHistorical": {
-        "text": "पुराने डेटा को खोजा जा रहा है",
-        "translationContext": "Status message while searching historical batches"
-    },
-    "search.historicalComplete": {
-        "text": "ऐतिहासिक खोज पूरी हुई",
-        "translationContext": "Status message when historical search is done"
-    },
-    "search.searching": {
-        "text": "खोज रहे हैं...",
-        "translationContext": "Loading message while searching"
-    },
-    "search.searching_historical": {
-        "text": "पुराना डेटा खोजा जा रहा है...",
-        "translationContext": "Loading message while searching historical data"
-    },
-    "search.result_single": {
-        "text": "परिणाम",
-        "translationContext": "Singular form of result"
-    },
-    "search.result_plural": {
-        "text": "परिणाम",
-        "translationContext": "Plural form of results"
-    },
-    "search.of": {
-        "text": "के",
-        "translationContext": "Preposition used in 'X of Y results'"
-    },
-    "search.for": {
-        "text": "के लिए",
-        "translationContext": "Preposition used in 'results for query'"
-    },
-    "search.historical_needs_3_chars": {
-        "text": "पुराने खोज के लिए कम से कम 3 अक्षर चाहिए",
-        "translationContext": "Message shown when query is too short for historical search"
-    },
-    "search.placeholder_1": {
-        "text": "अपनी खोज को उड़ान भरने दें...",
-        "translationContext": "Search placeholder easter egg referencing Kite"
-    },
-    "search.placeholder_2": {
-        "text": "ख़बरों की दुनिया में ऊंची उड़ान भरें...",
-        "translationContext": "Search placeholder easter egg referencing Kite"
-    },
-    "search.placeholder_3": {
-        "text": "जानकारी की हवा पकड़ो...",
-        "translationContext": "Search placeholder easter egg referencing Kite"
-    },
-    "search.placeholder_4": {
-        "text": "समाचार की धाराओं को नेविगेट करें...",
-        "translationContext": "Search placeholder easter egg referencing Kite"
-    },
-    "search.placeholder_5": {
-        "text": "शोर-शराबे से ऊपर उठें...",
-        "translationContext": "Search placeholder easter egg referencing Kite"
-    },
-    "search.placeholder_6": {
-        "text": "आज की कहानियों में गोता लगाएँ...",
-        "translationContext": "Search placeholder easter egg referencing Kite"
-    },
-    "search.placeholder_7": {
-        "text": "ख़बरों की धारा में गोता लगाएँ...",
-        "translationContext": "Search placeholder easter egg referencing Kite"
-    },
-    "search.placeholder_8": {
-        "text": "अपनी समाचार खोज को बेहतर बनाएँ...",
-        "translationContext": "Search placeholder easter egg referencing Kite"
-    },
-    "search.placeholder_9": {
-        "text": "सुर्खियों में तैरें...",
-        "translationContext": "Search placeholder easter egg referencing Kite"
-    },
-    "search.placeholder_10": {
-        "text": "अपनी खोज को एक साथ पिरोएँ...",
-        "translationContext": "Search placeholder easter egg referencing kite strings"
-    },
-    "search.historical_included": {
-        "text": "{{count}} ऐतिहासिक परिणाम शामिल हैं",
-        "translationContext": "Shows number of historical search results included. {{count}} is replaced with the number."
-    },
-    "search.get_started_title": {
-        "text": "खोज करना प्रारंभ करें",
-        "translationContext": "Title shown when search modal is empty"
-    },
-    "search.get_started_description": {
-        "text": "खोजने के लिए टाइप करें या फ़िल्टर का उपयोग करें",
-        "translationContext": "Description shown when search modal is empty"
-    },
-    "search.try_these": {
-        "text": "ये फ़िल्टर आज़माएँ",
-        "translationContext": "Section title for filter suggestions"
-    },
-    "search.filter_category_hint": {
-        "text": "समाचार श्रेणी के अनुसार फ़िल्टर करें (उदा. श्रेणी:प्रौद्योगिकी)",
-        "translationContext": "Hint for category filter"
-    },
-    "search.filter_date_hint": {
-        "text": "किसी दिनांक सीमा के अंदर खोजें (उदा. from:2025-01-01 to:today)",
-        "translationContext": "Hint for date filters"
-    },
-    "search.shortcuts_title": {
-        "text": "त्वरित शॉर्टकट",
-        "translationContext": "Title for shortcuts section"
-    },
-    "search.shortcuts_hint": {
-        "text": "श्रेणियों के लिए \"बिल्ली\", \"कल\" या \"पिछले सप्ताह\" जैसी तिथियां टाइप करें",
-        "translationContext": "Hint for search shortcuts"
-    },
-    "search.no_results": {
-        "text": "कोई परिणाम नहीं मिला",
-        "translationContext": "Message when no results are found"
-    },
-    "search.no_results_title": {
-        "text": "कोई परिणाम नहीं मिला",
-        "translationContext": "Title for empty search results"
-    },
-    "search.no_results_description": {
-        "text": "जो आप ढूँढ रहे हैं उसे खोजने के लिए अपनी खोज शर्तों या फ़िल्टर को समायोजित करने का प्रयास करें।",
-        "translationContext": "Description for empty search results"
-    },
-    "search.showing": {
-        "text": "दिखा रहा है",
-        "translationContext": "Label used in 'Showing X of Y results'"
-    },
-    "search.load_more": {
-        "text": "और परिणाम लोड करें",
-        "translationContext": "Button text to load more search results"
-    },
-    "search.loading_more": {
-        "text": "अधिक परिणाम लोड हो रहे हैं...",
-        "translationContext": "Loading message while fetching more results"
-    },
-    "search.showing_of": {
-        "text": "{{total}} परिणामों में से {{shown}} दिखाए जा रहे हैं",
-        "translationContext": "Message showing current vs total results. {{shown}} and {{total}} are replaced with numbers."
-    },
-    "search.dismiss_tips": {
-        "text": "इन युक्तियों को दुबारा न दिखाएँ",
-        "translationContext": "Tooltip for dismissing filter tips permanently"
-    },
-    "settings.useLatestUrls.label": {
-        "text": "नवीनतम यूआरएल उपयोग करें",
-        "translationContext": "Label for the setting that controls URL format"
-    },
-    "settings.useLatestUrls.description": {
-        "text": "ताज़ा समाचारों के लिए /latest यूआरएल का उपयोग करें ताकि बुकमार्क हमेशा नवीनतम सामग्री दिखाएँ",
-        "translationContext": "Description explaining what the latest URLs setting does"
-    },
-    "settings.useLatestUrls.enabled": {
-        "text": "सक्रिय",
-        "translationContext": "Option when latest URLs are enabled"
-    },
-    "settings.useLatestUrls.disabled": {
-        "text": "अक्षम",
-        "translationContext": "Option when latest URLs are disabled"
-    },
-    "search.no_results_description_simple": {
-        "text": "जो आप ढूँढ रहे हैं उसे खोजने के लिए अलग-अलग खोज शब्दों का प्रयोग करें।",
-        "translationContext": "Simple no results message when historical search is disabled"
-    },
-    "search.try_searching_for": {
-        "text": "यह खोजने का प्रयास करें:",
-        "translationContext": "Prompt before showing search examples"
-    },
-    "search.source_single": {
-        "text": "स्रोत",
-        "translationContext": "Singular form of 'source' for news sources"
-    },
-    "search.source_plural": {
-        "text": "स्रोत",
-        "translationContext": "Plural form of 'sources' for news sources"
-    },
-    "search.close_search": {
-        "text": "खोज बंद करें",
-        "translationContext": "Aria label for close search button"
-    },
-    "search.search_news_stories": {
-        "text": "समाचार खोजें",
-        "translationContext": "Aria label for search input field"
-    },
-    "search.close": {
-        "text": "बंद करें",
-        "translationContext": "Keyboard shortcut hint for Escape key"
-    },
-    "search.search": {
-        "text": "खोजें",
-        "translationContext": "Keyboard shortcut hint for Cmd/Ctrl+K"
-    },
-    "search.loading_historical_data": {
-        "text": "पुराना डेटा लोड हो रहा है...",
-        "translationContext": "Loading message when fetching historical search results"
-    },
-    "navigation.backToTop": {
-        "text": "शीर्ष पर वापस जाएं",
-        "translationContext": "Accessibility label for the button that scrolls back to the top of the page"
-    },
-    "settings.categories.noFiltered": {
-        "text": "इस प्रकार की कोई श्रेणी अक्षम नहीं है",
-        "translationContext": "Message shown when no categories of the selected filter type are in the disabled section"
-    },
-    "sources.summary": {
-        "text": "{{publishers}} प्रकाशक, {{articles}} लेख",
-        "translationContext": "Shows count of publishers and articles, {{publishers}} and {{articles}} will be replaced with numbers"
-    },
-    "settings.storyOpenMode.label": {
-        "text": "स्टोरी ओपन मोड",
-        "translationContext": "Label for story open mode setting"
-    },
-    "settings.storyOpenMode.description": {
-        "text": "चुनें कि एक साथ कई कहानियों को खुला रखना है या केवल एक को।",
-        "translationContext": "Description for story open mode setting"
-    },
-    "settings.storyOpenMode.multiple": {
-        "text": "कई कहानियाँ",
-        "translationContext": "Option to allow multiple stories open at once"
-    },
-    "settings.storyOpenMode.single": {
-        "text": "एक समय में एक कहानी",
-        "translationContext": "Option to allow only one story open at a time"
-    },
-    "settings.subsections.appearance": {
-        "text": "प्रकटन",
-        "translationContext": "Subsection heading for appearance-related settings"
-    },
-    "settings.subsections.localization": {
-        "text": "भाषा और क्षेत्र",
-        "translationContext": "Subsection heading for language and localization settings"
-    },
-    "settings.subsections.readingExperience": {
-        "text": "पठन अनुभव",
-        "translationContext": "Subsection heading for story display and reading settings"
-    },
-    "settings.subsections.navigation": {
-        "text": "नेविगेशन",
-        "translationContext": "Subsection heading for navigation and URL settings"
-    },
-    "settings.subsections.about": {
-        "text": "हमारे बारे में",
-        "translationContext": "Subsection heading for about and info section"
-    },
-    "shared.viewAllArticles": {
-        "text": "← {{{date}}} के सभी लेख देखें",
-        "translationContext": "Button to exit shared article view and see all articles from a specific date. {{date}} will be replaced with a localized date."
-    },
-    "meta.description": {
-        "text": "कागी न्यूज़ दुनिया भर के हज़ारों समाचार स्रोतों को एक बेहतरीन दैनिक संक्षिप्त जानकारी में बदल देता है। हर महत्वपूर्ण दृष्टिकोण को केवल 5 मिनट में जानें। अंतहीन स्क्रॉलिंग नहीं। ध्यान भटकाना नहीं।",
-        "translationContext": "Default meta description for SEO"
-    },
-    "meta.categoryDescription": {
-        "text": "कागी समाचार पर नवीनतम {category} समाचार",
-        "translationContext": "Meta description for category pages. {category} will be replaced with the actual category name."
-    },
-    "meta.news": {
-        "text": "समाचार",
-        "translationContext": "The word 'News' used in titles"
-    }
+  "settings.aboutKite.button": {
+    "text": "काइट के बारे में",
+    "translationContext": "Text for the About Kagi News button"
+  },
+  "settings.categories.allCategories": {
+    "text": "सभी श्रेणियाँ",
+    "translationContext": "Label for showing all categories option in settings"
+  },
+  "settings.categories.contribute": {
+    "text": "+ श्रेणियाँ योगदान करें",
+    "translationContext": "Link text for contributing categories"
+  },
+  "settings.categories.disable": {
+    "text": "अक्षम करने के लिए क्लिक करें, पुनः व्यवस्थित करने के लिए खींचें",
+    "translationContext": "Tooltip for enabled category items that can be disabled"
+  },
+  "settings.categories.disabled": {
+    "text": "अक्षम श्रेणियाँ",
+    "translationContext": "Title for the disabled (hidden) categories section"
+  },
+  "settings.categories.enable": {
+    "text": "सक्षम करने के लिए क्लिक करें, पुनः व्यवस्थित करने के लिए खींचें",
+    "translationContext": "Tooltip for disabled category items that can be enabled"
+  },
+  "settings.categories.enabled": {
+    "text": "सक्रिय श्रेणियाँ",
+    "translationContext": "Title for the enabled categories section"
+  },
+  "settings.categories.filterByType": {
+    "text": "प्रकार के अनुसार फ़िल्टर करें...",
+    "translationContext": "Placeholder text for category type filter dropdown"
+  },
+  "settings.categories.instructions": {
+    "text": "पुनः क्रमित करने के लिए खींचें, या सक्षम/अक्षम करने के लिए क्लिक करें। श्रेणियों को ले जाने के लिए अनुभागों के बीच खींचें।",
+    "translationContext": "Instructions for managing categories"
+  },
+  "settings.categories.lastCategory": {
+    "text": "अंतिम श्रेणी को अक्षम नहीं किया जा सकता",
+    "translationContext": "Tooltip shown when trying to disable the last enabled category"
+  },
+  "settings.categories.noDisabled": {
+    "text": "सभी श्रेणियां सक्षम",
+    "translationContext": "Shows when no categories are disabled"
+  },
+  "settings.categories.noEnabled": {
+    "text": "कोई श्रेणी सक्षम नहीं है",
+    "translationContext": "Shows when no categories are enabled"
+  },
+  "settings.categories.noFiltered": {
+    "text": "इस प्रकार की कोई श्रेणी अक्षम नहीं है",
+    "translationContext": "Message shown when no categories of the selected filter type are in the disabled section"
+  },
+  "settings.categories.types.all": {
+    "text": "सभी प्रकार",
+    "translationContext": "Option to show all category types in filter"
+  },
+  "settings.categories.types.city": {
+    "text": "शहर",
+    "translationContext": "Label for city category type"
+  },
+  "settings.categories.types.core": {
+    "text": "मुख्य",
+    "translationContext": "Label for core category type (main news categories)"
+  },
+  "settings.categories.types.country": {
+    "text": "देश",
+    "translationContext": "Label for country category type"
+  },
+  "settings.categories.types.other": {
+    "text": "अन्य",
+    "translationContext": "Label for categories without a specific type"
+  },
+  "settings.categories.types.region": {
+    "text": "क्षेत्र",
+    "translationContext": "Label for region category type"
+  },
+  "settings.categories.types.topic": {
+    "text": "विषय",
+    "translationContext": "Label for topic category type"
+  },
+  "settings.categoryHeaderPosition.bottom": {
+    "text": "नीचे",
+    "translationContext": "Option for bottom position"
+  },
+  "settings.categoryHeaderPosition.description": {
+    "text": "मोबाइल उपकरणों पर श्रेणी नेविगेशन बार कहाँ प्रदर्शित करना है, चुनें।",
+    "translationContext": "Description for category header position setting"
+  },
+  "settings.categoryHeaderPosition.label": {
+    "text": "श्रेणी शीर्ष लेख स्थिति",
+    "translationContext": "Label for category header position setting"
+  },
+  "settings.categoryHeaderPosition.top": {
+    "text": "शीर्ष",
+    "translationContext": "Option for top position"
+  },
+  "settings.contentFilter.activeFilters": {
+    "text": "सक्रिय फ़िल्टर",
+    "translationContext": "Label for current active filters list"
+  },
+  "settings.contentFilter.clearAll": {
+    "text": "सभी फ़िल्टर हटाएँ",
+    "translationContext": "Button to clear all filters"
+  },
+  "settings.contentFilter.contribute": {
+    "text": "और फ़िल्टर जोड़ें",
+    "translationContext": "Link to contribute new filter presets on GitHub"
+  },
+  "settings.contentFilter.customKeywords": {
+    "text": "कस्टम",
+    "translationContext": "Label for custom keywords that are not from presets"
+  },
+  "settings.contentFilter.export": {
+    "text": "सेटिंग्स निर्यात करें",
+    "translationContext": "Button to export filter settings to a file"
+  },
+  "settings.contentFilter.exportImport.description": {
+    "text": "अपनी फ़िल्टर सेटिंग को किसी फ़ाइल में निर्यात करें या पिछले बैकअप से आयात करें",
+    "translationContext": "Description of export/import functionality"
+  },
+  "settings.contentFilter.exportImport.title": {
+    "text": "बैकअप और पुनर्स्थापना",
+    "translationContext": "Section title for export/import functionality"
+  },
+  "settings.contentFilter.import": {
+    "text": "सेटिंग्स आयात करें",
+    "translationContext": "Button to import filter settings from a file"
+  },
+  "settings.contentFilter.importConfirm.action": {
+    "text": "आयात करें",
+    "translationContext": "Button to confirm import action"
+  },
+  "settings.contentFilter.importConfirm.backup": {
+    "text": "युक्ति: बैकअप बनाने के लिए पहले अपनी वर्तमान सेटिंग्स निर्यात करें।",
+    "translationContext": "Tip about creating a backup before importing"
+  },
+  "settings.contentFilter.importConfirm.title": {
+    "text": "सेटिंग्स आयात करें?",
+    "translationContext": "Title of import confirmation dialog"
+  },
+  "settings.contentFilter.importConfirm.versionNewer": {
+    "text": "यह कॉन्फ़िगरेशन नए वर्ज़न का है। कुछ सेटिंग्स सही से काम नहीं कर सकती हैं।",
+    "translationContext": "Warning when importing from a newer version"
+  },
+  "settings.contentFilter.importConfirm.versionOlder": {
+    "text": "यह कॉन्फ़िगरेशन पुराने संस्करण से है। कुछ सुविधाएँ गायब हो सकती हैं।",
+    "translationContext": "Warning when importing from an older version"
+  },
+  "settings.contentFilter.importConfirm.warning": {
+    "text": "यह सभी मौजूदा फ़िल्टर सेटिंग्स को बदल देगा।",
+    "translationContext": "Warning message about overwriting current settings"
+  },
+  "settings.contentFilter.importError.invalidFormat": {
+    "text": "अमान्य कॉन्फ़िगरेशन प्रारूप",
+    "translationContext": "Error when import file is not valid JSON"
+  },
+  "settings.contentFilter.importError.parseFailed": {
+    "text": "कॉन्फ़िगरेशन फ़ाइल को पार्स करने में विफल।",
+    "translationContext": "Error when import file cannot be parsed"
+  },
+  "settings.contentFilter.keywords.description": {
+    "text": "फ़िल्टर करने के लिए अपने कीवर्ड जोड़ें, कॉमा से अलग करें",
+    "translationContext": "Description for keywords input"
+  },
+  "settings.contentFilter.keywords.label": {
+    "text": "कस्टम कीवर्ड",
+    "translationContext": "Label for keywords input"
+  },
+  "settings.contentFilter.keywords.placeholder": {
+    "text": "उदा. हस्ती का नाम, विषय",
+    "translationContext": "Placeholder for keywords input"
+  },
+  "settings.contentFilter.mode.blur": {
+    "text": "चेतावनी के साथ धुंधला करें",
+    "translationContext": "Option to blur filtered content"
+  },
+  "settings.contentFilter.mode.blurDescription": {
+    "text": "कहानियां धुंधली हैं और क्लिक करने पर सामने आ सकती हैं",
+    "translationContext": "Description for blur mode"
+  },
+  "settings.contentFilter.mode.description": {
+    "text": "फ़िल्टर की गई सामग्री को कैसे हैंडल किया जाए, चुनें",
+    "translationContext": "Description for filter mode selection"
+  },
+  "settings.contentFilter.mode.hide": {
+    "text": "पूरी तरह छिपाएँ",
+    "translationContext": "Option to hide filtered content completely"
+  },
+  "settings.contentFilter.mode.hideDescription": {
+    "text": "फ़िल्टर की गई कहानियों को दृश्य से हटा दिया गया है",
+    "translationContext": "Description for hide mode"
+  },
+  "settings.contentFilter.mode.label": {
+    "text": "फ़िल्टर मोड",
+    "translationContext": "Label for filter mode selection"
+  },
+  "settings.contentFilter.preset.ai": {
+    "text": "एआई और टेक प्रचार",
+    "translationContext": "Name of AI preset filter"
+  },
+  "settings.contentFilter.preset.ai.tooltip": {
+    "text": "एआई की चर्चा, एलएलएम समाचार और तकनीकी सफलताओं की घोषणाओं को फ़िल्टर करता है",
+    "translationContext": "Tooltip description for AI preset"
+  },
+  "settings.contentFilter.preset.celebrities": {
+    "text": "सेलिब्रिटी समाचार",
+    "translationContext": "Name of celebrities preset filter"
+  },
+  "settings.contentFilter.preset.celebrities.tooltip": {
+    "text": "सेलिब्रिटी गॉसिप, मनोरंजन समाचार और टैब्लॉइड सामग्री को फ़िल्टर करता है",
+    "translationContext": "Tooltip description for celebrities preset"
+  },
+  "settings.contentFilter.preset.climate": {
+    "text": "जलवायु चिंता",
+    "translationContext": "Name of climate preset filter"
+  },
+  "settings.contentFilter.preset.climate.tooltip": {
+    "text": "जलवायु परिवर्तन समाचार और पर्यावरणीय संकट कवरेज को फ़िल्टर करता है",
+    "translationContext": "Tooltip description for climate preset"
+  },
+  "settings.contentFilter.preset.conflicts": {
+    "text": "संघर्ष",
+    "translationContext": "Name of conflicts preset filter"
+  },
+  "settings.contentFilter.preset.conflicts.tooltip": {
+    "text": "विभिन्न क्षेत्रों से युद्ध, सैन्य संघर्षों और संबंधित हिंसा को फ़िल्टर करता है",
+    "translationContext": "Tooltip description for conflicts preset"
+  },
+  "settings.contentFilter.preset.crypto": {
+    "text": "क्रिप्टोकरेंसी",
+    "translationContext": "Name of cryptocurrency preset filter"
+  },
+  "settings.contentFilter.preset.crypto.tooltip": {
+    "text": "क्रिप्टोकरेंसी, ब्लॉकचेन और वेब3 से संबंधित सामग्री को फ़िल्टर करता है",
+    "translationContext": "Tooltip description for crypto preset"
+  },
+  "settings.contentFilter.preset.health": {
+    "text": "स्वास्थ्य संकट",
+    "translationContext": "Name of health crises preset filter"
+  },
+  "settings.contentFilter.preset.health.tooltip": {
+    "text": "महामारी संबंधी समाचार, वायरस के प्रकोप और संबंधित स्वास्थ्य आपातकालीन सामग्री को फ़िल्टर करता है",
+    "translationContext": "Tooltip description for health preset"
+  },
+  "settings.contentFilter.preset.politics": {
+    "text": "राजनीति",
+    "translationContext": "Name of politics preset filter"
+  },
+  "settings.contentFilter.preset.politics.tooltip": {
+    "text": "चुनावों, राजनीतिक दलों और सरकारी अधिकारियों सहित राजनीतिक सामग्री को फ़िल्टर करता है",
+    "translationContext": "Tooltip description for politics preset"
+  },
+  "settings.contentFilter.preset.sports": {
+    "text": "खेल",
+    "translationContext": "Name of sports preset filter"
+  },
+  "settings.contentFilter.preset.sports.tooltip": {
+    "text": "खेल समाचारों, स्कोर और एथलेटिक प्रतियोगिताओं की कवरेज को फ़िल्टर करता है",
+    "translationContext": "Tooltip description for sports preset"
+  },
+  "settings.contentFilter.preset.tabloid": {
+    "text": "टैब्लॉइड स्रोत",
+    "translationContext": "Name of tabloid sources preset filter"
+  },
+  "settings.contentFilter.preset.tabloid.tooltip": {
+    "text": "टैब्लॉइड और सनसनीखेज समाचार स्रोतों से कहानियों को फ़िल्टर करता है",
+    "translationContext": "Tooltip description for tabloid preset"
+  },
+  "settings.contentFilter.preset.violence": {
+    "text": "हिंसा",
+    "translationContext": "Name of violence preset filter"
+  },
+  "settings.contentFilter.preset.violence.tooltip": {
+    "text": "ग्राफिक हिंसा, गोलीबारी और मृत्यु से संबंधित सामग्री को फ़िल्टर करता है",
+    "translationContext": "Tooltip description for violence preset"
+  },
+  "settings.contentFilter.presets.description": {
+    "text": "सामान्य विषयों को तुरंत छिपाने के लिए एक या अधिक प्रीसेट फ़िल्टर चुनें",
+    "translationContext": "Description for filter presets section"
+  },
+  "settings.contentFilter.presets.label": {
+    "text": "फ़िल्टर प्रीसेट",
+    "translationContext": "Label for filter presets section"
+  },
+  "settings.contentFilter.reset": {
+    "text": "डिफ़ॉल्ट पर रीसेट करें",
+    "translationContext": "Button to reset content filter to defaults"
+  },
+  "settings.contentFilter.resetModal.description": {
+    "text": "इससे सभी फ़िल्टर हट जाएँगे और सेटिंग्स डिफ़ॉल्ट पर रीसेट हो जाएँगी।",
+    "translationContext": "Description for reset confirmation modal"
+  },
+  "settings.contentFilter.resetModal.title": {
+    "text": "सामग्री फ़िल्टर रीसेट करें?",
+    "translationContext": "Title for reset confirmation modal"
+  },
+  "settings.contentFilter.scope.all": {
+    "text": "सभी सामग्री",
+    "translationContext": "Option to filter by all content"
+  },
+  "settings.contentFilter.scope.description": {
+    "text": "कीवर्ड के लिए कहानियों के किन हिस्सों की जाँच करनी है चुनें",
+    "translationContext": "Description for filter scope selection"
+  },
+  "settings.contentFilter.scope.label": {
+    "text": "फ़िल्टर का दायरा",
+    "translationContext": "Label for filter scope selection"
+  },
+  "settings.contentFilter.scope.summary": {
+    "text": "शीर्षक और सारांश",
+    "translationContext": "Option to filter by title and summary"
+  },
+  "settings.contentFilter.scope.title": {
+    "text": "केवल शीर्षक",
+    "translationContext": "Option to filter by title only"
+  },
+  "settings.contentFilter.showCount.description": {
+    "text": "प्रत्येक श्रेणी में फ़िल्टर की गई कहानियों की संख्या प्रदर्शित करें",
+    "translationContext": "Description for show filtered count toggle"
+  },
+  "settings.contentFilter.showCount.label": {
+    "text": "फ़िल्टर की गई संख्या दिखाएँ",
+    "translationContext": "Label for show filtered count toggle"
+  },
+  "settings.contentFilter.tab.description": {
+    "text": "उन विषयों को फ़िल्टर करके अपनी न्यूज़ फ़ीड को अनुकूलित करें जिन्हें आप नहीं देखना चाहते हैं। सामान्य फ़िल्टर के लिए प्रीसेट का उपयोग करें या अपने स्वयं के कस्टम कीवर्ड बनाएं।",
+    "translationContext": "Description shown at the top of content filter settings tab"
+  },
+  "settings.dataLanguage.label": {
+    "text": "सामग्री की भाषा",
+    "translationContext": "Label for the data/content language setting"
+  },
+  "settings.dataLanguage.tooltip": {
+    "text": "समाचारों और उनकी सामग्री की भाषा को नियंत्रित करता है।\n\n• डिफ़ॉल्ट: ज़्यादातर श्रेणियाँ आपकी ब्राउज़र भाषा ({{browserLang}}) में, देश स्थानीय भाषा में\n• स्रोत: सभी सामग्री मूल भाषा में\n• अन्य: सभी सामग्री चुनी गई भाषा में अनुवादित",
+    "translationContext": "Tooltip explaining how data language translation works, with browser language variable"
+  },
+  "settings.experimental.articleIcons.description": {
+    "text": "सक्षम होने पर, दृश्य संदर्भ प्रदान करने के लिए लेखों के आगे छोटे आइकन प्रदर्शित किए जाएंगे।",
+    "translationContext": "Description for article icons setting"
+  },
+  "settings.experimental.articleIcons.label": {
+    "text": "लेखों के आगे आइकन दिखाएं",
+    "translationContext": "Label for article icons setting"
+  },
+  "settings.experimental.categoryIcons.description": {
+    "text": "सक्षम होने पर, विज़ुअल संदर्भ प्रदान करने के लिए श्रेणी लेबल के आगे छोटे आइकन प्रदर्शित किए जाएंगे।",
+    "translationContext": "Description for category icons setting"
+  },
+  "settings.experimental.categoryIcons.label": {
+    "text": "श्रेणी लेबल में आइकॉन दिखाएं",
+    "translationContext": "Label for category icons setting"
+  },
+  "settings.experimental.chaosIndex.description": {
+    "text": "वर्तमान घटनाओं के आधार पर वैश्विक स्थिरता का वैश्विक तापमान पठन प्रदर्शित करें।",
+    "translationContext": "Description for chaos index setting"
+  },
+  "settings.experimental.chaosIndex.label": {
+    "text": "विश्व तनाव सूचकांक दिखाएँ",
+    "translationContext": "Label for chaos index setting"
+  },
+  "settings.experimental.citations.description": {
+    "text": "यह दिखाने के लिए इनलाइन उद्धरण दिखाएं कि किन समाचार स्रोतों ने विशिष्ट जानकारी की रिपोर्ट की है।",
+    "translationContext": "Description for citations setting"
+  },
+  "settings.experimental.citations.label": {
+    "text": "स्रोत उद्धरण दिखाएँ",
+    "translationContext": "Label for citations setting"
+  },
+  "settings.experimental.disableCategorySwipe.description": {
+    "text": "जब सक्षम किया जाता है, तो मोबाइल उपकरणों पर श्रेणियां बदलने के लिए क्षैतिज स्वाइप करना अक्षम हो जाएगा।",
+    "translationContext": "Description for disable category swipe setting"
+  },
+  "settings.experimental.disableCategorySwipe.label": {
+    "text": "क्षैतिज श्रेणी स्वाइप अक्षम करें",
+    "translationContext": "Label for disable category swipe setting"
+  },
+  "settings.experimental.warning": {
+    "text": "ये प्रायोगिक सुविधाएँ हैं जिन्हें किसी भी समय बदला या हटाया जा सकता है।",
+    "translationContext": "Warning text for experimental features"
+  },
+  "settings.fontSize.label": {
+    "text": "फ़ॉन्ट आकार",
+    "translationContext": "Label for the font size setting"
+  },
+  "settings.fontSize.large": {
+    "text": "बड़ा",
+    "translationContext": "Option for large font size"
+  },
+  "settings.fontSize.normal": {
+    "text": "सामान्य",
+    "translationContext": "Option for normal font size"
+  },
+  "settings.fontSize.small": {
+    "text": "छोटा",
+    "translationContext": "Option for small font size"
+  },
+  "settings.fontSize.xl": {
+    "text": "अतिरिक्त बड़ा",
+    "translationContext": "Option for extra large font size"
+  },
+  "settings.fontSize.xs": {
+    "text": "अतिरिक्त छोटा",
+    "translationContext": "Option for extra small font size"
+  },
+  "settings.language.default": {
+    "text": "डिफ़ॉल्ट",
+    "translationContext": "Option for default language"
+  },
+  "settings.language.label": {
+    "text": "भाषा",
+    "translationContext": "Label for the language setting"
+  },
+  "settings.language.poweredBy": {
+    "text": "कागी ट्रांसलेट के साथ अनुवादित",
+    "translationContext": "Text for the Kagi Translate powered by link"
+  },
+  "settings.language.source": {
+    "text": "स्रोत",
+    "translationContext": "Option for showing content in original source language"
+  },
+  "settings.mapsProvider.apple": {
+    "text": "एप्पल मैप्स",
+    "translationContext": "Option to use Apple Maps"
+  },
+  "settings.mapsProvider.auto": {
+    "text": "स्वचालित",
+    "translationContext": "Option for automatic maps provider selection based on login status"
+  },
+  "settings.mapsProvider.description": {
+    "text": "स्थान लिंक के लिए कौन सी मानचित्र सेवा का उपयोग करना है, चुनें",
+    "translationContext": "Description explaining what the maps provider setting does"
+  },
+  "settings.mapsProvider.google": {
+    "text": "गूगल मैप्स",
+    "translationContext": "Option to use Google Maps"
+  },
+  "settings.mapsProvider.kagi": {
+    "text": "कागी मैप्स",
+    "translationContext": "Option to use Kagi Maps"
+  },
+  "settings.mapsProvider.label": {
+    "text": "मानचित्र प्रदाता",
+    "translationContext": "Label for the maps provider setting"
+  },
+  "settings.mapsProvider.openstreetmap": {
+    "text": "ओपनस्ट्रीटमैप",
+    "translationContext": "Option to use OpenStreetMap"
+  },
+  "settings.sections.instructions": {
+    "text": "अनुभागों को फिर से व्यवस्थित करने के लिए खींचें। सक्षम/अक्षम करने के लिए स्विच का उपयोग करें।",
+    "translationContext": "Instructions for managing article sections"
+  },
+  "settings.sections.orderReset": {
+    "text": "क्रम रीसेट किया गया!",
+    "translationContext": "Confirmation message shown after resetting section order"
+  },
+  "settings.sections.resetOrder": {
+    "text": "डिफ़ॉल्ट क्रम पर रीसेट करें",
+    "translationContext": "Button text to reset section order to defaults"
+  },
+  "settings.sections.sourcesRequired": {
+    "text": "पारदर्शिता और विश्वसनीयता बनाए रखने के लिए स्रोत हमेशा दिखाए जाते हैं",
+    "translationContext": "Tooltip explaining why sources section cannot be disabled"
+  },
+  "settings.sections.switch": {
+    "text": "सक्षम/अक्षम करें",
+    "translationContext": "Aria label for the enable/disable switch for sections"
+  },
+  "settings.sections.title": {
+    "text": "अनुच्छेद अनुभाग",
+    "translationContext": "Title for the article sections settings"
+  },
+  "settings.sections.toggleAll": {
+    "text": "सभी टॉगल करें",
+    "translationContext": "Button text to toggle all sections on/off at once"
+  },
+  "settings.shareLanguage.message": {
+    "text": "{{language}} में काइट न्यूज़ देखें - यह परिचय को छोड़ देगा और सीधे आपकी भाषा में लोड होगा!",
+    "translationContext": "Message to share with others, {{language}} will be replaced with the language name"
+  },
+  "settings.shareLanguage.success": {
+    "text": "लिंक क्लिपबोर्ड पर कॉपी हो गया!",
+    "translationContext": "Success message when link is copied"
+  },
+  "settings.storyCount.label": {
+    "text": "प्रदर्शित कहानियों की संख्या",
+    "translationContext": "Label for the story count setting"
+  },
+  "settings.storyExpandMode.always": {
+    "text": "हमेशा सभी को विस्तृत करें",
+    "translationContext": "Option to always expand all stories automatically"
+  },
+  "settings.storyExpandMode.description": {
+    "text": "चुनें कि कैटेगरी देखते समय कहानियां कैसे विस्तृत होती हैं",
+    "translationContext": "Description for story expand mode setting"
+  },
+  "settings.storyExpandMode.doubleClick": {
+    "text": "सभी को विस्तृत करने के लिए डबल-क्लिक करें",
+    "translationContext": "Option to expand all stories via double-click on category"
+  },
+  "settings.storyExpandMode.label": {
+    "text": "कहानी विस्तार मोड",
+    "translationContext": "Label for story expand mode setting"
+  },
+  "settings.storyExpandMode.never": {
+    "text": "कभी भी सभी को विस्तृत न करें",
+    "translationContext": "Option to disable bulk story expansion"
+  },
+  "settings.storyOpenMode.description": {
+    "text": "चुनें कि एक साथ कई कहानियों को खुला रखना है या केवल एक को।",
+    "translationContext": "Description for story open mode setting"
+  },
+  "settings.storyOpenMode.label": {
+    "text": "स्टोरी ओपन मोड",
+    "translationContext": "Label for story open mode setting"
+  },
+  "settings.storyOpenMode.multiple": {
+    "text": "कई कहानियाँ",
+    "translationContext": "Option to allow multiple stories open at once"
+  },
+  "settings.storyOpenMode.single": {
+    "text": "एक समय में एक कहानी",
+    "translationContext": "Option to allow only one story open at a time"
+  },
+  "settings.subsections.about": {
+    "text": "हमारे बारे में",
+    "translationContext": "Subsection heading for about and info section"
+  },
+  "settings.subsections.appearance": {
+    "text": "प्रकटन",
+    "translationContext": "Subsection heading for appearance-related settings"
+  },
+  "settings.subsections.localization": {
+    "text": "भाषा और क्षेत्र",
+    "translationContext": "Subsection heading for language and localization settings"
+  },
+  "settings.subsections.navigation": {
+    "text": "नेविगेशन",
+    "translationContext": "Subsection heading for navigation and URL settings"
+  },
+  "settings.subsections.readingExperience": {
+    "text": "पठन अनुभव",
+    "translationContext": "Subsection heading for story display and reading settings"
+  },
+  "settings.sync.clear.button": {
+    "text": "सभी सिंक किए गए डेटा को साफ़ करें",
+    "translationContext": "Button text to clear all synced data"
+  },
+  "settings.sync.clear.clearing": {
+    "text": "साफ़ हो रहा है...",
+    "translationContext": "Text shown while clearing data"
+  },
+  "settings.sync.clear.confirmButton": {
+    "text": "हटाएँ",
+    "translationContext": "Confirm button text for deleting synced data"
+  },
+  "settings.sync.clear.confirmMessage": {
+    "text": "यह Kagi सर्वर से आपकी सभी सिंक की गई सेटिंग्स और पढ़े गए इतिहास को स्थायी रूप से हटा देगा। आपका स्थानीय डेटा बरकरार रहेगा।",
+    "translationContext": "Confirmation message when clearing synced data"
+  },
+  "settings.sync.clear.confirmTitle": {
+    "text": "सभी सिंक किए गए डेटा को हटाएँ?",
+    "translationContext": "Title for confirmation dialog when clearing synced data"
+  },
+  "settings.sync.clear.confirmWarning": {
+    "text": "यह कार्रवाई पूर्ववत नहीं की जा सकती।",
+    "translationContext": "Warning message in confirmation dialog"
+  },
+  "settings.sync.clear.deleting": {
+    "text": "आपका डेटा हटाया जा रहा है...",
+    "translationContext": "Loading message shown while deleting synced data"
+  },
+  "settings.sync.clear.description": {
+    "text": "आप अपने डेटा के नियंत्रण में हैं। किसी भी समय अपना क्लाउड डेटा निर्यात करें या हटाएँ। हटाने से स्थानीय डेटा प्रभावित नहीं होता है।",
+    "translationContext": "Description of data management section"
+  },
+  "settings.sync.clear.errorFailed": {
+    "text": "डेटा साफ़ करने में विफल",
+    "translationContext": "Generic error message when clearing data fails"
+  },
+  "settings.sync.clear.errorNotLoggedIn": {
+    "text": "सिंक किए गए डेटा को साफ़ करने के लिए आपको लॉग इन होना चाहिए",
+    "translationContext": "Error message when trying to clear data while not logged in"
+  },
+  "settings.sync.clear.success": {
+    "text": "सभी सिंक किया गया डेटा सफलतापूर्वक हटा दिया गया है।",
+    "translationContext": "Success message after clearing synced data"
+  },
+  "settings.sync.clear.title": {
+    "text": "डेटा प्रबंधन",
+    "translationContext": "Title for data management section"
+  },
+  "settings.sync.export.button": {
+    "text": "डेटा निर्यात करें",
+    "translationContext": "Button text to export synced data"
+  },
+  "settings.sync.export.errorFailed": {
+    "text": "डेटा निर्यात करने में विफल",
+    "translationContext": "Generic error message when exporting data fails"
+  },
+  "settings.sync.export.errorNotLoggedIn": {
+    "text": "सिंक किए गए डेटा को निर्यात करने के लिए आपको लॉग इन होना चाहिए",
+    "translationContext": "Error message when trying to export data while not logged in"
+  },
+  "settings.sync.export.exporting": {
+    "text": "निर्यात हो रहा है...",
+    "translationContext": "Text shown while exporting data"
+  },
+  "settings.sync.info.description": {
+    "text": "Kagi News आपकी सेटिंग्स और पढ़े गए इतिहास को आपके सभी डिवाइसों पर सिंक कर सकता है। यह डेटा Kagi सर्वर पर सुरक्षित रूप से संग्रहीत होता है और आपके Kagi Search खाते से जुड़ा होता है।\n\nआपका सिंक किया गया डेटा किसी अन्य उद्देश्य के लिए उपयोग नहीं किया जाता है, किसी के साथ साझा नहीं किया जाता है, और केवल आपको सिंक सेवा प्रदान करने के लिए संग्रहीत किया जाता है। आपका इस पर पूरा नियंत्रण है कि क्या सिंक किया जाए और आप किसी भी समय अपना डेटा हटा सकते हैं।",
+    "translationContext": "Description of sync and privacy features"
+  },
+  "settings.sync.notLoggedIn.description": {
+    "text": "अपनी सेटिंग्स और पढ़े गए इतिहास को डिवाइसों पर सिंक करने के लिए अपने Kagi खाते में साइन इन करें।",
+    "translationContext": "Description when user is not logged in"
+  },
+  "settings.sync.notLoggedIn.signIn": {
+    "text": "साइन इन करें",
+    "translationContext": "Sign in button text"
+  },
+  "settings.sync.notLoggedIn.title": {
+    "text": "साइन इन आवश्यक है",
+    "translationContext": "Title when user is not logged in"
+  },
+  "settings.sync.readHistory.description": {
+    "text": "सभी श्रेणियों में आपके द्वारा पढ़ी गई कहानियाँ",
+    "translationContext": "Description of what read history gets synced"
+  },
+  "settings.sync.readHistory.enableInfo": {
+    "text": "सक्षम होने पर, आपका पढ़ा गया इतिहास अपलोड हो जाएगा और आपके सभी डिवाइसों पर सिंक हो जाएगा",
+    "translationContext": "Info shown when sync is disabled, explaining what happens when enabled"
+  },
+  "settings.sync.readHistory.label": {
+    "text": "पढ़े गए इतिहास को सिंक करें",
+    "translationContext": "Label for read history sync toggle"
+  },
+  "settings.sync.settings.description": {
+    "text": "फ़ॉन्ट आकार, कहानियों की संख्या, और अन्य प्राथमिकताएँ",
+    "translationContext": "Description of what settings get synced"
+  },
+  "settings.sync.settings.enableInfo": {
+    "text": "सक्षम होने पर, आपकी वर्तमान सेटिंग्स अपलोड हो जाएँगी और आपके सभी डिवाइसों पर साझा की जाएँगी",
+    "translationContext": "Info shown when sync is disabled, explaining what happens when enabled"
+  },
+  "settings.sync.settings.label": {
+    "text": "सेटिंग्स सिंक करें",
+    "translationContext": "Label for settings sync toggle"
+  },
+  "settings.sync.toggles.title": {
+    "text": "सिंक प्राथमिकताएँ",
+    "translationContext": "Title for sync preferences section"
+  },
+  "settings.tabs.categories": {
+    "text": "श्रेणियाँ",
+    "translationContext": "Title for the categories settings tab"
+  },
+  "settings.tabs.contentFilter": {
+    "text": "सामग्री फ़िल्टर",
+    "translationContext": "Title for the content filter settings tab"
+  },
+  "settings.tabs.experimental": {
+    "text": "प्रायोगिक",
+    "translationContext": "Title for the experimental settings tab"
+  },
+  "settings.tabs.general": {
+    "text": "सामान्य",
+    "translationContext": "Title for the general settings tab"
+  },
+  "settings.tabs.sections": {
+    "text": "अनुभाग",
+    "translationContext": "Title for the sections settings tab"
+  },
+  "settings.tabs.syncPrivacy": {
+    "text": "सिंकिंग",
+    "translationContext": "Title for the sync and privacy settings tab"
+  },
+  "settings.theme.dark": {
+    "text": "गहरा",
+    "translationContext": "Option for dark theme"
+  },
+  "settings.theme.label": {
+    "text": "विषय",
+    "translationContext": "Label for the theme setting"
+  },
+  "settings.theme.light": {
+    "text": "हल्का",
+    "translationContext": "Option for light theme"
+  },
+  "settings.theme.system": {
+    "text": "सिस्टम",
+    "translationContext": "Option for system theme"
+  },
+  "settings.uiLanguage.label": {
+    "text": "इंटरफ़ेस भाषा",
+    "translationContext": "Label for the UI language setting"
+  },
+  "settings.uiLanguage.tooltip": {
+    "text": "बटनों, मेनू और इंटरफ़ेस टेक्स्ट की भाषा नियंत्रित करता है।",
+    "translationContext": "Tooltip explaining how UI language works"
+  },
+  "settings.useLatestUrls.description": {
+    "text": "ताज़ा समाचारों के लिए /latest यूआरएल का उपयोग करें ताकि बुकमार्क हमेशा नवीनतम सामग्री दिखाएँ",
+    "translationContext": "Description explaining what the latest URLs setting does"
+  },
+  "settings.useLatestUrls.disabled": {
+    "text": "अक्षम",
+    "translationContext": "Option when latest URLs are disabled"
+  },
+  "settings.useLatestUrls.enabled": {
+    "text": "सक्रिय",
+    "translationContext": "Option when latest URLs are enabled"
+  },
+  "settings.useLatestUrls.label": {
+    "text": "नवीनतम यूआरएल उपयोग करें",
+    "translationContext": "Label for the setting that controls URL format"
+  },
+  "common.back": {
+    "text": "वापस",
+    "translationContext": "Back button text"
+  },
+  "common.cancel": {
+    "text": "रद्द करें",
+    "translationContext": "Cancel button text"
+  },
+  "common.close": {
+    "text": "बंद करें",
+    "translationContext": "Close button text"
+  },
+  "common.reset": {
+    "text": "रीसेट करें",
+    "translationContext": "Reset button text"
+  },
+  "about.approach.description1": {
+    "text": "दुनिया इको चैंबर में नहीं रहती। वास्तविकता विभिन्न दृष्टिकोणों और विचारों के टकराव से उत्पन्न होती है - इसी तरह हम शोर से संकेत को अलग करते हैं।",
+    "translationContext": "First paragraph of the approach section"
+  },
+  "about.approach.description2": {
+    "text": "हम संसाधनों की विविधता और पारदर्शिता के लिए प्रयास करते हैं और विचारों को व्यापक बनाने के लिए आपके <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">योगदान</a> का स्वागत करते हैं। यह बहु-स्रोत दृष्टिकोण किसी एक दृष्टिकोण से परे पूरी तस्वीर को प्रकट करने में मदद करता है।",
+    "translationContext": "Second paragraph of the approach section with GitHub link"
+  },
+  "about.approach.description3": {
+    "text": "काइट हजारों (समुदाय-क्यूरेटेड) विश्व-व्यापी समाचार स्रोतों के सार्वजनिक आरएसएस फ़ीड पढ़ता है और उन्हें एक सही दैनिक ब्रीफिंग मेंL बदल देता है। आपको सिर्फ 5 मिनट में हर महत्वपूर्ण दृष्टिकोण और टाइमलाइन मिलती है। बस इतना ही। कोई अंतहीन स्क्रॉलिंग नहीं। कोई ध्यान भटकाना नहीं। क्योंकि हम बेहतर के हकदार हैं।",
+    "translationContext": "Third paragraph of the approach section"
+  },
+  "about.approach.title": {
+    "text": "हमारे दृष्टिकोण को समझना",
+    "translationContext": "Title of the approach section"
+  },
+  "about.contact.description": {
+    "text": "प्रतिक्रिया के लिए, कृपया <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://kagifeedback.org\">कागी फीडबैक</a> का उपयोग करें। सहायता के लिए, <a href=\"mailto:support@kagi.com\" class=\"text-blue-600 hover:underline dark:text-blue-400\">support@kagi.com</a>।",
+    "translationContext": "Contact information with links"
+  },
+  "about.contact.title": {
+    "text": "संपर्क करें",
+    "translationContext": "Title of the contact section"
+  },
+  "about.customization.description": {
+    "text": "सेटिंग्स में श्रेणियों को पुनर्व्यवस्थित और टॉगल करके अपनी फ़ीड को वैयक्तिकृत करें। योगदान करना चाहते हैं? काइट का अधिकांश हिस्सा, हमारी वेब ऐप और समुदाय-क्यूरेटेड फ़ीड सहित, <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">ओपन सोर्स</a> है।",
+    "translationContext": "Description of customization options with GitHub link"
+  },
+  "about.customization.title": {
+    "text": "अनुकूलन",
+    "translationContext": "Title of the customization section"
+  },
+  "about.principles.item1": {
+    "text": "एक दैनिक अपडेट (दोपहर यूटीसी), जो आपकी समाचार खपत के लिए एक स्वाभाविक समापन बिंदु बनाता है",
+    "translationContext": "First core principle about daily updates"
+  },
+  "about.principles.item2": {
+    "text": "राय के बजाय तथ्यों और दृष्टिकोणों पर ध्यान दें",
+    "translationContext": "Second core principle about facts vs opinions"
+  },
+  "about.principles.item3": {
+    "text": "निजता से कोई समझौता नहीं - आपकी पढ़ने की आदतें सिर्फ़ आपकी हैं",
+    "translationContext": "Third core principle about privacy"
+  },
+  "about.principles.item4": {
+    "text": "मात्रा से ज़्यादा गुणवत्ता और गहनता",
+    "translationContext": "Fourth core principle about quality"
+  },
+  "about.principles.item5": {
+    "text": "5 मिनट में पूरी ख़बरों की ख़ुराक",
+    "translationContext": "Fifth core principle about time efficiency"
+  },
+  "about.principles.item6": {
+    "text": "अटेंशन इकोनॉमी से मुक्ति - अंतहीन स्क्रॉल में नहीं, बल्कि वर्तमान क्षण में जिएँ",
+    "translationContext": "Sixth core principle about attention economy"
+  },
+  "about.principles.title": {
+    "text": "मुख्य सिद्धांत",
+    "translationContext": "Title of the core principles section"
+  },
+  "about.subtitle": {
+    "text": "कागी द्वारा समाचार ऐप",
+    "translationContext": "Kagi is a company, should not be translated"
+  },
+  "about.understand.button": {
+    "text": "मैं समझ गया",
+    "translationContext": "Text for the I understand button"
+  },
+  "about.why.description": {
+    "text": "लगातार विज्ञापन के मुद्रीकरण से प्रेरित होकर, समाचार मानसिक जंक फ़ूड <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://gwern.net/doc/culture/2010-dobelli.pdf\">बन</a> गया है - क्लिकबेट की एक अंतहीन धारा जो हमारी गहराई से और स्पष्ट रूप से सोचने की क्षमता को नष्ट कर देती है। हम बेहतर कर सकते हैं, और वह बना सकते हैं जो समाचार को हमेशा से होना चाहिए था - शुद्ध,Bआवश्यक जानकारी जो आपकी बुद्धिमत्ता और समय का सम्मान करती है।",
+    "translationContext": "Description of why Kagi News exists, including HTML link"
+  },
+  "about.why.title": {
+    "text": "क्यों काइट? क्योंकि खबरें टूटी-फूटी हैं।",
+    "translationContext": "Title of the Why Kagi News section"
+  },
+  "app.beta": {
+    "text": "बीटा",
+    "translationContext": "Beta label shown next to the app title"
+  },
+  "app.disclaimerAutoGenerated": {
+    "text": "सारांश में त्रुटियाँ हो सकती हैं।",
+    "translationContext": "Disclaimer about AI-generated content"
+  },
+  "app.disclaimerVerify": {
+    "text": "कृपया महत्वपूर्ण जानकारी सत्यापित करें।",
+    "translationContext": "Reminder to verify information, goes after 'Summaries are AI/LLM-generated and Kagi News can make mistakes.'"
+  },
+  "app.logo.alt": {
+    "text": "काइट लोगो",
+    "translationContext": "Alt text for the Kagi News logo image, Kagi News should not be translated as it's a brand name"
+  },
+  "app.logo.iconAlt": {
+    "text": "Kagi News आइकन",
+    "translationContext": "Alt text for the Kagi News icon image, Kagi News should not be translated as it's a brand name"
+  },
+  "app.logo.newsAlt": {
+    "text": "काइट न्यूज़ लोगो",
+    "translationContext": "Alt text for the Kagi News News logo image in header, Kagi News should not be translated as it's a brand name"
+  },
+  "app.migrationNotice": {
+    "text": "हमारे हाल ही में Svelte 5 पर माइग्रेशन के कारण, कहानियाँ अस्थायी रूप से केवल डिफ़ॉल्ट भाषा में उपलब्ध हैं। पूर्ण बहुभाषी समर्थन 24 घंटे के भीतर बहाल कर दिया जाएगा। आपके धैर्य के लिए धन्यवाद!",
+    "translationContext": "Notice about temporary language limitation during Svelte 5 migration"
+  },
+  "app.motto": {
+    "text": "ख़बरें। सबसे अलग।",
+    "translationContext": "Motto of the app, should be translated in a natural way"
+  },
+  "app.temporaryCategoryNotice": {
+    "text": "साझा लिंक से यह श्रेणी अस्थायी रूप से दिखाई जा रही है",
+    "translationContext": "Notice shown when a user accesses a shared link for a category they haven't enabled."
+  },
+  "app.title": {
+    "text": "Kagi News",
+    "translationContext": "Title of the app, should not be translated"
+  },
+  "article.closeStory": {
+    "text": "कहानी बंद करें",
+    "translationContext": "Button text to close a story"
+  },
+  "article.didYouKnow": {
+    "text": "क्या आप जानते थे?",
+    "translationContext": "Title for the Did You Know section"
+  },
+  "article.location": {
+    "text": "मानचित्रों में स्थान खोलें",
+    "translationContext": "Title/tooltip for the location link"
+  },
+  "article.markAllAsRead": {
+    "text": "सभी कहानियों को पढ़ा गया के रूप में चिह्नित करें",
+    "translationContext": "Button text to mark all stories as read"
+  },
+  "article.readStatus": {
+    "text": "पढ़ने की स्थिति बदलने के लिए क्लिक करें",
+    "translationContext": "Title/tooltip for the read status toggle button"
+  },
+  "article.reportInaccuracy": {
+    "text": "गलत जानकारी की शिकायत करें",
+    "translationContext": "Tooltip text for the report button"
+  },
+  "article.reportModal.addSource": {
+    "text": "एक और स्रोत जोड़ें",
+    "translationContext": "Button text to add another source URL field"
+  },
+  "article.reportModal.cancel": {
+    "text": "रद्द करें",
+    "translationContext": "Cancel button text"
+  },
+  "article.reportModal.characterCount": {
+    "text": "{{count}} / {{max}} वर्ण",
+    "translationContext": "Character count display with placeholders for current count and maximum"
+  },
+  "article.reportModal.description": {
+    "text": "कृपया समस्या का वर्णन करें",
+    "translationContext": "Label for the description field"
+  },
+  "article.reportModal.descriptionPlaceholder": {
+    "text": "बताएं कि इस सारांश के बारे में क्या गलत या समस्याग्रस्त है...",
+    "translationContext": "Placeholder text for the description field"
+  },
+  "article.reportModal.error": {
+    "text": "रिपोर्ट सबमिट करने में विफल। कृपया पुन: प्रयास करें।",
+    "translationContext": "Generic error message for report submission failure"
+  },
+  "article.reportModal.issueType": {
+    "text": "क्या समस्या है?",
+    "translationContext": "Label for the issue type selection"
+  },
+  "article.reportModal.issueType.factualError": {
+    "text": "तथ्यात्मक त्रुटि",
+    "translationContext": "Option for reporting factual errors"
+  },
+  "article.reportModal.issueType.misleading": {
+    "text": "भ्रामक सारांश",
+    "translationContext": "Option for reporting misleading summaries"
+  },
+  "article.reportModal.issueType.other": {
+    "text": "अन्य समस्या",
+    "translationContext": "Option for reporting other types of issues"
+  },
+  "article.reportModal.issueType.outdated": {
+    "text": "पुरानी जानकारी",
+    "translationContext": "Option for reporting outdated content"
+  },
+  "article.reportModal.reportId": {
+    "text": "रिपोर्ट आईडी: {{id}}",
+    "translationContext": "Display of the report ID after successful submission"
+  },
+  "article.reportModal.reportingFor": {
+    "text": "इसके साथ समस्या की रिपोर्ट करें:",
+    "translationContext": "Label showing which story is being reported"
+  },
+  "article.reportModal.source": {
+    "text": "स्रोत (वैकल्पिक)",
+    "translationContext": "Label for the source URL field"
+  },
+  "article.reportModal.sourceHelper": {
+    "text": "अपनी रिपोर्ट का समर्थन करने वाले विश्वसनीय स्रोतों के लिंक जोड़ें",
+    "translationContext": "Helper text explaining the purpose of source URLs"
+  },
+  "article.reportModal.sourcePlaceholder": {
+    "text": "https://example.com/article",
+    "translationContext": "Placeholder text for the source URL field"
+  },
+  "article.reportModal.submit": {
+    "text": "रिपोर्ट सबमिट करें",
+    "translationContext": "Submit button text"
+  },
+  "article.reportModal.submitting": {
+    "text": "प्रस्तुत किया जा रहा है...",
+    "translationContext": "Button text while report is being submitted"
+  },
+  "article.reportModal.subtitle": {
+    "text": "इस कहानी के सारांश में किसी भी समस्या की रिपोर्ट करके हमें बेहतर बनाने में मदद करें",
+    "translationContext": "Subtitle explaining the purpose of the report modal"
+  },
+  "article.reportModal.success": {
+    "text": "आपके फ़ीडबैक के लिए धन्यवाद। आपकी रिपोर्ट सबमिट कर दी गई है।",
+    "translationContext": "Success message after report submission"
+  },
+  "article.reportModal.title": {
+    "text": "गलत जानकारी की शिकायत करें",
+    "translationContext": "Title of the report modal"
+  },
+  "article.shareCopied": {
+    "text": "कॉपी किया गया!",
+    "translationContext": "Success message shown when URL is copied to clipboard"
+  },
+  "article.shareStory": {
+    "text": "कहानी साझा करें",
+    "translationContext": "Tooltip text for the share button"
+  },
+  "category.ai": {
+    "text": "कृत्रिम बुद्धिमत्ता",
+    "translationContext": "Display name for the AI news category"
+  },
+  "category.apple": {
+    "text": "एप्पल वर्ल्ड",
+    "translationContext": "Display name for the Apple news category"
+  },
+  "category.australia": {
+    "text": "ऑस्ट्रेलिया",
+    "translationContext": "Display name for the Australia news category"
+  },
+  "category.bayArea": {
+    "text": "बे एरिया",
+    "translationContext": "Display name for the Bay Area news category"
+  },
+  "category.belgium": {
+    "text": "बेल्जियम",
+    "translationContext": "Display name for the Belgium news category"
+  },
+  "category.bitcoin": {
+    "text": "Bitcoin",
+    "translationContext": "Display name for the Bitcoin news category"
+  },
+  "category.brazil": {
+    "text": "ब्राज़ील",
+    "translationContext": "Display name for the Brazil news category"
+  },
+  "category.business": {
+    "text": "व्यापार",
+    "translationContext": "Display name for the Business news category"
+  },
+  "category.canada": {
+    "text": "कनाडा",
+    "translationContext": "Display name for the Canada news category"
+  },
+  "category.china": {
+    "text": "China",
+    "translationContext": "Display name for the China news category"
+  },
+  "category.chinaTaiwan": {
+    "text": "Taiwan",
+    "translationContext": "Display name for the Taiwan news category"
+  },
+  "category.colombia": {
+    "text": "Colombia",
+    "translationContext": "Display name for the Colombia news category"
+  },
+  "category.costaRica": {
+    "text": "कोस्टा रिका",
+    "translationContext": "Display name for the Costa Rica news category"
+  },
+  "category.cryptocurrency": {
+    "text": "क्रिप्टोकरेंसी",
+    "translationContext": "Display name for the Cryptocurrency news category"
+  },
+  "category.cybersecurity": {
+    "text": "साइबर सिक्योरिटी",
+    "translationContext": "Display name for the Cybersecurity news category"
+  },
+  "category.czechRepublic": {
+    "text": "Czech Republic",
+    "translationContext": "Display name for the Czech Republic news category"
+  },
+  "category.denmark": {
+    "text": "Denmark",
+    "translationContext": "Display name for the Denmark news category"
+  },
+  "category.economy": {
+    "text": "अर्थव्यवस्था",
+    "translationContext": "Display name for the Economy news category"
+  },
+  "category.egypt": {
+    "text": "Egypt",
+    "translationContext": "Display name for the Egypt news category"
+  },
+  "category.entertainment": {
+    "text": "मनोरंजन",
+    "translationContext": "Display name for the Entertainment news category"
+  },
+  "category.estonia": {
+    "text": "एस्टोनिया",
+    "translationContext": "Display name for the Estonia news category"
+  },
+  "category.europe": {
+    "text": "यूरोप",
+    "translationContext": "Display name for the Europe news category"
+  },
+  "category.finland": {
+    "text": "Finland",
+    "translationContext": "Display name for the Finland news category"
+  },
+  "category.france": {
+    "text": "फ्रांस",
+    "translationContext": "Display name for the France news category"
+  },
+  "category.gaming": {
+    "text": "गेमिंग",
+    "translationContext": "Display name for the Gaming news category"
+  },
+  "category.germany": {
+    "text": "जर्मनी",
+    "translationContext": "Display name for the Germany news category"
+  },
+  "category.germanyHesse": {
+    "text": "जर्मनी | हेस्से",
+    "translationContext": "Display name for the Germany Hesse regional news category"
+  },
+  "category.health": {
+    "text": "स्वास्थ्य",
+    "translationContext": "Display name for the Health news category"
+  },
+  "category.hongKong": {
+    "text": "Hong Kong",
+    "translationContext": "Display name for the Hong Kong news category"
+  },
+  "category.india": {
+    "text": "भारत",
+    "translationContext": "Display name for the India news category"
+  },
+  "category.indonesia": {
+    "text": "Indonesia",
+    "translationContext": "Display name for the Indonesia news category"
+  },
+  "category.ireland": {
+    "text": "आयरलैंड",
+    "translationContext": "Display name for the Ireland news category"
+  },
+  "category.israel": {
+    "text": "इज़राइल",
+    "translationContext": "Display name for the Israel news category"
+  },
+  "category.italy": {
+    "text": "इटली",
+    "translationContext": "Display name for the Italy news category"
+  },
+  "category.japan": {
+    "text": "जापान",
+    "translationContext": "Display name for the Japan news category"
+  },
+  "category.kenya": {
+    "text": "Kenya",
+    "translationContext": "Display name for the Kenya news category"
+  },
+  "category.korea": {
+    "text": "Korea",
+    "translationContext": "Display name for the Korea news category"
+  },
+  "category.linuxOss": {
+    "text": "Linux & OSS",
+    "translationContext": "Display name for the Linux & OSS news category"
+  },
+  "category.malaysia": {
+    "text": "Malaysia",
+    "translationContext": "Display name for the Malaysia news category"
+  },
+  "category.mexico": {
+    "text": "मेक्सिको",
+    "translationContext": "Display name for the Mexico news category"
+  },
+  "category.middleEast": {
+    "text": "Middle East",
+    "translationContext": "Display name for the Middle East news category"
+  },
+  "category.netherlands": {
+    "text": "नीदरलैंड्स",
+    "translationContext": "Display name for the Netherlands news category"
+  },
+  "category.newZealand": {
+    "text": "न्यूजीलैंड",
+    "translationContext": "Display name for the New Zealand news category"
+  },
+  "category.nigeria": {
+    "text": "Nigeria",
+    "translationContext": "Display name for the Nigeria news category"
+  },
+  "category.norway": {
+    "text": "Norway",
+    "translationContext": "Display name for the Norway news category"
+  },
+  "category.pakistan": {
+    "text": "पाकिस्तान",
+    "translationContext": "Display name for the Pakistan news category"
+  },
+  "category.philippines": {
+    "text": "Philippines",
+    "translationContext": "Display name for the Philippines news category"
+  },
+  "category.poland": {
+    "text": "पोलैंड",
+    "translationContext": "Display name for the Poland news category"
+  },
+  "category.politics": {
+    "text": "राजनीति",
+    "translationContext": "Display name for the Politics news category"
+  },
+  "category.portugal": {
+    "text": "पुर्तगाल",
+    "translationContext": "Display name for the Portugal news category"
+  },
+  "category.romania": {
+    "text": "रोमानिया",
+    "translationContext": "Display name for the Romania news category"
+  },
+  "category.russia": {
+    "text": "Russia",
+    "translationContext": "Display name for the Russia news category"
+  },
+  "category.science": {
+    "text": "विज्ञान",
+    "translationContext": "Display name for the Science news category"
+  },
+  "category.serbia": {
+    "text": "सर्बिया",
+    "translationContext": "Display name for the Serbia news category"
+  },
+  "category.singapore": {
+    "text": "Singapore",
+    "translationContext": "Display name for the Singapore news category"
+  },
+  "category.slovenia": {
+    "text": "स्लोवेनिया",
+    "translationContext": "Display name for the Slovenia news category"
+  },
+  "category.southAfrica": {
+    "text": "South Africa",
+    "translationContext": "Display name for the South Africa news category"
+  },
+  "category.southKorea": {
+    "text": "दक्षिण कोरिया",
+    "translationContext": "Display name for the South Korea news category"
+  },
+  "category.spain": {
+    "text": "स्पेन",
+    "translationContext": "Display name for the Spain news category"
+  },
+  "category.sports": {
+    "text": "खेल",
+    "translationContext": "Display name for the Sports news category"
+  },
+  "category.sweden": {
+    "text": "स्वीडन",
+    "translationContext": "Display name for the Sweden news category"
+  },
+  "category.switzerland": {
+    "text": "Switzerland",
+    "translationContext": "Display name for the Switzerland news category"
+  },
+  "category.switzerlandDe": {
+    "text": "स्विट्जरलैंड (DE)",
+    "translationContext": "Display name for the Switzerland (DE) news category"
+  },
+  "category.technology": {
+    "text": "प्रौद्योगिकी",
+    "translationContext": "Display name for the Technology news category"
+  },
+  "category.thailand": {
+    "text": "थाईलैंड",
+    "translationContext": "Display name for the Thailand news category"
+  },
+  "category.theNetherlands": {
+    "text": "नीदरलैंड",
+    "translationContext": "Display name for the The Netherlands news category"
+  },
+  "category.todayInHistory": {
+    "text": "आज का इतिहास",
+    "translationContext": "Display name for the OnThisDay category"
+  },
+  "category.turkey": {
+    "text": "Turkey",
+    "translationContext": "Display name for the Turkey news category"
+  },
+  "category.uk": {
+    "text": "यूके",
+    "translationContext": "Display name for the UK news category"
+  },
+  "category.ukraine": {
+    "text": "यूक्रेन",
+    "translationContext": "Display name for the Ukraine news category"
+  },
+  "category.usa": {
+    "text": "संयुक्त राज्य अमेरिका",
+    "translationContext": "Display name for the USA news category"
+  },
+  "category.usaAlabama": {
+    "text": "USA | Alabama",
+    "translationContext": "Display name for the USA Alabama news category"
+  },
+  "category.usaAlaska": {
+    "text": "USA | Alaska",
+    "translationContext": "Display name for the USA Alaska news category"
+  },
+  "category.usaArizona": {
+    "text": "USA | Arizona",
+    "translationContext": "Display name for the USA Arizona news category"
+  },
+  "category.usaArkansas": {
+    "text": "USA | Arkansas",
+    "translationContext": "Display name for the USA Arkansas news category"
+  },
+  "category.usaCalifornia": {
+    "text": "USA | California",
+    "translationContext": "Display name for the USA California news category"
+  },
+  "category.usaColorado": {
+    "text": "USA | Colorado",
+    "translationContext": "Display name for the USA Colorado news category"
+  },
+  "category.usaConnecticut": {
+    "text": "USA | Connecticut",
+    "translationContext": "Display name for the USA Connecticut news category"
+  },
+  "category.usaDelaware": {
+    "text": "USA | Delaware",
+    "translationContext": "Display name for the USA Delaware news category"
+  },
+  "category.usaFlorida": {
+    "text": "USA | Florida",
+    "translationContext": "Display name for the USA Florida news category"
+  },
+  "category.usaGeorgia": {
+    "text": "USA | Georgia",
+    "translationContext": "Display name for the USA Georgia news category"
+  },
+  "category.usaHawaii": {
+    "text": "USA | Hawaii",
+    "translationContext": "Display name for the USA Hawaii news category"
+  },
+  "category.usaIdaho": {
+    "text": "USA | Idaho",
+    "translationContext": "Display name for the USA Idaho news category"
+  },
+  "category.usaIllinois": {
+    "text": "USA | Illinois",
+    "translationContext": "Display name for the USA Illinois news category"
+  },
+  "category.usaIndiana": {
+    "text": "USA | Indiana",
+    "translationContext": "Display name for the USA Indiana news category"
+  },
+  "category.usaIowa": {
+    "text": "USA | Iowa",
+    "translationContext": "Display name for the USA Iowa news category"
+  },
+  "category.usaKansas": {
+    "text": "USA | Kansas",
+    "translationContext": "Display name for the USA Kansas news category"
+  },
+  "category.usaKentucky": {
+    "text": "USA | Kentucky",
+    "translationContext": "Display name for the USA Kentucky news category"
+  },
+  "category.usaLouisiana": {
+    "text": "USA | Louisiana",
+    "translationContext": "Display name for the USA Louisiana news category"
+  },
+  "category.usaMaine": {
+    "text": "USA | Maine",
+    "translationContext": "Display name for the USA Maine news category"
+  },
+  "category.usaMaryland": {
+    "text": "USA | Maryland",
+    "translationContext": "Display name for the USA Maryland news category"
+  },
+  "category.usaMassachusetts": {
+    "text": "USA | Massachusetts",
+    "translationContext": "Display name for the USA Massachusetts news category"
+  },
+  "category.usaMichigan": {
+    "text": "USA | Michigan",
+    "translationContext": "Display name for the USA Michigan news category"
+  },
+  "category.usaMinnesota": {
+    "text": "USA | Minnesota",
+    "translationContext": "Display name for the USA Minnesota news category"
+  },
+  "category.usaMississippi": {
+    "text": "USA | Mississippi",
+    "translationContext": "Display name for the USA Mississippi news category"
+  },
+  "category.usaMissouri": {
+    "text": "USA | Missouri",
+    "translationContext": "Display name for the USA Missouri news category"
+  },
+  "category.usaMontana": {
+    "text": "USA | Montana",
+    "translationContext": "Display name for the USA Montana news category"
+  },
+  "category.usaNebraska": {
+    "text": "USA | Nebraska",
+    "translationContext": "Display name for the USA Nebraska news category"
+  },
+  "category.usaNevada": {
+    "text": "USA | Nevada",
+    "translationContext": "Display name for the USA Nevada news category"
+  },
+  "category.usaNewHampshire": {
+    "text": "USA | New Hampshire",
+    "translationContext": "Display name for the USA New Hampshire news category"
+  },
+  "category.usaNewJersey": {
+    "text": "USA | New Jersey",
+    "translationContext": "Display name for the USA New Jersey news category"
+  },
+  "category.usaNewMexico": {
+    "text": "USA | New Mexico",
+    "translationContext": "Display name for the USA New Mexico news category"
+  },
+  "category.usaNewYork": {
+    "text": "USA | New York",
+    "translationContext": "Display name for the USA New York news category"
+  },
+  "category.usaNorthCarolina": {
+    "text": "USA | North Carolina",
+    "translationContext": "Display name for the USA North Carolina news category"
+  },
+  "category.usaNorthDakota": {
+    "text": "USA | North Dakota",
+    "translationContext": "Display name for the USA North Dakota news category"
+  },
+  "category.usaOhio": {
+    "text": "USA | Ohio",
+    "translationContext": "Display name for the USA Ohio news category"
+  },
+  "category.usaOklahoma": {
+    "text": "USA | Oklahoma",
+    "translationContext": "Display name for the USA Oklahoma news category"
+  },
+  "category.usaOregon": {
+    "text": "USA | Oregon",
+    "translationContext": "Display name for the USA Oregon news category"
+  },
+  "category.usaPennsylvania": {
+    "text": "USA | Pennsylvania",
+    "translationContext": "Display name for the USA Pennsylvania news category"
+  },
+  "category.usaRhodeIsland": {
+    "text": "USA | Rhode Island",
+    "translationContext": "Display name for the USA Rhode Island news category"
+  },
+  "category.usaSouthCarolina": {
+    "text": "USA | South Carolina",
+    "translationContext": "Display name for the USA South Carolina news category"
+  },
+  "category.usaSouthDakota": {
+    "text": "USA | South Dakota",
+    "translationContext": "Display name for the USA South Dakota news category"
+  },
+  "category.usaTennessee": {
+    "text": "USA | Tennessee",
+    "translationContext": "Display name for the USA Tennessee news category"
+  },
+  "category.usaTexas": {
+    "text": "USA | Texas",
+    "translationContext": "Display name for the USA Texas news category"
+  },
+  "category.usaUtah": {
+    "text": "USA | Utah",
+    "translationContext": "Display name for the USA Utah news category"
+  },
+  "category.usaVermont": {
+    "text": "यूएसए | वर्मोंट",
+    "translationContext": "Display name for the USA | Vermont news category"
+  },
+  "category.usaVirginia": {
+    "text": "यूएसए | वर्जीनिया",
+    "translationContext": "Display name for the USA | Virginia news category"
+  },
+  "category.usaWashington": {
+    "text": "USA | Washington",
+    "translationContext": "Display name for the USA Washington news category"
+  },
+  "category.usaWestVirginia": {
+    "text": "USA | West Virginia",
+    "translationContext": "Display name for the USA West Virginia news category"
+  },
+  "category.usaWisconsin": {
+    "text": "USA | Wisconsin",
+    "translationContext": "Display name for the USA Wisconsin news category"
+  },
+  "category.usaWyoming": {
+    "text": "USA | Wyoming",
+    "translationContext": "Display name for the USA Wyoming news category"
+  },
+  "category.vietnam": {
+    "text": "Vietnam",
+    "translationContext": "Display name for the Vietnam news category"
+  },
+  "category.world": {
+    "text": "विश्व",
+    "translationContext": "Display name for the World news category"
+  },
+  "citation.commonKnowledge.description": {
+    "text": "यह जानकारी सामान्य ज्ञान है जो किसी विशिष्ट समाचार स्रोत से नहीं ली गई है, लेकिन कहानी के संदर्भ और पूर्णता के लिए शामिल की गई है।",
+    "translationContext": "Description explaining what common knowledge citations are"
+  },
+  "citation.commonKnowledge.title": {
+    "text": "सामान्य ज्ञान",
+    "translationContext": "Title for common knowledge citations marked with [*]"
+  },
+  "citation.source": {
+    "text": "स्रोत:",
+    "translationContext": "Label shown before a single citation source"
+  },
+  "citation.sources": {
+    "text": "स्रोत:",
+    "translationContext": "Label shown before multiple citation sources"
+  },
+  "contentFilter.adjustFilters": {
+    "text": "फ़िल्टर समायोजित करें",
+    "translationContext": "Button to go to settings and adjust content filters"
+  },
+  "contentFilter.allStoriesFiltered": {
+    "text": "इस श्रेणी की सभी कहानियों को फ़िल्टर कर दिया गया था",
+    "translationContext": "Title when all stories in a category are filtered out"
+  },
+  "contentFilter.allStoriesFilteredDescription": {
+    "text": "आपके सामग्री फ़िल्टर ने आज इस श्रेणी की सभी कहानियों को छिपा दिया है।",
+    "translationContext": "Description when all stories are filtered, explaining why"
+  },
+  "contentFilter.clickToReveal": {
+    "text": "कहानी दिखाने के लिए क्लिक करें",
+    "translationContext": "Instruction to reveal filtered story"
+  },
+  "contentFilter.disableCategory": {
+    "text": "श्रेणी अक्षम करें",
+    "translationContext": "Button to go to settings and disable this news category"
+  },
+  "contentFilter.filteredBecause": {
+    "text": "फ़िल्टर के कारण छिपाया गया:",
+    "translationContext": "Short message explaining why story is filtered"
+  },
+  "contentFilter.hiddenStory": {
+    "text": "यह कहानी छिपाई गई थी क्योंकि यह आपके सामग्री फ़िल्टर से मेल खाती है:",
+    "translationContext": "Message shown when a story is filtered"
+  },
+  "contentFilter.linkedStoryClickToReveal": {
+    "text": "फिर भी दिखाने के लिए क्लिक करें",
+    "translationContext": "Instruction to reveal a linked/pre-opened filtered story"
+  },
+  "contentFilter.linkedStoryFilteredBecause": {
+    "text": "आप जो कहानी देखना चाहते थे, वह आपके कंटेंट फ़िल्टर द्वारा ब्लॉक कर दी गई है:",
+    "translationContext": "Message shown when a linked/pre-opened story is filtered"
+  },
+  "contentFilter.showStory": {
+    "text": "कहानी दिखाएँ",
+    "translationContext": "Button to reveal a filtered story"
+  },
+  "contentFilter.storiesFiltered": {
+    "text": "{{count}} कहानियाँ फ़िल्टर की गईं",
+    "translationContext": "Message showing multiple stories are filtered"
+  },
+  "contentFilter.storiesHidden": {
+    "text": "{{count}} कहानियाँ छिपी हुई हैं",
+    "translationContext": "Message showing multiple stories are hidden"
+  },
+  "contentFilter.storyFiltered": {
+    "text": "{{count}} कहानी फ़िल्टर की गई",
+    "translationContext": "Message showing 1 story is filtered"
+  },
+  "contentFilter.storyHidden": {
+    "text": "{{count}} कहानी छिपी हुई",
+    "translationContext": "Message showing 1 story is hidden"
+  },
+  "date.format": {
+    "text": "{{weekday}}, {{month}} {{day}}",
+    "translationContext": "Format for displaying dates. {{weekday}} will be replaced with the day of the week, {{month}} with the month name, and {{day}} with the day number."
+  },
+  "footer.about": {
+    "text": "काइट के बारे में",
+    "translationContext": "Link text for about page"
+  },
+  "footer.aboutMobile": {
+    "text": "जानकारी",
+    "translationContext": "Shorter link text for about page on mobile devices"
+  },
+  "footer.contribute": {
+    "text": "योगदान करें",
+    "translationContext": "Link text for contributing to the project"
+  },
+  "footer.rssFeed": {
+    "text": "आरएसएस फ़ीड",
+    "translationContext": "Link text for RSS feed"
+  },
+  "footer.rssFeedMobile": {
+    "text": "आरएसएस",
+    "translationContext": "Shorter link text for RSS feed on mobile devices"
+  },
+  "header.fontSize": {
+    "text": "फ़ॉन्ट आकार",
+    "translationContext": "Tooltip and aria-label for the font size adjustment button in the header"
+  },
+  "header.search": {
+    "text": "खोज",
+    "translationContext": "Tooltip for search button in header"
+  },
+  "header.settings": {
+    "text": "सेटिंग्स",
+    "translationContext": "Title attribute for the settings button"
+  },
+  "header.timeTravel": {
+    "text": "समय यात्रा",
+    "translationContext": "Tooltip for time travel button in header"
+  },
+  "loading.categories": {
+    "text": "श्रेणियाँ लोड हो रही हैं...",
+    "translationContext": "Loading message shown when fetching news categories"
+  },
+  "loading.chaosIndex": {
+    "text": "अव्यवस्था सूचकांक की गणना हो रही है...",
+    "translationContext": "Loading message shown when calculating the world chaos index"
+  },
+  "loading.default": {
+    "text": "लोड हो रहा है...",
+    "translationContext": "Default loading message"
+  },
+  "loading.error": {
+    "text": "डेटा लोड करने में त्रुटि",
+    "translationContext": "Loading message shown when an error occurs"
+  },
+  "loading.errorFallback": {
+    "text": "सीमित कार्यक्षमता के साथ जारी है...",
+    "translationContext": "Message shown when there's an error but the app continues with fallback data"
+  },
+  "loading.finishing": {
+    "text": "लगभग पूरा हो गया है...",
+    "translationContext": "Loading message shown when nearly complete"
+  },
+  "loading.images": {
+    "text": "चित्र प्रीलोड हो रहे हैं...",
+    "translationContext": "Loading message shown when preloading story images"
+  },
+  "loading.initializing": {
+    "text": "प्रारंभ हो रहा है...",
+    "translationContext": "Loading message shown when the app is starting up"
+  },
+  "loading.ready": {
+    "text": "तैयार!",
+    "translationContext": "Loading message shown when loading is complete"
+  },
+  "loading.stories": {
+    "text": "कहानियां लोड हो रही हैं...",
+    "translationContext": "Loading message shown when fetching news stories"
+  },
+  "meta.categoryDescription": {
+    "text": "कागी समाचार पर नवीनतम {category} समाचार",
+    "translationContext": "Meta description for category pages. {category} will be replaced with the actual category name."
+  },
+  "meta.description": {
+    "text": "कागी न्यूज़ दुनिया भर के हज़ारों समाचार स्रोतों को एक बेहतरीन दैनिक संक्षिप्त जानकारी में बदल देता है। हर महत्वपूर्ण दृष्टिकोण को केवल 5 मिनट में जानें। अंतहीन स्क्रॉलिंग नहीं। ध्यान भटकाना नहीं।",
+    "translationContext": "Default meta description for SEO"
+  },
+  "meta.news": {
+    "text": "समाचार",
+    "translationContext": "The word 'News' used in titles"
+  },
+  "navigation.backToTop": {
+    "text": "शीर्ष पर वापस जाएं",
+    "translationContext": "Accessibility label for the button that scrolls back to the top of the page"
+  },
+  "notification.newBatch.action": {
+    "text": "देखें",
+    "translationContext": "Action button label on toast notification to view the new batch of news"
+  },
+  "notification.newBatch.message": {
+    "text": "नई खबरें उपलब्ध हैं!",
+    "translationContext": "Toast notification message when a new batch of news is published"
+  },
+  "onboarding.button.back": {
+    "text": "← वापस",
+    "translationContext": "Back button text"
+  },
+  "onboarding.button.getStarted": {
+    "text": "शुरू करें",
+    "translationContext": "Get started button text"
+  },
+  "onboarding.button.next": {
+    "text": "आगे बढ़ें →",
+    "translationContext": "Next button text"
+  },
+  "onboarding.button.skip": {
+    "text": "छोड़ें",
+    "translationContext": "Skip button text"
+  },
+  "onboarding.categories.subtitle": {
+    "text": "कागी न्यूज़ दुनिया भर से समाचारों का अनुसरण करता है, जिसमें राष्ट्रीय, क्षेत्रीय और स्थानीय घटनाओं को शामिल किया जाता है। उन श्रेणियों का चयन करें जिनमें आपकी रुचि है:",
+    "translationContext": "Subtitle for onboarding step 2"
+  },
+  "onboarding.categories.title": {
+    "text": "विषय चुनें",
+    "translationContext": "Title for onboarding step 2"
+  },
+  "onboarding.sections.subtitle": {
+    "text": "कागी समाचार लेखों में सारांश, मुख्य बिंदु, समय-सीमा और विभिन्न दृष्टिकोण जैसे विभिन्न खंड शामिल हैं। आप इन खंडों को खींचकर पुनर्व्यवस्थित कर सकते हैं या अपनी पढ़ने की प्राथमिकताओं के आधार पर उन्हें पूरी तरह से अक्षम कर सकते हैं।",
+    "translationContext": "Subtitle for onboarding step 3"
+  },
+  "onboarding.sections.title": {
+    "text": "सामग्री प्राथमिकताएँ",
+    "translationContext": "Title for onboarding step 3"
+  },
+  "onboarding.welcome.subtitle": {
+    "text": "आइए आपके समाचार अनुभव को निजीकृत करें। सबसे पहले, अपनी प्राथमिकताएं चुनें:",
+    "translationContext": "Subtitle for onboarding step 1"
+  },
+  "onboarding.welcome.title": {
+    "text": "कागी न्यूज़ में आपका स्वागत है!",
+    "translationContext": "Title for onboarding step 1"
+  },
+  "onthisday.events": {
+    "text": "घटनाएँ",
+    "translationContext": "Title for the events section in Today in History"
+  },
+  "onthisday.people": {
+    "text": "लोग",
+    "translationContext": "Title for the people section in Today in History"
+  },
+  "quote.format.authorSaid": {
+    "text": "{{author}} ने कहा",
+    "translationContext": "Quote author prefix. {author} is the person who said the quote"
+  },
+  "quote.format.full": {
+    "text": "{{attribution}} में, {{author}} ने कहा, \"{{quote}}\"",
+    "translationContext": "Full quote format with attribution and author. {attribution} is the source/publication, {author} is the person, {quote} is the actual quote"
+  },
+  "quote.format.inAttribution": {
+    "text": "{{attribution}} में",
+    "translationContext": "Quote attribution prefix for the source/publication only. {attribution} is the source/publication"
+  },
+  "search.allBatches": {
+    "text": "सभी दिनांकों में खोजें",
+    "translationContext": "Label for toggle to search across all news batches"
+  },
+  "search.close": {
+    "text": "बंद करें",
+    "translationContext": "Keyboard shortcut hint for Escape key"
+  },
+  "search.close_search": {
+    "text": "खोज बंद करें",
+    "translationContext": "Aria label for close search button"
+  },
+  "search.current": {
+    "text": "वर्तमान",
+    "translationContext": "Label for results from current batch"
+  },
+  "search.dismiss_tips": {
+    "text": "इन युक्तियों को दुबारा न दिखाएँ",
+    "translationContext": "Tooltip for dismissing filter tips permanently"
+  },
+  "search.filter_category_hint": {
+    "text": "समाचार श्रेणी के अनुसार फ़िल्टर करें (उदा. श्रेणी:प्रौद्योगिकी)",
+    "translationContext": "Hint for category filter"
+  },
+  "search.filter_date_hint": {
+    "text": "किसी दिनांक सीमा के अंदर खोजें (उदा. from:2025-01-01 to:today)",
+    "translationContext": "Hint for date filters"
+  },
+  "search.for": {
+    "text": "के लिए",
+    "translationContext": "Preposition used in 'results for query'"
+  },
+  "search.get_started_description": {
+    "text": "खोजने के लिए टाइप करें या फ़िल्टर का उपयोग करें",
+    "translationContext": "Description shown when search modal is empty"
+  },
+  "search.get_started_title": {
+    "text": "खोज करना प्रारंभ करें",
+    "translationContext": "Title shown when search modal is empty"
+  },
+  "search.hint": {
+    "text": "सभी श्रेणियों में खोजने के लिए टाइप करें",
+    "translationContext": "Hint text shown in empty search modal"
+  },
+  "search.historical": {
+    "text": "ऐतिहासिक",
+    "translationContext": "Label for results from historical batches"
+  },
+  "search.historical_included": {
+    "text": "{{count}} ऐतिहासिक परिणाम शामिल हैं",
+    "translationContext": "Shows number of historical search results included. {{count}} is replaced with the number."
+  },
+  "search.historical_needs_3_chars": {
+    "text": "पुराने खोज के लिए कम से कम 3 अक्षर चाहिए",
+    "translationContext": "Message shown when query is too short for historical search"
+  },
+  "search.historicalComplete": {
+    "text": "ऐतिहासिक खोज पूरी हुई",
+    "translationContext": "Status message when historical search is done"
+  },
+  "search.load_more": {
+    "text": "और परिणाम लोड करें",
+    "translationContext": "Button text to load more search results"
+  },
+  "search.loading_historical_data": {
+    "text": "पुराना डेटा लोड हो रहा है...",
+    "translationContext": "Loading message when fetching historical search results"
+  },
+  "search.loading_more": {
+    "text": "अधिक परिणाम लोड हो रहे हैं...",
+    "translationContext": "Loading message while fetching more results"
+  },
+  "search.navigate": {
+    "text": "नेविगेट करें",
+    "translationContext": "Label for arrow key navigation"
+  },
+  "search.no_results": {
+    "text": "कोई परिणाम नहीं मिला",
+    "translationContext": "Message when no results are found"
+  },
+  "search.no_results_description": {
+    "text": "जो आप ढूँढ रहे हैं उसे खोजने के लिए अपनी खोज शर्तों या फ़िल्टर को समायोजित करने का प्रयास करें।",
+    "translationContext": "Description for empty search results"
+  },
+  "search.no_results_description_simple": {
+    "text": "जो आप ढूँढ रहे हैं उसे खोजने के लिए अलग-अलग खोज शब्दों का प्रयोग करें।",
+    "translationContext": "Simple no results message when historical search is disabled"
+  },
+  "search.no_results_title": {
+    "text": "कोई परिणाम नहीं मिला",
+    "translationContext": "Title for empty search results"
+  },
+  "search.noResults": {
+    "text": "कोई परिणाम नहीं मिला",
+    "translationContext": "Message shown when search returns no results"
+  },
+  "search.of": {
+    "text": "के",
+    "translationContext": "Preposition used in 'X of Y results'"
+  },
+  "search.placeholder": {
+    "text": "कहानियां खोजें...",
+    "translationContext": "Placeholder text for search input"
+  },
+  "search.placeholder_1": {
+    "text": "अपनी खोज को उड़ान भरने दें...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_10": {
+    "text": "अपनी खोज को एक साथ पिरोएँ...",
+    "translationContext": "Search placeholder easter egg referencing kite strings"
+  },
+  "search.placeholder_2": {
+    "text": "ख़बरों की दुनिया में ऊंची उड़ान भरें...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_3": {
+    "text": "जानकारी की हवा पकड़ो...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_4": {
+    "text": "समाचार की धाराओं को नेविगेट करें...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_5": {
+    "text": "शोर-शराबे से ऊपर उठें...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_6": {
+    "text": "आज की कहानियों में गोता लगाएँ...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_7": {
+    "text": "ख़बरों की धारा में गोता लगाएँ...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_8": {
+    "text": "अपनी समाचार खोज को बेहतर बनाएँ...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_9": {
+    "text": "सुर्खियों में तैरें...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.result_plural": {
+    "text": "परिणाम",
+    "translationContext": "Plural form of results"
+  },
+  "search.result_single": {
+    "text": "परिणाम",
+    "translationContext": "Singular form of result"
+  },
+  "search.resultsFound": {
+    "text": "परिणाम मिले",
+    "translationContext": "Label showing number of search results"
+  },
+  "search.search": {
+    "text": "खोजें",
+    "translationContext": "Keyboard shortcut hint for Cmd/Ctrl+K"
+  },
+  "search.search_news_stories": {
+    "text": "समाचार खोजें",
+    "translationContext": "Aria label for search input field"
+  },
+  "search.searching": {
+    "text": "खोज रहे हैं...",
+    "translationContext": "Loading message while searching"
+  },
+  "search.searching_historical": {
+    "text": "पुराना डेटा खोजा जा रहा है...",
+    "translationContext": "Loading message while searching historical data"
+  },
+  "search.searchingHistorical": {
+    "text": "पुराने डेटा को खोजा जा रहा है",
+    "translationContext": "Status message while searching historical batches"
+  },
+  "search.select": {
+    "text": "चुनें",
+    "translationContext": "Label for enter key selection"
+  },
+  "search.shortcuts_hint": {
+    "text": "श्रेणियों के लिए \"बिल्ली\", \"कल\" या \"पिछले सप्ताह\" जैसी तिथियां टाइप करें",
+    "translationContext": "Hint for search shortcuts"
+  },
+  "search.shortcuts_title": {
+    "text": "त्वरित शॉर्टकट",
+    "translationContext": "Title for shortcuts section"
+  },
+  "search.showing": {
+    "text": "दिखा रहा है",
+    "translationContext": "Label used in 'Showing X of Y results'"
+  },
+  "search.showing_of": {
+    "text": "{{total}} परिणामों में से {{shown}} दिखाए जा रहे हैं",
+    "translationContext": "Message showing current vs total results. {{shown}} and {{total}} are replaced with numbers."
+  },
+  "search.source_plural": {
+    "text": "स्रोत",
+    "translationContext": "Plural form of 'sources' for news sources"
+  },
+  "search.source_single": {
+    "text": "स्रोत",
+    "translationContext": "Singular form of 'source' for news sources"
+  },
+  "search.title": {
+    "text": "कहानियां खोजें",
+    "translationContext": "Title shown in empty search modal"
+  },
+  "search.toggle": {
+    "text": "खोज टॉगल करें",
+    "translationContext": "Label for keyboard shortcut to toggle search"
+  },
+  "search.try_searching_for": {
+    "text": "यह खोजने का प्रयास करें:",
+    "translationContext": "Prompt before showing search examples"
+  },
+  "search.try_these": {
+    "text": "ये फ़िल्टर आज़माएँ",
+    "translationContext": "Section title for filter suggestions"
+  },
+  "section.actionItems": {
+    "text": "कार्य मद",
+    "translationContext": "Title for the action items section"
+  },
+  "section.businessAngle": {
+    "text": "व्यवसाय का दृष्टिकोण",
+    "translationContext": "Title for the business angle section"
+  },
+  "section.designPrinciples": {
+    "text": "डिज़ाइन सिद्धांत",
+    "translationContext": "Title for the design principles section"
+  },
+  "section.didYouKnow": {
+    "text": "क्या आप जानते हैं?",
+    "translationContext": "Title for the Did You Know section"
+  },
+  "section.gameplayMechanics": {
+    "text": "गेमप्ले यांत्रिकी",
+    "translationContext": "Title for the gameplay mechanics section"
+  },
+  "section.highlights": {
+    "text": "मुख्य अंश",
+    "translationContext": "Title for the highlights section"
+  },
+  "section.historicalBackground": {
+    "text": "ऐतिहासिक पृष्ठभूमि",
+    "translationContext": "Title for the historical background section"
+  },
+  "section.humanitarianImpact": {
+    "text": "मानवीय प्रभाव",
+    "translationContext": "Title for the humanitarian impact section"
+  },
+  "section.industryImpact": {
+    "text": "उद्योग पर प्रभाव",
+    "translationContext": "Title for the industry impact section"
+  },
+  "section.internationalReactions": {
+    "text": "अंतर्राष्ट्रीय प्रतिक्रियाएँ",
+    "translationContext": "Title for the international reactions section"
+  },
+  "section.leagueStandings": {
+    "text": "लीग स्टैंडिंग",
+    "translationContext": "Title for the league standings section"
+  },
+  "section.otherDetails": {
+    "text": "अन्य विवरण",
+    "translationContext": "Title for the other details section in article settings"
+  },
+  "section.performanceStatistics": {
+    "text": "प्रदर्शन के आँकड़े",
+    "translationContext": "Title for the performance statistics section"
+  },
+  "section.perspectives": {
+    "text": "परिप्रेक्ष्य",
+    "translationContext": "Title for the perspectives section"
+  },
+  "section.primaryImage": {
+    "text": "प्राथमिक छवि",
+    "translationContext": "Title for the primary image section in article settings"
+  },
+  "section.quotes": {
+    "text": "उद्धरण",
+    "translationContext": "Title for the quotes section in article settings"
+  },
+  "section.scientificSignificance": {
+    "text": "वैज्ञानिक महत्व",
+    "translationContext": "Title for the scientific significance section"
+  },
+  "section.secondaryImage": {
+    "text": "माध्यमिक छवि",
+    "translationContext": "Title for the secondary image section in article settings"
+  },
+  "section.sources": {
+    "text": "स्रोत",
+    "translationContext": "Title for the sources section"
+  },
+  "section.suggestedQnA": {
+    "text": "त्वरित प्रश्न",
+    "translationContext": "Title for the suggested Q&A section"
+  },
+  "section.summary": {
+    "text": "सारांश",
+    "translationContext": "Title for the summary section in article settings"
+  },
+  "section.technicalDetails": {
+    "text": "तकनीकी जानकारी",
+    "translationContext": "Title for the technical details section"
+  },
+  "section.technicalSpecifications": {
+    "text": "तकनीकी विनिर्देश",
+    "translationContext": "Title for the technical specifications section"
+  },
+  "section.timeline": {
+    "text": "घटनाओं का घटनाक्रम",
+    "translationContext": "Title for the timeline section"
+  },
+  "section.travelAdvisory": {
+    "text": "यात्रा संबंधी परामर्श",
+    "translationContext": "Title for the travel advisory section"
+  },
+  "section.userExperienceImpact": {
+    "text": "उपयोगकर्ता अनुभव का प्रभाव",
+    "translationContext": "Title for the user experience impact section"
+  },
+  "shared.viewAllArticles": {
+    "text": "← {{{date}}} के सभी लेख देखें",
+    "translationContext": "Button to exit shared article view and see all articles from a specific date. {{date}} will be replaced with a localized date."
+  },
+  "source.contribute.button": {
+    "text": "जानकारी योगदान करें",
+    "translationContext": "Button text for contributing source information"
+  },
+  "source.contribute.description": {
+    "text": "हमारे पास अभी इस समाचार स्रोत के बारे में विस्तृत जानकारी नहीं है। आपका योगदान मीडिया स्वामित्व और पूर्वाग्रह के बारे में अन्य लोगों को सूचित रहने में मदद कर सकता है।",
+    "translationContext": "Description for source contribution section"
+  },
+  "source.contribute.title": {
+    "text": "हमारे डेटाबेस को बेहतर बनाने में सहायता करें",
+    "translationContext": "Title for source contribution section"
+  },
+  "source.info.country": {
+    "text": "देश",
+    "translationContext": "Label for source country"
+  },
+  "source.info.description": {
+    "text": "विवरण",
+    "translationContext": "Label for source description"
+  },
+  "source.info.loading": {
+    "text": "स्रोत जानकारी लोड हो रही है...",
+    "translationContext": "Loading message shown while fetching source information"
+  },
+  "source.info.mediaClassification": {
+    "text": "मीडिया वर्गीकरण",
+    "translationContext": "Label for source media classification"
+  },
+  "source.info.notSpecified": {
+    "text": "निर्दिष्ट नहीं है",
+    "translationContext": "Text shown when information is not available"
+  },
+  "source.info.organization": {
+    "text": "संगठन",
+    "translationContext": "Label for source organization"
+  },
+  "source.info.owner": {
+    "text": "मालिक",
+    "translationContext": "Label for source owner"
+  },
+  "source.info.title": {
+    "text": "स्रोत जानकारी",
+    "translationContext": "Title for source information section"
+  },
+  "sources.article": {
+    "text": "{{count}} लेख",
+    "translationContext": "Shows singular article count from a source, {{count}} will be replaced with a number"
+  },
+  "sources.articles": {
+    "text": "{{count}} लेख",
+    "translationContext": "Shows the count of articles from a source, {{count}} will be replaced with a number"
+  },
+  "sources.showArticlesFrom": {
+    "text": "{{source}} से लेख दिखाएँ",
+    "translationContext": "Title/aria-label for the source button, {{source}} will be replaced with the source name"
+  },
+  "sources.summary": {
+    "text": "{{publishers}} प्रकाशक, {{articles}} लेख",
+    "translationContext": "Shows count of publishers and articles, {{publishers}} and {{articles}} will be replaced with numbers"
+  },
+  "stats.newsToday": {
+    "text": "आज की {{count}} खबरें",
+    "translationContext": "Shows the count of news items today, {{count}} will be replaced with a number"
+  },
+  "stats.storiesRead": {
+    "text": "आपने {{count}} कहानियाँ पढ़ी हैं",
+    "translationContext": "Shows how many stories the user has read, {{count}} will be replaced with a number"
+  },
+  "stats.storyRead": {
+    "text": "आपने 1 कहानी पढ़ी है",
+    "translationContext": "Shows when the user has read exactly 1 story, {count} will be replaced with 1"
+  },
+  "stats.weekDay": {
+    "text": "सप्ताह {{{week}}}, दिन {{{day}}}",
+    "translationContext": "Shows the current week and day of the year, {{week}} and {{day}} will be replaced with numbers"
+  },
+  "stories.noStories": {
+    "text": "कुछ ग़लत हो गया, यहाँ कोई कहानियाँ नहीं हैं!",
+    "translationContext": "Message shown when no stories are found"
+  },
+  "time.updated.days": {
+    "text": "{{count}} दिन पहले अपडेट किया गया",
+    "translationContext": "Shown when content was updated multiple days ago, {{count}} will be replaced with the number of days"
+  },
+  "time.updated.hours": {
+    "text": "{{count}} घंटे पहले अपडेट किया गया",
+    "translationContext": "Shown when content was updated multiple hours ago, {{count}} will be replaced with the number of hours"
+  },
+  "time.updated.justNow": {
+    "text": "अभी अपडेट किया गया",
+    "translationContext": "Shown when content was updated very recently"
+  },
+  "time.updated.minutes": {
+    "text": "{{count}} मिनट पहले अपडेट किया गया",
+    "translationContext": "Shown when content was updated multiple minutes ago, {{count}} will be replaced with the number of minutes"
+  },
+  "time.updated.oneDay": {
+    "text": "1 दिन पहले अपडेट किया गया",
+    "translationContext": "Shown when content was updated exactly 1 day ago"
+  },
+  "time.updated.oneHour": {
+    "text": "1 घंटे पहले अपडेट किया गया",
+    "translationContext": "Shown when content was updated exactly 1 hour ago"
+  },
+  "time.updated.oneMinute": {
+    "text": "1 मिनट पहले अपडेट किया गया",
+    "translationContext": "Shown when content was updated exactly 1 minute ago"
+  },
+  "time.updated.seconds": {
+    "text": "{{count}} सेकंड पहले अपडेट किया गया",
+    "translationContext": "Shown when content was updated seconds ago, {{count}} will be replaced with the number of seconds"
+  },
+  "timeTravel.latest": {
+    "text": "नवीनतम",
+    "translationContext": "Label for the most recent batch of the day"
+  },
+  "timeTravel.loadingData": {
+    "text": "पुराना डेटा लोड हो रहा है...",
+    "translationContext": "Loading message when fetching historical data"
+  },
+  "timeTravel.nextMonth": {
+    "text": "अगला माह",
+    "translationContext": "Aria label for next month button"
+  },
+  "timeTravel.previousMonth": {
+    "text": "पिछला महीना",
+    "translationContext": "Aria label for previous month button"
+  },
+  "timeTravel.returningToLive": {
+    "text": "लाइव पर वापस लौट रहे हैं...",
+    "translationContext": "Loading message when exiting time travel mode"
+  },
+  "timeTravel.selectBatch": {
+    "text": "समाचार अपडेट चुनें",
+    "translationContext": "Title when selecting from multiple batches"
+  },
+  "timeTravel.selectDate": {
+    "text": "उस दिन की खबरें देखने के लिए एक तिथि चुनें",
+    "translationContext": "Help text shown below calendar"
+  },
+  "timeTravel.stories": {
+    "text": "कहानियां",
+    "translationContext": "Label for story count in batch selector"
+  },
+  "timeTravel.title": {
+    "text": "समय यात्रा",
+    "translationContext": "Title of the time travel modal"
+  },
+  "timeTravel.today": {
+    "text": "आज",
+    "translationContext": "Button to navigate to today"
+  },
+  "turbulence.title": {
+    "text": "विश्व अशांति मीटर",
+    "translationContext": "Title for the world turbulence meter popup"
+  },
+  "turbulence.tooltip": {
+    "text": "विक्षोभ मीटर",
+    "translationContext": "Tooltip text for the turbulence meter button"
+  },
+  "ui.back": {
+    "text": "वापस",
+    "translationContext": "Text for back buttons"
+  },
+  "ui.cancel": {
+    "text": "रद्द करें",
+    "translationContext": "Text for cancel buttons"
+  },
+  "ui.citations": {
+    "text": "संदर्भ",
+    "translationContext": "Title for citations section"
+  },
+  "ui.clearSearch": {
+    "text": "खोज साफ़ करें",
+    "translationContext": "Aria label for clear search button"
+  },
+  "ui.close": {
+    "text": "बंद करें",
+    "translationContext": "Text for close buttons"
+  },
+  "ui.closeDialog": {
+    "text": "संवाद बंद करें",
+    "translationContext": "Aria label for close dialog button"
+  },
+  "ui.disable": {
+    "text": "अक्षम करें",
+    "translationContext": "Text for disabling features"
+  },
+  "ui.enable": {
+    "text": "सक्षम करें",
+    "translationContext": "Text for enabling features"
+  },
+  "ui.imageUnavailable": {
+    "text": "छवि अनुपलब्ध",
+    "translationContext": "Text shown when an image cannot be loaded"
+  },
+  "ui.nextSlide": {
+    "text": "अगली स्लाइड",
+    "translationContext": "Aria label for next slide button"
+  },
+  "ui.ok": {
+    "text": "ठीक है",
+    "translationContext": "Text for OK buttons"
+  },
+  "ui.previousSlide": {
+    "text": "पिछली स्लाइड",
+    "translationContext": "Aria label for previous slide button"
+  },
+  "ui.skipToMainContent": {
+    "text": "मुख्य सामग्री पर जाएं",
+    "translationContext": "Accessibility link to skip navigation and jump to main content"
+  },
+  "ui.success": {
+    "text": "सफल!",
+    "translationContext": "Text for success messages"
+  },
+  "view.list": {
+    "text": "सूची दृश्य",
+    "translationContext": "Title/aria-label for the list view button"
+  },
+  "view.map": {
+    "text": "मानचित्र दृश्य",
+    "translationContext": "Title/aria-label for the map view button"
+  },
+  "wikipedia.readMore": {
+    "text": "विकिपीडिया पर और पढ़ें",
+    "translationContext": "Text for the link to read more on Wikipedia"
+  },
+  "worldTension.aboutTitle": {
+    "text": "विश्व तनाव के बारे में",
+    "translationContext": "Title for the world tension explanation"
+  },
+  "worldTension.backToIndex": {
+    "text": "← इंडेक्स पर वापस",
+    "translationContext": "Button text to return from explanation to main view"
+  },
+  "worldTension.burning": {
+    "text": "अत्युग्र",
+    "translationContext": "Temperature description for extreme world tension (81-100%)"
+  },
+  "worldTension.chaosIndex": {
+    "text": "अराजकता सूचकांक",
+    "translationContext": "Label for the chaos index chart"
+  },
+  "worldTension.cool": {
+    "text": "शांत",
+    "translationContext": "Temperature description for low world tension (0-20%)"
+  },
+  "worldTension.critical": {
+    "text": "गंभीर",
+    "translationContext": "Status label for 61-80% range (deprecated, use hot)"
+  },
+  "worldTension.elevated": {
+    "text": "बढ़ा हुआ",
+    "translationContext": "Status label for 21-40% range (deprecated, use mild)"
+  },
+  "worldTension.explanation1": {
+    "text": "विश्व तनाव सूचकांक वर्तमान घटनाओं के आधार पर वैश्विक स्थिरता का आकलन प्रस्तुत करता है।",
+    "translationContext": "First paragraph of world tension explanation"
+  },
+  "worldTension.explanation2": {
+    "text": "दुनिया भर की सुर्खियों का विश्लेषण करके, हम संघर्ष, संकट और अस्थिरता के पैटर्न को ट्रैक करते हैं, ताकि एक साधारण मीट्रिक बनाया जा सके जो यह दर्शाता है कि किसी भी समय वैश्विक मामले कितने \"गरमागरम\" हैं।",
+    "translationContext": "Second paragraph of world tension explanation"
+  },
+  "worldTension.explanation3": {
+    "text": "इसे एक वैश्विक थर्मामीटर के रूप में समझें - जब संघर्षों, आपदाओं या राजनीतिक उथल-पुथल के कारण तनाव बढ़ता है, तो तापमान बढ़ जाता है। स्थिरता और सहयोग के शांत समय के दौरान, यह ठंडा हो जाता है।",
+    "translationContext": "Third paragraph of world tension explanation"
+  },
+  "worldTension.extreme": {
+    "text": "अत्यंत",
+    "translationContext": "Status label for 81-100% range (deprecated, use burning)"
+  },
+  "worldTension.high": {
+    "text": "उच्च",
+    "translationContext": "Status label for 41-60% range (deprecated, use warm)"
+  },
+  "worldTension.hot": {
+    "text": "गर्म",
+    "translationContext": "Temperature description for moderate world tension (41-60%)"
+  },
+  "worldTension.mild": {
+    "text": "हल्का",
+    "translationContext": "Temperature description for normal world tension (21-40%)"
+  },
+  "worldTension.onFire": {
+    "text": "आगराही",
+    "translationContext": "Temperature description for extreme world tension (81-100%)"
+  },
+  "worldTension.scale.burning": {
+    "text": "81-100° अत्यधिक गर्म - चरम संकट (दुर्लभ)",
+    "translationContext": "Scale description for 81-100% tension"
+  },
+  "worldTension.scale.cool": {
+    "text": "शांत - अपेक्षाकृत स्थिर",
+    "translationContext": "Scale description for 0-20% tension"
+  },
+  "worldTension.scale.hot": {
+    "text": "गर्म - उल्लेखनीय विवाद",
+    "translationContext": "Scale description for 41-60% tension"
+  },
+  "worldTension.scale.mild": {
+    "text": "21-40° हल्का - सामान्य वैश्विक तनाव",
+    "translationContext": "Scale description for 21-40% tension"
+  },
+  "worldTension.scale.onFire": {
+    "text": "आग लगी है - वैश्विक आपातकाल",
+    "translationContext": "Scale description for 81-100% tension"
+  },
+  "worldTension.scale.veryHot": {
+    "text": "अत्यधिक गर्म - प्रमुख संकट",
+    "translationContext": "Scale description for 61-80% tension"
+  },
+  "worldTension.scale.warm": {
+    "text": "41-60° गर्म - बढ़ी हुई चिंताएँ",
+    "translationContext": "Scale description for 41-60% tension"
+  },
+  "worldTension.scale.warming": {
+    "text": "गर्मी - मामूली तनाव",
+    "translationContext": "Scale description for 21-40% tension"
+  },
+  "worldTension.stable": {
+    "text": "स्थिर",
+    "translationContext": "Status label for 0-20% range (deprecated, use cool)"
+  },
+  "worldTension.title": {
+    "text": "विश्व तनाव",
+    "translationContext": "Title for the world tension modal"
+  },
+  "worldTension.trendTitle": {
+    "text": "30-दिन का रुझान",
+    "translationContext": "Title for the historical trend chart"
+  },
+  "worldTension.updated": {
+    "text": "अपडेट किया गया",
+    "translationContext": "Prefix for last update time"
+  },
+  "worldTension.veryHot": {
+    "text": "अत्यंत तनावपूर्ण",
+    "translationContext": "Temperature description for high world tension (61-80%)"
+  },
+  "worldTension.warm": {
+    "text": "गर्म",
+    "translationContext": "Temperature description for elevated world tension (41-60%)"
+  },
+  "worldTension.warming": {
+    "text": "गर्माहट",
+    "translationContext": "Temperature description for mild world tension (21-40%)"
+  },
+  "worldTension.whatIsThis": {
+    "text": "यह क्या है?",
+    "translationContext": "Button text to show explanation of world tension"
+  }
 }

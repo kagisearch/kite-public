@@ -1,288 +1,275 @@
 <script lang="ts">
-  import { s } from "$lib/client/localization.svelte";
-  import { dataService } from "$lib/services/dataService";
-  import { dataLanguage } from "$lib/stores/dataLanguage.svelte";
-  import { createModalBehavior } from "$lib/utils/modalBehavior.svelte";
-  import { splitFirstSentence } from "$lib/utils/sentenceSplitter";
-  import LottieAnimation from "./LottieAnimation.svelte";
-  import Chart from "chart.js/auto";
-  import "chartjs-adapter-date-fns";
-  import { useOverlayScrollbars } from "overlayscrollbars-svelte";
-  import { fade } from "svelte/transition";
+import Chart from 'chart.js/auto';
+import { s } from '$lib/client/localization.svelte';
+import { languageSettings } from '$lib/data/settings.svelte.js';
+import { dataService } from '$lib/services/dataService';
+import { createModalBehavior } from '$lib/utils/modalBehavior.svelte';
+import { splitFirstSentence } from '$lib/utils/sentenceSplitter';
+import LottieAnimation from './LottieAnimation.svelte';
+import 'chartjs-adapter-date-fns';
+import { useOverlayScrollbars } from 'overlayscrollbars-svelte';
+import { fade } from 'svelte/transition';
 
-  // Props
-  interface Props {
-    score: number;
-    summary: string;
-    lastUpdated: string;
-  }
+// Props
+interface Props {
+	score: number;
+	summary: string;
+	lastUpdated: string;
+}
 
-  let { score, summary, lastUpdated }: Props = $props();
+let { score, summary, lastUpdated }: Props = $props();
 
-  // State
-  let showModal = $state(false);
-  let showExplanation = $state(false);
-  let historicalData = $state<
-    Array<{ date: string; score: number; summary: string }>
-  >([]);
-  let isLoadingHistory = $state(false);
-  let chartCanvas = $state<HTMLCanvasElement>();
-  let chartInstance: Chart | null = null;
-  let scrollContainer = $state<HTMLElement>();
+// State
+let showModal = $state(false);
+let showExplanation = $state(false);
+let historicalData = $state<Array<{ date: string; score: number; summary: string }>>([]);
+let isLoadingHistory = $state(false);
+let chartCanvas = $state<HTMLCanvasElement>();
+let chartInstance: Chart | null = null;
+let scrollContainer = $state<HTMLElement>();
 
-  // Modal behavior
-  const modal = createModalBehavior();
+// Modal behavior
+const modal = createModalBehavior();
 
-  // Initialize OverlayScrollbars
-  const [initializeScrollbar] = useOverlayScrollbars({
-    defer: false,
-    options: {
-      scrollbars: {
-        visibility: "auto",
-        autoHide: "leave",
-        autoHideDelay: 800,
-      },
-      overflow: {
-        x: "hidden",
-      },
-    },
-  });
+// Initialize OverlayScrollbars
+const [initializeScrollbar] = useOverlayScrollbars({
+	defer: false,
+	options: {
+		scrollbars: {
+			visibility: 'auto',
+			autoHide: 'leave',
+			autoHideDelay: 800,
+		},
+		overflow: {
+			x: 'hidden',
+		},
+	},
+});
 
-  // Get temperature description
-  function getTemperatureText(): string {
-    if (score <= 20) return s("worldTension.cool") || "Cool";
-    if (score <= 40) return s("worldTension.mild") || "Mild";
-    if (score <= 60) return s("worldTension.warm") || "Warm";
-    if (score <= 80) return s("worldTension.hot") || "Hot";
-    return s("worldTension.burning") || "Burning";
-  }
+// Get temperature description
+function getTemperatureText(): string {
+	if (score <= 20) return s('worldTension.cool') || 'Cool';
+	if (score <= 40) return s('worldTension.mild') || 'Mild';
+	if (score <= 60) return s('worldTension.warm') || 'Warm';
+	if (score <= 80) return s('worldTension.hot') || 'Hot';
+	return s('worldTension.burning') || 'Burning';
+}
 
-  // Get status color classes
-  function getStatusColor(): string {
-    if (score <= 20) return "from-blue-500 to-cyan-500";
-    if (score <= 40) return "from-green-500 to-emerald-500";
-    if (score <= 60) return "from-yellow-500 to-orange-500";
-    if (score <= 80) return "from-orange-500 to-red-500";
-    return "from-red-500 to-red-700";
-  }
+// Get status color classes
+function getStatusColor(): string {
+	if (score <= 20) return 'from-blue-500 to-cyan-500';
+	if (score <= 40) return 'from-green-500 to-emerald-500';
+	if (score <= 60) return 'from-yellow-500 to-orange-500';
+	if (score <= 80) return 'from-orange-500 to-red-500';
+	return 'from-red-500 to-red-700';
+}
 
-  // Import Lottie animations (these will be added from LottieFiles)
-  let weatherAnimations = $state<Record<string, any>>({});
+// Import Lottie animations (these will be added from LottieFiles)
+let weatherAnimations = $state<Record<string, any>>({});
 
-  // Load animations dynamically
-  async function loadAnimations() {
-    try {
-      // Import all animations
-      const [snow, sunnyCloudy, storm, smallFire, bigFire] = await Promise.all([
-        import("$lib/assets/lottie/snow.json"),
-        import("$lib/assets/lottie/sunny-cloudy.json"),
-        import("$lib/assets/lottie/storm.json"), // Storm with lightning
-        import("$lib/assets/lottie/small-fire.json"), // Small fire for "very hot"
-        import("$lib/assets/lottie/big-fire.json"), // Big violent fire for "on fire"
-      ]);
+// Load animations dynamically
+async function loadAnimations() {
+	try {
+		// Import all animations
+		const [snow, sunnyCloudy, storm, smallFire, bigFire] = await Promise.all([
+			import('$lib/assets/lottie/snow.json'),
+			import('$lib/assets/lottie/sunny-cloudy.json'),
+			import('$lib/assets/lottie/storm.json'), // Storm with lightning
+			import('$lib/assets/lottie/small-fire.json'), // Small fire for "very hot"
+			import('$lib/assets/lottie/big-fire.json'), // Big violent fire for "on fire"
+		]);
 
-      weatherAnimations = {
-        snow: snow.default || snow,
-        sunnyCloudy: sunnyCloudy.default || sunnyCloudy,
-        storm: storm.default || storm,
-        smallFire: smallFire.default || smallFire,
-        bigFire: bigFire.default || bigFire,
-      };
-    } catch (error) {
-      console.error("Failed to load animations:", error);
-    }
-  }
+		weatherAnimations = {
+			snow: snow.default || snow,
+			sunnyCloudy: sunnyCloudy.default || sunnyCloudy,
+			storm: storm.default || storm,
+			smallFire: smallFire.default || smallFire,
+			bigFire: bigFire.default || bigFire,
+		};
+	} catch (error) {
+		console.error('Failed to load animations:', error);
+	}
+}
 
-  // Get weather animation based on score
-  function getWeatherAnimation(): string {
-    if (score <= 20)
-      return "snow"; // Cool - peaceful/cold
-    else if (score <= 40)
-      return "sunnyCloudy"; // Mild - partly cloudy
-    else if (score <= 60)
-      return "storm"; // Warm - storm brewing
-    else if (score <= 80)
-      return "smallFire"; // Hot - small fire
-    else return "bigFire"; // Burning - big fire
-  }
+// Get weather animation based on score
+function getWeatherAnimation(): string {
+	if (score <= 20)
+		return 'snow'; // Cool - peaceful/cold
+	else if (score <= 40)
+		return 'sunnyCloudy'; // Mild - partly cloudy
+	else if (score <= 60)
+		return 'storm'; // Warm - storm brewing
+	else if (score <= 80)
+		return 'smallFire'; // Hot - small fire
+	else return 'bigFire'; // Burning - big fire
+}
 
-  // Handle click to show modal
-  async function handleClick() {
-    showModal = true;
-    showExplanation = false;
+// Handle click to show modal
+async function handleClick() {
+	showModal = true;
+	showExplanation = false;
 
-    // Load animations if not already loaded
-    if (Object.keys(weatherAnimations).length === 0) {
-      await loadAnimations();
-    }
+	// Load animations if not already loaded
+	if (Object.keys(weatherAnimations).length === 0) {
+		await loadAnimations();
+	}
 
-    // Load historical data
-    if (!isLoadingHistory && historicalData.length === 0) {
-      isLoadingHistory = true;
-      try {
-        historicalData = await dataService.getChaosIndexHistory(
-          dataLanguage.current,
-          30,
-        );
-      } catch (error) {
-        console.error("Failed to load historical data:", error);
-      } finally {
-        isLoadingHistory = false;
-      }
-    }
-  }
+	// Load historical data
+	if (!isLoadingHistory && historicalData.length === 0) {
+		isLoadingHistory = true;
+		try {
+			historicalData = await dataService.getChaosIndexHistory(languageSettings.data, 30);
+		} catch (error) {
+			console.error('Failed to load historical data:', error);
+		} finally {
+			isLoadingHistory = false;
+		}
+	}
+}
 
-  // Handle close modal
-  function closeModal() {
-    showModal = false;
-    showExplanation = false;
-    if (chartInstance) {
-      chartInstance.destroy();
-      chartInstance = null;
-    }
-  }
+// Handle close modal
+function closeModal() {
+	showModal = false;
+	showExplanation = false;
+	if (chartInstance) {
+		chartInstance.destroy();
+		chartInstance = null;
+	}
+}
 
-  // Create or update chart
-  function createChart() {
-    if (!chartCanvas || historicalData.length < 2) return;
+// Create or update chart
+function createChart() {
+	if (!chartCanvas || historicalData.length < 2) return;
 
-    if (chartInstance) {
-      chartInstance.destroy();
-    }
+	if (chartInstance) {
+		chartInstance.destroy();
+	}
 
-    const isDark = document.documentElement.classList.contains("dark");
+	const isDark = document.documentElement.classList.contains('dark');
 
-    chartInstance = new Chart(chartCanvas, {
-      type: "line",
-      data: {
-        labels: historicalData.map((d) => new Date(d.date)),
-        datasets: [
-          {
-            label: s("worldTension.chaosIndex") || "Chaos Index",
-            data: historicalData.map((d) => d.score),
-            borderColor: getChartColor(
-              historicalData[historicalData.length - 1]?.score || score,
-            ),
-            backgroundColor: getChartColor(
-              historicalData[historicalData.length - 1]?.score || score,
-              0.1,
-            ),
-            tension: 0.4,
-            pointRadius: historicalData.length <= 7 ? 4 : 2,
-            pointHoverRadius: 6,
-            borderWidth: 2,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        interaction: {
-          mode: "index",
-          intersect: false,
-        },
-        plugins: {
-          legend: {
-            display: false,
-          },
-          tooltip: {
-            backgroundColor: isDark
-              ? "rgba(31, 41, 55, 0.9)"
-              : "rgba(255, 255, 255, 0.9)",
-            titleColor: isDark ? "#e5e7eb" : "#1f2937",
-            bodyColor: isDark ? "#e5e7eb" : "#1f2937",
-            borderColor: isDark ? "#374151" : "#e5e7eb",
-            borderWidth: 1,
-            callbacks: {
-              title: (context) => {
-                // For time scale, the parsed.x contains the timestamp
-                const date = new Date(context[0].parsed.x);
-                return date.toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric",
-                  year: "numeric",
-                });
-              },
-              label: (context) =>
-                `${s("worldTension.chaosIndex") || "Chaos Index"}: ${context.parsed.y}°`,
-            },
-          },
-        },
-        scales: {
-          x: {
-            type: "time",
-            time: {
-              unit: historicalData.length > 7 ? "day" : "day",
-              displayFormats: {
-                day: "MMM d",
-              },
-            },
-            grid: {
-              color: isDark
-                ? "rgba(55, 65, 81, 0.3)"
-                : "rgba(229, 231, 235, 0.5)",
-              display: true,
-            },
-            ticks: {
-              color: isDark ? "#9ca3af" : "#6b7280",
-              maxRotation: 0,
-            },
-          },
-          y: {
-            beginAtZero: true,
-            max: 100,
-            grid: {
-              color: isDark
-                ? "rgba(55, 65, 81, 0.3)"
-                : "rgba(229, 231, 235, 0.5)",
-              display: true,
-            },
-            ticks: {
-              color: isDark ? "#9ca3af" : "#6b7280",
-              callback: (value) => `${value}°`,
-            },
-          },
-        },
-      },
-    });
-  }
+	chartInstance = new Chart(chartCanvas, {
+		type: 'line',
+		data: {
+			labels: historicalData.map((d) => new Date(d.date)),
+			datasets: [
+				{
+					label: s('worldTension.chaosIndex') || 'Chaos Index',
+					data: historicalData.map((d) => d.score),
+					borderColor: getChartColor(historicalData[historicalData.length - 1]?.score || score),
+					backgroundColor: getChartColor(
+						historicalData[historicalData.length - 1]?.score || score,
+						0.1,
+					),
+					tension: 0.4,
+					pointRadius: historicalData.length <= 7 ? 4 : 2,
+					pointHoverRadius: 6,
+					borderWidth: 2,
+				},
+			],
+		},
+		options: {
+			responsive: true,
+			maintainAspectRatio: false,
+			interaction: {
+				mode: 'index',
+				intersect: false,
+			},
+			plugins: {
+				legend: {
+					display: false,
+				},
+				tooltip: {
+					backgroundColor: isDark ? 'rgba(31, 41, 55, 0.9)' : 'rgba(255, 255, 255, 0.9)',
+					titleColor: isDark ? '#e5e7eb' : '#1f2937',
+					bodyColor: isDark ? '#e5e7eb' : '#1f2937',
+					borderColor: isDark ? '#374151' : '#e5e7eb',
+					borderWidth: 1,
+					callbacks: {
+						title: (context) => {
+							// For time scale, the parsed.x contains the timestamp
+							const date = new Date(context[0].parsed.x);
+							return date.toLocaleDateString('en-US', {
+								month: 'short',
+								day: 'numeric',
+								year: 'numeric',
+							});
+						},
+						label: (context) =>
+							`${s('worldTension.chaosIndex') || 'Chaos Index'}: ${context.parsed.y}°`,
+					},
+				},
+			},
+			scales: {
+				x: {
+					type: 'time',
+					time: {
+						unit: historicalData.length > 7 ? 'day' : 'day',
+						displayFormats: {
+							day: 'MMM d',
+						},
+					},
+					grid: {
+						color: isDark ? 'rgba(55, 65, 81, 0.3)' : 'rgba(229, 231, 235, 0.5)',
+						display: true,
+					},
+					ticks: {
+						color: isDark ? '#9ca3af' : '#6b7280',
+						maxRotation: 0,
+					},
+				},
+				y: {
+					beginAtZero: true,
+					max: 100,
+					grid: {
+						color: isDark ? 'rgba(55, 65, 81, 0.3)' : 'rgba(229, 231, 235, 0.5)',
+						display: true,
+					},
+					ticks: {
+						color: isDark ? '#9ca3af' : '#6b7280',
+						callback: (value) => `${value}°`,
+					},
+				},
+			},
+		},
+	});
+}
 
-  // Get chart color based on score
-  function getChartColor(score: number, alpha: number = 1): string {
-    if (score <= 20) return `rgba(59, 130, 246, ${alpha})`; // blue
-    if (score <= 40) return `rgba(34, 197, 94, ${alpha})`; // green
-    if (score <= 60) return `rgba(251, 191, 36, ${alpha})`; // yellow
-    if (score <= 80) return `rgba(251, 146, 60, ${alpha})`; // orange
-    return `rgba(239, 68, 68, ${alpha})`; // red
-  }
+// Get chart color based on score
+function getChartColor(score: number, alpha: number = 1): string {
+	if (score <= 20) return `rgba(59, 130, 246, ${alpha})`; // blue
+	if (score <= 40) return `rgba(34, 197, 94, ${alpha})`; // green
+	if (score <= 60) return `rgba(251, 191, 36, ${alpha})`; // yellow
+	if (score <= 80) return `rgba(251, 146, 60, ${alpha})`; // orange
+	return `rgba(239, 68, 68, ${alpha})`; // red
+}
 
-  // Update chart when data changes
-  $effect(() => {
-    if (historicalData.length >= 2 && showModal && chartCanvas) {
-      setTimeout(createChart, 100);
-    }
-  });
+// Update chart when data changes
+$effect(() => {
+	if (historicalData.length >= 2 && showModal && chartCanvas) {
+		setTimeout(createChart, 100);
+	}
+});
 
-  // Apply scroll lock
-  $effect(() => {
-    modal.applyScrollLock(showModal);
-    return () => {
-      // Ensure scroll is unlocked when component unmounts
-      modal.applyScrollLock(false);
-    };
-  });
+// Apply scroll lock
+$effect(() => {
+	modal.applyScrollLock(showModal);
+	return () => {
+		// Ensure scroll is unlocked when component unmounts
+		modal.applyScrollLock(false);
+	};
+});
 
-  // Initialize OverlayScrollbars when modal opens
-  $effect(() => {
-    if (showModal && scrollContainer) {
-      initializeScrollbar(scrollContainer);
-    }
-  });
+// Initialize OverlayScrollbars when modal opens
+$effect(() => {
+	if (showModal && scrollContainer) {
+		initializeScrollbar(scrollContainer);
+	}
+});
 
-  // Toggle explanation
-  function toggleExplanation() {
-    showExplanation = !showExplanation;
-  }
+// Toggle explanation
+function toggleExplanation() {
+	showExplanation = !showExplanation;
+}
 </script>
 
 <svelte:window
@@ -293,7 +280,7 @@
 {#if score > 0}
   <button
     onclick={handleClick}
-    class="flex items-center gap-1.5 rounded-md pl-1.5 pr-0 py-2 sm:px-1.5 md:px-2 md:py-1.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"
+    class="flex items-center gap-1.5 rounded-md ps-1.5 pe-0 py-2 sm:px-1.5 md:px-2 md:py-1.5 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"
     title="World Tension: {score}° - {getTemperatureText()}"
     aria-label="Show world tension details"
   >
@@ -417,7 +404,7 @@
                 class="absolute inset-0 bg-gradient-to-r from-blue-500 via-yellow-500 to-red-500 opacity-30"
               ></div>
               <div
-                class="absolute left-0 h-full bg-gradient-to-r {getStatusColor()} transition-all duration-300"
+                class="absolute start-0 h-full bg-gradient-to-r {getStatusColor()} transition-all duration-300"
                 style="width: {score}%"
               ></div>
               <div
@@ -440,12 +427,14 @@
             <div class="space-y-2">
               <p
                 class="text-base font-medium leading-relaxed text-gray-900 dark:text-gray-100"
+                dir="auto"
               >
                 {firstSentence}
               </p>
               {#if restText}
                 <p
                   class="text-sm leading-relaxed text-gray-600 dark:text-gray-400"
+                  dir="auto"
                 >
                   {restText}
                 </p>

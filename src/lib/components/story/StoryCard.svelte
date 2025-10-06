@@ -1,150 +1,161 @@
 <script lang="ts">
-  import { browser } from "$app/environment";
-  import { s } from "$lib/client/localization.svelte";
-  import {
-    useViewportPreloading,
-    useHoverPreloading,
-  } from "$lib/hooks/useImagePreloading.svelte";
-  import StoryActions from "./StoryActions.svelte";
-  import StoryHeader from "./StoryHeader.svelte";
-  import StorySectionManager from "./StorySectionManager.svelte";
+import { browser } from '$app/environment';
+import { s } from '$lib/client/localization.svelte';
+import { createStoryLocalizer } from '$lib/client/storyLocalization.svelte';
+import { useHoverPreloading, useViewportPreloading } from '$lib/hooks/useImagePreloading.svelte';
+import StoryActions from './StoryActions.svelte';
+import StoryHeader from './StoryHeader.svelte';
+import StorySectionManager from './StorySectionManager.svelte';
 
-  // Props
-  interface Props {
-    story: any;
-    storyIndex?: number;
-    batchId?: string;
-    categoryId?: string;
-    isRead?: boolean;
-    isExpanded?: boolean;
-    onToggle?: () => void;
-    onReadToggle?: () => void;
-    showSourceOverlay?: boolean;
-    currentSource?: any;
-    sourceArticles?: any[];
-    currentMediaInfo?: any;
-    isLoadingMediaInfo?: boolean;
-    priority?: boolean; // For high-priority stories (first few visible)
-    isFiltered?: boolean;
-    filterKeywords?: string[];
-    shouldAutoScroll?: boolean;
-    isSharedView?: boolean;
-  }
+// Props
+interface Props {
+	story: any;
+	storyIndex?: number;
+	batchId?: string;
+	categoryId?: string;
+	isRead?: boolean;
+	isExpanded?: boolean;
+	onToggle?: () => void;
+	onReadToggle?: () => void;
+	showSourceOverlay?: boolean;
+	currentSource?: any;
+	sourceArticles?: any[];
+	currentMediaInfo?: any;
+	isLoadingMediaInfo?: boolean;
+	priority?: boolean; // For high-priority stories (first few visible)
+	isFiltered?: boolean;
+	filterKeywords?: string[];
+	shouldAutoScroll?: boolean;
+	isSharedView?: boolean;
+	isLinkedStory?: boolean; // Story opened from URL/link
+}
 
-  let {
-    story,
-    storyIndex,
-    batchId,
-    categoryId,
-    isRead = false,
-    isExpanded = false,
-    shouldAutoScroll = false,
-    onToggle,
-    onReadToggle,
-    showSourceOverlay = $bindable(false),
-    currentSource = $bindable(null),
-    sourceArticles = $bindable([]),
-    currentMediaInfo = $bindable(null),
-    isLoadingMediaInfo = $bindable(false),
-    priority = false,
-    isFiltered = false,
-    filterKeywords = [],
-    isSharedView = false,
-  }: Props = $props();
+let {
+	story,
+	storyIndex,
+	batchId,
+	categoryId,
+	isRead = false,
+	isExpanded = false,
+	shouldAutoScroll = false,
+	onToggle,
+	onReadToggle,
+	showSourceOverlay = $bindable(false),
+	currentSource = $bindable(null),
+	sourceArticles = $bindable([]),
+	currentMediaInfo = $bindable(null),
+	isLoadingMediaInfo = $bindable(false),
+	priority = false,
+	isFiltered = false,
+	filterKeywords = [],
+	isSharedView = false,
+	isLinkedStory = false,
+}: Props = $props();
 
-  // Story element reference
-  let storyElement: HTMLElement;
+// Story element reference
+let storyElement: HTMLElement;
 
-  // Blur state - re-check filtering in real-time
-  let isBlurred = $state(isFiltered);
+// Blur state - re-check filtering in real-time
+let isBlurred = $state(isFiltered);
+// Track if we're actively revealing (for transition)
+let isRevealing = $state(false);
 
-  // Re-check if story should still be blurred when filter changes
-  $effect(() => {
-    // Reset blur state to match current filter state
-    isBlurred = isFiltered;
-  });
+// Create story-specific localization function
+// Pass the story's actual source language when available
+const ss = $derived(createStoryLocalizer(isExpanded, story.sourceLanguage));
 
-  // Use hooks for preloading
-  const viewportPreloader = useViewportPreloading(() => storyElement, story, {
-    priority,
-  });
+// Re-check if story should still be blurred when filter changes
+$effect(() => {
+	// Reset blur state to match current filter state
+	isBlurred = isFiltered;
+	// Reset revealing state when filter changes
+	isRevealing = false;
+});
 
-  const hoverPreloader = useHoverPreloading(story, { priority });
+// Use hooks for preloading
+const viewportPreloader = useViewportPreloading(() => storyElement, story, {
+	priority,
+});
 
-  // Track if images are preloaded
-  const imagesPreloaded = $derived(
-    viewportPreloader.isPreloaded || hoverPreloader.isPreloaded,
-  );
+const hoverPreloader = useHoverPreloading(story, { priority });
 
-  // Handle story click
-  function handleStoryClick() {
-    // In shared view mode, don't allow toggling/closing
-    if (isSharedView) return;
+// Track if images are preloaded
+const imagesPreloaded = $derived(viewportPreloader.isPreloaded || hoverPreloader.isPreloaded);
 
-    // If blurred, reveal and expand
-    if (isBlurred) {
-      isBlurred = false;
-      // Small delay to let the unblur animation start before expanding
-      setTimeout(() => {
-        if (onToggle) onToggle();
-      }, 100);
-      return;
-    }
-    if (onToggle) onToggle();
-  }
+// Handle story click
+function handleStoryClick() {
+	// In shared view mode, don't allow toggling/closing
+	if (isSharedView) return;
 
-  // Handle read toggle click
-  function handleReadClick(e: Event) {
-    e.stopPropagation();
-    if (onReadToggle) onReadToggle();
-  }
+	// If blurred, reveal
+	if (isBlurred) {
+		isRevealing = true;
+		isBlurred = false;
+		// If story is not yet expanded, expand it after a small delay
+		if (!isExpanded) {
+			setTimeout(() => {
+				if (onToggle) onToggle();
+			}, 100);
+		}
+		// Reset revealing state after animation completes
+		setTimeout(() => {
+			isRevealing = false;
+		}, 300);
+		return;
+	}
+	if (onToggle) onToggle();
+}
 
-  // Scroll to story when expanded
-  $effect(() => {
-    if (isExpanded && browser && storyElement && shouldAutoScroll) {
-      // Small delay to ensure the content is rendered
-      setTimeout(() => {
-        // Calculate dynamic header height and offsets
-        const headerEl =
-          document.querySelector("header") || document.querySelector("nav");
-        const headerHeight = headerEl ? headerEl.offsetHeight : 60;
+// Handle read toggle click
+function handleReadClick(e: Event) {
+	e.stopPropagation();
+	if (onReadToggle) onReadToggle();
+}
 
-        // Mobile vs desktop offsets - smaller offset for more precise positioning
-        const isMobile = window.innerWidth <= 768;
-        const extraOffset = isMobile ? 8 : 12;
+// Scroll to story when expanded
+$effect(() => {
+	if (isExpanded && browser && storyElement && shouldAutoScroll) {
+		// Small delay to ensure the content is rendered
+		setTimeout(() => {
+			// Calculate dynamic header height and offsets
+			const headerEl = document.querySelector('header') || document.querySelector('nav');
+			const headerHeight = headerEl ? headerEl.offsetHeight : 60;
 
-        // Find the category element within this story for precise positioning
-        const categoryElement = storyElement.querySelector(".category-label");
+			// Mobile vs desktop offsets - smaller offset for more precise positioning
+			const isMobile = window.innerWidth <= 768;
+			const extraOffset = isMobile ? 8 : 12;
 
-        let rect;
-        let elementTop;
+			// Find the category element within this story for precise positioning
+			const categoryElement = storyElement.querySelector('.category-label');
 
-        if (categoryElement) {
-          // Use the category element directly for most precise positioning
-          rect = categoryElement.getBoundingClientRect();
-          elementTop = window.pageYOffset + rect.top - 28;
-        } else throw new Error("Category element not found");
+			let rect: DOMRect;
+			let elementTop: number;
 
-        // Calculate the ideal scroll position to show the category nicely below the header
-        const idealScrollPosition = elementTop - headerHeight - extraOffset;
+			if (categoryElement) {
+				// Use the category element directly for most precise positioning
+				rect = categoryElement.getBoundingClientRect();
+				elementTop = window.pageYOffset + rect.top - 28;
+			} else throw new Error('Category element not found');
 
-        // Check if the category is properly positioned below the header
-        const requiredMargin = headerHeight + extraOffset;
-        const isProperlyVisible =
-          rect.top >= requiredMargin && rect.top <= requiredMargin + 20;
+			// Calculate the ideal scroll position to show the category nicely below the header
+			const idealScrollPosition = elementTop - headerHeight - extraOffset;
 
-        // Only scroll if not properly positioned
-        if (!isProperlyVisible) {
-          const finalScrollPosition = Math.max(0, idealScrollPosition);
+			// Check if the category is properly positioned below the header
+			const requiredMargin = headerHeight + extraOffset;
+			const isProperlyVisible = rect.top >= requiredMargin && rect.top <= requiredMargin + 20;
 
-          window.scrollTo({
-            top: finalScrollPosition,
-            behavior: "smooth",
-          });
-        }
-      }, 150);
-    }
-  });
+			// Only scroll if not properly positioned
+			if (!isProperlyVisible) {
+				const finalScrollPosition = Math.max(0, idealScrollPosition);
+
+				window.scrollTo({
+					top: finalScrollPosition,
+					behavior: 'smooth',
+				});
+			}
+		}, 150);
+	}
+});
 </script>
 
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
@@ -154,22 +165,20 @@
   data-story-id={story.cluster_number?.toString() || story.title}
   aria-label="News story: {story.title}"
   class="relative py-2 transition-all duration-300"
+  class:cursor-pointer={isBlurred}
   class:border-b={!isExpanded}
   class:border-gray-200={!isExpanded}
   class:dark:border-gray-700={!isExpanded}
-  class:cursor-pointer={isBlurred}
   onmouseenter={hoverPreloader.handleMouseEnter}
   onmouseleave={hoverPreloader.handleMouseLeave}
   onfocus={hoverPreloader.handleMouseEnter}
   onclick={isBlurred ? handleStoryClick : undefined}
-  onkeydown={isBlurred
-    ? (e) => e.key === "Enter" && handleStoryClick()
-    : undefined}
-  role={isBlurred ? "button" : null}
-  tabindex={isBlurred ? 0 : -1}
+  onkeydown={isBlurred ? (e) => e.key === "Enter" && handleStoryClick() : undefined}
+  role={isBlurred ? "button" : undefined}
+  tabindex={isBlurred ? 0 : undefined}
 >
   <!-- Blurrable Content -->
-  <div class="transition-all duration-300" class:blur-lg={isBlurred}>
+  <div class:transition-all={isRevealing} class:duration-300={isRevealing} class:blur-lg={isBlurred} class:pointer-events-none={isBlurred}>
     <!-- Story Header -->
     <StoryHeader
       {story}
@@ -194,6 +203,7 @@
           bind:sourceArticles
           bind:currentMediaInfo
           bind:isLoadingMediaInfo
+          storyLocalizer={ss}
         />
 
         <!-- Action Buttons -->
@@ -204,6 +214,7 @@
           {storyIndex}
           onClose={handleStoryClick}
           {isSharedView}
+          storyLocalizer={ss}
         />
       </div>
     {/if}
@@ -212,10 +223,12 @@
   <!-- Blur Warning Overlay -->
   {#if isBlurred && filterKeywords && filterKeywords.length > 0}
     <div
-      class="absolute left-0 top-1/2 -translate-y-1/2 z-10 flex items-center gap-3 px-4"
+      class="absolute left-0 top-4 z-10 flex items-center gap-3 px-4"
     >
       <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
-        {s("contentFilter.filteredBecause") || "Hidden due to filter:"}
+        {isLinkedStory
+          ? (s("contentFilter.linkedStoryFilteredBecause") || "The story you wanted to view is blocked by your content filter:")
+          : (s("contentFilter.filteredBecause") || "Hidden due to filter:")}
       </span>
       <div class="flex items-center gap-2">
         {#each filterKeywords.slice(0, 3) as keyword}
@@ -232,7 +245,9 @@
         {/if}
       </div>
       <span class="text-xs text-gray-600 dark:text-gray-400 italic">
-        {s("contentFilter.clickToReveal") || "Click to show"}
+        {isLinkedStory
+          ? (s("contentFilter.linkedStoryClickToReveal") || "Click to show anyway")
+          : (s("contentFilter.clickToReveal") || "Click to show")}
       </span>
     </div>
   {/if}

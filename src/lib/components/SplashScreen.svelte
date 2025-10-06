@@ -1,57 +1,57 @@
 <script lang="ts">
-  import { s } from "$lib/client/localization.svelte";
-  import { theme } from "$lib/stores/theme.svelte.js";
-  import { onMount } from "svelte";
+import { onMount } from 'svelte';
+import { s } from '$lib/client/localization.svelte';
+import { themeSettings } from '$lib/data/settings.svelte.js';
 
-  // Props
-  interface Props {
-    showProgress?: boolean;
-    progress?: number;
-    stage?: string;
-    hasError?: boolean;
-    errorMessage?: string;
-  }
+// Props
+interface Props {
+	showProgress?: boolean;
+	progress?: number;
+	stage?: string;
+	hasError?: boolean;
+	errorMessage?: string;
+}
 
-  let {
-    showProgress = false,
-    progress = 0,
-    stage = "",
-    hasError = false,
-    errorMessage = "",
-  }: Props = $props();
+let {
+	showProgress = false,
+	progress = 0,
+	stage = '',
+	hasError = false,
+	errorMessage = '',
+}: Props = $props();
 
-  // Smooth animated progress counter
-  let displayProgress = $state(0);
-  let animationFrame: number;
+// Smooth animated progress counter
+let displayProgress = $state(0);
+let animationFrame: number;
 
-  // Animation loop that runs continuously
-  onMount(() => {
-    const animate = () => {
-      const diff = progress - displayProgress;
+// Animation loop that runs continuously
+onMount(() => {
+	const animate = () => {
+		const diff = progress - displayProgress;
 
-      // If we're close enough, just set it directly
-      if (Math.abs(diff) < 0.1) {
-        displayProgress = progress;
-      } else {
-        // Otherwise, animate towards the target
-        // Use a smaller step for smoother animation
-        displayProgress += diff * 0.08;
-      }
+		// If we're close enough, just set it directly
+		if (Math.abs(diff) < 0.1) {
+			displayProgress = progress;
+		} else {
+			// Otherwise, animate towards the target
+			// Use a smaller step for smoother animation
+			displayProgress += diff * 0.08;
+		}
 
-      // Keep animating
-      animationFrame = requestAnimationFrame(animate);
-    };
+		// Keep animating
+		animationFrame = requestAnimationFrame(animate);
+	};
 
-    // Start animation
-    animate();
+	// Start animation
+	animate();
 
-    // Cleanup
-    return () => {
-      if (animationFrame) {
-        cancelAnimationFrame(animationFrame);
-      }
-    };
-  });
+	// Cleanup
+	return () => {
+		if (animationFrame) {
+			cancelAnimationFrame(animationFrame);
+		}
+	};
+});
 </script>
 
 <div
@@ -72,7 +72,7 @@
 
       <!-- Spin circle (rotates counter-clockwise) -->
       <img
-        src={theme.isDark
+        src={themeSettings.isDark
           ? "/svg/spin_circle_dark.svg"
           : "/svg/spin_circle_light.svg"}
         alt=""
@@ -88,7 +88,7 @@
     >
       <span>{s("app.title") || "Kite"}</span>
       <span
-        class="mt-0.5 ml-2 rounded-lg bg-yellow-200 px-2 py-0.5 text-xs font-medium text-black"
+        class="mt-0.5 ms-2 rounded-lg bg-yellow-200 px-2 py-0.5 text-xs font-medium text-black"
       >
         {s("app.beta") || "BETA"}
       </span>

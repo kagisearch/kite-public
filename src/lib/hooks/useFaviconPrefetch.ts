@@ -4,8 +4,9 @@
  * Use this to prefetch favicons when you know which domains
  * will be displayed soon (e.g., when loading story data)
  */
-import { prefetchFavicons } from "$lib/services/faviconService";
-import { onMount } from "svelte";
+
+import { onMount } from 'svelte';
+import { prefetchFavicons } from '$lib/services/faviconService';
 
 /**
  * Prefetch favicons for a list of domains
@@ -13,13 +14,13 @@ import { onMount } from "svelte";
  * @param getDomains - Function that returns domains to prefetch
  */
 export function useFaviconPrefetch(getDomains: () => string[] | undefined) {
-  onMount(() => {
-    const domains = getDomains();
-    if (domains && domains.length > 0) {
-      // Prefetch in the background
-      prefetchFavicons(domains).catch((error) => {
-        console.debug("Favicon prefetch failed:", error);
-      });
-    }
-  });
+	onMount(() => {
+		const domains = getDomains();
+		if (domains && domains.length > 0) {
+			// Prefetch in the background
+			prefetchFavicons(domains).catch((error) => {
+				console.debug('Favicon prefetch failed:', error);
+			});
+		}
+	});
 }

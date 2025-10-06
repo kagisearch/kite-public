@@ -1,13 +1,13 @@
 <script lang="ts">
-  import type { Snippet } from "svelte";
+import type { Snippet } from 'svelte';
 
-  interface Props {
-    title: string;
-    className?: string;
-    children?: Snippet;
-  }
+interface Props {
+	title: string;
+	className?: string;
+	children?: Snippet;
+}
 
-  let { title, className = "", children }: Props = $props();
+let { title, className = '', children }: Props = $props();
 </script>
 
 <section class="mt-6 {className}">

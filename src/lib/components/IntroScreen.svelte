@@ -1,59 +1,59 @@
 <script lang="ts">
-  import { browser } from "$app/environment";
-  import { s } from "$lib/client/localization.svelte";
-  import { useOverlayScrollbars } from "overlayscrollbars-svelte";
-  import "overlayscrollbars/overlayscrollbars.css";
+import { useOverlayScrollbars } from 'overlayscrollbars-svelte';
+import { browser } from '$app/environment';
+import { s } from '$lib/client/localization.svelte';
+import 'overlayscrollbars/overlayscrollbars.css';
 
-  // Props
-  interface Props {
-    visible?: boolean;
-    onClose?: () => void;
-  }
+// Props
+interface Props {
+	visible?: boolean;
+	onClose?: () => void;
+}
 
-  let { visible = false, onClose }: Props = $props();
+let { visible = false, onClose }: Props = $props();
 
-  // OverlayScrollbars setup
-  let scrollableElement: HTMLElement | undefined = $state(undefined);
-  let [initialize, instance] = useOverlayScrollbars({
-    defer: true,
-  });
+// OverlayScrollbars setup
+let scrollableElement: HTMLElement | undefined = $state(undefined);
+let [initialize, instance] = useOverlayScrollbars({
+	defer: true,
+});
 
-  function handleClose() {
-    // Scroll to top of the page
-    if (browser) {
-      window.scrollTo({ top: 0, behavior: "instant" });
-    }
-    if (onClose) onClose();
-  }
+function handleClose() {
+	// Scroll to top of the page
+	if (browser) {
+		window.scrollTo({ top: 0, behavior: 'instant' });
+	}
+	if (onClose) onClose();
+}
 
-  function handleKeydown(e: KeyboardEvent) {
-    if (e.key === "Escape" && visible) {
-      handleClose();
-    }
-  }
+function handleKeydown(e: KeyboardEvent) {
+	if (e.key === 'Escape' && visible) {
+		handleClose();
+	}
+}
 
-  // Close on escape key
-  $effect(() => {
-    if (browser) {
-      if (visible) {
-        document.addEventListener("keydown", handleKeydown);
-      } else {
-        document.removeEventListener("keydown", handleKeydown);
-      }
+// Close on escape key
+$effect(() => {
+	if (browser) {
+		if (visible) {
+			document.addEventListener('keydown', handleKeydown);
+		} else {
+			document.removeEventListener('keydown', handleKeydown);
+		}
 
-      // Cleanup
-      return () => {
-        document.removeEventListener("keydown", handleKeydown);
-      };
-    }
-  });
+		// Cleanup
+		return () => {
+			document.removeEventListener('keydown', handleKeydown);
+		};
+	}
+});
 
-  // Initialize OverlayScrollbars
-  $effect(() => {
-    if (scrollableElement) {
-      initialize(scrollableElement);
-    }
-  });
+// Initialize OverlayScrollbars
+$effect(() => {
+	if (scrollableElement) {
+		initialize(scrollableElement);
+	}
+});
 </script>
 
 {#if visible}

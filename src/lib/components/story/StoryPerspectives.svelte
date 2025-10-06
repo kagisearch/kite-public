@@ -1,63 +1,61 @@
 <script lang="ts">
-  import { s } from "$lib/client/localization.svelte";
-  import type { Article } from "$lib/types";
-  import { getCitedArticlesForText } from "$lib/utils/citationAggregator";
-  import {
-    replaceWithNumberedCitations,
-    type CitationMapping,
-  } from "$lib/utils/citationContext";
-  import { parseStructuredText } from "$lib/utils/textParsing";
-  import CitationText from "./CitationText.svelte";
+import { s } from '$lib/client/localization.svelte';
+import type { Article } from '$lib/types';
+import { getCitedArticlesForText } from '$lib/utils/citationAggregator';
+import { type CitationMapping, replaceWithNumberedCitations } from '$lib/utils/citationContext';
+import { parseStructuredText } from '$lib/utils/textParsing';
+import CitationText from './CitationText.svelte';
 
-  // Props
-  interface Props {
-    perspectives?: Array<{
-      text: string;
-      sources?: Array<{
-        name: string;
-        url: string;
-      }>;
-    }>;
-    articles?: Article[];
-    citationMapping?: CitationMapping;
-  }
+// Props
+interface Props {
+	perspectives?: Array<{
+		text: string;
+		sources?: Array<{
+			name: string;
+			url: string;
+		}>;
+	}>;
+	articles?: Article[];
+	citationMapping?: CitationMapping;
+	storyLocalizer?: (key: string) => string;
+}
 
-  let { perspectives = [], articles = [], citationMapping }: Props = $props();
+let { perspectives = [], articles = [], citationMapping, storyLocalizer = s }: Props = $props();
 
-  // Convert citations in perspectives if mapping is available
-  const displayPerspectives = $derived.by(() => {
-    if (!citationMapping) return perspectives;
-    return perspectives.map((p) => ({
-      ...p,
-      text: replaceWithNumberedCitations(p.text, citationMapping),
-    }));
-  });
+// Convert citations in perspectives if mapping is available
+const displayPerspectives = $derived.by(() => {
+	if (!citationMapping) return perspectives;
+	return perspectives.map((p) => ({
+		...p,
+		text: replaceWithNumberedCitations(p.text, citationMapping),
+	}));
+});
 
-  // Helper function to detect if text contains citations
-  function hasCitations(text: string): boolean {
-    if (!text) return false;
-    // Match citations like [domain#position], [common], [1], [2], etc.
-    const citationPattern = /\[([^\]]+)\]/g;
-    return citationPattern.test(text);
-  }
+// Helper function to detect if text contains citations
+function hasCitations(text: string): boolean {
+	if (!text) return false;
+	// Match citations like [domain#position], [common], [1], [2], etc.
+	const citationPattern = /\[([^\]]+)\]/g;
+	return citationPattern.test(text);
+}
 
-  // Touch handling for mobile
-  let isScrolling = $state(false);
+// Touch handling for mobile
+let isScrolling = $state(false);
 
-  function handleTouchStart() {
-    isScrolling = true;
-  }
+function handleTouchStart() {
+	isScrolling = true;
+}
 
-  function handleTouchEnd() {
-    setTimeout(() => {
-      isScrolling = false;
-    }, 50);
-  }
+function handleTouchEnd() {
+	setTimeout(() => {
+		isScrolling = false;
+	}, 50);
+}
 </script>
 
 <section class="mt-6">
   <h3 class="mb-4 text-xl font-semibold text-gray-800 dark:text-gray-200">
-    {s("section.perspectives") || "Perspectives"}
+    {storyLocalizer("section.perspectives") || "Perspectives"}
   </h3>
   <div
     class="horizontal-scroll-container flex flex-row gap-3 overflow-x-auto pb-4"
@@ -80,7 +78,7 @@
             citationMapping,
             articles,
           )}
-          <p class="mb-2 font-bold text-gray-800 dark:text-gray-200">
+          <p class="mb-2 text-base font-bold text-gray-800 dark:text-gray-200" dir="auto">
             <CitationText
               text={parsed.title!}
               showFavicons={false}
@@ -88,9 +86,10 @@
               inline={true}
               articles={titleCitations.citedArticles}
               {citationMapping}
+              {storyLocalizer}
             />
           </p>
-          <p class="mb-2 text-gray-700 dark:text-gray-300">
+          <p class="mb-2 text-base text-gray-700 dark:text-gray-300" dir="auto">
             <CitationText
               text={parsed.content}
               showFavicons={false}
@@ -98,6 +97,7 @@
               inline={true}
               articles={contentCitations.citedArticles}
               {citationMapping}
+              {storyLocalizer}
             />
           </p>
         {:else}
@@ -106,7 +106,7 @@
             citationMapping,
             articles,
           )}
-          <p class="mb-2 text-gray-700 dark:text-gray-300">
+          <p class="mb-2 text-base text-gray-700 dark:text-gray-300" dir="auto">
             <CitationText
               text={parsed.content}
               showFavicons={false}
@@ -114,6 +114,7 @@
               inline={true}
               articles={contentCitations.citedArticles}
               {citationMapping}
+              {storyLocalizer}
             />
           </p>
         {/if}
@@ -126,6 +127,7 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 class="text-[#183FDC] hover:underline dark:text-[#5B89FF]"
+                dir="auto"
               >
                 {source.name}
               </a>

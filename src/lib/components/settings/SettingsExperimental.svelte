@@ -1,28 +1,28 @@
 <script lang="ts">
-  import { s } from "$lib/client/localization.svelte";
-  import { experimental } from "$lib/stores/experimental.svelte.js";
+import { s } from '$lib/client/localization.svelte';
+import { experimental } from '$lib/stores/experimental.svelte.js';
 
-  // Toggle handlers
-  function toggleArticleIcons() {
-    experimental.toggleFeature("showArticleIcons");
-  }
+// Toggle handlers
+function toggleArticleIcons() {
+	experimental.toggleFeature('showArticleIcons');
+}
 
-  function toggleCategoryIcons() {
-    experimental.toggleFeature("showCategoryIcons");
-  }
+function toggleCategoryIcons() {
+	experimental.toggleFeature('showCategoryIcons');
+}
 
-  function toggleDisableCategorySwipe() {
-    experimental.toggleFeature("disableCategorySwipe");
-  }
+function toggleDisableCategorySwipe() {
+	experimental.toggleFeature('disableCategorySwipe');
+}
 
-  function toggleChaosIndex() {
-    experimental.toggleFeature("showChaosIndex");
-  }
+function toggleChaosIndex() {
+	experimental.toggleFeature('showChaosIndex');
+}
 </script>
 
 <div class="space-y-6">
   <p class="mb-6 text-sm text-gray-600 dark:text-gray-400">
-    ⚠️ <span class="ml-1"
+    ⚠️ <span class="ms-1"
       >{s("settings.experimental.warning") ||
         "These features are experimental and may change or be removed in future versions."}</span
     >
@@ -54,8 +54,10 @@
         >
         <span
           class="inline-block h-4 w-4 transform rounded-full bg-white transition"
-          class:translate-x-6={experimental.showArticleIcons}
-          class:translate-x-1={!experimental.showArticleIcons}
+          class:ltr:translate-x-6={experimental.showArticleIcons}
+          class:rtl:-translate-x-6={experimental.showArticleIcons}
+          class:ltr:translate-x-1={!experimental.showArticleIcons}
+          class:rtl:-translate-x-1={!experimental.showArticleIcons}
         ></span>
       </button>
     </div>
@@ -92,8 +94,10 @@
         >
         <span
           class="inline-block h-4 w-4 transform rounded-full bg-white transition"
-          class:translate-x-6={experimental.showCategoryIcons}
-          class:translate-x-1={!experimental.showCategoryIcons}
+          class:ltr:translate-x-6={experimental.showCategoryIcons}
+          class:rtl:-translate-x-6={experimental.showCategoryIcons}
+          class:ltr:translate-x-1={!experimental.showCategoryIcons}
+          class:rtl:-translate-x-1={!experimental.showCategoryIcons}
         ></span>
       </button>
     </div>
@@ -130,8 +134,10 @@
         >
         <span
           class="inline-block h-4 w-4 transform rounded-full bg-white transition"
-          class:translate-x-6={experimental.disableCategorySwipe}
-          class:translate-x-1={!experimental.disableCategorySwipe}
+          class:ltr:translate-x-6={experimental.disableCategorySwipe}
+          class:rtl:-translate-x-6={experimental.disableCategorySwipe}
+          class:ltr:translate-x-1={!experimental.disableCategorySwipe}
+          class:rtl:-translate-x-1={!experimental.disableCategorySwipe}
         ></span>
       </button>
     </div>
@@ -168,8 +174,10 @@
         >
         <span
           class="inline-block h-4 w-4 transform rounded-full bg-white transition"
-          class:translate-x-6={experimental.showChaosIndex}
-          class:translate-x-1={!experimental.showChaosIndex}
+          class:ltr:translate-x-6={experimental.showChaosIndex}
+          class:rtl:-translate-x-6={experimental.showChaosIndex}
+          class:ltr:translate-x-1={!experimental.showChaosIndex}
+          class:rtl:-translate-x-1={!experimental.showChaosIndex}
         ></span>
       </button>
     </div>

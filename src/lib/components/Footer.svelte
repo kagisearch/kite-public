@@ -1,38 +1,39 @@
 <script lang="ts">
-  import { s } from "$lib/client/localization.svelte";
-  import { dataLanguage } from "$lib/stores/dataLanguage.svelte.js";
-  import { theme } from "$lib/stores/theme.svelte.js";
+import { s } from '$lib/client/localization.svelte';
+import { languageSettings, themeSettings } from '$lib/data/settings.svelte.js';
 
-  // Props
-  interface Props {
-    currentCategory?: string;
-    onShowAbout?: () => void;
-  }
+// Props
+interface Props {
+	currentCategory?: string;
+	onShowAbout?: () => void;
+}
 
-  let { currentCategory = "World", onShowAbout }: Props = $props();
+let { currentCategory = 'World', onShowAbout }: Props = $props();
 
-  // Handle about click
-  function handleAboutClick() {
-    if (onShowAbout) onShowAbout();
-  }
+// Handle about click
+function handleAboutClick() {
+	// Push /about to the URL
+	window.history.pushState({}, '', '/about');
+	if (onShowAbout) onShowAbout();
+}
 
-  // Get RSS feed URL
-  function getRSSFeedUrl(): string {
-    if (currentCategory === "OnThisDay") {
-      // For OnThisDay, use the translated RSS feed if available
-      if (dataLanguage.current !== "default" && dataLanguage.current !== "en") {
-        return `/onthisday_${dataLanguage.current}.xml`;
-      }
-      return "/onthisday.xml";
-    }
+// Get RSS feed URL
+function getRSSFeedUrl(): string {
+	if (currentCategory === 'OnThisDay') {
+		// For OnThisDay, use the translated RSS feed if available
+		if (languageSettings.data !== 'default' && languageSettings.data !== 'en') {
+			return `/onthisday_${languageSettings.data}.xml`;
+		}
+		return '/onthisday.xml';
+	}
 
-    // For other categories, use translated RSS feeds when available
-    if (dataLanguage.current !== "default" && dataLanguage.current !== "en") {
-      return `/${currentCategory.toLowerCase()}_${dataLanguage.current}.xml`;
-    }
+	// For other categories, use translated RSS feeds when available
+	if (languageSettings.data !== 'default' && languageSettings.data !== 'en') {
+		return `/${currentCategory.toLowerCase()}_${languageSettings.data}.xml`;
+	}
 
-    return `/${currentCategory.toLowerCase()}.xml`;
-  }
+	return `/${currentCategory.toLowerCase()}.xml`;
+}
 </script>
 
 <footer class="mt-8 pt-4 pb-8 md:pb-4">
@@ -66,7 +67,7 @@
       title={s("footer.about") || "About Kagi News"}
     >
       <img
-        src={theme.isDark
+        src={themeSettings.isDark
           ? "/svg/kagi_news_icon_dark.svg"
           : "/svg/kagi_news_icon.svg"}
         alt={s("app.logo.iconAlt") || "Kagi News"}

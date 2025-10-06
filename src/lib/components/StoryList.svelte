@@ -1,180 +1,183 @@
 <script lang="ts">
-  import { s } from "$lib/client/localization.svelte";
-  import { kiteDB } from "$lib/db/dexie";
-  import { contentFilter } from "$lib/stores/contentFilter.svelte.js";
-  import { settings } from "$lib/stores/settings.svelte.js";
-  import { storyCount } from "$lib/stores/storyCount.svelte.js";
-  import type { Story } from "$lib/types";
-  import { filterStories, type FilteredStory } from "$lib/utils/contentFilter";
-  import { generateStoryId } from "$lib/utils/storyId";
-  import StoryCard from "./story/StoryCard.svelte";
+import { s } from '$lib/client/localization.svelte';
+import { categorySettings, displaySettings } from '$lib/data/settings.svelte.js';
+import { kiteDB } from '$lib/db/dexie';
+import { contentFilter } from '$lib/stores/contentFilter.svelte.js';
+import type { Story } from '$lib/types';
+import { type FilteredStory, filterStories } from '$lib/utils/contentFilter';
+import StoryCard from './story/StoryCard.svelte';
 
-  // Props
-  interface Props {
-    stories?: Story[];
-    currentCategory: string;
-    batchId?: string;
-    readStories?: Record<string, boolean>;
-    expandedStories?: Record<string, boolean>;
-    onStoryToggle?: (storyId: string) => void;
-    showSourceOverlay?: boolean;
-    currentSource?: any;
-    sourceArticles?: any[];
-    currentMediaInfo?: any;
-    isLoadingMediaInfo?: boolean;
-    storyCountOverride?: number | null;
-    isSharedView?: boolean;
-    sharedArticleIndex?: number | null;
-  }
+// Props
+interface Props {
+	stories?: Story[];
+	currentCategory: string;
+	categoryUuid?: string;
+	batchId?: string;
+	readStories?: Record<string, boolean>;
+	expandedStories?: Record<string, boolean>;
+	onStoryToggle?: (storyId: string) => void;
+	showSourceOverlay?: boolean;
+	currentSource?: any;
+	sourceArticles?: any[];
+	currentMediaInfo?: any;
+	isLoadingMediaInfo?: boolean;
+	storyCountOverride?: number | null;
+	isSharedView?: boolean;
+	sharedArticleIndex?: number | null;
+	initiallyExpandedIndex?: number | null;
+}
 
-  let {
-    stories = [],
-    currentCategory,
-    batchId,
-    readStories = $bindable({}),
-    expandedStories = $bindable({}),
-    onStoryToggle,
-    showSourceOverlay = $bindable(false),
-    currentSource = $bindable(null),
-    sourceArticles = $bindable([]),
-    currentMediaInfo = $bindable(null),
-    isLoadingMediaInfo = $bindable(false),
-    storyCountOverride = null,
-    isSharedView = false,
-    sharedArticleIndex = null,
-  }: Props = $props();
+let {
+	stories = [],
+	currentCategory,
+	categoryUuid,
+	batchId,
+	readStories = $bindable({}),
+	expandedStories = $bindable({}),
+	onStoryToggle,
+	showSourceOverlay = $bindable(false),
+	currentSource = $bindable(null),
+	sourceArticles = $bindable([]),
+	currentMediaInfo = $bindable(null),
+	isLoadingMediaInfo = $bindable(false),
+	storyCountOverride = null,
+	isSharedView = false,
+	sharedArticleIndex = null,
+	initiallyExpandedIndex = null,
+}: Props = $props();
 
-  // Handle story toggle
-  function handleStoryToggle(story: Story) {
-    const storyId = story.cluster_number?.toString() || story.title;
-    if (onStoryToggle) {
-      onStoryToggle(storyId);
-    }
-  }
+// Handle story toggle
+function handleStoryToggle(story: Story) {
+	const storyId = story.cluster_number?.toString() || story.title;
+	if (onStoryToggle) {
+		onStoryToggle(storyId);
+	}
+}
 
-  // Handle read status toggle
-  async function handleReadToggle(story: Story) {
-    const storyId = generateStoryId(story, batchId, currentCategory);
-    const isNowRead = !readStories[storyId];
-    readStories[storyId] = isNowRead;
+// Handle read status toggle
+async function handleReadToggle(story: Story) {
+	if (!story.id) return; // Skip if no UUID
+	const storyId = story.id; // Use UUID directly
+	const isNowRead = !readStories[storyId];
+	readStories[storyId] = isNowRead;
 
-    // Persist to database
-    if (isNowRead) {
-      await kiteDB.markStoryAsRead(
-        story.title,
-        story.cluster_number,
-        batchId,
-        currentCategory,
-      );
-    } else {
-      // Remove from database when unmarking as read
-      await kiteDB.unmarkStoryAsRead(
-        story.title,
-        story.cluster_number,
-        batchId,
-        currentCategory,
-      );
-      // Also remove from local state
-      delete readStories[storyId];
-      readStories = { ...readStories }; // Trigger reactivity
-    }
-  }
+	// Persist to database
+	if (isNowRead) {
+		if (story.id) {
+			// Only mark if we have a UUID
+			await kiteDB.markStoryAsRead(
+				story.id, // cluster UUID
+				story.title,
+				batchId,
+				categoryUuid,
+			);
+		}
+	} else {
+		// Remove from database when unmarking as read
+		if (story.id) {
+			// Only unmark if we have a UUID
+			await kiteDB.unmarkStoryAsRead(
+				story.id, // cluster UUID
+				batchId,
+				categoryUuid,
+			);
+		}
+		// Also remove from local state
+		delete readStories[storyId];
+		readStories = { ...readStories }; // Trigger reactivity
+	}
+}
 
-  // Mark all as read
-  async function markAllAsRead() {
-    displayedStories.forEach(async (story) => {
-      const storyId = generateStoryId(story, batchId, currentCategory);
-      readStories[storyId] = true;
-      // Persist to database
-      await kiteDB.markStoryAsRead(
-        story.title,
-        story.cluster_number,
-        batchId,
-        currentCategory,
-      );
-    });
-  }
+// Mark all as read
+async function markAllAsRead() {
+	displayedStories.forEach(async (story) => {
+		if (!story.id) return; // Skip if no UUID
+		const storyId = story.id; // Use UUID directly
+		readStories[storyId] = true;
+		// Persist to database
+		if (story.id) {
+			// Only mark if we have a UUID
+			await kiteDB.markStoryAsRead(
+				story.id, // cluster UUID
+				story.title,
+				batchId,
+				categoryUuid,
+			);
+		}
+	});
+}
 
-  // Expand or collapse all stories
-  export function toggleExpandAll() {
-    const expand = !allStoriesExpanded;
+// Expand or collapse all stories
+export function toggleExpandAll() {
+	const expand = !allStoriesExpanded;
 
-    // When collapsing, this is simple - just collapse all
-    if (!expand) {
-      expandedStories = {};
-      return;
-    }
+	// When collapsing, this is simple - just collapse all
+	if (!expand) {
+		expandedStories = {};
+		return;
+	}
 
-    // Expand all at once
-    const newExpanded: Record<string, boolean> = { ...expandedStories };
-    displayedStories.forEach((story) => {
-      const id = story.cluster_number?.toString() || story.title;
-      newExpanded[id] = true;
-    });
-    expandedStories = newExpanded;
-  }
+	// Expand all at once
+	const newExpanded: Record<string, boolean> = { ...expandedStories };
+	displayedStories.forEach((story) => {
+		const id = story.cluster_number?.toString() || story.title;
+		newExpanded[id] = true;
+	});
+	expandedStories = newExpanded;
+}
 
-  // Apply content filtering and story count limit
-  const { displayedStories, filteredCount, hiddenStories } = $derived.by(() => {
-    // If in shared view mode, only show the specific shared article
-    if (
-      isSharedView &&
-      sharedArticleIndex !== null &&
-      stories[sharedArticleIndex]
-    ) {
-      const sharedStory = stories[sharedArticleIndex];
-      return {
-        displayedStories: [sharedStory] as FilteredStory[],
-        filteredCount: 0,
-        hiddenStories: stories.filter(
-          (_, index) => index !== sharedArticleIndex,
-        ),
-      };
-    }
+// Apply content filtering and story count limit
+const { displayedStories, filteredCount, hiddenStories } = $derived.by(() => {
+	// If in shared view mode, only show the specific shared article
+	if (isSharedView && sharedArticleIndex !== null && stories[sharedArticleIndex]) {
+		const sharedStory = stories[sharedArticleIndex];
+		return {
+			displayedStories: [sharedStory] as FilteredStory[],
+			filteredCount: 0,
+			hiddenStories: stories.filter((_, index) => index !== sharedArticleIndex),
+		};
+	}
 
-    // First apply story count limit
-    // Use override if provided (e.g., from URL navigation), otherwise use user setting
-    const effectiveLimit = storyCountOverride ?? storyCount.current;
-    const limitedStories = stories.slice(0, effectiveLimit);
+	// First apply story count limit
+	// Use override if provided (e.g., from URL navigation), otherwise use user setting
+	const effectiveLimit = storyCountOverride ?? displaySettings.storyCount;
+	const limitedStories = stories.slice(0, effectiveLimit);
 
-    // Then apply content filtering if active (has keywords)
-    if (contentFilter.isActive) {
-      const result = filterStories(
-        limitedStories,
-        contentFilter.keywords,
-        contentFilter.filterScope,
-        contentFilter.filterMode,
-      );
+	// Then apply content filtering if active (has keywords)
+	if (contentFilter.isActive) {
+		const result = filterStories(
+			limitedStories,
+			contentFilter.keywords,
+			contentFilter.filterScope,
+			contentFilter.filterMode,
+		);
 
-      return {
-        displayedStories: result.filtered as FilteredStory[],
-        filteredCount: result.filteredCount,
-        hiddenStories: result.hidden,
-      };
-    }
+		return {
+			displayedStories: result.filtered as FilteredStory[],
+			filteredCount: result.filteredCount,
+			hiddenStories: result.hidden,
+		};
+	}
 
-    return {
-      displayedStories: limitedStories as FilteredStory[],
-      filteredCount: 0,
-      hiddenStories: [],
-    };
-  });
+	return {
+		displayedStories: limitedStories as FilteredStory[],
+		filteredCount: 0,
+		hiddenStories: [],
+	};
+});
 
-  // Check if all stories are read
-  const allStoriesRead = $derived(
-    displayedStories.every(
-      (story) => readStories[generateStoryId(story, batchId, currentCategory)],
-    ),
-  );
+// Check if all stories are read
+const allStoriesRead = $derived(
+	displayedStories.every((story) => story.id && readStories[story.id]),
+);
 
-  // Check if all stories are expanded
-  const allStoriesExpanded = $derived(
-    displayedStories.length > 0 &&
-      displayedStories.every(
-        (story) =>
-          expandedStories[story.cluster_number?.toString() || story.title],
-      ),
-  );
+// Check if all stories are expanded
+const allStoriesExpanded = $derived(
+	displayedStories.length > 0 &&
+		displayedStories.every(
+			(story) => expandedStories[story.cluster_number?.toString() || story.title],
+		),
+);
 </script>
 
 <div class="story-list">
@@ -198,7 +201,26 @@
             {s("contentFilter.adjustFilters") || "Adjust filters"}
           </button>
           <button
-            onclick={() => (window.location.href = "#settings/categories")}
+            onclick={() => {
+              // Only disable if we have more than one enabled category
+              if (categorySettings.enabled.length > 1) {
+                categorySettings.disableCategory(currentCategory);
+                // Navigate to the first enabled category after disabling
+                const firstEnabled = categorySettings.enabled[0];
+                if (firstEnabled && firstEnabled !== currentCategory) {
+                  window.location.href = `#${firstEnabled}`;
+                } else {
+                  // If current was the first, find the new first
+                  const newEnabled = categorySettings.enabled.filter(cat => cat !== currentCategory);
+                  if (newEnabled.length > 0) {
+                    window.location.href = `#${newEnabled[0]}`;
+                  }
+                }
+              } else {
+                // If only one category is enabled, just navigate to settings
+                window.location.href = "#settings/categories";
+              }
+            }}
             class="px-4 py-2 text-sm bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
           >
             {s("contentFilter.disableCategory") || "Disable category"}
@@ -214,12 +236,13 @@
     {#each displayedStories as story, index (story.cluster_number || story.title)}
       {@const isFiltered =
         contentFilter.filterMode === "blur" && story._filtered}
+      {@const isLinkedStory = initiallyExpandedIndex === index}
       <StoryCard
         {story}
         storyIndex={index}
         {batchId}
         categoryId={currentCategory}
-        isRead={readStories[generateStoryId(story, batchId, currentCategory)] ||
+        isRead={(story.id && readStories[story.id]) ||
           false}
         isExpanded={expandedStories[
           story.cluster_number?.toString() || story.title
@@ -236,6 +259,7 @@
         bind:currentMediaInfo
         bind:isLoadingMediaInfo
         {isSharedView}
+        {isLinkedStory}
       />
     {/each}
 

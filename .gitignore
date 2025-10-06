@@ -28,3 +28,4 @@ coverage
 
 .vite
 .svelte-kit
+__pycache__/

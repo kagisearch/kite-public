@@ -4402,6 +4402,47 @@
     "description": "La Voix du Nord is a regional daily newspaper based in Lille, covering northern France. It is part of the Groupe Voix du Nord.",
     "owner": "Groupe Rossel (Belgian media group) )",
     "typology": "Private Media"
+    },
+    {
+      "country": "Australia",
+      "organization": "Crikey",
+      "domains": [
+        "www.crikey.com.au"
+      ],
+      "description": "Crikey is an Australian news and analysis newsletter and website.",
+      "owner": "Private Media Pty Ltd",
+      "typology": "Private Media"
+    },
+    {
+      "country": "Australia",
+      "organization": "SBS (Australia)",
+      "domains": [
+        "www.sbs.com.au"
+      ],
+      "description": "The Special Broadcasting Service (SBS) is a broadcaster with a particular focus on serving Australia's multicultural and multilingual commumities.",
+      "owner": "Special Broadcasting Service",
+      "typology": "State Funded Media"
+    },
+    {
+      "country": "Australia",
+      "organization": "Nine News (9News)",
+      "domains": [
+        "www.9news.com.au"
+      ],
+      "description": "Nine News is an Australian television online and news network.",
+      "owner": "Nine Entertainment",
+      "typology": "Private Media"
+    },
+    {
+      "country": "Australia",
+      "organization": "Nine Publishing",
+      "domains": [
+        "www.brisbanetimes.com.au",
+        "www.smh.com.au",
+        "www.theage.com.au"
+      ],
+      "description": "Nine Publishing (formerly Fairfax Media) publishes print and online newspapers including The Sydney Morning Herald, The Age, and the Brisbane Times.",
+      "owner": "Nine Entertainment",
+      "typology": "Private Media"
     }
-
 ]

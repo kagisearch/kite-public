@@ -1,142 +1,190 @@
 <script lang="ts">
-  import { browser } from "$app/environment";
-  import { s } from "$lib/client/localization.svelte";
-  import { fontSize } from "$lib/stores/fontSize.svelte.js";
-  import { settings } from "$lib/stores/settings.svelte.js";
-  import type { Category } from "$lib/types";
-  import { getCategoryDisplayName } from "$lib/utils/category";
-  import { toCamelCase } from "$lib/utils/string.js";
-  import { onMount } from "svelte";
-  import { fade } from "svelte/transition";
+import { onMount } from 'svelte';
+import { fade } from 'svelte/transition';
+import { browser } from '$app/environment';
+import { s } from '$lib/client/localization.svelte';
+import { displaySettings } from '$lib/data/settings.svelte.js';
+import type { Category } from '$lib/types';
+import { getCategoryDisplayName } from '$lib/utils/category';
+import { toCamelCase } from '$lib/utils/string.js';
 
-  // Props
-  interface Props {
-    categories?: Category[];
-    currentCategory?: string;
-    onCategoryChange?: (category: string) => void;
-    onCategoryDoubleClick?: (category: string) => void;
-    mobilePosition?: "top" | "bottom" | "integrated";
-    temporaryCategory?: string | null;
-    showTemporaryTooltip?: boolean;
-  }
+// Props
+interface Props {
+	categories?: Category[];
+	currentCategory?: string;
+	onCategoryChange?: (category: string) => void;
+	onCategoryDoubleClick?: (category: string) => void;
+	mobilePosition?: 'top' | 'bottom' | 'integrated';
+	temporaryCategory?: string | null;
+	showTemporaryTooltip?: boolean;
+}
 
-  let {
-    categories = [],
-    currentCategory = "World",
-    onCategoryChange,
-    onCategoryDoubleClick,
-    mobilePosition = "bottom",
-    temporaryCategory = null,
-    showTemporaryTooltip = false,
-  }: Props = $props();
+let {
+	categories = [],
+	currentCategory = 'World',
+	onCategoryChange,
+	onCategoryDoubleClick,
+	mobilePosition = 'bottom',
+	temporaryCategory = null,
+	showTemporaryTooltip = false,
+}: Props = $props();
 
-  // Overflow detection state
-  let hasOverflow = $state(false);
-  let tabsElement: HTMLElement;
-  let temporaryCategoryElement = $state<HTMLElement | null>(null);
-  let categoryElements = $state<Record<string, HTMLElement>>({});
+// Overflow detection state
+let hasOverflow = $state(false);
+let tabsElement: HTMLElement;
+let temporaryCategoryElement = $state<HTMLElement | null>(null);
+let categoryElements = $state<Record<string, HTMLElement>>({});
 
-  // Expose a function to get the reference element for the tooltip
-  export function getCategoryElement(categoryId: string): HTMLElement | null {
-    return categoryElements[categoryId] || null;
-  }
+// Expose a function to get the reference element for the tooltip
+export function getCategoryElement(categoryId: string): HTMLElement | null {
+	return categoryElements[categoryId] || null;
+}
 
-  // Handle category click
-  function handleCategoryClick(categoryId: string) {
-    if (onCategoryChange) {
-      onCategoryChange(categoryId);
-    }
-  }
+// Handle category click
+function handleCategoryClick(categoryId: string) {
+	if (onCategoryChange) {
+		onCategoryChange(categoryId);
+	}
+}
 
-  // Handle category key events
-  function handleCategoryKeydown(event: KeyboardEvent, categoryId: string) {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      handleCategoryClick(categoryId);
-    }
-  }
+// Handle category key events
+function handleCategoryKeydown(event: KeyboardEvent, categoryId: string) {
+	// Handle activation keys
+	if (event.key === 'Enter' || event.key === ' ') {
+		event.preventDefault();
+		handleCategoryClick(categoryId);
+		return;
+	}
 
-  // Check if content overflows
-  function checkOverflow() {
-    if (tabsElement) {
-      const newValue = tabsElement.scrollWidth > tabsElement.clientWidth;
-      if (newValue !== hasOverflow) {
-        hasOverflow = newValue;
-      }
-    }
-  }
+	// Handle arrow key navigation for ARIA tablist pattern
+	const currentIndex = categories.findIndex((cat) => cat.id === categoryId);
+	let newIndex: number | null = null;
 
-  // Scroll functions
-  function scrollLeft() {
-    if (tabsElement) {
-      tabsElement.scrollBy({ left: -200, behavior: "smooth" });
-    }
-  }
+	switch (event.key) {
+		case 'ArrowLeft':
+		case 'ArrowUp':
+			event.preventDefault();
+			// Move to previous category, wrap to end
+			newIndex = currentIndex > 0 ? currentIndex - 1 : categories.length - 1;
+			break;
 
-  function scrollRight() {
-    if (tabsElement) {
-      tabsElement.scrollBy({ left: 200, behavior: "smooth" });
-    }
-  }
+		case 'ArrowRight':
+		case 'ArrowDown':
+			event.preventDefault();
+			// Move to next category, wrap to start
+			newIndex = currentIndex < categories.length - 1 ? currentIndex + 1 : 0;
+			break;
 
-  // Set up overflow detection
-  onMount(() => {
-    if (browser) {
-      // Initial check
-      setTimeout(() => checkOverflow(), 0);
+		case 'Home':
+			event.preventDefault();
+			newIndex = 0;
+			break;
 
-      // Set up mutation observer to watch for changes in category-tabs
-      const observer = new MutationObserver(() => {
-        setTimeout(() => {
-          checkOverflow();
-          // Double check after a small delay
-          setTimeout(() => checkOverflow(), 100);
-        }, 0);
-      });
+		case 'End':
+			event.preventDefault();
+			newIndex = categories.length - 1;
+			break;
+	}
 
-      if (tabsElement) {
-        observer.observe(tabsElement, {
-          childList: true,
-          subtree: true,
-          attributes: true,
-        });
-      }
+	// Navigate to the new category if arrow/home/end was pressed
+	if (newIndex !== null && newIndex !== currentIndex) {
+		const newCategory = categories[newIndex];
+		handleCategoryClick(newCategory.id);
 
-      // Listen for window resize
-      const handleResize = () => {
-        checkOverflow();
-        setTimeout(() => checkOverflow(), 0);
-      };
+		// Focus the new category button after a brief delay
+		// This ensures the DOM has updated with the new tabindex
+		setTimeout(() => {
+			const newButton = categoryElements[newCategory.id];
+			if (newButton) {
+				newButton.focus();
+				// Scroll into view if needed
+				newButton.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+			}
+		}, 50);
+	}
+}
 
-      window.addEventListener("resize", handleResize);
+// Check if content overflows
+function checkOverflow() {
+	if (tabsElement) {
+		const newValue = tabsElement.scrollWidth > tabsElement.clientWidth;
+		if (newValue !== hasOverflow) {
+			hasOverflow = newValue;
+		}
+	}
+}
 
-      return () => {
-        observer.disconnect();
-        window.removeEventListener("resize", handleResize);
-      };
-    }
-  });
+// Scroll functions
+function scrollLeft() {
+	if (tabsElement) {
+		tabsElement.scrollBy({ left: -200, behavior: 'smooth' });
+	}
+}
 
-  // Watch for categories changes
-  $effect(() => {
-    categories;
-    setTimeout(() => checkOverflow(), 0);
-  });
+function scrollRight() {
+	if (tabsElement) {
+		tabsElement.scrollBy({ left: 200, behavior: 'smooth' });
+	}
+}
 
-  // Watch for font size changes
-  $effect(() => {
-    fontSize.current; // React to font size changes
-    // Use a longer delay to ensure CSS changes have taken effect
-    setTimeout(() => checkOverflow(), 100);
-  });
+// Set up overflow detection
+onMount(() => {
+	if (browser) {
+		// Initial check
+		setTimeout(() => checkOverflow(), 0);
+
+		// Set up mutation observer to watch for changes in category-tabs
+		const observer = new MutationObserver(() => {
+			setTimeout(() => {
+				checkOverflow();
+				// Double check after a small delay
+				setTimeout(() => checkOverflow(), 100);
+			}, 0);
+		});
+
+		if (tabsElement) {
+			observer.observe(tabsElement, {
+				childList: true,
+				subtree: true,
+				attributes: true,
+			});
+		}
+
+		// Listen for window resize
+		const handleResize = () => {
+			checkOverflow();
+			setTimeout(() => checkOverflow(), 0);
+		};
+
+		window.addEventListener('resize', handleResize);
+
+		return () => {
+			observer.disconnect();
+			window.removeEventListener('resize', handleResize);
+		};
+	}
+});
+
+// Watch for categories changes
+$effect(() => {
+	categories;
+	setTimeout(() => checkOverflow(), 0);
+});
+
+// Watch for font size changes
+$effect(() => {
+	displaySettings.fontSize; // React to font size changes
+	// Use a longer delay to ensure CSS changes have taken effect
+	setTimeout(() => checkOverflow(), 100);
+});
 </script>
 
 <div
   class="category-slider-container dark:bg-dark-bg
-	md:relative md:bg-transparent md:dark:bg-transparent md:px-0 md:py-2 md:shadow-none md:left-auto md:right-auto md:top-auto md:bottom-auto
+	md:relative md:bg-transparent md:dark:bg-transparent md:px-0 md:py-2 md:shadow-none md:start-auto md:end-auto md:top-auto md:bottom-auto
 	{mobilePosition === 'integrated'
     ? 'relative bg-white dark:bg-gray-900 px-6 pb-2'
-    : 'fixed z-[60] bg-white px-6 left-0 right-0'}
+    : 'fixed z-[60] bg-white px-6 start-0 end-0'}
 	{mobilePosition === 'top'
     ? 'top-[88px] pt-1 pb-0.5 shadow-[0_4px_8px_rgba(0,0,0,0.1)]'
     : ''}
@@ -150,7 +198,7 @@
       <!-- Left scroll button (desktop only) -->
       <button
         onclick={scrollLeft}
-        class="relative -ml-1 hidden py-3 pr-4 text-gray-400 transition-colors hover:text-gray-600 focus-visible-ring md:block dark:text-gray-500 dark:hover:text-gray-300"
+        class="relative -ms-1 hidden py-3 pe-4 text-gray-400 transition-colors hover:text-gray-600 focus-visible-ring md:block dark:text-gray-500 dark:hover:text-gray-300"
         class:md:hidden={!hasOverflow}
         aria-label="Scroll categories left"
       >
@@ -197,7 +245,7 @@
             onclick={() => handleCategoryClick(category.id)}
             onkeydown={(e) => handleCategoryKeydown(e, category.id)}
             ondblclick={() =>
-              settings.storyExpandMode !== "never" &&
+              displaySettings.storyExpandMode !== "never" &&
               onCategoryDoubleClick?.(category.id)}
           >
             {getCategoryDisplayName(category)}
@@ -208,7 +256,7 @@
       <!-- Right scroll button (desktop only) -->
       <button
         onclick={scrollRight}
-        class="relative -mr-1 hidden py-3 pl-4 text-gray-400 transition-colors hover:text-gray-600 focus-visible-ring md:block dark:text-gray-500 dark:hover:text-gray-300"
+        class="relative -me-1 hidden py-3 ps-4 text-gray-400 transition-colors hover:text-gray-600 focus-visible-ring md:block dark:text-gray-500 dark:hover:text-gray-300"
         class:md:hidden={!hasOverflow}
         aria-label="Scroll categories right"
       >

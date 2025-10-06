@@ -1,0 +1,2306 @@
+{
+  "settings.aboutKite.button": {
+    "text": "אודות Kagi News",
+    "translationContext": "Text for the About Kagi News button"
+  },
+  "settings.categories.allCategories": {
+    "text": "כל הקטגוריות",
+    "translationContext": "Label for showing all categories option in settings"
+  },
+  "settings.categories.contribute": {
+    "text": "+ תרום קטגוריות",
+    "translationContext": "Link text for contributing categories"
+  },
+  "settings.categories.disable": {
+    "text": "לחץ/י להשבתה, גרור/י לסידור מחדש",
+    "translationContext": "Tooltip for enabled category items that can be disabled"
+  },
+  "settings.categories.disabled": {
+    "text": "קטגוריות מושבתות",
+    "translationContext": "Title for the disabled (hidden) categories section"
+  },
+  "settings.categories.enable": {
+    "text": "לחץ/י להפעלה, גרור/י לסידור מחדש",
+    "translationContext": "Tooltip for disabled category items that can be enabled"
+  },
+  "settings.categories.enabled": {
+    "text": "קטגוריות מופעלות",
+    "translationContext": "Title for the enabled categories section"
+  },
+  "settings.categories.filterByType": {
+    "text": "סינון לפי סוג...",
+    "translationContext": "Placeholder text for category type filter dropdown"
+  },
+  "settings.categories.instructions": {
+    "text": "גרור/י לסידור מחדש, או לחץ/י להפעלה/השבתה. גרור/י בין החלקים כדי להעביר קטגוריות.",
+    "translationContext": "Instructions for managing categories"
+  },
+  "settings.categories.lastCategory": {
+    "text": "לא ניתן להשבית את הקטגוריה האחרונה",
+    "translationContext": "Tooltip shown when trying to disable the last enabled category"
+  },
+  "settings.categories.noDisabled": {
+    "text": "כל הקטגוריות מופעלות",
+    "translationContext": "Shows when no categories are disabled"
+  },
+  "settings.categories.noEnabled": {
+    "text": "אין קטגוריות מופעלות",
+    "translationContext": "Shows when no categories are enabled"
+  },
+  "settings.categories.noFiltered": {
+    "text": "אין קטגוריות מסוג זה המושבתות",
+    "translationContext": "Message shown when no categories of the selected filter type are in the disabled section"
+  },
+  "settings.categories.types.all": {
+    "text": "כל הסוגים",
+    "translationContext": "Option to show all category types in filter"
+  },
+  "settings.categories.types.city": {
+    "text": "ערים",
+    "translationContext": "Label for city category type"
+  },
+  "settings.categories.types.core": {
+    "text": "ליבה",
+    "translationContext": "Label for core category type (main news categories)"
+  },
+  "settings.categories.types.country": {
+    "text": "מדינות",
+    "translationContext": "Label for country category type"
+  },
+  "settings.categories.types.other": {
+    "text": "אחר",
+    "translationContext": "Label for categories without a specific type"
+  },
+  "settings.categories.types.region": {
+    "text": "אזורים",
+    "translationContext": "Label for region category type"
+  },
+  "settings.categories.types.topic": {
+    "text": "נושאים",
+    "translationContext": "Label for topic category type"
+  },
+  "settings.categoryHeaderPosition.bottom": {
+    "text": "תחתון",
+    "translationContext": "Option for bottom position"
+  },
+  "settings.categoryHeaderPosition.description": {
+    "text": "בחר/י היכן להציג את סרגל ניווט הקטגוריות במכשירים ניידים.",
+    "translationContext": "Description for category header position setting"
+  },
+  "settings.categoryHeaderPosition.label": {
+    "text": "מיקום כותרת הקטגוריה",
+    "translationContext": "Label for category header position setting"
+  },
+  "settings.categoryHeaderPosition.top": {
+    "text": "עליון",
+    "translationContext": "Option for top position"
+  },
+  "settings.contentFilter.activeFilters": {
+    "text": "מסננים פעילים",
+    "translationContext": "Label for current active filters list"
+  },
+  "settings.contentFilter.clearAll": {
+    "text": "נקה את כל המסננים",
+    "translationContext": "Button to clear all filters"
+  },
+  "settings.contentFilter.contribute": {
+    "text": "הוסף מסננים נוספים",
+    "translationContext": "Link to contribute new filter presets on GitHub"
+  },
+  "settings.contentFilter.customKeywords": {
+    "text": "מותאם אישית",
+    "translationContext": "Label for custom keywords that are not from presets"
+  },
+  "settings.contentFilter.export": {
+    "text": "יצא הגדרות",
+    "translationContext": "Button to export filter settings to a file"
+  },
+  "settings.contentFilter.exportImport.description": {
+    "text": "יצא את הגדרות הסינון שלך לקובץ או יבא מגיבוי קודם",
+    "translationContext": "Description of export/import functionality"
+  },
+  "settings.contentFilter.exportImport.title": {
+    "text": "גיבוי ושחזור",
+    "translationContext": "Section title for export/import functionality"
+  },
+  "settings.contentFilter.import": {
+    "text": "יבא הגדרות",
+    "translationContext": "Button to import filter settings from a file"
+  },
+  "settings.contentFilter.importConfirm.action": {
+    "text": "יבא",
+    "translationContext": "Button to confirm import action"
+  },
+  "settings.contentFilter.importConfirm.backup": {
+    "text": "טיפ: יצא תחילה את ההגדרות הנוכחיות שלך כדי ליצור גיבוי.",
+    "translationContext": "Tip about creating a backup before importing"
+  },
+  "settings.contentFilter.importConfirm.title": {
+    "text": "לייבא הגדרות?",
+    "translationContext": "Title of import confirmation dialog"
+  },
+  "settings.contentFilter.importConfirm.versionNewer": {
+    "text": "תצורה זו היא מגרסה חדשה יותר. ייתכן שחלק מההגדרות לא יעבדו כראוי.",
+    "translationContext": "Warning when importing from a newer version"
+  },
+  "settings.contentFilter.importConfirm.versionOlder": {
+    "text": "תצורה זו היא מגרסה ישנה יותר. ייתכן שחסרות תכונות מסוימות.",
+    "translationContext": "Warning when importing from an older version"
+  },
+  "settings.contentFilter.importConfirm.warning": {
+    "text": "פעולה זו תחליף את כל הגדרות הסינון הנוכחיות.",
+    "translationContext": "Warning message about overwriting current settings"
+  },
+  "settings.contentFilter.importError.invalidFormat": {
+    "text": "פורמט תצורה לא חוקי",
+    "translationContext": "Error when import file is not valid JSON"
+  },
+  "settings.contentFilter.importError.parseFailed": {
+    "text": "נכשל ניתוח קובץ התצורה",
+    "translationContext": "Error when import file cannot be parsed"
+  },
+  "settings.contentFilter.keywords.description": {
+    "text": "הוסף/י מילות מפתח משלך לסינון, מופרדות בפסיקים",
+    "translationContext": "Description for keywords input"
+  },
+  "settings.contentFilter.keywords.label": {
+    "text": "מילות מפתח מותאמות אישית",
+    "translationContext": "Label for keywords input"
+  },
+  "settings.contentFilter.keywords.placeholder": {
+    "text": "לדוגמה, שם ידוען, נושא",
+    "translationContext": "Placeholder for keywords input"
+  },
+  "settings.contentFilter.mode.blur": {
+    "text": "טשטוש עם אזהרה",
+    "translationContext": "Option to blur filtered content"
+  },
+  "settings.contentFilter.mode.blurDescription": {
+    "text": "כתבות מטושטשות וניתן לחשוף אותן בלחיצה",
+    "translationContext": "Description for blur mode"
+  },
+  "settings.contentFilter.mode.description": {
+    "text": "בחר/י כיצד לטפל בתוכן מסונן",
+    "translationContext": "Description for filter mode selection"
+  },
+  "settings.contentFilter.mode.hide": {
+    "text": "הסתר לחלוטין",
+    "translationContext": "Option to hide filtered content completely"
+  },
+  "settings.contentFilter.mode.hideDescription": {
+    "text": "כתבות מסוננות מוסרות מהתצוגה",
+    "translationContext": "Description for hide mode"
+  },
+  "settings.contentFilter.mode.label": {
+    "text": "מצב סינון",
+    "translationContext": "Label for filter mode selection"
+  },
+  "settings.contentFilter.preset.ai": {
+    "text": "הייפ בינה מלאכותית וטכנולוגיה",
+    "translationContext": "Name of AI preset filter"
+  },
+  "settings.contentFilter.preset.ai.tooltip": {
+    "text": "מסנן הייפ של בינה מלאכותית, חדשות LLM, והכרזות על פריצות דרך טכנולוגיות",
+    "translationContext": "Tooltip description for AI preset"
+  },
+  "settings.contentFilter.preset.celebrities": {
+    "text": "חדשות סלבס",
+    "translationContext": "Name of celebrities preset filter"
+  },
+  "settings.contentFilter.preset.celebrities.tooltip": {
+    "text": "מסנן רכילות על ידוענים, חדשות בידור ותוכן צהובונים",
+    "translationContext": "Tooltip description for celebrities preset"
+  },
+  "settings.contentFilter.preset.climate": {
+    "text": "חרדת אקלים",
+    "translationContext": "Name of climate preset filter"
+  },
+  "settings.contentFilter.preset.climate.tooltip": {
+    "text": "מסנן חדשות על שינויי אקלים וסיקור משברים סביבתיים",
+    "translationContext": "Tooltip description for climate preset"
+  },
+  "settings.contentFilter.preset.conflicts": {
+    "text": "סכסוכים",
+    "translationContext": "Name of conflicts preset filter"
+  },
+  "settings.contentFilter.preset.conflicts.tooltip": {
+    "text": "מסנן מלחמות, סכסוכים צבאיים ואלימות קשורה מאזורים שונים",
+    "translationContext": "Tooltip description for conflicts preset"
+  },
+  "settings.contentFilter.preset.crypto": {
+    "text": "מטבעות קריפטוגרפיים",
+    "translationContext": "Name of cryptocurrency preset filter"
+  },
+  "settings.contentFilter.preset.crypto.tooltip": {
+    "text": "מסנן תוכן הקשור למטבעות קריפטוגרפיים, בלוקצ'יין ו-Web3",
+    "translationContext": "Tooltip description for crypto preset"
+  },
+  "settings.contentFilter.preset.health": {
+    "text": "משברי בריאות",
+    "translationContext": "Name of health crises preset filter"
+  },
+  "settings.contentFilter.preset.health.tooltip": {
+    "text": "מסנן חדשות על מגפות, התפרצויות וירוסים ותוכן חירום בריאותי קשור",
+    "translationContext": "Tooltip description for health preset"
+  },
+  "settings.contentFilter.preset.politics": {
+    "text": "פוליטיקה",
+    "translationContext": "Name of politics preset filter"
+  },
+  "settings.contentFilter.preset.politics.tooltip": {
+    "text": "מסנן תוכן פוליטי כולל בחירות, מפלגות פוליטיות ופקידי ממשל",
+    "translationContext": "Tooltip description for politics preset"
+  },
+  "settings.contentFilter.preset.sports": {
+    "text": "ספורט",
+    "translationContext": "Name of sports preset filter"
+  },
+  "settings.contentFilter.preset.sports.tooltip": {
+    "text": "מסנן חדשות ספורט, תוצאות וסיקור תחרויות אתלטיות",
+    "translationContext": "Tooltip description for sports preset"
+  },
+  "settings.contentFilter.preset.tabloid": {
+    "text": "מקורות צהובונים",
+    "translationContext": "Name of tabloid sources preset filter"
+  },
+  "settings.contentFilter.preset.tabloid.tooltip": {
+    "text": "מסנן כתבות ממקורות חדשות צהובונים וסנסציוניים ידועים",
+    "translationContext": "Tooltip description for tabloid preset"
+  },
+  "settings.contentFilter.preset.violence": {
+    "text": "אלימות",
+    "translationContext": "Name of violence preset filter"
+  },
+  "settings.contentFilter.preset.violence.tooltip": {
+    "text": "מסנן אלימות גרפית, ירי ותוכן הקשור למוות",
+    "translationContext": "Tooltip description for violence preset"
+  },
+  "settings.contentFilter.presets.description": {
+    "text": "בחר/י מסנן קבוע אחד או יותר כדי להסתיר במהירות נושאים נפוצים",
+    "translationContext": "Description for filter presets section"
+  },
+  "settings.contentFilter.presets.label": {
+    "text": "מסננים קבועים מראש",
+    "translationContext": "Label for filter presets section"
+  },
+  "settings.contentFilter.reset": {
+    "text": "אפס לברירות מחדל",
+    "translationContext": "Button to reset content filter to defaults"
+  },
+  "settings.contentFilter.resetModal.description": {
+    "text": "פעולה זו תנקה את כל המסננים ותאפס את ההגדרות לברירות המחדל.",
+    "translationContext": "Description for reset confirmation modal"
+  },
+  "settings.contentFilter.resetModal.title": {
+    "text": "לאפס מסנני תוכן?",
+    "translationContext": "Title for reset confirmation modal"
+  },
+  "settings.contentFilter.scope.all": {
+    "text": "כל התוכן",
+    "translationContext": "Option to filter by all content"
+  },
+  "settings.contentFilter.scope.description": {
+    "text": "בחר/י אילו חלקים של הכתבות לבדוק עבור מילות מפתח",
+    "translationContext": "Description for filter scope selection"
+  },
+  "settings.contentFilter.scope.label": {
+    "text": "היקף סינון",
+    "translationContext": "Label for filter scope selection"
+  },
+  "settings.contentFilter.scope.summary": {
+    "text": "כותרת ותקציר",
+    "translationContext": "Option to filter by title and summary"
+  },
+  "settings.contentFilter.scope.title": {
+    "text": "כותרת בלבד",
+    "translationContext": "Option to filter by title only"
+  },
+  "settings.contentFilter.showCount.description": {
+    "text": "הצג את מספר הכתבות המסוננות בכל קטגוריה",
+    "translationContext": "Description for show filtered count toggle"
+  },
+  "settings.contentFilter.showCount.label": {
+    "text": "הצג ספירת מסוננים",
+    "translationContext": "Label for show filtered count toggle"
+  },
+  "settings.contentFilter.tab.description": {
+    "text": "התאם/י אישית את פיד החדשות שלך על ידי סינון נושאים שאת/ה מעדיף/ה לא לראות. השתמש/י במסננים קבועים מראש עבור מסננים נפוצים או צור/י מילות מפתח מותאמות אישית משלך.",
+    "translationContext": "Description shown at the top of content filter settings tab"
+  },
+  "settings.dataLanguage.label": {
+    "text": "שפת התוכן",
+    "translationContext": "Label for the data/content language setting"
+  },
+  "settings.dataLanguage.tooltip": {
+    "text": "קובע את שפת כתבות החדשות והתוכן שלהן.\n\n• ברירת מחדל: רוב הקטגוריות בשפת הדפדפן שלך ({{browserLang}}), מדינות בשפה המקומית\n• מקור: כל התוכן בשפת המקור\n• אחר: כל התוכן מתורגם לשפה שנבחרה",
+    "translationContext": "Tooltip explaining how data language translation works, with browser language variable"
+  },
+  "settings.experimental.articleIcons.description": {
+    "text": "כאשר מופעל, סמלים קטנים יוצגו ליד כתבות כדי לספק הקשר חזותי.",
+    "translationContext": "Description for article icons setting"
+  },
+  "settings.experimental.articleIcons.label": {
+    "text": "הצג סמלים ליד כתבות",
+    "translationContext": "Label for article icons setting"
+  },
+  "settings.experimental.categoryIcons.description": {
+    "text": "כאשר מופעל, סמלים קטנים יוצגו ליד תוויות הקטגוריה כדי לספק הקשר חזותי.",
+    "translationContext": "Description for category icons setting"
+  },
+  "settings.experimental.categoryIcons.label": {
+    "text": "הצג סמלים בתוויות קטגוריה",
+    "translationContext": "Label for category icons setting"
+  },
+  "settings.experimental.chaosIndex.description": {
+    "text": "הצג קריאת טמפרטורה גלובלית של יציבות עולמית המבוססת על אירועים אקטואליים.",
+    "translationContext": "Description for chaos index setting"
+  },
+  "settings.experimental.chaosIndex.label": {
+    "text": "הצג מדד מתח עולמי",
+    "translationContext": "Label for chaos index setting"
+  },
+  "settings.experimental.citations.description": {
+    "text": "הצג ציטוטים מוטבעים המראים אילו מקורות חדשות דיווחו על מידע ספציפי.",
+    "translationContext": "Description for citations setting"
+  },
+  "settings.experimental.citations.label": {
+    "text": "הצג ציטוטי מקור",
+    "translationContext": "Label for citations setting"
+  },
+  "settings.experimental.disableCategorySwipe.description": {
+    "text": "כאשר מופעל, החלקה אופקית לשינוי קטגוריות במכשירים ניידים תושבת.",
+    "translationContext": "Description for disable category swipe setting"
+  },
+  "settings.experimental.disableCategorySwipe.label": {
+    "text": "השבת החלקה אופקית בין קטגוריות",
+    "translationContext": "Label for disable category swipe setting"
+  },
+  "settings.experimental.warning": {
+    "text": "אלו הן תכונות ניסיוניות שעשויות להשתנות או להיות מוסרות בכל עת.",
+    "translationContext": "Warning text for experimental features"
+  },
+  "settings.fontSize.label": {
+    "text": "גודל גופן",
+    "translationContext": "Label for the font size setting"
+  },
+  "settings.fontSize.large": {
+    "text": "גדול",
+    "translationContext": "Option for large font size"
+  },
+  "settings.fontSize.normal": {
+    "text": "רגיל",
+    "translationContext": "Option for normal font size"
+  },
+  "settings.fontSize.small": {
+    "text": "קטן",
+    "translationContext": "Option for small font size"
+  },
+  "settings.fontSize.xl": {
+    "text": "גדול מאוד",
+    "translationContext": "Option for extra large font size"
+  },
+  "settings.fontSize.xs": {
+    "text": "קטן מאוד",
+    "translationContext": "Option for extra small font size"
+  },
+  "settings.language.default": {
+    "text": "ברירת מחדל",
+    "translationContext": "Option for default language"
+  },
+  "settings.language.label": {
+    "text": "שפה",
+    "translationContext": "Label for the language setting"
+  },
+  "settings.language.poweredBy": {
+    "text": "תורגם עם Kagi Translate",
+    "translationContext": "Text for the Kagi Translate powered by link"
+  },
+  "settings.language.source": {
+    "text": "מקור",
+    "translationContext": "Option for showing content in original source language"
+  },
+  "settings.mapsProvider.apple": {
+    "text": "מפות Apple",
+    "translationContext": "Option to use Apple Maps"
+  },
+  "settings.mapsProvider.auto": {
+    "text": "אוטומטי",
+    "translationContext": "Option for automatic maps provider selection based on login status"
+  },
+  "settings.mapsProvider.description": {
+    "text": "בחר באיזה שירות מפות להשתמש עבור קישורי מיקום",
+    "translationContext": "Description explaining what the maps provider setting does"
+  },
+  "settings.mapsProvider.google": {
+    "text": "מפות Google",
+    "translationContext": "Option to use Google Maps"
+  },
+  "settings.mapsProvider.kagi": {
+    "text": "מפות Kagi",
+    "translationContext": "Option to use Kagi Maps"
+  },
+  "settings.mapsProvider.label": {
+    "text": "ספק מפות",
+    "translationContext": "Label for the maps provider setting"
+  },
+  "settings.mapsProvider.openstreetmap": {
+    "text": "OpenStreetMap",
+    "translationContext": "Option to use OpenStreetMap"
+  },
+  "settings.sections.instructions": {
+    "text": "גרור/י כדי לסדר מחדש את החלקים. השתמש/י במתג כדי להפעיל/להשבית.",
+    "translationContext": "Instructions for managing article sections"
+  },
+  "settings.sections.orderReset": {
+    "text": "הסדר אופס!",
+    "translationContext": "Confirmation message shown after resetting section order"
+  },
+  "settings.sections.resetOrder": {
+    "text": "אפס לסדר ברירת המחדל",
+    "translationContext": "Button text to reset section order to defaults"
+  },
+  "settings.sections.sourcesRequired": {
+    "text": "מקורות מוצגים תמיד כדי לשמור על שקיפות ואמינות",
+    "translationContext": "Tooltip explaining why sources section cannot be disabled"
+  },
+  "settings.sections.switch": {
+    "text": "הפעל/השבת",
+    "translationContext": "Aria label for the enable/disable switch for sections"
+  },
+  "settings.sections.title": {
+    "text": "חלקי הכתבה",
+    "translationContext": "Title for the article sections settings"
+  },
+  "settings.sections.toggleAll": {
+    "text": "הפעל/כבה הכל",
+    "translationContext": "Button text to toggle all sections on/off at once"
+  },
+  "settings.shareLanguage.message": {
+    "text": "בדוק/י את Kagi News ב{language} - זה ידלג על המבוא ויטען ישירות בשפה שלך!",
+    "translationContext": "Message to share with others, {language} will be replaced with the language name"
+  },
+  "settings.shareLanguage.success": {
+    "text": "הקישור הועתק ללוח!",
+    "translationContext": "Success message when link is copied"
+  },
+  "settings.storyCount.label": {
+    "text": "מספר הכתבות המוצגות",
+    "translationContext": "Label for the story count setting"
+  },
+  "settings.storyExpandMode.always": {
+    "text": "הרחב תמיד הכל",
+    "translationContext": "Option to always expand all stories automatically"
+  },
+  "settings.storyExpandMode.description": {
+    "text": "בחר/י כיצד כתבות יורחבו בעת צפייה בקטגוריה",
+    "translationContext": "Description for story expand mode setting"
+  },
+  "settings.storyExpandMode.doubleClick": {
+    "text": "לחיצה כפולה להרחבת הכל",
+    "translationContext": "Option to expand all stories via double-click on category"
+  },
+  "settings.storyExpandMode.label": {
+    "text": "מצב הרחבת כתבה",
+    "translationContext": "Label for story expand mode setting"
+  },
+  "settings.storyExpandMode.never": {
+    "text": "לעולם אל תרחיב הכל",
+    "translationContext": "Option to disable bulk story expansion"
+  },
+  "settings.storyOpenMode.description": {
+    "text": "בחר/י אם לאפשר פתיחת מספר כתבות בו-זמנית או רק אחת",
+    "translationContext": "Description for story open mode setting"
+  },
+  "settings.storyOpenMode.label": {
+    "text": "מצב פתיחת כתבה",
+    "translationContext": "Label for story open mode setting"
+  },
+  "settings.storyOpenMode.multiple": {
+    "text": "מספר כתבות",
+    "translationContext": "Option to allow multiple stories open at once"
+  },
+  "settings.storyOpenMode.single": {
+    "text": "כתבה אחת בכל פעם",
+    "translationContext": "Option to allow only one story open at a time"
+  },
+  "settings.subsections.about": {
+    "text": "אודות",
+    "translationContext": "Subsection heading for about and info section"
+  },
+  "settings.subsections.appearance": {
+    "text": "מראה",
+    "translationContext": "Subsection heading for appearance-related settings"
+  },
+  "settings.subsections.localization": {
+    "text": "שפה ואזור",
+    "translationContext": "Subsection heading for language and localization settings"
+  },
+  "settings.subsections.navigation": {
+    "text": "ניווט",
+    "translationContext": "Subsection heading for navigation and URL settings"
+  },
+  "settings.subsections.readingExperience": {
+    "text": "חווית קריאה",
+    "translationContext": "Subsection heading for story display and reading settings"
+  },
+  "settings.sync.clear.button": {
+    "text": "מחיקת כל הנתונים המסונכרנים",
+    "translationContext": "Button text to clear all synced data"
+  },
+  "settings.sync.clear.clearing": {
+    "text": "מוחק...",
+    "translationContext": "Text shown while clearing data"
+  },
+  "settings.sync.clear.confirmButton": {
+    "text": "מחק",
+    "translationContext": "Confirm button text for deleting synced data"
+  },
+  "settings.sync.clear.confirmMessage": {
+    "text": "פעולה זו תמחק לצמיתות את כל ההגדרות והיסטוריית הקריאה המסונכרנים שלכם משרתי Kagi. הנתונים המקומיים שלכם יישארו ללא שינוי.",
+    "translationContext": "Confirmation message when clearing synced data"
+  },
+  "settings.sync.clear.confirmTitle": {
+    "text": "למחוק את כל הנתונים המסונכרנים?",
+    "translationContext": "Title for confirmation dialog when clearing synced data"
+  },
+  "settings.sync.clear.confirmWarning": {
+    "text": "לא ניתן לבטל פעולה זו.",
+    "translationContext": "Warning message in confirmation dialog"
+  },
+  "settings.sync.clear.deleting": {
+    "text": "מוחק את הנתונים שלכם...",
+    "translationContext": "Loading message shown while deleting synced data"
+  },
+  "settings.sync.clear.description": {
+    "text": "השליטה על הנתונים שלכם בידיכם. תוכלו לייצא או למחוק את נתוני הענן שלכם בכל עת. המחיקה אינה משפיעה על נתונים מקומיים.",
+    "translationContext": "Description of data management section"
+  },
+  "settings.sync.clear.errorFailed": {
+    "text": "מחיקת הנתונים נכשלה",
+    "translationContext": "Generic error message when clearing data fails"
+  },
+  "settings.sync.clear.errorNotLoggedIn": {
+    "text": "עליכם להיות מחוברים כדי למחוק נתונים מסונכרנים",
+    "translationContext": "Error message when trying to clear data while not logged in"
+  },
+  "settings.sync.clear.success": {
+    "text": "כל הנתונים המסונכרנים נמחקו בהצלחה.",
+    "translationContext": "Success message after clearing synced data"
+  },
+  "settings.sync.clear.title": {
+    "text": "ניהול נתונים",
+    "translationContext": "Title for data management section"
+  },
+  "settings.sync.export.button": {
+    "text": "ייצוא נתונים",
+    "translationContext": "Button text to export synced data"
+  },
+  "settings.sync.export.errorFailed": {
+    "text": "ייצוא הנתונים נכשל",
+    "translationContext": "Generic error message when exporting data fails"
+  },
+  "settings.sync.export.errorNotLoggedIn": {
+    "text": "עליכם להיות מחוברים כדי לייצא נתונים מסונכרנים",
+    "translationContext": "Error message when trying to export data while not logged in"
+  },
+  "settings.sync.export.exporting": {
+    "text": "מייצא...",
+    "translationContext": "Text shown while exporting data"
+  },
+  "settings.sync.info.description": {
+    "text": "Kagi News יכול לסנכרן את ההגדרות והיסטוריית הקריאה שלכם בין כל המכשירים שלכם. מידע זה מאוחסן באופן מאובטח בשרתי Kagi ומשויך לחשבון Kagi Search שלכם.\n\nהמידע המסונכרן שלכם אינו משמש לשום מטרה אחרת, אינו משותף עם איש, ומאוחסן אך ורק כדי לספק לכם את שירות הסנכרון. יש לכם שליטה מלאה על מה שמסונכרן ותוכלו למחוק את המידע שלכם בכל עת.",
+    "translationContext": "Description of sync and privacy features"
+  },
+  "settings.sync.notLoggedIn.description": {
+    "text": "התחברו לחשבון Kagi שלכם כדי לסנכרן את ההגדרות והיסטוריית הקריאה בין מכשירים.",
+    "translationContext": "Description when user is not logged in"
+  },
+  "settings.sync.notLoggedIn.signIn": {
+    "text": "התחבר",
+    "translationContext": "Sign in button text"
+  },
+  "settings.sync.notLoggedIn.title": {
+    "text": "נדרשת התחברות",
+    "translationContext": "Title when user is not logged in"
+  },
+  "settings.sync.readHistory.description": {
+    "text": "כתבות שקראתם בכל הקטגוריות",
+    "translationContext": "Description of what read history gets synced"
+  },
+  "settings.sync.readHistory.enableInfo": {
+    "text": "כאשר מופעל, היסטוריית הקריאה שלכם תועלה ותסונכרן בין כל המכשירים שלכם",
+    "translationContext": "Info shown when sync is disabled, explaining what happens when enabled"
+  },
+  "settings.sync.readHistory.label": {
+    "text": "סנכרון היסטוריית קריאה",
+    "translationContext": "Label for read history sync toggle"
+  },
+  "settings.sync.settings.description": {
+    "text": "גודל גופן, ספירת כתבות, והעדפות אחרות",
+    "translationContext": "Description of what settings get synced"
+  },
+  "settings.sync.settings.enableInfo": {
+    "text": "כאשר מופעל, ההגדרות הנוכחיות שלכם יועלו וישותפו בין כל המכשירים שלכם",
+    "translationContext": "Info shown when sync is disabled, explaining what happens when enabled"
+  },
+  "settings.sync.settings.label": {
+    "text": "סנכרון הגדרות",
+    "translationContext": "Label for settings sync toggle"
+  },
+  "settings.sync.toggles.title": {
+    "text": "העדפות סנכרון",
+    "translationContext": "Title for sync preferences section"
+  },
+  "settings.tabs.categories": {
+    "text": "קטגוריות",
+    "translationContext": "Title for the categories settings tab"
+  },
+  "settings.tabs.contentFilter": {
+    "text": "מסנן תוכן",
+    "translationContext": "Title for the content filter settings tab"
+  },
+  "settings.tabs.experimental": {
+    "text": "ניסיוני",
+    "translationContext": "Title for the experimental settings tab"
+  },
+  "settings.tabs.general": {
+    "text": "כללי",
+    "translationContext": "Title for the general settings tab"
+  },
+  "settings.tabs.sections": {
+    "text": "חלקים",
+    "translationContext": "Title for the sections settings tab"
+  },
+  "settings.tabs.syncPrivacy": {
+    "text": "סנכרון",
+    "translationContext": "Title for the sync and privacy settings tab"
+  },
+  "settings.theme.dark": {
+    "text": "כהה",
+    "translationContext": "Option for dark theme"
+  },
+  "settings.theme.label": {
+    "text": "ערכת נושא",
+    "translationContext": "Label for the theme setting"
+  },
+  "settings.theme.light": {
+    "text": "בהיר",
+    "translationContext": "Option for light theme"
+  },
+  "settings.theme.system": {
+    "text": "מערכת",
+    "translationContext": "Option for system theme"
+  },
+  "settings.uiLanguage.label": {
+    "text": "שפת ממשק",
+    "translationContext": "Label for the UI language setting"
+  },
+  "settings.uiLanguage.tooltip": {
+    "text": "שולט בשפת הכפתורים, התפריטים וטקסט הממשק.",
+    "translationContext": "Tooltip explaining how UI language works"
+  },
+  "settings.useLatestUrls.description": {
+    "text": "השתמש בכתובות /latest לחדשות עדכניות כך שסימניות תמיד יציגו את התוכן האחרון",
+    "translationContext": "Description explaining what the latest URLs setting does"
+  },
+  "settings.useLatestUrls.disabled": {
+    "text": "מושבת",
+    "translationContext": "Option when latest URLs are disabled"
+  },
+  "settings.useLatestUrls.enabled": {
+    "text": "מופעל",
+    "translationContext": "Option when latest URLs are enabled"
+  },
+  "settings.useLatestUrls.label": {
+    "text": "השתמש בכתובות URL אחרונות",
+    "translationContext": "Label for the setting that controls URL format"
+  },
+  "common.back": {
+    "text": "חזרה",
+    "translationContext": "Back button text"
+  },
+  "common.cancel": {
+    "text": "ביטול",
+    "translationContext": "Cancel button text"
+  },
+  "common.close": {
+    "text": "סגירה",
+    "translationContext": "Close button text"
+  },
+  "common.reset": {
+    "text": "איפוס",
+    "translationContext": "Reset button text"
+  },
+  "about.approach.description1": {
+    "text": "העולם אינו חי בתיבות תהודה. המציאות צומחת מהתנגשות של נקודות מבט ופרספקטיבות שונות - כך אנו מפרידים בין עיקר לטפל.",
+    "translationContext": "First paragraph of the approach section"
+  },
+  "about.approach.description2": {
+    "text": "אנו שואפים לגיוון ושקיפות של מקורות ומקבלים בברכה את <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">תרומותיכם</a> להרחבת הפרספקטיבות. גישה רב-מקורית זו מסייעת לחשוף את התמונה המלאה מעבר לכל נקודת מבט בודדת.",
+    "translationContext": "Second paragraph of the approach section with GitHub link"
+  },
+  "about.approach.description3": {
+    "text": "Kagi News קורא עדכוני RSS ציבוריים של אלפי מקורות חדשות מרחבי העולם (שאוצרו על ידי הקהילה) ומזקק אותם לתדרוך יומי מושלם אחד. אתם מקבלים כל נקודת מבט חיונית וציר זמן בחמש דקות בלבד. זה הכל. בלי גלילה אינסופית. בלי חטיפת תשומת לב. כי מגיע לנו יותר.",
+    "translationContext": "Third paragraph of the approach section"
+  },
+  "about.approach.title": {
+    "text": "הבנת הגישה שלנו",
+    "translationContext": "Title of the approach section"
+  },
+  "about.contact.description": {
+    "text": "למשוב, אנא השתמשו ב-<a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://kagifeedback.org\">Kagi Feedback</a>. לתמיכה, <a href=\"mailto:support@kagi.com\" class=\"text-blue-600 hover:underline dark:text-blue-400\">support@kagi.com</a>.",
+    "translationContext": "Contact information with links"
+  },
+  "about.contact.title": {
+    "text": "יצירת קשר",
+    "translationContext": "Title of the contact section"
+  },
+  "about.customization.description": {
+    "text": "התאימו אישית את הפיד שלכם על ידי סידור מחדש והחלפת קטגוריות בהגדרות. רוצים לתרום? רוב Kagi News הוא <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">קוד פתוח</a>, כולל אפליקציית האינטרנט שלנו והפידים שאוצרו על ידי הקהילה.",
+    "translationContext": "Description of customization options with GitHub link"
+  },
+  "about.customization.title": {
+    "text": "התאמה אישית",
+    "translationContext": "Title of the customization section"
+  },
+  "about.principles.item1": {
+    "text": "עדכון יומי אחד (בסביבות צהרי UTC), היוצר נקודת סיום טבעית לצריכת החדשות שלכם",
+    "translationContext": "First core principle about daily updates"
+  },
+  "about.principles.item2": {
+    "text": "התמקדות בעובדות ופרספקטיבות על פני דעות",
+    "translationContext": "Second core principle about facts vs opinions"
+  },
+  "about.principles.item3": {
+    "text": "אפס פשרות על פרטיות - הרגלי הקריאה שלכם הם שלכם בלבד",
+    "translationContext": "Third core principle about privacy"
+  },
+  "about.principles.item4": {
+    "text": "איכות ועומק על פני כמות",
+    "translationContext": "Fourth core principle about quality"
+  },
+  "about.principles.item5": {
+    "text": "דיאטת חדשות מלאה ב-5 דקות",
+    "translationContext": "Fifth core principle about time efficiency"
+  },
+  "about.principles.item6": {
+    "text": "שחרור מכלכלת תשומת הלב - להתקיים ברגע, לא בגלילה אינסופית",
+    "translationContext": "Sixth core principle about attention economy"
+  },
+  "about.principles.title": {
+    "text": "עקרונות ליבה",
+    "translationContext": "Title of the core principles section"
+  },
+  "about.subtitle": {
+    "text": "אפליקציית חדשות מאת Kagi",
+    "translationContext": "Kagi is a company, should not be translated"
+  },
+  "about.understand.button": {
+    "text": "הבנתי",
+    "translationContext": "Text for the I understand button"
+  },
+  "about.why.description": {
+    "text": "מונעות על ידי מונטיזציית פרסומות בלתי פוסקת, החדשות <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://gwern.net/doc/culture/2010-dobelli.pdf\">הפכו</a> לג'אנק פוד מנטלי - זרם אינסופי של קליקבייט שהורס את יכולתנו <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"http://www.aaronsw.com/weblog/hatethenews\">לחשוב לעומק ובבהירות</a>. אנחנו יכולים לעשות טוב יותר, וליצור את מה שהחדשות היו צריכות להיות מלכתחילה - מידע טהור וחיוני שמכבד את האינטליגנציה והזמן שלכם.",
+    "translationContext": "Description of why Kagi News exists, including HTML link"
+  },
+  "about.why.title": {
+    "text": "למה Kagi News? כי החדשות שבורות.",
+    "translationContext": "Title of the Why Kagi News section"
+  },
+  "app.beta": {
+    "text": "בטא",
+    "translationContext": "Beta label shown next to the app title"
+  },
+  "app.disclaimerAutoGenerated": {
+    "text": "התקצירים עלולים להכיל שגיאות.",
+    "translationContext": "Disclaimer about AI-generated content"
+  },
+  "app.disclaimerVerify": {
+    "text": "אנא אמת/י מידע חשוב.",
+    "translationContext": "Reminder to verify information, goes after 'Summaries are AI/LLM-generated and Kagi News can make mistakes.'"
+  },
+  "app.logo.alt": {
+    "text": "לוגו Kagi News",
+    "translationContext": "Alt text for the Kagi News logo image, Kagi News should not be translated as it's a brand name"
+  },
+  "app.logo.iconAlt": {
+    "text": "סמל Kagi News",
+    "translationContext": "Alt text for the Kagi News icon image, Kagi News should not be translated as it's a brand name"
+  },
+  "app.logo.newsAlt": {
+    "text": "לוגו החדשות של Kagi News",
+    "translationContext": "Alt text for the Kagi News News logo image in header, Kagi News should not be translated as it's a brand name"
+  },
+  "app.motto": {
+    "text": "חדשות. ברמה אחרת.",
+    "translationContext": "Motto of the app, should be translated in a natural way"
+  },
+  "app.temporaryCategoryNotice": {
+    "text": "מציג באופן זמני קטגוריה זו מקישור משותף",
+    "translationContext": "Notice shown when a user accesses a shared link for a category they haven't enabled."
+  },
+  "app.title": {
+    "text": "Kagi News",
+    "translationContext": "Title of the app, should not be translated"
+  },
+  "article.closeStory": {
+    "text": "סגור כתבה",
+    "translationContext": "Button text to close a story"
+  },
+  "article.didYouKnow": {
+    "text": "הידעת?",
+    "translationContext": "Title for the Did You Know section"
+  },
+  "article.location": {
+    "text": "פתח מיקום במפות",
+    "translationContext": "Title/tooltip for the location link"
+  },
+  "article.markAllAsRead": {
+    "text": "סמן הכל כנקרא",
+    "translationContext": "Button text to mark all stories as read"
+  },
+  "article.readStatus": {
+    "text": "לחץ/י למעבר בין מצבי קריאה",
+    "translationContext": "Title/tooltip for the read status toggle button"
+  },
+  "article.reportInaccuracy": {
+    "text": "דווח על אי-דיוק",
+    "translationContext": "Tooltip text for the report button"
+  },
+  "article.reportModal.addSource": {
+    "text": "הוסף מקור נוסף",
+    "translationContext": "Button text to add another source URL field"
+  },
+  "article.reportModal.cancel": {
+    "text": "ביטול",
+    "translationContext": "Cancel button text"
+  },
+  "article.reportModal.characterCount": {
+    "text": "{{count}} / {{max}} תווים",
+    "translationContext": "Character count display with placeholders for current count and maximum"
+  },
+  "article.reportModal.description": {
+    "text": "אנא תאר/י את הבעיה",
+    "translationContext": "Label for the description field"
+  },
+  "article.reportModal.descriptionPlaceholder": {
+    "text": "הסבר/י מה לא מדויק או בעייתי בתקציר זה...",
+    "translationContext": "Placeholder text for the description field"
+  },
+  "article.reportModal.error": {
+    "text": "שליחת הדיווח נכשלה. אנא נסה/י שוב.",
+    "translationContext": "Generic error message for report submission failure"
+  },
+  "article.reportModal.issueType": {
+    "text": "מה הבעיה?",
+    "translationContext": "Label for the issue type selection"
+  },
+  "article.reportModal.issueType.factualError": {
+    "text": "שגיאה עובדתית",
+    "translationContext": "Option for reporting factual errors"
+  },
+  "article.reportModal.issueType.misleading": {
+    "text": "תקציר מטעה",
+    "translationContext": "Option for reporting misleading summaries"
+  },
+  "article.reportModal.issueType.other": {
+    "text": "בעיה אחרת",
+    "translationContext": "Option for reporting other types of issues"
+  },
+  "article.reportModal.issueType.outdated": {
+    "text": "מידע לא עדכני",
+    "translationContext": "Option for reporting outdated content"
+  },
+  "article.reportModal.reportId": {
+    "text": "מזהה דיווח: {{id}}",
+    "translationContext": "Display of the report ID after successful submission"
+  },
+  "article.reportModal.reportingFor": {
+    "text": "מדווח על בעיה ב:",
+    "translationContext": "Label showing which story is being reported"
+  },
+  "article.reportModal.source": {
+    "text": "מקורות (אופציונלי)",
+    "translationContext": "Label for the source URL field"
+  },
+  "article.reportModal.sourceHelper": {
+    "text": "הוסף/י קישורים למקורות אמינים התומכים בדיווח שלך",
+    "translationContext": "Helper text explaining the purpose of source URLs"
+  },
+  "article.reportModal.sourcePlaceholder": {
+    "text": "https://example.com/article",
+    "translationContext": "Placeholder text for the source URL field"
+  },
+  "article.reportModal.submit": {
+    "text": "שלח דיווח",
+    "translationContext": "Submit button text"
+  },
+  "article.reportModal.submitting": {
+    "text": "שולח...",
+    "translationContext": "Button text while report is being submitted"
+  },
+  "article.reportModal.subtitle": {
+    "text": "עזור/י לנו להשתפר על ידי דיווח על כל בעיה בתקציר הכתבה",
+    "translationContext": "Subtitle explaining the purpose of the report modal"
+  },
+  "article.reportModal.success": {
+    "text": "תודה על המשוב. הדיווח שלך נשלח.",
+    "translationContext": "Success message after report submission"
+  },
+  "article.reportModal.title": {
+    "text": "דווח על אי-דיוק",
+    "translationContext": "Title of the report modal"
+  },
+  "article.shareCopied": {
+    "text": "הועתק!",
+    "translationContext": "Success message shown when URL is copied to clipboard"
+  },
+  "article.shareStory": {
+    "text": "שתף כתבה",
+    "translationContext": "Tooltip text for the share button"
+  },
+  "category.ai": {
+    "text": "בינה מלאכותית",
+    "translationContext": "Display name for the AI news category"
+  },
+  "category.apple": {
+    "text": "אפל",
+    "translationContext": "Display name for the Apple news category"
+  },
+  "category.australia": {
+    "text": "אוסטרליה",
+    "translationContext": "Display name for the Australia news category"
+  },
+  "category.bayArea": {
+    "text": "ארה\"ב | אזור המפרץ",
+    "translationContext": "Display name for the Bay Area news category"
+  },
+  "category.belgium": {
+    "text": "בלגיה",
+    "translationContext": "Display name for the Belgium news category"
+  },
+  "category.bitcoin": {
+    "text": "ביטקוין",
+    "translationContext": "Display name for the Bitcoin news category"
+  },
+  "category.brazil": {
+    "text": "ברזיל",
+    "translationContext": "Display name for the Brazil news category"
+  },
+  "category.business": {
+    "text": "עסקים",
+    "translationContext": "Display name for the Business news category"
+  },
+  "category.canada": {
+    "text": "קנדה",
+    "translationContext": "Display name for the Canada news category"
+  },
+  "category.china": {
+    "text": "סין",
+    "translationContext": "Display name for the China news category"
+  },
+  "category.chinaTaiwan": {
+    "text": "טייוואן",
+    "translationContext": "Display name for the Taiwan news category"
+  },
+  "category.colombia": {
+    "text": "קולומביה",
+    "translationContext": "Display name for the Colombia news category"
+  },
+  "category.costaRica": {
+    "text": "קוסטה ריקה",
+    "translationContext": "Display name for the Costa Rica news category"
+  },
+  "category.cryptocurrency": {
+    "text": "מטבעות קריפטוגרפיים",
+    "translationContext": "Display name for the Cryptocurrency news category"
+  },
+  "category.cybersecurity": {
+    "text": "אבטחת סייבר",
+    "translationContext": "Display name for the Cybersecurity news category"
+  },
+  "category.czechRepublic": {
+    "text": "צ'כיה",
+    "translationContext": "Display name for the Czech Republic news category"
+  },
+  "category.denmark": {
+    "text": "דנמרק",
+    "translationContext": "Display name for the Denmark news category"
+  },
+  "category.economy": {
+    "text": "כלכלה",
+    "translationContext": "Display name for the Economy news category"
+  },
+  "category.egypt": {
+    "text": "מצרים",
+    "translationContext": "Display name for the Egypt news category"
+  },
+  "category.entertainment": {
+    "text": "בידור",
+    "translationContext": "Display name for the Entertainment news category"
+  },
+  "category.estonia": {
+    "text": "אסטוניה",
+    "translationContext": "Display name for the Estonia news category"
+  },
+  "category.europe": {
+    "text": "אירופה",
+    "translationContext": "Display name for the Europe news category"
+  },
+  "category.finland": {
+    "text": "פינלנד",
+    "translationContext": "Display name for the Finland news category"
+  },
+  "category.france": {
+    "text": "צרפת",
+    "translationContext": "Display name for the France news category"
+  },
+  "category.gaming": {
+    "text": "גיימינג",
+    "translationContext": "Display name for the Gaming news category"
+  },
+  "category.germany": {
+    "text": "גרמניה",
+    "translationContext": "Display name for the Germany news category"
+  },
+  "category.germanyHesse": {
+    "text": "גרמניה | הסן",
+    "translationContext": "Display name for the Germany Hesse regional news category"
+  },
+  "category.health": {
+    "text": "בריאות",
+    "translationContext": "Display name for the Health news category"
+  },
+  "category.hongKong": {
+    "text": "הונג קונג",
+    "translationContext": "Display name for the Hong Kong news category"
+  },
+  "category.india": {
+    "text": "הודו",
+    "translationContext": "Display name for the India news category"
+  },
+  "category.indonesia": {
+    "text": "אינדונזיה",
+    "translationContext": "Display name for the Indonesia news category"
+  },
+  "category.ireland": {
+    "text": "אירלנד",
+    "translationContext": "Display name for the Ireland news category"
+  },
+  "category.israel": {
+    "text": "ישראל",
+    "translationContext": "Display name for the Israel news category"
+  },
+  "category.italy": {
+    "text": "איטליה",
+    "translationContext": "Display name for the Italy news category"
+  },
+  "category.japan": {
+    "text": "יפן",
+    "translationContext": "Display name for the Japan news category"
+  },
+  "category.kenya": {
+    "text": "קניה",
+    "translationContext": "Display name for the Kenya news category"
+  },
+  "category.korea": {
+    "text": "קוריאה",
+    "translationContext": "Display name for the Korea news category"
+  },
+  "category.linuxOss": {
+    "text": "לינוקס וקוד פתוח",
+    "translationContext": "Display name for the Linux and Open Source Software news category"
+  },
+  "category.malaysia": {
+    "text": "מלזיה",
+    "translationContext": "Display name for the Malaysia news category"
+  },
+  "category.mexico": {
+    "text": "מקסיקו",
+    "translationContext": "Display name for the Mexico news category"
+  },
+  "category.middleEast": {
+    "text": "המזרח התיכון",
+    "translationContext": "Display name for the Middle East news category"
+  },
+  "category.netherlands": {
+    "text": "הולנד",
+    "translationContext": "Display name for the Netherlands news category"
+  },
+  "category.newZealand": {
+    "text": "ניו זילנד",
+    "translationContext": "Display name for the New Zealand news category"
+  },
+  "category.nigeria": {
+    "text": "ניגריה",
+    "translationContext": "Display name for the Nigeria news category"
+  },
+  "category.norway": {
+    "text": "נורווגיה",
+    "translationContext": "Display name for the Norway news category"
+  },
+  "category.pakistan": {
+    "text": "פקיסטן",
+    "translationContext": "Display name for the Pakistan news category"
+  },
+  "category.philippines": {
+    "text": "הפיליפינים",
+    "translationContext": "Display name for the Philippines news category"
+  },
+  "category.poland": {
+    "text": "פולין",
+    "translationContext": "Display name for the Poland news category"
+  },
+  "category.politics": {
+    "text": "פוליטיקה",
+    "translationContext": "Display name for the Politics news category"
+  },
+  "category.portugal": {
+    "text": "פורטוגל",
+    "translationContext": "Display name for the Portugal news category"
+  },
+  "category.romania": {
+    "text": "רומניה",
+    "translationContext": "Display name for the Romania news category"
+  },
+  "category.russia": {
+    "text": "רוסיה",
+    "translationContext": "Display name for the Russia news category"
+  },
+  "category.science": {
+    "text": "מדע",
+    "translationContext": "Display name for the Science news category"
+  },
+  "category.serbia": {
+    "text": "סרביה",
+    "translationContext": "Display name for the Serbia news category"
+  },
+  "category.singapore": {
+    "text": "סינגפור",
+    "translationContext": "Display name for the Singapore news category"
+  },
+  "category.slovenia": {
+    "text": "סלובניה",
+    "translationContext": "Display name for the Slovenia news category"
+  },
+  "category.southAfrica": {
+    "text": "דרום אפריקה",
+    "translationContext": "Display name for the South Africa news category"
+  },
+  "category.southKorea": {
+    "text": "דרום קוריאה",
+    "translationContext": "Display name for the South Korea news category"
+  },
+  "category.spain": {
+    "text": "ספרד",
+    "translationContext": "Display name for the Spain news category"
+  },
+  "category.sports": {
+    "text": "ספורט",
+    "translationContext": "Display name for the Sports news category"
+  },
+  "category.sweden": {
+    "text": "שוודיה",
+    "translationContext": "Display name for the Sweden news category"
+  },
+  "category.switzerland": {
+    "text": "שווייץ",
+    "translationContext": "Display name for the Switzerland news category"
+  },
+  "category.switzerlandDe": {
+    "text": "שווייץ (DE)",
+    "translationContext": "Display name for the Switzerland (DE) news category"
+  },
+  "category.technology": {
+    "text": "טכנולוגיה",
+    "translationContext": "Display name for the Technology news category"
+  },
+  "category.thailand": {
+    "text": "תאילנד",
+    "translationContext": "Display name for the Thailand news category"
+  },
+  "category.theNetherlands": {
+    "text": "הולנד",
+    "translationContext": "Display name for the The Netherlands news category"
+  },
+  "category.todayInHistory": {
+    "text": "היום בהיסטוריה",
+    "translationContext": "Display name for the OnThisDay category"
+  },
+  "category.turkey": {
+    "text": "טורקיה",
+    "translationContext": "Display name for the Turkey news category"
+  },
+  "category.uk": {
+    "text": "בריטניה",
+    "translationContext": "Display name for the United Kingdom news category"
+  },
+  "category.ukraine": {
+    "text": "אוקראינה",
+    "translationContext": "Display name for the Ukraine news category"
+  },
+  "category.usa": {
+    "text": "ארה\"ב",
+    "translationContext": "Display name for the USA news category"
+  },
+  "category.usaAlabama": {
+    "text": "ארה\"ב | אלבמה",
+    "translationContext": "Display name for the USA Alabama news category"
+  },
+  "category.usaAlaska": {
+    "text": "ארה\"ב | אלסקה",
+    "translationContext": "Display name for the USA Alaska news category"
+  },
+  "category.usaArizona": {
+    "text": "ארה\"ב | אריזונה",
+    "translationContext": "Display name for the USA Arizona news category"
+  },
+  "category.usaArkansas": {
+    "text": "ארה\"ב | ארקנסו",
+    "translationContext": "Display name for the USA Arkansas news category"
+  },
+  "category.usaCalifornia": {
+    "text": "ארה\"ב | קליפורניה",
+    "translationContext": "Display name for the USA California news category"
+  },
+  "category.usaColorado": {
+    "text": "ארה\"ב | קולורדו",
+    "translationContext": "Display name for the USA Colorado news category"
+  },
+  "category.usaConnecticut": {
+    "text": "ארה\"ב | קונטיקט",
+    "translationContext": "Display name for the USA Connecticut news category"
+  },
+  "category.usaDelaware": {
+    "text": "ארה\"ב | דלאוור",
+    "translationContext": "Display name for the USA Delaware news category"
+  },
+  "category.usaFlorida": {
+    "text": "ארה\"ב | פלורידה",
+    "translationContext": "Display name for the USA Florida news category"
+  },
+  "category.usaGeorgia": {
+    "text": "ארה\"ב | ג'ורג'יה",
+    "translationContext": "Display name for the USA Georgia news category"
+  },
+  "category.usaHawaii": {
+    "text": "ארה\"ב | הוואי",
+    "translationContext": "Display name for the USA Hawaii news category"
+  },
+  "category.usaIdaho": {
+    "text": "ארה\"ב | איידהו",
+    "translationContext": "Display name for the USA Idaho news category"
+  },
+  "category.usaIllinois": {
+    "text": "ארה\"ב | אילינוי",
+    "translationContext": "Display name for the USA Illinois news category"
+  },
+  "category.usaIndiana": {
+    "text": "ארה\"ב | אינדיאנה",
+    "translationContext": "Display name for the USA Indiana news category"
+  },
+  "category.usaIowa": {
+    "text": "ארה\"ב | איווה",
+    "translationContext": "Display name for the USA Iowa news category"
+  },
+  "category.usaKansas": {
+    "text": "ארה\"ב | קנזס",
+    "translationContext": "Display name for the USA Kansas news category"
+  },
+  "category.usaKentucky": {
+    "text": "ארה\"ב | קנטקי",
+    "translationContext": "Display name for the USA Kentucky news category"
+  },
+  "category.usaLouisiana": {
+    "text": "ארה\"ב | לואיזיאנה",
+    "translationContext": "Display name for the USA Louisiana news category"
+  },
+  "category.usaMaine": {
+    "text": "ארה\"ב | מיין",
+    "translationContext": "Display name for the USA Maine news category"
+  },
+  "category.usaMaryland": {
+    "text": "ארה\"ב | מרילנד",
+    "translationContext": "Display name for the USA Maryland news category"
+  },
+  "category.usaMassachusetts": {
+    "text": "ארה\"ב | מסצ'וסטס",
+    "translationContext": "Display name for the USA Massachusetts news category"
+  },
+  "category.usaMichigan": {
+    "text": "ארה\"ב | מישיגן",
+    "translationContext": "Display name for the USA Michigan news category"
+  },
+  "category.usaMinnesota": {
+    "text": "ארה\"ב | מינסוטה",
+    "translationContext": "Display name for the USA Minnesota news category"
+  },
+  "category.usaMississippi": {
+    "text": "ארה\"ב | מיסיסיפי",
+    "translationContext": "Display name for the USA Mississippi news category"
+  },
+  "category.usaMissouri": {
+    "text": "ארה\"ב | מיזורי",
+    "translationContext": "Display name for the USA Missouri news category"
+  },
+  "category.usaMontana": {
+    "text": "ארה\"ב | מונטנה",
+    "translationContext": "Display name for the USA Montana news category"
+  },
+  "category.usaNebraska": {
+    "text": "ארה\"ב | נברסקה",
+    "translationContext": "Display name for the USA Nebraska news category"
+  },
+  "category.usaNevada": {
+    "text": "ארה\"ב | נבדה",
+    "translationContext": "Display name for the USA Nevada news category"
+  },
+  "category.usaNewHampshire": {
+    "text": "ארה\"ב | ניו המפשייר",
+    "translationContext": "Display name for the USA New Hampshire news category"
+  },
+  "category.usaNewJersey": {
+    "text": "ארה\"ב | ניו ג'רזי",
+    "translationContext": "Display name for the USA New Jersey news category"
+  },
+  "category.usaNewMexico": {
+    "text": "ארה\"ב | ניו מקסיקו",
+    "translationContext": "Display name for the USA New Mexico news category"
+  },
+  "category.usaNewYork": {
+    "text": "ארה\"ב | ניו יורק",
+    "translationContext": "Display name for the USA New York news category"
+  },
+  "category.usaNorthCarolina": {
+    "text": "ארה\"ב | צפון קרוליינה",
+    "translationContext": "Display name for the USA North Carolina news category"
+  },
+  "category.usaNorthDakota": {
+    "text": "ארה\"ב | צפון דקוטה",
+    "translationContext": "Display name for the USA North Dakota news category"
+  },
+  "category.usaOhio": {
+    "text": "ארה\"ב | אוהיו",
+    "translationContext": "Display name for the USA Ohio news category"
+  },
+  "category.usaOklahoma": {
+    "text": "ארה\"ב | אוקלהומה",
+    "translationContext": "Display name for the USA Oklahoma news category"
+  },
+  "category.usaOregon": {
+    "text": "ארה\"ב | אורגון",
+    "translationContext": "Display name for the USA Oregon news category"
+  },
+  "category.usaPennsylvania": {
+    "text": "ארה\"ב | פנסילבניה",
+    "translationContext": "Display name for the USA Pennsylvania news category"
+  },
+  "category.usaRhodeIsland": {
+    "text": "ארה\"ב | רוד איילנד",
+    "translationContext": "Display name for the USA Rhode Island news category"
+  },
+  "category.usaSouthCarolina": {
+    "text": "ארה\"ב | דרום קרוליינה",
+    "translationContext": "Display name for the USA South Carolina news category"
+  },
+  "category.usaSouthDakota": {
+    "text": "ארה\"ב | דרום דקוטה",
+    "translationContext": "Display name for the USA South Dakota news category"
+  },
+  "category.usaTennessee": {
+    "text": "ארה\"ב | טנסי",
+    "translationContext": "Display name for the USA Tennessee news category"
+  },
+  "category.usaTexas": {
+    "text": "ארה\"ב | טקסס",
+    "translationContext": "Display name for the USA Texas news category"
+  },
+  "category.usaUtah": {
+    "text": "ארה\"ב | יוטה",
+    "translationContext": "Display name for the USA Utah news category"
+  },
+  "category.usaVermont": {
+    "text": "ארה\"ב | ורמונט",
+    "translationContext": "Display name for the USA Vermont regional news category"
+  },
+  "category.usaVirginia": {
+    "text": "ארה\"ב | וירג'יניה",
+    "translationContext": "Display name for the USA Virginia regional news category"
+  },
+  "category.usaWashington": {
+    "text": "ארה\"ב | וושינגטון",
+    "translationContext": "Display name for the USA Washington news category"
+  },
+  "category.usaWestVirginia": {
+    "text": "ארה\"ב | מערב וירג'יניה",
+    "translationContext": "Display name for the USA West Virginia news category"
+  },
+  "category.usaWisconsin": {
+    "text": "ארה\"ב | ויסקונסין",
+    "translationContext": "Display name for the USA Wisconsin news category"
+  },
+  "category.usaWyoming": {
+    "text": "ארה\"ב | ויומינג",
+    "translationContext": "Display name for the USA Wyoming news category"
+  },
+  "category.vietnam": {
+    "text": "וייטנאם",
+    "translationContext": "Display name for the Vietnam news category"
+  },
+  "category.world": {
+    "text": "עולם",
+    "translationContext": "Display name for the World news category"
+  },
+  "citation.commonKnowledge.description": {
+    "text": "מידע זה הוא ידע כללי שלא נלקח ממקור חדשותי ספציפי, אך נכלל לשם הקשר והשלמת הכתבה.",
+    "translationContext": "Description explaining what common knowledge citations are"
+  },
+  "citation.commonKnowledge.title": {
+    "text": "ידע כללי",
+    "translationContext": "Title for common knowledge citations marked with [*]"
+  },
+  "citation.source": {
+    "text": "מקור:",
+    "translationContext": "Label shown before a single citation source"
+  },
+  "citation.sources": {
+    "text": "מקורות:",
+    "translationContext": "Label shown before multiple citation sources"
+  },
+  "contentFilter.adjustFilters": {
+    "text": "התאם מסננים",
+    "translationContext": "Button to go to settings and adjust content filters"
+  },
+  "contentFilter.allStoriesFiltered": {
+    "text": "כל הכתבות בקטגוריה זו סוננו",
+    "translationContext": "Title when all stories in a category are filtered out"
+  },
+  "contentFilter.allStoriesFilteredDescription": {
+    "text": "מסנני התוכן שלך הסתירו את כל הכתבות בקטגוריה זו להיום.",
+    "translationContext": "Description when all stories are filtered, explaining why"
+  },
+  "contentFilter.clickToReveal": {
+    "text": "לחץ/י להצגת הכתבה",
+    "translationContext": "Instruction to reveal filtered story"
+  },
+  "contentFilter.disableCategory": {
+    "text": "השבת קטגוריה",
+    "translationContext": "Button to go to settings and disable this news category"
+  },
+  "contentFilter.filteredBecause": {
+    "text": "מוסתר עקב מסנן:",
+    "translationContext": "Short message explaining why story is filtered"
+  },
+  "contentFilter.hiddenStory": {
+    "text": "כתבה זו הוסתרה מכיוון שהיא תואמת למסנני התוכן שלך:",
+    "translationContext": "Message shown when a story is filtered"
+  },
+  "contentFilter.linkedStoryClickToReveal": {
+    "text": "להצגה בכל זאת",
+    "translationContext": "Instruction to reveal a linked/pre-opened filtered story"
+  },
+  "contentFilter.linkedStoryFilteredBecause": {
+    "text": "הכתבה שרצית להציג חסומה על ידי מסנן התוכן שלך:",
+    "translationContext": "Message shown when a linked/pre-opened story is filtered"
+  },
+  "contentFilter.showStory": {
+    "text": "הצג כתבה",
+    "translationContext": "Button to reveal a filtered story"
+  },
+  "contentFilter.storiesFiltered": {
+    "text": "{{count}} כתבות סוננו",
+    "translationContext": "Message showing multiple stories are filtered"
+  },
+  "contentFilter.storiesHidden": {
+    "text": "{{count}} כתבות הוסתרו",
+    "translationContext": "Message showing multiple stories are hidden"
+  },
+  "contentFilter.storyFiltered": {
+    "text": "כתבה {{count}} סוננה",
+    "translationContext": "Message showing 1 story is filtered"
+  },
+  "contentFilter.storyHidden": {
+    "text": "כתבה {{count}} הוסתרה",
+    "translationContext": "Message showing 1 story is hidden"
+  },
+  "date.format": {
+    "text": "{{weekday}}, {{day}} ב{{month}}",
+    "translationContext": "Format for displaying dates. {weekday} will be replaced with the day of the week, {month} with the month name, and {day} with the day number."
+  },
+  "footer.about": {
+    "text": "אודות Kagi News",
+    "translationContext": "Link text for about page"
+  },
+  "footer.aboutMobile": {
+    "text": "אודות",
+    "translationContext": "Shorter link text for about page on mobile devices"
+  },
+  "footer.contribute": {
+    "text": "תרום",
+    "translationContext": "Link text for contributing to the project"
+  },
+  "footer.rssFeed": {
+    "text": "פיד RSS",
+    "translationContext": "Link text for RSS feed"
+  },
+  "footer.rssFeedMobile": {
+    "text": "RSS",
+    "translationContext": "Shorter link text for RSS feed on mobile devices"
+  },
+  "header.fontSize": {
+    "text": "גודל גופן",
+    "translationContext": "Tooltip and aria-label for the font size adjustment button in the header"
+  },
+  "header.search": {
+    "text": "חיפוש",
+    "translationContext": "Tooltip for search button in header"
+  },
+  "header.settings": {
+    "text": "הגדרות",
+    "translationContext": "Title attribute for the settings button"
+  },
+  "header.timeTravel": {
+    "text": "מסע בזמן",
+    "translationContext": "Tooltip for time travel button in header"
+  },
+  "loading.categories": {
+    "text": "טוען קטגוריות...",
+    "translationContext": "Loading message shown when fetching news categories"
+  },
+  "loading.chaosIndex": {
+    "text": "מחשב את מדד הכאוס...",
+    "translationContext": "Loading message shown when calculating the world chaos index"
+  },
+  "loading.default": {
+    "text": "טוען...",
+    "translationContext": "Default loading message"
+  },
+  "loading.error": {
+    "text": "שגיאה בטעינת נתונים",
+    "translationContext": "Loading message shown when an error occurs"
+  },
+  "loading.errorFallback": {
+    "text": "ממשיך עם פונקציונליות מוגבלת...",
+    "translationContext": "Message shown when there's an error but the app continues with fallback data"
+  },
+  "loading.finishing": {
+    "text": "מסיים...",
+    "translationContext": "Loading message shown when nearly complete"
+  },
+  "loading.images": {
+    "text": "טוען תמונות מראש...",
+    "translationContext": "Loading message shown when preloading story images"
+  },
+  "loading.initializing": {
+    "text": "מאתחל...",
+    "translationContext": "Loading message shown when the app is starting up"
+  },
+  "loading.ready": {
+    "text": "מוכן!",
+    "translationContext": "Loading message shown when loading is complete"
+  },
+  "loading.stories": {
+    "text": "טוען כתבות...",
+    "translationContext": "Loading message shown when fetching news stories"
+  },
+  "meta.categoryDescription": {
+    "text": "חדשות {category} אחרונות ב-Kagi News",
+    "translationContext": "Meta description for category pages. {category} will be replaced with the actual category name."
+  },
+  "meta.description": {
+    "text": "Kagi News מזקק אלפי מקורות חדשות מרחבי העולם לתדרוך יומי מושלם אחד. קבלו כל נקודת מבט חיונית בחמש דקות בלבד. בלי גלילה אינסופית. בלי חטיפת תשומת לב.",
+    "translationContext": "Default meta description for SEO"
+  },
+  "meta.news": {
+    "text": "חדשות",
+    "translationContext": "The word 'News' used in titles"
+  },
+  "navigation.backToTop": {
+    "text": "חזרה למעלה",
+    "translationContext": "Accessibility label for the button that scrolls back to the top of the page"
+  },
+  "notification.newBatch.action": {
+    "text": "הצג",
+    "translationContext": "Action button label on toast notification to view the new batch of news"
+  },
+  "notification.newBatch.message": {
+    "text": "יש חדשות חדשות!",
+    "translationContext": "Toast notification message when a new batch of news is published"
+  },
+  "onboarding.button.back": {
+    "text": "← חזרה",
+    "translationContext": "Back button text"
+  },
+  "onboarding.button.getStarted": {
+    "text": "התחל",
+    "translationContext": "Get started button text"
+  },
+  "onboarding.button.next": {
+    "text": "הבא →",
+    "translationContext": "Next button text"
+  },
+  "onboarding.button.skip": {
+    "text": "דלג",
+    "translationContext": "Skip button text"
+  },
+  "onboarding.categories.subtitle": {
+    "text": "Kagi News עוקב אחר חדשות מרחבי העולם, ומכסה אירועים לאומיים, אזוריים ומקומיים. בחר/י את הקטגוריות שמעניינות אותך:",
+    "translationContext": "Subtitle for onboarding step 2"
+  },
+  "onboarding.categories.title": {
+    "text": "בחר/י את הנושאים שלך",
+    "translationContext": "Title for onboarding step 2"
+  },
+  "onboarding.sections.subtitle": {
+    "text": "כתבות Kagi News כוללות חלקים שונים כמו תקצירים, נקודות עיקריות, צירי זמן ופרספקטיבות שונות. ניתן לסדר מחדש חלקים אלה על ידי גרירה או להשבית אותם לחלוטין בהתאם להעדפות הקריאה שלך.",
+    "translationContext": "Subtitle for onboarding step 3"
+  },
+  "onboarding.sections.title": {
+    "text": "העדפות תוכן",
+    "translationContext": "Title for onboarding step 3"
+  },
+  "onboarding.welcome.subtitle": {
+    "text": "בוא/י נתאים אישית את חווית החדשות שלך. ראשית, בחר/י את העדפותיך:",
+    "translationContext": "Subtitle for onboarding step 1"
+  },
+  "onboarding.welcome.title": {
+    "text": "ברוך/ה הבא/ה ל-Kagi News!",
+    "translationContext": "Title for onboarding step 1"
+  },
+  "onthisday.events": {
+    "text": "אירועים",
+    "translationContext": "Title for the events section in Today in History"
+  },
+  "onthisday.people": {
+    "text": "אישים",
+    "translationContext": "Title for the people section in Today in History"
+  },
+  "quote.format.authorSaid": {
+    "text": "{{author}} אמר/ה",
+    "translationContext": "Quote author prefix. {author} is the person who said the quote"
+  },
+  "quote.format.full": {
+    "text": "ב-{{attribution}}, {{author}} אמר/ה \"{{quote}}\"",
+    "translationContext": "Full quote format with attribution and author. {attribution} is the source/publication, {author} is the person, {quote} is the actual quote"
+  },
+  "quote.format.inAttribution": {
+    "text": "ב-{{attribution}}",
+    "translationContext": "Quote attribution prefix for the source/publication only. {attribution} is the source/publication"
+  },
+  "search.close": {
+    "text": "סגירה",
+    "translationContext": "Keyboard shortcut hint for Escape key"
+  },
+  "search.close_search": {
+    "text": "סגור חיפוש",
+    "translationContext": "Aria label for close search button"
+  },
+  "search.dismiss_tips": {
+    "text": "אל תציג טיפים אלה שוב",
+    "translationContext": "Tooltip for dismissing filter tips permanently"
+  },
+  "search.filter_category_hint": {
+    "text": "סנן לפי קטגוריית חדשות (לדוגמה, category:Technology)",
+    "translationContext": "Hint for category filter"
+  },
+  "search.filter_date_hint": {
+    "text": "חפש בטווח תאריכים (לדוגמה, from:2025-01-01 to:today)",
+    "translationContext": "Hint for date filters"
+  },
+  "search.for": {
+    "text": "עבור",
+    "translationContext": "Preposition used in 'results for query'"
+  },
+  "search.get_started_description": {
+    "text": "הקלד/י לחיפוש או השתמש/י במסננים",
+    "translationContext": "Description shown when search modal is empty"
+  },
+  "search.get_started_title": {
+    "text": "התחל לחפש",
+    "translationContext": "Title shown when search modal is empty"
+  },
+  "search.historical": {
+    "text": "היסטורי",
+    "translationContext": "Label for results from historical batches"
+  },
+  "search.historical_included": {
+    "text": "כולל {{count}} תוצאות היסטוריות",
+    "translationContext": "Shows number of historical search results included. {{count}} is replaced with the number."
+  },
+  "search.historical_needs_3_chars": {
+    "text": "חיפוש היסטורי דורש 3+ תווים",
+    "translationContext": "Message shown when query is too short for historical search"
+  },
+  "search.load_more": {
+    "text": "טען תוצאות נוספות",
+    "translationContext": "Button text to load more search results"
+  },
+  "search.loading_historical_data": {
+    "text": "טוען נתונים היסטוריים...",
+    "translationContext": "Loading message when fetching historical search results"
+  },
+  "search.loading_more": {
+    "text": "טוען תוצאות נוספות...",
+    "translationContext": "Loading message while fetching more results"
+  },
+  "search.navigate": {
+    "text": "ניווט",
+    "translationContext": "Keyboard shortcut hint for arrow keys"
+  },
+  "search.no_results": {
+    "text": "לא נמצאו תוצאות",
+    "translationContext": "Message when no results are found"
+  },
+  "search.no_results_description": {
+    "text": "נסה/י להתאים את מונחי החיפוש או המסננים שלך כדי למצוא את מה שאת/ה מחפש/ת.",
+    "translationContext": "Description for empty search results"
+  },
+  "search.no_results_description_simple": {
+    "text": "נסה/י מונחי חיפוש שונים כדי למצוא את מה שאת/ה מחפש/ת.",
+    "translationContext": "Simple no results message when historical search is disabled"
+  },
+  "search.no_results_title": {
+    "text": "לא נמצאו תוצאות",
+    "translationContext": "Title for empty search results"
+  },
+  "search.of": {
+    "text": "מתוך",
+    "translationContext": "Preposition used in 'X of Y results'"
+  },
+  "search.placeholder_1": {
+    "text": "תן לחיפוש שלך להמריא...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_10": {
+    "text": "חבר יחד את החיפוש שלך...",
+    "translationContext": "Search placeholder easter egg referencing kite strings"
+  },
+  "search.placeholder_2": {
+    "text": "דאה דרך החדשות...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_3": {
+    "text": "תפוס את רוח המידע...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_4": {
+    "text": "נווט בזרמי החדשות...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_5": {
+    "text": "התעלה מעל הרעש...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_6": {
+    "text": "עוף דרך הכתבות של היום...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_7": {
+    "text": "גלוש אל זרם החדשות...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_8": {
+    "text": "שדרג את חיפוש החדשות שלך...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_9": {
+    "text": "רחף דרך הכותרות...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.result_plural": {
+    "text": "תוצאות",
+    "translationContext": "Plural form of results"
+  },
+  "search.result_single": {
+    "text": "תוצאה",
+    "translationContext": "Singular form of result"
+  },
+  "search.search": {
+    "text": "חיפוש",
+    "translationContext": "Keyboard shortcut hint for Cmd/Ctrl+K"
+  },
+  "search.search_news_stories": {
+    "text": "חפש כתבות חדשות",
+    "translationContext": "Aria label for search input field"
+  },
+  "search.searching": {
+    "text": "מחפש...",
+    "translationContext": "Loading message while searching"
+  },
+  "search.searching_historical": {
+    "text": "מחפש בהיסטוריה...",
+    "translationContext": "Loading message while searching historical data"
+  },
+  "search.select": {
+    "text": "בחירה",
+    "translationContext": "Keyboard shortcut hint for Enter key"
+  },
+  "search.shortcuts_hint": {
+    "text": "הקלד/י \"cat\" לקטגוריות, תאריכים כמו \"אתמול\" או \"שבוע שעבר\"",
+    "translationContext": "Hint for search shortcuts"
+  },
+  "search.shortcuts_title": {
+    "text": "קיצורי דרך מהירים",
+    "translationContext": "Title for shortcuts section"
+  },
+  "search.showing": {
+    "text": "מציג",
+    "translationContext": "Label used in 'Showing X of Y results'"
+  },
+  "search.showing_of": {
+    "text": "מציג {{shown}} מתוך {{total}} תוצאות",
+    "translationContext": "Message showing current vs total results. {{shown}} and {{total}} are replaced with numbers."
+  },
+  "search.source_plural": {
+    "text": "מקורות",
+    "translationContext": "Plural form of 'sources' for news sources"
+  },
+  "search.source_single": {
+    "text": "מקור",
+    "translationContext": "Singular form of 'source' for news sources"
+  },
+  "search.try_searching_for": {
+    "text": "נסה/י לחפש:",
+    "translationContext": "Prompt before showing search examples"
+  },
+  "search.try_these": {
+    "text": "נסה/י את המסננים האלה",
+    "translationContext": "Section title for filter suggestions"
+  },
+  "section.actionItems": {
+    "text": "פריטי פעולה",
+    "translationContext": "Title for the action items section"
+  },
+  "section.businessAngle": {
+    "text": "זווית עסקית",
+    "translationContext": "Title for the business angle section"
+  },
+  "section.designPrinciples": {
+    "text": "עקרונות עיצוב",
+    "translationContext": "Title for the design principles section"
+  },
+  "section.didYouKnow": {
+    "text": "הידעת?",
+    "translationContext": "Title for the Did You Know section"
+  },
+  "section.gameplayMechanics": {
+    "text": "מכניקת משחק",
+    "translationContext": "Title for the gameplay mechanics section"
+  },
+  "section.highlights": {
+    "text": "דגשים",
+    "translationContext": "Title for the highlights section"
+  },
+  "section.historicalBackground": {
+    "text": "רקע היסטורי",
+    "translationContext": "Title for the historical background section"
+  },
+  "section.humanitarianImpact": {
+    "text": "השפעה הומניטרית",
+    "translationContext": "Title for the humanitarian impact section"
+  },
+  "section.industryImpact": {
+    "text": "השפעה תעשייתית",
+    "translationContext": "Title for the industry impact section"
+  },
+  "section.internationalReactions": {
+    "text": "תגובות בינלאומיות",
+    "translationContext": "Title for the international reactions section"
+  },
+  "section.leagueStandings": {
+    "text": "טבלאות ליגה",
+    "translationContext": "Title for the league standings section"
+  },
+  "section.otherDetails": {
+    "text": "פרטים נוספים",
+    "translationContext": "Title for the other details section in article settings"
+  },
+  "section.performanceStatistics": {
+    "text": "סטטיסטיקות ביצועים",
+    "translationContext": "Title for the performance statistics section"
+  },
+  "section.perspectives": {
+    "text": "פרספקטיבות",
+    "translationContext": "Title for the perspectives section"
+  },
+  "section.primaryImage": {
+    "text": "תמונה ראשית",
+    "translationContext": "Title for the primary image section in article settings"
+  },
+  "section.quotes": {
+    "text": "ציטוטים",
+    "translationContext": "Title for the quotes section in article settings"
+  },
+  "section.scientificSignificance": {
+    "text": "משמעות מדעית",
+    "translationContext": "Title for the scientific significance section"
+  },
+  "section.secondaryImage": {
+    "text": "תמונה משנית",
+    "translationContext": "Title for the secondary image section in article settings"
+  },
+  "section.sources": {
+    "text": "מקורות",
+    "translationContext": "Title for the sources section"
+  },
+  "section.suggestedQnA": {
+    "text": "שאלות מהירות",
+    "translationContext": "Title for the suggested Q&A section"
+  },
+  "section.summary": {
+    "text": "תקציר",
+    "translationContext": "Title for the summary section in article settings"
+  },
+  "section.technicalDetails": {
+    "text": "פרטים טכניים",
+    "translationContext": "Title for the technical details section"
+  },
+  "section.technicalSpecifications": {
+    "text": "מפרט טכני",
+    "translationContext": "Title for the technical specifications section"
+  },
+  "section.timeline": {
+    "text": "ציר זמן של אירועים",
+    "translationContext": "Title for the timeline section"
+  },
+  "section.travelAdvisory": {
+    "text": "אזהרת מסע",
+    "translationContext": "Title for the travel advisory section"
+  },
+  "section.userExperienceImpact": {
+    "text": "השפעה על חווית המשתמש",
+    "translationContext": "Title for the user experience impact section"
+  },
+  "shared.viewAllArticles": {
+    "text": "← הצג את כל הכתבות מ-{{{date}}}",
+    "translationContext": "Button to exit shared article view and see all articles from a specific date. {{date}} will be replaced with a localized date."
+  },
+  "source.contribute.button": {
+    "text": "תרום מידע",
+    "translationContext": "Button text for contributing source information"
+  },
+  "source.contribute.description": {
+    "text": "אין לנו עדיין מידע מפורט על מקור חדשות זה. תרומתך יכולה לעזור לאחרים להישאר מעודכנים לגבי בעלות והטיה של כלי תקשורת.",
+    "translationContext": "Description for source contribution section"
+  },
+  "source.contribute.title": {
+    "text": "עזור/י לשפר את מאגר המידע שלנו",
+    "translationContext": "Title for source contribution section"
+  },
+  "source.info.country": {
+    "text": "מדינה",
+    "translationContext": "Label for source country"
+  },
+  "source.info.description": {
+    "text": "תיאור",
+    "translationContext": "Label for source description"
+  },
+  "source.info.loading": {
+    "text": "טוען מידע על המקור...",
+    "translationContext": "Loading message shown while fetching source information"
+  },
+  "source.info.mediaClassification": {
+    "text": "סיווג מדיה",
+    "translationContext": "Label for source media classification"
+  },
+  "source.info.notSpecified": {
+    "text": "לא צוין",
+    "translationContext": "Text shown when information is not available"
+  },
+  "source.info.organization": {
+    "text": "ארגון",
+    "translationContext": "Label for source organization"
+  },
+  "source.info.owner": {
+    "text": "בעלים",
+    "translationContext": "Label for source owner"
+  },
+  "source.info.title": {
+    "text": "מידע על המקור",
+    "translationContext": "Title for source information section"
+  },
+  "sources.article": {
+    "text": "כתבה {{count}}",
+    "translationContext": "Shows singular article count from a source, {{count}} will be replaced with a number"
+  },
+  "sources.articles": {
+    "text": "{{count}} כתבות",
+    "translationContext": "Shows plural article count from a source, {{count}} will be replaced with a number"
+  },
+  "sources.showArticlesFrom": {
+    "text": "הצג כתבות מ-{source}",
+    "translationContext": "Title/aria-label for the source button, {source} will be replaced with the source name"
+  },
+  "sources.summary": {
+    "text": "{{publishers}} מפרסמים, {{articles}} כתבות",
+    "translationContext": "Shows count of publishers and articles, {{publishers}} and {{articles}} will be replaced with numbers"
+  },
+  "stats.newsToday": {
+    "text": "{{count}} ידיעות היום",
+    "translationContext": "Shows the count of news items today, {count} will be replaced with a number"
+  },
+  "stats.storiesRead": {
+    "text": "קראת {{count}} כתבות",
+    "translationContext": "Shows how many stories the user has read, {count} will be replaced with a number"
+  },
+  "stats.storyRead": {
+    "text": "קראת כתבה {{count}}",
+    "translationContext": "Shows when the user has read exactly 1 story, {count} will be replaced with 1"
+  },
+  "stats.weekDay": {
+    "text": "שבוע {{week}}, יום {{day}}",
+    "translationContext": "Shows the current week and day of the year, {week} and {day} will be replaced with numbers"
+  },
+  "stories.noStories": {
+    "text": "משהו השתבש, אין כאן כתבות!",
+    "translationContext": "Message shown when no stories are found"
+  },
+  "time.updated.days": {
+    "text": "עודכן לפני {{count}} ימים",
+    "translationContext": "Shown when content was updated multiple days ago, {count} will be replaced with the number of days"
+  },
+  "time.updated.hours": {
+    "text": "עודכן לפני {{count}} שעות",
+    "translationContext": "Shown when content was updated multiple hours ago, {count} will be replaced with the number of hours"
+  },
+  "time.updated.justNow": {
+    "text": "עודכן כעת",
+    "translationContext": "Shown when content was updated very recently"
+  },
+  "time.updated.minutes": {
+    "text": "עודכן לפני {{count}} דקות",
+    "translationContext": "Shown when content was updated multiple minutes ago, {count} will be replaced with the number of minutes"
+  },
+  "time.updated.oneDay": {
+    "text": "עודכן לפני יום",
+    "translationContext": "Shown when content was updated exactly 1 day ago"
+  },
+  "time.updated.oneHour": {
+    "text": "עודכן לפני שעה",
+    "translationContext": "Shown when content was updated exactly 1 hour ago"
+  },
+  "time.updated.oneMinute": {
+    "text": "עודכן לפני דקה",
+    "translationContext": "Shown when content was updated exactly 1 minute ago"
+  },
+  "time.updated.seconds": {
+    "text": "עודכן לפני {{count}} שניות",
+    "translationContext": "Shown when content was updated seconds ago, {count} will be replaced with the number of seconds"
+  },
+  "timeTravel.latest": {
+    "text": "האחרון",
+    "translationContext": "Label for the most recent batch of the day"
+  },
+  "timeTravel.loadingData": {
+    "text": "טוען נתונים היסטוריים...",
+    "translationContext": "Loading message when fetching historical data"
+  },
+  "timeTravel.nextMonth": {
+    "text": "חודש הבא",
+    "translationContext": "Aria label for next month button"
+  },
+  "timeTravel.previousMonth": {
+    "text": "חודש קודם",
+    "translationContext": "Aria label for previous month button"
+  },
+  "timeTravel.returningToLive": {
+    "text": "חוזר לשידור חי...",
+    "translationContext": "Loading message when exiting time travel mode"
+  },
+  "timeTravel.selectBatch": {
+    "text": "בחר/י עדכון חדשות",
+    "translationContext": "Title when selecting from multiple batches"
+  },
+  "timeTravel.selectDate": {
+    "text": "בחר/י תאריך לצפייה בחדשות מאותו יום",
+    "translationContext": "Help text shown below calendar"
+  },
+  "timeTravel.stories": {
+    "text": "כתבות",
+    "translationContext": "Label for story count in batch selector"
+  },
+  "timeTravel.title": {
+    "text": "מסע בזמן",
+    "translationContext": "Title of the time travel modal"
+  },
+  "timeTravel.today": {
+    "text": "היום",
+    "translationContext": "Button to navigate to today"
+  },
+  "turbulence.title": {
+    "text": "מד סערת עולם",
+    "translationContext": "Title for the world turbulence meter popup"
+  },
+  "turbulence.tooltip": {
+    "text": "מד סערה",
+    "translationContext": "Tooltip text for the turbulence meter button"
+  },
+  "ui.back": {
+    "text": "חזרה",
+    "translationContext": "Text for back buttons"
+  },
+  "ui.cancel": {
+    "text": "ביטול",
+    "translationContext": "Text for cancel buttons"
+  },
+  "ui.citations": {
+    "text": "ציטוטים",
+    "translationContext": "Title for citations section"
+  },
+  "ui.clearSearch": {
+    "text": "נקה חיפוש",
+    "translationContext": "Aria label for clear search button"
+  },
+  "ui.close": {
+    "text": "סגור",
+    "translationContext": "Text for close buttons"
+  },
+  "ui.closeDialog": {
+    "text": "סגור דיאלוג",
+    "translationContext": "Aria label for close dialog button"
+  },
+  "ui.disable": {
+    "text": "השבת",
+    "translationContext": "Text for disabling features"
+  },
+  "ui.enable": {
+    "text": "הפעל",
+    "translationContext": "Text for enabling features"
+  },
+  "ui.imageUnavailable": {
+    "text": "תמונה לא זמינה",
+    "translationContext": "Text shown when an image cannot be loaded"
+  },
+  "ui.nextSlide": {
+    "text": "שקופית הבאה",
+    "translationContext": "Aria label for next slide button"
+  },
+  "ui.ok": {
+    "text": "אישור",
+    "translationContext": "Text for OK buttons"
+  },
+  "ui.previousSlide": {
+    "text": "שקופית קודמת",
+    "translationContext": "Aria label for previous slide button"
+  },
+  "ui.skipToMainContent": {
+    "text": "דלג לתוכן הראשי",
+    "translationContext": "Accessibility link to skip navigation and jump to main content"
+  },
+  "ui.success": {
+    "text": "הצלחה!",
+    "translationContext": "Text for success messages"
+  },
+  "view.list": {
+    "text": "תצוגת רשימה",
+    "translationContext": "Title/aria-label for the list view button"
+  },
+  "view.map": {
+    "text": "תצוגת מפה",
+    "translationContext": "Title/aria-label for the map view button"
+  },
+  "wikipedia.readMore": {
+    "text": "קרא/י עוד בוויקיפדיה",
+    "translationContext": "Text for the link to read more on Wikipedia"
+  },
+  "worldTension.aboutTitle": {
+    "text": "אודות מתח עולמי",
+    "translationContext": "Title for the world tension explanation"
+  },
+  "worldTension.backToIndex": {
+    "text": "← חזרה למדד",
+    "translationContext": "Button text to return from explanation to main view"
+  },
+  "worldTension.burning": {
+    "text": "בוער",
+    "translationContext": "Temperature description for extreme world tension (81-100%)"
+  },
+  "worldTension.chaosIndex": {
+    "text": "מדד הכאוס",
+    "translationContext": "Label for the chaos index chart"
+  },
+  "worldTension.cool": {
+    "text": "קריר",
+    "translationContext": "Temperature description for low world tension (0-20%)"
+  },
+  "worldTension.critical": {
+    "text": "קריטי",
+    "translationContext": "Status label for 61-80% range (deprecated, use hot)"
+  },
+  "worldTension.elevated": {
+    "text": "מוגבר",
+    "translationContext": "Status label for 21-40% range (deprecated, use mild)"
+  },
+  "worldTension.explanation1": {
+    "text": "מדד המתח העולמי מספק קריאת טמפרטורה של היציבות הגלובלית בהתבסס על אירועים אקטואליים.",
+    "translationContext": "First paragraph of world tension explanation"
+  },
+  "worldTension.explanation2": {
+    "text": "על ידי ניתוח כותרות מרחבי העולם, אנו עוקבים אחר דפוסים של סכסוך, משבר וחוסר יציבות כדי ליצור מדד פשוט המראה עד כמה ענייני העולם \"חמים\" בכל רגע נתון.",
+    "translationContext": "Second paragraph of world tension explanation"
+  },
+  "worldTension.explanation3": {
+    "text": "חשבו על זה כמדחום גלובלי - כאשר המתחים עולים עקב סכסוכים, אסונות או מהומה פוליטית, הטמפרטורה עולה. בתקופות רגועות יותר של יציבות ושיתוף פעולה, היא מתקררת.",
+    "translationContext": "Third paragraph of world tension explanation"
+  },
+  "worldTension.extreme": {
+    "text": "קיצוני",
+    "translationContext": "Status label for 81-100% range (deprecated, use burning)"
+  },
+  "worldTension.high": {
+    "text": "גבוה",
+    "translationContext": "Status label for 41-60% range (deprecated, use warm)"
+  },
+  "worldTension.hot": {
+    "text": "חם",
+    "translationContext": "Temperature description for serious world tension (61-80%)"
+  },
+  "worldTension.mild": {
+    "text": "מתון",
+    "translationContext": "Temperature description for normal world tension (21-40%)"
+  },
+  "worldTension.scale.burning": {
+    "text": "81-100° בוער - משבר קיצוני (נדיר)",
+    "translationContext": "Scale description for 81-100% tension"
+  },
+  "worldTension.scale.cool": {
+    "text": "0-20° קריר - תקופה רגועה, פעילות שגרתית",
+    "translationContext": "Scale description for 0-20% tension"
+  },
+  "worldTension.scale.hot": {
+    "text": "61-80° חם - מצבים חמורים",
+    "translationContext": "Scale description for 61-80% tension"
+  },
+  "worldTension.scale.mild": {
+    "text": "21-40° מתון - מתחים גלובליים נורמליים",
+    "translationContext": "Scale description for 21-40% tension"
+  },
+  "worldTension.scale.warm": {
+    "text": "41-60° חמים - חששות מוגברים",
+    "translationContext": "Scale description for 41-60% tension"
+  },
+  "worldTension.stable": {
+    "text": "יציב",
+    "translationContext": "Status label for 0-20% range (deprecated, use cool)"
+  },
+  "worldTension.title": {
+    "text": "מתח עולמי",
+    "translationContext": "Title for the world tension modal"
+  },
+  "worldTension.trendTitle": {
+    "text": "מגמה של 30 יום",
+    "translationContext": "Title for the historical trend chart"
+  },
+  "worldTension.updated": {
+    "text": "עודכן",
+    "translationContext": "Prefix for last update time"
+  },
+  "worldTension.warm": {
+    "text": "חמים",
+    "translationContext": "Temperature description for elevated world tension (41-60%)"
+  },
+  "worldTension.whatIsThis": {
+    "text": "מה זה?",
+    "translationContext": "Button text to show explanation of world tension"
+  }
+}

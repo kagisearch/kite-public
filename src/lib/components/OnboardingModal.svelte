@@ -1,132 +1,132 @@
 <script lang="ts">
-  import { browser } from "$app/environment";
-  import { s } from "$lib/client/localization.svelte";
-  import { settings } from "$lib/stores/settings.svelte.js";
-  import type { Category } from "$lib/types";
-  import { scrollLock } from "$lib/utils/scrollLock.js";
-  import OnboardingStepAppearance from "./onboarding/OnboardingStepAppearance.svelte";
-  import OnboardingStepCategories from "./onboarding/OnboardingStepCategories.svelte";
-  import OnboardingStepSections from "./onboarding/OnboardingStepSections.svelte";
-  import { useOverlayScrollbars } from "overlayscrollbars-svelte";
-  import "overlayscrollbars/overlayscrollbars.css";
-  import { fade, slide } from "svelte/transition";
+import { useOverlayScrollbars } from 'overlayscrollbars-svelte';
+import { browser } from '$app/environment';
+import { s } from '$lib/client/localization.svelte';
+import { displaySettings } from '$lib/data/settings.svelte.js';
+import type { Category } from '$lib/types';
+import { scrollLock } from '$lib/utils/scrollLock.js';
+import OnboardingStepAppearance from './onboarding/OnboardingStepAppearance.svelte';
+import OnboardingStepCategories from './onboarding/OnboardingStepCategories.svelte';
+import OnboardingStepSections from './onboarding/OnboardingStepSections.svelte';
+import 'overlayscrollbars/overlayscrollbars.css';
+import { fade, slide } from 'svelte/transition';
 
-  // Props
-  interface Props {
-    visible?: boolean;
-    categories?: Category[];
-    onComplete?: () => void;
-  }
+// Props
+interface Props {
+	visible?: boolean;
+	categories?: Category[];
+	onComplete?: () => void;
+}
 
-  let { visible = false, categories = [], onComplete }: Props = $props();
+let { visible = false, categories = [], onComplete }: Props = $props();
 
-  // State
-  let currentStep = $state(1);
-  const totalSteps = 3;
+// State
+let currentStep = $state(1);
+const totalSteps = 3;
 
-  // OverlayScrollbars setup
-  let scrollableElement: HTMLElement | undefined = $state(undefined);
-  let [initialize, instance] = useOverlayScrollbars({
-    defer: true,
-    options: {
-      scrollbars: {
-        autoHide: "leave",
-        autoHideDelay: 100,
-      },
-    },
-  });
+// OverlayScrollbars setup
+let scrollableElement: HTMLElement | undefined = $state(undefined);
+let [initialize, instance] = useOverlayScrollbars({
+	defer: true,
+	options: {
+		scrollbars: {
+			autoHide: 'leave',
+			autoHideDelay: 100,
+		},
+	},
+});
 
-  // Navigation
-  function nextStep() {
-    if (currentStep < totalSteps) {
-      currentStep++;
-      // Reset scroll to top when changing steps
-      const inst = instance();
-      if (inst) {
-        inst.elements().viewport.scrollTop = 0;
-      }
-    } else {
-      finishOnboarding();
-    }
-  }
+// Navigation
+function nextStep() {
+	if (currentStep < totalSteps) {
+		currentStep++;
+		// Reset scroll to top when changing steps
+		const inst = instance();
+		if (inst) {
+			inst.elements().viewport.scrollTop = 0;
+		}
+	} else {
+		finishOnboarding();
+	}
+}
 
-  function previousStep() {
-    if (currentStep > 1) {
-      currentStep--;
-      // Reset scroll to top when changing steps
-      const inst = instance();
-      if (inst) {
-        inst.elements().viewport.scrollTop = 0;
-      }
-    }
-  }
+function previousStep() {
+	if (currentStep > 1) {
+		currentStep--;
+		// Reset scroll to top when changing steps
+		const inst = instance();
+		if (inst) {
+			inst.elements().viewport.scrollTop = 0;
+		}
+	}
+}
 
-  function finishOnboarding() {
-    // Mark onboarding as completed
-    if (browser) {
-      localStorage.setItem("kite-onboarding-completed", "true");
-    }
+function finishOnboarding() {
+	// Mark onboarding as completed
+	if (browser) {
+		localStorage.setItem('kite-onboarding-completed', 'true');
+	}
 
-    // Mark intro as shown
-    settings.setShowIntro(false);
+	// Mark intro as shown
+	displaySettings.showIntro = false;
 
-    if (onComplete) {
-      onComplete();
-    }
-  }
+	if (onComplete) {
+		onComplete();
+	}
+}
 
-  function skipOnboarding() {
-    // Just mark as completed without applying any changes
-    if (browser) {
-      localStorage.setItem("kite-onboarding-completed", "true");
-    }
+function skipOnboarding() {
+	// Just mark as completed without applying any changes
+	if (browser) {
+		localStorage.setItem('kite-onboarding-completed', 'true');
+	}
 
-    settings.setShowIntro(false);
+	displaySettings.showIntro = false;
 
-    if (onComplete) {
-      onComplete();
-    }
-  }
+	if (onComplete) {
+		onComplete();
+	}
+}
 
-  // Handle escape key
-  function handleKeydown(e: KeyboardEvent) {
-    if (e.key === "Escape" && visible) {
-      skipOnboarding();
-    }
-  }
+// Handle escape key
+function handleKeydown(e: KeyboardEvent) {
+	if (e.key === 'Escape' && visible) {
+		skipOnboarding();
+	}
+}
 
-  // Handle visibility changes and scroll lock
-  $effect(() => {
-    if (browser) {
-      if (visible) {
-        // Lock background scroll
-        scrollLock.lock();
+// Handle visibility changes and scroll lock
+$effect(() => {
+	if (browser) {
+		if (visible) {
+			// Lock background scroll
+			scrollLock.lock();
 
-        // Add keyboard listener
-        document.addEventListener("keydown", handleKeydown);
-      } else {
-        // Unlock background scroll
-        scrollLock.unlock();
+			// Add keyboard listener
+			document.addEventListener('keydown', handleKeydown);
+		} else {
+			// Unlock background scroll
+			scrollLock.unlock();
 
-        // Remove keyboard listener
-        document.removeEventListener("keydown", handleKeydown);
-      }
+			// Remove keyboard listener
+			document.removeEventListener('keydown', handleKeydown);
+		}
 
-      // Cleanup
-      return () => {
-        document.removeEventListener("keydown", handleKeydown);
-        // Ensure scroll is unlocked on cleanup
-        scrollLock.unlock();
-      };
-    }
-  });
+		// Cleanup
+		return () => {
+			document.removeEventListener('keydown', handleKeydown);
+			// Ensure scroll is unlocked on cleanup
+			scrollLock.unlock();
+		};
+	}
+});
 
-  // Initialize OverlayScrollbars
-  $effect(() => {
-    if (scrollableElement) {
-      initialize(scrollableElement);
-    }
-  });
+// Initialize OverlayScrollbars
+$effect(() => {
+	if (scrollableElement) {
+		initialize(scrollableElement);
+	}
+});
 </script>
 
 {#if visible}

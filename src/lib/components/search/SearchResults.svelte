@@ -1,293 +1,285 @@
 <script lang="ts">
-  import { browser } from "$app/environment";
-  import { s } from "$lib/client/localization.svelte";
-  import { features } from "$lib/config/features";
-  import type { SearchResult } from "$lib/services/search";
-  import {
-    IconClock,
-    IconTag,
-    IconCalendar,
-    IconBolt,
-    IconSearch,
-    IconX,
-  } from "@tabler/icons-svelte";
-  import { useOverlayScrollbars } from "overlayscrollbars-svelte";
-  import "overlayscrollbars/overlayscrollbars.css";
-  import { slide } from "svelte/transition";
+import {
+	IconBolt,
+	IconCalendar,
+	IconClock,
+	IconLoader2,
+	IconSearch,
+	IconTag,
+	IconX,
+} from '@tabler/icons-svelte';
+import { useOverlayScrollbars } from 'overlayscrollbars-svelte';
+import { browser } from '$app/environment';
+import { s } from '$lib/client/localization.svelte';
+import { features } from '$lib/config/features';
+import type { SearchResult } from '$lib/services/search';
+import 'overlayscrollbars/overlayscrollbars.css';
+import { slide } from 'svelte/transition';
 
-  interface Props {
-    results: SearchResult[];
-    selectedIndex: number;
-    isLoading: boolean;
-    isSearchingHistorical: boolean;
-    isLoadingMore?: boolean;
-    hasMore?: boolean;
-    query: string;
-    totalCount: number;
-    localCount?: number;
-    historicalCount?: number;
-    onSelectResult: (result: SearchResult) => void;
-    onLoadMore?: () => void;
-  }
+interface Props {
+	results: SearchResult[];
+	selectedIndex: number;
+	isLoading: boolean;
+	isSearchingHistorical: boolean;
+	isLoadingMore?: boolean;
+	hasMore?: boolean;
+	query: string;
+	totalCount: number;
+	localCount?: number;
+	historicalCount?: number;
+	onSelectResult: (result: SearchResult) => void;
+	onLoadMore?: () => void;
+}
 
-  let {
-    results,
-    selectedIndex,
-    isLoading,
-    isSearchingHistorical,
-    isLoadingMore = false,
-    hasMore = false,
-    query,
-    totalCount,
-    localCount = 0,
-    historicalCount = 0,
-    onSelectResult,
-    onLoadMore,
-  }: Props = $props();
+let {
+	results,
+	selectedIndex,
+	isLoading,
+	isSearchingHistorical,
+	isLoadingMore = false,
+	hasMore = false,
+	query,
+	totalCount,
+	localCount = 0,
+	historicalCount = 0,
+	onSelectResult,
+	onLoadMore,
+}: Props = $props();
 
-  let resultsContainer = $state<HTMLDivElement | null>(null);
-  let lastSelectedIndex = $state(0);
-  let currentFilterTip = $state(0);
-  let showFilterTips = $state(true);
-  let autoRotate = $state(true);
-  let animateTransition = $state(false);
+let resultsContainer = $state<HTMLDivElement | null>(null);
+let lastSelectedIndex = $state(0);
+let currentFilterTip = $state(0);
+let showFilterTips = $state(true);
+let autoRotate = $state(true);
+let animateTransition = $state(false);
 
-  // Check localStorage for filter tips preference (only if feature is enabled)
-  $effect(() => {
-    if (browser && features.historicalSearch) {
-      const hidden = localStorage.getItem("hideSearchFilterTips");
-      showFilterTips = hidden !== "true";
-    } else {
-      showFilterTips = false;
-    }
-  });
+// Check localStorage for filter tips preference (only if feature is enabled)
+$effect(() => {
+	if (browser && features.historicalSearch) {
+		const hidden = localStorage.getItem('hideSearchFilterTips');
+		showFilterTips = hidden !== 'true';
+	} else {
+		showFilterTips = false;
+	}
+});
 
-  function dismissFilterTips() {
-    animateTransition = true;
-    showFilterTips = false;
-    if (browser) {
-      localStorage.setItem("hideSearchFilterTips", "true");
-    }
-  }
+function dismissFilterTips() {
+	animateTransition = true;
+	showFilterTips = false;
+	if (browser) {
+		localStorage.setItem('hideSearchFilterTips', 'true');
+	}
+}
 
-  function selectFilterTip(index: number) {
-    currentFilterTip = index;
-    autoRotate = false; // Stop auto-rotation when user manually selects
-  }
+function selectFilterTip(index: number) {
+	currentFilterTip = index;
+	autoRotate = false; // Stop auto-rotation when user manually selects
+}
 
-  // Filter tips data
-  const filterTips = [
-    {
-      icon: IconTag,
-      color: "text-blue-500 dark:text-blue-400",
-      title: "category:",
-      hint: "search.filter_category_hint",
-      defaultHint: "Filter by news category (e.g., category:Technology)",
-    },
-    {
-      icon: IconCalendar,
-      color: "text-green-500 dark:text-green-400",
-      title: "from: / to:",
-      hint: "search.filter_date_hint",
-      defaultHint:
-        "Search within a date range (e.g., from:2025-01-01 to:today)",
-    },
-    {
-      icon: IconBolt,
-      color: "text-purple-500 dark:text-purple-400",
-      title: s("search.shortcuts_title") || "Quick shortcuts",
-      hint: "search.shortcuts_hint",
-      defaultHint:
-        'Type "cat" for categories, dates like "yesterday" or "last week"',
-    },
-  ];
+// Filter tips data
+const filterTips = [
+	{
+		icon: IconTag,
+		color: 'text-blue-500 dark:text-blue-400',
+		title: 'category:',
+		hint: 'search.filter_category_hint',
+		defaultHint: 'Filter by news category (e.g., category:Technology)',
+	},
+	{
+		icon: IconCalendar,
+		color: 'text-green-500 dark:text-green-400',
+		title: 'from: / to:',
+		hint: 'search.filter_date_hint',
+		defaultHint: 'Search within a date range (e.g., from:2025-01-01 to:today)',
+	},
+	{
+		icon: IconBolt,
+		color: 'text-purple-500 dark:text-purple-400',
+		title: s('search.shortcuts_title') || 'Quick shortcuts',
+		hint: 'search.shortcuts_hint',
+		defaultHint: 'Type "cat" for categories, dates like "yesterday" or "last week"',
+	},
+];
 
-  // Rotate filter tips every 3 seconds (only if auto-rotate is enabled)
-  $effect(() => {
-    if (!query && results.length === 0 && showFilterTips && autoRotate) {
-      const interval = setInterval(() => {
-        currentFilterTip = (currentFilterTip + 1) % filterTips.length;
-      }, 3000);
+// Rotate filter tips every 3 seconds (only if auto-rotate is enabled)
+$effect(() => {
+	if (!query && results.length === 0 && showFilterTips && autoRotate) {
+		const interval = setInterval(() => {
+			currentFilterTip = (currentFilterTip + 1) % filterTips.length;
+		}, 3000);
 
-      return () => clearInterval(interval);
-    }
-  });
+		return () => clearInterval(interval);
+	}
+});
 
-  // Reset auto-rotate when modal reopens (detected by query being empty)
-  $effect(() => {
-    if (!query && results.length === 0) {
-      autoRotate = true;
-    }
-  });
+// Reset auto-rotate when modal reopens (detected by query being empty)
+$effect(() => {
+	if (!query && results.length === 0) {
+		autoRotate = true;
+	}
+});
 
-  // OverlayScrollbars setup
-  const [initialize] = useOverlayScrollbars({
-    defer: true,
-    options: {
-      scrollbars: {
-        autoHide: "scroll",
-        theme: "os-theme-dark os-theme-light",
-      },
-    },
-  });
+// OverlayScrollbars setup
+const [initialize] = useOverlayScrollbars({
+	defer: true,
+	options: {
+		scrollbars: {
+			autoHide: 'scroll',
+			theme: 'os-theme-dark os-theme-light',
+		},
+	},
+});
 
-  // Initialize OverlayScrollbars on the results container
-  $effect(() => {
-    if (resultsContainer) {
-      initialize(resultsContainer);
-    }
-  });
+// Initialize OverlayScrollbars on the results container
+$effect(() => {
+	if (resultsContainer) {
+		initialize(resultsContainer);
+	}
+});
 
-  // Auto-scroll when selection changes
-  $effect(() => {
-    if (selectedIndex >= 0) {
-      scrollToSelected();
-    }
-  });
+// Auto-scroll when selection changes
+$effect(() => {
+	if (selectedIndex >= 0) {
+		scrollToSelected();
+	}
+});
 
-  // Scroll selected result into view, keeping one extra item visible in scroll direction
-  export function scrollToSelected() {
-    if (resultsContainer && results.length > 0) {
-      const buttons = resultsContainer.querySelectorAll("button");
+// Scroll selected result into view, keeping one extra item visible in scroll direction
+export function scrollToSelected() {
+	if (resultsContainer && results.length > 0) {
+		const buttons = resultsContainer.querySelectorAll('button');
 
-      // Determine scroll direction
-      const scrollingDown = selectedIndex > lastSelectedIndex;
-      const scrollingUp = selectedIndex < lastSelectedIndex;
+		// Determine scroll direction
+		const scrollingDown = selectedIndex > lastSelectedIndex;
+		const scrollingUp = selectedIndex < lastSelectedIndex;
 
-      // Determine which element to scroll to
-      let targetIndex = selectedIndex;
+		// Determine which element to scroll to
+		let targetIndex = selectedIndex;
 
-      // When scrolling down, ensure the next item is visible
-      if (scrollingDown && selectedIndex < buttons.length - 1) {
-        targetIndex = selectedIndex + 1;
-      }
-      // When scrolling up, ensure the previous item is visible
-      else if (scrollingUp && selectedIndex > 0) {
-        targetIndex = selectedIndex - 1;
-      }
+		// When scrolling down, ensure the next item is visible
+		if (scrollingDown && selectedIndex < buttons.length - 1) {
+			targetIndex = selectedIndex + 1;
+		}
+		// When scrolling up, ensure the previous item is visible
+		else if (scrollingUp && selectedIndex > 0) {
+			targetIndex = selectedIndex - 1;
+		}
 
-      // Scroll the target element into view
-      const targetElement = buttons[targetIndex] as HTMLElement;
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: "instant", block: "nearest" });
-      }
+		// Scroll the target element into view
+		const targetElement = buttons[targetIndex] as HTMLElement;
+		if (targetElement) {
+			targetElement.scrollIntoView({ behavior: 'instant', block: 'nearest' });
+		}
 
-      // Update last index
-      lastSelectedIndex = selectedIndex;
-    }
-  }
+		// Update last index
+		lastSelectedIndex = selectedIndex;
+	}
+}
 
-  function handleResultClick(result: SearchResult) {
-    onSelectResult(result);
-  }
+function handleResultClick(result: SearchResult) {
+	onSelectResult(result);
+}
 
-  function handleResultKeyDown(event: KeyboardEvent, result: SearchResult) {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      onSelectResult(result);
-    }
-  }
+function handleResultKeyDown(event: KeyboardEvent, result: SearchResult) {
+	if (event.key === 'Enter' || event.key === ' ') {
+		event.preventDefault();
+		onSelectResult(result);
+	}
+}
 
-  // Check if a date is today
-  function isToday(dateString: string): boolean {
-    const date = new Date(dateString);
-    const today = new Date();
-    return (
-      date.getFullYear() === today.getFullYear() &&
-      date.getMonth() === today.getMonth() &&
-      date.getDate() === today.getDate()
-    );
-  }
+// Check if a date is today
+function isToday(dateString: string): boolean {
+	const date = new Date(dateString);
+	const today = new Date();
+	return (
+		date.getFullYear() === today.getFullYear() &&
+		date.getMonth() === today.getMonth() &&
+		date.getDate() === today.getDate()
+	);
+}
 
-  // Highlight search query matches in text
-  function highlightMatch(text: string, query: string): string {
-    if (!query || !text) return text;
+// Highlight search query matches in text
+function highlightMatch(text: string, query: string): string {
+	if (!query || !text) return text;
 
-    // Simple case-insensitive string matching without regex
-    const lowerText = text.toLowerCase();
-    const lowerQuery = query.toLowerCase();
+	// Simple case-insensitive string matching without regex
+	const lowerText = text.toLowerCase();
+	const lowerQuery = query.toLowerCase();
 
-    let result = "";
-    let lastIndex = 0;
-    let index = lowerText.indexOf(lowerQuery);
+	let result = '';
+	let lastIndex = 0;
+	let index = lowerText.indexOf(lowerQuery);
 
-    while (index !== -1) {
-      // Add text before match
-      result += text.slice(lastIndex, index);
-      // Add highlighted match
-      result +=
-        '<mark class="bg-yellow-200 dark:bg-yellow-800">' +
-        text.slice(index, index + query.length) +
-        "</mark>";
-      lastIndex = index + query.length;
-      index = lowerText.indexOf(lowerQuery, lastIndex);
-    }
+	while (index !== -1) {
+		// Add text before match
+		result += text.slice(lastIndex, index);
+		// Add highlighted match
+		result +=
+			'<mark class="bg-yellow-200 dark:bg-yellow-800">' +
+			text.slice(index, index + query.length) +
+			'</mark>';
+		lastIndex = index + query.length;
+		index = lowerText.indexOf(lowerQuery, lastIndex);
+	}
 
-    // Add remaining text
-    result += text.slice(lastIndex);
+	// Add remaining text
+	result += text.slice(lastIndex);
 
-    return result;
-  }
+	return result;
+}
 
-  // Remove citation markers from text
-  function removeCitations(text: string): string {
-    if (!text) return text;
-    return text
-      .replace(/\[[^\]]+\]/g, "") // Remove anything in square brackets
-      .replace(/\s+/g, " ") // Normalize whitespace
-      .trim();
-  }
+// Remove citation markers from text
+function removeCitations(text: string): string {
+	if (!text) return text;
+	return text
+		.replace(/\[[^\]]+\]/g, '') // Remove anything in square brackets
+		.replace(/\s+/g, ' ') // Normalize whitespace
+		.trim();
+}
 
-  // Create highlighted snippet
-  function getSnippetWithHighlight(
-    text: string,
-    query: string,
-    maxLength: number = 150,
-  ): string {
-    const cleanText = removeCitations(text);
+// Create highlighted snippet
+function getSnippetWithHighlight(text: string, query: string, maxLength: number = 150): string {
+	const cleanText = removeCitations(text);
 
-    if (!query) {
-      return (
-        cleanText.slice(0, maxLength) +
-        (cleanText.length > maxLength ? "..." : "")
-      );
-    }
+	if (!query) {
+		return cleanText.slice(0, maxLength) + (cleanText.length > maxLength ? '...' : '');
+	}
 
-    const lowerText = cleanText.toLowerCase();
-    const lowerQuery = query.toLowerCase();
-    const queryIndex = lowerText.indexOf(lowerQuery);
+	const lowerText = cleanText.toLowerCase();
+	const lowerQuery = query.toLowerCase();
+	const queryIndex = lowerText.indexOf(lowerQuery);
 
-    let snippet = "";
+	let snippet = '';
 
-    if (queryIndex === -1) {
-      // No match, just return beginning
-      snippet = cleanText.slice(0, maxLength);
-    } else {
-      // Found match, center around it
-      let start = Math.max(0, queryIndex - 50);
-      let end = Math.min(cleanText.length, queryIndex + query.length + 100);
+	if (queryIndex === -1) {
+		// No match, just return beginning
+		snippet = cleanText.slice(0, maxLength);
+	} else {
+		// Found match, center around it
+		let start = Math.max(0, queryIndex - 50);
+		let end = Math.min(cleanText.length, queryIndex + query.length + 100);
 
-      // Adjust to word boundaries
-      if (start > 0) {
-        const spaceIndex = cleanText.indexOf(" ", start);
-        if (spaceIndex > 0 && spaceIndex < start + 20) start = spaceIndex;
-      }
+		// Adjust to word boundaries
+		if (start > 0) {
+			const spaceIndex = cleanText.indexOf(' ', start);
+			if (spaceIndex > 0 && spaceIndex < start + 20) start = spaceIndex;
+		}
 
-      if (end < cleanText.length) {
-        const spaceIndex = cleanText.indexOf(" ", end);
-        if (spaceIndex > 0 && spaceIndex < end + 20) end = spaceIndex;
-      }
+		if (end < cleanText.length) {
+			const spaceIndex = cleanText.indexOf(' ', end);
+			if (spaceIndex > 0 && spaceIndex < end + 20) end = spaceIndex;
+		}
 
-      snippet = cleanText.slice(start, end);
+		snippet = cleanText.slice(start, end);
 
-      // Add ellipsis
-      if (start > 0) snippet = "..." + snippet;
-      if (end < cleanText.length) snippet = snippet + "...";
-    }
+		// Add ellipsis
+		if (start > 0) snippet = `...${snippet}`;
+		if (end < cleanText.length) snippet = `${snippet}...`;
+	}
 
-    // Highlight the match
-    return highlightMatch(snippet, query);
-  }
+	// Highlight the match
+	return highlightMatch(snippet, query);
+}
 </script>
 
 <div class="flex-1 overflow-hidden flex flex-col">
@@ -301,9 +293,7 @@
           <div
             class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
           >
-            <div
-              class="animate-spin w-4 h-4 border-2 border-gray-300 dark:border-gray-600 border-t-blue-500 rounded-full"
-            ></div>
+            <IconLoader2 class="w-4 h-4 text-blue-500 animate-spin" />
             {s("search.searching") || "Searching..."}
           </div>
         {:else if results.length > 0}
@@ -341,9 +331,7 @@
           <div
             class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400"
           >
-            <div
-              class="animate-spin w-3 h-3 border-2 border-gray-300 dark:border-gray-600 border-t-blue-500 rounded-full"
-            ></div>
+            <IconLoader2 class="w-3 h-3 text-yellow-500 animate-spin" />
             {s("search.searching_historical") || "Searching historical..."}
           </div>
         {:else if historicalCount > 0}
@@ -491,12 +479,14 @@
                 {/if}
                 <h3
                   class="font-semibold text-gray-900 dark:text-white line-clamp-2 flex-1"
+                  dir="auto"
                 >
                   {@html highlightMatch(result.story.title || "", query)}
                 </h3>
               </div>
               <span
                 class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 shrink-0"
+                dir="auto"
               >
                 {result.categoryName}
               </span>
@@ -504,11 +494,11 @@
 
             <!-- Summary/Snippet -->
             {#if result.story.snippet}
-              <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
+              <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2" dir="auto">
                 {@html getSnippetWithHighlight(result.story.snippet, query)}
               </p>
             {:else if result.story.short_summary}
-              <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
+              <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2" dir="auto">
                 {@html getSnippetWithHighlight(
                   result.story.short_summary,
                   query,
@@ -521,7 +511,7 @@
               class="flex items-center text-xs text-gray-500 dark:text-gray-400"
             >
               {#if result.story.location}
-                <span>📍 {result.story.location}</span>
+                <span dir="auto">📍 {result.story.location}</span>
                 {#if result.story.unique_domains || (result.batchDate && !isToday(result.batchDate))}
                   <span class="mx-2">•</span>
                 {/if}
@@ -557,9 +547,7 @@
             <div
               class="flex items-center justify-center gap-2 text-sm text-gray-600 dark:text-gray-400"
             >
-              <div
-                class="animate-spin w-4 h-4 border-2 border-gray-300 dark:border-gray-600 border-t-blue-500 rounded-full"
-              ></div>
+              <IconLoader2 class="w-4 h-4 text-blue-500 animate-spin" />
               {s("search.loading_more") || "Loading more results..."}
             </div>
           {:else}

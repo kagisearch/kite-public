@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { s } from "$lib/client/localization.svelte";
-  import SettingsSections from "../settings/SettingsSections.svelte";
+import { s } from '$lib/client/localization.svelte';
+import SettingsSections from '../settings/SettingsSections.svelte';
 </script>
 
 <div class="space-y-6">

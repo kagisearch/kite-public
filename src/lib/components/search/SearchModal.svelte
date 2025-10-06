@@ -1,383 +1,452 @@
 <script lang="ts">
-  import { browser } from "$app/environment";
-  import { s } from "$lib/client/localization.svelte";
-  import { SearchService, type SearchResult } from "$lib/services/search";
-  import type { Story, Category } from "$lib/types";
-  import { scrollLock } from "$lib/utils/scrollLock";
-  import SearchInput from "./SearchInput.svelte";
-  import SearchResults from "./SearchResults.svelte";
+import { IconLoader2 } from '@tabler/icons-svelte';
+import { browser } from '$app/environment';
+import { s } from '$lib/client/localization.svelte';
+import { type SearchResult, SearchService } from '$lib/services/search';
+import type { Category, Story } from '$lib/types';
+import { scrollLock } from '$lib/utils/scrollLock';
+import SearchInput from './SearchInput.svelte';
+import SearchResults from './SearchResults.svelte';
 
-  interface Props {
-    visible: boolean;
-    allCategoryStories: Record<string, Story[]>;
-    categories: Category[];
-    currentCategory: string;
-    onClose: () => void;
-    onSelectStory: (
-      categoryId: string,
-      story: Story,
-      batchId?: string,
-      batchDate?: string,
-    ) => void;
-  }
+interface Props {
+	visible: boolean;
+	allCategoryStories: Record<string, Story[]>;
+	categories: Category[];
+	currentCategory: string;
+	onClose: () => void;
+	onSelectStory: (categoryId: string, story: Story, batchId?: string, batchDate?: string) => void;
+}
 
-  let {
-    visible,
-    allCategoryStories,
-    categories,
-    onClose,
-    onSelectStory,
-  }: Props = $props();
+let { visible, allCategoryStories, categories, onClose, onSelectStory }: Props = $props();
 
-  // Initialize search service
-  let searchService: SearchService;
-  let searchInput = $state<SearchInput>();
+// Initialize search service
+let searchService: SearchService;
+let searchInput = $state<SearchInput>();
 
-  // Local state
-  let searchState = $state({
-    query: "",
-    filters: [] as any[], // TODO: fix type
-    results: [] as SearchResult[],
-    localResults: [] as SearchResult[],
-    historicalResults: [] as SearchResult[],
-    isLoading: false,
-    isSearchingHistorical: false,
-    isLoadingMore: false,
-    hasMore: false,
-    selectedIndex: 0,
-    localCount: 0,
-    historicalCount: 0,
-    totalCount: 0,
-  });
+// Local state
+let searchState = $state({
+	query: '',
+	filters: [] as any[], // TODO: fix type
+	results: [] as SearchResult[],
+	localResults: [] as SearchResult[],
+	historicalResults: [] as SearchResult[],
+	isLoading: false,
+	isSearchingHistorical: false,
+	isLoadingMore: false,
+	hasMore: false,
+	selectedIndex: 0,
+	localCount: 0,
+	historicalCount: 0,
+	totalCount: 0,
+});
 
-  let filterSuggestions = $state<any[]>([]);
-  let filterSuggestionIndex = $state(0);
-  let showFilterSuggestions = $state(false);
-  let isLoadingBatch = $state(false);
-  let currentFilterContext = $state<any>(null);
+let filterSuggestions = $state<any[]>([]);
+let filterSuggestionIndex = $state(0);
+let showFilterSuggestions = $state(false);
+let isLoadingBatch = $state(false);
+let currentFilterContext = $state<any>(null);
 
-  // Initialize search service when categories change
-  $effect(() => {
-    if (categories.length > 0) {
-      if (!searchService) {
-        searchService = new SearchService(categories);
-      } else {
-        searchService.updateCategories(categories);
-      }
-    }
-  });
+// Initialize search service when categories change
+$effect(() => {
+	if (categories.length > 0) {
+		if (!searchService) {
+			searchService = new SearchService(categories);
+		} else {
+			searchService.updateCategories(categories);
+		}
+	}
+});
 
-  // Initialize search service with input element when visible
-  $effect(() => {
-    if (visible && searchService && searchInput) {
-      const element = searchInput.getElement();
-      searchService.initialize(element);
+// Initialize search service when visible
+$effect(() => {
+	if (visible && searchService) {
+		// Clear search when opening
+		searchService.clear();
+		searchState.filters = [];
+		searchState.query = '';
 
-      // Clear search when opening
-      searchService.clear();
+		// Reset loading state when modal opens
+		isLoadingBatch = false;
 
-      // Reset loading state when modal opens
-      isLoadingBatch = false;
+		// Focus input
+		if (searchInput) {
+			const element = searchInput.getElement();
+			if (element) {
+				setTimeout(() => element.focus(), 0);
+			}
+		}
+	}
+});
 
-      // Focus input
-      if (element) {
-        setTimeout(() => element.focus(), 0);
-      }
-    }
-  });
+// Handle scroll lock
+$effect(() => {
+	if (browser) {
+		if (visible) {
+			scrollLock.lock();
+		} else {
+			scrollLock.unlock();
+		}
 
-  // Handle scroll lock
-  $effect(() => {
-    if (browser) {
-      if (visible) {
-        scrollLock.lock();
-      } else {
-        scrollLock.unlock();
-      }
+		return () => scrollLock.unlock();
+	}
+});
 
-      return () => scrollLock.unlock();
-    }
-  });
+// Platform detection for keyboard shortcuts
+const isMac = $derived(
+	browser &&
+		(('userAgentData' in navigator && (navigator as any).userAgentData?.platform === 'macOS') ||
+			navigator.userAgent.toUpperCase().indexOf('MAC') >= 0),
+);
 
-  // Platform detection for keyboard shortcuts
-  const isMac = $derived(
-    browser &&
-      (("userAgentData" in navigator &&
-        (navigator as any).userAgentData?.platform === "macOS") ||
-        navigator.userAgent.toUpperCase().indexOf("MAC") >= 0),
-  );
+async function handleInput(text: string, cursorPosition: number) {
+	if (!searchService) return;
 
-  async function handleInput(text: string, cursorPosition: number) {
-    if (!searchService) return;
+	const result = searchService.updateFromInput(text, cursorPosition);
 
-    const result = searchService.updateFromInput(text, cursorPosition);
+	// Update filter suggestions and context
+	filterSuggestions = result.suggestions;
+	currentFilterContext = result.context;
+	showFilterSuggestions = filterSuggestions.length > 0;
+	filterSuggestionIndex = 0;
 
-    // Update filter suggestions and context
-    filterSuggestions = result.suggestions;
-    currentFilterContext = result.context;
-    showFilterSuggestions = filterSuggestions.length > 0;
-    filterSuggestionIndex = 0;
+	// Update local state
+	const state = searchService.getState();
+	searchState.query = state.query;
+	searchState.filters = state.filters;
 
-    // Update local state
-    const state = searchService.getState();
-    searchState.query = state.query;
-    searchState.filters = state.filters;
+	// Clear historical search state when query changes
+	searchState.isSearchingHistorical = false;
+	searchState.historicalCount = 0;
+	searchState.historicalResults = [];
+	searchState.totalCount = 0;
 
-    // Clear historical search state when query changes
-    searchState.isSearchingHistorical = false;
-    searchState.historicalCount = 0;
-    searchState.historicalResults = [];
-    searchState.totalCount = 0;
+	// Execute search
+	if (state.query || state.filters.some((f) => f.isValid)) {
+		try {
+			searchState.isLoading = true;
 
-    // Execute search
-    if (state.query || state.filters.some((f) => f.isValid)) {
-      try {
-        searchState.isLoading = true;
+			// Start search with progressive updates
+			searchService
+				.executeSearch(
+					allCategoryStories,
+					categories,
+					undefined,
+					(localResults: SearchResult[], count: number) => {
+						searchState.results = localResults;
+						searchState.localResults = localResults;
+						searchState.localCount = count;
+						searchState.selectedIndex = 0;
+						searchState.isLoading = false;
+					},
+					() => {
+						searchState.isSearchingHistorical = true;
+					},
+					(historicalResults: SearchResult[], count: number) => {
+						searchState.isSearchingHistorical = false;
+						searchState.historicalResults = historicalResults;
+						searchState.historicalCount = count;
+						// Get combined results from service
+						const state = searchService.getState();
+						searchState.results = state.results;
+						searchState.totalCount = state.totalCount;
+						searchState.hasMore = state.hasMore;
+					},
+					() => {
+						searchState.isSearchingHistorical = false;
+					},
+				)
+				.catch((error) => {
+					if (error?.name !== 'AbortError') {
+						console.error('Search failed:', error);
+					}
+					searchState.isLoading = false;
+				});
+		} catch (error) {
+			if (error instanceof Error && error.name !== 'AbortError') {
+				console.error('Search failed:', error);
+			}
+			searchState.isLoading = false;
+			searchState.isSearchingHistorical = false;
+		}
+	} else {
+		// Clear results and cancel any in-flight searches
+		searchService.clear();
+		searchState.results = [];
+		searchState.localResults = [];
+		searchState.historicalResults = [];
+		searchState.hasMore = false;
+		searchState.selectedIndex = 0;
+		searchState.isSearchingHistorical = false;
+		searchState.isLoading = false;
+		searchState.localCount = 0;
+		searchState.historicalCount = 0;
+		searchState.totalCount = 0;
+	}
+}
 
-        // Start search with progressive updates
-        searchService
-          .executeSearch(
-            allCategoryStories,
-            categories,
-            undefined,
-            (localResults: SearchResult[], count: number) => {
-              searchState.results = localResults;
-              searchState.localResults = localResults;
-              searchState.localCount = count;
-              searchState.selectedIndex = 0;
-              searchState.isLoading = false;
-            },
-            () => {
-              searchState.isSearchingHistorical = true;
-            },
-            (historicalResults: SearchResult[], count: number) => {
-              searchState.isSearchingHistorical = false;
-              searchState.historicalResults = historicalResults;
-              searchState.historicalCount = count;
-              // Get combined results from service
-              const state = searchService.getState();
-              searchState.results = state.results;
-              searchState.totalCount = state.totalCount;
-              searchState.hasMore = state.hasMore;
-            },
-            () => {
-              searchState.isSearchingHistorical = false;
-            },
-          )
-          .catch((error) => {
-            if (error?.name !== "AbortError") {
-              console.error("Search failed:", error);
-            }
-            searchState.isLoading = false;
-          });
-      } catch (error) {
-        if (error instanceof Error && error.name !== "AbortError") {
-          console.error("Search failed:", error);
-        }
-        searchState.isLoading = false;
-        searchState.isSearchingHistorical = false;
-      }
-    } else {
-      // Clear results and cancel any in-flight searches
-      searchService.clear();
-      searchState.results = [];
-      searchState.localResults = [];
-      searchState.historicalResults = [];
-      searchState.hasMore = false;
-      searchState.selectedIndex = 0;
-      searchState.isSearchingHistorical = false;
-      searchState.isLoading = false;
-      searchState.localCount = 0;
-      searchState.historicalCount = 0;
-      searchState.totalCount = 0;
-    }
-  }
+function handleKeyDown(event: KeyboardEvent) {
+	// Filter suggestions take priority when visible
+	if (showFilterSuggestions) {
+		handleFilterKeyboard(event);
+	} else {
+		handleSearchKeyboard(event);
+	}
+}
 
-  function handleKeyDown(event: KeyboardEvent) {
-    // Filter suggestions take priority when visible
-    if (showFilterSuggestions) {
-      handleFilterKeyboard(event);
-    } else {
-      handleSearchKeyboard(event);
-    }
-  }
+function handleFilterKeyboard(event: KeyboardEvent) {
+	switch (event.key) {
+		case 'ArrowDown':
+			event.preventDefault();
+			event.stopPropagation();
+			// Stop at the last suggestion, don't loop
+			filterSuggestionIndex = Math.min(filterSuggestionIndex + 1, filterSuggestions.length - 1);
+			break;
 
-  function handleFilterKeyboard(event: KeyboardEvent) {
-    switch (event.key) {
-      case "ArrowDown":
-        event.preventDefault();
-        event.stopPropagation();
-        // Stop at the last suggestion, don't loop
-        filterSuggestionIndex = Math.min(
-          filterSuggestionIndex + 1,
-          filterSuggestions.length - 1,
-        );
-        break;
+		case 'ArrowUp':
+			event.preventDefault();
+			event.stopPropagation();
+			// Stop at the first suggestion, don't loop
+			filterSuggestionIndex = Math.max(filterSuggestionIndex - 1, 0);
+			break;
 
-      case "ArrowUp":
-        event.preventDefault();
-        event.stopPropagation();
-        // Stop at the first suggestion, don't loop
-        filterSuggestionIndex = Math.max(filterSuggestionIndex - 1, 0);
-        break;
+		case 'Enter':
+		case 'Tab': {
+			event.preventDefault();
+			event.stopPropagation();
+			const selected = filterSuggestions[filterSuggestionIndex];
+			if (selected && searchService) {
+				handleApplySuggestion(selected);
+			}
+			break;
+		}
 
-      case "Enter":
-      case "Tab":
-        event.preventDefault();
-        event.stopPropagation();
-        const selected = filterSuggestions[filterSuggestionIndex];
-        if (selected && searchService) {
-          handleApplySuggestion(selected);
-        }
-        break;
+		case 'Escape':
+			event.preventDefault();
+			showFilterSuggestions = false;
+			break;
+	}
+}
 
-      case "Escape":
-        event.preventDefault();
-        showFilterSuggestions = false;
-        break;
-    }
-  }
+function handleSearchKeyboard(event: KeyboardEvent) {
+	switch (event.key) {
+		case 'Enter':
+			event.preventDefault();
+			if (searchState.results[searchState.selectedIndex]) {
+				handleSelectResult(searchState.results[searchState.selectedIndex]);
+			}
+			break;
 
-  function handleSearchKeyboard(event: KeyboardEvent) {
-    switch (event.key) {
-      case "Enter":
-        event.preventDefault();
-        if (searchState.results[searchState.selectedIndex]) {
-          handleSelectResult(searchState.results[searchState.selectedIndex]);
-        }
-        break;
+		case 'ArrowDown':
+			event.preventDefault();
+			if (searchState.results.length > 0) {
+				// Stop at the last item, don't loop
+				searchState.selectedIndex = Math.min(
+					searchState.selectedIndex + 1,
+					searchState.results.length - 1,
+				);
+			}
+			break;
 
-      case "ArrowDown":
-        event.preventDefault();
-        if (searchState.results.length > 0) {
-          // Stop at the last item, don't loop
-          searchState.selectedIndex = Math.min(
-            searchState.selectedIndex + 1,
-            searchState.results.length - 1,
-          );
-        }
-        break;
+		case 'ArrowUp':
+			event.preventDefault();
+			if (searchState.results.length > 0) {
+				// Stop at the first item, don't loop
+				searchState.selectedIndex = Math.max(searchState.selectedIndex - 1, 0);
+			}
+			break;
 
-      case "ArrowUp":
-        event.preventDefault();
-        if (searchState.results.length > 0) {
-          // Stop at the first item, don't loop
-          searchState.selectedIndex = Math.max(
-            searchState.selectedIndex - 1,
-            0,
-          );
-        }
-        break;
+		case 'Backspace':
+			// Backspace is handled naturally by the contenteditable
+			break;
 
-      case "Backspace":
-        if (searchService) {
-          const handled = searchService.handleChipDeletion(event);
-          if (handled) {
-            // Refresh input after chip deletion
-            const element = searchInput?.getElement();
-            if (element) {
-              const newText = searchService.getState().query;
-              handleInput(newText, 0);
-            }
-          }
-        }
-        break;
+		case 'Escape':
+			event.preventDefault();
+			if (!isLoadingBatch) {
+				onClose();
+			}
+			break;
+	}
+}
 
-      case "Escape":
-        event.preventDefault();
-        if (!isLoadingBatch) {
-          onClose();
-        }
-        break;
-    }
-  }
+function handleApplySuggestion(suggestion: any) {
+	if (!searchService || !currentFilterContext) return;
 
-  function handleApplySuggestion(suggestion: any) {
-    if (!searchService || !currentFilterContext) return;
+	// For filter type suggestions (e.g., "cat" -> "category:"), just replace the text
+	if (suggestion.isFilterType) {
+		const element = searchInput?.getElement();
+		if (element) {
+			// Replace the partial text with the filter type
+			const text = element.textContent || '';
+			const newText = text.replace(/\b\w+$/, suggestion.value);
+			element.textContent = newText;
 
-    // Use the actual context from when the suggestion was generated
-    const success = searchService.applyFilterSuggestion(
-      suggestion,
-      currentFilterContext,
-    );
+			// Place cursor at the end
+			const range = document.createRange();
+			const sel = window.getSelection();
+			range.selectNodeContents(element);
+			range.collapse(false);
+			sel?.removeAllRanges();
+			sel?.addRange(range);
+		}
+	} else {
+		// Add the filter to the state
+		const newFilter = {
+			type: currentFilterContext.type,
+			value: suggestion.value,
+			display: suggestion.display || suggestion.value,
+			isValid: true,
+		};
 
-    // Clear suggestions and context immediately and aggressively
-    showFilterSuggestions = false;
-    filterSuggestions = [];
-    currentFilterContext = null;
-    filterSuggestionIndex = 0;
+		searchState.filters = [...searchState.filters, newFilter];
 
-    if (success) {
-      // Wait a tick for the DOM to update, then refresh with clean text
-      setTimeout(() => {
-        const element = searchInput?.getElement();
-        if (element) {
-          // Clean up the element content first
-          element.normalize();
+		// Clear the filter text from the input
+		const element = searchInput?.getElement();
+		if (element) {
+			const text = element.textContent || '';
+			// Remove the filter pattern (e.g., "category:wor")
+			const newText = text.replace(/\b(category|date|from|to):\S*\s*$/i, '');
+			element.textContent = newText;
 
-          // Get clean text from the search service instead of DOM
-          const cleanText = searchService.getState().query;
+			// Place cursor at the end
+			const range = document.createRange();
+			const sel = window.getSelection();
+			range.selectNodeContents(element);
+			range.collapse(false);
+			sel?.removeAllRanges();
+			sel?.addRange(range);
+		}
 
-          // Force refresh with empty cursor position to avoid stale context
-          handleInput(cleanText, 0);
-        }
-      }, 0);
-    }
-  }
+		// Update search service state
+		searchService.state.filters = searchState.filters;
 
-  async function handleLoadMore() {
-    if (!searchService || searchState.isLoadingMore) return;
+		// Execute search with the new filter
+		executeSearchWithCurrentState();
+	}
 
-    searchState.isLoadingMore = true;
+	// Clear suggestions
+	showFilterSuggestions = false;
+	filterSuggestions = [];
+	currentFilterContext = null;
+	filterSuggestionIndex = 0;
+}
 
-    try {
-      await searchService.loadMoreResults();
+function handleRemoveFilter(index: number) {
+	// Remove the filter at the specified index
+	searchState.filters = searchState.filters.filter((_, i) => i !== index);
 
-      // Update state with new results after loading
-      const state = searchService.getState();
-      searchState.results = state.results;
-      searchState.hasMore = state.hasMore;
-      searchState.totalCount = state.totalCount;
-      searchState.historicalCount = state.totalCount;
-    } catch (error) {
-      console.error("Failed to load more results:", error);
-    } finally {
-      searchState.isLoadingMore = false;
-    }
-  }
+	// Update search service state
+	if (searchService) {
+		searchService.state.filters = searchState.filters;
+	}
 
-  async function handleSelectResult(result: SearchResult) {
-    try {
-      if (result.batchId) {
-        isLoadingBatch = true;
-      }
+	// Re-execute search
+	executeSearchWithCurrentState();
+}
 
-      await onSelectStory(
-        result.categoryId,
-        result.story,
-        result.batchId,
-        result.batchDate,
-      );
+function executeSearchWithCurrentState() {
+	if (!searchService) return;
 
-      // Only close modal if not loading batch (current results)
-      // Historical results will close the modal after loading completes
-      if (!result.batchId) {
-        onClose();
-      }
-    } catch (error) {
-      console.error("Error selecting story:", error);
-      isLoadingBatch = false;
-    }
-  }
+	// Execute search with current query and filters
+	if (searchState.query || searchState.filters.some((f) => f.isValid)) {
+		try {
+			searchState.isLoading = true;
 
-  // Cleanup
-  $effect(() => {
-    return () => {
-      if (searchService) {
-        searchService.destroy();
-      }
-    };
-  });
+			searchService
+				.executeSearch(
+					allCategoryStories,
+					categories,
+					undefined,
+					(localResults: SearchResult[], count: number) => {
+						searchState.results = localResults;
+						searchState.localResults = localResults;
+						searchState.localCount = count;
+						searchState.selectedIndex = 0;
+						searchState.isLoading = false;
+					},
+					() => {
+						searchState.isSearchingHistorical = true;
+					},
+					(historicalResults: SearchResult[], count: number) => {
+						searchState.isSearchingHistorical = false;
+						searchState.historicalResults = historicalResults;
+						searchState.historicalCount = count;
+						const state = searchService.getState();
+						searchState.results = state.results;
+						searchState.totalCount = state.totalCount;
+						searchState.hasMore = state.hasMore;
+					},
+					() => {
+						searchState.isSearchingHistorical = false;
+					},
+				)
+				.catch((error) => {
+					if (error?.name !== 'AbortError') {
+						console.error('Search failed:', error);
+					}
+					searchState.isLoading = false;
+				});
+		} catch (error) {
+			console.error('Search failed:', error);
+			searchState.isLoading = false;
+			searchState.isSearchingHistorical = false;
+		}
+	} else {
+		searchState.results = [];
+		searchState.localResults = [];
+		searchState.historicalResults = [];
+		searchState.hasMore = false;
+		searchState.selectedIndex = 0;
+	}
+}
+
+async function handleLoadMore() {
+	if (!searchService || searchState.isLoadingMore) return;
+
+	searchState.isLoadingMore = true;
+
+	try {
+		await searchService.loadMoreResults();
+
+		// Update state with new results after loading
+		const state = searchService.getState();
+		searchState.results = state.results;
+		searchState.hasMore = state.hasMore;
+		searchState.totalCount = state.totalCount;
+		searchState.historicalCount = state.totalCount;
+	} catch (error) {
+		console.error('Failed to load more results:', error);
+	} finally {
+		searchState.isLoadingMore = false;
+	}
+}
+
+async function handleSelectResult(result: SearchResult) {
+	try {
+		if (result.batchId) {
+			isLoadingBatch = true;
+		}
+
+		await onSelectStory(result.categoryId, result.story, result.batchId, result.batchDate);
+
+		// Only close modal if not loading batch (current results)
+		// Historical results will close the modal after loading completes
+		if (!result.batchId) {
+			onClose();
+		}
+	} catch (error) {
+		console.error('Error selecting story:', error);
+		isLoadingBatch = false;
+	}
+}
+
+// Cleanup
+$effect(() => {
+	return () => {
+		if (searchService) {
+			searchService.destroy();
+		}
+	};
+});
 </script>
 
 {#if visible}
@@ -414,9 +483,7 @@
           class="absolute inset-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm z-50 flex items-center justify-center"
         >
           <div class="text-center">
-            <div
-              class="animate-spin w-8 h-8 border-4 border-gray-300 dark:border-gray-600 border-t-blue-500 rounded-full mx-auto mb-4"
-            ></div>
+            <IconLoader2 class="w-8 h-8 text-blue-500 animate-spin mx-auto mb-4" />
             <p class="text-sm text-gray-600 dark:text-gray-400">
               {s("search.loading_historical_data") ||
                 "Loading historical data..."}
@@ -428,13 +495,14 @@
       <div class="border-b border-gray-200 dark:border-gray-700">
         <SearchInput
           bind:this={searchInput}
-          bind:value={searchState.query}
+          filters={searchState.filters}
           suggestions={filterSuggestions}
           selectedSuggestionIndex={filterSuggestionIndex}
           isLoading={searchState.isLoading}
           onInput={handleInput}
           onKeydown={handleKeyDown}
           onApplySuggestion={handleApplySuggestion}
+          onRemoveFilter={handleRemoveFilter}
         />
       </div>
 

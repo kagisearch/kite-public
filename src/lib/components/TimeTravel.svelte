@@ -1,360 +1,308 @@
 <script lang="ts">
-  // Removed animations for consistency with Settings component
-  import { s } from "$lib/client/localization.svelte";
-  import { timeTravelNavigationService } from "$lib/services/timeTravelNavigationService";
-  import { dataLanguage } from "$lib/stores/dataLanguage.svelte.js";
-  import { language } from "$lib/stores/language.svelte.js";
-  import { timeTravel } from "$lib/stores/timeTravel.svelte.js";
+// Removed animations for consistency with Settings component
+import { s } from '$lib/client/localization.svelte';
+import { languageSettings } from '$lib/data/settings.svelte.js';
+import { timeTravelNavigationService } from '$lib/services/timeTravelNavigationService';
+import { timeTravel } from '$lib/stores/timeTravel.svelte.js';
 
-  interface BatchInfo {
-    id: string;
-    createdAt: string;
-    language: string;
-    totalStories: number;
-    time: string;
-  }
+interface BatchInfo {
+	id: string;
+	createdAt: string;
+	language: string;
+	totalStories: number;
+	time: string;
+}
 
-  interface DayBatches {
-    [date: string]: BatchInfo[];
-  }
+interface DayBatches {
+	[date: string]: BatchInfo[];
+}
 
-  // Component state
-  let currentMonth = $state(new Date());
-  let loading = $state(false);
-  let monthBatches = $state<DayBatches>({});
-  let selectedDayBatches = $state<BatchInfo[]>([]);
-  let showBatchSelector = $state(false);
-  let showYearPicker = $state(false);
-  let isSelectingBatch = $state(false);
+// Component state
+let currentMonth = $state(new Date());
+let loading = $state(false);
+let monthBatches = $state<DayBatches>({});
+let selectedDayBatches = $state<BatchInfo[]>([]);
+let showBatchSelector = $state(false);
+let showYearPicker = $state(false);
+let isSelectingBatch = $state(false);
 
-  // Define reasonable date boundaries
-  const MIN_DATE = new Date(2024, 0, 1); // January 1, 2024
-  const MAX_DATE = new Date(); // Today
-  // Set MAX_DATE to end of today to avoid timezone issues
-  MAX_DATE.setHours(23, 59, 59, 999);
+// Define reasonable date boundaries
+const MIN_DATE = new Date(2024, 0, 1); // January 1, 2024
+const MAX_DATE = new Date(); // Today
+// Set MAX_DATE to end of today to avoid timezone issues
+MAX_DATE.setHours(23, 59, 59, 999);
 
-  // Calculate calendar days
-  const calendarDays = $derived.by(() => {
-    const year = currentMonth.getFullYear();
-    const month = currentMonth.getMonth();
-    const firstDay = new Date(year, month, 1, 12, 0, 0); // Set to noon to avoid timezone issues
-    const lastDay = new Date(year, month + 1, 0, 12, 0, 0);
-    const startDate = new Date(firstDay);
-    startDate.setDate(startDate.getDate() - firstDay.getDay());
+// Calculate calendar days
+const calendarDays = $derived.by(() => {
+	const year = currentMonth.getFullYear();
+	const month = currentMonth.getMonth();
+	const firstDay = new Date(year, month, 1, 12, 0, 0); // Set to noon to avoid timezone issues
+	const lastDay = new Date(year, month + 1, 0, 12, 0, 0);
+	const startDate = new Date(firstDay);
+	startDate.setDate(startDate.getDate() - firstDay.getDay());
 
-    const days = [];
-    const endDate = new Date(lastDay);
-    endDate.setDate(endDate.getDate() + (6 - lastDay.getDay()));
+	const days = [];
+	const endDate = new Date(lastDay);
+	endDate.setDate(endDate.getDate() + (6 - lastDay.getDay()));
 
-    for (
-      let date = new Date(startDate);
-      date <= endDate;
-      date.setDate(date.getDate() + 1)
-    ) {
-      // Create a new date at noon to avoid timezone issues
-      const dayDate = new Date(
-        date.getFullYear(),
-        date.getMonth(),
-        date.getDate(),
-        12,
-        0,
-        0,
-      );
-      days.push(dayDate);
-    }
+	for (let date = new Date(startDate); date <= endDate; date.setDate(date.getDate() + 1)) {
+		// Create a new date at noon to avoid timezone issues
+		const dayDate = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12, 0, 0);
+		days.push(dayDate);
+	}
 
-    return days;
-  });
+	return days;
+});
 
-  // Month/year display
-  const monthYearDisplay = $derived(
-    new Intl.DateTimeFormat(language.current, {
-      month: "long",
-      year: "numeric",
-    }).format(currentMonth),
-  );
+// Month/year display
+const monthYearDisplay = $derived(
+	new Intl.DateTimeFormat(languageSettings.ui, {
+		month: 'long',
+		year: 'numeric',
+	}).format(currentMonth),
+);
 
-  // Weekday headers
-  const weekdayHeaders = $derived.by(() => {
-    const formatter = new Intl.DateTimeFormat(language.current, {
-      weekday: "short",
-    });
-    const days = [];
-    for (let i = 0; i < 7; i++) {
-      const date = new Date(2024, 0, i + 7); // Start from Sunday
-      days.push(formatter.format(date));
-    }
-    return days;
-  });
+// Weekday headers
+const weekdayHeaders = $derived.by(() => {
+	const formatter = new Intl.DateTimeFormat(languageSettings.ui, {
+		weekday: 'short',
+	});
+	const days = [];
+	for (let i = 0; i < 7; i++) {
+		const date = new Date(2024, 0, i + 7); // Start from Sunday
+		days.push(formatter.format(date));
+	}
+	return days;
+});
 
-  // Load batches for current month
-  async function loadMonthBatches() {
-    loading = true;
-    try {
-      const startOfMonth = new Date(
-        currentMonth.getFullYear(),
-        currentMonth.getMonth(),
-        1,
-      );
-      const endOfMonth = new Date(
-        currentMonth.getFullYear(),
-        currentMonth.getMonth() + 1,
-        0,
-        23,
-        59,
-        59,
-      );
+// Load batches for current month
+async function loadMonthBatches() {
+	loading = true;
+	try {
+		const startOfMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1);
+		const endOfMonth = new Date(
+			currentMonth.getFullYear(),
+			currentMonth.getMonth() + 1,
+			0,
+			23,
+			59,
+			59,
+		);
 
-      const response = await fetch(
-        `/api/batches?from=${startOfMonth.toISOString()}&to=${endOfMonth.toISOString()}&lang=${dataLanguage.current}`,
-      );
+		const response = await fetch(
+			`/api/batches?from=${startOfMonth.toISOString()}&to=${endOfMonth.toISOString()}&lang=${languageSettings.data}`,
+		);
 
-      if (!response.ok) throw new Error("Failed to load batches");
+		if (!response.ok) throw new Error('Failed to load batches');
 
-      const data = await response.json();
+		const data = await response.json();
 
-      // Group batches by date
-      const grouped: DayBatches = {};
-      for (const batch of data.batches) {
-        const date = new Date(batch.createdAt);
-        const dateKey = date.toISOString().split("T")[0];
-        const timeStr = date.toLocaleTimeString(language.current, {
-          hour: "2-digit",
-          minute: "2-digit",
-        });
+		// Group batches by date
+		const grouped: DayBatches = {};
+		for (const batch of data.batches) {
+			const date = new Date(batch.createdAt);
+			const dateKey = date.toISOString().split('T')[0];
+			const timeStr = date.toLocaleTimeString(languageSettings.ui, {
+				hour: '2-digit',
+				minute: '2-digit',
+			});
 
-        if (!grouped[dateKey]) {
-          grouped[dateKey] = [];
-        }
+			if (!grouped[dateKey]) {
+				grouped[dateKey] = [];
+			}
 
-        grouped[dateKey].push({
-          id: batch.id,
-          createdAt: batch.createdAt,
-          language: batch.language,
-          totalStories: batch.totalClusters,
-          time: timeStr,
-        });
-      }
+			grouped[dateKey].push({
+				id: batch.id,
+				createdAt: batch.createdAt,
+				language: batch.language,
+				totalStories: batch.totalClusters,
+				time: timeStr,
+			});
+		}
 
-      // Sort batches within each day by time (newest first)
-      for (const dateKey in grouped) {
-        grouped[dateKey].sort(
-          (a, b) =>
-            new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-        );
-      }
+		// Sort batches within each day by time (newest first)
+		for (const dateKey in grouped) {
+			grouped[dateKey].sort(
+				(a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+			);
+		}
 
-      monthBatches = grouped;
-    } catch (error) {
-      console.error("Error loading batches:", error);
-      // Keep the modal open on error
-    } finally {
-      loading = false;
-    }
-  }
+		monthBatches = grouped;
+	} catch (error) {
+		console.error('Error loading batches:', error);
+		// Keep the modal open on error
+	} finally {
+		loading = false;
+	}
+}
 
-  // Check if a date has batches
-  function hasBatches(date: Date): boolean {
-    const dateKey = date.toISOString().split("T")[0];
-    return monthBatches[dateKey] && monthBatches[dateKey].length > 0;
-  }
+// Check if a date has batches
+function hasBatches(date: Date): boolean {
+	const dateKey = date.toISOString().split('T')[0];
+	return monthBatches[dateKey] && monthBatches[dateKey].length > 0;
+}
 
-  // Get batch count for a date
-  function getBatchCount(date: Date): number {
-    const dateKey = date.toISOString().split("T")[0];
-    return monthBatches[dateKey]?.length || 0;
-  }
+// Get batch count for a date
+function getBatchCount(date: Date): number {
+	const dateKey = date.toISOString().split('T')[0];
+	return monthBatches[dateKey]?.length || 0;
+}
 
-  // Check if date is today
-  function isToday(date: Date): boolean {
-    const today = new Date();
-    return (
-      date.getFullYear() === today.getFullYear() &&
-      date.getMonth() === today.getMonth() &&
-      date.getDate() === today.getDate()
-    );
-  }
+// Check if date is today
+function isToday(date: Date): boolean {
+	const today = new Date();
+	return (
+		date.getFullYear() === today.getFullYear() &&
+		date.getMonth() === today.getMonth() &&
+		date.getDate() === today.getDate()
+	);
+}
 
-  // Check if date is in current month
-  function isCurrentMonth(date: Date): boolean {
-    return (
-      date.getMonth() === currentMonth.getMonth() &&
-      date.getFullYear() === currentMonth.getFullYear()
-    );
-  }
+// Check if date is in current month
+function isCurrentMonth(date: Date): boolean {
+	return (
+		date.getMonth() === currentMonth.getMonth() && date.getFullYear() === currentMonth.getFullYear()
+	);
+}
 
-  // Check if date is within allowed range
-  function isDateInRange(date: Date): boolean {
-    // Compare only the date parts, ignoring time
-    const dateOnly = new Date(
-      date.getFullYear(),
-      date.getMonth(),
-      date.getDate(),
-    );
-    const minDateOnly = new Date(
-      MIN_DATE.getFullYear(),
-      MIN_DATE.getMonth(),
-      MIN_DATE.getDate(),
-    );
-    const maxDateOnly = new Date(
-      MAX_DATE.getFullYear(),
-      MAX_DATE.getMonth(),
-      MAX_DATE.getDate(),
-    );
-    return dateOnly >= minDateOnly && dateOnly <= maxDateOnly;
-  }
+// Check if date is within allowed range
+function isDateInRange(date: Date): boolean {
+	// Compare only the date parts, ignoring time
+	const dateOnly = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+	const minDateOnly = new Date(MIN_DATE.getFullYear(), MIN_DATE.getMonth(), MIN_DATE.getDate());
+	const maxDateOnly = new Date(MAX_DATE.getFullYear(), MAX_DATE.getMonth(), MAX_DATE.getDate());
+	return dateOnly >= minDateOnly && dateOnly <= maxDateOnly;
+}
 
-  // Check if we can navigate
-  function canNavigatePrevious(): boolean {
-    const prevMonth = new Date(
-      currentMonth.getFullYear(),
-      currentMonth.getMonth() - 1,
-      1,
-    );
-    return prevMonth >= MIN_DATE;
-  }
+// Check if we can navigate
+function canNavigatePrevious(): boolean {
+	const prevMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1);
+	return prevMonth >= MIN_DATE;
+}
 
-  function canNavigateNext(): boolean {
-    const nextMonth = new Date(
-      currentMonth.getFullYear(),
-      currentMonth.getMonth() + 1,
-      1,
-    );
-    return nextMonth <= MAX_DATE;
-  }
+function canNavigateNext(): boolean {
+	const nextMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1);
+	return nextMonth <= MAX_DATE;
+}
 
-  // Navigate months
-  function previousMonth() {
-    if (!canNavigatePrevious()) return;
-    currentMonth = new Date(
-      currentMonth.getFullYear(),
-      currentMonth.getMonth() - 1,
-      1,
-    );
-    loadMonthBatches();
-  }
+// Navigate months
+function previousMonth() {
+	if (!canNavigatePrevious()) return;
+	currentMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1);
+	loadMonthBatches();
+}
 
-  function nextMonth() {
-    if (!canNavigateNext()) return;
-    currentMonth = new Date(
-      currentMonth.getFullYear(),
-      currentMonth.getMonth() + 1,
-      1,
-    );
-    loadMonthBatches();
-  }
+function nextMonth() {
+	if (!canNavigateNext()) return;
+	currentMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1);
+	loadMonthBatches();
+}
 
-  async function goToToday() {
-    isSelectingBatch = true;
-    try {
-      await timeTravelNavigationService.exitTimeTravel();
-    } finally {
-      isSelectingBatch = false;
-      timeTravel.close();
-    }
-  }
+async function goToToday() {
+	isSelectingBatch = true;
+	try {
+		await timeTravelNavigationService.exitTimeTravel();
+	} finally {
+		isSelectingBatch = false;
+		timeTravel.close();
+	}
+}
 
-  // Year picker
-  function selectYear(year: number) {
-    currentMonth = new Date(year, currentMonth.getMonth(), 1);
-    // Ensure we're within bounds
-    if (currentMonth < MIN_DATE) {
-      currentMonth = new Date(MIN_DATE);
-    } else if (currentMonth > MAX_DATE) {
-      currentMonth = new Date(MAX_DATE.getFullYear(), MAX_DATE.getMonth(), 1);
-    }
-    showYearPicker = false;
-    loadMonthBatches();
-  }
+// Year picker
+function selectYear(year: number) {
+	currentMonth = new Date(year, currentMonth.getMonth(), 1);
+	// Ensure we're within bounds
+	if (currentMonth < MIN_DATE) {
+		currentMonth = new Date(MIN_DATE);
+	} else if (currentMonth > MAX_DATE) {
+		currentMonth = new Date(MAX_DATE.getFullYear(), MAX_DATE.getMonth(), 1);
+	}
+	showYearPicker = false;
+	loadMonthBatches();
+}
 
-  // Get available years
-  const availableYears = $derived.by(() => {
-    const years = [];
-    for (
-      let year = MIN_DATE.getFullYear();
-      year <= MAX_DATE.getFullYear();
-      year++
-    ) {
-      years.push(year);
-    }
-    return years;
-  });
+// Get available years
+const availableYears = $derived.by(() => {
+	const years = [];
+	for (let year = MIN_DATE.getFullYear(); year <= MAX_DATE.getFullYear(); year++) {
+		years.push(year);
+	}
+	return years;
+});
 
-  // Handle day selection
-  function selectDay(date: Date) {
-    try {
-      const dateKey = date.toISOString().split("T")[0];
-      const batches = monthBatches[dateKey];
+// Handle day selection
+function selectDay(date: Date) {
+	try {
+		const dateKey = date.toISOString().split('T')[0];
+		const batches = monthBatches[dateKey];
 
-      if (batches && batches.length > 0) {
-        // Always show batch selector to display hourly updates
-        selectedDayBatches = batches;
-        showBatchSelector = true;
-      }
-    } catch (error) {
-      console.error("Error in selectDay:", error);
-    }
-  }
+		if (batches && batches.length > 0) {
+			// Always show batch selector to display hourly updates
+			selectedDayBatches = batches;
+			showBatchSelector = true;
+		}
+	} catch (error) {
+		console.error('Error in selectDay:', error);
+	}
+}
 
-  // Select a specific batch
-  async function selectBatch(batch: BatchInfo) {
-    isSelectingBatch = true;
+// Select a specific batch
+async function selectBatch(batch: BatchInfo) {
+	isSelectingBatch = true;
 
-    try {
-      // Check if this is the absolute latest batch by fetching the current latest
-      const latestResponse = await fetch(
-        `/api/batches/latest?lang=${dataLanguage.current}`,
-      );
-      const latestData = await latestResponse.json();
-      // The API returns the batch directly, not wrapped in a 'batch' property
-      const isLatestBatch = latestData.id && latestData.id === batch.id;
+	try {
+		// Check if this is the absolute latest batch by fetching the current latest
+		const latestResponse = await fetch(`/api/batches/latest?lang=${languageSettings.data}`);
+		const latestData = await latestResponse.json();
+		// The API returns the batch directly, not wrapped in a 'batch' property
+		const isLatestBatch = latestData.id && latestData.id === batch.id;
 
-      console.log("Selecting batch:", {
-        batchId: batch.id,
-        latestBatchId: latestData.id,
-        isLatestBatch,
-      });
+		console.log('Selecting batch:', {
+			batchId: batch.id,
+			latestBatchId: latestData.id,
+			isLatestBatch,
+		});
 
-      if (isLatestBatch) {
-        // For the latest batch, exit time travel mode
-        console.log("Going to live mode - resetting time travel");
-        await timeTravelNavigationService.exitTimeTravel();
-      } else {
-        // For all other batches, enter time travel mode
-        console.log("Setting time travel mode for batch:", batch.id);
-        await timeTravelNavigationService.enterTimeTravel({
-          batchId: batch.id,
-          batchDate: batch.createdAt,
-          reload: true,
-        });
-      }
-    } catch (error) {
-      console.error("Error selecting batch:", error);
-    } finally {
-      isSelectingBatch = false;
-      timeTravel.close();
-    }
-  }
+		if (isLatestBatch) {
+			// For the latest batch, exit time travel mode
+			console.log('Going to live mode - resetting time travel');
+			await timeTravelNavigationService.exitTimeTravel();
+		} else {
+			// For all other batches, enter time travel mode
+			console.log('Setting time travel mode for batch:', batch.id);
+			await timeTravelNavigationService.enterTimeTravel({
+				batchId: batch.id,
+				batchDate: batch.createdAt,
+				reload: true,
+			});
+		}
+	} catch (error) {
+		console.error('Error selecting batch:', error);
+	} finally {
+		isSelectingBatch = false;
+		timeTravel.close();
+	}
+}
 
-  // Close modal on escape or backdrop click
-  function handleKeydown(event: KeyboardEvent) {
-    if (event.key === "Escape") {
-      timeTravel.close();
-    }
-  }
+// Close modal on escape or backdrop click
+function handleKeydown(event: KeyboardEvent) {
+	if (event.key === 'Escape') {
+		timeTravel.close();
+	}
+}
 
-  function handleBackdropClick(event: MouseEvent) {
-    if (event.target === event.currentTarget) {
-      timeTravel.close();
-    }
-  }
+function handleBackdropClick(event: MouseEvent) {
+	if (event.target === event.currentTarget) {
+		timeTravel.close();
+	}
+}
 
-  // Load batches when modal opens
-  $effect(() => {
-    if (timeTravel.isOpen) {
-      loadMonthBatches();
-    }
-  });
+// Load batches when modal opens
+$effect(() => {
+	if (timeTravel.isOpen) {
+		loadMonthBatches();
+	}
+});
 </script>
 
 {#if timeTravel.isOpen}
@@ -547,7 +495,7 @@
 
                 {#if hasBatch && inRange}
                   <div
-                    class="absolute bottom-0.5 left-1/2 transform -translate-x-1/2 flex gap-0.5"
+                    class="absolute bottom-0.5 left-1/2 ltr:-translate-x-1/2 rtl:translate-x-1/2 flex gap-0.5"
                   >
                     {#each Array(Math.min(batchCount, 3)) as _}
                       <div
@@ -570,7 +518,7 @@
         {@const selectedDate = selectedDayBatches[0]
           ? new Date(selectedDayBatches[0].createdAt)
           : new Date()}
-        {@const dateStr = new Intl.DateTimeFormat(language.current, {
+        {@const dateStr = new Intl.DateTimeFormat(languageSettings.ui, {
           weekday: "long",
           month: "long",
           day: "numeric",
@@ -609,7 +557,7 @@
           <div class="space-y-2 max-h-96 overflow-y-auto">
             {#each selectedDayBatches as batch, index}
               {@const batchDate = new Date(batch.createdAt)}
-              {@const timeStr = batchDate.toLocaleTimeString(language.current, {
+              {@const timeStr = batchDate.toLocaleTimeString(languageSettings.ui, {
                 hour: "2-digit",
                 minute: "2-digit",
                 hour12: true,

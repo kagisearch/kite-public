@@ -1,306 +1,308 @@
 <script lang="ts">
-  import { s } from "$lib/client/localization.svelte";
-  import Select from "$lib/components/Select.svelte";
-  import {
-    categoryMetadataService,
-    type CategoryMetadata,
-  } from "$lib/services/categoryMetadataService";
-  import { categories } from "$lib/stores/categories.svelte.js";
-  import type { Category } from "$lib/types";
-  import { getCategoryDisplayName } from "$lib/utils/category";
-  import {
-    IconNews,
-    IconWorld,
-    IconMapPin,
-    IconBuilding,
-    IconBulb,
-    IconDots,
-    IconX,
-    IconPlus,
-  } from "@tabler/icons-svelte";
-  import { untrack } from "svelte";
-  import { dndzone, TRIGGERS } from "svelte-dnd-action";
-  import { flip } from "svelte/animate";
+import {
+	IconBuilding,
+	IconBulb,
+	IconDots,
+	IconMapPin,
+	IconNews,
+	IconPlus,
+	IconWorld,
+	IconX,
+} from '@tabler/icons-svelte';
+import { untrack } from 'svelte';
+import { flip } from 'svelte/animate';
+import { dndzone, TRIGGERS } from 'svelte-dnd-action';
+import { s } from '$lib/client/localization.svelte';
+import Select from '$lib/components/Select.svelte';
+import { categorySettings } from '$lib/data/settings.svelte.js';
+import {
+	type CategoryMetadata,
+	categoryMetadataService,
+} from '$lib/services/categoryMetadataService';
+import type { Category } from '$lib/types';
+import { getCategoryDisplayName } from '$lib/utils/category';
 
-  // Props
-  interface Props {
-    categories?: Category[];
-  }
+// Props
+interface Props {
+	categories?: Category[];
+}
 
-  let { categories: allCategories = [] }: Props = $props();
+let { categories: allCategories = [] }: Props = $props();
 
-  // Track dragging state
-  let isDragging = $state(false);
-  let draggedItemId = $state<string | null>(null);
+// Track dragging state
+let isDragging = $state(false);
+let draggedItemId = $state<string | null>(null);
 
-  // Animation duration
-  const flipDurationMs = 200;
+// Animation duration
+const flipDurationMs = 200;
 
-  // Local state for drag and drop - only updated when not dragging
-  let enabledItems = $state<Array<{ id: string; name: string }>>([]);
-  let disabledItems = $state<Array<{ id: string; name: string }>>([]);
+// Local state for drag and drop - only updated when not dragging
+let enabledItems = $state<Array<{ id: string; name: string }>>([]);
+let disabledItems = $state<Array<{ id: string; name: string }>>([]);
 
-  // Category metadata and filtering
-  let categoryMetadata = $state<CategoryMetadata[]>([]);
-  let categoryFilter = $state("all");
+// Category metadata and filtering
+let categoryMetadata = $state<CategoryMetadata[]>([]);
+let categoryFilter = $state('all');
 
-  // Filter options for the Select component
-  const filterOptions = $derived([
-    { value: "all", label: s("settings.categories.types.all") || "All types" },
-    {
-      value: "core",
-      label: s("settings.categories.types.core") || "Core",
-      icon: IconNews,
-    },
-    {
-      value: "country",
-      label: s("settings.categories.types.country") || "Countries",
-      icon: IconWorld,
-    },
-    {
-      value: "region",
-      label: s("settings.categories.types.region") || "Regions",
-      icon: IconMapPin,
-    },
-    {
-      value: "city",
-      label: s("settings.categories.types.city") || "Cities",
-      icon: IconBuilding,
-    },
-    {
-      value: "topic",
-      label: s("settings.categories.types.topic") || "Topics",
-      icon: IconBulb,
-    },
-    {
-      value: "other",
-      label: s("settings.categories.types.other") || "Other",
-      icon: IconDots,
-    },
-  ]);
+// Filter options for the Select component
+const filterOptions = $derived([
+	{ value: 'all', label: s('settings.categories.types.all') || 'All types' },
+	{
+		value: 'core',
+		label: s('settings.categories.types.core') || 'Core',
+		icon: IconNews,
+	},
+	{
+		value: 'country',
+		label: s('settings.categories.types.country') || 'Countries',
+		icon: IconWorld,
+	},
+	{
+		value: 'region',
+		label: s('settings.categories.types.region') || 'Regions',
+		icon: IconMapPin,
+	},
+	{
+		value: 'city',
+		label: s('settings.categories.types.city') || 'Cities',
+		icon: IconBuilding,
+	},
+	{
+		value: 'topic',
+		label: s('settings.categories.types.topic') || 'Topics',
+		icon: IconBulb,
+	},
+	{
+		value: 'other',
+		label: s('settings.categories.types.other') || 'Other',
+		icon: IconDots,
+	},
+]);
 
-  // Initialize categories when they change
-  $effect(() => {
-    if (allCategories.length > 0) {
-      untrack(() => {
-        categories.setAllCategories(allCategories);
-        categories.initWithDefaults();
-        loadCategoryMetadata();
-        syncFromStore();
-      });
-    }
-  });
+// Initialize categories when they change
+$effect(() => {
+	if (allCategories.length > 0) {
+		untrack(() => {
+			categorySettings.setAllCategories(allCategories);
+			categorySettings.initWithDefaults();
+			loadCategoryMetadata();
+			syncFromStore();
+		});
+	}
+});
 
-  // Load category metadata for filtering
-  async function loadCategoryMetadata() {
-    try {
-      categoryMetadata = await categoryMetadataService.loadMetadata();
-    } catch (error) {
-      console.error("Failed to load category metadata:", error);
-      categoryMetadata = [];
-    }
-  }
+// Load category metadata for filtering
+async function loadCategoryMetadata() {
+	try {
+		categoryMetadata = await categoryMetadataService.loadMetadata();
+	} catch (error) {
+		console.error('Failed to load category metadata:', error);
+		categoryMetadata = [];
+	}
+}
 
-  // Sync from store when not dragging
-  $effect(() => {
-    if (!isDragging) {
-      syncFromStore();
-    }
-  });
+// Sync from store when not dragging
+$effect(() => {
+	if (!isDragging) {
+		syncFromStore();
+	}
+});
 
-  function syncFromStore() {
-    enabledItems = categories.enabled.map((categoryId) => {
-      const category = categories.allCategories.find(
-        (cat) => cat.id === categoryId,
-      );
-      return {
-        id: categoryId,
-        name: category?.name || categoryId,
-      };
-    });
+function syncFromStore() {
+	enabledItems = categorySettings.enabled.map((categoryId) => {
+		const category = categorySettings.allCategories.find((cat) => cat.id === categoryId);
+		// Fallback to metadata if category not in current batch
+		if (!category) {
+			const metadata = categoryMetadata.find(
+				(meta) => meta.categoryId === categoryId.toLowerCase(),
+			);
+			return {
+				id: categoryId,
+				name: metadata?.displayName || categoryId,
+			};
+		}
+		return {
+			id: categoryId,
+			name: category.name,
+		};
+	});
 
-    disabledItems = categories.disabled
-      .map((categoryId) => {
-        const category = categories.allCategories.find(
-          (cat) => cat.id === categoryId,
-        );
-        return {
-          id: categoryId,
-          name: category?.name || categoryId,
-        };
-      })
-      .sort((a, b) =>
-        getCategoryDisplayName(a).localeCompare(getCategoryDisplayName(b)),
-      );
-  }
+	disabledItems = categorySettings.disabled
+		.map((categoryId) => {
+			const category = categorySettings.allCategories.find((cat) => cat.id === categoryId);
+			// Fallback to metadata if category not in current batch
+			if (!category) {
+				const metadata = categoryMetadata.find(
+					(meta) => meta.categoryId === categoryId.toLowerCase(),
+				);
+				return {
+					id: categoryId,
+					name: metadata?.displayName || categoryId,
+				};
+			}
+			return {
+				id: categoryId,
+				name: category.name,
+			};
+		})
+		.sort((a, b) => getCategoryDisplayName(a).localeCompare(getCategoryDisplayName(b)));
+}
 
-  // Get category type for filtering
-  function getCategoryType(categoryId: string): string {
-    // Skip shadow placeholder items created by the drag library
-    if (categoryId.startsWith("id:dnd-shadow-placeholder")) {
-      return "other";
-    }
+// Get category type for filtering
+function getCategoryType(categoryId: string): string {
+	// Skip shadow placeholder items created by the drag library
+	if (categoryId.startsWith('id:dnd-shadow-placeholder')) {
+		return 'other';
+	}
 
-    const metadata = categoryMetadata.find(
-      (meta) => meta.categoryId === categoryId.toLowerCase(),
-    );
-    if (!metadata) {
-      // Don't spam warnings for common categories that might not be in metadata
-      if (categoryMetadata.length > 0) {
-        console.warn(`No metadata found for category: ${categoryId}`);
-      }
-      return "other";
-    }
-    return metadata.categoryType;
-  }
+	const metadata = categoryMetadata.find((meta) => meta.categoryId === categoryId.toLowerCase());
+	if (!metadata) {
+		// Don't spam warnings for common categories that might not be in metadata
+		if (categoryMetadata.length > 0) {
+			console.warn(`No metadata found for category: ${categoryId}`);
+		}
+		return 'other';
+	}
+	return metadata.categoryType;
+}
 
-  // Count categories by type for filter labels
-  function getCategoryCounts() {
-    const counts = {
-      all: disabledItems.length,
-      core: 0,
-      country: 0,
-      region: 0,
-      city: 0,
-      topic: 0,
-      other: 0,
-    };
+// Count categories by type for filter labels
+function getCategoryCounts() {
+	const counts = {
+		all: disabledItems.length,
+		core: 0,
+		country: 0,
+		region: 0,
+		city: 0,
+		topic: 0,
+		other: 0,
+	};
 
-    disabledItems.forEach((item) => {
-      const type = getCategoryType(item.id);
-      if (type in counts) {
-        (counts as any)[type]++;
-      }
-    });
+	disabledItems.forEach((item) => {
+		const type = getCategoryType(item.id);
+		if (type in counts) {
+			(counts as any)[type]++;
+		}
+	});
 
-    return counts;
-  }
+	return counts;
+}
 
-  // Update filter options with counts
-  const filterOptionsWithCounts = $derived.by(() => {
-    const counts = getCategoryCounts();
-    return filterOptions.map((option) => ({
-      ...option,
-      label:
-        option.value === "all"
-          ? `All Categories (${counts.all})`
-          : `${option.label} (${(counts as any)[option.value] || 0})`,
-    }));
-  });
+// Update filter options with counts
+const filterOptionsWithCounts = $derived.by(() => {
+	const counts = getCategoryCounts();
+	return filterOptions.map((option) => ({
+		...option,
+		label:
+			option.value === 'all'
+				? `${s('settings.categories.allCategories')} (${counts.all})`
+				: `${option.label} (${(counts as any)[option.value] || 0})`,
+	}));
+});
 
-  // Drag handlers for enabled zone
-  function handleEnabledConsider(e: CustomEvent) {
-    const { trigger, id } = e.detail.info;
-    if (trigger === TRIGGERS.DRAG_STARTED) {
-      isDragging = true;
-      draggedItemId = id;
-    }
-    enabledItems = e.detail.items;
-  }
+// Drag handlers for enabled zone
+function handleEnabledConsider(e: CustomEvent) {
+	const { trigger, id } = e.detail.info;
+	if (trigger === TRIGGERS.DRAG_STARTED) {
+		isDragging = true;
+		draggedItemId = id;
+	}
+	enabledItems = e.detail.items;
+}
 
-  function handleEnabledFinalize(e: CustomEvent) {
-    const { trigger } = e.detail.info;
-    if (
-      trigger === TRIGGERS.DROPPED_INTO_ZONE ||
-      trigger === TRIGGERS.DROPPED_INTO_ANOTHER
-    ) {
-      isDragging = false;
-      draggedItemId = null;
-    }
+function handleEnabledFinalize(e: CustomEvent) {
+	const { trigger } = e.detail.info;
+	if (trigger === TRIGGERS.DROPPED_INTO_ZONE || trigger === TRIGGERS.DROPPED_INTO_ANOTHER) {
+		isDragging = false;
+		draggedItemId = null;
+	}
 
-    const newItems = e.detail.items;
+	const newItems = e.detail.items;
 
-    // Extract the new enabled categories in their drag order
-    const newEnabled = newItems.map((item: any) => item.id);
+	// Extract the new enabled categories in their drag order
+	const newEnabled = newItems.map((item: any) => item.id);
 
-    // Update enabled/disabled states
-    categories.setEnabled(newEnabled);
+	// Update enabled/disabled states
+	categorySettings.setEnabled(newEnabled);
 
-    // Update the global order to preserve the exact drag order within enabled categories
-    // Build new order: enabled categories in drag order + disabled categories in original order
-    const currentDisabled = categories.disabled;
-    const disabledInOrder = categories.order.filter((id) =>
-      currentDisabled.includes(id),
-    );
+	// Update the global order to preserve the exact drag order within enabled categories
+	// Build new order: enabled categories in drag order + disabled categories in original order
+	const currentDisabled = categorySettings.disabled;
+	const disabledInOrder = categorySettings.order.filter((id) => currentDisabled.includes(id));
 
-    // Merge enabled (in new order) with disabled (in old order)
-    // For now, put enabled first, then disabled - this preserves the drag order
-    const newOrder = [...newEnabled, ...disabledInOrder];
-    categories.setOrder(newOrder);
-  }
+	// Merge enabled (in new order) with disabled (in old order)
+	// For now, put enabled first, then disabled - this preserves the drag order
+	const newOrder = [...newEnabled, ...disabledInOrder];
+	categorySettings.setOrder(newOrder);
+}
 
-  // Drag handlers for disabled zone
-  function handleDisabledConsider(e: CustomEvent) {
-    const { trigger, id } = e.detail.info;
-    if (trigger === TRIGGERS.DRAG_STARTED) {
-      isDragging = true;
-      draggedItemId = id;
-    }
-    // Only update if we have valid items to avoid undefined errors
-    if (e.detail?.items) {
-      disabledItems = e.detail.items;
-    }
-  }
+// Drag handlers for disabled zone
+function handleDisabledConsider(e: CustomEvent) {
+	const { trigger, id } = e.detail.info;
+	if (trigger === TRIGGERS.DRAG_STARTED) {
+		isDragging = true;
+		draggedItemId = id;
+	}
+	// Only update if we have valid items to avoid undefined errors
+	if (e.detail?.items) {
+		disabledItems = e.detail.items;
+	}
+}
 
-  function handleDisabledFinalize(e: CustomEvent) {
-    const { trigger } = e.detail.info;
-    if (
-      trigger === TRIGGERS.DROPPED_INTO_ZONE ||
-      trigger === TRIGGERS.DROPPED_INTO_ANOTHER
-    ) {
-      isDragging = false;
-      draggedItemId = null;
-    }
+function handleDisabledFinalize(e: CustomEvent) {
+	const { trigger } = e.detail.info;
+	if (trigger === TRIGGERS.DROPPED_INTO_ZONE || trigger === TRIGGERS.DROPPED_INTO_ANOTHER) {
+		isDragging = false;
+		draggedItemId = null;
+	}
 
-    // Check if we have valid items to avoid undefined errors
-    if (!e.detail?.items) {
-      return;
-    }
+	// Check if we have valid items to avoid undefined errors
+	if (!e.detail?.items) {
+		return;
+	}
 
-    const newItems = e.detail.items;
+	const newItems = e.detail.items;
 
-    // Extract the new disabled categories in their drag order
-    const newDisabled = newItems.map((item: any) => item.id);
+	// Extract the new disabled categories in their drag order
+	const newDisabled = newItems.map((item: any) => item.id);
 
-    // When working with filtered items, we need to preserve the order of categories
-    // that aren't currently visible in the filter
-    const hiddenDisabled = disabledItems
-      .filter((item) => {
-        const categoryType = getCategoryType(item.id);
-        return categoryFilter !== "all" && categoryType !== categoryFilter;
-      })
-      .map((item) => item.id);
+	// When working with filtered items, we need to preserve the order of categories
+	// that aren't currently visible in the filter
+	const hiddenDisabled = disabledItems
+		.filter((item) => {
+			const categoryType = getCategoryType(item.id);
+			return categoryFilter !== 'all' && categoryType !== categoryFilter;
+		})
+		.map((item) => item.id);
 
-    // Combine visible reordered items with hidden items (maintain their original order)
-    const allDisabled = [...newDisabled, ...hiddenDisabled];
+	// Combine visible reordered items with hidden items (maintain their original order)
+	const allDisabled = [...newDisabled, ...hiddenDisabled];
 
-    // Update enabled/disabled states
-    categories.setDisabled(allDisabled);
+	// Update enabled/disabled states
+	categorySettings.setDisabled(allDisabled);
 
-    // Update the global order to preserve the exact drag order within disabled categories
-    const currentEnabled = categories.enabled;
-    const enabledInOrder = categories.order.filter((id) =>
-      currentEnabled.includes(id),
-    );
+	// Update the global order to preserve the exact drag order within disabled categories
+	const currentEnabled = categorySettings.enabled;
+	const enabledInOrder = categorySettings.order.filter((id) => currentEnabled.includes(id));
 
-    // Merge enabled (in old order) with disabled (in new order)
-    const newOrder = [...enabledInOrder, ...allDisabled];
-    categories.setOrder(newOrder);
-  }
+	// Merge enabled (in old order) with disabled (in new order)
+	const newOrder = [...enabledInOrder, ...allDisabled];
+	categorySettings.setOrder(newOrder);
+}
 
-  // Click handlers for toggling categories
-  function handleEnabledClick(categoryId: string) {
-    // Prevent disabling the last category
-    if (enabledItems.length > 1) {
-      // Move from enabled to disabled
-      categories.disableCategory(categoryId);
-    }
-  }
+// Click handlers for toggling categories
+function handleEnabledClick(categoryId: string) {
+	// Prevent disabling the last category
+	if (enabledItems.length > 1) {
+		// Move from enabled to disabled
+		categorySettings.disableCategory(categoryId);
+	}
+}
 
-  function handleDisabledClick(categoryId: string) {
-    // Move from disabled to enabled
-    categories.enableCategory(categoryId);
-  }
+function handleDisabledClick(categoryId: string) {
+	// Move from disabled to enabled
+	categorySettings.enableCategory(categoryId);
+}
 </script>
 
 <div class="space-y-4">

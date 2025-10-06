@@ -173,7 +173,7 @@
         "de": ["chatgpt", "openai", "künstliche intelligenz", "ki-durchbruch", "maschinelles lernen", "neuronales netzwerk", "deepfake", "generative ki", "ki-sicherheit", "agi", "llm", "anthropic", "claude", "gemini", "gpt-4", "gpt-5", "großes sprachmodell"],
         "nl": ["chatgpt", "openai", "kunstmatige intelligentie", "ai-doorbraak", "machine learning", "neuraal netwerk", "deepfake", "generatieve ai", "ai-veiligheid", "agi", "llm", "anthropic", "claude", "gemini", "gpt-4", "gpt-5", "groot taalmodel"],
         "zh-Hans": ["chatgpt", "openai", "人工智能", "ai突破", "机器学习", "神经网络", "深度伪造", "生成式ai", "ai安全", "通用人工智能", "大语言模型", "anthropic", "claude", "gemini", "gpt-4", "gpt-5", "大型语言模型"],
-        "zh-Hant": ["chatgpt", "openai", "人工智能", "ai突破", "機器學習", "神經網絡", "深度偽造", "生成式ai", "ai安全", "通用人工智能", "大語言模型", "anthropic", "claude", "gemini", "gpt-4", "gpt-5", "大型語言模型"],
+        "zh-Hant": ["chatgpt", "openai", "人工智慧", "AI 突破", "機器學習", "神經網路", "深度偽造", "生成式 AI", "AI 安全", "通用人工智慧", "LLM", "anthropic", "claude", "gemini", "gpt-4", "gpt-5", "大型語言模型"],
         "ja": ["chatgpt", "openai", "人工知能", "aiブレークスルー", "機械学習", "ニューラルネットワーク", "ディープフェイク", "生成ai", "ai安全性", "汎用人工知能", "llm", "anthropic", "claude", "gemini", "gpt-4", "gpt-5", "大規模言語モデル"],
         "hi": ["चैटजीपीटी", "ओपनएआई", "कृत्रिम बुद्धिमत्ता", "एआई सफलता", "मशीन लर्निंग", "न्यूरल नेटवर्क", "डीपफेक", "जेनरेटिव एआई", "एआई सुरक्षा", "एजीआई", "एलएलएम", "एन्थ्रोपिक", "क्लॉड", "जेमिनी", "जीपीटी-4", "जीपीटी-5", "बड़ा भाषा मॉडल"],
         "ru": ["chatgpt", "openai", "искусственный интеллект", "прорыв в ии", "машинное обучение", "нейронная сеть", "дипфейк", "генеративный ии", "безопасность ии", "оии", "большая языковая модель", "anthropic", "claude", "gemini", "gpt-4", "gpt-5", "yagpt", "gigachat"],

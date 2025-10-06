@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { s } from "$lib/client/localization.svelte";
-  import type { OnThisDayEvent } from "$lib/types";
+import { s } from '$lib/client/localization.svelte';
+import type { OnThisDayEvent } from '$lib/types';
 
-  interface Props {
-    events: OnThisDayEvent[];
-  }
+interface Props {
+	events: OnThisDayEvent[];
+}
 
-  let { events }: Props = $props();
+let { events }: Props = $props();
 </script>
 
 <div class="mb-8">
@@ -32,7 +32,7 @@
 
       <!-- Text -->
       <div class="mt-2 pl-6 md:mt-0 md:pl-0">
-        <span class="text-sm text-gray-700 dark:text-gray-300">
+        <span class="text-sm text-gray-700 dark:text-gray-300" dir="auto">
           {@html event.content.replace(
             /href=/g,
             'class="underline text-gray-800 hover:text-gray-600 cursor-pointer transition-colors dark:text-gray-200 dark:hover:text-gray-400" href=',

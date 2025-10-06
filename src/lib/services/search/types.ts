@@ -1,60 +1,60 @@
-import type { Story, Category } from "$lib/types";
+import type { Story } from '$lib/types';
 
 // Core search types
 export interface SearchStory extends Story {
-  matchedFields?: string[];
-  snippet?: string;
+	matchedFields?: string[];
+	snippet?: string;
 }
 
 export interface SearchResult {
-  story: SearchStory;
-  categoryId: string;
-  categoryName: string;
-  batchId?: string;
-  batchDate?: string;
+	story: SearchStory;
+	categoryId: string;
+	categoryName: string;
+	batchId?: string;
+	batchDate?: string;
 }
 
 export interface SearchFilter {
-  type: "category" | "date" | "from" | "to";
-  value: string;
-  display: string;
-  isValid: boolean;
+	type: 'category' | 'date' | 'from' | 'to';
+	value: string;
+	display: string;
+	isValid: boolean;
 }
 
 export interface FilterContext {
-  type: "category" | "date" | "from" | "to" | "suggestion";
-  partialValue: string;
-  fullMatch: string;
-  startIndex: number;
-  suggestions?: string[];
+	type: 'category' | 'date' | 'from' | 'to' | 'suggestion';
+	partialValue: string;
+	fullMatch: string;
+	startIndex: number;
+	suggestions?: string[];
 }
 
 export interface FilterSuggestion {
-  value: string;
-  label: string;
-  display: string;
-  isFilterType?: boolean;
+	value: string;
+	label: string;
+	display: string;
+	isFilterType?: boolean;
 }
 
 export interface SearchState {
-  query: string;
-  filters: SearchFilter[];
-  results: SearchResult[];
-  isLoading: boolean;
-  isLoadingMore: boolean;
-  hasMore: boolean;
-  selectedIndex: number;
-  totalCount: number;
-  currentOffset: number;
-  allHistoricalResults: SearchResult[];
+	query: string;
+	filters: SearchFilter[];
+	results: SearchResult[];
+	isLoading: boolean;
+	isLoadingMore: boolean;
+	hasMore: boolean;
+	selectedIndex: number;
+	totalCount: number;
+	currentOffset: number;
+	allHistoricalResults: SearchResult[];
 }
 
 export interface SearchOptions {
-  includeLocal: boolean;
-  includeHistorical: boolean;
-  limit: number;
-  offset?: number;
-  abortSignal?: AbortSignal;
+	includeLocal: boolean;
+	includeHistorical: boolean;
+	limit: number;
+	offset?: number;
+	abortSignal?: AbortSignal;
 }
 
 // Search constants

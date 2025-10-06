@@ -1,306 +1,281 @@
 <script lang="ts">
-  import { browser } from "$app/environment";
-  import { s } from "$lib/client/localization.svelte";
-  import {
-    fetchWikipediaContent,
-    type WikipediaContent,
-  } from "$lib/services/wikipediaService";
-  import { scrollLock } from "$lib/utils/scrollLock";
-  import {
-    useFloating,
-    offset,
-    flip,
-    shift,
-    arrow,
-    size,
-  } from "@skeletonlabs/floating-ui-svelte";
-  import { OverlayScrollbarsComponent } from "overlayscrollbars-svelte";
-  import { onMount, onDestroy } from "svelte";
-  import Portal from "svelte-portal";
+import { arrow, flip, offset, shift, size, useFloating } from '@skeletonlabs/floating-ui-svelte';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-svelte';
+import { onDestroy, onMount } from 'svelte';
+import Portal from 'svelte-portal';
+import { browser } from '$app/environment';
+import { s } from '$lib/client/localization.svelte';
+import { fetchWikipediaContent, type WikipediaContent } from '$lib/services/wikipediaService';
+import { scrollLock } from '$lib/utils/scrollLock';
 
-  interface Props {
-    onWikipediaClick?: (
-      title: string,
-      content: string,
-      imageUrl?: string,
-    ) => void;
-  }
+interface Props {
+	onWikipediaClick?: (title: string, content: string, imageUrl?: string) => void;
+}
 
-  let { onWikipediaClick }: Props = $props();
+let { onWikipediaClick }: Props = $props();
 
-  // State for dynamic sizing
-  let tooltipMaxHeight = $state(300);
+// State for dynamic sizing
+let tooltipMaxHeight = $state(300);
 
-  // Floating UI setup
-  const floating = useFloating({
-    placement: "bottom-start",
-    strategy: "fixed", // Use fixed positioning since we're using Portal
-    middleware: [
-      offset(8), // 8px gap from trigger
-      flip({
-        fallbackPlacements: ["top-start", "bottom-end", "top-end"],
-      }), // Flip to opposite side if no space
-      shift({
-        padding: 8,
-        crossAxis: false, // Don't shift on cross axis to prevent centering
-      }), // Shift within viewport with padding
-      size({
-        apply({ availableHeight, availableWidth, elements }) {
-          // Calculate optimal height based on available space
-          // Min: 200px, Max: 500px or 60% of viewport height
-          const minHeight = 200;
-          const maxHeight = Math.min(500, window.innerHeight * 0.6);
-          const optimalHeight = Math.min(
-            Math.max(minHeight, availableHeight - 16),
-            maxHeight,
-          );
-          tooltipMaxHeight = optimalHeight;
-        },
-      }),
-      // arrow({ element: () => arrowElement }) // Arrow pointing to trigger - temporarily removed
-    ],
-  });
+// Floating UI setup
+const floating = useFloating({
+	placement: 'bottom-start',
+	strategy: 'fixed', // Use fixed positioning since we're using Portal
+	middleware: [
+		offset(8), // 8px gap from trigger
+		flip({
+			fallbackPlacements: ['top-start', 'bottom-end', 'top-end'],
+		}), // Flip to opposite side if no space
+		shift({
+			padding: 8,
+			crossAxis: false, // Don't shift on cross axis to prevent centering
+		}), // Shift within viewport with padding
+		size({
+			apply({ availableHeight, availableWidth: _availableWidth, elements: _elements }) {
+				// Calculate optimal height based on available space
+				// Min: 200px, Max: 500px or 60% of viewport height
+				const minHeight = 200;
+				const maxHeight = Math.min(500, window.innerHeight * 0.6);
+				const optimalHeight = Math.min(Math.max(minHeight, availableHeight - 16), maxHeight);
+				tooltipMaxHeight = optimalHeight;
+			},
+		}),
+		// arrow({ element: () => arrowElement }) // Arrow pointing to trigger - temporarily removed
+	],
+});
 
-  // State
-  let showTooltip = $state(false);
-  let tooltipTitle = $state("");
-  let tooltipContent = $state("");
-  let tooltipImage = $state("");
-  let tooltipFullImage = $state("");
-  let tooltipWikiUrl = $state("");
-  let currentTooltipId = $state("");
-  let isMobile = $state(false);
-  let isLoading = $state(false);
+// State
+let showTooltip = $state(false);
+let tooltipTitle = $state('');
+let tooltipContent = $state('');
+let tooltipImage = $state('');
+let tooltipFullImage = $state('');
+let tooltipWikiUrl = $state('');
+let currentTooltipId = $state('');
+let isMobile = $state(false);
+let isLoading = $state(false);
 
-  // Elements
-  let arrowElement: HTMLElement;
-  let hideTimeout: number | null = null;
+// Elements
+let arrowElement: HTMLElement;
+let hideTimeout: number | null = null;
 
-  // OverlayScrollbars instance
-  let tooltipScrollbars: any = $state();
+// OverlayScrollbars instance
+let tooltipScrollbars: any = $state();
 
-  // Detect mobile device
-  function detectMobile() {
-    return "ontouchstart" in window || window.innerWidth < 768;
-  }
+// Detect mobile device
+function detectMobile() {
+	return 'ontouchstart' in window || window.innerWidth < 768;
+}
 
-  // Handle Wikipedia link interaction
-  export async function handleWikipediaInteraction(event: Event) {
-    const target = event.target as HTMLElement;
+// Handle Wikipedia link interaction
+export async function handleWikipediaInteraction(event: Event) {
+	const target = event.target as HTMLElement;
 
-    // Find the actual Wikipedia link, even if we clicked on a child element
-    const wikiLink = target.closest("a[data-wiki-id]") as HTMLElement;
+	// Find the actual Wikipedia link, even if we clicked on a child element
+	const wikiLink = target.closest('a[data-wiki-id]') as HTMLElement;
 
-    if (wikiLink) {
-      const title =
-        wikiLink.getAttribute("title") || wikiLink.textContent || "";
-      const wikiId = wikiLink.getAttribute("data-wiki-id") || "";
-      const href = wikiLink.getAttribute("href") || "";
-      const tooltipId = `${wikiId}-${title}`;
+	if (wikiLink) {
+		const title = wikiLink.getAttribute('title') || wikiLink.textContent || '';
+		const wikiId = wikiLink.getAttribute('data-wiki-id') || '';
+		const href = wikiLink.getAttribute('href') || '';
+		const tooltipId = `${wikiId}-${title}`;
 
-      isMobile = detectMobile();
+		isMobile = detectMobile();
 
-      // For mobile clicks, prevent default link behavior
-      if (isMobile && event.type === "click") {
-        event.preventDefault();
-      }
+		// For mobile clicks, prevent default link behavior
+		if (isMobile && event.type === 'click') {
+			event.preventDefault();
+		}
 
-      // For desktop hovers, skip if already showing same tooltip
-      if (
-        !isMobile &&
-        event.type === "mouseover" &&
-        showTooltip &&
-        currentTooltipId === tooltipId
-      ) {
-        // Cancel any pending hide timeout since we're still on the same element
-        if (hideTimeout) {
-          clearTimeout(hideTimeout);
-          hideTimeout = null;
-        }
-        return;
-      }
+		// For desktop hovers, skip if already showing same tooltip
+		if (!isMobile && event.type === 'mouseover' && showTooltip && currentTooltipId === tooltipId) {
+			// Cancel any pending hide timeout since we're still on the same element
+			if (hideTimeout) {
+				clearTimeout(hideTimeout);
+				hideTimeout = null;
+			}
+			return;
+		}
 
-      // Clear any existing timeout
-      if (hideTimeout) {
-        clearTimeout(hideTimeout);
-        hideTimeout = null;
-      }
+		// Clear any existing timeout
+		if (hideTimeout) {
+			clearTimeout(hideTimeout);
+			hideTimeout = null;
+		}
 
-      // Set reference element for floating UI - use the actual link element
-      floating.elements.reference = wikiLink;
+		// Set reference element for floating UI - use the actual link element
+		floating.elements.reference = wikiLink;
 
-      // Set initial state
-      currentTooltipId = tooltipId;
-      tooltipTitle = title;
-      tooltipContent = "";
-      tooltipImage = "";
-      tooltipFullImage = "";
-      tooltipWikiUrl = href || `https://en.wikipedia.org/wiki/${wikiId}`;
-      isLoading = true;
+		// Set initial state
+		currentTooltipId = tooltipId;
+		tooltipTitle = title;
+		tooltipContent = '';
+		tooltipImage = '';
+		tooltipFullImage = '';
+		tooltipWikiUrl = href || `https://en.wikipedia.org/wiki/${wikiId}`;
+		isLoading = true;
 
-      // Show tooltip - the floating element will be bound when the template renders
-      showTooltip = true;
+		// Show tooltip - the floating element will be bound when the template renders
+		showTooltip = true;
 
-      // Debug logging (commented out)
-      // setTimeout(() => {
-      //   console.log('Floating UI state after timeout:', {
-      //     reference: floating.elements.reference,
-      //     floating: floating.elements.floating,
-      //     isPositioned: floating.isPositioned,
-      //     showTooltip
-      //   });
-      // }, 0);
+		// Debug logging (commented out)
+		// setTimeout(() => {
+		//   console.log('Floating UI state after timeout:', {
+		//     reference: floating.elements.reference,
+		//     floating: floating.elements.floating,
+		//     isPositioned: floating.isPositioned,
+		//     showTooltip
+		//   });
+		// }, 0);
 
-      // console.log(`Wiki interaction - Title: "${title}", WikiId: "${wikiId}"`);
+		// console.log(`Wiki interaction - Title: "${title}", WikiId: "${wikiId}"`);
 
-      // Fetch Wikipedia content
-      try {
-        const loadedData = await fetchWikipediaContent(wikiId);
-        // Update tooltip if it's still showing for the same ID
-        if (showTooltip && currentTooltipId === tooltipId) {
-          tooltipContent = loadedData?.extract || "No summary available.";
-          tooltipImage = loadedData?.thumbnail?.source || "";
-          tooltipFullImage = loadedData?.originalImage?.source || tooltipImage;
-          tooltipWikiUrl = loadedData?.wikiUrl || tooltipWikiUrl;
-          isLoading = false;
+		// Fetch Wikipedia content
+		try {
+			const loadedData = await fetchWikipediaContent(wikiId);
+			// Update tooltip if it's still showing for the same ID
+			if (showTooltip && currentTooltipId === tooltipId) {
+				tooltipContent = loadedData?.extract || 'No summary available.';
+				tooltipImage = loadedData?.thumbnail?.source || '';
+				tooltipFullImage = loadedData?.originalImage?.source || tooltipImage;
+				tooltipWikiUrl = loadedData?.wikiUrl || tooltipWikiUrl;
+				isLoading = false;
 
-          // Update scrollbars after content loads
-          setTimeout(() => {
-            if (tooltipScrollbars?.osInstance) {
-              tooltipScrollbars.osInstance().update(true);
-            }
-          }, 10);
-        }
-      } catch (error) {
-        console.error("Error loading Wikipedia content:", error);
-        if (showTooltip && currentTooltipId === tooltipId) {
-          tooltipContent = "Failed to load Wikipedia content.";
-          isLoading = false;
-        }
-      }
-    }
-  }
+				// Update scrollbars after content loads
+				setTimeout(() => {
+					if (tooltipScrollbars?.osInstance) {
+						tooltipScrollbars.osInstance().update(true);
+					}
+				}, 10);
+			}
+		} catch (error) {
+			console.error('Error loading Wikipedia content:', error);
+			if (showTooltip && currentTooltipId === tooltipId) {
+				tooltipContent = 'Failed to load Wikipedia content.';
+				isLoading = false;
+			}
+		}
+	}
+}
 
-  // Handle mouse leave from Wikipedia link
-  export function handleWikipediaLeave(event: Event) {
-    if (isMobile) return; // Mobile tooltips are manually closed
+// Handle mouse leave from Wikipedia link
+export function handleWikipediaLeave(event: Event) {
+	if (isMobile) return; // Mobile tooltips are manually closed
 
-    const relatedTarget = (event as MouseEvent).relatedTarget as Node;
-    const tooltip = floating.elements.floating;
-    const reference = floating.elements.reference;
+	const relatedTarget = (event as MouseEvent).relatedTarget as Node;
+	const tooltip = floating.elements.floating;
+	const reference = floating.elements.reference;
 
-    // If moving to the tooltip itself, don't hide it
-    if (tooltip && relatedTarget && tooltip.contains(relatedTarget)) {
-      return;
-    }
+	// If moving to the tooltip itself, don't hide it
+	if (tooltip && relatedTarget && tooltip.contains(relatedTarget)) {
+		return;
+	}
 
-    // Key improvement: Check if we're moving to ANY part of the same Wikipedia link
-    // This treats the entire link as a single hover zone
-    if (relatedTarget && relatedTarget instanceof Element) {
-      const targetWikiLink = relatedTarget.closest("a[data-wiki-id]");
-      const currentWikiLink = reference as Element;
+	// Key improvement: Check if we're moving to ANY part of the same Wikipedia link
+	// This treats the entire link as a single hover zone
+	if (relatedTarget && relatedTarget instanceof Element) {
+		const targetWikiLink = relatedTarget.closest('a[data-wiki-id]');
+		const currentWikiLink = reference as Element;
 
-      // If we're moving to the same Wikipedia link (same data-wiki-id), don't hide
-      if (
-        targetWikiLink &&
-        currentWikiLink &&
-        targetWikiLink.getAttribute("data-wiki-id") ===
-          currentWikiLink.getAttribute("data-wiki-id")
-      ) {
-        return;
-      }
-    }
+		// If we're moving to the same Wikipedia link (same data-wiki-id), don't hide
+		if (
+			targetWikiLink &&
+			currentWikiLink &&
+			targetWikiLink.getAttribute('data-wiki-id') === currentWikiLink.getAttribute('data-wiki-id')
+		) {
+			return;
+		}
+	}
 
-    // Simple timeout with reduced delay since we have unified hover zone
-    hideTimeout = window.setTimeout(() => {
-      hideTooltip();
-    }, 150); // Short delay for smooth UX
-  }
+	// Simple timeout with reduced delay since we have unified hover zone
+	hideTimeout = window.setTimeout(() => {
+		hideTooltip();
+	}, 150); // Short delay for smooth UX
+}
 
-  // Handle tooltip mouse leave
-  function handleTooltipLeave(event: MouseEvent) {
-    if (isMobile) return;
+// Handle tooltip mouse leave
+function handleTooltipLeave(event: MouseEvent) {
+	if (isMobile) return;
 
-    const relatedTarget = event.relatedTarget as Node;
-    const reference = floating.elements.reference;
+	const relatedTarget = event.relatedTarget as Node;
+	const reference = floating.elements.reference;
 
-    // If moving back to the Wikipedia link, don't hide
-    if (relatedTarget && relatedTarget instanceof Element) {
-      const targetWikiLink = relatedTarget.closest("a[data-wiki-id]");
-      const currentWikiLink = reference as Element;
+	// If moving back to the Wikipedia link, don't hide
+	if (relatedTarget && relatedTarget instanceof Element) {
+		const targetWikiLink = relatedTarget.closest('a[data-wiki-id]');
+		const currentWikiLink = reference as Element;
 
-      // If we're moving to the same Wikipedia link (same data-wiki-id), don't hide
-      if (
-        targetWikiLink &&
-        currentWikiLink &&
-        targetWikiLink.getAttribute("data-wiki-id") ===
-          currentWikiLink.getAttribute("data-wiki-id")
-      ) {
-        return;
-      }
-    }
+		// If we're moving to the same Wikipedia link (same data-wiki-id), don't hide
+		if (
+			targetWikiLink &&
+			currentWikiLink &&
+			targetWikiLink.getAttribute('data-wiki-id') === currentWikiLink.getAttribute('data-wiki-id')
+		) {
+			return;
+		}
+	}
 
-    // Simple timeout - if we're truly leaving, hide the tooltip
-    hideTimeout = window.setTimeout(() => {
-      hideTooltip();
-    }, 150); // Consistent short delay
-  }
+	// Simple timeout - if we're truly leaving, hide the tooltip
+	hideTimeout = window.setTimeout(() => {
+		hideTooltip();
+	}, 150); // Consistent short delay
+}
 
-  // Handle tooltip mouse enter (cancel hide timeout)
-  function handleTooltipEnter() {
-    if (hideTimeout) {
-      clearTimeout(hideTimeout);
-      hideTimeout = null;
-    }
-  }
+// Handle tooltip mouse enter (cancel hide timeout)
+function handleTooltipEnter() {
+	if (hideTimeout) {
+		clearTimeout(hideTimeout);
+		hideTimeout = null;
+	}
+}
 
-  // Hide tooltip
-  function hideTooltip() {
-    showTooltip = false;
-    currentTooltipId = "";
-    isLoading = false;
-  }
+// Hide tooltip
+function hideTooltip() {
+	showTooltip = false;
+	currentTooltipId = '';
+	isLoading = false;
+}
 
-  // Close mobile modal
-  function closeMobileModal() {
-    hideTooltip();
-  }
+// Close mobile modal
+function closeMobileModal() {
+	hideTooltip();
+}
 
-  // Lock/unlock page scroll for mobile
-  $effect(() => {
-    if (isMobile && showTooltip) {
-      scrollLock.lock();
-    } else {
-      scrollLock.unlock();
-    }
-  });
+// Lock/unlock page scroll for mobile
+$effect(() => {
+	if (isMobile && showTooltip) {
+		scrollLock.lock();
+	} else {
+		scrollLock.unlock();
+	}
+});
 
-  // Hide tooltip on scroll (desktop only)
-  function hideTooltipOnScroll() {
-    if (!isMobile && showTooltip) {
-      hideTooltip();
-    }
-  }
+// Hide tooltip on scroll (desktop only)
+function hideTooltipOnScroll() {
+	if (!isMobile && showTooltip) {
+		hideTooltip();
+	}
+}
 
-  // Setup scroll listener
-  onMount(() => {
-    if (browser) {
-      window.addEventListener("scroll", hideTooltipOnScroll, { passive: true });
-    }
-  });
+// Setup scroll listener
+onMount(() => {
+	if (browser) {
+		window.addEventListener('scroll', hideTooltipOnScroll, { passive: true });
+	}
+});
 
-  onDestroy(() => {
-    if (hideTimeout) {
-      clearTimeout(hideTimeout);
-    }
-    if (browser) {
-      window.removeEventListener("scroll", hideTooltipOnScroll);
-    }
-    // Make sure scroll is unlocked
-    if (showTooltip) {
-      scrollLock.unlock();
-    }
-  });
+onDestroy(() => {
+	if (hideTimeout) {
+		clearTimeout(hideTimeout);
+	}
+	if (browser) {
+		window.removeEventListener('scroll', hideTooltipOnScroll);
+	}
+	// Make sure scroll is unlocked
+	if (showTooltip) {
+		scrollLock.unlock();
+	}
+});
 </script>
 
 {#if showTooltip}
@@ -366,7 +341,7 @@
                   class="mb-2 w-full rounded h-auto object-contain"
                 />
               {/if}
-              <p class="text-sm text-gray-600 dark:text-gray-400 break-words">
+              <p class="text-sm text-gray-600 dark:text-gray-400 break-words" dir="auto">
                 {tooltipContent}
               </p>
             {/if}
@@ -456,7 +431,7 @@
                     class="mb-4 h-48 w-full rounded-lg object-cover"
                   />
                 {/if}
-                <p class="text-gray-700 dark:text-gray-300">{tooltipContent}</p>
+                <p class="text-gray-700 dark:text-gray-300" dir="auto">{tooltipContent}</p>
                 {#if tooltipWikiUrl}
                   <a
                     href={tooltipWikiUrl}

@@ -1,21 +1,21 @@
 <script lang="ts">
-  import { s } from "$lib/client/localization.svelte";
+import { s } from '$lib/client/localization.svelte';
 
-  // Props
-  interface Props {
-    viewMode: "list" | "map";
-    onViewModeChange: (mode: "list" | "map") => void;
-  }
+// Props
+interface Props {
+	viewMode: 'list' | 'map';
+	onViewModeChange: (mode: 'list' | 'map') => void;
+}
 
-  let { viewMode, onViewModeChange }: Props = $props();
+let { viewMode, onViewModeChange }: Props = $props();
 
-  function handleListClick() {
-    onViewModeChange("list");
-  }
+function handleListClick() {
+	onViewModeChange('list');
+}
 
-  function handleMapClick() {
-    onViewModeChange("map");
-  }
+function handleMapClick() {
+	onViewModeChange('map');
+}
 </script>
 
 <div class="flex items-center space-x-2">

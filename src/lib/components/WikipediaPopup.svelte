@@ -1,16 +1,16 @@
 <script lang="ts">
-  import BaseModal from "./BaseModal.svelte";
+import BaseModal from './BaseModal.svelte';
 
-  // Props
-  interface Props {
-    visible: boolean;
-    title: string;
-    content: string;
-    imageUrl?: string;
-    onClose: () => void;
-  }
+// Props
+interface Props {
+	visible: boolean;
+	title: string;
+	content: string;
+	imageUrl?: string;
+	onClose: () => void;
+}
 
-  let { visible, title, content, imageUrl, onClose }: Props = $props();
+let { visible, title, content, imageUrl, onClose }: Props = $props();
 </script>
 
 <BaseModal

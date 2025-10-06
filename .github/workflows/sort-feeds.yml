@@ -1,15 +1,31 @@
-name: Sort and Deduplicate Feeds
+name: Auto-sort data files
 
 on:
   push:
     paths:
       - 'kite_feeds.json'
+      - 'core_feeds.py'
+      - 'media_data.json'
+      - 'src/lib/locales/*.json'
     branches:
       - main
       - 'feature/**'
   pull_request:
     paths:
       - 'kite_feeds.json'
+      - 'core_feeds.py'
+      - 'media_data.json'
+      - 'src/lib/locales/*.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  checks: write
+
+concurrency:
+  group: sort-feeds-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   sort-feeds:
@@ -25,8 +41,106 @@ jobs:
     - name: Setup Bun
       uses: oven-sh/setup-bun@v2
 
-    - name: Sort and deduplicate feeds
-      run: bun scripts/sort-feeds.js
+    - name: Restore Bun cache
+      uses: actions/cache@v4
+      with:
+        path: ~/.bun/install/cache
+        key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-bun-
+
+    - name: Install jq for JSON processing
+      run: sudo apt-get update && sudo apt-get install -y jq
+
+    - name: Install dependencies
+      run: bun install --frozen-lockfile
+
+    - name: Detect changed targets
+      id: detect
+      shell: bash
+      run: |
+        set -e
+        if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+          git fetch origin main
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD)
+        else
+          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD || true)
+        fi
+        echo "Changed files:\n$CHANGED_FILES"
+
+        FEEDS_CHANGED=false
+        CORE_FEEDS_CHANGED=false
+        MEDIA_CHANGED=false
+        LOCALES_CHANGED=false
+        echo "$CHANGED_FILES" | grep -q '^kite_feeds.json$' && FEEDS_CHANGED=true || true
+        echo "$CHANGED_FILES" | grep -q '^core_feeds.py$' && CORE_FEEDS_CHANGED=true || true
+        echo "$CHANGED_FILES" | grep -q '^media_data.json$' && MEDIA_CHANGED=true || true
+        echo "$CHANGED_FILES" | grep -E -q '^src/lib/locales/.+\.json$' && LOCALES_CHANGED=true || true
+
+        echo "feeds_changed=$FEEDS_CHANGED" >> $GITHUB_OUTPUT
+        echo "core_feeds_changed=$CORE_FEEDS_CHANGED" >> $GITHUB_OUTPUT
+        echo "media_changed=$MEDIA_CHANGED" >> $GITHUB_OUTPUT
+        echo "locales_changed=$LOCALES_CHANGED" >> $GITHUB_OUTPUT
+
+    - name: Sort feeds
+      if: steps.detect.outputs.feeds_changed == 'true'
+      run: |
+        set -e
+        echo "🔄 Sorting feeds..."
+        bun scripts/sort-feeds.ts || { echo "❌ Failed to sort feeds"; exit 1; }
+        echo "✅ Feeds sorted"
+
+    - name: Sort core feeds
+      if: steps.detect.outputs.core_feeds_changed == 'true'
+      run: |
+        set -e
+        echo "🔄 Sorting core feeds..."
+        python3 scripts/sort-core-feeds.py || { echo "❌ Failed to sort core feeds"; exit 1; }
+        echo "✅ Core feeds sorted"
+
+    - name: Sort media
+      if: steps.detect.outputs.media_changed == 'true'
+      run: |
+        set -e
+        echo "🔄 Sorting media..."
+        bun scripts/sort-media.ts || { echo "❌ Failed to sort media"; exit 1; }
+        echo "✅ Media sorted"
+
+    - name: Sort locales
+      if: steps.detect.outputs.locales_changed == 'true'
+      run: |
+        set -e
+        echo "🔄 Sorting locales..."
+        bun scripts/sort-locales.ts || { echo "❌ Failed to sort locales"; exit 1; }
+        echo "✅ Locales sorted"
+
+    - name: Generate issues for reviewdog
+      if: github.event_name == 'pull_request'
+      run: |
+        ISSUE_FILES=()
+        if [ "${{ steps.detect.outputs.feeds_changed }}" = "true" ]; then
+          bun scripts/sort-feeds.ts --output-issues --output-file feeds-issues.json || true
+          if jq -e . feeds-issues.json >/dev/null 2>&1; then ISSUE_FILES+=(feeds-issues.json); else echo "feeds-issues.json is not valid JSON; skipping"; fi
+        fi
+        if [ "${{ steps.detect.outputs.core_feeds_changed }}" = "true" ]; then
+          python3 scripts/sort-core-feeds.py --output-issues --output-file core-feeds-issues.json || true
+          if jq -e . core-feeds-issues.json >/dev/null 2>&1; then ISSUE_FILES+=(core-feeds-issues.json); else echo "core-feeds-issues.json is not valid JSON; skipping"; fi
+        fi
+        if [ "${{ steps.detect.outputs.media_changed }}" = "true" ]; then
+          bun scripts/sort-media.ts --output-issues --output-file media-issues.json || true
+          if jq -e . media-issues.json >/dev/null 2>&1; then ISSUE_FILES+=(media-issues.json); else echo "media-issues.json is not valid JSON; skipping"; fi
+        fi
+        if [ "${{ steps.detect.outputs.locales_changed }}" = "true" ]; then
+          bun scripts/sort-locales.ts --output-issues --output-file locales-issues.json || true
+          if jq -e . locales-issues.json >/dev/null 2>&1; then ISSUE_FILES+=(locales-issues.json); else echo "locales-issues.json is not valid JSON; skipping"; fi
+        fi
+
+        if [ ${#ISSUE_FILES[@]} -gt 0 ]; then
+          jq -s 'map(.issues[]? // empty) | map(select(.severity == "warning" or .severity == "error"))' "${ISSUE_FILES[@]}" > all-issues.json || echo "[]" > all-issues.json
+          echo "Generated $(jq length all-issues.json) issues for review"
+        else
+          echo "No relevant files changed; skipping issue generation"
+        fi
 
     - name: Check for changes
       id: verify-changed-files
@@ -37,12 +151,14 @@ jobs:
           echo "changed=false" >> $GITHUB_OUTPUT
         fi
 
+
+
     - name: Commit changes
       if: steps.verify-changed-files.outputs.changed == 'true' && github.event_name == 'push'
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git add kite_feeds.json
+        git add kite_feeds.json core_feeds.py media_data.json src/lib/locales/*.json
         git commit -m "$(cat <<'EOF'
         chore: auto-sort and deduplicate feeds
 
@@ -67,7 +183,7 @@ jobs:
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git add kite_feeds.json
+        git add kite_feeds.json core_feeds.py media_data.json src/lib/locales/*.json
         git commit -m "$(cat <<'EOF'
         chore: auto-sort and deduplicate feeds
 
@@ -91,3 +207,140 @@ jobs:
             repo: context.repo.repo,
             body: '🤖 **Feeds automatically sorted**\n\nI detected that `kite_feeds.json` was modified but not properly sorted, so I automatically applied the correct sorting and pushed a new commit to this PR.\n\n**Changes made:**\n- ✅ Sort categories by type order (country → region → city → topic)\n- ✅ Sort feeds alphabetically within categories by URL\n- ✅ Remove duplicate feed URLs\n\nThe PR is now ready for review! 🚀'
           });
+
+    - name: Setup reviewdog
+      if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+      uses: reviewdog/action-setup@v1
+      with:
+        reviewdog_version: latest
+
+    - name: Apply reviewdog for changed files
+      if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+      env:
+        REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        # Get list of changed files in this PR
+        git fetch origin main
+        CHANGED_FILES=$(git diff --name-only origin/main...HEAD)
+        echo "Changed files: $CHANGED_FILES"
+        
+        # Filter issues to only those affecting changed files and high-priority types
+        if [ -f "all-issues.json" ]; then
+          # Create reviewdog input for changed files only
+          echo "$CHANGED_FILES" | while read -r file; do
+            if [ -n "$file" ]; then
+              # Filter issues for this specific file and high-priority types (missing translations, duplicates)
+              jq --arg file "$file" '
+                map(select(.file == $file and (.type == "missing" or .type == "duplicate"))) |
+                map({
+                  message: .message,
+                  location: {
+                    path: .file,
+                    range: {
+                      start: {line: .line}
+                    }
+                  },
+                  severity: (if .severity == "error" then "ERROR" elif .severity == "warning" then "WARNING" else "INFO" end)
+                })
+              ' all-issues.json
+            fi
+          done | jq -s 'map(.[]?) | map(select(. != null))' > reviewdog-input.json
+          
+          # Apply reviewdog suggestions if we have any issues
+          if [ "$(jq length reviewdog-input.json)" -gt 0 ]; then
+            echo "Applying $(jq length reviewdog-input.json) reviewdog suggestions..."
+            jq -c '.[]' reviewdog-input.json | reviewdog -f=rdjsonl -name="data-quality" -reporter=github-pr-review -filter-mode=nofilter
+          else
+            echo "No high-priority issues found in changed files"
+          fi
+        fi
+
+    - name: Comment about comprehensive analysis
+      if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          
+          // Read all analysis results
+          let feedsData = {}, coreFeedsData = {}, mediaData = {}, localesData = {};
+          let totalIssues = 0;
+
+          try {
+            if (fs.existsSync('feeds-issues.json')) {
+              feedsData = JSON.parse(fs.readFileSync('feeds-issues.json', 'utf8'));
+              totalIssues += feedsData.summary?.totalIssues || 0;
+            }
+            if (fs.existsSync('core-feeds-issues.json')) {
+              coreFeedsData = JSON.parse(fs.readFileSync('core-feeds-issues.json', 'utf8'));
+              totalIssues += coreFeedsData.summary?.totalIssues || 0;
+            }
+            if (fs.existsSync('media-issues.json')) {
+              mediaData = JSON.parse(fs.readFileSync('media-issues.json', 'utf8'));
+              totalIssues += mediaData.summary?.totalIssues || 0;
+            }
+            if (fs.existsSync('locales-issues.json')) {
+              localesData = JSON.parse(fs.readFileSync('locales-issues.json', 'utf8'));
+              totalIssues += localesData.summary?.totalIssues || 0;
+            }
+          } catch (e) {
+            console.log('Error reading analysis files:', e.message);
+            return;
+          }
+          
+          if (totalIssues === 0) {
+            console.log('No issues found, skipping comment');
+            return;
+          }
+          
+          let body = `🔍 **Data Quality Analysis Report**\n\nFound **${totalIssues} total issues** across data files:\n\n`;
+          
+          // Feeds/Translation analysis
+          if (feedsData.summary?.totalIssues > 0) {
+            body += `### 🔑 Translation Issues (${feedsData.summary.totalIssues})\n`;
+            if (feedsData.summary.byType?.unused) body += `- 📝 ${feedsData.summary.byType.unused} unused keys\n`;
+            if (feedsData.summary.byType?.missing) body += `- 🌍 ${feedsData.summary.byType.missing} missing translations\n`;
+            if (feedsData.summary.byType?.orphaned) body += `- 👻 ${feedsData.summary.byType.orphaned} orphaned keys\n`;
+            body += '\n';
+          }
+          
+          // Media analysis
+          if (mediaData.summary?.totalIssues > 0) {
+            body += `### 📰 Media Issues (${mediaData.summary.totalIssues})\n`;
+            if (mediaData.summary.byType?.unused) body += `- 🔗 ${mediaData.summary.byType.unused} unused domains\n`;
+            if (mediaData.summary.byType?.duplicate) body += `- 🔄 ${mediaData.summary.byType.duplicate} duplicate organizations\n`;
+            body += '\n';
+          }
+          
+          // Locale analysis
+          if (localesData.summary?.totalIssues > 0) {
+            body += `### 🌐 Locale Issues (${localesData.summary.totalIssues})\n`;
+            if (localesData.summary.byType?.missing) body += `- 🌍 ${localesData.summary.byType.missing} missing translations\n`;
+            if (localesData.summary.byType?.orphaned) body += `- 👻 ${localesData.summary.byType.orphaned} orphaned keys\n`;
+            if (localesData.summary.byType?.duplicate) body += `- 🔄 ${localesData.summary.byType.duplicate} duplicate keys\n`;
+            body += '\n';
+          }
+          
+          body += `### 🤖 Automated Actions\n`;
+          body += `- ✅ **Reviewdog**: Applied suggestions for high-priority issues in changed files\n`;
+          body += `- 📊 **Analysis**: Full report available in workflow logs\n`;
+          body += `- 🔧 **Next Steps**: Review suggestions above and consider cleaning up unused keys\n\n`;
+          body += `<details>\n<summary>💡 How to fix these issues</summary>\n\n`;
+          body += `**For unused translation keys:**\n`;
+          body += `- Remove keys that are no longer referenced in the codebase\n`;
+          body += `- Check if keys are used in dynamic contexts (template strings, etc.)\n\n`;
+          body += `**For missing translations:**\n`;
+          body += `- Add missing keys to locale files\n`;
+          body += `- Use the English text as a starting point for translation\n\n`;
+          body += `**For orphaned keys:**\n`;
+          body += `- Remove keys that don't exist in en.json (master locale)\n`;
+          body += `- Or add them to en.json if they should exist\n\n`;
+          body += `</details>`;
+          
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: body
+          });
+

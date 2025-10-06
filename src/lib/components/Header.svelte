@@ -1,157 +1,149 @@
 <script lang="ts">
-  import { browser } from "$app/environment";
-  import { s } from "$lib/client/localization.svelte";
-  import { features } from "$lib/config/features";
-  import { dataService, dataReloadService } from "$lib/services/dataService";
-  import { experimental } from "$lib/stores/experimental.svelte.js";
-  import { fontSize } from "$lib/stores/fontSize.svelte.js";
-  import { language } from "$lib/stores/language.svelte.js";
-  import { settings } from "$lib/stores/settings.svelte.js";
-  import { theme } from "$lib/stores/theme.svelte.js";
-  import { timeTravel } from "$lib/stores/timeTravel.svelte.js";
-  import ChaosIndex from "./ChaosIndex.svelte";
-  import { IconSearch, IconClock } from "@tabler/icons-svelte";
+import { IconClock, IconSearch } from '@tabler/icons-svelte';
+import { browser } from '$app/environment';
+import { s } from '$lib/client/localization.svelte';
+import { features } from '$lib/config/features';
+import {
+	displaySettings,
+	experimentalSettings,
+	type FontSize,
+	languageSettings,
+	settings,
+	settingsModalState,
+	themeSettings,
+} from '$lib/data/settings.svelte.js';
+import { dataReloadService, dataService } from '$lib/services/dataService';
+import { timeTravel } from '$lib/stores/timeTravel.svelte.js';
+import ChaosIndex from './ChaosIndex.svelte';
 
-  // Props
-  interface Props {
-    totalReadCount?: number;
-    totalStoriesRead?: number;
-    offlineMode?: boolean;
-    getLastUpdated?: () => string;
-    chaosIndex?: {
-      score: number;
-      summary: string;
-      lastUpdated: string;
-    };
-    onSearchClick?: () => void;
-  }
+// Props
+interface Props {
+	totalReadCount?: number;
+	totalStoriesRead?: number;
+	offlineMode?: boolean;
+	getLastUpdated?: () => string;
+	chaosIndex?: {
+		score: number;
+		summary: string;
+		lastUpdated: string;
+	};
+	onSearchClick?: () => void;
+}
 
-  let {
-    totalReadCount = 0,
-    totalStoriesRead = 0,
-    offlineMode = false,
-    getLastUpdated = () => "Never",
-    chaosIndex,
-    onSearchClick,
-  }: Props = $props();
+let {
+	totalReadCount = 0,
+	totalStoriesRead = 0,
+	offlineMode = false,
+	getLastUpdated = () => 'Never',
+	chaosIndex,
+	onSearchClick,
+}: Props = $props();
 
-  // Date click state for cycling through different stats
-  let dateClickCount = $state(0);
+// Date click state for cycling through different stats
+let dateClickCount = $state(0);
 
-  // Loading state for exiting time travel
-  let isExitingTimeTravel = $state(false);
+// Loading state for exiting time travel
+let isExitingTimeTravel = $state(false);
 
-  // Kite animation state
-  let showFlyingKite = $state(false);
-  let kiteStartPosition = $state({ x: 0, y: 0 });
+// Kite animation state
+let showFlyingKite = $state(false);
+let kiteStartPosition = $state({ x: 0, y: 0 });
 
-  // Platform detection for keyboard shortcut
-  const isMac =
-    browser &&
-    (("userAgentData" in navigator &&
-      (navigator as any).userAgentData?.platform === "macOS") ||
-      navigator.userAgent.toUpperCase().indexOf("MAC") >= 0);
-  const searchTooltip = $derived(
-    s("header.search") + (isMac ? " (⌘K)" : " (Ctrl+K)"),
-  );
+// Platform detection for keyboard shortcut
+const isMac =
+	browser &&
+	(('userAgentData' in navigator && (navigator as any).userAgentData?.platform === 'macOS') ||
+		navigator.userAgent.toUpperCase().indexOf('MAC') >= 0);
+const searchTooltip = $derived(s('header.search') + (isMac ? ' (⌘K)' : ' (Ctrl+K)'));
 
-  function handleLogoClick(event: MouseEvent) {
-    // Get the logo element's position
-    const logoElement = event.currentTarget as HTMLElement;
-    const rect = logoElement.getBoundingClientRect();
+function handleLogoClick(event: MouseEvent) {
+	// Get the logo element's position
+	const logoElement = event.currentTarget as HTMLElement;
+	const rect = logoElement.getBoundingClientRect();
 
-    // Set the starting position to the right side of the logo (where newspaper icon is)
-    kiteStartPosition = {
-      x: rect.left + rect.width * 0.85, // 85% to the right
-      y: rect.top + rect.height / 2,
-    };
+	// Set the starting position to the right side of the logo (where newspaper icon is)
+	kiteStartPosition = {
+		x: rect.left + rect.width * 0.85, // 85% to the right
+		y: rect.top + rect.height / 2,
+	};
 
-    // Show the flying kite
-    showFlyingKite = true;
+	// Show the flying kite
+	showFlyingKite = true;
 
-    // Hide it after 5 seconds (it's off-screen by then)
-    setTimeout(() => {
-      showFlyingKite = false;
-    }, 8000);
-  }
+	// Hide it after 5 seconds (it's off-screen by then)
+	setTimeout(() => {
+		showFlyingKite = false;
+	}, 8000);
+}
 
-  function handleDateClick() {
-    dateClickCount = (dateClickCount + 1) % 5;
-  }
+function handleDateClick() {
+	dateClickCount = (dateClickCount + 1) % 5;
+}
 
-  // Handle date area keyboard events
-  function handleDateKeydown(event: KeyboardEvent) {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      handleDateClick();
-    }
-  }
+// Handle date area keyboard events
+function handleDateKeydown(event: KeyboardEvent) {
+	if (event.key === 'Enter' || event.key === ' ') {
+		event.preventDefault();
+		handleDateClick();
+	}
+}
 
-  // Handle font size toggle
-  function toggleFontSize() {
-    const fontSizes: Array<import("$lib/stores/fontSize.svelte.js").FontSize> =
-      ["xs", "small", "normal", "large", "xl"];
-    const currentIndex = fontSizes.indexOf(fontSize.current);
-    const nextIndex = (currentIndex + 1) % fontSizes.length;
-    fontSize.set(fontSizes[nextIndex]);
-  }
+// Handle font size toggle
+function toggleFontSize() {
+	const fontSizes: FontSize[] = ['xs', 'small', 'normal', 'large', 'xl'];
+	const currentIndex = fontSizes.indexOf(displaySettings.fontSize);
+	const nextIndex = (currentIndex + 1) % fontSizes.length;
+	displaySettings.fontSize = fontSizes[nextIndex];
+	settings.fontSize.save();
+}
 
-  // Helper to capitalize first letter
-  function capitalizeFirst(str: string): string {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
+// Helper to capitalize first letter
+function capitalizeFirst(str: string): string {
+	return str.charAt(0).toUpperCase() + str.slice(1);
+}
 
-  // Computed date/stats display
-  const dateDisplay = $derived.by(() => {
-    // If in time travel mode, show the selected date
-    if (timeTravel.selectedDate) {
-      const dateStr = new Intl.DateTimeFormat(language.current, {
-        weekday: "long",
-        month: "long",
-        day: "numeric",
-        year: "numeric",
-      }).format(timeTravel.selectedDate);
-      return capitalizeFirst(dateStr);
-    }
+// Computed date/stats display
+const dateDisplay = $derived.by(() => {
+	// If in time travel mode, show the selected date
+	if (timeTravel.selectedDate) {
+		const dateStr = new Intl.DateTimeFormat(languageSettings.ui, {
+			weekday: 'long',
+			month: 'long',
+			day: 'numeric',
+			year: 'numeric',
+		}).format(timeTravel.selectedDate);
+		return capitalizeFirst(dateStr);
+	}
 
-    if (dateClickCount === 0) {
-      // Default date format
-      const now = new Date();
-      const dateStr = new Intl.DateTimeFormat(language.current, {
-        weekday: "long",
-        month: "long",
-        day: "numeric",
-      }).format(now);
-      return capitalizeFirst(dateStr);
-    } else if (dateClickCount === 1) {
-      return getLastUpdated();
-    } else if (dateClickCount === 2) {
-      return (
-        s("stats.newsToday", { count: totalReadCount.toString() }) ||
-        `News today: ${totalReadCount}`
-      );
-    } else if (dateClickCount === 3) {
-      const key =
-        totalStoriesRead === 1 ? "stats.storyRead" : "stats.storiesRead";
-      return (
-        s(key, { count: totalStoriesRead.toString() }) ||
-        `Stories read: ${totalStoriesRead}`
-      );
-    } else {
-      const now = new Date();
-      const start = new Date(now.getFullYear(), 0, 1);
-      const week = Math.ceil(
-        (now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24 * 7),
-      );
-      const day = Math.ceil(
-        (now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24),
-      );
-      return (
-        s("stats.weekDay", { week: week.toString(), day: day.toString() }) ||
-        `Week ${week}, Day ${day}`
-      );
-    }
-  });
+	if (dateClickCount === 0) {
+		// Default date format
+		const now = new Date();
+		const dateStr = new Intl.DateTimeFormat(languageSettings.ui, {
+			weekday: 'long',
+			month: 'long',
+			day: 'numeric',
+		}).format(now);
+		return capitalizeFirst(dateStr);
+	} else if (dateClickCount === 1) {
+		return getLastUpdated();
+	} else if (dateClickCount === 2) {
+		return (
+			s('stats.newsToday', { count: totalReadCount.toString() }) || `News today: ${totalReadCount}`
+		);
+	} else if (dateClickCount === 3) {
+		const key = totalStoriesRead === 1 ? 'stats.storyRead' : 'stats.storiesRead';
+		return s(key, { count: totalStoriesRead.toString() }) || `Stories read: ${totalStoriesRead}`;
+	} else {
+		const now = new Date();
+		const start = new Date(now.getFullYear(), 0, 1);
+		const week = Math.ceil((now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24 * 7));
+		const day = Math.ceil((now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+		return (
+			s('stats.weekDay', { week: week.toString(), day: day.toString() }) ||
+			`Week ${week}, Day ${day}`
+		);
+	}
+});
 </script>
 
 {#snippet dateSection()}
@@ -202,7 +194,7 @@
             isExitingTimeTravel = false;
           }
         }}
-        class="ml-1 p-0.5"
+        class="ms-1 p-0.5"
         aria-label="Exit time travel mode"
         disabled={isExitingTimeTravel}
       >
@@ -236,7 +228,7 @@
   {#if offlineMode}
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      class="ml-1 inline h-4 w-4 text-red-500"
+      class="ms-1 inline h-4 w-4 text-red-500"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -256,11 +248,11 @@
   <div class="flex items-center justify-between relative">
     <div class="flex items-center">
       <img
-        src={theme.isDark
+        src={themeSettings.isDark
           ? "/svg/kagi_news_compact_dark.svg"
           : "/svg/kagi_news_compact.svg"}
         alt={s("app.logo.newsAlt") || "Kite News"}
-        class="mr-2 h-7 sm:h-8 w-20 sm:w-22 logo relative z-50"
+        class="me-2 h-7 sm:h-8 w-20 sm:w-22 logo relative z-50"
         onclick={handleLogoClick}
         role="presentation"
         style="isolation: isolate;"
@@ -268,8 +260,8 @@
     </div>
 
     <!-- Chaos Index - Mobile: centered in first row -->
-    {#if experimental.showChaosIndex && chaosIndex && chaosIndex.score > 0}
-      <div class="sm:hidden absolute left-1/2 transform -translate-x-1/2">
+    {#if experimentalSettings.isEnabled('showChaosIndex') && chaosIndex && chaosIndex.score > 0}
+      <div class="sm:hidden absolute start-1/2 ltr:-translate-x-1/2 rtl:translate-x-1/2">
         <ChaosIndex
           score={chaosIndex.score}
           summary={chaosIndex.summary}
@@ -280,14 +272,14 @@
 
     <!-- Date section hidden on mobile, shown on desktop in center -->
     <div
-      class="hidden sm:flex absolute left-1/2 transform -translate-x-1/2 items-center"
+      class="hidden sm:flex absolute start-1/2 ltr:-translate-x-1/2 rtl:translate-x-1/2 items-center"
     >
       {@render dateSection()}
     </div>
 
-    <div class="ml-auto flex items-center space-x-1 sm:space-x-2">
+    <div class="ms-auto flex items-center space-x-1 sm:space-x-2">
       <!-- Chaos Index - Desktop only, in first row -->
-      {#if experimental.showChaosIndex && chaosIndex && chaosIndex.score > 0}
+      {#if experimentalSettings.isEnabled('showChaosIndex') && chaosIndex && chaosIndex.score > 0}
         <div class="hidden sm:block">
           <ChaosIndex
             score={chaosIndex.score}
@@ -303,7 +295,7 @@
           onclick={() => timeTravel.toggle()}
           title={s("header.timeTravel") || "Time Travel"}
           aria-label={s("header.timeTravel") || "Time Travel"}
-          class="p-1 sm:ml-2"
+          class="p-1 sm:ms-2"
           type="button"
         >
           <IconClock size={24} stroke={2} class="text-black dark:text-white" />
@@ -314,7 +306,7 @@
         onclick={onSearchClick}
         title={searchTooltip}
         aria-label={s("header.search") || "Search"}
-        class="p-1 sm:ml-2"
+        class="p-1 sm:ms-2"
         type="button"
       >
         <IconSearch size={24} stroke={2} class="text-black dark:text-white" />
@@ -324,7 +316,7 @@
         onclick={toggleFontSize}
         title={s("header.fontSize") || "Font Size"}
         aria-label={s("header.fontSize") || "Font Size"}
-        class="p-1 sm:ml-2"
+        class="p-1 sm:ms-2"
         type="button"
       >
         <img
@@ -336,9 +328,13 @@
       </button>
 
       <button
-        onclick={() => settings.open()}
+        onclick={() => {
+          settingsModalState.isOpen = true;
+          document.body.classList.add('overflow-hidden');
+        }}
         title={s("header.settings") || "Settings"}
-        class="p-1 sm:ml-2"
+        aria-label={s("header.settings") || "Settings"}
+        class="p-1 sm:ms-2"
         type="button"
       >
         <img
@@ -364,7 +360,7 @@
     style="left: {kiteStartPosition.x}px; top: {kiteStartPosition.y}px;"
   >
     <img
-      src={theme.current === "dark" ? "/svg/kite_dark.svg" : "/svg/kite.svg"}
+      src={themeSettings.isDark ? "/svg/kite_dark.svg" : "/svg/kite.svg"}
       alt=""
       class="flying-kite"
       aria-hidden="true"

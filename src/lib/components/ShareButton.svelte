@@ -1,191 +1,186 @@
 <script lang="ts">
-  import { browser } from "$app/environment";
-  import { page } from "$app/state";
-  import { s } from "$lib/client/localization.svelte";
-  import { generateShareUrl } from "$lib/utils/urlShortener";
-  import {
-    useFloating,
-    offset,
-    flip,
-    shift,
-  } from "@skeletonlabs/floating-ui-svelte";
-  import { IconShare, IconCheck, IconLoader2 } from "@tabler/icons-svelte";
-  import { onMount, onDestroy } from "svelte";
-  import Portal from "svelte-portal";
+import { flip, offset, shift, useFloating } from '@skeletonlabs/floating-ui-svelte';
+import { IconCheck, IconLoader2, IconShare } from '@tabler/icons-svelte';
+import { onDestroy, onMount } from 'svelte';
+import Portal from 'svelte-portal';
+import { browser } from '$app/environment';
+import { page } from '$app/state';
+import { s } from '$lib/client/localization.svelte';
+import { generateShareUrl } from '$lib/utils/urlShortener';
 
-  interface Props {
-    title?: string;
-    description?: string;
-    batchId?: string | null;
-    categoryId?: string | null;
-    storyIndex?: number | null;
-    dataLang?: string | null;
-    class?: string;
-  }
+interface Props {
+	title?: string;
+	description?: string;
+	batchId?: string | null;
+	categoryId?: string | null;
+	storyIndex?: number | null;
+	dataLang?: string | null;
+	class?: string;
+}
 
-  let {
-    title = s("article.shareDefaultTitle") || "Check out this story",
-    description = "",
-    batchId,
-    categoryId,
-    storyIndex,
-    dataLang,
-    class: className = "",
-  }: Props = $props();
+let {
+	title = s('article.shareDefaultTitle') || 'Check out this story',
+	description = '',
+	batchId,
+	categoryId,
+	storyIndex,
+	dataLang,
+	class: className = '',
+}: Props = $props();
 
-  let showCopiedFeedback = $state(false);
-  let isLoading = $state(false);
-  let feedbackTimer: NodeJS.Timeout | undefined;
+let showCopiedFeedback = $state(false);
+let isLoading = $state(false);
+let feedbackTimer: NodeJS.Timeout | undefined;
 
-  // Floating UI setup for the "Copied!" tooltip
-  const floating = useFloating({
-    placement: "left",
-    strategy: "fixed",
-    middleware: [
-      offset(8), // 8px gap from button
-      flip({
-        fallbackPlacements: ["right", "top", "bottom"],
-      }), // Flip if no space
-      shift({
-        padding: 8,
-      }), // Keep within viewport
-    ],
-  });
+// Floating UI setup for the "Copied!" tooltip
+const floating = useFloating({
+	placement: 'left',
+	strategy: 'fixed',
+	middleware: [
+		offset(8), // 8px gap from button
+		flip({
+			fallbackPlacements: ['right', 'top', 'bottom'],
+		}), // Flip if no space
+		shift({
+			padding: 8,
+		}), // Keep within viewport
+	],
+});
 
-  // Hide tooltip on scroll
-  function hideTooltipOnScroll() {
-    if (showCopiedFeedback) {
-      showCopiedFeedback = false;
-      if (feedbackTimer) {
-        clearTimeout(feedbackTimer);
-        feedbackTimer = undefined;
-      }
-    }
-  }
+// Hide tooltip on scroll
+function hideTooltipOnScroll() {
+	if (showCopiedFeedback) {
+		showCopiedFeedback = false;
+		if (feedbackTimer) {
+			clearTimeout(feedbackTimer);
+			feedbackTimer = undefined;
+		}
+	}
+}
 
-  // Setup scroll listener
-  onMount(() => {
-    if (browser) {
-      window.addEventListener("scroll", hideTooltipOnScroll, { passive: true });
-    }
-  });
+// Setup scroll listener
+onMount(() => {
+	if (browser) {
+		window.addEventListener('scroll', hideTooltipOnScroll, { passive: true });
+	}
+});
 
-  onDestroy(() => {
-    if (browser) {
-      window.removeEventListener("scroll", hideTooltipOnScroll);
-    }
-    if (feedbackTimer) {
-      clearTimeout(feedbackTimer);
-    }
-  });
+onDestroy(() => {
+	if (browser) {
+		window.removeEventListener('scroll', hideTooltipOnScroll);
+	}
+	if (feedbackTimer) {
+		clearTimeout(feedbackTimer);
+	}
+});
 
-  async function handleShare() {
-    if (!browser || isLoading || showCopiedFeedback) return;
+async function handleShare() {
+	if (!browser || isLoading || showCopiedFeedback) return;
 
-    isLoading = true;
+	isLoading = true;
 
-    try {
-      // Generate full URL first
-      const baseUrl = window.location.origin;
-      const fullUrl = generateShareUrl(baseUrl, {
-        batchId,
-        categoryId,
-        storyIndex,
-        dataLang,
-      });
+	try {
+		// Generate full URL first
+		const baseUrl = window.location.origin;
+		const fullUrl = generateShareUrl(baseUrl, {
+			batchId,
+			categoryId,
+			storyIndex,
+			dataLang,
+		});
 
-      let shareUrl = fullUrl;
+		let shareUrl = fullUrl;
 
-      // Try to get short URL from API
-      try {
-        const response = await fetch("/api/shorten", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            url: fullUrl,
-            batchId,
-            categoryId,
-            storyIndex,
-            languageCode: dataLang,
-          }),
-        });
+		// Try to get short URL from API
+		try {
+			const response = await fetch('/api/shorten', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					url: fullUrl,
+					batchId,
+					categoryId,
+					storyIndex,
+					languageCode: dataLang,
+				}),
+			});
 
-        if (response.ok) {
-          const { shortUrl } = await response.json();
-          shareUrl = shortUrl;
-        }
-      } catch (err) {
-        console.warn("Failed to shorten URL, using full URL:", err);
-      }
+			if (response.ok) {
+				const { shortUrl } = await response.json();
+				shareUrl = shortUrl;
+			}
+		} catch (err) {
+			console.warn('Failed to shorten URL, using full URL:', err);
+		}
 
-      isLoading = false;
+		isLoading = false;
 
-      // Check if mobile and Web Share API is available
-      const isMobile = /mobile|android|iphone|ipad/i.test(navigator.userAgent);
+		// Check if mobile and Web Share API is available
+		const isMobile = /mobile|android|iphone|ipad/i.test(navigator.userAgent);
 
-      if (isMobile && navigator.share) {
-        try {
-          // Format the shared text nicely
-          // Include title, description, and attribution
-          const shareTitle = `${title} - Kite News`;
-          const shareText = description
-            ? `${description}\n\nRead more on Kite:`
-            : `${title}\n\nRead more on Kite:`;
+		if (isMobile && navigator.share) {
+			try {
+				// Format the shared text nicely
+				// Include title, description, and attribution
+				const shareTitle = `${title} - Kite News`;
+				const shareText = description
+					? `${description}\n\nRead more on Kite:`
+					: `${title}\n\nRead more on Kite:`;
 
-          await navigator.share({
-            title: shareTitle,
-            text: shareText,
-            url: shareUrl,
-          });
+				await navigator.share({
+					title: shareTitle,
+					text: shareText,
+					url: shareUrl,
+				});
 
-          // Don't show floating tooltip on mobile - native share is enough
-          return;
-        } catch (err) {
-          // User cancelled or error occurred
-          if (err instanceof Error && err.name !== "AbortError") {
-            console.error("Error sharing:", err);
-          }
-          // Fall through to clipboard copy if share fails
-        }
-      }
+				// Don't show floating tooltip on mobile - native share is enough
+				return;
+			} catch (err) {
+				// User cancelled or error occurred
+				if (err instanceof Error && err.name !== 'AbortError') {
+					console.error('Error sharing:', err);
+				}
+				// Fall through to clipboard copy if share fails
+			}
+		}
 
-      // Desktop: Copy to clipboard
-      try {
-        await navigator.clipboard.writeText(shareUrl);
+		// Desktop: Copy to clipboard
+		try {
+			await navigator.clipboard.writeText(shareUrl);
 
-        // Show feedback
-        showCopiedFeedback = true;
+			// Show feedback
+			showCopiedFeedback = true;
 
-        // Clear any existing timer
-        if (feedbackTimer) clearTimeout(feedbackTimer);
+			// Clear any existing timer
+			if (feedbackTimer) clearTimeout(feedbackTimer);
 
-        // Hide feedback after 2 seconds
-        feedbackTimer = setTimeout(() => {
-          showCopiedFeedback = false;
-        }, 2000);
-      } catch (err) {
-        console.error("Failed to copy URL:", err);
-        // Fallback: select and copy
-        const textArea = document.createElement("textarea");
-        textArea.value = shareUrl;
-        textArea.style.position = "fixed";
-        textArea.style.left = "-999999px";
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textArea);
+			// Hide feedback after 2 seconds
+			feedbackTimer = setTimeout(() => {
+				showCopiedFeedback = false;
+			}, 2000);
+		} catch (err) {
+			console.error('Failed to copy URL:', err);
+			// Fallback: select and copy
+			const textArea = document.createElement('textarea');
+			textArea.value = shareUrl;
+			textArea.style.position = 'fixed';
+			textArea.style.left = '-999999px';
+			document.body.appendChild(textArea);
+			textArea.select();
+			document.execCommand('copy');
+			document.body.removeChild(textArea);
 
-        // Show feedback
-        showCopiedFeedback = true;
-        feedbackTimer = setTimeout(() => {
-          showCopiedFeedback = false;
-        }, 2000);
-      }
-    } catch (error) {
-      console.error("Share failed:", error);
-      isLoading = false;
-    }
-  }
+			// Show feedback
+			showCopiedFeedback = true;
+			feedbackTimer = setTimeout(() => {
+				showCopiedFeedback = false;
+			}, 2000);
+		}
+	} catch (error) {
+		console.error('Share failed:', error);
+		isLoading = false;
+	}
+}
 </script>
 
 <!-- Share Button (icon only) -->

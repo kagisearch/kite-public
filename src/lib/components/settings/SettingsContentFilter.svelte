@@ -1,218 +1,216 @@
 <script lang="ts">
-  import { s } from "$lib/client/localization.svelte";
-  import Select from "$lib/components/Select.svelte";
-  import Tooltip from "$lib/components/Tooltip.svelte";
-  import { contentFilter } from "$lib/stores/contentFilter.svelte";
-  import { dataLanguage } from "$lib/stores/dataLanguage.svelte";
-  import {
-    IconX,
-    IconPlus,
-    IconCheck,
-    IconInfoCircle,
-    IconDownload,
-    IconUpload,
-  } from "@tabler/icons-svelte";
+import {
+	IconCheck,
+	IconDownload,
+	IconInfoCircle,
+	IconPlus,
+	IconUpload,
+	IconX,
+} from '@tabler/icons-svelte';
+import { s } from '$lib/client/localization.svelte';
+import Select from '$lib/components/Select.svelte';
+import Tooltip from '$lib/components/Tooltip.svelte';
+import type { FilterMode, FilterScope } from '$lib/data/settings.svelte';
+import { contentFilter } from '$lib/stores/contentFilter.svelte';
+import { dataLanguage } from '$lib/stores/dataLanguage.svelte';
 
-  // State
-  let newKeyword = $state("");
-  let inputElement = $state<HTMLInputElement>();
-  let previousLanguage = $state(dataLanguage.current);
-  let showResetConfirm = $state(false);
-  let resetButtonElement = $state<HTMLButtonElement>();
-  let showImportConfirm = $state(false);
-  let importButtonElement = $state<HTMLButtonElement>();
-  let fileInputElement = $state<HTMLInputElement>();
-  let importWarning = $state<string | undefined>();
-  let pendingImportData = $state<string | undefined>();
+// State
+let newKeyword = $state('');
+let inputElement = $state<HTMLInputElement>();
+let previousLanguage = $state(dataLanguage.current);
+let showResetConfirm = $state(false);
+let resetButtonElement = $state<HTMLButtonElement>();
+let showImportConfirm = $state(false);
+let importButtonElement = $state<HTMLButtonElement>();
+let fileInputElement = $state<HTMLInputElement>();
+let importWarning = $state<string | undefined>();
+let pendingImportData = $state<string | undefined>();
 
-  // Update keywords when data language changes
-  $effect(() => {
-    if (previousLanguage !== dataLanguage.current) {
-      previousLanguage = dataLanguage.current;
-      contentFilter.updateLanguage(dataLanguage.current);
-    }
-  });
+// Update keywords when data language changes
+$effect(() => {
+	if (previousLanguage !== dataLanguage.current) {
+		previousLanguage = dataLanguage.current;
+		contentFilter.updateLanguage(dataLanguage.current);
+	}
+});
 
-  // Get localized preset labels and tooltips
-  const localizedPresets = $derived(
-    contentFilter.presets.map((preset) => {
-      // Try to get translated label, fall back to original
-      const translatedLabel = s(`settings.contentFilter.preset.${preset.id}`);
-      const label =
-        translatedLabel !== `settings.contentFilter.preset.${preset.id}`
-          ? translatedLabel
-          : preset.label;
+// Get localized preset labels and tooltips
+const localizedPresets = $derived(
+	contentFilter.presets.map((preset) => {
+		// Try to get translated label, fall back to original
+		const translatedLabel = s(`settings.contentFilter.preset.${preset.id}`);
+		const label =
+			translatedLabel !== `settings.contentFilter.preset.${preset.id}`
+				? translatedLabel
+				: preset.label;
 
-      // Only show tooltip if we have a translation for it
-      const tooltipKey = `settings.contentFilter.preset.${preset.id}.tooltip`;
-      const translatedTooltip = s(tooltipKey);
-      const tooltip =
-        translatedTooltip !== tooltipKey ? translatedTooltip : null;
+		// Only show tooltip if we have a translation for it
+		const tooltipKey = `settings.contentFilter.preset.${preset.id}.tooltip`;
+		const translatedTooltip = s(tooltipKey);
+		const tooltip = translatedTooltip !== tooltipKey ? translatedTooltip : null;
 
-      return {
-        ...preset,
-        label,
-        tooltip,
-      };
-    }),
-  );
+		return {
+			...preset,
+			label,
+			tooltip,
+		};
+	}),
+);
 
-  // Add keyword
-  function addKeyword() {
-    if (!newKeyword.trim()) return;
+// Add keyword
+function addKeyword() {
+	if (!newKeyword.trim()) return;
 
-    // Split by commas and add all keywords
-    const keywords = newKeyword
-      .split(",")
-      .map((k) => k.trim())
-      .filter((k) => k);
-    keywords.forEach((k) => contentFilter.addCustomKeyword(k));
-    newKeyword = "";
+	// Split by commas and add all keywords
+	const keywords = newKeyword
+		.split(',')
+		.map((k) => k.trim())
+		.filter((k) => k);
+	for (const k of keywords) {
+		contentFilter.addCustomKeyword(k);
+	}
+	newKeyword = '';
 
-    // Focus back on input
-    inputElement?.focus();
-  }
+	// Focus back on input
+	inputElement?.focus();
+}
 
-  // Handle enter key
-  function handleKeydown(event: KeyboardEvent) {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      addKeyword();
-    }
-  }
+// Handle enter key
+function handleKeydown(event: KeyboardEvent) {
+	if (event.key === 'Enter') {
+		event.preventDefault();
+		addKeyword();
+	}
+}
 
-  // Reset to defaults
-  function resetToDefaults() {
-    contentFilter.reset();
-    showResetConfirm = false;
-  }
+// Reset to defaults
+function resetToDefaults() {
+	contentFilter.reset();
+	showResetConfirm = false;
+}
 
-  // Handle clicks outside reset confirm
-  function handleOutsideClick(event: MouseEvent) {
-    if (
-      showResetConfirm &&
-      resetButtonElement &&
-      !resetButtonElement.contains(event.target as Node)
-    ) {
-      const confirmEl = document.getElementById("reset-confirm-popup");
-      if (confirmEl && !confirmEl.contains(event.target as Node)) {
-        showResetConfirm = false;
-      }
-    }
-  }
+// Handle clicks outside reset confirm
+function handleOutsideClick(event: MouseEvent) {
+	if (
+		showResetConfirm &&
+		resetButtonElement &&
+		!resetButtonElement.contains(event.target as Node)
+	) {
+		const confirmEl = document.getElementById('reset-confirm-popup');
+		if (confirmEl && !confirmEl.contains(event.target as Node)) {
+			showResetConfirm = false;
+		}
+	}
+}
 
-  // Listen for outside clicks
-  $effect(() => {
-    if (showResetConfirm) {
-      document.addEventListener("click", handleOutsideClick);
-      return () => document.removeEventListener("click", handleOutsideClick);
-    }
-  });
+// Listen for outside clicks
+$effect(() => {
+	if (showResetConfirm) {
+		document.addEventListener('click', handleOutsideClick);
+		return () => document.removeEventListener('click', handleOutsideClick);
+	}
+});
 
-  // Helper to get keywords for a preset in the current language
-  function getPresetKeywords(preset: any): string[] {
-    if (Array.isArray(preset.keywords)) {
-      return preset.keywords;
-    }
-    return (
-      preset.keywords[dataLanguage.current] ||
-      preset.keywords["default"] ||
-      preset.keywords["en"] ||
-      []
-    );
-  }
+// Helper to get keywords for a preset in the current language
+function getPresetKeywords(preset: any): string[] {
+	if (Array.isArray(preset.keywords)) {
+		return preset.keywords;
+	}
+	return (
+		preset.keywords[dataLanguage.current] || preset.keywords.default || preset.keywords.en || []
+	);
+}
 
-  // Check if we have custom keywords (not from presets)
-  const customKeywords = $derived.by(() => {
-    // Get all keywords from active presets
-    const presetKeywords = new Set<string>();
-    contentFilter.activePresets.forEach((presetId) => {
-      const preset = contentFilter.presets.find((p) => p.id === presetId);
-      if (preset) {
-        const keywords = getPresetKeywords(preset);
-        keywords.forEach((k) => presetKeywords.add(k));
-      }
-    });
+// Check if we have custom keywords (not from presets)
+const customKeywords = $derived.by(() => {
+	// Get all keywords from active presets
+	const presetKeywords = new Set<string>();
+	for (const presetId of contentFilter.activePresets) {
+		const preset = contentFilter.presets.find((p) => p.id === presetId);
+		if (preset) {
+			const keywords = getPresetKeywords(preset);
+			for (const k of keywords) {
+				presetKeywords.add(k);
+			}
+		}
+	}
 
-    // Return keywords that are not from presets
-    return contentFilter.keywords.filter((k) => !presetKeywords.has(k));
-  });
+	// Return keywords that are not from presets
+	return contentFilter.keywords.filter((k) => !presetKeywords.has(k));
+});
 
-  // Export configuration
-  function exportConfig() {
-    const config = contentFilter.exportConfig();
-    const blob = new Blob([config], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `kite-content-filters-${new Date().toISOString().split("T")[0]}.json`;
-    a.click();
-    URL.revokeObjectURL(url);
-  }
+// Export configuration
+function exportConfig() {
+	const config = contentFilter.exportConfig();
+	const blob = new Blob([config], { type: 'application/json' });
+	const url = URL.createObjectURL(blob);
+	const a = document.createElement('a');
+	a.href = url;
+	a.download = `kite-content-filters-${new Date().toISOString().split('T')[0]}.json`;
+	a.click();
+	URL.revokeObjectURL(url);
+}
 
-  // Handle file selection
-  function handleFileSelect(event: Event) {
-    const input = event.target as HTMLInputElement;
-    const file = input.files?.[0];
-    if (!file) return;
+// Handle file selection
+function handleFileSelect(event: Event) {
+	const input = event.target as HTMLInputElement;
+	const file = input.files?.[0];
+	if (!file) return;
 
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const content = e.target?.result as string;
-      // Pre-validate the import
-      const result = contentFilter.importConfig(content);
-      if (result.errorKey) {
-        alert(s(result.errorKey) || result.errorKey);
-        return;
-      }
+	const reader = new FileReader();
+	reader.onload = (e) => {
+		const content = e.target?.result as string;
+		// Pre-validate the import
+		const result = contentFilter.importConfig(content);
+		if (result.errorKey) {
+			alert(s(result.errorKey) || result.errorKey);
+			return;
+		}
 
-      // Store the data and show confirmation
-      pendingImportData = content;
-      importWarning = result.warningKey
-        ? s(result.warningKey) || result.warningKey
-        : undefined;
-      showImportConfirm = true;
-    };
-    reader.readAsText(file);
-  }
+		// Store the data and show confirmation
+		pendingImportData = content;
+		importWarning = result.warningKey ? s(result.warningKey) || result.warningKey : undefined;
+		showImportConfirm = true;
+	};
+	reader.readAsText(file);
+}
 
-  // Confirm import
-  function confirmImport() {
-    if (pendingImportData) {
-      contentFilter.importConfig(pendingImportData);
-      showImportConfirm = false;
-      pendingImportData = undefined;
-      importWarning = undefined;
-      // Reset file input
-      if (fileInputElement) fileInputElement.value = "";
-    }
-  }
+// Confirm import
+function confirmImport() {
+	if (pendingImportData) {
+		contentFilter.importConfig(pendingImportData);
+		showImportConfirm = false;
+		pendingImportData = undefined;
+		importWarning = undefined;
+		// Reset file input
+		if (fileInputElement) fileInputElement.value = '';
+	}
+}
 
-  // Handle clicks outside import confirm
-  function handleImportOutsideClick(event: MouseEvent) {
-    if (
-      showImportConfirm &&
-      importButtonElement &&
-      !importButtonElement.contains(event.target as Node)
-    ) {
-      const confirmEl = document.getElementById("import-confirm-popup");
-      if (confirmEl && !confirmEl.contains(event.target as Node)) {
-        showImportConfirm = false;
-        pendingImportData = undefined;
-        importWarning = undefined;
-        if (fileInputElement) fileInputElement.value = "";
-      }
-    }
-  }
+// Handle clicks outside import confirm
+function handleImportOutsideClick(event: MouseEvent) {
+	if (
+		showImportConfirm &&
+		importButtonElement &&
+		!importButtonElement.contains(event.target as Node)
+	) {
+		const confirmEl = document.getElementById('import-confirm-popup');
+		if (confirmEl && !confirmEl.contains(event.target as Node)) {
+			showImportConfirm = false;
+			pendingImportData = undefined;
+			importWarning = undefined;
+			if (fileInputElement) fileInputElement.value = '';
+		}
+	}
+}
 
-  // Listen for import outside clicks
-  $effect(() => {
-    if (showImportConfirm) {
-      document.addEventListener("click", handleImportOutsideClick);
-      return () =>
-        document.removeEventListener("click", handleImportOutsideClick);
-    }
-  });
+// Listen for import outside clicks
+$effect(() => {
+	if (showImportConfirm) {
+		document.addEventListener('click', handleImportOutsideClick);
+		return () => document.removeEventListener('click', handleImportOutsideClick);
+	}
+});
 </script>
 
 <div class="space-y-6">
@@ -346,7 +344,7 @@
                 {keyword}
                 <button
                   onclick={() => contentFilter.removeKeyword(keyword)}
-                  class="ml-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                  class="ms-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
                   aria-label="Remove {keyword}"
                 >
                   <IconX size={16} />
@@ -385,7 +383,7 @@
           onchange={() => contentFilter.setFilterMode("hide")}
           class="mt-0.5 h-4 w-4 text-blue-600 focus:ring-blue-500 dark:focus:ring-blue-400"
         />
-        <div class="ml-3">
+        <div class="ms-3">
           <span
             class="block text-sm font-medium text-gray-700 dark:text-gray-300"
           >
@@ -406,7 +404,7 @@
           onchange={() => contentFilter.setFilterMode("blur")}
           class="mt-0.5 h-4 w-4 text-blue-600 focus:ring-blue-500 dark:focus:ring-blue-400"
         />
-        <div class="ml-3">
+        <div class="ms-3">
           <span
             class="block text-sm font-medium text-gray-700 dark:text-gray-300"
           >
@@ -442,7 +440,7 @@
       ]}
       label={s("settings.contentFilter.scope.label") || "Filter Scope"}
       onChange={(value: string) =>
-        contentFilter.setFilterScope(value as "title" | "summary" | "all")}
+        contentFilter.setFilterScope(value as FilterScope)}
     />
     <p class="text-sm text-gray-500 dark:text-gray-400">
       {s("settings.contentFilter.scope.description") ||
@@ -474,7 +472,7 @@
           contentFilter.setShowFilteredCount(e.currentTarget.checked)}
       />
       <div
-        class="peer h-6 w-11 rounded-full bg-gray-200 after:absolute after:left-[2px] after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 peer-checked:after:translate-x-full peer-checked:after:border-white dark:bg-gray-700 dark:peer-checked:bg-blue-500"
+        class="peer h-6 w-11 rounded-full bg-gray-200 after:absolute ltr:after:left-[2px] rtl:after:right-[2px] after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 ltr:peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white dark:bg-gray-700 dark:peer-checked:bg-blue-500"
       ></div>
     </label>
   </div>

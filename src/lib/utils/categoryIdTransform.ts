@@ -18,23 +18,23 @@
  * @returns The normalized category ID used throughout the system
  */
 export function categoryKeyToId(categoryKey: string): string {
-  // Handle specific mappings that don't follow the standard pattern
-  const hardcodedMappings: Record<string, string> = {
-    Technology: "tech", // Core category mapping
-    "Linux & OSS": "linux_oss", // Community category mapping
-  };
+	// Handle specific mappings that don't follow the standard pattern
+	const hardcodedMappings: Record<string, string> = {
+		Technology: 'tech', // Core category mapping
+		'Linux & OSS': 'linux_oss', // Community category mapping
+	};
 
-  if (hardcodedMappings[categoryKey]) {
-    return hardcodedMappings[categoryKey];
-  }
+	if (hardcodedMappings[categoryKey]) {
+		return hardcodedMappings[categoryKey];
+	}
 
-  // Handle special delimiter: "USA | Vermont" -> "usa_|_vermont"
-  if (categoryKey.includes(" | ")) {
-    return categoryKey.toLowerCase().replace(" | ", "_|_");
-  }
+	// Handle special delimiter: "USA | Vermont" -> "usa_|_vermont"
+	if (categoryKey.includes(' | ')) {
+		return categoryKey.toLowerCase().replace(' | ', '_|_');
+	}
 
-  // Standard transformation: spaces to underscores, lowercase
-  return categoryKey.toLowerCase().replace(/\s+/g, "_");
+	// Standard transformation: spaces to underscores, lowercase
+	return categoryKey.toLowerCase().replace(/\s+/g, '_');
 }
 
 /**
@@ -48,19 +48,19 @@ export function categoryKeyToId(categoryKey: string): string {
  * @returns Normalized category ID
  */
 export function normalizeToId(
-  categoryIdOrName: string,
-  allCategories?: Array<{ id: string; name: string }>,
+	categoryIdOrName: string,
+	allCategories?: Array<{ id: string; name: string }>,
 ): string {
-  if (!allCategories) {
-    return categoryIdOrName;
-  }
+	if (!allCategories) {
+		return categoryIdOrName;
+	}
 
-  // Find the category by ID first, then by name
-  const category = allCategories.find(
-    (cat) => cat.id === categoryIdOrName || cat.name === categoryIdOrName,
-  );
+	// Find the category by ID first, then by name
+	const category = allCategories.find(
+		(cat) => cat.id === categoryIdOrName || cat.name === categoryIdOrName,
+	);
 
-  return category ? category.id : categoryIdOrName;
+	return category ? category.id : categoryIdOrName;
 }
 
 /**
@@ -70,7 +70,7 @@ export function normalizeToId(
  * @returns Category ID (e.g., "world")
  */
 export function filenameToCategoryId(filename: string): string {
-  return filename.replace(".json", "");
+	return filename.replace('.json', '');
 }
 
 /**
@@ -80,7 +80,7 @@ export function filenameToCategoryId(filename: string): string {
  * @returns JSON filename (e.g., "world.json")
  */
 export function categoryIdToFilename(categoryId: string): string {
-  return `${categoryId}.json`;
+	return `${categoryId}.json`;
 }
 
 /**
@@ -92,14 +92,14 @@ export function categoryIdToFilename(categoryId: string): string {
  * @returns CamelCase version suitable for localization keys
  */
 export function categoryNameToCamelCase(categoryName: string): string {
-  return categoryName
-    .replace(/[^a-zA-Z0-9]/g, "") // Remove special characters
-    .split(" ")
-    .map((word, index) => {
-      if (index === 0) return word.toLowerCase();
-      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-    })
-    .join("");
+	return categoryName
+		.replace(/[^a-zA-Z0-9]/g, '') // Remove special characters
+		.split(' ')
+		.map((word, index) => {
+			if (index === 0) return word.toLowerCase();
+			return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+		})
+		.join('');
 }
 
 /**
@@ -109,5 +109,5 @@ export function categoryNameToCamelCase(categoryName: string): string {
  * @returns URL-safe category ID (lowercase)
  */
 export function normalizeForUrl(categoryId: string): string {
-  return categoryId.toLowerCase();
+	return categoryId.toLowerCase();
 }

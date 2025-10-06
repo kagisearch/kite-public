@@ -1,135 +1,129 @@
 <script lang="ts">
-  import { browser } from "$app/environment";
-  import { s } from "$lib/client/localization.svelte";
-  import BaseModal from "./BaseModal.svelte";
-  import {
-    IconAlertTriangle,
-    IconLoader2,
-    IconPlus,
-    IconX,
-  } from "@tabler/icons-svelte";
+import { IconAlertTriangle, IconLoader2, IconPlus, IconX } from '@tabler/icons-svelte';
+import { browser } from '$app/environment';
+import { s } from '$lib/client/localization.svelte';
+import BaseModal from './BaseModal.svelte';
 
-  interface Props {
-    clusterId: string;
-    title: string;
-    class?: string;
-  }
+interface Props {
+	clusterId: string;
+	title: string;
+	class?: string;
+}
 
-  let { clusterId, title, class: className = "" }: Props = $props();
+let { clusterId, title, class: className = '' }: Props = $props();
 
-  let showModal = $state(false);
-  let issueType = $state("");
-  let description = $state("");
-  let sourceUrls = $state<string[]>([""]);
-  let isSubmitting = $state(false);
-  let isSuccess = $state(false);
-  let errorMessage = $state("");
-  let successMessage = $state("");
-  let reportId = $state("");
+let showModal = $state(false);
+let issueType = $state('');
+let description = $state('');
+let sourceUrls = $state<string[]>(['']);
+let isSubmitting = $state(false);
+let isSuccess = $state(false);
+let errorMessage = $state('');
+let successMessage = $state('');
+let reportId = $state('');
 
-  const MAX_DESCRIPTION_LENGTH = 1000;
+const MAX_DESCRIPTION_LENGTH = 1000;
 
-  function openModal() {
-    showModal = true;
-    issueType = "";
-    description = "";
-    sourceUrls = [""];
-    isSuccess = false;
-    errorMessage = "";
-    successMessage = "";
-    reportId = "";
-  }
+function openModal() {
+	showModal = true;
+	issueType = '';
+	description = '';
+	sourceUrls = [''];
+	isSuccess = false;
+	errorMessage = '';
+	successMessage = '';
+	reportId = '';
+}
 
-  function closeModal() {
-    showModal = false;
-    issueType = "";
-    description = "";
-    sourceUrls = [""];
-    isSuccess = false;
-    errorMessage = "";
-    successMessage = "";
-    reportId = "";
-    isSubmitting = false;
-  }
+function closeModal() {
+	showModal = false;
+	issueType = '';
+	description = '';
+	sourceUrls = [''];
+	isSuccess = false;
+	errorMessage = '';
+	successMessage = '';
+	reportId = '';
+	isSubmitting = false;
+}
 
-  function addSourceField() {
-    sourceUrls = [...sourceUrls, ""];
-  }
+function addSourceField() {
+	sourceUrls = [...sourceUrls, ''];
+}
 
-  function removeSourceField(index: number) {
-    sourceUrls = sourceUrls.filter((_, i) => i !== index);
-  }
+function removeSourceField(index: number) {
+	sourceUrls = sourceUrls.filter((_, i) => i !== index);
+}
 
-  function updateSourceUrl(index: number, value: string) {
-    sourceUrls[index] = value;
-  }
+function updateSourceUrl(index: number, value: string) {
+	sourceUrls[index] = value;
+}
 
-  async function handleSubmit() {
-    if (!browser || isSubmitting || !description.trim() || !issueType) return;
+async function handleSubmit() {
+	if (!browser || isSubmitting || !description.trim() || !issueType) return;
 
-    if (description.length > MAX_DESCRIPTION_LENGTH) {
-      errorMessage = s("article.reportModal.characterCount", {
-        count: description.length.toString(),
-        max: MAX_DESCRIPTION_LENGTH.toString(),
-      });
-      return;
-    }
+	if (description.length > MAX_DESCRIPTION_LENGTH) {
+		errorMessage = s('article.reportModal.characterCount', {
+			count: description.length.toString(),
+			max: MAX_DESCRIPTION_LENGTH.toString(),
+		});
+		return;
+	}
 
-    // Validate source URLs
-    const validSourceUrls: string[] = [];
-    for (const url of sourceUrls) {
-      const trimmedUrl = url.trim();
-      if (trimmedUrl) {
-        try {
-          new URL(trimmedUrl);
-          validSourceUrls.push(trimmedUrl);
-        } catch {
-          errorMessage = `Invalid URL: ${trimmedUrl}`;
-          return;
-        }
-      }
-    }
+	// Validate source URLs
+	const validSourceUrls: string[] = [];
+	for (const url of sourceUrls) {
+		const trimmedUrl = url.trim();
+		if (trimmedUrl) {
+			try {
+				new URL(trimmedUrl);
+				validSourceUrls.push(trimmedUrl);
+			} catch {
+				errorMessage = `Invalid URL: ${trimmedUrl}`;
+				return;
+			}
+		}
+	}
 
-    isSubmitting = true;
-    errorMessage = "";
+	isSubmitting = true;
+	errorMessage = '';
 
-    try {
-      const response = await fetch("/api/reports", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          clusterId,
-          issueType,
-          description: description.trim(),
-          sourceUrls: validSourceUrls,
-        }),
-      });
+	try {
+		const response = await fetch('/api/reports', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				clusterId,
+				issueType,
+				description: description.trim(),
+				sourceUrls: validSourceUrls,
+			}),
+		});
 
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || s("article.reportModal.error"));
-      }
+		if (!response.ok) {
+			const error = await response.json();
+			throw new Error(error.message || s('article.reportModal.error'));
+		}
 
-      const result = await response.json();
-      reportId = result.id;
-      successMessage = s("article.reportModal.success");
-      isSuccess = true;
+		const result = await response.json();
+		reportId = result.id;
+		successMessage = s('article.reportModal.success');
+		isSuccess = true;
 
-      // Don't close modal - keep it open to show success message
-    } catch (error) {
-      console.error("Failed to submit report:", error);
-      errorMessage =
-        error instanceof Error ? error.message : s("article.reportModal.error");
-    } finally {
-      isSubmitting = false;
-    }
-  }
+		// Don't close modal - keep it open to show success message
+	} catch (error) {
+		console.error('Failed to submit report:', error);
+		errorMessage = error instanceof Error ? error.message : s('article.reportModal.error');
+	} finally {
+		isSubmitting = false;
+	}
+}
 
-  function handleKeydown(event: KeyboardEvent) {
-    if (event.key === "Escape" && !isSubmitting) {
-      closeModal();
-    }
-  }
+function handleKeydown(event: KeyboardEvent) {
+	if (event.key === 'Escape' && !isSubmitting) {
+		closeModal();
+	}
+}
 </script>
 
 <!-- Report Button (icon only) -->
@@ -187,7 +181,7 @@
               value="factualError"
               bind:group={issueType}
               disabled={isSubmitting || isSuccess}
-              class="mr-2 text-amber-600 focus:ring-amber-500"
+              class="me-2 text-amber-600 focus:ring-amber-500"
             />
             <span class="text-sm text-gray-700 dark:text-gray-300"
               >{s("article.reportModal.issueType.factualError")}</span
@@ -200,7 +194,7 @@
               value="misleading"
               bind:group={issueType}
               disabled={isSubmitting || isSuccess}
-              class="mr-2 text-amber-600 focus:ring-amber-500"
+              class="me-2 text-amber-600 focus:ring-amber-500"
             />
             <span class="text-sm text-gray-700 dark:text-gray-300"
               >{s("article.reportModal.issueType.misleading")}</span
@@ -213,7 +207,7 @@
               value="outdated"
               bind:group={issueType}
               disabled={isSubmitting || isSuccess}
-              class="mr-2 text-amber-600 focus:ring-amber-500"
+              class="me-2 text-amber-600 focus:ring-amber-500"
             />
             <span class="text-sm text-gray-700 dark:text-gray-300"
               >{s("article.reportModal.issueType.outdated")}</span
@@ -226,7 +220,7 @@
               value="other"
               bind:group={issueType}
               disabled={isSubmitting || isSuccess}
-              class="mr-2 text-amber-600 focus:ring-amber-500"
+              class="me-2 text-amber-600 focus:ring-amber-500"
             />
             <span class="text-sm text-gray-700 dark:text-gray-300"
               >{s("article.reportModal.issueType.other")}</span
