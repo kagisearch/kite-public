@@ -892,6 +892,34 @@
       "https://www.zagreb.info/feed/"
     ]
   },
+  "Coffee": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {
+      "de": "Kaffee",
+      "en": "Coffee",
+      "es": "Café",
+      "fr": "Café",
+      "hi": "कॉफ़ी",
+      "it": "Caffè",
+      "ja": "コーヒー",
+      "nl": "Koffie",
+      "pt": "Café",
+      "uk": "Кава",
+      "zh-Hans": "咖啡",
+      "zh-Hant": "咖啡"
+    },
+    "feeds": [
+      "https://www.baristahustle.com/feed/",
+      "https://dailycoffeenews.com/feed/",
+      "https://coffeelogik.com/feed/",
+      "https://europeancoffeetrip.com/feed/",
+      "https://www.baristamagazine.com/feed/",
+      "https://pullandpourcoffee.com/feed/",
+      "https://www.scottrao.com/blog?format=RSS",
+      "http://sprudge.com/feed"
+    ]
+  },
   "Cryptocurrency": {
     "category_type": "topic",
     "source_language": "en",
