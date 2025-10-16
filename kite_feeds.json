@@ -39,7 +39,7 @@
     ]
   },
   "Africa": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "en",
     "display_names": {
       "en": "Africa",
@@ -270,7 +270,7 @@
     ]
   },
   "Australia": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "en",
     "display_names": {
       "en": "Australia",
@@ -334,7 +334,7 @@
     ]
   },
   "Austria": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "de",
     "display_names": {
       "en": "Austria",
@@ -388,7 +388,7 @@
     ]
   },
   "Belgium": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "nl",
     "display_names": {
       "en": "Belgium",
@@ -501,7 +501,7 @@
     ]
   },
   "Brazil": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "pt",
     "display_names": {
       "en": "Brazil",
@@ -563,7 +563,7 @@
     ]
   },
   "Canada": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "en",
     "display_names": {
       "en": "Canada",
@@ -707,7 +707,7 @@
     ]
   },
   "China": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "zh-Hans",
     "display_names": {
       "en": "China",
@@ -832,7 +832,7 @@
     ]
   },
   "Colombia": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "es",
     "display_names": {
       "en": "Colombia",
@@ -883,7 +883,7 @@
     ]
   },
   "Costa Rica": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "es",
     "display_names": {
       "en": "Costa Rica",
@@ -935,7 +935,7 @@
     ]
   },
   "Croatia": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "hr",
     "display_names": {
       "en": "Croatia",
@@ -1114,7 +1114,7 @@
     ]
   },
   "Czech Republic": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "cs",
     "display_names": {
       "en": "Czech Republic",
@@ -1164,7 +1164,7 @@
     ]
   },
   "Denmark": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "dk",
     "display_names": {
       "ca": "Dinamarca",
@@ -1324,7 +1324,7 @@
     ]
   },
   "Estonia": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "et",
     "display_names": {
       "en": "Estonia",
@@ -1390,7 +1390,7 @@
     ]
   },
   "Europe": {
-    "category_type": "topic",
+    "category_type": "region",
     "source_language": "en",
     "display_names": {
       "en": "Europe",
@@ -1476,7 +1476,7 @@
     ]
   },
   "Finland": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "fi",
     "display_names": {
       "en": "Finland",
@@ -1576,7 +1576,7 @@
     ]
   },
   "France": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "fr",
     "display_names": {
       "en": "France",
@@ -1690,7 +1690,7 @@
     ]
   },
   "Germany": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "de",
     "display_names": {
       "en": "Germany",
@@ -1800,7 +1800,7 @@
     ]
   },
   "Greece": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "gr",
     "display_names": {
       "ca": "Grècia",
@@ -1849,7 +1849,7 @@
     ]
   },
   "Hungary": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "hu",
     "display_names": {
       "ar": "هنغاريا",
@@ -1898,7 +1898,7 @@
     ]
   },
   "India": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "en",
     "display_names": {
       "en": "India",
@@ -1987,7 +1987,7 @@
     ]
   },
   "Iran": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "en",
     "display_names": {
       "en": "Iran",
@@ -2052,7 +2052,7 @@
     ]
   },
   "Ireland": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "en",
     "display_names": {
       "en": "Ireland",
@@ -2100,7 +2100,7 @@
     ]
   },
   "Israel": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "he",
     "display_names": {
       "en": "Israel",
@@ -2178,7 +2178,7 @@
     ]
   },
   "Italy": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "it",
     "display_names": {
       "en": "Italy",
@@ -2265,7 +2265,7 @@
     ]
   },
   "Japan": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "ja",
     "display_names": {
       "en": "Japan",
@@ -2424,7 +2424,7 @@
     ]
   },
   "Lithuania": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "lt",
     "display_names": {
       "en": "Lithuania",
@@ -2473,7 +2473,7 @@
     ]
   },
   "Mexico": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "es",
     "display_names": {
       "en": "Mexico",
@@ -2559,7 +2559,7 @@
     ]
   },
   "Middle East": {
-    "category_type": "topic",
+    "category_type": "region",
     "source_language": "en",
     "display_names": {
       "en": "Middle East",
@@ -2614,7 +2614,7 @@
     ]
   },
   "New Zealand": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "en",
     "display_names": {
       "en": "New Zealand",
@@ -2760,7 +2760,7 @@
     ]
   },
   "Norway": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "no",
     "display_names": {
       "en": "Norway",
@@ -2818,7 +2818,7 @@
     ]
   },
   "Pakistan": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "en",
     "display_names": {
       "en": "Pakistan",
@@ -2868,7 +2868,7 @@
     ]
   },
   "Palestine": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "en",
     "display_names": {
       "en": "Palestine",
@@ -2919,7 +2919,7 @@
     ]
   },
   "Philippines": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "en",
     "display_names": {
       "en": "Philippines",
@@ -3019,7 +3019,7 @@
     ]
   },
   "Poland": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "pl",
     "display_names": {
       "en": "Poland",
@@ -3077,7 +3077,7 @@
     ]
   },
   "Portugal": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "pt",
     "display_names": {
       "en": "Portugal",
@@ -3225,7 +3225,7 @@
     ]
   },
   "Romania": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "ro",
     "display_names": {
       "en": "Romania",
@@ -3278,7 +3278,7 @@
     ]
   },
   "Russia": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "ru",
     "display_names": {
       "en": "Russia",
@@ -3327,7 +3327,7 @@
     ]
   },
   "Serbia": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "sr",
     "display_names": {
       "en": "Serbia",
@@ -3412,7 +3412,7 @@
     ]
   },
   "Slovakia": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "sk",
     "display_names": {
       "en": "Slovakia",
@@ -3477,7 +3477,7 @@
     ]
   },
   "Slovenia": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "sl",
     "display_names": {
       "en": "Slovenia",
@@ -3527,7 +3527,7 @@
     ]
   },
   "South Korea": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "ko",
     "display_names": {
       "en": "South Korea",
@@ -3606,7 +3606,7 @@
     ]
   },
   "Spain": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "es",
     "display_names": {
       "en": "Spain",
@@ -3670,7 +3670,7 @@
     ]
   },
   "Sweden": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "sv",
     "display_names": {
       "en": "Sweden",
@@ -3727,7 +3727,7 @@
     ]
   },
   "Switzerland (DE)": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "de",
     "display_names": {
       "en": "Switzerland (DE)",
@@ -3791,7 +3791,7 @@
     ]
   },
   "Taiwan": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "zh-Hant",
     "display_names": {
       "en": "Taiwan",
@@ -3896,7 +3896,7 @@
     ]
   },
   "Thailand": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "th",
     "display_names": {
       "en": "Thailand",
@@ -3971,7 +3971,7 @@
     ]
   },
   "The Netherlands": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "nl",
     "display_names": {
       "en": "The Netherlands",
@@ -4056,7 +4056,7 @@
     ]
   },
   "Turkey": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "tr",
     "display_names": {
       "en": "Turkey",
@@ -4115,7 +4115,7 @@
     ]
   },
   "UK": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "en",
     "display_names": {
       "en": "UK",
@@ -4198,7 +4198,7 @@
     ]
   },
   "Ukraine": {
-    "category_type": "topic",
+    "category_type": "country",
     "source_language": "uk",
     "display_names": {
       "en": "Ukraine",
@@ -4265,7 +4265,7 @@
     ]
   },
   "USA | Chicago": {
-    "category_type": "topic",
+    "category_type": "city",
     "source_language": "en",
     "display_names": {
       "en": "USA | Chicago",
@@ -4339,6 +4339,11 @@
     ]
   },
   "USA | Colorado": {
+    "category_type": "city",
+    "source_language": "en",
+    "display_names": {
+      "en": "USA | Colorado"
+    },
     "feeds": [
       "https://9news.com/feeds/syndication/rss/news",
       "https://aspentimes.com/feed",
@@ -4441,7 +4446,7 @@
     ]
   },
   "USA | New York City": {
-    "category_type": "topic",
+    "category_type": "city",
     "source_language": "en",
     "display_names": {
       "en": "USA | New York City",
