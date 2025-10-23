@@ -402,6 +402,26 @@
     "typology": "Private Media"
   },
   {
+    "country": "China",
+    "organization": "36Kr",
+    "domains": [
+      "36kr.com"
+    ],
+    "description": "36Kr is a publicly listed Chinese media company that focuses on technology and financial news. It also is a data provider for entrepreneurs and investors.It has been referred to as China's equivalent of TechCrunch.",
+    "owner": "36Kr Holdings Inc.",
+    "typology": "Private Media"
+  },
+  {
+    "country": "China",
+    "organization": "IT Home",
+    "domains": [
+      "ithome.com"
+    ],
+    "description": "IT Home, a technology portal under Qingdao Ruanmei, delivers fast updates on tech industry headlines and reviews of mobile and digital products. It keeps a close watch on smart cars, electric vehicles, AR/VR, virtual reality, Apple iOS/iPadOS, HarmonyOS, Google Android, Microsoft Windows 11/10/7, while tracking the latest trends in digital gadgets like iPhones, iPads, and Android smart devices.",
+    "owner": "Qingdao Ruanmei Network Technology Co., Ltd.",
+    "typology": "Private Media"
+  },
+  {
     "country": "Croatia",
     "organization": "Fudzilla",
     "domains": [
@@ -1359,7 +1379,7 @@
     "description": "The Indian Express is an English-language daily newspaper founded in 1932 and is headquartered in Noida, India. It covers local and general interest news from India with its sharp political stories, hard-hitting investigative pieces and award-winning opinion pages.",
     "owner": "The Indian Express [P] Limited",
     "typology": "Private Media"
-  },  
+  },
   {
     "country": "International",
     "organization": "KDE Community Blog",
@@ -3954,46 +3974,6 @@
     "typology": "State Funded Media"
   },
   {
-    "country": "China",
-    "organization": "China News Service",
-    "domains": [
-      "chinanews.com"
-    ],
-    "description": "China News Service (CNS) is a state-level news agency in China providing news coverage to the world. Its main subscribers include those from Taiwan, Hong Kong and Macao special administrative regions, overseas Chinese and related foreigners.",
-    "owner": "United Front Work Department of the Central Committee of the Chinese Communist Party",
-    "typology": "State Funded Media"
-  },
-  {
-    "country": "China",
-    "organization": "36Kr",
-    "domains": [
-      "36kr.com"
-    ],
-    "description": "36Kr is a publicly listed Chinese media company that focuses on technology and financial news. It also is a data provider for entrepreneurs and investors.It has been referred to as China's equivalent of TechCrunch.",
-    "owner": "36Kr Holdings Inc.",
-    "typology": "Private Media"
-  },
-  {
-    "country": "China",
-    "organization": "IT Home",
-    "domains": [
-      "ithome.com"
-    ],
-    "description": "IT Home, a technology portal under Qingdao Ruanmei, delivers fast updates on tech industry headlines and reviews of mobile and digital products. It keeps a close watch on smart cars, electric vehicles, AR/VR, virtual reality, Apple iOS/iPadOS, HarmonyOS, Google Android, Microsoft Windows 11/10/7, while tracking the latest trends in digital gadgets like iPhones, iPads, and Android smart devices.",
-    "owner": "Qingdao Ruanmei Network Technology Co., Ltd.",
-    "typology": "Private Media"
-  },
-  {
-    "country": "China",
-    "organization": "The Paper",
-    "domains": [
-      "thepaper.cn"
-    ],
-    "description": "The Paper was launched on July 22, 2014, under the supervision and administration of the Shanghai United Media Group, with its predecessor being The Oriental Morning Post established in 2003. Leveraging internet technology innovation while preserving core journalistic values, The Paper continuously produces and aggregates high-quality content spanning politics, ideology, finance, and culture. It stands as one of the most essential converged media content providers for the global Chinese-language internet.",
-    "owner": "Shanghai United Media Group",
-    "typology": "State Funded Media"
-  },
-  {
     "country": "Belgium",
     "organization": "RTBF",
     "domains": [
@@ -4021,6 +4001,26 @@
     ],
     "description": "VRT is the Flemish public broadcaster, providing news and cultural content across television, radio, and digital platforms.",
     "owner": "Flemish Government",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "China",
+    "organization": "China News Service",
+    "domains": [
+      "chinanews.com"
+    ],
+    "description": "China News Service (CNS) is a state-level news agency in China providing news coverage to the world. Its main subscribers include those from Taiwan, Hong Kong and Macao special administrative regions, overseas Chinese and related foreigners.",
+    "owner": "United Front Work Department of the Central Committee of the Chinese Communist Party",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "China",
+    "organization": "The Paper",
+    "domains": [
+      "thepaper.cn"
+    ],
+    "description": "The Paper was launched on July 22, 2014, under the supervision and administration of the Shanghai United Media Group, with its predecessor being The Oriental Morning Post established in 2003. Leveraging internet technology innovation while preserving core journalistic values, The Paper continuously produces and aggregates high-quality content spanning politics, ideology, finance, and culture. It stands as one of the most essential converged media content providers for the global Chinese-language internet.",
+    "owner": "Shanghai United Media Group",
     "typology": "State Funded Media"
   },
   {
