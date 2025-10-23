@@ -1351,6 +1351,16 @@
     "typology": "Private Media"
   },
   {
+    "country": "India",
+    "organization": "The Indian Express",
+    "domains": [
+      "indianexpress.com"
+    ],
+    "description": "The Indian Express is an English-language daily newspaper founded in 1932 and is headquartered in Noida, India. It covers local and general interest news from India with its sharp political stories, hard-hitting investigative pieces and award-winning opinion pages.",
+    "owner": "The Indian Express [P] Limited",
+    "typology": "Private Media"
+  },  
+  {
     "country": "International",
     "organization": "KDE Community Blog",
     "domains": [
