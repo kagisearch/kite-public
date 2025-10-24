@@ -999,10 +999,6 @@
     "text": "الصين",
     "translationContext": "Display name for the China news category"
   },
-  "category.chinaTaiwan": {
-    "text": "تايوان",
-    "translationContext": "Display name for the Taiwan news category"
-  },
   "category.colombia": {
     "text": "كولومبيا",
     "translationContext": "Display name for the Colombia news category"
@@ -1210,6 +1206,10 @@
   "category.switzerlandDe": {
     "text": "سويسرا (DE)",
     "translationContext": "Display name for the Switzerland (DE) news category"
+  },
+  "category.taiwan": {
+    "text": "تايوان",
+    "translationContext": "Display name for the Taiwan news category"
   },
   "category.technology": {
     "text": "تقنية",
