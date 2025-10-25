@@ -4807,6 +4807,8 @@
     "source_language": "en",
     "display_names": {
       "en": "USA | Minnesota",
+      "zh-Hant": "美國 | 明尼蘇達州",
+      "ja": "アメリカ | ミネソタ州"
     },
     "feeds": [
       "https://www.startribune.com/rss",
@@ -4837,7 +4839,8 @@
       "https://www.kaaltv.com/feed/",
       "https://racketmn.com/feed",
       "https://www.postbulletin.com/index.rss",
-      "https://www.kimt.com/search/?f=rss&t=article&l=50&s=start_time&sd=desc&k%5B%5D=%23topstory"
+      "https://www.kimt.com/search/?f=rss&t=article&l=50&s=start_time&sd=desc&k%5B%5D=%23topstory",
+      "https://www.hometownsource.com/search/?f=rss&t=article&c=morrison_county_record&l=50&s=start_time&sd=desc"
     ]
   }
 }
