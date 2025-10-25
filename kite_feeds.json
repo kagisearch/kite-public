@@ -3422,7 +3422,8 @@
     "en": "Singapore",
 	"ms": "Singapura",
 	"zh-Hans": "新加坡",
-	"ta": "சிங்கப்பூர் ",
+	"ta": "சிங்கப்பூர் "
+	},
   "feeds": [
     "https://www.straitstimes.com/news/singapore/rss.xml",
     "https://www.straitstimes.com/news/opinion/rss.xml",
