@@ -3817,6 +3817,8 @@
     },
     "feeds": [
       "https://www.rts.ch/info/toute-info/?format=rss/news",
+      "https://www.rts.ch/sport/?format=rss/news",
+      "https://www.rts.ch/info/culture/?format=rss/news",
       "https://www.letemps.ch/articles.rss",
       "https://www.swissinfo.ch/fre/latest/~rss",
       "https://bluewin.ch/fr/feed.xml",
@@ -3848,7 +3850,6 @@
       "https://partner-feeds.publishing.tamedia.ch/rss/24heures/vaud",
       "https://partner-feeds.publishing.tamedia.ch/rss/24heures/monde",
       "https://partner-feeds.publishing.tamedia.ch/rss/24heures/sport",
-      "https://www.rts.ch/info/regions/geneve/?format=rss",
       "https://www.rtn.ch/rtn/Actualite/Toute-l-actualite.html?format=feed&type=rss",
       "https://www.rfj.ch/rfj/Actualite/Toute-l-actualite.html?format=feed&type=rss",
       "https://www.radiochablais.ch/infos?format=feed&type=rss",
