@@ -166,3 +166,7 @@ When adding or modifying filters:
 - Test that keywords accurately match the intended topic
 
 Feel free to add new filter categories or improve existing ones by adding relevant keywords in multiple languages.
+
+## Custom front-ends
+
+<a title="Install kagi-news Raycast Extension" href="https://www.raycast.com/mickaphd/kagi-news"><img src="https://www.raycast.com/mickaphd/kagi-news/install_button@2x.png?v=1.1" height="64" style="height: 64px;" alt=""></a>
