@@ -4279,6 +4279,7 @@
     "source_language": "en",
     "display_names": {
       "en": "USA | Austin, TX",
+      "zh-Hant": "美國 | 德州奧斯丁"
     },
     "feeds": [
       "https://feeds.texastribune.org/feeds",
