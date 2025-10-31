@@ -169,6 +169,4 @@ Feel free to add new filter categories or improve existing ones by adding releva
 
 ## Custom front-ends
 
-| Platform | Repository | Description |
-|----------|------------|-------------|
-| [![Raycast Store](https://img.shields.io/badge/Raycast-Store-FF6B6B?style=flat-square&logo=raycast)](https://www.raycast.com/mickaphd/kagi-news) | [![GitHub](https://img.shields.io/badge/GitHub-Repository-181717?style=flat-square&logo=github)](https://github.com/mickaphd/Kagi-News-for-Raycast) | Browse news articles and sources from Kagi News directly in Raycast |
+<a title="Install kagi-news Raycast Extension" href="https://www.raycast.com/mickaphd/kagi-news"><img src="https://www.raycast.com/mickaphd/kagi-news/install_button@2x.png?v=1.1" height="64" style="height: 64px;" alt=""></a>
