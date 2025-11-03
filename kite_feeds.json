@@ -8,6 +8,7 @@
       "ca": "Argentina"
     },
     "feeds": [
+      "https://amerika21.de/geo/argentinien/feed",
       "https://tn.com.ar/rss/",
       "https://www.0221.com.ar/rss",
       "https://www.ambito.com/rss",
@@ -523,6 +524,7 @@
     },
     "feeds": [
       "http://agenciabrasil.ebc.com.br/rss/internacional/feed.xml",
+      "https://amerika21.de/geo/brasilien/feed",
       "http://cinema.uol.com.br/ultnot/index.xml",
       "http://pox.globo.com/rss/valor",
       "http://rss.uol.com.br/feed/economia.xml",
@@ -853,6 +855,7 @@
       "zh-Hant": "哥倫比亞"
     },
     "feeds": [
+      "https://amerika21.de/geo/kolumbien/feed",
       "https://caracol.com.co/arc/outboundfeeds/rss/category/tendencias/?outputType=xml",
       "https://colombia.as.com/rss/",
       "https://colombiareports.com/feed/",
@@ -904,6 +907,7 @@
       "zh-Hant": "哥斯大黎加"
     },
     "feeds": [
+      "https://amerika21.de/geo/costa-rica/feed",
       "https://caribeactual.com/feed/",
       "https://cartagoactual.com/feed/",
       "https://crprensa.com/feed/",
@@ -2560,6 +2564,7 @@
       "zh-Hant": "墨西哥"
     },
     "feeds": [
+      "https://amerika21.de/geo/mexiko/feed",
       "https://editorial.aristeguinoticias.com/feed/",
       "https://expansion.mx/rss",
       "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/mexico/portada",
