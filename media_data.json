@@ -1964,26 +1964,6 @@
     "typology": "Private Media"
   },
   {
-    "country": "Singapore",
-    "organization": "The Straits Times",
-    "domains": [
-      "straitstimes.com"
-    ],
-    "description": "The Straits Times is a daily English-language newspaper in Singapore established in 1845. It provides comprehensive coverage of Singapore, Asia and international news. It is part of SPH Media Trust, which receives significant state funding from the Singapore Government. It is chaired by former Ministers from the ruling party",
-    "owner": "SPH Media Trust",
-    "typology": "State Funded Media"
-  },
-  {
-    "country": "Singapore",
-    "organization": "Channel NewsAsia",
-    "domains": [
-      "channelnewsasia.com"
-    ],
-    "description": "Channel NewsAsia is a state owned broadcaster part of Mediacorp, covering Singapore, Asia and international news, positioning itself as an alternative to Western-based international media by providing an Asian perspective",
-    "owner": "Mediacorp",
-    "typology": "State Funded Media"
-  },
-  {
     "country": "South Korea",
     "organization": "Chosun Ilbo (조선일보)",
     "domains": [
@@ -4229,6 +4209,26 @@
     ],
     "description": "TASS is Russia's state-owned news agency established in 1904, providing news coverage, analysis, and multimedia content in Russian and English.",
     "owner": "Government of Russia",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Singapore",
+    "organization": "Channel NewsAsia",
+    "domains": [
+      "channelnewsasia.com"
+    ],
+    "description": "Channel NewsAsia is a state owned broadcaster part of Mediacorp, covering Singapore, Asia and international news, positioning itself as an alternative to Western-based international media by providing an Asian perspective",
+    "owner": "Mediacorp",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Singapore",
+    "organization": "The Straits Times",
+    "domains": [
+      "straitstimes.com"
+    ],
+    "description": "The Straits Times is a daily English-language newspaper in Singapore established in 1845. It provides comprehensive coverage of Singapore, Asia and international news. It is part of SPH Media Trust, which receives significant state funding from the Singapore Government. It is chaired by former Ministers from the ruling party",
+    "owner": "SPH Media Trust",
     "typology": "State Funded Media"
   },
   {
