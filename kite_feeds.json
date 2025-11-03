@@ -114,6 +114,7 @@
       "https://arize.com/feed/",
       "https://azure.microsoft.com/en-us/blog/tag/large-language-models-llms/feed/",
       "https://bair.berkeley.edu/blog/feed.xml",
+      "https://blog.google/products/gemini/rss/",
       "https://blog.samaltman.com/posts.atom",
       "https://chinai.substack.com/feed",
       "https://cline.ghost.io/rss/",
@@ -148,7 +149,12 @@
       "https://news.google.com/atom/search?q=neural+networks&hl=en-US&gl=US&ceid=US:en",
       "https://news.google.com/atom/search?q=transformers+AI&hl=en-US&gl=US&ceid=US:en",
       "https://news.google.com/atom/topics/CAAqKAgKIiJDQkFTRXdvTkwyY3ZNVEZpZUdNMk5UWjJOaElDWlc0b0FBUAE?hl=en-US&gl=US&ceid=US%3Aen&oc=11",
+      "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=Anthropic",
+      "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=Claude",
+      "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=Le%20Chat",
       "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=LLMs",
+      "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=Mistral%20AI",
+      "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=Perplexity%20AI",
       "https://news.google.com/rss/topics/CAAqIAgKIhpDQkFTRFFvSEwyMHZNRzFyZWhJQ1pXNG9BQVAB?hl=en-US&gl=US&ceid=US%3Aen",
       "https://news.mit.edu/topic/mitartificial-intelligence2-rss.xml",
       "https://news.smol.ai/rss.xml",
@@ -191,13 +197,7 @@
       "https://www.wheresyoured.at/rss/",
       "https://www.wired.com/feed/tag/ai/latest/rss",
       "https://ysymyth.github.io/feed.xml",
-      "https://zed.dev/blog.rss",
-      "https://blog.google/products/gemini/rss/",
-      "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=Anthropic",
-      "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=Claude",
-      "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=Mistral%20AI",
-      "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=Le%20Chat",
-      "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=Perplexity%20AI"
+      "https://zed.dev/blog.rss"
     ]
   },
   "Apple": {
