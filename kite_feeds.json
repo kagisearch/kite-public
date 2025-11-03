@@ -2024,6 +2024,48 @@
       "https://zeenews.india.com/rss/india-national-news.xml"
     ]
   },
+  "iRacing & Sim Racing": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {
+      "en": "iRacing & Sim Racing",
+      "de": "iRacing & Sim Racing",
+      "es": "iRacing y Sim Racing",
+      "fr": "iRacing et Sim Racing",
+      "it": "iRacing e Sim Racing",
+      "ja": "iRacingとシムレーシング",
+      "pt": "iRacing e Sim Racing",
+      "zh-Hant": "iRacing 與模擬器賽車"
+    },
+    "feeds": [
+      "https://boostedmedia.net/feed/",
+      "https://boxthislap.org/category/hardware/feed/",
+      "https://boxthislap.org/category/reviews/feed/",
+      "https://boxthislap.org/category/simracing/feed/",
+      "https://boxthislap.org/category/simracing/iracing/feed/",
+      "https://boxthislap.org/category/software/feed/",
+      "https://boxthislap.org/feed/",
+      "https://iracerstuff.com/feed/",
+      "https://iracingstudios.com/feed/",
+      "https://news.google.com/rss/search?q=iRacing&hl=en-US&gl=US&ceid=US:en",
+      "https://news.google.com/rss/search?q=sim+racing&hl=en-US&gl=US&ceid=US:en",
+      "https://overtake.gg/feed/",
+      "https://simracingcockpit.gg/feed/",
+      "https://simracingsetup.com/feed/",
+      "https://traxion.gg/category/equipment/feed/",
+      "https://traxion.gg/comments/feed/",
+      "https://www.apexsimracing.com/blogs/sim-racing.atom",
+      "https://www.bsimracing.com/feed/",
+      "https://www.iracing.com/category/all-news/blog/feed/",
+      "https://www.iracing.com/category/news/sim-racing-news/feed/",
+      "https://www.reddit.com/r/iRacing/.rss",
+      "https://www.reddit.com/r/simracing/.rss",
+      "https://www.simrace-blog.nl/en/category/news/feed/",
+      "https://www.simrace-blog.nl/en/category/reviews-en/feed/",
+      "https://www.simracenews.com/sim-racing-news?format=rss",
+      "https://www.simracinghub.nl/en/feed/"
+    ]
+  },
   "Iran": {
     "category_type": "topic",
     "source_language": "en",
