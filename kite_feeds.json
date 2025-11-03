@@ -191,7 +191,13 @@
       "https://www.wheresyoured.at/rss/",
       "https://www.wired.com/feed/tag/ai/latest/rss",
       "https://ysymyth.github.io/feed.xml",
-      "https://zed.dev/blog.rss"
+      "https://zed.dev/blog.rss",
+      "https://blog.google/products/gemini/rss/",
+      "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=Anthropic",
+      "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=Claude",
+      "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=Mistral%20AI",
+      "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=Le%20Chat",
+      "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=Perplexity%20AI"
     ]
   },
   "Apple": {
