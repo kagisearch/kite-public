@@ -3617,6 +3617,44 @@
       "https://www.vesti-online.com/feed/"
     ]
   },
+  "Singapore": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {
+      "en": "Singapore",
+      "ms": "Singapura",
+      "zh-Hans": "新加坡",
+      "ta": "சிங்கப்பூர் "
+    },
+    "feeds": [
+      "https://www.straitstimes.com/news/singapore/rss.xml",
+      "https://www.straitstimes.com/news/opinion/rss.xml",
+      "https://www.businesstimes.com.sg/rss/singapore",
+      "https://www.businesstimes.com.sg/rss/sgsme",
+      "https://www.businesstimes.com.sg/rss/opinion-features",
+      "https://www.businesstimes.com.sg/rss/economy-policy",
+      "https://www.channelnewsasia.com/api/v1/rss-outbound-feed?_format=xml&category=10416",
+      "https://www.scmp.com/rss/3/feed/",
+      "https://www.8days.sg/api/v1/rss-outbound-feed?_format=xml",
+      "https://www.bing.com/news/search?q=Singapore+News&format=rss",
+      "https://news.google.com/rss/search?q=Singapore+News",
+      "https://www.theonlinecitizen.com/feed",
+      "https://theindependent.sg/feed/",
+      "https://www.academia.sg/feed/",
+      "https://mothership.sg/feed",
+      "https://www.ricemedia.co/feed",
+      "https://mustsharenews.com/feed",
+      "https://vulcanpost.com/tag/singapore/feed/",
+      "https://www.malaymail.com/feed/rss/singapore",
+      "https://feeds.feedburner.com/hardwarezone/news",
+      "https://feeds.feedburner.com/hardwarezone/tv",
+      "https://reddit.com/r/singapore/.rss",
+      "https://www.reddit.com/r/SingaporeRaw/.rss",
+      "https://lawgazette.com.sg/feed",
+      "https://blog.moneysmart.sg/feed/",
+      "https://dollarsandsense.sg/feed"
+    ]
+  },
   "Slovakia": {
     "category_type": "topic",
     "source_language": "sk",
