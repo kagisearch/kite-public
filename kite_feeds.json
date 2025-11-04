@@ -1,44 +1,4 @@
 {
-  "Argentina": {
-    "category_type": "topic",
-    "source_language": "es",
-    "display_names": {
-      "en": "Argentina",
-      "es": "Argentina",
-      "ca": "Argentina"
-    },
-    "feeds": [
-      "https://amerika21.de/geo/argentinien/feed",
-      "https://tn.com.ar/rss/",
-      "https://www.0221.com.ar/rss",
-      "https://www.ambito.com/rss",
-      "https://www.clarin.com/rss/",
-      "https://www.contexto.com.ar/rss",
-      "https://www.cronista.com/rss",
-      "https://www.diariouno.com.ar/rss",
-      "https://www.elancasti.com.ar/rss",
-      "https://www.eldia.com/rss",
-      "https://www.eldiaonline.com/rss",
-      "https://www.eldiariodemadryn.com/rss",
-      "https://www.ellitoral.com/rss",
-      "https://www.eltribuno.com/rss",
-      "https://www.infobae.com/rss/",
-      "https://www.labrujula24.com/rss",
-      "https://www.lacapital.com.ar/rss",
-      "https://www.lagaceta.com.ar/rss",
-      "https://www.lanacion.com.ar/feed",
-      "https://www.lanueva.com/rss",
-      "https://www.lavoz.com.ar/rss",
-      "https://www.lmneuquen.com/rss",
-      "https://www.losandes.com.ar/rss",
-      "https://www.mdzol.com/rss",
-      "https://www.nuevodiarioweb.com.ar/rss",
-      "https://www.pagina12.com.ar/rss",
-      "https://www.perfil.com/rss",
-      "https://www.rionegro.com.ar/rss",
-      "https://www.telam.com.ar/rss"
-    ]
-  },
   "Africa": {
     "category_type": "topic",
     "source_language": "en",
@@ -274,6 +234,46 @@
       "https://www.patentlyapple.com/rss.xml",
       "https://www.reddit.com/r/apple/.rss",
       "https://www.xlr8yourmac.com/news.xml"
+    ]
+  },
+  "Argentina": {
+    "category_type": "topic",
+    "source_language": "es",
+    "display_names": {
+      "en": "Argentina",
+      "es": "Argentina",
+      "ca": "Argentina"
+    },
+    "feeds": [
+      "https://amerika21.de/geo/argentinien/feed",
+      "https://tn.com.ar/rss/",
+      "https://www.0221.com.ar/rss",
+      "https://www.ambito.com/rss",
+      "https://www.clarin.com/rss/",
+      "https://www.contexto.com.ar/rss",
+      "https://www.cronista.com/rss",
+      "https://www.diariouno.com.ar/rss",
+      "https://www.elancasti.com.ar/rss",
+      "https://www.eldia.com/rss",
+      "https://www.eldiaonline.com/rss",
+      "https://www.eldiariodemadryn.com/rss",
+      "https://www.ellitoral.com/rss",
+      "https://www.eltribuno.com/rss",
+      "https://www.infobae.com/rss/",
+      "https://www.labrujula24.com/rss",
+      "https://www.lacapital.com.ar/rss",
+      "https://www.lagaceta.com.ar/rss",
+      "https://www.lanacion.com.ar/feed",
+      "https://www.lanueva.com/rss",
+      "https://www.lavoz.com.ar/rss",
+      "https://www.lmneuquen.com/rss",
+      "https://www.losandes.com.ar/rss",
+      "https://www.mdzol.com/rss",
+      "https://www.nuevodiarioweb.com.ar/rss",
+      "https://www.pagina12.com.ar/rss",
+      "https://www.perfil.com/rss",
+      "https://www.rionegro.com.ar/rss",
+      "https://www.telam.com.ar/rss"
     ]
   },
   "Australia": {
