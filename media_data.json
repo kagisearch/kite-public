@@ -402,6 +402,26 @@
     "typology": "Private Media"
   },
   {
+    "country": "China",
+    "organization": "36Kr",
+    "domains": [
+      "36kr.com"
+    ],
+    "description": "36Kr is a publicly listed Chinese media company that focuses on technology and financial news. It also is a data provider for entrepreneurs and investors.It has been referred to as China's equivalent of TechCrunch.",
+    "owner": "36Kr Holdings Inc.",
+    "typology": "Private Media"
+  },
+  {
+    "country": "China",
+    "organization": "IT Home",
+    "domains": [
+      "ithome.com"
+    ],
+    "description": "IT Home, a technology portal under Qingdao Ruanmei, delivers fast updates on tech industry headlines and reviews of mobile and digital products. It keeps a close watch on smart cars, electric vehicles, AR/VR, virtual reality, Apple iOS/iPadOS, HarmonyOS, Google Android, Microsoft Windows 11/10/7, while tracking the latest trends in digital gadgets like iPhones, iPads, and Android smart devices.",
+    "owner": "Qingdao Ruanmei Network Technology Co., Ltd.",
+    "typology": "Private Media"
+  },
+  {
     "country": "Croatia",
     "organization": "Fudzilla",
     "domains": [
@@ -1351,6 +1371,16 @@
     "typology": "Private Media"
   },
   {
+    "country": "India",
+    "organization": "The Indian Express",
+    "domains": [
+      "indianexpress.com"
+    ],
+    "description": "The Indian Express is an English-language daily newspaper founded in 1932 and is headquartered in Noida, India. It covers local and general interest news from India with its sharp political stories, hard-hitting investigative pieces and award-winning opinion pages.",
+    "owner": "The Indian Express [P] Limited",
+    "typology": "Private Media"
+  },
+  {
     "country": "International",
     "organization": "KDE Community Blog",
     "domains": [
@@ -1931,16 +1961,6 @@
     ],
     "description": "Bitcoin.com is a cryptocurrency news portal and digital wallet developer established in 2015 that provides services for buying, selling, and trading cryptocurrencies like Bitcoin (BTC), Bitcoin Cash (BCH), and other digital assets. The platform combines news coverage, educational resources, and cryptocurrency trading tools.",
     "owner": "Saint Bitts LLC",
-    "typology": "Private Media"
-  },
-  {
-    "country": "Singapore",
-    "organization": "The Straits Times",
-    "domains": [
-      "straitstimes.com"
-    ],
-    "description": "The Straits Times is a daily English-language newspaper in Singapore established in 1845. It provides comprehensive coverage of Singapore, Asian and international news across politics, business, sports, entertainment, and lifestyle sections, serving as Singapore's newspaper of record.",
-    "owner": "SPH Media Trust",
     "typology": "Private Media"
   },
   {
@@ -3944,46 +3964,6 @@
     "typology": "State Funded Media"
   },
   {
-    "country": "China",
-    "organization": "China News Service",
-    "domains": [
-      "chinanews.com"
-    ],
-    "description": "China News Service (CNS) is a state-level news agency in China providing news coverage to the world. Its main subscribers include those from Taiwan, Hong Kong and Macao special administrative regions, overseas Chinese and related foreigners.",
-    "owner": "United Front Work Department of the Central Committee of the Chinese Communist Party",
-    "typology": "State Funded Media"
-  },
-  {
-    "country": "China",
-    "organization": "36Kr",
-    "domains": [
-      "36kr.com"
-    ],
-    "description": "36Kr is a publicly listed Chinese media company that focuses on technology and financial news. It also is a data provider for entrepreneurs and investors.It has been referred to as China's equivalent of TechCrunch.",
-    "owner": "36Kr Holdings Inc.",
-    "typology": "Private Media"
-  },
-  {
-    "country": "China",
-    "organization": "IT Home",
-    "domains": [
-      "ithome.com"
-    ],
-    "description": "IT Home, a technology portal under Qingdao Ruanmei, delivers fast updates on tech industry headlines and reviews of mobile and digital products. It keeps a close watch on smart cars, electric vehicles, AR/VR, virtual reality, Apple iOS/iPadOS, HarmonyOS, Google Android, Microsoft Windows 11/10/7, while tracking the latest trends in digital gadgets like iPhones, iPads, and Android smart devices.",
-    "owner": "Qingdao Ruanmei Network Technology Co., Ltd.",
-    "typology": "Private Media"
-  },
-  {
-    "country": "China",
-    "organization": "The Paper",
-    "domains": [
-      "thepaper.cn"
-    ],
-    "description": "The Paper was launched on July 22, 2014, under the supervision and administration of the Shanghai United Media Group, with its predecessor being The Oriental Morning Post established in 2003. Leveraging internet technology innovation while preserving core journalistic values, The Paper continuously produces and aggregates high-quality content spanning politics, ideology, finance, and culture. It stands as one of the most essential converged media content providers for the global Chinese-language internet.",
-    "owner": "Shanghai United Media Group",
-    "typology": "State Funded Media"
-  },
-  {
     "country": "Belgium",
     "organization": "RTBF",
     "domains": [
@@ -4011,6 +3991,26 @@
     ],
     "description": "VRT is the Flemish public broadcaster, providing news and cultural content across television, radio, and digital platforms.",
     "owner": "Flemish Government",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "China",
+    "organization": "China News Service",
+    "domains": [
+      "chinanews.com"
+    ],
+    "description": "China News Service (CNS) is a state-level news agency in China providing news coverage to the world. Its main subscribers include those from Taiwan, Hong Kong and Macao special administrative regions, overseas Chinese and related foreigners.",
+    "owner": "United Front Work Department of the Central Committee of the Chinese Communist Party",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "China",
+    "organization": "The Paper",
+    "domains": [
+      "thepaper.cn"
+    ],
+    "description": "The Paper was launched on July 22, 2014, under the supervision and administration of the Shanghai United Media Group, with its predecessor being The Oriental Morning Post established in 2003. Leveraging internet technology innovation while preserving core journalistic values, The Paper continuously produces and aggregates high-quality content spanning politics, ideology, finance, and culture. It stands as one of the most essential converged media content providers for the global Chinese-language internet.",
+    "owner": "Shanghai United Media Group",
     "typology": "State Funded Media"
   },
   {
@@ -4209,6 +4209,26 @@
     ],
     "description": "TASS is Russia's state-owned news agency established in 1904, providing news coverage, analysis, and multimedia content in Russian and English.",
     "owner": "Government of Russia",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Singapore",
+    "organization": "Channel NewsAsia",
+    "domains": [
+      "channelnewsasia.com"
+    ],
+    "description": "Channel NewsAsia is a state owned broadcaster part of Mediacorp, covering Singapore, Asia and international news, positioning itself as an alternative to Western-based international media by providing an Asian perspective",
+    "owner": "Mediacorp",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Singapore",
+    "organization": "The Straits Times",
+    "domains": [
+      "straitstimes.com"
+    ],
+    "description": "The Straits Times is a daily English-language newspaper in Singapore established in 1845. It provides comprehensive coverage of Singapore, Asia and international news. It is part of SPH Media Trust, which receives significant state funding from the Singapore Government. It is chaired by former Ministers from the ruling party",
+    "owner": "SPH Media Trust",
     "typology": "State Funded Media"
   },
   {

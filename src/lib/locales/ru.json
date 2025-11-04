@@ -3,12 +3,16 @@
     "text": "О Kagi",
     "translationContext": "Text for the About Kagi News button"
   },
+  "settings.categories.allCategories": {
+    "text": "Все категории",
+    "translationContext": "Label for showing all categories option in settings"
+  },
   "settings.categories.contribute": {
     "text": "+ Добавить категории",
     "translationContext": "Link text for contributing categories"
   },
   "settings.categories.disable": {
-    "text": "Нажмите, чтобы отключить, перетащите, чтобы изменить порядок",
+    "text": "Нажмите чтобы отключить, перетащите чтобы изменить порядок",
     "translationContext": "Tooltip for enabled category items that can be disabled"
   },
   "settings.categories.disabled": {
@@ -16,7 +20,7 @@
     "translationContext": "Title for the disabled (hidden) categories section"
   },
   "settings.categories.enable": {
-    "text": "Нажмите, чтобы включить, перетащите, чтобы изменить порядок",
+    "text": "Нажмите чтобы включить, перетащите чтобы изменить порядок",
     "translationContext": "Tooltip for disabled category items that can be enabled"
   },
   "settings.categories.enabled": {
@@ -28,43 +32,51 @@
     "translationContext": "Placeholder text for category type filter dropdown"
   },
   "settings.categories.instructions": {
-    "text": "Перетащите, чтобы изменить порядок, или нажмите, чтобы включить или отключить. Перетаскивайте между разделами, чтобы переместить категории.",
+    "text": "Перетащите чтобы изменить порядок, или нажмите чтобы включить или отключить. Перетаскивайте между разделами, чтобы переместить категории.",
     "translationContext": "Instructions for managing categories"
   },
   "settings.categories.lastCategory": {
-    "text": "Неможливо вимкнути останню категорію",
+    "text": "Невозможно отключить последнюю категорию",
     "translationContext": "Tooltip shown when trying to disable the last enabled category"
   },
   "settings.categories.noDisabled": {
-    "text": "Усі категорії ввімкнено",
+    "text": "Все категории включены",
     "translationContext": "Shows when no categories are disabled"
   },
+  "settings.categories.noEnabled": {
+    "text": "Нет включенных категорий",
+    "translationContext": "Shows when no categories are enabled"
+  },
+  "settings.categories.noFiltered": {
+    "text": "Все категории этого типа включены",
+    "translationContext": "Message shown when no categories of the selected filter type are in the disabled section"
+  },
   "settings.categories.types.all": {
-    "text": "Усі типи",
+    "text": "Все типы",
     "translationContext": "Option to show all category types in filter"
   },
   "settings.categories.types.city": {
-    "text": "Міста",
+    "text": "Города",
     "translationContext": "Label for city category type"
   },
   "settings.categories.types.core": {
-    "text": "Основне",
+    "text": "Основное",
     "translationContext": "Label for core category type (main news categories)"
   },
   "settings.categories.types.country": {
-    "text": "Країни",
+    "text": "Страны",
     "translationContext": "Label for country category type"
   },
   "settings.categories.types.other": {
-    "text": "Інше",
+    "text": "Другое",
     "translationContext": "Label for categories without a specific type"
   },
   "settings.categories.types.region": {
-    "text": "Регіони",
+    "text": "Регионы",
     "translationContext": "Label for region category type"
   },
   "settings.categories.types.topic": {
-    "text": "Теми",
+    "text": "Темы",
     "translationContext": "Label for topic category type"
   },
   "settings.categoryHeaderPosition.bottom": {
@@ -72,11 +84,11 @@
     "translationContext": "Option for bottom position"
   },
   "settings.categoryHeaderPosition.description": {
-    "text": "Виберіть, де відображати панель навігації категорій на мобільних пристроях.",
+    "text": "Выберите где отображать навигационную панель с категориями на мобильных устройствах",
     "translationContext": "Description for category header position setting"
   },
   "settings.categoryHeaderPosition.label": {
-    "text": "Позиція заголовка категорії",
+    "text": "Позиция заголовка категории",
     "translationContext": "Label for category header position setting"
   },
   "settings.categoryHeaderPosition.top": {
@@ -92,7 +104,7 @@
     "translationContext": "Button to clear all filters"
   },
   "settings.contentFilter.contribute": {
-    "text": "Добавить больше фильтров",
+    "text": "Добавить фильтры",
     "translationContext": "Link to contribute new filter presets on GitHub"
   },
   "settings.contentFilter.customKeywords": {
@@ -104,7 +116,7 @@
     "translationContext": "Button to export filter settings to a file"
   },
   "settings.contentFilter.exportImport.description": {
-    "text": "Экспортируйте настройки фильтра в файл или импортируйте из предыдущей резервной копии",
+    "text": "Экспортируйте настройки фильтра в файл или импортируйте из резервной копии",
     "translationContext": "Description of export/import functionality"
   },
   "settings.contentFilter.exportImport.title": {
@@ -136,7 +148,7 @@
     "translationContext": "Warning when importing from an older version"
   },
   "settings.contentFilter.importConfirm.warning": {
-    "text": "Это заменит все текущие настройки фильтра.",
+    "text": "Это заменит все текущие настройки фильтров.",
     "translationContext": "Warning message about overwriting current settings"
   },
   "settings.contentFilter.importError.invalidFormat": {
@@ -160,7 +172,7 @@
     "translationContext": "Placeholder for keywords input"
   },
   "settings.contentFilter.mode.blur": {
-    "text": "Размыть с предупреждением",
+    "text": "Размытие с предупреждением",
     "translationContext": "Option to blur filtered content"
   },
   "settings.contentFilter.mode.blurDescription": {
@@ -184,35 +196,35 @@
     "translationContext": "Label for filter mode selection"
   },
   "settings.contentFilter.preset.ai": {
-    "text": "ШІ та технологічний ажіотаж",
+    "text": "ИИ и новости технологий",
     "translationContext": "Name of AI preset filter"
   },
   "settings.contentFilter.preset.ai.tooltip": {
-    "text": "Фільтрує галас про ШІ, новини про LLM та анонси технологічних проривів",
+    "text": "Отфильтровывает новости про ИИ, про LLM и анонсы технологических прорывов",
     "translationContext": "Tooltip description for AI preset"
   },
   "settings.contentFilter.preset.celebrities": {
-    "text": "Новини про знаменитостей",
+    "text": "Новости про знаменитостей",
     "translationContext": "Name of celebrities preset filter"
   },
   "settings.contentFilter.preset.celebrities.tooltip": {
-    "text": "Фільтрує плітки про знаменитостей, розважальні новини та бульварний контент",
+    "text": "Отфильтровывает слухи про знаменитостей, новости развлечений и новости таблоидов",
     "translationContext": "Tooltip description for celebrities preset"
   },
   "settings.contentFilter.preset.climate": {
-    "text": "Кліматична тривога",
+    "text": "Обеспокоенность климатом",
     "translationContext": "Name of climate preset filter"
   },
   "settings.contentFilter.preset.climate.tooltip": {
-    "text": "Фільтрує новини про зміну клімату та висвітлення екологічних криз",
+    "text": "Отфильтровывает новости об изменении климата и экологических проблемах",
     "translationContext": "Tooltip description for climate preset"
   },
   "settings.contentFilter.preset.conflicts": {
-    "text": "Конфлікти",
+    "text": "Конфликты",
     "translationContext": "Name of conflicts preset filter"
   },
   "settings.contentFilter.preset.conflicts.tooltip": {
-    "text": "Фільтрує війни, військові конфлікти та пов’язане з ними насильство з різних регіонів",
+    "text": "Отфильтровывает новости о военных конфликтах, и связанным с этим насилием",
     "translationContext": "Tooltip description for conflicts preset"
   },
   "settings.contentFilter.preset.crypto": {
@@ -220,23 +232,23 @@
     "translationContext": "Name of cryptocurrency preset filter"
   },
   "settings.contentFilter.preset.crypto.tooltip": {
-    "text": "Фільтрує контент, пов’язаний із криптовалютами, блокчейном і Web3",
+    "text": "Отфильтровывает новости связанные с криптовалютами, блокчейном и Web3",
     "translationContext": "Tooltip description for crypto preset"
   },
   "settings.contentFilter.preset.health": {
-    "text": "Кризи здоров'я",
+    "text": "Кризисы здоровья",
     "translationContext": "Name of health crises preset filter"
   },
   "settings.contentFilter.preset.health.tooltip": {
-    "text": "Фільтрує новини про пандемії, спалахи вірусів та пов’язаний із цим контент про надзвичайні ситуації у сфері охорони здоров’я",
+    "text": "Отфильтровывает новости о пандемиях, вспышках вирусов и прочие связанные со здоровьем",
     "translationContext": "Tooltip description for health preset"
   },
   "settings.contentFilter.preset.politics": {
-    "text": "Політика",
+    "text": "Политика",
     "translationContext": "Name of politics preset filter"
   },
   "settings.contentFilter.preset.politics.tooltip": {
-    "text": "Фільтрує політичний контент, зокрема вибори, політичні партії та урядовців",
+    "text": "Отфильтровывает политический контент, включая новости о выборах, политических партиях и официальных лицах",
     "translationContext": "Tooltip description for politics preset"
   },
   "settings.contentFilter.preset.sports": {
@@ -244,43 +256,43 @@
     "translationContext": "Name of sports preset filter"
   },
   "settings.contentFilter.preset.sports.tooltip": {
-    "text": "Фільтрує спортивні новини, результати та висвітлення спортивних змагань",
+    "text": "Отфильтровывает новости спорта, результаты и соревнования",
     "translationContext": "Tooltip description for sports preset"
   },
   "settings.contentFilter.preset.tabloid": {
-    "text": "Джерела таблоїдів",
+    "text": "Таблоиды",
     "translationContext": "Name of tabloid sources preset filter"
   },
   "settings.contentFilter.preset.tabloid.tooltip": {
-    "text": "Фільтрує історії з відомих таблоїдів і сенсаційних джерел новин",
+    "text": "Отфильтровывает новости из известных таблоидов и скандальных изданий",
     "translationContext": "Tooltip description for tabloid preset"
   },
   "settings.contentFilter.preset.violence": {
-    "text": "Насильство",
+    "text": "Насилие",
     "translationContext": "Name of violence preset filter"
   },
   "settings.contentFilter.preset.violence.tooltip": {
-    "text": "Фільтрує графічне насилля, перестрілки та контент, пов’язаний зі смертю",
+    "text": "Отфильтровывает графическое насилие, перестрелки и контент связанный со смертью",
     "translationContext": "Tooltip description for violence preset"
   },
   "settings.contentFilter.presets.description": {
-    "text": "Виберіть один або кілька попередньо встановлених фільтрів, щоб швидко приховати поширені теми",
+    "text": "Выберите один или несколько фильтров чтобы быстро отключить часть тем",
     "translationContext": "Description for filter presets section"
   },
   "settings.contentFilter.presets.label": {
-    "text": "Набори фільтрів",
+    "text": "Наборы фильтров",
     "translationContext": "Label for filter presets section"
   },
   "settings.contentFilter.reset": {
-    "text": "Скинути за замовчуванням",
+    "text": "Сбросить к настройкам по умолчанию",
     "translationContext": "Button to reset content filter to defaults"
   },
   "settings.contentFilter.resetModal.description": {
-    "text": "Це скине всі фільтри та поверне стандартні налаштування.",
+    "text": "Это вернет настройки фильтров по умолчанию",
     "translationContext": "Description for reset confirmation modal"
   },
   "settings.contentFilter.resetModal.title": {
-    "text": "Скинути фільтри вмісту?",
+    "text": "Сбросить фильтры?",
     "translationContext": "Title for reset confirmation modal"
   },
   "settings.contentFilter.scope.all": {
@@ -792,11 +804,11 @@
     "translationContext": "Display name for the Canada news category"
   },
   "category.china": {
-    "text": "China",
+    "text": "Китай",
     "translationContext": "Display name for the China news category"
   },
   "category.colombia": {
-    "text": "Colombia",
+    "text": "Колумбия",
     "translationContext": "Display name for the Colombia news category"
   },
   "category.costaRica": {
@@ -812,11 +824,11 @@
     "translationContext": "Display name for the Cybersecurity news category"
   },
   "category.czechRepublic": {
-    "text": "Czech Republic",
+    "text": "Чехия",
     "translationContext": "Display name for the Czech Republic news category"
   },
   "category.denmark": {
-    "text": "Denmark",
+    "text": "Дания",
     "translationContext": "Display name for the Denmark news category"
   },
   "category.economy": {
@@ -824,7 +836,7 @@
     "translationContext": "Display name for the Economy news category"
   },
   "category.egypt": {
-    "text": "Egypt",
+    "text": "Египет",
     "translationContext": "Display name for the Egypt news category"
   },
   "category.entertainment": {
@@ -840,7 +852,7 @@
     "translationContext": "Display name for the Europe news category"
   },
   "category.finland": {
-    "text": "Finland",
+    "text": "Финляндия",
     "translationContext": "Display name for the Finland news category"
   },
   "category.france": {
@@ -864,7 +876,7 @@
     "translationContext": "Display name for the Health news category"
   },
   "category.hongKong": {
-    "text": "Hong Kong",
+    "text": "Гонконг",
     "translationContext": "Display name for the Hong Kong news category"
   },
   "category.india": {
@@ -872,7 +884,7 @@
     "translationContext": "Display name for the India news category"
   },
   "category.indonesia": {
-    "text": "Indonesia",
+    "text": "Индонезия",
     "translationContext": "Display name for the Indonesia news category"
   },
   "category.ireland": {
@@ -892,11 +904,11 @@
     "translationContext": "Display name for the Japan news category"
   },
   "category.kenya": {
-    "text": "Kenya",
+    "text": "Кения",
     "translationContext": "Display name for the Kenya news category"
   },
   "category.korea": {
-    "text": "Korea",
+    "text": "Корея",
     "translationContext": "Display name for the Korea news category"
   },
   "category.linuxOss": {
@@ -904,7 +916,7 @@
     "translationContext": "Display name for the Linux & OSS news category"
   },
   "category.malaysia": {
-    "text": "Malaysia",
+    "text": "Малазия",
     "translationContext": "Display name for the Malaysia news category"
   },
   "category.mexico": {
@@ -912,7 +924,7 @@
     "translationContext": "Display name for the Mexico news category"
   },
   "category.middleEast": {
-    "text": "Middle East",
+    "text": "Средний Восток",
     "translationContext": "Display name for the Middle East news category"
   },
   "category.netherlands": {
@@ -924,11 +936,11 @@
     "translationContext": "Display name for the New Zealand news category"
   },
   "category.nigeria": {
-    "text": "Nigeria",
+    "text": "Нигерия",
     "translationContext": "Display name for the Nigeria news category"
   },
   "category.norway": {
-    "text": "Norway",
+    "text": "Норвегия",
     "translationContext": "Display name for the Norway news category"
   },
   "category.pakistan": {
@@ -936,7 +948,7 @@
     "translationContext": "Display name for the Pakistan news category"
   },
   "category.philippines": {
-    "text": "Philippines",
+    "text": "Филиппины",
     "translationContext": "Display name for the Philippines news category"
   },
   "category.poland": {
@@ -956,7 +968,7 @@
     "translationContext": "Display name for the Romania news category"
   },
   "category.russia": {
-    "text": "Russia",
+    "text": "Россия",
     "translationContext": "Display name for the Russia news category"
   },
   "category.science": {
@@ -968,7 +980,7 @@
     "translationContext": "Display name for the Serbia news category"
   },
   "category.singapore": {
-    "text": "Singapore",
+    "text": "Сингапур",
     "translationContext": "Display name for the Singapore news category"
   },
   "category.slovenia": {
@@ -976,7 +988,7 @@
     "translationContext": "Display name for the Slovenia news category"
   },
   "category.southAfrica": {
-    "text": "South Africa",
+    "text": "Южная Африка",
     "translationContext": "Display name for the South Africa news category"
   },
   "category.southKorea": {
@@ -996,7 +1008,7 @@
     "translationContext": "Display name for the Sweden news category"
   },
   "category.switzerland": {
-    "text": "Switzerland",
+    "text": "Швейцария",
     "translationContext": "Display name for the Switzerland news category"
   },
   "category.switzerlandDe": {
@@ -1004,7 +1016,7 @@
     "translationContext": "Display name for the Switzerland (DE) news category"
   },
   "category.taiwan": {
-    "text": "Taiwan",
+    "text": "Тайвань",
     "translationContext": "Display name for the Taiwan news category"
   },
   "category.technology": {
@@ -1024,7 +1036,7 @@
     "translationContext": "Display name for the OnThisDay category"
   },
   "category.turkey": {
-    "text": "Turkey",
+    "text": "Турция",
     "translationContext": "Display name for the Turkey news category"
   },
   "category.uk": {
@@ -1040,75 +1052,75 @@
     "translationContext": "Display name for the USA news category"
   },
   "category.usaAlabama": {
-    "text": "USA | Alabama",
+    "text": "США | Алабама",
     "translationContext": "Display name for the USA Alabama news category"
   },
   "category.usaAlaska": {
-    "text": "USA | Alaska",
+    "text": "США | Аляска",
     "translationContext": "Display name for the USA Alaska news category"
   },
   "category.usaArizona": {
-    "text": "USA | Arizona",
+    "text": "США | Аризона",
     "translationContext": "Display name for the USA Arizona news category"
   },
   "category.usaArkansas": {
-    "text": "USA | Arkansas",
+    "text": "США | Арканзас",
     "translationContext": "Display name for the USA Arkansas news category"
   },
   "category.usaCalifornia": {
-    "text": "USA | California",
+    "text": "США | Калифорния",
     "translationContext": "Display name for the USA California news category"
   },
   "category.usaColorado": {
-    "text": "USA | Colorado",
+    "text": "США | Колорадо",
     "translationContext": "Display name for the USA Colorado news category"
   },
   "category.usaConnecticut": {
-    "text": "USA | Connecticut",
+    "text": "США | Коннектикут",
     "translationContext": "Display name for the USA Connecticut news category"
   },
   "category.usaDelaware": {
-    "text": "USA | Delaware",
+    "text": "США | Делавер",
     "translationContext": "Display name for the USA Delaware news category"
   },
   "category.usaFlorida": {
-    "text": "USA | Florida",
+    "text": "США | Флорида",
     "translationContext": "Display name for the USA Florida news category"
   },
   "category.usaGeorgia": {
-    "text": "USA | Georgia",
+    "text": "США | Джорджия",
     "translationContext": "Display name for the USA Georgia news category"
   },
   "category.usaHawaii": {
-    "text": "USA | Hawaii",
+    "text": "США | Гаваи",
     "translationContext": "Display name for the USA Hawaii news category"
   },
   "category.usaIdaho": {
-    "text": "USA | Idaho",
+    "text": "США | Айдахо",
     "translationContext": "Display name for the USA Idaho news category"
   },
   "category.usaIllinois": {
-    "text": "USA | Illinois",
+    "text": "США | Иллинойс",
     "translationContext": "Display name for the USA Illinois news category"
   },
   "category.usaIndiana": {
-    "text": "USA | Indiana",
+    "text": "США | Индиана",
     "translationContext": "Display name for the USA Indiana news category"
   },
   "category.usaIowa": {
-    "text": "USA | Iowa",
+    "text": "США | Айова",
     "translationContext": "Display name for the USA Iowa news category"
   },
   "category.usaKansas": {
-    "text": "USA | Kansas",
+    "text": "США | Канзас",
     "translationContext": "Display name for the USA Kansas news category"
   },
   "category.usaKentucky": {
-    "text": "USA | Kentucky",
+    "text": "США | Кентуки",
     "translationContext": "Display name for the USA Kentucky news category"
   },
   "category.usaLouisiana": {
-    "text": "USA | Louisiana",
+    "text": "США | Луизиана",
     "translationContext": "Display name for the USA Louisiana news category"
   },
   "category.usaMaine": {
@@ -1116,103 +1128,103 @@
     "translationContext": "Display name for the USA Maine news category"
   },
   "category.usaMaryland": {
-    "text": "USA | Maryland",
+    "text": "США | Мэрилэнд",
     "translationContext": "Display name for the USA Maryland news category"
   },
   "category.usaMassachusetts": {
-    "text": "USA | Massachusetts",
+    "text": "США | Массачусетс",
     "translationContext": "Display name for the USA Massachusetts news category"
   },
   "category.usaMichigan": {
-    "text": "USA | Michigan",
+    "text": "США | Мичиган",
     "translationContext": "Display name for the USA Michigan news category"
   },
   "category.usaMinnesota": {
-    "text": "USA | Minnesota",
+    "text": "США | Миннесота",
     "translationContext": "Display name for the USA Minnesota news category"
   },
   "category.usaMississippi": {
-    "text": "USA | Mississippi",
+    "text": "США | Миссиссипи",
     "translationContext": "Display name for the USA Mississippi news category"
   },
   "category.usaMissouri": {
-    "text": "USA | Missouri",
+    "text": "США | Миссури",
     "translationContext": "Display name for the USA Missouri news category"
   },
   "category.usaMontana": {
-    "text": "USA | Montana",
+    "text": "США | Монтана",
     "translationContext": "Display name for the USA Montana news category"
   },
   "category.usaNebraska": {
-    "text": "USA | Nebraska",
+    "text": "США | Небраска",
     "translationContext": "Display name for the USA Nebraska news category"
   },
   "category.usaNevada": {
-    "text": "USA | Nevada",
+    "text": "США | Невада",
     "translationContext": "Display name for the USA Nevada news category"
   },
   "category.usaNewHampshire": {
-    "text": "USA | New Hampshire",
+    "text": "США | New Hampshire",
     "translationContext": "Display name for the USA New Hampshire news category"
   },
   "category.usaNewJersey": {
-    "text": "USA | New Jersey",
+    "text": "США | New Jersey",
     "translationContext": "Display name for the USA New Jersey news category"
   },
   "category.usaNewMexico": {
-    "text": "USA | New Mexico",
+    "text": "США | New Mexico",
     "translationContext": "Display name for the USA New Mexico news category"
   },
   "category.usaNewYork": {
-    "text": "USA | New York",
+    "text": "США | New York",
     "translationContext": "Display name for the USA New York news category"
   },
   "category.usaNorthCarolina": {
-    "text": "USA | North Carolina",
+    "text": "США | Северная Каролина",
     "translationContext": "Display name for the USA North Carolina news category"
   },
   "category.usaNorthDakota": {
-    "text": "USA | North Dakota",
+    "text": "США | Северная Дакота",
     "translationContext": "Display name for the USA North Dakota news category"
   },
   "category.usaOhio": {
-    "text": "USA | Ohio",
+    "text": "США | Огайо",
     "translationContext": "Display name for the USA Ohio news category"
   },
   "category.usaOklahoma": {
-    "text": "USA | Oklahoma",
+    "text": "США | Оклахома",
     "translationContext": "Display name for the USA Oklahoma news category"
   },
   "category.usaOregon": {
-    "text": "USA | Oregon",
+    "text": "США | Орегон",
     "translationContext": "Display name for the USA Oregon news category"
   },
   "category.usaPennsylvania": {
-    "text": "USA | Pennsylvania",
+    "text": "США | Пенсильвания",
     "translationContext": "Display name for the USA Pennsylvania news category"
   },
   "category.usaRhodeIsland": {
-    "text": "USA | Rhode Island",
+    "text": "США | Rhode Island",
     "translationContext": "Display name for the USA Rhode Island news category"
   },
   "category.usaSouthCarolina": {
-    "text": "USA | South Carolina",
+    "text": "США | Южная Каролина",
     "translationContext": "Display name for the USA South Carolina news category"
   },
   "category.usaSouthDakota": {
-    "text": "USA | South Dakota",
+    "text": "США | Южная Дакота",
     "translationContext": "Display name for the USA South Dakota news category"
   },
   "category.usaTennessee": {
-    "text": "USA | Tennessee",
+    "text": "США | Tennessee",
     "translationContext": "Display name for the USA Tennessee news category"
   },
   "category.usaTexas": {
-    "text": "USA | Texas",
+    "text": "США | Техас",
     "translationContext": "Display name for the USA Texas news category"
   },
   "category.usaUtah": {
-    "text": "USA | Utah",
+    "text": "США | Юта",
     "translationContext": "Display name for the USA Utah news category"
   },
   "category.usaVermont": {
@@ -1224,7 +1236,7 @@
     "translationContext": "Display name for the USA | Virginia news category"
   },
   "category.usaWashington": {
-    "text": "USA | Washington",
+    "text": "США | Вашингтон",
     "translationContext": "Display name for the USA Washington news category"
   },
   "category.usaWestVirginia": {
@@ -1240,7 +1252,7 @@
     "translationContext": "Display name for the USA Wyoming news category"
   },
   "category.vietnam": {
-    "text": "Vietnam",
+    "text": "Вьетнам",
     "translationContext": "Display name for the Vietnam news category"
   },
   "category.world": {
@@ -1596,7 +1608,7 @@
     "translationContext": "Title for source information section"
   },
   "sources.article": {
-    "text": "{{count}} стаття",
+    "text": "{{count}} статья",
     "translationContext": "Shows singular article count from a source, {{count}} will be replaced with a number"
   },
   "sources.articles": {
@@ -1804,7 +1816,7 @@
     "translationContext": "Temperature description for normal world tension (21-40%)"
   },
   "worldTension.onFire": {
-    "text": "Пилáє",
+    "text": "Чрезвычайно",
     "translationContext": "Temperature description for extreme world tension (81-100%)"
   },
   "worldTension.scale.burning": {
@@ -1816,11 +1828,11 @@
     "translationContext": "Scale description for 0-20% tension"
   },
   "worldTension.scale.hot": {
-    "text": "Горячие – Заметные конфликты",
+    "text": "Горячо – Заметные конфликты",
     "translationContext": "Scale description for 41-60% tension"
   },
   "worldTension.scale.mild": {
-    "text": "21-40° Умеренные - Нормальные глобальные напряжения",
+    "text": "21-40° Умеренно - Нормальные глобальные напряжения",
     "translationContext": "Scale description for 21-40% tension"
   },
   "worldTension.scale.onFire": {
