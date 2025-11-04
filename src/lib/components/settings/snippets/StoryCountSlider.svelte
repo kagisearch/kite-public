@@ -30,6 +30,10 @@ function handleChange(e: Event) {
     max="12"
     value={displaySettings.storyCount}
     oninput={handleChange}
+    aria-valuemin="3"
+    aria-valuemax="12"
+    aria-valuenow={displaySettings.storyCount}
+    aria-valuetext="{displaySettings.storyCount} {displaySettings.storyCount === 1 ? 'story' : 'stories'}"
     class="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 dark:bg-gray-700"
   />
   <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400">

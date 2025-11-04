@@ -36,11 +36,41 @@ declare global {
 		imageCache?: {
 			stats: () => { cachedCount: number; downloadingCount: number; cachedImages: string[] };
 			clear: () => void;
-			preload: (imageUrl: string) => Promise<string>;
+			preload: (imageUrl: string) => Promise<void>;
 			getSrc: (imageUrl: string | null | undefined) => string | null;
-			getProxiedUrl: (imageUrl: string) => string;
+			getProxiedUrl: (imageUrl: string | null | undefined) => string | null;
 			isCached: (imageUrl: string) => boolean;
-			test: (imageUrl: string) => Promise<void>;
+			test: (imageUrl: string) => Promise<{
+				cached: boolean;
+				dataUrl: boolean;
+				loadTime: number;
+			}>;
+			testBulk: (imageUrls: string[]) => Promise<{
+				imageCount: number;
+				loadTime: number;
+				beforeCached: number;
+				afterCached: number;
+			}>;
+		};
+		// Kite debug helpers
+		kiteDebug?: {
+			getCacheStats: () => { cachedCount: number; downloadingCount: number; cachedImages: string[] };
+			clearCache: () => void;
+			preloadCurrentCategory: () => Promise<void>;
+			getCurrentStories: () => any[];
+			getCurrentCategory: () => string;
+			getAllCategoryStories: () => Record<string, any[]>;
+			getPreloadedCategories: () => string[];
+			getImageUrls: () => string[];
+			getAllImageUrls: () => string[];
+			showPreloadingSettings: () => string;
+			hidePreloadingSettings: () => string;
+			resetOnboarding: () => string;
+			showOnboarding: () => string;
+		};
+		kiteSettingsDebug?: {
+			enablePreloadingTab: () => void;
+			disablePreloadingTab: () => void;
 		};
 	}
 
@@ -63,6 +93,7 @@ declare global {
 		customCssAvailable?: boolean;
 		language?: string;
 		accountType: string;
+		kagiToken?: string;
 	}
 
 	// Kagi API response types

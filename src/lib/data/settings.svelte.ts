@@ -1,10 +1,12 @@
 import { browser } from '$app/environment';
+import { runMigrations } from './migrations';
 import { Setting } from './setting.svelte';
 
 // Type for supported languages
 export type SupportedLanguage =
 	| 'default'
 	| 'source'
+	| 'custom'
 	| 'en'
 	| 'pt'
 	| 'pt-BR'
@@ -41,6 +43,8 @@ export type ContentFilter = 'default' | 'family' | 'none';
 export type FilterMode = 'hide' | 'blur';
 export type FilterScope = 'title' | 'summary' | 'all';
 export type MapsProvider = 'auto' | 'kagi' | 'google' | 'openstreetmap' | 'apple';
+export type SinglePageMode = 'disabled' | 'sequential' | 'mixed' | 'random';
+export type SinglePageMixOrder = 'sequential' | 'mixed' | 'random';
 
 /**
  * All application settings centralized in one place
@@ -54,12 +58,17 @@ export const settings = {
 
 	// Language Settings
 	language: new Setting<SupportedLanguage>('kiteLanguage', 'en', 'when_not_default', 'language'),
+	// Translation mode: 'default' | 'source' | 'custom' | specific language code
+	// Controls how content should be translated/displayed
 	dataLanguage: new Setting<SupportedLanguage>(
 		'dataLanguage',
 		'default',
 		'when_not_default',
 		'language',
 	),
+	// Languages the user can read/speak (used when dataLanguage is 'custom')
+	// First element is the main language for translations
+	contentLanguages: new Setting<SupportedLanguage[]>('contentLanguages', [], 'always', 'language'),
 
 	// Display Settings
 	fontSize: new Setting<FontSize>('fontSize', 'normal', 'when_not_default', 'display'),
@@ -89,6 +98,12 @@ export const settings = {
 	categoryOrder: new Setting<string[]>('categoryOrder', [], 'always', 'categories'),
 	enabledCategories: new Setting<string[]>('enabledCategories', [], 'always', 'categories'),
 	disabledCategories: new Setting<string[]>('disabledCategories', [], 'always', 'categories'),
+	singlePageMode: new Setting<SinglePageMode>(
+		'singlePageMode',
+		'disabled',
+		'when_not_default',
+		'categories',
+	),
 
 	// Content Settings
 	contentFilter: new Setting<ContentFilter>(
@@ -298,17 +313,67 @@ export const themeSettings = $state({
 });
 
 export const languageSettings = $state({
+	/** UI/interface language (for buttons, labels, etc.) */
 	get ui(): SupportedLanguage {
 		return settings.language.currentValue;
 	},
 	set ui(value: SupportedLanguage) {
 		settings.language.currentValue = value;
 	},
+	/**
+	 * Translation mode for content
+	 * - 'default': Smart mode (source for country categories, browser lang for others)
+	 * - 'source': Always show original language
+	 * - 'custom': Use spokenLanguages list
+	 * - Specific language code: Translate everything to that language
+	 */
 	get data(): SupportedLanguage {
 		return settings.dataLanguage.currentValue;
 	},
 	set data(value: SupportedLanguage) {
 		settings.dataLanguage.currentValue = value;
+	},
+	/**
+	 * Languages the user can read/speak (only used when data mode is 'custom')
+	 * First element is the main language for translations
+	 * Other elements are additional languages user can read
+	 */
+	get contentLanguages(): SupportedLanguage[] {
+		return settings.contentLanguages.currentValue;
+	},
+	set contentLanguages(value: SupportedLanguage[]) {
+		settings.contentLanguages.currentValue = value;
+		settings.contentLanguages.save();
+	},
+	/**
+	 * Get the language value to send to the API
+	 * Returns a string for the lang parameter
+	 * In custom mode, returns comma-separated list (e.g., 'en,es,fr')
+	 * Otherwise returns single language code (e.g., 'en', 'default', 'source')
+	 */
+	getLanguageForAPI(): string {
+		const dataSetting = settings.dataLanguage.currentValue;
+
+		// If custom mode, send the preference list as comma-separated
+		if (dataSetting === 'custom') {
+			const preferences = settings.contentLanguages.currentValue;
+
+			// Filter out special values
+			const validPreferences = preferences.filter(
+				(lang) => lang !== 'default' && lang !== 'source' && lang !== 'custom',
+			);
+
+			// If we have preferences, send them as a comma-separated string
+			if (validPreferences.length > 0) {
+				return validPreferences.join(',');
+			}
+
+			// Fallback to default if no valid preferences
+			return 'default';
+		}
+
+		// Otherwise, send the setting directly
+		return dataSetting;
 	},
 });
 
@@ -377,6 +442,7 @@ const categoriesState = $state({
 	order: settings.categoryOrder.currentValue,
 	enabled: settings.enabledCategories.currentValue,
 	disabled: settings.disabledCategories.currentValue,
+	singlePageMode: settings.singlePageMode.currentValue || 'disabled' as SinglePageMode,
 });
 
 // Make categorySettings reactive by wrapping in $state
@@ -400,9 +466,50 @@ export const categorySettings = $state({
 	get temporaryCategory() {
 		return categoriesState.temporaryCategory;
 	},
+	get singlePageMode() {
+		return categoriesState.singlePageMode;
+	},
+	set singlePageMode(value: SinglePageMode) {
+		categoriesState.singlePageMode = value;
+		settings.singlePageMode.currentValue = value;
+		settings.singlePageMode.save();
+	},
 
 	setAllCategories(newCategories: Category[]) {
+		console.log('[CategorySettings] setAllCategories called with:', $state.snapshot(newCategories));
 		categoriesState.allCategories = newCategories;
+
+		// Always check for new categories that aren't in enabled or disabled
+		const allCategoryIds = newCategories.map((cat) => cat.id);
+		const categorizedIds = new Set([...this.enabled, ...this.disabled]);
+		const newCategoryIds = allCategoryIds.filter((cat) => !categorizedIds.has(cat));
+
+		console.log('[CategorySettings] Current enabled:', $state.snapshot(this.enabled));
+		console.log('[CategorySettings] Current disabled:', $state.snapshot(this.disabled));
+		console.log('[CategorySettings] All category IDs:', $state.snapshot(allCategoryIds));
+		console.log('[CategorySettings] Categorized IDs:', $state.snapshot(Array.from(categorizedIds)));
+		console.log('[CategorySettings] New category IDs found:', $state.snapshot(newCategoryIds));
+
+		if (newCategoryIds.length > 0) {
+			// Add new categories to disabled list by default
+			const updatedDisabled = [...this.disabled, ...newCategoryIds];
+			settings.disabledCategories.currentValue = updatedDisabled;
+			categoriesState.disabled = updatedDisabled;
+			settings.disabledCategories.save();
+
+			console.log('[CategorySettings] Added to disabled:', $state.snapshot(newCategoryIds));
+			console.log('[CategorySettings] Updated disabled list:', $state.snapshot(updatedDisabled));
+
+			// Also add to order if needed
+			const newForOrder = allCategoryIds.filter((cat) => !this.order.includes(cat));
+			if (newForOrder.length > 0) {
+				const updatedOrder = [...this.order, ...newForOrder];
+				settings.categoryOrder.currentValue = updatedOrder;
+				categoriesState.order = updatedOrder;
+				settings.categoryOrder.save();
+				console.log('[CategorySettings] Added to order:', $state.snapshot(newForOrder));
+			}
+		}
 	},
 	setOrder(newOrder: string[]) {
 		categoriesState.order = newOrder;
@@ -411,7 +518,7 @@ export const categorySettings = $state({
 		settings.enabledCategories.save();
 	},
 	setEnabled(newEnabled: string[]) {
-		console.log('[CategorySettings] setEnabled called with:', newEnabled);
+		console.log('[CategorySettings] setEnabled called with:', $state.snapshot(newEnabled));
 		categoriesState.enabled = newEnabled;
 		settings.enabledCategories.currentValue = newEnabled;
 		// Update disabled to be all categories not in enabled
@@ -422,7 +529,7 @@ export const categorySettings = $state({
 		settings.disabledCategories.save();
 		console.log(
 			'[CategorySettings] After setEnabled, categoriesState.enabled:',
-			categoriesState.enabled,
+			$state.snapshot(categoriesState.enabled),
 		);
 	},
 	setDisabled(newDisabled: string[]) {
@@ -430,7 +537,9 @@ export const categorySettings = $state({
 		categoriesState.enabled = categoriesState.enabled.filter((cat) => !newDisabled.includes(cat));
 		// Disable all categories not found in enabled
 		const allCategoryIds = categoriesState.allCategories.map((cat) => cat.id);
-		categoriesState.disabled = allCategoryIds.filter((cat) => !categoriesState.enabled.includes(cat));
+		categoriesState.disabled = allCategoryIds.filter(
+			(cat) => !categoriesState.enabled.includes(cat),
+		);
 
 		settings.enabledCategories.currentValue = categoriesState.enabled;
 		settings.disabledCategories.currentValue = categoriesState.disabled;
@@ -438,6 +547,16 @@ export const categorySettings = $state({
 		settings.disabledCategories.save();
 	},
 	enableCategory(category: string) {
+		// Special case: if this is the temporary category, make it permanent
+		if (category === categoriesState.temporaryCategory) {
+			this.clearTemporaryFlag();
+			// It's already in enabled list, just save it now
+			const newEnabled = [...this.enabled];
+			this.setEnabled(newEnabled);
+			return;
+		}
+
+		// Normal case: add to enabled list if not already there
 		if (!this.enabled.includes(category)) {
 			const newEnabled = [...this.enabled, category];
 			this.setEnabled(newEnabled);
@@ -458,19 +577,26 @@ export const categorySettings = $state({
 	addTemporary(categoryId: string) {
 		categoriesState.temporaryCategory = categoryId;
 		if (!this.enabled.includes(categoryId)) {
-			const newEnabled = [...this.enabled, categoryId];
-			settings.enabledCategories.currentValue = newEnabled;
-			// Don't save - this is temporary
+			// Only update the reactive state, NOT the Setting.currentValue
+			// This prevents the sync watcher from detecting it as a change
+			categoriesState.enabled = [...categoriesState.enabled, categoryId];
+			// Don't modify settings.enabledCategories.currentValue or save
 		}
 	},
 	removeTemporary() {
 		if (categoriesState.temporaryCategory) {
-			settings.enabledCategories.currentValue = this.enabled.filter(
+			// Only update the reactive state, NOT the Setting.currentValue
+			categoriesState.enabled = categoriesState.enabled.filter(
 				(cat) => cat !== categoriesState.temporaryCategory,
 			);
 			categoriesState.temporaryCategory = null;
-			// Don't save - just restoring to saved state
+			// Don't modify settings.enabledCategories.currentValue or save - just restore to original state
 		}
+	},
+	clearTemporaryFlag() {
+		// Just clear the temporary flag without modifying enabled/disabled lists
+		// Use this when the temporary category is being permanently enabled
+		categoriesState.temporaryCategory = null;
 	},
 	// Load from localStorage and update reactive state
 	init() {
@@ -478,11 +604,13 @@ export const categorySettings = $state({
 		settings.categoryOrder.load();
 		settings.enabledCategories.load();
 		settings.disabledCategories.load();
+		settings.singlePageMode.load();
 
 		// Update the reactive state after loading
 		categoriesState.order = settings.categoryOrder.currentValue;
 		categoriesState.enabled = settings.enabledCategories.currentValue;
 		categoriesState.disabled = settings.disabledCategories.currentValue;
+		categoriesState.singlePageMode = settings.singlePageMode.currentValue;
 	},
 	// Reload from localStorage (called after sync updates)
 	reload() {
@@ -665,6 +793,9 @@ export function loadAllSettings(context?: { isLoggedIn?: boolean }) {
 	Object.values(settings).forEach((setting) => {
 		setting.load(context);
 	});
+
+	// Run any pending migrations after settings are loaded
+	runMigrations();
 
 	// Apply theme and font size after loading
 	applyTheme(settings.theme.currentValue);

@@ -19,7 +19,7 @@ let hasBeenShown = $state(false);
 // Floating UI setup for tooltip
 const floating = useFloating({
 	placement: 'bottom',
-	strategy: 'absolute',
+	strategy: 'fixed', // Use fixed positioning to work with scrollable containers
 	middleware: [
 		offset(8), // 8px gap from button
 		flip(), // Flip if no space
@@ -30,7 +30,6 @@ const floating = useFloating({
 // Track tooltip visibility
 $effect(() => {
 	if (show && !localShowTooltip && !hasBeenShown) {
-		console.log('Showing temporary category tooltip');
 		localShowTooltip = true;
 		hasBeenShown = true;
 
@@ -41,12 +40,10 @@ $effect(() => {
 
 		// Auto-dismiss after 3 seconds
 		timeoutId = setTimeout(() => {
-			console.log('Auto-dismissing tooltip after 3 seconds');
 			localShowTooltip = false;
 			timeoutId = null;
 		}, 3000);
 	} else if (!show && localShowTooltip) {
-		console.log('Hiding temporary category tooltip');
 		localShowTooltip = false;
 
 		// Clear timeout if tooltip is being hidden externally
@@ -63,6 +60,19 @@ $effect(() => {
 		// Manually set the reference element
 		floating.elements.reference = referenceElement;
 		floating.update();
+
+		// Update position on scroll
+		const handleScroll = () => {
+			floating.update();
+		};
+
+		// Listen to scroll events on window
+		window.addEventListener('scroll', handleScroll, { passive: true });
+
+		// Cleanup
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
 	}
 });
 </script>

@@ -3,6 +3,7 @@ import { page } from '$app/state';
 import { s } from '$lib/client/localization.svelte';
 import { languageSettings } from '$lib/data/settings.svelte.js';
 import { UrlNavigationService } from '$lib/services/urlNavigationService';
+import type { LocalizerFunction } from '$lib/types';
 import ReportButton from '../ReportButton.svelte';
 import ShareButton from '../ShareButton.svelte';
 
@@ -14,7 +15,7 @@ interface Props {
 	categoryId?: string;
 	storyIndex?: number;
 	isSharedView?: boolean;
-	storyLocalizer?: (key: string) => string;
+	storyLocalizer?: LocalizerFunction;
 }
 
 let {
@@ -55,10 +56,11 @@ const navigationParams = $derived.by(() => {
     <ShareButton
       title={story.title}
       description={story.short_summary}
-      batchId={navigationParams.batchId}
-      categoryId={navigationParams.categoryId}
+      batchId={navigationParams.batchId || ''}
+      categoryId={navigationParams.categoryId || ''}
       storyIndex={navigationParams.storyIndex}
-      dataLang={navigationParams.dataLang}
+      clusterId={story.cluster_number}
+      languageCode={navigationParams.dataLang}
       class="text-gray-600 transition-all duration-200 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
     />
     {#if story.id}
@@ -74,6 +76,7 @@ const navigationParams = $derived.by(() => {
   {#if !isSharedView}
     <button
       onclick={onClose}
+      aria-label={storyLocalizer("article.closeStory.aria") || "Close story and return to category list"}
       class="focus:ring-opacity-75 rounded-lg bg-black px-6 py-3 font-semibold text-white transition-colors duration-200 ease-in-out hover:bg-gray-800 focus:ring-2 focus:ring-gray-400 focus:outline-none"
     >
       {storyLocalizer("article.closeStory") || "Close"}

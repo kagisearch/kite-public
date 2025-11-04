@@ -12,7 +12,13 @@ const localeCache: Map<string, Record<string, unknown>> = new Map();
  * Create a story-specific localization function
  * Auto-syncs to content language when UI language is set to "default"
  */
-export function createStoryLocalizer(isExpanded: boolean, storyLanguage?: string) {
+export function createStoryLocalizer(
+	isExpanded: boolean,
+	storyLanguage?: string,
+): {
+	(key: string, view?: Record<string, string>, strict?: false): string;
+	(key: string, view: Record<string, string> | undefined, strict: true): string | undefined;
+} {
 	// Determine the actual content language to use
 	let contentLanguage: string;
 
@@ -27,24 +33,37 @@ export function createStoryLocalizer(isExpanded: boolean, storyLanguage?: string
 	// Check if we should sync (UI language is "default" and story is expanded)
 	const shouldSync = language.current === 'default' && isExpanded && contentLanguage;
 
-	return (key: string, view?: Record<string, string> | undefined, strict = false) => {
+	function localizer(key: string, view?: Record<string, string>, strict?: false): string;
+	function localizer(
+		key: string,
+		view: Record<string, string> | undefined,
+		strict: true,
+	): string | undefined;
+	function localizer(
+		key: string,
+		view?: Record<string, string> | undefined,
+		strict = false,
+	): string | undefined {
 		// Only sync if conditions are met
 		if (!shouldSync) {
-			return s(key, view, strict);
+			// Use conditional call to match overload signatures
+			return strict ? s(key, view, true) : s(key, view);
 		}
 
 		// Use content language strings for story UI when expanded
 		const strings = localeCache.get(contentLanguage) || language.currentStrings;
 		let value = strings?.[key];
 
-		if (typeof value === 'object') {
-			value = value?.text;
+		if (typeof value === 'object' && value !== null) {
+			value = (value as { text?: string })?.text;
 		}
 
-		if (!value) return strict ? undefined : key;
+		if (!value || typeof value !== 'string') return strict ? undefined : key;
 
 		return view ? Mustache.render(value, view) : value;
-	};
+	}
+
+	return localizer;
 }
 
 /**

@@ -40,5 +40,15 @@
    ],                                                                                                                                                                                                                                                                                                                                                            
    "categories": ["news"],                                                                                                                                                                                                                                                                                                                                       
    "orientation": "portrait",                                                                                                                                                                                                                                                                                                                                    
-   "prefer_related_applications": false                                                                                                                                                                                                                                                                                                                          
+   "prefer_related_applications": true,
+  "related_applications": [
+    {
+      "platform": "play",
+      "id": "com.kagi.news"
+    },
+    {
+      "platform": "itunes",
+      "id": "6748314243"
+    }
+  ]                                                                                                                                                                                                                                                                                                                          
  }                                                                                                                                                                                                                                                                                                                                                               

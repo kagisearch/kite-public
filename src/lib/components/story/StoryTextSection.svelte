@@ -2,6 +2,7 @@
 import type { Article } from '$lib/types';
 import { type CitationMapping, replaceWithNumberedCitations } from '$lib/utils/citationContext';
 import CitationText from './CitationText.svelte';
+import SelectableText from './SelectableText.svelte';
 
 // Props
 interface Props {
@@ -9,9 +10,15 @@ interface Props {
 	content: string;
 	articles?: Article[];
 	citationMapping?: CitationMapping;
+	flashcardMode?: boolean;
+	selectedWords?: Set<string>;
+	selectedPhrases?: Map<string, { phrase: string; sections: Set<string> }>;
+	shouldJiggle?: boolean;
+	onWordClick?: (word: string, section?: string) => void;
+	section?: string; // Section identifier for context
 }
 
-let { title, content, articles = [], citationMapping }: Props = $props();
+let { title, content, articles = [], citationMapping, flashcardMode = false, selectedWords = new Set(), selectedPhrases = new Map(), shouldJiggle = false, onWordClick, section }: Props = $props();
 
 // Convert citations to numbered format if mapping is available
 const displayContent = $derived.by(() => {
@@ -25,12 +32,24 @@ const displayContent = $derived.by(() => {
     {title}
   </h3>
   <div class="mb-4 text-base text-gray-700 dark:text-gray-300">
-    <CitationText
-      text={displayContent}
-      showFavicons={false}
-      showNumbers={false}
-      {articles}
-      {citationMapping}
-    />
+    {#if flashcardMode}
+      <SelectableText
+        text={displayContent}
+        {flashcardMode}
+        {selectedWords}
+        {selectedPhrases}
+        {shouldJiggle}
+        {onWordClick}
+        {section}
+      />
+    {:else}
+      <CitationText
+        text={displayContent}
+        showFavicons={false}
+        showNumbers={false}
+        {articles}
+        {citationMapping}
+      />
+    {/if}
   </div>
 </section>

@@ -33,6 +33,7 @@ function toggleChaosIndex() {
     <div class="mb-2 flex items-center justify-between">
       <label
         for="show-article-icons"
+        id="label-article-icons"
         class="text-sm font-medium text-gray-700 dark:text-gray-300"
       >
         {s("settings.experimental.articleIcons.label") || "Show Article Icons"}
@@ -47,11 +48,8 @@ function toggleChaosIndex() {
         class:dark:bg-gray-600={!experimental.showArticleIcons}
         role="switch"
         aria-checked={experimental.showArticleIcons}
+        aria-labelledby="label-article-icons"
       >
-        <span class="sr-only"
-          >{s("settings.experimental.articleIcons.label") ||
-            "Show Article Icons"}</span
-        >
         <span
           class="inline-block h-4 w-4 transform rounded-full bg-white transition"
           class:ltr:translate-x-6={experimental.showArticleIcons}
@@ -72,6 +70,7 @@ function toggleChaosIndex() {
     <div class="mb-2 flex items-center justify-between">
       <label
         for="show-category-icons"
+        id="label-category-icons"
         class="text-sm font-medium text-gray-700 dark:text-gray-300"
       >
         {s("settings.experimental.categoryIcons.label") ||
@@ -87,11 +86,8 @@ function toggleChaosIndex() {
         class:dark:bg-gray-600={!experimental.showCategoryIcons}
         role="switch"
         aria-checked={experimental.showCategoryIcons}
+        aria-labelledby="label-category-icons"
       >
-        <span class="sr-only"
-          >{s("settings.experimental.categoryIcons.label") ||
-            "Show Category Icons"}</span
-        >
         <span
           class="inline-block h-4 w-4 transform rounded-full bg-white transition"
           class:ltr:translate-x-6={experimental.showCategoryIcons}
@@ -112,6 +108,7 @@ function toggleChaosIndex() {
     <div class="mb-2 flex items-center justify-between">
       <label
         for="disable-category-swipe"
+        id="label-disable-swipe"
         class="text-sm font-medium text-gray-700 dark:text-gray-300"
       >
         {s("settings.experimental.disableCategorySwipe.label") ||
@@ -127,11 +124,8 @@ function toggleChaosIndex() {
         class:dark:bg-gray-600={!experimental.disableCategorySwipe}
         role="switch"
         aria-checked={experimental.disableCategorySwipe}
+        aria-labelledby="label-disable-swipe"
       >
-        <span class="sr-only"
-          >{s("settings.experimental.disableCategorySwipe.label") ||
-            "Disable horizontal category swiping"}</span
-        >
         <span
           class="inline-block h-4 w-4 transform rounded-full bg-white transition"
           class:ltr:translate-x-6={experimental.disableCategorySwipe}
@@ -152,6 +146,7 @@ function toggleChaosIndex() {
     <div class="mb-2 flex items-center justify-between">
       <label
         for="show-chaos-index"
+        id="label-chaos-index"
         class="text-sm font-medium text-gray-700 dark:text-gray-300"
       >
         {s("settings.experimental.chaosIndex.label") ||
@@ -167,6 +162,7 @@ function toggleChaosIndex() {
         class:dark:bg-gray-600={!experimental.showChaosIndex}
         role="switch"
         aria-checked={experimental.showChaosIndex}
+        aria-labelledby="label-chaos-index"
       >
         <span class="sr-only"
           >{s("settings.experimental.chaosIndex.label") ||

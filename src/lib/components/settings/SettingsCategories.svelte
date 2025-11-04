@@ -1,20 +1,11 @@
 <script lang="ts">
-import {
-	IconBuilding,
-	IconBulb,
-	IconDots,
-	IconMapPin,
-	IconNews,
-	IconPlus,
-	IconWorld,
-	IconX,
-} from '@tabler/icons-svelte';
+import { IconBulb, IconCheck, IconDots, IconWorld } from '@tabler/icons-svelte';
 import { untrack } from 'svelte';
 import { flip } from 'svelte/animate';
 import { dndzone, TRIGGERS } from 'svelte-dnd-action';
 import { s } from '$lib/client/localization.svelte';
 import Select from '$lib/components/Select.svelte';
-import { categorySettings } from '$lib/data/settings.svelte.js';
+import { categorySettings, type SinglePageMode } from '$lib/data/settings.svelte.js';
 import {
 	type CategoryMetadata,
 	categoryMetadataService,
@@ -44,29 +35,66 @@ let disabledItems = $state<Array<{ id: string; name: string }>>([]);
 let categoryMetadata = $state<CategoryMetadata[]>([]);
 let categoryFilter = $state('all');
 
+// Single page mode
+let currentSinglePageMode = $state<string>(categorySettings.singlePageMode);
+
+// Single page mode options
+const singlePageModeOptions = $derived([
+	{
+		value: 'disabled',
+		label: s('settings.categories.singlePageMode.disabled') || 'Tabs (default)',
+		tooltip:
+			s('settings.categories.singlePageMode.disabledTooltip') ||
+			'Display stories in separate tabs for each category. Click tabs to switch between categories.',
+	},
+	{
+		value: 'sequential',
+		label: s('settings.categories.singlePageMode.sequential') || 'Single page - Sequential',
+		tooltip:
+			s('settings.categories.singlePageMode.sequentialTooltip') ||
+			'Display all stories in one scrollable page. Stories are grouped by category - all stories from the first category, then all from the second, and so on.',
+	},
+	{
+		value: 'mixed',
+		label: s('settings.categories.singlePageMode.mixed') || 'Single page - Mixed',
+		tooltip:
+			s('settings.categories.singlePageMode.mixedTooltip') ||
+			'Display all stories in one scrollable page. Stories are interleaved - first story from each category, then second story from each, and so on. Categories with fewer stories are skipped when exhausted.',
+	},
+	{
+		value: 'random',
+		label: s('settings.categories.singlePageMode.random') || 'Single page - Random',
+		tooltip:
+			s('settings.categories.singlePageMode.randomTooltip') ||
+			'Display all stories in one scrollable page in random order. Get a serendipitous mix of topics and perspectives.',
+	},
+]);
+
+// Sync single page mode with store
+$effect(() => {
+	currentSinglePageMode = categorySettings.singlePageMode;
+});
+
 // Filter options for the Select component
 const filterOptions = $derived([
 	{ value: 'all', label: s('settings.categories.types.all') || 'All types' },
 	{
 		value: 'core',
 		label: s('settings.categories.types.core') || 'Core',
-		icon: IconNews,
+		icon: IconCheck,
+		tooltip:
+			s('settings.categories.coreTooltip') ||
+			'Maintained by Kagi team. High quality, diverse perspectives.',
 	},
 	{
-		value: 'country',
-		label: s('settings.categories.types.country') || 'Countries',
+		value: 'community',
+		label: s('settings.categories.types.community') || 'Community',
 		icon: IconWorld,
+		tooltip:
+			s('settings.categories.communityTooltip') ||
+			'Community-maintained feeds. May have fewer sources or perspectives.',
 	},
-	{
-		value: 'region',
-		label: s('settings.categories.types.region') || 'Regions',
-		icon: IconMapPin,
-	},
-	{
-		value: 'city',
-		label: s('settings.categories.types.city') || 'Cities',
-		icon: IconBuilding,
-	},
+	{ value: 'separator', label: '───────', disabled: true },
 	{
 		value: 'topic',
 		label: s('settings.categories.types.topic') || 'Topics',
@@ -103,31 +131,45 @@ async function loadCategoryMetadata() {
 
 // Sync from store when not dragging
 $effect(() => {
+	// Explicitly track dependencies
+	categorySettings.enabled;
+	categorySettings.disabled;
+	categorySettings.temporaryCategory;
+
 	if (!isDragging) {
 		syncFromStore();
 	}
 });
 
 function syncFromStore() {
-	enabledItems = categorySettings.enabled.map((categoryId) => {
-		const category = categorySettings.allCategories.find((cat) => cat.id === categoryId);
-		// Fallback to metadata if category not in current batch
-		if (!category) {
-			const metadata = categoryMetadata.find(
-				(meta) => meta.categoryId === categoryId.toLowerCase(),
-			);
+	// Filter out temporary category from enabled list - it should only appear in disabled
+	enabledItems = categorySettings.enabled
+		.filter((categoryId) => categoryId !== categorySettings.temporaryCategory)
+		.map((categoryId) => {
+			const category = categorySettings.allCategories.find((cat) => cat.id === categoryId);
+			// Fallback to metadata if category not in current batch
+			if (!category) {
+				const metadata = categoryMetadata.find(
+					(meta) => meta.categoryId === categoryId.toLowerCase(),
+				);
+				return {
+					id: categoryId,
+					name: metadata?.displayName || categoryId,
+				};
+			}
 			return {
 				id: categoryId,
-				name: metadata?.displayName || categoryId,
+				name: category.name,
 			};
-		}
-		return {
-			id: categoryId,
-			name: category.name,
-		};
-	});
+		});
 
-	disabledItems = categorySettings.disabled
+	// Temporary category should appear in disabled list
+	const disabledCategoryIds = categorySettings.temporaryCategory
+		? [...categorySettings.disabled, categorySettings.temporaryCategory]
+		: categorySettings.disabled;
+
+	disabledItems = disabledCategoryIds
+		.filter((categoryId, index, self) => self.indexOf(categoryId) === index) // Remove duplicates
 		.map((categoryId) => {
 			const category = categorySettings.allCategories.find((cat) => cat.id === categoryId);
 			// Fallback to metadata if category not in current batch
@@ -166,22 +208,40 @@ function getCategoryType(categoryId: string): string {
 	return metadata.categoryType;
 }
 
+// Check if category is core (maintained by Kagi)
+function isCoreCategory(categoryId: string): boolean {
+	const metadata = categoryMetadata.find((meta) => meta.categoryId === categoryId.toLowerCase());
+	return metadata?.isCore ?? false;
+}
+
 // Count categories by type for filter labels
 function getCategoryCounts() {
 	const counts = {
 		all: disabledItems.length,
 		core: 0,
-		country: 0,
-		region: 0,
-		city: 0,
+		community: 0,
 		topic: 0,
 		other: 0,
 	};
 
 	disabledItems.forEach((item) => {
+		const isCore = isCoreCategory(item.id);
 		const type = getCategoryType(item.id);
-		if (type in counts) {
-			(counts as any)[type]++;
+
+		// Count for core/community filter
+		if (isCore) {
+			counts.core++;
+		} else {
+			counts.community++;
+		}
+
+		// Count for type filters (topic or other)
+		// Only count topic and other (core type is handled above)
+		if (type === 'topic') {
+			counts.topic++;
+		} else if (type === 'other' || type !== 'core') {
+			// Anything that's not 'core' or 'topic' goes to 'other'
+			counts.other++;
 		}
 	});
 
@@ -194,9 +254,11 @@ const filterOptionsWithCounts = $derived.by(() => {
 	return filterOptions.map((option) => ({
 		...option,
 		label:
-			option.value === 'all'
-				? `${s('settings.categories.allCategories')} (${counts.all})`
-				: `${option.label} (${(counts as any)[option.value] || 0})`,
+			option.value === 'separator'
+				? option.label // Don't add count to separator
+				: option.value === 'all'
+					? `${s('settings.categories.allCategories')} (${counts.all})`
+					: `${option.label} (${(counts as any)[option.value] || 0})`,
 	}));
 });
 
@@ -222,7 +284,17 @@ function handleEnabledFinalize(e: CustomEvent) {
 	// Extract the new enabled categories in their drag order
 	const newEnabled = newItems.map((item: any) => item.id);
 
+	// Save the temporary category ID before we modify anything
+	const tempCategoryId = categorySettings.temporaryCategory;
+
+	// If the temporary category was enabled, clear the temporary flag FIRST
+	// We do this BEFORE setEnabled so syncFromStore() doesn't filter it out
+	if (tempCategoryId && newEnabled.includes(tempCategoryId)) {
+		categorySettings.clearTemporaryFlag();
+	}
+
 	// Update enabled/disabled states
+	// This will handle adding the category to enabled list
 	categorySettings.setEnabled(newEnabled);
 
 	// Update the global order to preserve the exact drag order within enabled categories
@@ -303,6 +375,12 @@ function handleDisabledClick(categoryId: string) {
 	// Move from disabled to enabled
 	categorySettings.enableCategory(categoryId);
 }
+
+// Single page mode change handler
+function handleSinglePageModeChange(mode: string) {
+	categorySettings.singlePageMode = mode as SinglePageMode;
+	currentSinglePageMode = mode;
+}
 </script>
 
 <div class="space-y-4">
@@ -310,6 +388,21 @@ function handleDisabledClick(categoryId: string) {
     <p class="text-sm text-gray-600 dark:text-gray-400">
       {s("settings.categories.instructions") ||
         "Drag to reorder categories or click to enable/disable them."}
+    </p>
+  </div>
+
+  <!-- Single Page Mode Setting -->
+  <div class="mb-6">
+    <Select
+      bind:value={currentSinglePageMode}
+      options={singlePageModeOptions}
+      label={s("settings.categories.singlePageMode.label") ||
+        "Display Mode"}
+      onChange={handleSinglePageModeChange}
+    />
+    <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
+      {s("settings.categories.singlePageMode.description") ||
+        "Choose how to display stories: in tabs (default), or all in a single page with different ordering options."}
     </p>
   </div>
 
@@ -338,13 +431,14 @@ function handleDisabledClick(categoryId: string) {
       onfinalize={handleEnabledFinalize}
     >
       {#each enabledItems as category, index (`enabled-${category.id}-${index}`)}
+        {@const isCore = isCoreCategory(category.id)}
         <div
           animate:flip={{ duration: flipDurationMs }}
-          class="group inline-flex items-center rounded-md bg-blue-100 px-3 py-2 text-sm font-medium text-blue-800 dark:bg-blue-800 dark:text-blue-200
-						{draggedItemId === category.id ? 'opacity-50' : ''} 
+          class="group inline-flex items-center gap-1.5 rounded-md bg-blue-100 px-3 py-2 text-sm font-medium text-blue-800 dark:bg-blue-800 dark:text-blue-200
+						{draggedItemId === category.id ? 'opacity-50' : ''}
 						{enabledItems.length === 1
             ? 'cursor-not-allowed opacity-75'
-            : 'cursor-grab active:cursor-grabbing hover:bg-blue-200 dark:hover:bg-blue-700'} 
+            : 'cursor-grab active:cursor-grabbing hover:bg-blue-200 dark:hover:bg-blue-700'}
 						transition-colors"
           title={enabledItems.length === 1
             ? s("settings.categories.lastCategory") ||
@@ -353,6 +447,10 @@ function handleDisabledClick(categoryId: string) {
               "Click to disable, drag to reorder"}
           role="button"
           tabindex={enabledItems.length === 1 ? -1 : 0}
+          aria-disabled={enabledItems.length === 1}
+          aria-label={enabledItems.length === 1
+            ? `${getCategoryDisplayName(category)} - last category, cannot disable`
+            : `${getCategoryDisplayName(category)} - click to disable or drag to reorder`}
           onclick={(e) => {
             e.stopPropagation();
             e.preventDefault();
@@ -397,8 +495,8 @@ function handleDisabledClick(categoryId: string) {
         <Select
           bind:value={categoryFilter}
           options={filterOptionsWithCounts}
-          placeholder={s("settings.categories.filterByType") ||
-            "Filter by type..."}
+          label={s("settings.categories.filterByType") || "Filter by type"}
+          placeholder={s("settings.categories.filterPlaceholder") || "All types"}
           className="text-xs"
           height="h-8"
           onChange={(value: string) => {
@@ -429,13 +527,17 @@ function handleDisabledClick(categoryId: string) {
       onfinalize={handleDisabledFinalize}
     >
       {#each disabledItems as category, index (`disabled-${category.id}-${index}`)}
+        {@const categoryType = getCategoryType(category.id)}
+        {@const isCore = isCoreCategory(category.id)}
         {@const isFiltered =
-          categoryFilter !== "all" &&
-          getCategoryType(category.id) !== categoryFilter}
+          categoryFilter !== "all" && categoryFilter !== "separator" &&
+          (categoryFilter === "core" ? !isCore :
+           categoryFilter === "community" ? isCore :
+           categoryType !== categoryFilter)}
         {@const isBeingDragged = draggedItemId === category.id}
         <div
           animate:flip={{ duration: flipDurationMs }}
-          class="group inline-flex items-center rounded-md bg-gray-100 px-3 py-2 text-sm font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300
+          class="group inline-flex items-center gap-1.5 rounded-md bg-gray-100 px-3 py-2 text-sm font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300
 						{isBeingDragged
             ? 'opacity-50'
             : ''} cursor-grab active:cursor-grabbing hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
@@ -446,6 +548,7 @@ function handleDisabledClick(categoryId: string) {
             "Click to enable, drag to reorder"}
           role="button"
           tabindex={isFiltered ? -1 : 0}
+          aria-label={`${getCategoryDisplayName(category)} - click to enable or drag to reorder`}
           onclick={(e) => {
             e.stopPropagation();
             e.preventDefault();
@@ -486,7 +589,9 @@ function handleDisabledClick(categoryId: string) {
     <a
       href="https://github.com/kagisearch/kite-public"
       target="_blank"
-      class="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300"
+      rel="noopener noreferrer"
+      aria-label={s("settings.categories.contribute.aria") || "Suggest new categories on GitHub (opens in new tab)"}
+      class="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 focus-visible-ring rounded"
     >
       {s("settings.categories.contribute") ||
         "Suggest new categories on GitHub"}

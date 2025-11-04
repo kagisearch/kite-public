@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="artwork" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 135 40">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #4285f4;
+      }
+
+      .cls-2, .cls-3 {
+        font-family: GoogleSans-Regular, 'Google Sans';
+        font-variation-settings: 'opsz' 18, 'wght' 400, 'GRAD' 0;
+      }
+
+      .cls-4, .cls-3 {
+        font-size: 10.5px;
+      }
+
+      .cls-4, .cls-3, .cls-5 {
+        fill: #fff;
+      }
+
+      .cls-6 {
+        fill: #a6a6a6;
+      }
+
+      .cls-7 {
+        fill: #34a853;
+      }
+
+      .cls-8 {
+        fill: #fbbc04;
+      }
+
+      .cls-9 {
+        fill: #ea4335;
+      }
+
+      .cls-10, .cls-5 {
+        font-family: NotoSansDevanagari-Regular, 'Noto Sans Devanagari';
+        font-variation-settings: 'wght' 400, 'wdth' 100;
+      }
+
+      .cls-5 {
+        font-size: 8px;
+      }
+    </style>
+  </defs>
+  <g>
+    <rect y="0" width="135" height="40" rx="5" ry="5"/>
+    <path class="cls-6" d="M130,.8c2.32,0,4.2,1.88,4.2,4.2v30c0,2.32-1.88,4.2-4.2,4.2H5c-2.32,0-4.2-1.88-4.2-4.2V5C.8,2.68,2.68.8,5,.8h125M130,0H5C2.25,0,0,2.25,0,5v30c0,2.75,2.25,5,5,5h125c2.75,0,5-2.25,5-5V5c0-2.75-2.25-5-5-5h0Z"/>
+  </g>
+  <text class="cls-5" transform="translate(39.62 15)"><tspan x="0" y="0">इसे</tspan></text>
+  <text class="cls-4" transform="translate(38.55 29.13)"><tspan class="cls-2" x="0" y="0" xml:space="preserve">Googl   Play </tspan><tspan class="cls-10" x="58.2" y="0">पर</tspan><tspan class="cls-2" x="68.46" y="0"> </tspan><tspan class="cls-10" x="70.9" y="0">पाएं</tspan></text>
+  <text class="cls-3" transform="translate(69.51 29.8) rotate(-15.05)"><tspan x="0" y="0">e</tspan></text>
+  <g>
+    <path class="cls-9" d="M20.38,19.42l-10.65,11.3s0,0,0,0c.33,1.23,1.45,2.13,2.78,2.13.53,0,1.03-.14,1.46-.4l.03-.02,11.98-6.91-5.61-6.11Z"/>
+    <path class="cls-8" d="M31.16,17.5h-.01s-5.17-3.01-5.17-3.01l-5.83,5.19,5.85,5.85,5.15-2.97c.9-.49,1.51-1.44,1.51-2.53s-.6-2.04-1.5-2.52Z"/>
+    <path class="cls-1" d="M9.74,9.28c-.06.24-.1.48-.1.74v19.97c0,.26.03.5.1.74l11.01-11.01-11.01-10.44Z"/>
+    <path class="cls-7" d="M20.46,20l5.51-5.51-11.97-6.94c-.43-.26-.94-.41-1.49-.41-1.33,0-2.45.91-2.78,2.13,0,0,0,0,0,0l10.73,10.72Z"/>
+  </g>
+</svg>

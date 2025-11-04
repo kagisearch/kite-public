@@ -199,7 +199,7 @@ onDestroy(() => {
       <!-- Header -->
       {#if title || showCloseButton}
         <div
-          class="flex items-center justify-between border-b border-gray-200 p-4 dark:border-gray-700"
+          class="flex items-center justify-between border-b border-gray-200 p-4 dark:border-gray-700 shrink-0 relative z-10 bg-white dark:bg-gray-800"
         >
           {#if title}
             <h2
@@ -215,7 +215,7 @@ onDestroy(() => {
           {#if showCloseButton}
             <button
               onclick={onClose}
-              class="rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200 focus-visible-ring"
+              class="rounded-full p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200 focus-visible-ring touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label={s("ui.close") || "Close"}
             >
               <svg

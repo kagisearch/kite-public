@@ -105,8 +105,8 @@ async function downloadImageAsDataURL(src: string): Promise<string> {
 /**
  * Get the proper URL for an image, using proxy for kagiproxy URLs
  */
-export function getProxiedImageUrl(originalUrl: string): string {
-	if (!originalUrl) return originalUrl;
+export function getProxiedImageUrl(originalUrl: string | null | undefined): string | null {
+	if (!originalUrl) return originalUrl ?? null;
 
 	// Always use proxy for kagiproxy URLs
 	if (originalUrl.startsWith('https://kagiproxy.com/')) {
@@ -119,8 +119,8 @@ export function getProxiedImageUrl(originalUrl: string): string {
 /**
  * Get image src - returns cached data URL if available, otherwise proxied URL
  */
-export function getImageSrc(originalSrc: string): string {
-	if (!browser || !originalSrc) return originalSrc;
+export function getImageSrc(originalSrc: string | null | undefined): string | null {
+	if (!browser || !originalSrc) return originalSrc ?? null;
 
 	const cachedDataUrl = imageDataCache.get(originalSrc);
 	if (cachedDataUrl) {
@@ -178,7 +178,7 @@ function isMobileDevice(): boolean {
 /**
  * Preload multiple images - disabled on mobile devices to save data
  */
-export function preloadImages(imageUrls: string[], _priority = false): Promise<undefined[]> {
+export function preloadImages(imageUrls: string[], _priority = false): Promise<void[]> {
 	if (!browser) return Promise.resolve([]);
 
 	// Skip preloading on mobile devices to save data
@@ -222,7 +222,7 @@ export function extractStoryImages(story: Story): string[] {
 		const articleImages = story.articles
 			.slice(0, 2)
 			.map((article) => article.image)
-			.filter((img) => img && typeof img === 'string');
+			.filter((img): img is string => img != null && typeof img === 'string');
 		images.push(...articleImages);
 	}
 
@@ -302,12 +302,12 @@ if (browser && typeof window !== 'undefined') {
 			const cachedSrc = getImageSrc(imageUrl);
 			console.log(
 				'9. Getting cached source:',
-				cachedSrc.startsWith('data:') ? 'Data URL (cached)' : 'Proxied URL',
+				cachedSrc?.startsWith('data:') ? 'Data URL (cached)' : 'Proxied URL',
 			);
 
 			return {
 				cached: isImageCached(imageUrl),
-				dataUrl: cachedSrc.startsWith('data:'),
+				dataUrl: cachedSrc?.startsWith('data:') ?? false,
 				loadTime: afterPreload - startTime,
 			};
 		},

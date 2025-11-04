@@ -1,6 +1,7 @@
 import { goto } from '$app/navigation';
 import { displaySettings } from '$lib/data/settings.svelte.js';
 import { timeTravel } from '$lib/stores/timeTravel.svelte';
+import { timeTravelBatch } from '$lib/stores/timeTravelBatch.svelte';
 import { dataReloadService, dataService } from './dataService';
 
 export interface TimeTravelOptions {
@@ -28,8 +29,8 @@ class TimeTravelNavigationService {
 			navigate,
 		});
 
-		// Set time travel mode in the data service
-		dataService.setTimeTravelBatch(batchId);
+		// Set time travel mode in the data service with batch date for URL generation
+		dataService.setTimeTravelBatch(batchId, batchDate);
 
 		// Set the batch in the time travel store
 		timeTravel.selectBatch(batchId);
@@ -72,11 +73,10 @@ class TimeTravelNavigationService {
 
 		// Reset time travel state
 		timeTravel.reset();
-		dataService.setTimeTravelBatch(null);
+		timeTravelBatch.clear();
 
-		// Navigate to latest or root
-		const targetUrl = displaySettings.useLatestUrls ? '/latest' : '/';
-		await goto(targetUrl);
+		// Navigate to root - will use /category/latest URLs automatically
+		await goto('/');
 	}
 
 	/**

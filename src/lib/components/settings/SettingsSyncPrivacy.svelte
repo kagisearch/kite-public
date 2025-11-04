@@ -190,7 +190,7 @@ async function exportData() {
           <label class="flex items-center justify-between">
             <div class="flex-1">
               <div class="flex items-center gap-2">
-                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                <span id="label-sync-settings" class="text-sm font-medium text-gray-700 dark:text-gray-300">
                   {s("settings.sync.settings.label") || "Sync Settings"}
                 </span>
                 {#if isSyncingSettings}
@@ -198,7 +198,7 @@ async function exportData() {
                 {/if}
               </div>
               <div class="text-xs text-gray-500 dark:text-gray-400">
-                {s("settings.sync.settings.description") || 
+                {s("settings.sync.settings.description") ||
                 "Font size, story count, and other preferences"}
               </div>
             </div>
@@ -207,13 +207,11 @@ async function exportData() {
             class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors {syncSettings ? 'bg-blue-600' : 'bg-gray-200 dark:bg-gray-700'} {isSyncingSettings ? 'opacity-50' : ''}"
             role="switch"
             aria-checked={syncSettings}
+            aria-labelledby="label-sync-settings"
             onclick={toggleSyncSettings}
             disabled={isSyncingSettings}
             title={!syncSettings ? (s("settings.sync.settings.enableInfo") || "When enabled, your current settings will be uploaded and shared across all your devices") : ""}
           >
-            <span class="sr-only">
-              {syncSettings ? (s("ui.disable") || "Disable") : (s("ui.enable") || "Enable")} {s("settings.sync.settings.label") || "Sync Settings"}
-            </span>
             <span
               class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform {syncSettings ? 'ltr:translate-x-6 rtl:-translate-x-6' : 'ltr:translate-x-1 rtl:-translate-x-1'}"
             ></span>
@@ -226,7 +224,7 @@ async function exportData() {
           <label class="flex items-center justify-between">
             <div class="flex-1">
               <div class="flex items-center gap-2">
-                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                <span id="label-sync-history" class="text-sm font-medium text-gray-700 dark:text-gray-300">
                   {s("settings.sync.readHistory.label") || "Sync Read History"}
                 </span>
                 {#if isSyncingHistory}
@@ -234,7 +232,7 @@ async function exportData() {
                 {/if}
               </div>
               <div class="text-xs text-gray-500 dark:text-gray-400">
-                {s("settings.sync.readHistory.description") || 
+                {s("settings.sync.readHistory.description") ||
                 "Stories you've read across all categories"}
               </div>
             </div>
@@ -243,19 +241,27 @@ async function exportData() {
             class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors {syncReadHistory ? 'bg-blue-600' : 'bg-gray-200 dark:bg-gray-700'} {isSyncingHistory ? 'opacity-50' : ''}"
             role="switch"
             aria-checked={syncReadHistory}
+            aria-labelledby="label-sync-history"
             onclick={toggleSyncReadHistory}
             disabled={isSyncingHistory}
             title={!syncReadHistory ? (s("settings.sync.readHistory.enableInfo") || "When enabled, your read history will be uploaded and synced across all your devices") : ""}
           >
-            <span class="sr-only">
-              {syncReadHistory ? (s("ui.disable") || "Disable") : (s("ui.enable") || "Enable")} {s("settings.sync.readHistory.label") || "Sync Read History"}
-            </span>
             <span
               class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform {syncReadHistory ? 'ltr:translate-x-6 rtl:-translate-x-6' : 'ltr:translate-x-1 rtl:-translate-x-1'}"
             ></span>
           </button>
         </label>
       </div>
+      </div>
+
+      <!-- Mobile App Note -->
+      <div class="mt-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 p-4 border border-blue-200 dark:border-blue-800">
+        <p class="text-sm text-blue-800 dark:text-blue-300">
+          <strong>{s("settings.sync.mobileApp.title") || "Note:"}</strong>
+          {" "}
+          {s("settings.sync.mobileApp.description") ||
+            "Native iOS and Android apps currently do not support syncing. Sync works on web browsers (including PWA). We'll be adding native app support soon."}
+        </p>
       </div>
     </div>
 

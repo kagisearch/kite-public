@@ -5,7 +5,7 @@ import { onDestroy, onMount } from 'svelte';
 import Portal from 'svelte-portal';
 import { browser } from '$app/environment';
 import { s } from '$lib/client/localization.svelte';
-import type { Article } from '$lib/types';
+import type { Article, LocalizerFunction } from '$lib/types';
 import { scrollLock } from '$lib/utils/scrollLock';
 import CitationItem from './CitationItem.svelte';
 
@@ -18,7 +18,7 @@ interface Props {
 		number: number;
 		isCommon?: boolean;
 	}>; // All cited items including common knowledge
-	storyLocalizer?: (key: string) => string; // Story-specific localization function
+	storyLocalizer?: LocalizerFunction; // Story-specific localization function
 }
 
 let {

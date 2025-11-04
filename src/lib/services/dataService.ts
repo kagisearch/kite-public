@@ -41,8 +41,8 @@ class DataService {
 	/**
 	 * Batch & Time Travel functionality
 	 */
-	setTimeTravelBatch(batchId: string | null) {
-		return batchService.setTimeTravelBatch(batchId);
+	setTimeTravelBatch(batchId: string | null, batchCreatedAt?: string | null) {
+		return batchService.setTimeTravelBatch(batchId, batchCreatedAt);
 	}
 
 	isTimeTravelMode(): boolean {
@@ -50,10 +50,10 @@ class DataService {
 	}
 
 	async loadInitialData(
-		language: string = 'default',
+		lang: string = 'default',
 		providedBatchInfo?: { id: string; createdAt: string },
 	) {
-		return batchService.loadInitialData(language, providedBatchInfo);
+		return batchService.loadInitialData(lang, providedBatchInfo);
 	}
 
 	/**
@@ -63,13 +63,14 @@ class DataService {
 		batchId: string,
 		categoryUuid: string,
 		limit: number = 12,
-		language: string = 'default',
+		lang: string = 'default',
 	) {
-		return storiesService.loadStories(batchId, categoryUuid, limit, language);
+		return storiesService.loadStories(batchId, categoryUuid, limit, lang);
 	}
 
 	/**
 	 * OnThisDay functionality
+	 * Returns both events and the language that was actually used by the backend
 	 */
 	async loadOnThisDayEvents(language: string = 'default') {
 		return onThisDayService.loadOnThisDayEvents(language);

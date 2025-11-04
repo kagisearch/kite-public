@@ -1,6 +1,7 @@
 <script lang="ts">
 import { s } from '$lib/client/localization.svelte';
 import { sections } from '$lib/stores/sections.svelte.js';
+import type { LocalizerFunction } from '$lib/types';
 import { aggregateCitationsFromTexts } from '$lib/utils/citationAggregator';
 import {
 	buildCitationMapping,
@@ -32,7 +33,12 @@ interface Props {
 	sourceArticles?: any[];
 	currentMediaInfo?: any;
 	isLoadingMediaInfo?: boolean;
-	storyLocalizer?: (key: string) => string;
+	storyLocalizer?: LocalizerFunction;
+	flashcardMode?: boolean;
+	selectedWords?: Set<string>;
+	selectedPhrases?: Map<string, { phrase: string; sections: Set<string> }>;
+	shouldJiggle?: boolean;
+	onWordClick?: (word: string, section?: string) => void;
 }
 
 let {
@@ -44,6 +50,11 @@ let {
 	currentMediaInfo = $bindable(null),
 	isLoadingMediaInfo = $bindable(false),
 	storyLocalizer = s, // Use regular localization if not provided
+	flashcardMode = false,
+	selectedWords = new Set(),
+	selectedPhrases = new Map(),
+	shouldJiggle = false,
+	onWordClick,
 }: Props = $props();
 
 // Get enabled sections in the correct order
@@ -146,7 +157,7 @@ const businessAngleCitedArticles = $derived.by(() => {
 
 {#each sectionsToRender as section}
   {#if section.id === "summary"}
-    <StorySummary {story} {citationMapping} {storyLocalizer} />
+    <StorySummary {story} {citationMapping} {storyLocalizer} {flashcardMode} {selectedWords} {selectedPhrases} {shouldJiggle} {onWordClick} />
   {:else if section.id === "primaryImage"}
     {#if story.primary_image}
       <!-- New data with primary_image field -->
@@ -162,12 +173,16 @@ const businessAngleCitedArticles = $derived.by(() => {
         }}
         {imagesPreloaded}
         showCaption={true}
+        {flashcardMode}
+        {selectedWords}
+        {shouldJiggle}
+        {onWordClick}
       />
     {:else}
       <!-- Fallback for old data -->
       {@const imageArticle = story.articles?.find((a: any) => a.image)}
       {#if imageArticle}
-        <StoryImage article={imageArticle} {imagesPreloaded} />
+        <StoryImage article={imageArticle} {imagesPreloaded} {flashcardMode} {selectedWords} {selectedPhrases} {shouldJiggle} {onWordClick} />
       {/if}
     {/if}
   {:else if section.id === "highlights"}
@@ -176,6 +191,11 @@ const businessAngleCitedArticles = $derived.by(() => {
       articles={story.articles}
       {citationMapping}
       {storyLocalizer}
+      {flashcardMode}
+      {selectedWords}
+      {selectedPhrases}
+      {shouldJiggle}
+      {onWordClick}
     />
   {:else if section.id === "quotes"}
     <StoryQuote
@@ -186,6 +206,11 @@ const businessAngleCitedArticles = $derived.by(() => {
       sourceDomain={story.quote_source_domain}
       articles={story.articles}
       {citationMapping}
+      {flashcardMode}
+      {selectedWords}
+      {selectedPhrases}
+      {shouldJiggle}
+      {onWordClick}
     />
   {:else if section.id === "secondaryImage"}
     {#if story.secondary_image}
@@ -202,12 +227,16 @@ const businessAngleCitedArticles = $derived.by(() => {
         }}
         {imagesPreloaded}
         showCaption={true}
+        {flashcardMode}
+        {selectedWords}
+        {shouldJiggle}
+        {onWordClick}
       />
     {:else}
       <!-- Fallback for old data -->
       {@const secondaryImage = story.articles?.filter((a: any) => a.image)[1]}
       {#if secondaryImage}
-        <StoryImage article={secondaryImage} {imagesPreloaded} />
+        <StoryImage article={secondaryImage} {imagesPreloaded} {flashcardMode} {selectedWords} {selectedPhrases} {shouldJiggle} {onWordClick} />
       {/if}
     {/if}
   {:else if section.id === "perspectives"}
@@ -216,6 +245,11 @@ const businessAngleCitedArticles = $derived.by(() => {
       articles={story.articles}
       {citationMapping}
       {storyLocalizer}
+      {flashcardMode}
+      {selectedWords}
+      {selectedPhrases}
+      {shouldJiggle}
+      {onWordClick}
     />
   {:else if section.id === "historicalBackground"}
     <StoryTextSection
@@ -223,6 +257,12 @@ const businessAngleCitedArticles = $derived.by(() => {
       content={story.historical_background}
       articles={story.articles}
       {citationMapping}
+      {flashcardMode}
+      {selectedWords}
+      {selectedPhrases}
+      {shouldJiggle}
+      {onWordClick}
+      section="historical_background"
     />
   {:else if section.id === "humanitarianImpact"}
     <StoryTextSection
@@ -230,6 +270,12 @@ const businessAngleCitedArticles = $derived.by(() => {
       content={story.humanitarian_impact}
       articles={story.articles}
       {citationMapping}
+      {flashcardMode}
+      {selectedWords}
+      {selectedPhrases}
+      {shouldJiggle}
+      {onWordClick}
+      section="humanitarian_impact"
     />
   {:else if section.id === "technicalDetails"}
     <StoryListSection
@@ -237,6 +283,12 @@ const businessAngleCitedArticles = $derived.by(() => {
       items={story.technical_details}
       articles={story.articles}
       {citationMapping}
+      {flashcardMode}
+      {selectedWords}
+      {selectedPhrases}
+      {shouldJiggle}
+      {onWordClick}
+      section="technical_details"
     />
   {:else if section.id === "businessAngle"}
     <section class="mt-6">
@@ -300,6 +352,12 @@ const businessAngleCitedArticles = $derived.by(() => {
       items={story.scientific_significance}
       articles={story.articles}
       {citationMapping}
+      {flashcardMode}
+      {selectedWords}
+      {selectedPhrases}
+      {shouldJiggle}
+      {onWordClick}
+      section="scientific_significance"
     />
   {:else if section.id === "travelAdvisory"}
     <StoryListSection
@@ -307,6 +365,12 @@ const businessAngleCitedArticles = $derived.by(() => {
       items={story.travel_advisory}
       articles={story.articles}
       {citationMapping}
+      {flashcardMode}
+      {selectedWords}
+      {selectedPhrases}
+      {shouldJiggle}
+      {onWordClick}
+      section="travel_advisory"
     />
   {:else if section.id === "performanceStatistics"}
     <StoryListSection
@@ -314,6 +378,12 @@ const businessAngleCitedArticles = $derived.by(() => {
       items={story.performance_statistics}
       articles={story.articles}
       {citationMapping}
+      {flashcardMode}
+      {selectedWords}
+      {selectedPhrases}
+      {shouldJiggle}
+      {onWordClick}
+      section="performance_statistics"
     />
   {:else if section.id === "leagueStandings"}
     <StoryTextSection
@@ -321,6 +391,12 @@ const businessAngleCitedArticles = $derived.by(() => {
       content={story.league_standings}
       articles={story.articles}
       {citationMapping}
+      {flashcardMode}
+      {selectedWords}
+      {selectedPhrases}
+      {shouldJiggle}
+      {onWordClick}
+      section="league_standings"
     />
   {:else if section.id === "designPrinciples"}
     <StoryTextSection
@@ -328,6 +404,12 @@ const businessAngleCitedArticles = $derived.by(() => {
       content={story.design_principles}
       articles={story.articles}
       {citationMapping}
+      {flashcardMode}
+      {selectedWords}
+      {selectedPhrases}
+      {shouldJiggle}
+      {onWordClick}
+      section="design_principles"
     />
   {:else if section.id === "userExperienceImpact"}
     <StoryListSection
@@ -335,6 +417,12 @@ const businessAngleCitedArticles = $derived.by(() => {
       items={story.user_experience_impact}
       articles={story.articles}
       {citationMapping}
+      {flashcardMode}
+      {selectedWords}
+      {selectedPhrases}
+      {shouldJiggle}
+      {onWordClick}
+      section="user_experience_impact"
     />
   {:else if section.id === "gameplayMechanics"}
     <StoryListSection
@@ -342,6 +430,12 @@ const businessAngleCitedArticles = $derived.by(() => {
       items={story.gameplay_mechanics}
       articles={story.articles}
       {citationMapping}
+      {flashcardMode}
+      {selectedWords}
+      {selectedPhrases}
+      {shouldJiggle}
+      {onWordClick}
+      section="gameplay_mechanics"
     />
   {:else if section.id === "industryImpact"}
     <StoryListSection
@@ -349,6 +443,12 @@ const businessAngleCitedArticles = $derived.by(() => {
       items={story.gaming_industry_impact}
       articles={story.articles}
       {citationMapping}
+      {flashcardMode}
+      {selectedWords}
+      {selectedPhrases}
+      {shouldJiggle}
+      {onWordClick}
+      section="gaming_industry_impact"
     />
   {:else if section.id === "technicalSpecifications"}
     <StoryTextSection
@@ -356,6 +456,12 @@ const businessAngleCitedArticles = $derived.by(() => {
       content={story.technical_specifications}
       articles={story.articles}
       {citationMapping}
+      {flashcardMode}
+      {selectedWords}
+      {selectedPhrases}
+      {shouldJiggle}
+      {onWordClick}
+      section="technical_specifications"
     />
   {:else if section.id === "timeline"}
     <StoryTimeline
@@ -363,6 +469,11 @@ const businessAngleCitedArticles = $derived.by(() => {
       articles={story.articles}
       {citationMapping}
       {storyLocalizer}
+      {flashcardMode}
+      {selectedWords}
+      {selectedPhrases}
+      {shouldJiggle}
+      {onWordClick}
     />
   {:else if section.id === "internationalReactions"}
     <StoryInternationalReactions
@@ -370,6 +481,11 @@ const businessAngleCitedArticles = $derived.by(() => {
       articles={story.articles}
       {citationMapping}
       {storyLocalizer}
+      {flashcardMode}
+      {selectedWords}
+      {selectedPhrases}
+      {shouldJiggle}
+      {onWordClick}
     />
   {:else if section.id === "suggestedQnA"}
     <StorySuggestedQnA
@@ -377,6 +493,11 @@ const businessAngleCitedArticles = $derived.by(() => {
       articles={story.articles}
       {citationMapping}
       {storyLocalizer}
+      {flashcardMode}
+      {selectedWords}
+      {selectedPhrases}
+      {shouldJiggle}
+      {onWordClick}
     />
   {:else if section.id === "actionItems"}
     <StoryActionItems
@@ -384,6 +505,11 @@ const businessAngleCitedArticles = $derived.by(() => {
       articles={story.articles}
       {citationMapping}
       {storyLocalizer}
+      {flashcardMode}
+      {selectedWords}
+      {selectedPhrases}
+      {shouldJiggle}
+      {onWordClick}
     />
   {:else if section.id === "didYouKnow"}
     <StoryDidYouKnow
@@ -391,6 +517,11 @@ const businessAngleCitedArticles = $derived.by(() => {
       articles={story.articles}
       {citationMapping}
       {storyLocalizer}
+      {flashcardMode}
+      {selectedWords}
+      {selectedPhrases}
+      {shouldJiggle}
+      {onWordClick}
     />
   {:else if section.id === "sources"}
     <StorySources

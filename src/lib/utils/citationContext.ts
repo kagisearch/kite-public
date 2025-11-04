@@ -111,8 +111,18 @@ export function buildCitationMapping(story: Story, articles: Article[]): Citatio
 	};
 
 	// Helper to process citations in any text field
-	const processCitations = (text: string | undefined) => {
-		if (!text || typeof text !== 'string') return;
+	const processCitations = (text: string | string[] | null | undefined) => {
+		if (!text) return;
+
+		// Handle arrays by processing each element
+		if (Array.isArray(text)) {
+			for (const item of text) {
+				processCitations(item);
+			}
+			return;
+		}
+
+		if (typeof text !== 'string') return;
 
 		const citations = extractCitations(text);
 
@@ -295,6 +305,7 @@ export function replaceWithNumberedCitations(text: string, mapping: CitationMapp
 				return '';
 			}
 		})
-		.replace(/\s+/g, ' ')
+		.replace(/\s+/g, ' ') // Normalize multiple spaces
+		.replace(/\s+([.,;:!?\)])/g, '$1') // Remove spaces before punctuation
 		.trim(); // Clean up any extra spaces left by removed citations
 }

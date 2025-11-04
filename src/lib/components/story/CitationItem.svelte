@@ -1,14 +1,14 @@
 <script lang="ts">
 import { s } from '$lib/client/localization.svelte';
 import FaviconImage from '$lib/components/common/FaviconImage.svelte';
-import type { Article } from '$lib/types';
+import type { Article, LocalizerFunction } from '$lib/types';
 import { getTimeAgo } from '$lib/utils/getTimeAgo';
 
 interface Props {
 	item: { article: Article | null; number: number; isCommon?: boolean };
 	highlightedNumber?: number;
 	isMobile?: boolean;
-	storyLocalizer?: (key: string) => string; // Story-specific localization function
+	storyLocalizer?: LocalizerFunction; // Story-specific localization function
 }
 
 let { item, highlightedNumber, isMobile = false, storyLocalizer = s }: Props = $props();

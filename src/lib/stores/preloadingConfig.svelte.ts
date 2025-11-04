@@ -140,6 +140,10 @@ class PreloadingConfigStore {
 		this.update({ logLevel: value ? 'verbose' : 'info' });
 	}
 
+	reload() {
+		this.loadFromStorage();
+	}
+
 	/**
 	 * Load configuration from localStorage
 	 */

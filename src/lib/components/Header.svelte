@@ -1,19 +1,23 @@
 <script lang="ts">
 import { IconClock, IconSearch } from '@tabler/icons-svelte';
+import { untrack } from 'svelte';
 import { browser } from '$app/environment';
 import { s } from '$lib/client/localization.svelte';
 import { features } from '$lib/config/features';
 import {
 	displaySettings,
-	experimentalSettings,
 	type FontSize,
 	languageSettings,
 	settings,
 	settingsModalState,
 	themeSettings,
 } from '$lib/data/settings.svelte.js';
+import { experimental } from '$lib/stores/experimental.svelte.js';
 import { dataReloadService, dataService } from '$lib/services/dataService';
+import { headerAnimation } from '$lib/stores/headerAnimation.svelte';
 import { timeTravel } from '$lib/stores/timeTravel.svelte.js';
+import { timeTravelBatch } from '$lib/stores/timeTravelBatch.svelte';
+import { getNextUpdateCountdown } from '$lib/utils/getTimeAgo';
 import ChaosIndex from './ChaosIndex.svelte';
 
 // Props
@@ -22,12 +26,16 @@ interface Props {
 	totalStoriesRead?: number;
 	offlineMode?: boolean;
 	getLastUpdated?: () => string;
+	lastUpdatedTimestamp?: number; // Unix timestamp for calculating next update
 	chaosIndex?: {
 		score: number;
 		summary: string;
 		lastUpdated: string;
 	};
 	onSearchClick?: () => void;
+	isSharedView?: boolean;
+	onLogoClick?: () => void;
+	dataLoaded?: boolean;
 }
 
 let {
@@ -35,8 +43,12 @@ let {
 	totalStoriesRead = 0,
 	offlineMode = false,
 	getLastUpdated = () => 'Never',
+	lastUpdatedTimestamp,
 	chaosIndex,
 	onSearchClick,
+	isSharedView = false,
+	onLogoClick,
+	dataLoaded = false,
 }: Props = $props();
 
 // Date click state for cycling through different stats
@@ -48,6 +60,38 @@ let isExitingTimeTravel = $state(false);
 // Kite animation state
 let showFlyingKite = $state(false);
 let kiteStartPosition = $state({ x: 0, y: 0 });
+let hoverTimeout: ReturnType<typeof setTimeout> | null = null;
+
+// Mobile alternation state (logo vs date) - one-time animation
+let showMobileLogo = $state(true);
+// Use a variable outside of $state to ensure it persists across re-renders
+let animationStarted = false;
+
+// Next update countdown state (updates every minute)
+let nextUpdateText = $state('');
+let nextUpdateIsSoon = $state(false);
+
+// Update next update countdown every minute
+$effect(() => {
+	if (browser && lastUpdatedTimestamp) {
+		// Convert Unix timestamp (seconds) to ISO string
+		const lastUpdateDate = new Date(lastUpdatedTimestamp * 1000).toISOString();
+
+		const updateCountdown = () => {
+			const countdown = getNextUpdateCountdown(lastUpdateDate);
+			nextUpdateText = countdown.text;
+			nextUpdateIsSoon = countdown.isSoon;
+		};
+
+		// Initial update
+		updateCountdown();
+
+		// Update every minute
+		const interval = setInterval(updateCountdown, 60000);
+
+		return () => clearInterval(interval);
+	}
+});
 
 // Platform detection for keyboard shortcut
 const isMac =
@@ -56,28 +100,93 @@ const isMac =
 		navigator.userAgent.toUpperCase().indexOf('MAC') >= 0);
 const searchTooltip = $derived(s('header.search') + (isMac ? ' (⌘K)' : ' (Ctrl+K)'));
 
-function handleLogoClick(event: MouseEvent) {
-	// Get the logo element's position
+function handleLogoClick() {
+	// Don't handle clicks during animation
+	if (isAnimating) {
+		return;
+	}
+
+	// Cancel any pending hover animation
+	if (hoverTimeout) {
+		clearTimeout(hoverTimeout);
+		hoverTimeout = null;
+	}
+
+	// Call the parent handler (handles both shared view exit and normal home reset)
+	if (onLogoClick) {
+		onLogoClick();
+	}
+
+	// Reset date click count
+	dateClickCount = 0;
+}
+
+function handleLogoHover(event: MouseEvent) {
+	// Only trigger animation on hover, not on click
+	if (hoverTimeout) return; // Already hovering
+	if (!browser) return; // Only in browser
+
+	// Capture the element and its position immediately (before setTimeout)
 	const logoElement = event.currentTarget as HTMLElement;
 	const rect = logoElement.getBoundingClientRect();
-
-	// Set the starting position to the right side of the logo (where newspaper icon is)
-	kiteStartPosition = {
+	const startPosition = {
 		x: rect.left + rect.width * 0.85, // 85% to the right
 		y: rect.top + rect.height / 2,
 	};
 
-	// Show the flying kite
-	showFlyingKite = true;
+	console.log('Logo hover started, waiting 1.5s...');
+	hoverTimeout = setTimeout(() => {
+		console.log('Triggering kite animation!');
 
-	// Hide it after 5 seconds (it's off-screen by then)
-	setTimeout(() => {
-		showFlyingKite = false;
-	}, 8000);
+		// Set the starting position
+		kiteStartPosition = startPosition;
+
+		// Show the flying kite
+		showFlyingKite = true;
+		console.log('showFlyingKite set to true', { kiteStartPosition, showFlyingKite });
+
+		// Hide it after 8 seconds (it's off-screen by then)
+		setTimeout(() => {
+			showFlyingKite = false;
+			console.log('Kite animation ended');
+		}, 8000);
+
+		hoverTimeout = null;
+	}, 1500); // 1.5 second hover delay
 }
 
-function handleDateClick() {
-	dateClickCount = (dateClickCount + 1) % 5;
+function handleLogoLeave() {
+	// Cancel pending hover animation if mouse leaves before delay
+	if (hoverTimeout) {
+		console.log('Logo hover cancelled (mouse left)');
+		clearTimeout(hoverTimeout);
+		hoverTimeout = null;
+	}
+}
+
+function handleDateClick(event?: Event) {
+	// If animation is showing, stop it and switch to normal cycling mode
+	if (showAnimation) {
+		event?.preventDefault();
+		event?.stopPropagation();
+		showAnimation = false;
+		isAnimating = false;
+		// Clear all pending timeouts
+		animationTimeouts.forEach(clearTimeout);
+		animationTimeouts = [];
+		// If still on index 0, cycle to 1 instead of staying at 0
+		if (headerAnimation.index === 0) {
+			dateClickCount = 1;
+			currentDisplayIndex = 1;
+		} else {
+			currentDisplayIndex = headerAnimation.index;
+			dateClickCount = headerAnimation.index;
+		}
+		return;
+	}
+	// Normal cycling behavior
+	dateClickCount = (dateClickCount + 1) % 6; // Now 6 states: date, next update, last update, news today, stories read, week/day
+	currentDisplayIndex = dateClickCount;
 }
 
 // Handle date area keyboard events
@@ -127,10 +236,20 @@ const dateDisplay = $derived.by(() => {
 	} else if (dateClickCount === 1) {
 		return getLastUpdated();
 	} else if (dateClickCount === 2) {
+		// Next update countdown
+		if (nextUpdateIsSoon) {
+			return s('time.nextUpdate.soon') || 'Next update: soon';
+		} else if (nextUpdateText) {
+			return (
+				s('time.nextUpdate.in', { time: nextUpdateText }) || `Next update in ${nextUpdateText}`
+			);
+		}
+		return ''; // Fallback if no timestamp available
+	} else if (dateClickCount === 3) {
 		return (
 			s('stats.newsToday', { count: totalReadCount.toString() }) || `News today: ${totalReadCount}`
 		);
-	} else if (dateClickCount === 3) {
+	} else if (dateClickCount === 4) {
 		const key = totalStoriesRead === 1 ? 'stats.storyRead' : 'stats.storiesRead';
 		return s(key, { count: totalStoriesRead.toString() }) || `Stories read: ${totalStoriesRead}`;
 	} else {
@@ -142,6 +261,61 @@ const dateDisplay = $derived.by(() => {
 			s('stats.weekDay', { week: week.toString(), day: day.toString() }) ||
 			`Week ${week}, Day ${day}`
 		);
+	}
+});
+
+// Track if animation is currently running
+let isAnimating = $state(false);
+let showAnimation = $state(true); // true = show animation, false = show normal cycling
+let animationTimeouts: ReturnType<typeof setTimeout>[] = [];
+let currentDisplayIndex = $state(0);
+
+// One-time mobile animation - triggered when data is loaded
+$effect(() => {
+	// Only trigger based on dataLoaded, using shared store to ensure it only runs once
+	// Don't play animation if in time travel mode
+	if (browser && dataLoaded && !headerAnimation.hasRun && !timeTravel.selectedDate) {
+		headerAnimation.markAsRun();
+		isAnimating = true;
+		showAnimation = true;
+
+		// Animation sequence: show each item for 2s with quick flick transitions
+		const sequence = [
+			{ index: 1, duration: 2000 }, // Last updated
+			{ index: 2, duration: 2000 }, // Next update
+			{ index: 3, duration: 2000 }, // News today
+			{ index: 4, duration: 2000 }, // Stories read
+			{ index: 5, duration: 2000 }, // Week/Day
+			{ index: 0, duration: 0 }, // Back to logo
+		];
+
+		let currentStep = 0;
+		const runSequence = () => {
+			// Check if animation was cancelled
+			if (!isAnimating || !showAnimation) {
+				showAnimation = false;
+				isAnimating = false;
+				return;
+			}
+
+			if (currentStep < sequence.length) {
+				const step = sequence[currentStep];
+				headerAnimation.index = step.index;
+				currentStep++;
+				if (step.duration > 0) {
+					const timeout = setTimeout(runSequence, step.duration);
+					animationTimeouts.push(timeout);
+				} else {
+					// Animation complete
+					isAnimating = false;
+					showAnimation = false;
+				}
+			}
+		};
+
+		// Wait 2s on logo, then start sequence
+		const initialTimeout = setTimeout(runSequence, 2000);
+		animationTimeouts.push(initialTimeout);
 	}
 });
 </script>
@@ -182,7 +356,7 @@ const dateDisplay = $derived.by(() => {
         onclick={async () => {
           // Immediately reset time travel to give instant feedback
           timeTravel.reset();
-          dataService.setTimeTravelBatch(null);
+          timeTravelBatch.clear();
 
           // Show loading state
           isExitingTimeTravel = true;
@@ -194,8 +368,8 @@ const dateDisplay = $derived.by(() => {
             isExitingTimeTravel = false;
           }
         }}
-        class="ms-1 p-0.5"
-        aria-label="Exit time travel mode"
+        class="ms-1 p-0.5 focus-visible-ring rounded"
+        aria-label="Exit time travel mode and return to live news"
         disabled={isExitingTimeTravel}
       >
         <svg
@@ -220,7 +394,8 @@ const dateDisplay = $derived.by(() => {
       onkeydown={handleDateKeydown}
       role="button"
       tabindex="0"
-      aria-label="Cycle through date and statistics"
+      aria-label="Cycle through date and statistics. Current: {dateDisplay}"
+      aria-live="polite"
     >
       {dateDisplay}
     </div>
@@ -246,21 +421,89 @@ const dateDisplay = $derived.by(() => {
 <header class="mb-1">
   <!-- First row: Logo, Chaos Index (mobile), and buttons -->
   <div class="flex items-center justify-between relative">
-    <div class="flex items-center">
-      <img
-        src={themeSettings.isDark
-          ? "/svg/kagi_news_compact_dark.svg"
-          : "/svg/kagi_news_compact.svg"}
-        alt={s("app.logo.newsAlt") || "Kite News"}
-        class="me-2 h-7 sm:h-8 w-20 sm:w-22 logo relative z-50"
+    <!-- Mobile: Cycles through logo and date displays with flick-up animation -->
+    <div class="sm:hidden flex items-center h-[36px] overflow-hidden">
+      <div
+        class="flex flex-col transition-transform duration-300 ease-out"
+        style="transform: translateY({(2.5 - headerAnimation.index) * 36}px);"
+      >
+        <!-- Logo (index 0) -->
+        <div class="h-[36px] flex items-center">
+          <button
+            onclick={handleLogoClick}
+            onmouseenter={handleLogoHover}
+            onmouseleave={handleLogoLeave}
+            aria-label={s("app.logo.clickToReset") || "Click to reset view to home"}
+            disabled={isAnimating}
+            class="p-0 border-0 bg-transparent focus-visible-ring rounded"
+            class:cursor-pointer={!isAnimating}
+            class:cursor-default={isAnimating}
+          >
+            <img
+              src={themeSettings.isDark
+                ? "/svg/kagi_news_full_dark.svg"
+                : "/svg/kagi_news_full.svg"}
+              alt={s("app.logo.newsAlt") || "Kite News"}
+              class="h-9 w-auto logo z-50"
+              style="isolation: isolate;"
+            />
+          </button>
+        </div>
+        <!-- Date displays (indices 1-5) -->
+        {#each [1, 2, 3, 4, 5] as index}
+          <div class="h-[36px] flex items-center text-sm whitespace-nowrap text-gray-600 dark:text-gray-400">
+            {#if index === 1}
+              {getLastUpdated()}
+            {:else if index === 2}
+              {#if nextUpdateIsSoon}
+                {s('time.nextUpdate.soon') || 'Next update: soon'}
+              {:else if nextUpdateText}
+                {s('time.nextUpdate.in', { time: nextUpdateText }) || `Next update in ${nextUpdateText}`}
+              {/if}
+            {:else if index === 3}
+              {s('stats.newsToday', { count: totalReadCount.toString() }) || `News today: ${totalReadCount}`}
+            {:else if index === 4}
+              {#if totalStoriesRead === 1}
+                {s('stats.storyRead', { count: totalStoriesRead.toString() }) || `Story read: ${totalStoriesRead}`}
+              {:else}
+                {s('stats.storiesRead', { count: totalStoriesRead.toString() }) || `Stories read: ${totalStoriesRead}`}
+              {/if}
+            {:else if index === 5}
+              {(() => {
+                const now = new Date();
+                const start = new Date(now.getFullYear(), 0, 1);
+                const week = Math.ceil((now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24 * 7));
+                const day = Math.ceil((now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+                return s('stats.weekDay', { week: week.toString(), day: day.toString() }) || `Week ${week}, Day ${day}`;
+              })()}
+            {/if}
+          </div>
+        {/each}
+      </div>
+    </div>
+
+    <!-- Desktop: Full logo -->
+    <div class="hidden sm:flex items-center">
+      <button
         onclick={handleLogoClick}
-        role="presentation"
-        style="isolation: isolate;"
-      />
+        onmouseenter={handleLogoHover}
+        onmouseleave={handleLogoLeave}
+        aria-label={s("app.logo.clickToReset") || "Click to reset view to home"}
+        class="me-2 p-0 border-0 bg-transparent cursor-pointer focus-visible-ring rounded"
+      >
+        <img
+          src={themeSettings.isDark
+            ? "/svg/kagi_news_full_dark.svg"
+            : "/svg/kagi_news_full.svg"}
+          alt={s("app.logo.newsAlt") || "Kite News"}
+          class="h-9 w-auto logo relative z-50"
+          style="isolation: isolate;"
+        />
+      </button>
     </div>
 
     <!-- Chaos Index - Mobile: centered in first row -->
-    {#if experimentalSettings.isEnabled('showChaosIndex') && chaosIndex && chaosIndex.score > 0}
+    {#if experimental.showChaosIndex && chaosIndex && chaosIndex.score > 0}
       <div class="sm:hidden absolute start-1/2 ltr:-translate-x-1/2 rtl:translate-x-1/2">
         <ChaosIndex
           score={chaosIndex.score}
@@ -271,15 +514,68 @@ const dateDisplay = $derived.by(() => {
     {/if}
 
     <!-- Date section hidden on mobile, shown on desktop in center -->
-    <div
-      class="hidden sm:flex absolute start-1/2 ltr:-translate-x-1/2 rtl:translate-x-1/2 items-center"
-    >
-      {@render dateSection()}
+    <div class="hidden sm:flex absolute start-1/2 ltr:-translate-x-1/2 rtl:translate-x-1/2 items-center h-[36px] overflow-hidden">
+      {#if showAnimation}
+        <!-- Animation mode: auto-cycling through stats -->
+        <div
+          class="cursor-pointer"
+          onclick={(e) => handleDateClick(e)}
+          onkeydown={handleDateKeydown}
+          role="button"
+          tabindex="0"
+          aria-label="Click to stop animation"
+        >
+          <div
+            class="flex flex-col transition-transform duration-200 ease-out"
+            style="transform: translateY({(2.5 - headerAnimation.index) * 36}px);"
+          >
+            <!-- Date section (index 0) -->
+            <div class="h-[36px] flex items-center justify-center">
+              {@render dateSection()}
+            </div>
+            <!-- Stats displays (indices 1-5) -->
+            {#each [1, 2, 3, 4, 5] as index}
+              <div
+                class="h-[36px] flex items-center justify-center whitespace-nowrap text-gray-600 dark:text-gray-400"
+              >
+                {#if index === 1}
+                  {getLastUpdated()}
+                {:else if index === 2}
+                  {#if nextUpdateIsSoon}
+                    {s('time.nextUpdate.soon') || 'Next update: soon'}
+                  {:else if nextUpdateText}
+                    {s('time.nextUpdate.in', { time: nextUpdateText }) || `Next update in ${nextUpdateText}`}
+                  {/if}
+                {:else if index === 3}
+                  {s('stats.newsToday', { count: totalReadCount.toString() }) || `News today: ${totalReadCount}`}
+                {:else if index === 4}
+                  {#if totalStoriesRead === 1}
+                    {s('stats.storyRead', { count: totalStoriesRead.toString() }) || `Story read: ${totalStoriesRead}`}
+                  {:else}
+                    {s('stats.storiesRead', { count: totalStoriesRead.toString() }) || `Stories read: ${totalStoriesRead}`}
+                  {/if}
+                {:else if index === 5}
+                  {(() => {
+                    const now = new Date();
+                    const start = new Date(now.getFullYear(), 0, 1);
+                    const week = Math.ceil((now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24 * 7));
+                    const day = Math.ceil((now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+                    return s('stats.weekDay', { week: week.toString(), day: day.toString() }) || `Week ${week}, Day ${day}`;
+                  })()}
+                {/if}
+              </div>
+            {/each}
+          </div>
+        </div>
+      {:else}
+        <!-- Normal cycling mode: click to cycle manually -->
+        {@render dateSection()}
+      {/if}
     </div>
 
     <div class="ms-auto flex items-center space-x-1 sm:space-x-2">
       <!-- Chaos Index - Desktop only, in first row -->
-      {#if experimentalSettings.isEnabled('showChaosIndex') && chaosIndex && chaosIndex.score > 0}
+      {#if experimental.showChaosIndex && chaosIndex && chaosIndex.score > 0}
         <div class="hidden sm:block">
           <ChaosIndex
             score={chaosIndex.score}
@@ -345,11 +641,6 @@ const dateDisplay = $derived.by(() => {
         />
       </button>
     </div>
-  </div>
-
-  <!-- Mobile layout - Date only, centered -->
-  <div class="flex sm:hidden items-center justify-center mt-1 px-2">
-    {@render dateSection()}
   </div>
 </header>
 

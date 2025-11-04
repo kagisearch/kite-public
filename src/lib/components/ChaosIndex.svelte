@@ -289,7 +289,7 @@ function toggleExplanation() {
 
     <!-- Text -->
     <span>
-      {getTemperatureText()}
+      {score}° {getTemperatureText()}
     </span>
   </button>
 {/if}

@@ -4,6 +4,7 @@ import { syncManager } from '$lib/client/sync-manager';
 export type SupportedLanguage =
 	| 'default'
 	| 'source'
+	| 'custom'
 	| 'en'
 	| 'pt'
 	| 'it'
@@ -117,9 +118,13 @@ export const language = {
 	},
 
 	set(language: SupportedLanguage) {
+		// Only save if the language actually changed
+		const changed = languageState.current !== language;
 		languageState.current = language;
 		applyLanguage(language);
-		saveLanguage(language);
+		if (changed) {
+			saveLanguage(language);
+		}
 	},
 
 	init() {

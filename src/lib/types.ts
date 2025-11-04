@@ -50,55 +50,56 @@ export interface Story {
 	unique_domains?: number;
 	number_of_titles?: number;
 	sourceLanguage?: string;
+	selectedLanguage?: string; // The language actually used for this story's content
 	category: string;
 	title: string;
 	short_summary: string;
-	did_you_know?: string;
-	talking_points?: string[];
-	quote?: string;
-	quote_author?: string;
-	quote_attribution?: string;
-	quote_source_url?: string;
-	quote_source_domain?: string;
-	location?: string;
-	perspectives?: Perspective[];
-	emoji?: string;
-	geopolitical_context?: string;
-	historical_background?: string;
-	international_reactions?: string[];
-	humanitarian_impact?: string;
-	economic_implications?: string;
-	timeline?: TimelineEvent[];
-	future_outlook?: string;
-	key_players?: string[];
-	technical_details?: string[];
-	business_angle_text?: string;
-	business_angle_points?: string[];
-	user_action_items?: string[];
-	scientific_significance?: string[];
-	travel_advisory?: string[];
-	destination_highlights?: string;
-	culinary_significance?: string;
-	performance_statistics?: string[];
-	league_standings?: string;
-	diy_tips?: string;
-	design_principles?: string;
-	user_experience_impact?: string;
-	gameplay_mechanics?: string[];
-	industry_impact?: string[];
-	gaming_industry_impact?: string[];
-	technical_specifications?: string[];
-	suggested_qna?: QnA[];
+	did_you_know?: string | null;
+	talking_points?: string[] | null;
+	quote?: string | null;
+	quote_author?: string | null;
+	quote_attribution?: string | null;
+	quote_source_url?: string | null;
+	quote_source_domain?: string | null;
+	location?: string | null;
+	perspectives?: Perspective[] | null;
+	emoji?: string | null;
+	geopolitical_context?: string | null;
+	historical_background?: string | null;
+	international_reactions?: string[] | null;
+	humanitarian_impact?: string | null;
+	economic_implications?: string | null;
+	timeline?: TimelineEvent[] | null;
+	future_outlook?: string | null;
+	key_players?: string[] | null;
+	technical_details?: string[] | null;
+	business_angle_text?: string | null;
+	business_angle_points?: string[] | null;
+	user_action_items?: string[] | null;
+	scientific_significance?: string[] | null;
+	travel_advisory?: string[] | null;
+	destination_highlights?: string | null;
+	culinary_significance?: string | null;
+	performance_statistics?: string[] | null;
+	league_standings?: string | null;
+	diy_tips?: string | null;
+	design_principles?: string | null;
+	user_experience_impact?: string | null;
+	gameplay_mechanics?: string[] | null;
+	industry_impact?: string[] | null;
+	gaming_industry_impact?: string[] | null;
+	technical_specifications?: string[] | null;
+	suggested_qna?: QnA[] | null;
 	primary_image?: {
 		url: string;
 		caption: string;
 		credit?: string;
-	};
+	} | null;
 	secondary_image?: {
 		url: string;
 		caption: string;
 		credit?: string;
-	};
+	} | null;
 	articles: Article[];
 	domains?: Domain[];
 	expanded?: boolean;
@@ -109,6 +110,12 @@ export interface Category {
 	id: string;
 	display_name?: string;
 	feeds?: string[];
+}
+
+// Localization function type with overloads
+export interface LocalizerFunction {
+	(key: string, view?: Record<string, string>, strict?: false): string;
+	(key: string, view: Record<string, string> | undefined, strict: true): string | undefined;
 }
 
 export interface CategoryData {
@@ -206,6 +213,7 @@ export interface LoadMediaDataResponse {
 export interface LoadOnThisDayResponse {
 	events: OnThisDayEvent[];
 	timestamp: number;
+	language: string; // The actual language used for this response
 }
 
 // Multi-language API types

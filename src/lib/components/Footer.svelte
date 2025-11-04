@@ -1,14 +1,16 @@
 <script lang="ts">
 import { s } from '$lib/client/localization.svelte';
 import { languageSettings, themeSettings } from '$lib/data/settings.svelte.js';
+import type { Category, Story } from '$lib/types';
 
-// Props
 interface Props {
 	currentCategory?: string;
+	categories?: Category[];
+	stories?: Story[];
 	onShowAbout?: () => void;
 }
 
-let { currentCategory = 'World', onShowAbout }: Props = $props();
+let { currentCategory = 'World', categories = [], stories = [], onShowAbout }: Props = $props();
 
 // Handle about click
 function handleAboutClick() {
@@ -17,22 +19,19 @@ function handleAboutClick() {
 	if (onShowAbout) onShowAbout();
 }
 
-// Get RSS feed URL
+// Get RSS feed URL - uses the language currently loaded for stories
 function getRSSFeedUrl(): string {
-	if (currentCategory === 'OnThisDay') {
-		// For OnThisDay, use the translated RSS feed if available
-		if (languageSettings.data !== 'default' && languageSettings.data !== 'en') {
-			return `/onthisday_${languageSettings.data}.xml`;
-		}
-		return '/onthisday.xml';
+	const categoryLower = currentCategory.toLowerCase();
+
+	// Get the language from the first story (all stories in a category use the same language)
+	const selectedLanguage = stories[0]?.selectedLanguage;
+
+	// Use the selected language for RSS feed
+	if (selectedLanguage && selectedLanguage !== 'en') {
+		return `/${categoryLower}_${selectedLanguage}.xml`;
 	}
 
-	// For other categories, use translated RSS feeds when available
-	if (languageSettings.data !== 'default' && languageSettings.data !== 'en') {
-		return `/${currentCategory.toLowerCase()}_${languageSettings.data}.xml`;
-	}
-
-	return `/${currentCategory.toLowerCase()}.xml`;
+	return `/${categoryLower}.xml`;
 }
 </script>
 

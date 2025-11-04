@@ -1,5 +1,5 @@
 <script lang="ts">
-import { onMount } from 'svelte';
+import { onMount, untrack, tick } from 'svelte';
 import { fade } from 'svelte/transition';
 import { browser } from '$app/environment';
 import { s } from '$lib/client/localization.svelte';
@@ -17,6 +17,8 @@ interface Props {
 	mobilePosition?: 'top' | 'bottom' | 'integrated';
 	temporaryCategory?: string | null;
 	showTemporaryTooltip?: boolean;
+	onTemporaryScrollStart?: () => void;
+	onTemporaryScrollEnd?: () => void;
 }
 
 let {
@@ -27,6 +29,8 @@ let {
 	mobilePosition = 'bottom',
 	temporaryCategory = null,
 	showTemporaryTooltip = false,
+	onTemporaryScrollStart,
+	onTemporaryScrollEnd,
 }: Props = $props();
 
 // Overflow detection state
@@ -176,6 +180,40 @@ $effect(() => {
 	displaySettings.fontSize; // React to font size changes
 	// Use a longer delay to ensure CSS changes have taken effect
 	setTimeout(() => checkOverflow(), 100);
+});
+
+// Scroll to temporary category when it's added (not when removed)
+$effect(() => {
+	if (temporaryCategory && browser) {
+		// Hide tooltip while scrolling
+		if (onTemporaryScrollStart) {
+			onTemporaryScrollStart();
+		}
+
+		// Wait for DOM to update and category element to be rendered
+		tick().then(() => {
+			// Add a small delay to ensure layout is complete
+			setTimeout(() => {
+				const categoryElement = untrack(() => categoryElements[temporaryCategory]);
+				if (categoryElement && tabsElement) {
+					// Simply scroll all the way to the right (max scroll)
+					const maxScroll = tabsElement.scrollWidth - tabsElement.clientWidth;
+
+					tabsElement.scrollTo({
+						left: maxScroll,
+						behavior: 'smooth'
+					});
+
+					// Show tooltip after scroll completes (smooth scroll takes ~300-500ms)
+					setTimeout(() => {
+						if (onTemporaryScrollEnd) {
+							onTemporaryScrollEnd();
+						}
+					}, 500);
+				}
+			}, 100);
+		});
+	}
 });
 </script>
 

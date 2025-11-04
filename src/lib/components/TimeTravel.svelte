@@ -89,8 +89,9 @@ async function loadMonthBatches() {
 			59,
 		);
 
+		const lang = languageSettings.getLanguageForAPI();
 		const response = await fetch(
-			`/api/batches?from=${startOfMonth.toISOString()}&to=${endOfMonth.toISOString()}&lang=${languageSettings.data}`,
+			`/api/batches?from=${startOfMonth.toISOString()}&to=${endOfMonth.toISOString()}&lang=${lang}`,
 		);
 
 		if (!response.ok) throw new Error('Failed to load batches');
@@ -252,7 +253,8 @@ async function selectBatch(batch: BatchInfo) {
 
 	try {
 		// Check if this is the absolute latest batch by fetching the current latest
-		const latestResponse = await fetch(`/api/batches/latest?lang=${languageSettings.data}`);
+		const lang = languageSettings.getLanguageForAPI();
+		const latestResponse = await fetch(`/api/batches/latest?lang=${lang}`);
 		const latestData = await latestResponse.json();
 		// The API returns the batch directly, not wrapped in a 'batch' property
 		const isLatestBatch = latestData.id && latestData.id === batch.id;

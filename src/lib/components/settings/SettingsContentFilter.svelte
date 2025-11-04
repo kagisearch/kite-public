@@ -238,33 +238,31 @@ $effect(() => {
       {s("settings.contentFilter.presets.description") ||
         "Select one or more preset filters to quickly hide common topics"}
     </p>
-    <div class="grid grid-cols-2 gap-2">
+    <div class="grid grid-cols-2 gap-2 auto-rows-fr">
       {#each localizedPresets as preset}
-        <div class="relative">
-          <button
-            onclick={() =>
-              contentFilter.togglePreset(preset.id, dataLanguage.current)}
-            class="flex items-center justify-between w-full px-3 py-2 text-sm rounded-md border transition-colors
-							{contentFilter.isPresetActive(preset.id)
-              ? 'bg-blue-50 border-blue-300 text-blue-700 dark:bg-blue-900/20 dark:border-blue-700 dark:text-blue-300'
-              : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600'}"
-          >
-            <span class="flex items-center gap-2">
-              {preset.label}
-              {#if preset.tooltip}
-                <Tooltip text={preset.tooltip} position="top">
-                  <IconInfoCircle
-                    size={14}
-                    class="text-gray-400 dark:text-gray-500"
-                  />
-                </Tooltip>
-              {/if}
-            </span>
-            {#if contentFilter.isPresetActive(preset.id)}
-              <IconCheck size={16} />
+        <button
+          onclick={() =>
+            contentFilter.togglePreset(preset.id, dataLanguage.current)}
+          class="flex items-center justify-between w-full px-3 py-2 text-sm rounded-md border transition-colors
+						{contentFilter.isPresetActive(preset.id)
+            ? 'bg-blue-50 border-blue-300 text-blue-700 dark:bg-blue-900/20 dark:border-blue-700 dark:text-blue-300'
+            : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600'}"
+        >
+          <span class="flex items-center gap-2">
+            {preset.label}
+            {#if preset.tooltip}
+              <Tooltip text={preset.tooltip} position="top">
+                <IconInfoCircle
+                  size={14}
+                  class="text-gray-400 dark:text-gray-500"
+                />
+              </Tooltip>
             {/if}
-          </button>
-        </div>
+          </span>
+          {#if contentFilter.isPresetActive(preset.id)}
+            <IconCheck size={16} />
+          {/if}
+        </button>
       {/each}
     </div>
   </div>
@@ -320,7 +318,7 @@ $effect(() => {
             <div class="flex flex-wrap gap-2">
               {#each getPresetKeywords(preset) as keyword}
                 <span
-                  class="inline-flex items-center gap-1 rounded-full bg-blue-100 px-3 py-1 text-sm text-blue-700 dark:bg-blue-900/20 dark:text-blue-300"
+                  class="inline-flex items-center gap-1 rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700 dark:bg-gray-700 dark:text-gray-300"
                 >
                   {keyword}
                 </span>
@@ -451,30 +449,33 @@ $effect(() => {
   <!-- Show Filtered Count -->
   <div class="flex items-center justify-between">
     <div>
-      <label
-        for="show-count"
+      <span
+        id="label-show-count"
         class="text-base font-medium text-gray-900 dark:text-gray-100"
       >
         {s("settings.contentFilter.showCount.label") || "Show Filtered Count"}
-      </label>
+      </span>
       <p class="mt-0.5 text-sm text-gray-500 dark:text-gray-400">
         {s("settings.contentFilter.showCount.description") ||
           "Display number of filtered stories in each category"}
       </p>
     </div>
-    <label class="relative inline-flex cursor-pointer items-center">
-      <input
-        id="show-count"
-        type="checkbox"
-        class="peer sr-only"
-        checked={contentFilter.showFilteredCount}
-        onchange={(e) =>
-          contentFilter.setShowFilteredCount(e.currentTarget.checked)}
-      />
-      <div
-        class="peer h-6 w-11 rounded-full bg-gray-200 after:absolute ltr:after:left-[2px] rtl:after:right-[2px] after:top-0.5 after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-blue-600 ltr:peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white dark:bg-gray-700 dark:peer-checked:bg-blue-500"
-      ></div>
-    </label>
+    <button
+      id="show-count"
+      role="switch"
+      aria-checked={contentFilter.showFilteredCount}
+      aria-labelledby="label-show-count"
+      onclick={() => contentFilter.setShowFilteredCount(!contentFilter.showFilteredCount)}
+      class="relative inline-flex h-6 w-11 cursor-pointer items-center rounded-full transition-colors {contentFilter.showFilteredCount
+        ? 'bg-blue-600 dark:bg-blue-500'
+        : 'bg-gray-200 dark:bg-gray-700'}"
+    >
+      <span
+        class="inline-block h-5 w-5 transform rounded-full bg-white transition-transform {contentFilter.showFilteredCount
+          ? 'ltr:translate-x-6 rtl:-translate-x-6'
+          : 'ltr:translate-x-0.5 rtl:-translate-x-0.5'}"
+      ></span>
+    </button>
   </div>
 
   <!-- Export/Import Section -->

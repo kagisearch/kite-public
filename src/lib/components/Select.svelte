@@ -5,6 +5,7 @@ import { onMount, tick } from 'svelte';
 import Portal from 'svelte-portal';
 import { browser } from '$app/environment';
 import { s } from '$lib/client/localization.svelte';
+import Tooltip from '$lib/components/Tooltip.svelte';
 
 // Define the Option type
 type Option = {
@@ -12,6 +13,8 @@ type Option = {
 	label: string;
 	gender?: 'M' | 'F' | 'N'; // Optional gender field
 	icon?: any; // Optional Tabler icon component
+	tooltip?: string; // Optional tooltip text
+	disabled?: boolean; // Optional disabled state (for separators)
 };
 
 let {
@@ -347,12 +350,13 @@ $effect(() => {
 {#if label && !hideLabel}
   <label
     for={`select-button-${uniqueId}`}
+    id={`select-label-${uniqueId}`}
     class="mb-1 block text-sm font-medium text-zinc-700 dark:text-zinc-300"
   >
     {label}
   </label>
 {:else if label && hideLabel}
-  <label for={`select-button-${uniqueId}`} class="sr-only">
+  <label for={`select-button-${uniqueId}`} id={`select-label-${uniqueId}`} class="sr-only">
     {label}
   </label>
 {/if}
@@ -360,19 +364,17 @@ $effect(() => {
 <div
   bind:this={container}
   class="relative select-none {className} z-20"
-  role="combobox"
-  aria-haspopup="listbox"
-  aria-expanded={isOpen}
-  aria-controls={isOpen ? `select-options-${uniqueId}` : undefined}
-  aria-owns={isOpen ? `select-options-${uniqueId}` : undefined}
-  aria-label={label || placeholder}
-  tabindex="-1"
 >
   <button
     type="button"
     class="flex {height} focus-visible:ring-focus-ring w-full cursor-pointer items-center justify-between rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus:outline-none focus-visible:ring-2 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
     id={`select-button-${uniqueId}`}
-    aria-labelledby={`select-button-${uniqueId}`}
+    role="combobox"
+    aria-labelledby={label ? `select-label-${uniqueId}` : undefined}
+    aria-label={!label ? placeholder : undefined}
+    aria-haspopup="listbox"
+    aria-expanded={isOpen}
+    aria-controls={isOpen ? `select-options-${uniqueId}` : undefined}
     onmousedown={(e) => {
       e.stopPropagation();
       toggleDropdown(e);
@@ -522,23 +524,34 @@ $effect(() => {
                   {s("common.no_results") || "No results found"}
                 </div>
               {:else}
-                {#each filteredOptions as option}
-                  <button
-                    type="button"
-                    class="focus-visible:ring-focus-ring relative flex w-full cursor-pointer items-center px-4 py-2 ps-8 text-start text-sm hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus-visible:bg-gray-100 focus-visible:ring-2 focus-visible:ring-inset dark:text-gray-200 dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus-visible:bg-gray-600"
-                    role="option"
-                    aria-selected={value === option.value}
-                    tabindex="0"
-                    onmousedown={(e) => {
-                      e.stopPropagation();
-                      handleSelect(option);
-                    }}
-                    onkeydown={(e) => {
-                      if (e.key === "Enter" || e.key === " ") {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        handleSelect(option);
-                      } else if (e.key === "Escape") {
+                {#each filteredOptions as option, idx}
+                  {@const isLastOption = idx === filteredOptions.length - 1}
+                  {#if option.disabled}
+                    <div
+                      class="px-4 py-2 text-center text-xs text-gray-400 dark:text-gray-500 pointer-events-none select-none"
+                      role="separator"
+                    >
+                      {option.label}
+                    </div>
+                  {:else}
+                    {#if option.tooltip}
+                      <Tooltip text={option.tooltip} position="right">
+                        <button
+                          type="button"
+                          class="focus-visible:ring-focus-ring relative flex w-full cursor-pointer items-center px-4 py-2 ps-8 text-start text-sm hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus-visible:bg-gray-100 focus-visible:ring-2 focus-visible:ring-inset dark:text-gray-200 dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus-visible:bg-gray-600 {isLastOption ? 'rounded-b-lg' : ''}"
+                          role="option"
+                          aria-selected={value === option.value}
+                          tabindex="0"
+                          onmousedown={(e) => {
+                            e.stopPropagation();
+                            handleSelect(option);
+                          }}
+                      onkeydown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          handleSelect(option);
+                        } else if (e.key === "Escape") {
                         e.preventDefault();
                         e.stopPropagation();
                         closeDropdown();
@@ -632,7 +645,115 @@ $effect(() => {
                         </span>
                       {/if}
                     </span>
-                  </button>
+                        </button>
+                      </Tooltip>
+                    {:else}
+                      <button
+                        type="button"
+                        class="focus-visible:ring-focus-ring relative flex w-full cursor-pointer items-center px-4 py-2 ps-8 text-start text-sm hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus-visible:bg-gray-100 focus-visible:ring-2 focus-visible:ring-inset dark:text-gray-200 dark:hover:bg-gray-600 dark:focus:bg-gray-600 dark:focus-visible:bg-gray-600 {isLastOption ? 'rounded-b-lg' : ''}"
+                        role="option"
+                        aria-selected={value === option.value}
+                        tabindex="0"
+                        onmousedown={(e) => {
+                          e.stopPropagation();
+                          handleSelect(option);
+                        }}
+                        onkeydown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            handleSelect(option);
+                          } else if (e.key === "Escape") {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          closeDropdown();
+                          focusElement(
+                            container.querySelector("button") as HTMLElement,
+                          );
+                        } else if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+                          e.preventDefault();
+                          e.stopPropagation();
+
+                          const optionButtons = [
+                            ...(fieldset?.querySelectorAll(
+                              'button[role="option"]',
+                            ) || []),
+                          ];
+                          const currentIndex = optionButtons.indexOf(
+                            e.currentTarget as HTMLButtonElement,
+                          );
+
+                          // Calculate target index with wrap-around
+                          const targetIndex =
+                            e.key === "ArrowDown"
+                              ? (currentIndex + 1) % optionButtons.length
+                              : (currentIndex - 1 + optionButtons.length) %
+                                optionButtons.length;
+
+                          focusElement(optionButtons[targetIndex] as HTMLElement);
+                        } else if (e.key === "Tab") {
+                          const optionButtons = [
+                            ...(fieldset?.querySelectorAll(
+                              'button[role="option"]',
+                            ) || []),
+                          ];
+                          const currentIndex = optionButtons.indexOf(
+                            e.currentTarget as HTMLButtonElement,
+                          );
+
+                          if (e.shiftKey && currentIndex === 0) {
+                            // If Shift+Tab on first option, close dropdown and return to button
+                            e.preventDefault();
+                            closeDropdown();
+                            focusElement(
+                              container.querySelector("button") as HTMLElement,
+                            );
+                          } else if (
+                            !e.shiftKey &&
+                            currentIndex === optionButtons.length - 1
+                          ) {
+                            // If Tab on last option, close dropdown and let natural tab flow continue
+                            closeDropdown();
+                            // Don't prevent default to let tab continue naturally
+                          } else {
+                            // Otherwise let native tab behavior work between options
+                            // No need to prevent default
+                          }
+                        }
+                      }}
+                    >
+                      {#if value === option.value}
+                        <span
+                          class="absolute start-2 font-normal text-gray-900 dark:text-gray-200"
+                        >
+                          <IconCheck class="size-5 stroke-[2.5]" />
+                        </span>
+                      {/if}
+                      <span
+                        class="flex items-center gap-2 {value === option.value
+                          ? 'font-bold'
+                          : ''}"
+                      >
+                        {#if option.icon}
+                          {@const IconComponent = option.icon}
+                          <IconComponent class="size-4" />
+                        {/if}
+                        {option.label}
+                        {#if option.gender}
+                          <span
+                            class={option.gender === "M"
+                              ? "text-blue-400/70 dark:text-blue-400/80"
+                              : option.gender === "F"
+                                ? "text-pink-400/70 dark:text-pink-400/80"
+                                : "text-purple-400/70 dark:text-purple-400/80"}
+                          >
+                            ({option.gender})
+                          </span>
+                        {/if}
+                      </span>
+                    </button>
+                    {/if}
+                  {/if}
                 {/each}
               {/if}
             </div>
@@ -672,10 +793,5 @@ $effect(() => {
   /* Make sure dropdown content respects border radius */
   :global(.os-viewport) {
     overflow: hidden;
-  }
-
-  /* Add rounded corners only to the last option */
-  button[role="option"]:last-child {
-    border-radius: 0 0 0.75rem 0.75rem;
   }
 </style>

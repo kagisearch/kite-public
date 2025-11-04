@@ -1,10 +1,11 @@
 <script lang="ts">
 import { s } from '$lib/client/localization.svelte';
-import type { Article } from '$lib/types';
+import type { Article, LocalizerFunction } from '$lib/types';
 import { getCitedArticlesForText } from '$lib/utils/citationAggregator';
 import { type CitationMapping, replaceWithNumberedCitations } from '$lib/utils/citationContext';
 import { parseStructuredText } from '$lib/utils/textParsing';
 import CitationText from './CitationText.svelte';
+import SelectableText from './SelectableText.svelte';
 
 // Props
 interface Props {
@@ -17,10 +18,15 @@ interface Props {
 	}>;
 	articles?: Article[];
 	citationMapping?: CitationMapping;
-	storyLocalizer?: (key: string) => string;
+	storyLocalizer?: LocalizerFunction;
+	flashcardMode?: boolean;
+	selectedWords?: Set<string>;
+	selectedPhrases?: Map<string, { phrase: string; sections: Set<string> }>;
+	shouldJiggle?: boolean;
+	onWordClick?: (word: string, section?: string) => void;
 }
 
-let { perspectives = [], articles = [], citationMapping, storyLocalizer = s }: Props = $props();
+let { perspectives = [], articles = [], citationMapping, storyLocalizer = s, flashcardMode = false, selectedWords = new Set(), selectedPhrases = new Map(), shouldJiggle = false, onWordClick }: Props = $props();
 
 // Convert citations in perspectives if mapping is available
 const displayPerspectives = $derived.by(() => {
@@ -59,6 +65,8 @@ function handleTouchEnd() {
   </h3>
   <div
     class="horizontal-scroll-container flex flex-row gap-3 overflow-x-auto pb-4"
+    role="region"
+    aria-label={storyLocalizer("section.perspectives.carousel") || "Perspectives carousel - use arrow keys or swipe to navigate"}
     ontouchstart={handleTouchStart}
     ontouchend={handleTouchEnd}
   >
@@ -78,27 +86,49 @@ function handleTouchEnd() {
             citationMapping,
             articles,
           )}
-          <p class="mb-2 text-base font-bold text-gray-800 dark:text-gray-200" dir="auto">
-            <CitationText
-              text={parsed.title!}
-              showFavicons={false}
-              showNumbers={false}
-              inline={true}
-              articles={titleCitations.citedArticles}
-              {citationMapping}
-              {storyLocalizer}
-            />
+          <p class="mb-2 text-base font-bold text-gray-800 dark:text-gray-200 break-words" dir="auto">
+            {#if flashcardMode}
+              <SelectableText
+                text={parsed.title!}
+                {flashcardMode}
+                {selectedWords}
+                {shouldJiggle}
+                {onWordClick}
+                section="perspectives"
+              />
+            {:else}
+              <CitationText
+                text={parsed.title!}
+                showFavicons={false}
+                showNumbers={false}
+                inline={true}
+                articles={titleCitations.citedArticles}
+                {citationMapping}
+                {storyLocalizer}
+              />
+            {/if}
           </p>
           <p class="mb-2 text-base text-gray-700 dark:text-gray-300" dir="auto">
-            <CitationText
-              text={parsed.content}
-              showFavicons={false}
-              showNumbers={false}
-              inline={true}
-              articles={contentCitations.citedArticles}
-              {citationMapping}
-              {storyLocalizer}
-            />
+            {#if flashcardMode}
+              <SelectableText
+                text={parsed.content}
+                {flashcardMode}
+                {selectedWords}
+                {shouldJiggle}
+                {onWordClick}
+                section="perspectives"
+              />
+            {:else}
+              <CitationText
+                text={parsed.content}
+                showFavicons={false}
+                showNumbers={false}
+                inline={true}
+                articles={contentCitations.citedArticles}
+                {citationMapping}
+                {storyLocalizer}
+              />
+            {/if}
           </p>
         {:else}
           {@const contentCitations = getCitedArticlesForText(
@@ -107,15 +137,26 @@ function handleTouchEnd() {
             articles,
           )}
           <p class="mb-2 text-base text-gray-700 dark:text-gray-300" dir="auto">
-            <CitationText
-              text={parsed.content}
-              showFavicons={false}
-              showNumbers={false}
-              inline={true}
-              articles={contentCitations.citedArticles}
-              {citationMapping}
-              {storyLocalizer}
-            />
+            {#if flashcardMode}
+              <SelectableText
+                text={parsed.content}
+                {flashcardMode}
+                {selectedWords}
+                {shouldJiggle}
+                {onWordClick}
+                section="perspectives"
+              />
+            {:else}
+              <CitationText
+                text={parsed.content}
+                showFavicons={false}
+                showNumbers={false}
+                inline={true}
+                articles={contentCitations.citedArticles}
+                {citationMapping}
+                {storyLocalizer}
+              />
+            {/if}
           </p>
         {/if}
 

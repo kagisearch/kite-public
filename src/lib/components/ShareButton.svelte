@@ -4,17 +4,16 @@ import { IconCheck, IconLoader2, IconShare } from '@tabler/icons-svelte';
 import { onDestroy, onMount } from 'svelte';
 import Portal from 'svelte-portal';
 import { browser } from '$app/environment';
-import { page } from '$app/state';
 import { s } from '$lib/client/localization.svelte';
-import { generateShareUrl } from '$lib/utils/urlShortener';
 
 interface Props {
 	title?: string;
 	description?: string;
-	batchId?: string | null;
-	categoryId?: string | null;
+	batchId: string;
+	categoryId: string;
 	storyIndex?: number | null;
-	dataLang?: string | null;
+	clusterId?: number | null;
+	languageCode?: string | null;
 	class?: string;
 }
 
@@ -24,7 +23,8 @@ let {
 	batchId,
 	categoryId,
 	storyIndex,
-	dataLang,
+	clusterId,
+	languageCode,
 	class: className = '',
 }: Props = $props();
 
@@ -80,57 +80,53 @@ async function handleShare() {
 	isLoading = true;
 
 	try {
-		// Generate full URL first
-		const baseUrl = window.location.origin;
-		const fullUrl = generateShareUrl(baseUrl, {
+		// Build the payload for the shorten API - server builds the URL and calculates sequence
+		const shortenPayload = {
 			batchId,
 			categoryId,
-			storyIndex,
-			dataLang,
-		});
-
-		let shareUrl = fullUrl;
-
-		// Try to get short URL from API
-		try {
-			const response = await fetch('/api/shorten', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					url: fullUrl,
-					batchId,
-					categoryId,
-					storyIndex,
-					languageCode: dataLang,
-				}),
-			});
-
-			if (response.ok) {
-				const { shortUrl } = await response.json();
-				shareUrl = shortUrl;
-			}
-		} catch (err) {
-			console.warn('Failed to shorten URL, using full URL:', err);
-		}
-
-		isLoading = false;
+			clusterId: clusterId ?? undefined,
+			storyIndex: storyIndex ?? undefined,
+			title: title ?? undefined,
+			languageCode: languageCode ?? undefined,
+		};
 
 		// Check if mobile and Web Share API is available
 		const isMobile = /mobile|android|iphone|ipad/i.test(navigator.userAgent);
 
 		if (isMobile && navigator.share) {
+			// For mobile Web Share API, fetch the short URL first
+			let finalShareUrl = '';
+
+			try {
+				const response = await fetch('/api/shorten', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(shortenPayload),
+				});
+
+				if (response.ok) {
+					const { shortUrl } = await response.json();
+					finalShareUrl = shortUrl;
+				}
+			} catch (err) {
+				console.error('Failed to create share URL:', err);
+				isLoading = false;
+				return;
+			}
+
+			isLoading = false;
+
 			try {
 				// Format the shared text nicely
-				// Include title, description, and attribution
-				const shareTitle = `${title} - Kite News`;
+				const shareTitle = `${title} - Kagi News`;
 				const shareText = description
-					? `${description}\n\nRead more on Kite:`
-					: `${title}\n\nRead more on Kite:`;
+					? `${description}\n\nRead more on Kagi:`
+					: `${title}\n\nRead more on Kagi:`;
 
 				await navigator.share({
 					title: shareTitle,
 					text: shareText,
-					url: shareUrl,
+					url: finalShareUrl,
 				});
 
 				// Don't show floating tooltip on mobile - native share is enough
@@ -144,10 +140,76 @@ async function handleShare() {
 			}
 		}
 
-		// Desktop: Copy to clipboard
-		try {
-			await navigator.clipboard.writeText(shareUrl);
+		// Desktop: Copy to clipboard with Safari-compatible approach
+		// Safari requires clipboard operation to start synchronously in user gesture
+		let copySuccess = false;
 
+		if (navigator.clipboard && window.isSecureContext) {
+			try {
+				// Create a Promise that fetches the short URL from the API
+				// Pass structured data (not a full URL) to the backend
+				const urlPromise = fetch('/api/shorten', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(shortenPayload),
+				})
+					.then(response => {
+						if (!response.ok) throw new Error('Failed to create short URL');
+						return response.json();
+					})
+					.then(data => {
+						if (!data.shortUrl) throw new Error('No short URL returned');
+						return data.shortUrl;
+					})
+					.catch(err => {
+						console.error('Failed to create share URL:', err);
+						throw err;
+					});
+
+				// Use ClipboardItem to pass the Promise directly to clipboard API
+				// This preserves user gesture context in Safari
+				const item = new ClipboardItem({
+					'text/plain': urlPromise.then(url => new Blob([url], { type: 'text/plain' }))
+				});
+
+				await navigator.clipboard.write([item]);
+				copySuccess = true;
+			} catch (err) {
+				console.warn('ClipboardItem API failed:', err);
+			}
+		}
+
+		// Fallback: Fetch URL synchronously and copy with execCommand
+		if (!copySuccess) {
+			try {
+				const response = await fetch('/api/shorten', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(shortenPayload),
+				});
+
+				if (response.ok) {
+					const { shortUrl } = await response.json();
+					const textArea = document.createElement('textarea');
+					textArea.value = shortUrl;
+					textArea.style.position = 'fixed';
+					textArea.style.top = '0';
+					textArea.style.left = '-999999px';
+					textArea.setAttribute('readonly', '');
+					document.body.appendChild(textArea);
+					textArea.select();
+					textArea.setSelectionRange(0, shortUrl.length);
+					copySuccess = document.execCommand('copy');
+					document.body.removeChild(textArea);
+				}
+			} catch (execErr) {
+				console.error('All clipboard methods failed:', execErr);
+			}
+		}
+
+		isLoading = false;
+
+		if (copySuccess) {
 			// Show feedback
 			showCopiedFeedback = true;
 
@@ -155,23 +217,6 @@ async function handleShare() {
 			if (feedbackTimer) clearTimeout(feedbackTimer);
 
 			// Hide feedback after 2 seconds
-			feedbackTimer = setTimeout(() => {
-				showCopiedFeedback = false;
-			}, 2000);
-		} catch (err) {
-			console.error('Failed to copy URL:', err);
-			// Fallback: select and copy
-			const textArea = document.createElement('textarea');
-			textArea.value = shareUrl;
-			textArea.style.position = 'fixed';
-			textArea.style.left = '-999999px';
-			document.body.appendChild(textArea);
-			textArea.select();
-			document.execCommand('copy');
-			document.body.removeChild(textArea);
-
-			// Show feedback
-			showCopiedFeedback = true;
 			feedbackTimer = setTimeout(() => {
 				showCopiedFeedback = false;
 			}, 2000);

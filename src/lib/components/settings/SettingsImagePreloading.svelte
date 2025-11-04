@@ -78,6 +78,10 @@ $effect(() => {
         preloadingConfig.setCategoryPreloadDelay(
           parseInt(e.currentTarget.value),
         )}
+      aria-valuemin="0"
+      aria-valuemax="2000"
+      aria-valuenow={preloadingConfig.categoryPreloadDelay}
+      aria-valuetext="{preloadingConfig.categoryPreloadDelay} milliseconds"
       class="w-full"
     />
     <div class="text-xs text-gray-500 dark:text-gray-400 text-end">
@@ -105,6 +109,10 @@ $effect(() => {
       value={preloadingConfig.preloadTimeout}
       oninput={(e) =>
         preloadingConfig.setPreloadTimeout(parseInt(e.currentTarget.value))}
+      aria-valuemin="0"
+      aria-valuemax="5000"
+      aria-valuenow={preloadingConfig.preloadTimeout}
+      aria-valuetext="{preloadingConfig.preloadTimeout === 0 ? 'Disabled' : `${preloadingConfig.preloadTimeout} milliseconds`}"
       class="w-full"
     />
     <div class="text-xs text-gray-500 dark:text-gray-400 text-end">
