@@ -5096,6 +5096,8 @@
     "feeds": [
       "https://alextimes.com/feed/",
       "https://cardinalnews.org/feed/",
+      "https://c-ville.com/feed/",
+      "https://cvillerightnow.com/news/feed/",
       "https://dailyprogress.com/search/?f=rss&t=article",
       "https://farmvilleherald.com/feed",
       "https://feeds.washingtonpost.com/rss/local",
@@ -5104,6 +5106,7 @@
       "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=site%3Anewsleader.com",
       "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=site%3Avpm.org",
       "https://newsadvance.com/search/?f=rss&t=article",
+      "https://news.virginia.edu/rss.xml",
       "https://newsvirginian.com/search/?f=rss&t=article",
       "https://northernvirginiamag.com/feed/",
       "https://richmond.com/search/?f=rss&t=article",
@@ -5114,6 +5117,8 @@
       "https://www.alxnow.com/feed",
       "https://www.arlnow.com/feed",
       "https://www.bayjournal.com/search/?f=rss&t=article",
+      "https://www.blueridgelife.com/feed/",
+      "https://www.crozetgazette.com/feed/",
       "https://www.cvilletomorrow.org/feed",
       "https://www.dnronline.com/search/?f=rss&t=article",
       "https://www.loudountimes.com/search/?f=rss&t=article",
@@ -5122,6 +5127,7 @@
       "https://www.virginiascope.com/feed/",
       "https://www.whro.org/index.rss",
       "https://www.winchesterstar.com/search/?f=rss&t=article",
+      "https://www.wuvanews.com/feed/",
       "https://wydaily.com/feed"
     ]
   }
