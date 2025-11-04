@@ -5124,5 +5124,46 @@
       "https://www.winchesterstar.com/search/?f=rss&t=article",
       "https://wydaily.com/feed"
     ]
+  },
+  "USA | Minnesota": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {
+      "en": "USA | Minnesota",
+      "zh-Hant": "美國 | 明尼蘇達州",
+      "ja": "アメリカ | ミネソタ州"
+    },
+    "feeds": [
+      "https://www.startribune.com/rss",
+      "https://www.fox9.com/rss/category/local-news",
+      "https://www.fox9.com/rss/category/school-closings",
+      "https://www.fox9.com/rss/category/sports",
+      "https://www.fox9.com/rss/tags/business",
+      "https://www.fox9.com/rss/tags/us,mn",
+      "https://www.duluthnewstribune.com/news.rss",
+      "https://www.fox21online.com/feed/",
+      "https://www.wctrib.com/index.rss",
+      "https://www.austindailyherald.com/feed/",
+      "https://www.twincities.com/feed/",
+      "https://www.minnpost.com/feed/",
+      "https://www.stltoday.com/search/?f=rss&t=article&c=news&l=50&s=start_time&sd=desc",
+      "https://www.brainerddispatch.com/index.rss",
+      "https://mndaily.com/feed/rss/",
+      "https://www.bemidjipioneer.com/news.rss",
+      "https://www.mankatofreepress.com/search/?f=rss&t=article&c=news&l=50&s=start_time&sd=desc",
+      "https://www.southernminnesotanews.com/tag/mankato/feed/",
+      "http://www.mprnews.org/topic/all-news/rss",
+      "https://bringmethenews.com/.rss/full/tag/lakeville",
+      "https://bringmethenews.com/.rss/full/tag/farmington",
+      "https://bringmethenews.com/.rss/full/tag/rochester-mn",
+      "https://bringmethenews.com/.rss/full/tag/minneapolis",
+      "http://millcitytimes.com/news/rss.xml",
+      "https://kstp.com/feed/",
+      "https://www.kaaltv.com/feed/",
+      "https://racketmn.com/feed",
+      "https://www.postbulletin.com/index.rss",
+      "https://www.kimt.com/search/?f=rss&t=article&l=50&s=start_time&sd=desc&k%5B%5D=%23topstory",
+      "https://www.hometownsource.com/search/?f=rss&t=article&c=morrison_county_record&l=50&s=start_time&sd=desc"
+    ]
   }
 }
