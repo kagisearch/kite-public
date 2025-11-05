@@ -556,7 +556,13 @@ $effect(() => {
             <kbd
               class="px-1.5 py-0.5 bg-gray-200 dark:bg-gray-700 rounded text-xs"
             >
-              {isMac ? "⌘" : "Ctrl"}K
+              {isMac ? '⌘' : 'Ctrl'}
+            </kbd>
+            <span>+</span>
+            <kbd
+              class="px-1.5 py-0.5 bg-gray-200 dark:bg-gray-700 rounded text-xs"
+            >
+              K
             </kbd>
             {s("search.search") || "search"}
           </span>
