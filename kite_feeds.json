@@ -5262,5 +5262,47 @@
       "https://www.wuvanews.com/feed/",
       "https://wydaily.com/feed"
     ]
+  },
+  "USA | Washington": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {
+      "en": "USA | Washington"
+    },
+    "feeds": [
+      "https://cascadiadaily.com/feed",
+      "https://feeds.mcclatchy.com/bellinghamherald/stories",
+      "https://feeds.mcclatchy.com/theolympian/stories",
+      "https://feeds.mcclatchy.com/thenewstribune/stories",
+      "https://feeds.mcclatchy.com/tri-cityherald/stories",
+      "https://governor.wa.gov/rss/news.xml",
+      "https://mynorthwest.com/feed",
+      "https://news.google.com/rss/search?q=Bellevue+Washington&hl=en-US&gl=US&ceid=US%3Aen",
+      "https://news.google.com/rss/search?q=Redmond+Washington&hl=en-US&gl=US&ceid=US%3Aen",
+      "https://news.google.com/rss/search?q=Seattle&hl=en-US&gl=US&ceid=US%3Aen",
+      "https://news.google.com/rss/search?q=Washington+state&hl=en-US&gl=US&ceid=US%3Aen",
+      "https://news.seattle.gov/feed/",
+      "https://publicola.com/feed",
+      "https://www.atg.wa.gov/newsrss.aspx",
+      "https://www.cascadepbs.org/news/rss/",
+      "https://www.columbian.com/feed/",
+      "https://www.king5.com/feeds/syndication/rss/news",
+      "https://www.reddit.com/r/Bellevue/.rss",
+      "https://www.reddit.com/r/Bellingham/.rss",
+      "https://www.reddit.com/r/Redmond/.rss",
+      "https://www.reddit.com/r/Seattle/.rss",
+      "https://www.reddit.com/r/SeattleWA/.rss",
+      "https://www.reddit.com/r/Spokane/.rss",
+      "https://www.reddit.com/r/Tacoma/.rss",
+      "https://www.reddit.com/r/Washington/.rss",
+      "https://www.reddit.com/r/everett/.rss",
+      "https://www.reddit.com/r/olympia/.rss",
+      "https://www.reddit.com/r/vancouverwa/.rss",
+      "https://www.seattlemet.com/feed",
+      "https://www.seattletimes.com/feed/",
+      "https://www.spokesman.com/feeds/stories/",
+      "https://www.thestranger.com/seattle/Rss.xml",
+      "https://www.yakimaherald.com/search/?f=rss"
+    ]
   }
 }
