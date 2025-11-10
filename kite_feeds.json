@@ -5440,5 +5440,44 @@
       "https://www.thestranger.com/seattle/Rss.xml",
       "https://www.yakimaherald.com/search/?f=rss"
     ]
+  },
+  "USA | Nevada": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {
+      "en": "USA | Nevada"
+    },
+    "feeds": [
+      "https://bouldercityreview.com/feed/",
+      "https://elkodaily.com/search/?f=rss&t=article&c=news&l=50&s=start_time&sd=desc",
+      "https://knpr.org/index.rss",
+      "https://lasvegassun.com/feeds/headlines/",
+      "https://lccentral.com/feed/",
+      "https://nevadabusiness.com/feed/",
+      "https://nevadacurrent.com/feed/",
+      "https://nevadanewsmakers.com/rayhagar.xml",
+      "https://nevadasagebrush.com/feed/",
+      "https://news.google.com/rss/search?q=Henderson+Nevada&hl=en-US&gl=US&ceid=US%3Aen",
+      "https://news.google.com/rss/search?q=Las+Vegas&hl=en-US&gl=US&ceid=US%3Aen",
+      "https://news.google.com/rss/search?q=Nevada+state&hl=en-US&gl=US&ceid=US%3Aen",
+      "https://news.google.com/rss/search?q=Reno+Nevada&hl=en-US&gl=US&ceid=US%3Aen",
+      "https://sierranevadaally.org/feed/",
+      "https://pvtimes.com/feed/",
+      "https://sparkstrib.com/feed/",
+      "https://thenevadaindependent.com/feed",
+      "https://thisisreno.com/feed/",
+      "https://www.2news.com/search/?f=rss&t=article&c=news/local&l=50&s=start_time&sd=desc",
+      "https://www.8newsnow.com/feed/",
+      "https://www.carsonnow.org/rss/",
+      "https://www.ktnv.com/index.rss",
+      "https://www.kunr.org/index.rss",
+      "https://www.nevadaappeal.com/rss/headlines/",
+      "https://www.nnbw.com/rss/headlines/news-nnbw/",
+      "https://www.reddit.com/r/LasVegas/.rss",
+      "https://www.reddit.com/r/Nevada/.rss",
+      "https://www.reddit.com/r/Reno/.rss",
+      "https://www.reddit.com/r/vegas/.rss",
+      "https://www.reviewjournal.com/feed/"
+    ]
   }
 }
