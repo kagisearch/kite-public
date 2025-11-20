@@ -5702,5 +5702,53 @@
       "https://www.watchpro.com/feed/",
       "https://www.watchtime.com/feed/rss"
     ]
+  },
+  
+  "Morocco": {
+    "category_type": "topic",
+    "source_language": "ar",
+    "display_names": {
+      "ar": "المغرب",
+      "fr": "Maroc",
+      "en": "Morocco",
+      "es": "Marruecos"
+    },
+    "feeds": [
+      "https://www.hespress.com/feed/",
+      "https://assabah.ma/feed",
+      "https://i3lamtv.com/feed",
+      "https://al3omk.com/feed",
+      "https://atlasscoop.com/feed",
+      "https://rue20.com/feed",
+      "https://www.alalam.ma/xml/syndication.rss",
+      "https://www.almaghribtoday.net/home/rss.xml",
+      "https://telexpresse.com/feed",
+      "https://files.catbox.moe/5zzb0z",
+      "https://snrtnews.com/rss.xml",
+      "https://www.akhbarona.com/feed/index.rss",
+      "https://morocco.shafaqna.com/rss.xml",
+      "https://www.mapnews.ma/ar/actualites/general/rss",
+      "https://www.mapnews.ma/ar/actualites/politique/rss",
+      "https://www.mapnews.ma/ar/actualites/economie/rss",
+      "https://www.mapnews.ma/ar/actualites/social/rss",
+      "https://www.mapnews.ma/ar/actualites/monde/rss",
+      "https://www.ahdath.info/rssFeed/0",
+      "https://www.ahdath.info/rssFeed/2/1",
+      "https://www.ahdath.info/rssFeed/2/3",
+      "https://www.ahdath.info/rssFeed/4/7",
+      "https://www.ahdath.info/rssFeed/10/6",
+      "https://www.ahdath.info/rssFeed/10/32",
+      "https://agadir24.info/feed",
+      "https://www.tanja7.com/feed/",
+      "https://www.oujdacity.net/feed",
+      "https://marrakech7.com/feed/",
+      "https://www.zagorapress.com/feed",
+      "https://tanjanews.com/feed",
+      "https://azilal24.com/feed"
+
+    ]
   }
 }
+
+
+
