@@ -631,7 +631,9 @@
       "https://www.gazetadopovo.com.br/feed/rss/brasil.xml",
       "https://www.infomoney.com.br/feed/",
       "https://www.nexojornal.com.br/rss.xml",
-      "https://www.reddit.com/r/brasil/.rss"
+      "https://www.reddit.com/r/brasil/.rss",
+      "https://operamundi.uol.com.br/feed",
+      "https://www.brasildefato.com.br/ultimas-noticias/feed/"
     ]
   },
   "Canada": {
