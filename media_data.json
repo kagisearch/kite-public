@@ -1975,16 +1975,6 @@
   },
   {
     "country": "South Korea",
-    "organization": "Consumer Times (컨슈머타임스)",
-    "domains": [
-      "cstimes.com"
-    ],
-    "description": "Online news outlet focusing on consumer rights, products, and market trends.",
-    "owner": "Independent",
-    "typology": "Private Media"
-  },
-  {
-    "country": "South Korea",
     "organization": "Donga Ilbo (동아일보)",
     "domains": [
       "donga.com"
@@ -2001,6 +1991,16 @@
     ],
     "description": "South Korean economic newspaper focusing on finance, industry, investment.",
     "owner": "Private Ownership",
+    "typology": "Private Media"
+  },
+    {
+    "country": "South Korea",
+    "organization": "ETNews (전자신문)",
+    "domains": [
+      "etnews.com"
+    ],
+    "description": "South Korea's daily newspaper specializing in information technology and industrial news.",
+    "owner": "Douzone Bizon",
     "typology": "Private Media"
   },
   {
@@ -2055,22 +2055,12 @@
   },
   {
     "country": "South Korea",
-    "organization": "News Post (뉴스포스트)",
-    "domains": [
-      "newspost.kr"
-    ],
-    "description": "Internet newspaper covering general news topics (politics, economy, society).",
-    "owner": "Independent",
-    "typology": "Private Media"
-  },
-  {
-    "country": "South Korea",
     "organization": "Newsis (뉴시스)",
     "domains": [
       "newsis.com"
     ],
     "description": "Major South Korean private news agency providing news content across various fields.",
-    "owner": "Independent",
+    "owner": "Money Today Group",
     "typology": "Private Media"
   },
   {
@@ -2113,14 +2103,14 @@
     "owner": "Hoban Group",
     "typology": "Private Media"
   },
-  {
+    {
     "country": "South Korea",
-    "organization": "Tongil News (통일뉴스)",
+    "organization": "JTBC",
     "domains": [
-      "tongilnews.com"
+      "jtbc.co.kr"
     ],
-    "description": "Online news specializing in North Korea, inter-Korean relations, unification.",
-    "owner": "Private Ownership",
+    "description": "South Korean nationwide general TV network.",
+    "owner": "JoongAng Group",
     "typology": "Private Media"
   },
   {
