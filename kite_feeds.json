@@ -615,6 +615,7 @@
       "https://news.google.com/rss/search?q=Brasil+site:reuters.com&hl=pt-BR&gl=BR&ceid=BR:pt",
       "https://news.un.org/feed/subscribe/pt/news/region/americas/feed/rss.xml",
       "https://oantagonista.com/feed/",
+      "https://operamundi.uol.com.br/feed",
       "https://reporterbrasil.org.br/categorias/noticias/feed/",
       "https://reporterbrasil.org.br/feed/",
       "https://revistaforum.com.br/rss/feed.html?r=727",
@@ -625,15 +626,14 @@
       "https://rss.uol.com.br/feed/esporte.xml",
       "https://veja.abril.com.br/feed/",
       "https://www.bbc.com/portuguese/topicos/brasil/index.xml",
+      "https://www.brasildefato.com.br/ultimas-noticias/feed/",
       "https://www.cartacapital.com.br/feed",
       "https://www.estadao.com.br/arc/outboundfeeds/feeds/rss/sections/brasil/",
       "https://www.ft.com/brazil?format=rss",
       "https://www.gazetadopovo.com.br/feed/rss/brasil.xml",
       "https://www.infomoney.com.br/feed/",
       "https://www.nexojornal.com.br/rss.xml",
-      "https://www.reddit.com/r/brasil/.rss",
-      "https://operamundi.uol.com.br/feed",
-      "https://www.brasildefato.com.br/ultimas-noticias/feed/"
+      "https://www.reddit.com/r/brasil/.rss"
     ]
   },
   "Canada": {
