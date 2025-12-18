@@ -1803,7 +1803,8 @@
     "category_type": "topic",
     "source_language": "de",
     "display_names": {
-
+        "en": "Germany | Baden-Württemberg",
+        "de": "Deutschland | Baden-Württemberg"
     },
     "feeds": [
       "https://www.stuttgarter-zeitung.de/schlagzeilen.rss.feed",
