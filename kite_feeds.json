@@ -1799,6 +1799,43 @@
       "https://www.wiesbadener-kurier.de/rss/lokales/hessen/"
     ]
   },
+  "Germany | Baden-Württemberg":{
+    "category_type": "topic",
+    "source_language": "de",
+    "display_names": {
+
+    },
+    "feeds": [
+      "https://www.stuttgarter-zeitung.de/schlagzeilen.rss.feed",
+      "https://www.rnz.de/feed/136-RL_Topthemen_free.xml",
+      "https://www.rnz.de/feed/133-RL_Regioticker_Free.xml",
+      "https://www.rnz.de/feed/154-RL_Politik_Hintergrund_free.xml",
+      "https://www.rnz.de/feed/157-RL_Suedwest_free.xml",
+      "http://fudder.de/index.html.rss",
+      "https://www.mannheim.de/rss/pressemeldungen",
+      "https://www.mannheim.de/rss/nachrichten",
+      "https://www.suedkurier.de/storage/rss/rss/regiosportsbk.xml",
+      "https://www.swr3.de/~rss/index.xml",
+      "https://www.swr.de/~rss/swraktuell/index.xml",
+      "https://www.baden-wuerttemberg.de/de/service/rss/xml/rss-alle-meldungen",
+      "https://feeds2.feedburner.com/Rems-Zeitung-Lokalnachrichten",
+      "https://www.landtag-bw.de/blueprint/servlet/service/rss/de/509988/feed.rss",
+      "https://www.stuttgart.de/service/aktuelle-meldungen/?sp%3Aout=rss&sp%3Acmp=search-1-0-searchResult&action=submit",
+      "https://www.stuttgart.de/pressemitteilungen/?sp%3Aout=rss&sp%3Acmp=search-1-0-searchResult&action=submit",
+      "https://www.stuttgart.de/service/veranstaltungen?sp%3Aout=rss&sp%3Acmp=eventSearch-1-0-searchResult&action=submit",
+      "https://oberlandesgericht-stuttgart.justiz-bw.de/pb/site/pbs-bw-rebrush-jum/rss/8975136/Lde/index.html?id=8975147",
+      "https://www.region-stuttgart.igm.de/feed/news.xml",
+      "https://www.reddit.com/r/BadenWuerttemberg/.rss",
+      "https://www.reddit.com/r/stuttgart/.rss",
+      "https://newsfeed.zeit.de/thema/baden-wuerttemberg",
+      "https://www.spiegel.de/thema/baden_wuerttemberg/index.rss",
+      "https://www.t-online.de/region/baden-wuerttemberg/feed.rss",
+      "https://www.t-online.de/region/stuttgart/feed.rss",
+      "https://www.spiegel.de/thema/baden_wuerttemberg/index.rss",
+      "https://www.spiegel.de/thema/stuttgart/index.rss",
+      "https://www.tagesschau.de/inland/regional/badenwuerttemberg/index~rss2.xml"
+    ]
+  },
   "Greece": {
     "category_type": "topic",
     "source_language": "gr",
