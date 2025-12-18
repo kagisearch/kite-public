@@ -11,7 +11,7 @@
       "ja": "3Dプリンティング",
       "pt": "Impressão 3D",
       "zh-Hans": "3D打印",
-      "zh-Hant": "3D列印"
+      "zh-Hant": "3D 列印"
     },
     "feeds": [
       "https://3dprint.com/feed/",
@@ -73,6 +73,7 @@
       "ca": "Àfrica",
       "fr": "Afrique",
       "xh": "Afrika",
+      "zh-Hant": "非洲",
       "zu": "Afrika"
     },
     "feeds": [
@@ -306,7 +307,8 @@
     "display_names": {
       "en": "Argentina",
       "es": "Argentina",
-      "ca": "Argentina"
+      "ca": "Argentina",
+      "zh-Hant": "阿根廷"
     },
     "feeds": [
       "https://amerika21.de/geo/argentinien/feed",
@@ -1248,7 +1250,8 @@
       "dk": "Danmark",
       "en": "Denmark",
       "es": "Dinamarca",
-      "fr": "Danemark"
+      "fr": "Danemark",
+      "zh-Hant": "丹麥"
     },
     "feeds": [
       "https://borsen.dk/rss",
@@ -3567,7 +3570,7 @@
       "ru": "Подкастинг",
       "uk": "Podcasting",
       "zh-Hans": "播客",
-      "zh-Hant": "播客"
+      "zh-Hant": "Potcast"
     },
     "feeds": [
       "http://analytics.podtrac.com/blog?format=RSS",
@@ -5214,6 +5217,12 @@
     ]
   },
   "USA | Colorado": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {
+      "en": "USA | Colorado",
+      "zh-Hant": "美國 | 科羅拉多州"
+    },
     "feeds": [
       "https://9news.com/feeds/syndication/rss/news",
       "https://aspentimes.com/feed",
@@ -5408,7 +5417,8 @@
     "category_type": "topic",
     "source_language": "en",
     "display_names": {
-      "en": "USA | Nevada"
+      "en": "USA | Nevada",
+      "zh-Hant": "美國 | 內華達州"
     },
     "feeds": [
       "https://bouldercityreview.com/feed/",
@@ -5757,7 +5767,8 @@
     "category_type": "topic",
     "source_language": "en",
     "display_names": {
-      "en": "USA | Washington"
+      "en": "USA | Washington",
+      "zh-Hant": "美國 | 華盛頓州"
     },
     "feeds": [
       "https://cascadiadaily.com/feed",
