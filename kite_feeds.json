@@ -5708,11 +5708,23 @@
     "category_type": "topic",
     "source_language": "ar",
     "display_names": {
-      "ar": "المغرب",
-      "fr": "Maroc",
       "en": "Morocco",
-      "es": "Marruecos"
-    },
+      "ar": "المغرب",
+      "ca": "Marroc",
+      "de": "Marokko",
+      "es": "Marruecos",
+      "fr": "Maroc",
+      "he": "מרוקו",
+      "hi": "मोरक्को",
+      "it": "Marocco",
+      "ja": "モロッコ",
+      "nl": "Marokko",
+      "pt": "Marrocos",
+      "ru": "Марокко",
+      "uk": "Марокко",
+      "zh-Hans": "摩洛哥",
+      "zh-Hant": "摩洛哥"
+    }
     "feeds": [
       "https://www.hespress.com/feed/",
       "https://assabah.ma/feed",
