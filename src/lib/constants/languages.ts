@@ -6,6 +6,7 @@ export interface SupportedLanguage {
 export const SUPPORTED_LANGUAGES: SupportedLanguage[] = [
 	{ code: 'default', name: 'Default' },
 	{ code: 'source', name: 'Source' },
+	{ code: 'custom', name: 'Custom' },
 	{ code: 'en', name: 'English (English)' },
 	{ code: 'pt', name: 'Português (Portuguese)' },
 	{ code: 'pt-BR', name: 'Português Brasileiro (Brazilian Portuguese)' },

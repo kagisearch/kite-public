@@ -3,6 +3,7 @@ import type { Article } from '$lib/types';
 import { getCitedArticlesForText } from '$lib/utils/citationAggregator';
 import { type CitationMapping, replaceWithNumberedCitations } from '$lib/utils/citationContext';
 import CitationText from './CitationText.svelte';
+import SelectableText from './SelectableText.svelte';
 
 // Props
 interface Props {
@@ -11,9 +12,15 @@ interface Props {
 	showAsList?: boolean;
 	articles?: Article[];
 	citationMapping?: CitationMapping;
+	flashcardMode?: boolean;
+	selectedWords?: Set<string>;
+	selectedPhrases?: Map<string, { phrase: string; sections: Set<string> }>;
+	shouldJiggle?: boolean;
+	onWordClick?: (word: string, section?: string) => void;
+	section?: string; // Section identifier for context
 }
 
-let { title, items = [], showAsList = true, articles = [], citationMapping }: Props = $props();
+let { title, items = [], showAsList = true, articles = [], citationMapping, flashcardMode = false, selectedWords = new Set(), selectedPhrases = new Map(), shouldJiggle = false, onWordClick, section }: Props = $props();
 
 // Convert citations to numbered format if mapping is available
 const displayItems = $derived.by(() => {
@@ -37,14 +44,26 @@ const displayItems = $derived.by(() => {
           articles,
         )}
         <li>
-          <CitationText
-            text={item}
-            showFavicons={false}
-            showNumbers={false}
-            inline={true}
-            articles={itemCitations.citedArticles}
-            {citationMapping}
-          />
+          {#if flashcardMode}
+            <SelectableText
+              text={item}
+              {flashcardMode}
+              {selectedWords}
+              {selectedPhrases}
+              {shouldJiggle}
+              {onWordClick}
+              {section}
+            />
+          {:else}
+            <CitationText
+              text={item}
+              showFavicons={false}
+              showNumbers={false}
+              inline={true}
+              articles={itemCitations.citedArticles}
+              {citationMapping}
+            />
+          {/if}
         </li>
       {/each}
     </ul>
@@ -56,14 +75,25 @@ const displayItems = $derived.by(() => {
           citationMapping,
           articles,
         )}
-        <CitationText
-          text={item}
-          showFavicons={false}
-          showNumbers={false}
-          inline={false}
-          articles={itemCitations.citedArticles}
-          {citationMapping}
-        />
+        {#if flashcardMode}
+          <SelectableText
+            text={item}
+            {flashcardMode}
+            {selectedWords}
+            {shouldJiggle}
+            {onWordClick}
+            {section}
+          />
+        {:else}
+          <CitationText
+            text={item}
+            showFavicons={false}
+            showNumbers={false}
+            inline={false}
+            articles={itemCitations.citedArticles}
+            {citationMapping}
+          />
+        {/if}
       {/each}
     </div>
   {/if}

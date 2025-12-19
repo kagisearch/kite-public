@@ -7,10 +7,11 @@ import WikipediaTooltip from './WikipediaTooltip.svelte';
 // Props
 interface Props {
 	stories: OnThisDayEvent[];
+	language?: string; // Language used for the OnThisDay content (for Wikipedia lookups)
 	onWikipediaClick?: (title: string, content: string, imageUrl?: string) => void;
 }
 
-let { stories, onWikipediaClick }: Props = $props();
+let { stories, language = 'en', onWikipediaClick }: Props = $props();
 
 // Split stories into events and people
 const events = $derived(stories.filter((story) => story.type === 'event'));
@@ -64,4 +65,4 @@ function handleWikipediaLeave(event: Event) {
 </div>
 
 <!-- Wikipedia Tooltip Handler -->
-<WikipediaTooltip bind:this={wikipediaTooltip} {onWikipediaClick} />
+<WikipediaTooltip bind:this={wikipediaTooltip} {language} {onWikipediaClick} />

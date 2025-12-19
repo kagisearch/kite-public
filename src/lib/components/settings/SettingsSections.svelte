@@ -79,9 +79,10 @@ function getSectionName(id: string): string {
       </p>
 
       <button
-        class="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 me-2"
+        class="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 me-2 focus-visible-ring rounded"
         onclick={() =>
           sectionItems.map((section) => sections.toggleSection(section.id))}
+        aria-label={s("settings.sections.toggleAll.aria") || "Toggle all article sections on or off"}
       >
         {s("settings.sections.toggleAll") || "Toggle All"}
       </button>
@@ -113,9 +114,7 @@ function getSectionName(id: string): string {
             <div
               class="cursor-grab active:cursor-grabbing text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 touch-manipulation"
               use:dragHandle
-              aria-label="drag handle for {getSectionName(section.id)}"
-              role="button"
-              tabindex="0"
+              aria-label="Drag to reorder {getSectionName(section.id)} section"
             >
               <svg
                 width="16"
@@ -206,7 +205,8 @@ function getSectionName(id: string): string {
     {:else}
       <button
         onclick={resetToDefaults}
-        class="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300"
+        class="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 focus-visible-ring rounded"
+        aria-label={s("settings.sections.resetOrder.aria") || "Reset all sections to default order and visibility"}
       >
         {s("settings.sections.resetOrder") || "Reset to Default Order"}
       </button>

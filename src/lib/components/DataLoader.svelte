@@ -1,5 +1,6 @@
 <script lang="ts">
 import { onMount } from 'svelte';
+import { dev } from '$app/environment';
 import { s } from '$lib/client/localization.svelte';
 import { categorySettings, languageSettings, sectionSettings } from '$lib/data/settings.svelte.js';
 import { dataReloadService, dataService } from '$lib/services/dataService';
@@ -18,10 +19,12 @@ interface Props {
 		stories: Story[];
 		totalReadCount: number;
 		lastUpdated: string;
+		lastUpdatedTimestamp: number;
 		currentCategory: string;
 		allCategoryStories: Record<string, Story[]>;
 		categoryMap: Record<string, string>;
 		batchId: string;
+		dateSlug?: string;
 		batchCreatedAt?: string;
 		chaosIndex?: number;
 		chaosDescription?: string;
@@ -61,6 +64,8 @@ $effect(() => {
 
 // Function to preload all images for stories
 async function preloadCategoryImages(stories: Story[]) {
+	// Skip preloading in dev mode
+	if (dev) return;
 	await imagePreloadingService.preloadCategory(stories);
 }
 
@@ -71,19 +76,24 @@ async function loadInitialData() {
 		loadingProgress = 10;
 
 		// Store batch info to avoid duplicate API calls
-		let providedBatchInfo: { id: string; createdAt: string; totalReadCount?: number } | undefined;
+		let providedBatchInfo:
+			| { id: string; createdAt: string; dateSlug?: string; totalReadCount?: number }
+			| undefined;
 
 		// Check if we have a batch ID from URL
 		if (initialBatchId) {
 			// First, get the latest batch to compare
-			const latestResponse = await fetch(`/api/batches/latest?lang=${languageSettings.data}`);
+			const lang = languageSettings.getLanguageForAPI();
+			const latestResponse = await fetch(`/api/batches/latest?lang=${lang}`);
 			if (latestResponse.ok) {
 				const latestBatch = await latestResponse.json();
 
 				// Only set time travel mode if this is NOT the latest batch
-				if (initialBatchId !== latestBatch.id) {
+				// Support both UUID format and date slug format for backwards compatibility
+				const isLatest =
+					initialBatchId === latestBatch.id || initialBatchId === latestBatch.dateSlug;
+				if (!isLatest) {
 					console.log('🎯 Setting time travel mode for historical batch:', initialBatchId);
-					dataService.setTimeTravelBatch(initialBatchId);
 					isLatestBatch = false;
 
 					// Also set the time travel UI state so the banner shows
@@ -97,10 +107,14 @@ async function loadInitialData() {
 							timeTravel.selectDate(batchDate);
 							timeTravel.selectBatch(initialBatchId);
 
+							// Set time travel batch with createdAt for URL generation (historical = true)
+							timeTravelBatch.set(initialBatchId, batchData.createdAt, batchData.dateSlug, true);
+
 							// Store the batch info to pass to batchService
 							providedBatchInfo = {
 								id: batchData.id,
 								createdAt: batchData.createdAt,
+								dateSlug: batchData.dateSlug,
 								totalReadCount: batchData.totalReadCount,
 							};
 						}
@@ -114,6 +128,7 @@ async function loadInitialData() {
 					providedBatchInfo = {
 						id: latestBatch.id,
 						createdAt: latestBatch.createdAt,
+						dateSlug: latestBatch.dateSlug,
 						totalReadCount: latestBatch.totalReadCount,
 					};
 				}
@@ -124,11 +139,22 @@ async function loadInitialData() {
 		}
 
 		// Load initial data (batch info + categories) - pass batch info if we have it
-		const initialData = await dataService.loadInitialData(languageSettings.data, providedBatchInfo);
+		const initialData = await dataService.loadInitialData(
+			languageSettings.getLanguageForAPI(),
+			providedBatchInfo,
+		);
 		console.log('📥 DataLoader received initialData:', initialData);
 		console.log('📥 Categories from initialData:', initialData.categories?.length || 0);
 		categories = initialData.categories;
-		const { batchId, categoryMap, chaosIndex, chaosDescription, chaosLastUpdated } = initialData;
+		const {
+			batchId,
+			dateSlug,
+			batchCreatedAt,
+			categoryMap,
+			chaosIndex,
+			chaosDescription,
+			chaosLastUpdated,
+		} = initialData;
 		totalReadCount = initialData.totalReadCount;
 
 		// Get available category IDs
@@ -141,11 +167,11 @@ async function loadInitialData() {
 		if (categories.length > 0) {
 			// Initialize categories store with loaded data
 			categorySettings.setAllCategories(categories);
-			console.log('📊 Before init, enabled:', categorySettings.enabled);
+			console.log('📊 Before init, enabled:', $state.snapshot(categorySettings.enabled));
 			categorySettings.init();
-			console.log('📊 After init, enabled:', categorySettings.enabled);
+			console.log('📊 After init, enabled:', $state.snapshot(categorySettings.enabled));
 			categorySettings.initWithDefaults();
-			console.log('📊 After initWithDefaults, enabled:', categorySettings.enabled);
+			console.log('📊 After initWithDefaults, enabled:', $state.snapshot(categorySettings.enabled));
 
 			// Filter enabled categories to only those that exist in the current batch
 			validEnabledCategories = categorySettings.enabled.filter((catId) =>
@@ -169,7 +195,7 @@ async function loadInitialData() {
 			validEnabledCategories = categorySettings.enabled;
 		}
 
-		console.log('📊 Valid enabled categories for loading:', validEnabledCategories);
+		console.log('📊 Valid enabled categories for loading:', $state.snapshot(validEnabledCategories));
 
 		// Initialize sections store
 		sectionSettings.init();
@@ -191,12 +217,12 @@ async function loadInitialData() {
 		if (initialCategoryId && !validEnabledCategories.includes(initialCategoryId)) {
 			// Check if this category exists in the available categories
 			if (availableCategoryIds.includes(initialCategoryId)) {
-				console.log('Including non-enabled category from URL:', initialCategoryId);
 				categoriesToLoad.push(initialCategoryId);
 				temporaryCategoryId = initialCategoryId;
 				// Temporarily add to enabled categories so it shows in the navigation
 				categorySettings.addTemporary(initialCategoryId);
 			}
+			// Category doesn't exist - will fallback to first enabled category below
 		}
 
 		// Use category from URL if provided, otherwise use first enabled
@@ -204,11 +230,15 @@ async function loadInitialData() {
 		currentCategory = targetCategory;
 
 		// On mobile, only load the first category to save bandwidth and improve performance
+		// UNLESS we're in single-page mode, where we need all categories preloaded
 		const isMobile = isMobileDevice();
-		const categoriesToActuallyLoad = isMobile ? [targetCategory] : categoriesToLoad;
+		const isInSinglePageMode = categorySettings.singlePageMode !== 'disabled';
+		const categoriesToActuallyLoad = isMobile && !isInSinglePageMode ? [targetCategory] : categoriesToLoad;
 
-		if (isMobile) {
+		if (isMobile && !isInSinglePageMode) {
 			console.log(`📱 Mobile device detected - loading only first category: ${targetCategory}`);
+		} else if (isMobile && isInSinglePageMode) {
+			console.log(`📱 Mobile device in single-page mode - loading all ${categoriesToLoad.length} categories`);
 		}
 
 		// Load stories for categories (only first on mobile, all on desktop)
@@ -228,7 +258,7 @@ async function loadInitialData() {
 					batchId,
 					categoryUuid,
 					12,
-					languageSettings.data,
+					languageSettings.getLanguageForAPI(),
 				);
 				return {
 					categoryId,
@@ -304,11 +334,13 @@ async function loadInitialData() {
 					stories,
 					totalReadCount,
 					lastUpdated,
+					lastUpdatedTimestamp: maxTimestamp,
 					currentCategory,
 					allCategoryStories, // Pass all preloaded stories
 					categoryMap,
 					batchId,
-					batchCreatedAt: providedBatchInfo?.createdAt,
+					dateSlug,
+					batchCreatedAt,
 					chaosIndex,
 					chaosDescription,
 					chaosLastUpdated,
@@ -342,11 +374,23 @@ async function reloadAllData() {
 		);
 
 		// Load initial data (batch info + categories)
-		const initialData = await dataService.loadInitialData(languageSettings.data);
+		const initialData = await dataService.loadInitialData(languageSettings.getLanguageForAPI());
 		categories = initialData.categories;
-		const { batchId, batchCreatedAt, categoryMap, chaosIndex, chaosDescription, chaosLastUpdated } =
-			initialData;
+		const {
+			batchId,
+			dateSlug,
+			batchCreatedAt,
+			categoryMap,
+			chaosIndex,
+			chaosDescription,
+			chaosLastUpdated,
+		} = initialData;
 		totalReadCount = initialData.totalReadCount;
+
+		// If not in time travel mode, we're viewing the latest batch
+		if (!timeTravelBatch.isTimeTravelMode()) {
+			isLatestBatch = true;
+		}
 
 		// Get available category IDs
 		const availableCategoryIds = categories.map((cat) => cat.id);
@@ -391,12 +435,12 @@ async function reloadAllData() {
 		if (initialCategoryId && !validEnabledCategories.includes(initialCategoryId)) {
 			// Check if this category exists in the available categories
 			if (availableCategoryIds.includes(initialCategoryId)) {
-				console.log('Including non-enabled category from URL (latest batch):', initialCategoryId);
 				categoriesToLoad.push(initialCategoryId);
 				temporaryCategoryId = initialCategoryId;
 				// Temporarily add to enabled categories so it shows in the navigation
 				categorySettings.addTemporary(initialCategoryId);
 			}
+			// Category doesn't exist - will fallback to first enabled category below
 		}
 
 		const firstEnabledCategory = initialCategoryId || enabledCategoriesForLoading[0] || 'World';
@@ -429,7 +473,7 @@ async function reloadAllData() {
 					batchId,
 					categoryUuid,
 					12,
-					languageSettings.data,
+					languageSettings.getLanguageForAPI(),
 				);
 				return {
 					categoryId,
@@ -486,10 +530,12 @@ async function reloadAllData() {
 				stories,
 				totalReadCount,
 				lastUpdated,
+				lastUpdatedTimestamp: maxTimestamp,
 				currentCategory,
 				allCategoryStories,
 				categoryMap,
 				batchId,
+				dateSlug,
 				batchCreatedAt,
 				chaosIndex,
 				chaosDescription,
@@ -528,8 +574,11 @@ $effect(() => {
 		console.log(`🔄 Batch changed from ${previousBatchId} to ${currentBatchId}, reloading data...`);
 		previousBatchId = currentBatchId;
 
-		// Update isLatestBatch based on whether we're clearing time travel mode
-		isLatestBatch = currentBatchId === null;
+		// If clearing batch (going back to latest), set isLatestBatch to true
+		// Otherwise, loadInitialData will determine it by comparing to actual latest batch
+		if (currentBatchId === null) {
+			isLatestBatch = true;
+		}
 
 		// Show loading screen briefly
 		initialLoading = true;

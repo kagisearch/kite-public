@@ -1,6 +1,7 @@
 export interface CategoryMetadata {
 	categoryId: string;
 	categoryType: 'core' | 'country' | 'region' | 'city' | 'topic' | 'other';
+	isCore: boolean; // True if maintained by Kagi team
 	displayName: string;
 	displayNames?: Record<string, string>;
 	sourceLanguage?: string;

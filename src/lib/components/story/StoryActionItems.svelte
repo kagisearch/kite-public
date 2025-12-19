@@ -1,19 +1,25 @@
 <script lang="ts">
 import { s } from '$lib/client/localization.svelte';
-import type { Article } from '$lib/types';
+import type { Article, LocalizerFunction } from '$lib/types';
 import { getCitedArticlesForText } from '$lib/utils/citationAggregator';
 import { type CitationMapping, replaceWithNumberedCitations } from '$lib/utils/citationContext';
 import CitationText from './CitationText.svelte';
+import SelectableText from './SelectableText.svelte';
 
 // Props
 interface Props {
 	actionItems: Array<string>;
 	articles?: Article[];
 	citationMapping?: CitationMapping;
-	storyLocalizer?: (key: string) => string;
+	storyLocalizer?: LocalizerFunction;
+	flashcardMode?: boolean;
+	selectedWords?: Set<string>;
+	selectedPhrases?: Map<string, { phrase: string; sections: Set<string> }>;
+	shouldJiggle?: boolean;
+	onWordClick?: (word: string, section?: string) => void;
 }
 
-let { actionItems, articles = [], citationMapping, storyLocalizer = s }: Props = $props();
+let { actionItems, articles = [], citationMapping, storyLocalizer = s, flashcardMode = false, selectedWords = new Set(), selectedPhrases = new Map(), shouldJiggle = false, onWordClick }: Props = $props();
 
 // Convert citations to numbered format if mapping is available
 const displayItems = $derived.by(() => {
@@ -34,15 +40,27 @@ const displayItems = $derived.by(() => {
         articles,
       )}
       <li dir="auto">
-        <CitationText
-          text={item}
-          showFavicons={false}
-          showNumbers={false}
-          inline={true}
-          articles={itemCitations.citedArticles}
-          {citationMapping}
-          {storyLocalizer}
-        />
+        {#if flashcardMode}
+          <SelectableText
+            text={item}
+            {flashcardMode}
+            {selectedWords}
+            {selectedPhrases}
+            {shouldJiggle}
+            {onWordClick}
+            section="user_action_items"
+          />
+        {:else}
+          <CitationText
+            text={item}
+            showFavicons={false}
+            showNumbers={false}
+            inline={true}
+            articles={itemCitations.citedArticles}
+            {citationMapping}
+            {storyLocalizer}
+          />
+        {/if}
       </li>
     {/each}
   </ul>

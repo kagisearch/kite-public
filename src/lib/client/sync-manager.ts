@@ -375,14 +375,17 @@ class SyncManager {
 		// Process pending changes that are settings
 		for (const change of changes) {
 			if (change.type === 'setting' && change.operation === 'update') {
+				// Type guard - we know this is SettingChangeData now
+				const settingData = change.data as import('$lib/types/sync').SettingChangeData;
+
 				// Ensure timestamp is a Date object
 				const timestamp =
 					typeof change.timestamp === 'string' ? new Date(change.timestamp) : change.timestamp;
 
 				// If value is null, it means the setting was removed from localStorage
-				if (change.data.value === null) {
+				if (settingData.value === null) {
 					localSettings.push({
-						key: change.data.key,
+						key: settingData.key,
 						value: null, // This signals deletion
 						version: 1,
 						updatedAt: timestamp,
@@ -390,13 +393,13 @@ class SyncManager {
 					});
 				} else {
 					localSettings.push({
-						key: change.data.key,
-						value: change.data.value,
+						key: settingData.key,
+						value: settingData.value,
 						version: 1,
 						updatedAt: timestamp,
 					});
 				}
-				processedKeys.add(change.data.key);
+				processedKeys.add(settingData.key);
 			}
 		}
 
@@ -416,6 +419,7 @@ class SyncManager {
 				'theme',
 				'kiteLanguage',
 				'dataLanguage',
+				'contentLanguages',
 				// Categories
 				'categoryOrder',
 				'enabledCategories',
@@ -497,7 +501,7 @@ class SyncManager {
 			// Apply resolution based on strategy
 			if (this.conflictResolutionStrategy === 'remote') {
 				// Use remote version
-				if (conflict.type === 'setting') {
+				if (conflict.type === 'setting' && conflict.remote) {
 					await this.updateLocalSettings([conflict.remote]);
 				} else if (conflict.type === 'history') {
 					// Read history is append-only, no real conflicts
@@ -532,7 +536,7 @@ class SyncManager {
 		const pendingSettingKeys = new Set(
 			this.pendingChanges
 				.filter((change) => change.type === 'setting')
-				.map((change) => change.data.key),
+				.map((change) => (change.data as import('$lib/types/sync').SettingChangeData).key),
 		);
 
 		console.log('[Sync] Settings with pending changes:', Array.from(pendingSettingKeys));
@@ -633,11 +637,100 @@ class SyncManager {
 							.then(({ preloadingConfig }) => {
 								if (preloadingConfig) {
 									// Reload from localStorage (which was just updated)
-									preloadingConfig.loadFromStorage();
+									preloadingConfig.reload();
 								}
 							})
 							.catch((err) => {
 								console.warn(`[Sync] Could not update preloading config:`, err);
+							});
+					} else if (key === 'theme') {
+						// Special handling for theme - need to apply to DOM
+						console.log(`[Sync] Updating theme from sync`);
+						import('$lib/data/settings.svelte')
+							.then(({ settings, themeSettings }) => {
+								if (settings.theme) {
+									settings.theme.load();
+									// Re-apply theme to DOM by triggering the setter
+									themeSettings.theme = settings.theme.currentValue;
+								}
+							})
+							.catch((err) => {
+								console.warn(`[Sync] Could not update theme:`, err);
+							});
+					} else if (key === 'fontSize') {
+						// Special handling for fontSize - need to apply to DOM
+						console.log(`[Sync] Updating fontSize from sync`);
+						import('$lib/data/settings.svelte')
+							.then(({ settings, displaySettings }) => {
+								if (settings.fontSize) {
+									settings.fontSize.load();
+									// Re-apply font size to DOM by triggering the setter
+									displaySettings.fontSize = settings.fontSize.currentValue;
+								}
+							})
+							.catch((err) => {
+								console.warn(`[Sync] Could not update fontSize:`, err);
+							});
+					} else if (key === 'kiteLanguage') {
+						// Special handling for UI language - need to apply to DOM
+						console.log(`[Sync] Updating kiteLanguage from sync`);
+						import('$lib/data/settings.svelte')
+							.then(({ settings, languageSettings }) => {
+								if (settings.language) {
+									settings.language.load();
+									// Re-apply language to DOM by triggering the setter
+									languageSettings.ui = settings.language.currentValue;
+
+									// Also update the old language store if it exists
+									import('$lib/stores/language.svelte')
+										.then(({ language }) => {
+											if (language && language.set) {
+												language.set(settings.language.currentValue);
+											}
+										})
+										.catch((err) => {
+											console.warn(`[Sync] Could not update language store:`, err);
+										});
+								}
+							})
+							.catch((err) => {
+								console.warn(`[Sync] Could not update kiteLanguage:`, err);
+							});
+					} else if (key === 'dataLanguage' || key === 'contentLanguages') {
+						// Special handling for data language - need to reload data
+						console.log(`[Sync] Updating ${key} from sync`);
+						import('$lib/data/settings.svelte')
+							.then(({ settings }) => {
+								const setting = settings[key === 'dataLanguage' ? 'dataLanguage' : 'contentLanguages'];
+								if (setting) {
+									// Store old value before loading
+									const oldValue = JSON.stringify(setting.currentValue);
+									setting.load();
+									const newValue = JSON.stringify(setting.currentValue);
+
+									// Only reload data if the value actually changed
+									if (oldValue !== newValue) {
+										console.log(`[Sync] ${key} changed from ${oldValue} to ${newValue}, reloading data`);
+										// Trigger data reload with the new language settings
+										import('$lib/services/dataService')
+											.then(({ dataReloadService }) => {
+												if (dataReloadService) {
+													console.log(`[Sync] Reloading data after ${key} change`);
+													dataReloadService.reloadData().catch((err: Error) => {
+														console.warn(`[Sync] Failed to reload data:`, err);
+													});
+												}
+											})
+											.catch((err) => {
+												console.warn(`[Sync] Could not import dataReloadService:`, err);
+											});
+									} else {
+										console.log(`[Sync] ${key} unchanged, skipping data reload`);
+									}
+								}
+							})
+							.catch((err) => {
+								console.warn(`[Sync] Could not update ${key}:`, err);
 							});
 					} else {
 						// For other settings, update individually
@@ -669,6 +762,7 @@ class SyncManager {
 			'theme',
 			'kiteLanguage',
 			'dataLanguage',
+			'contentLanguages',
 			'categoryOrder',
 			'enabledCategories',
 			'disabledCategories',
@@ -761,7 +855,11 @@ class SyncManager {
 
 		// Remove any existing pending change for this key (deduplication)
 		this.pendingChanges = this.pendingChanges.filter(
-			(change) => !(change.type === 'setting' && change.data.key === key),
+			(change) =>
+				!(
+					change.type === 'setting' &&
+					(change.data as import('$lib/types/sync').SettingChangeData).key === key
+				),
 		);
 
 		// Add the new change
@@ -969,8 +1067,6 @@ class SyncManager {
 	private async applyReadHistoryChanges(changes: ReadHistoryChange[]): Promise<void> {
 		if (!browser || changes.length === 0) return;
 
-		console.log('[Sync] Applying', changes.length, 'changes to local database');
-
 		// Ensure DB is open
 		if (!db.isOpen()) {
 			await db.open();
@@ -980,18 +1076,32 @@ class SyncManager {
 		for (const change of changes) {
 			try {
 				if (change.operation === 'add') {
-					// Add to local database
-					// Use the clusterId as the ID (UUID format)
-					await db.readStories.put({
-						id: change.clusterId,
-						title: '', // We don't store title in change log, but it's not critical for sync
-						timestamp: new Date(change.timestamp).getTime(),
-						batchId: change.batchRunId,
-						categoryUuid: change.categoryId, // UUID
-					});
+					// Check if we already have this story locally
+					const existingEntry = await db.readStories.get(change.clusterId);
+					const remoteTimestamp = new Date(change.timestamp).getTime();
+
+					// Only apply if remote is newer or doesn't exist locally
+					if (!existingEntry || remoteTimestamp > existingEntry.timestamp) {
+						// Add to local database
+						// Use the clusterId as the ID (UUID format)
+						await db.readStories.put({
+							id: change.clusterId,
+							title: existingEntry?.title || '', // Preserve title if we have it
+							timestamp: remoteTimestamp,
+							batchId: change.batchRunId,
+							categoryUuid: change.categoryId, // UUID
+						});
+					}
 				} else if (change.operation === 'delete') {
-					// Remove from local database
-					await db.readStories.delete(change.clusterId);
+					// Check if we have a local version that's newer
+					const existingEntry = await db.readStories.get(change.clusterId);
+					const remoteTimestamp = new Date(change.timestamp).getTime();
+
+					// Only delete if remote change is newer than local entry
+					if (!existingEntry || remoteTimestamp > existingEntry.timestamp) {
+						// Remove from local database
+						await db.readStories.delete(change.clusterId);
+					}
 				}
 			} catch (error) {
 				console.warn('[Sync] Failed to apply change:', change, error);
@@ -999,11 +1109,8 @@ class SyncManager {
 			}
 		}
 
-		console.log('[Sync] Finished applying changes');
-
 		// Notify the UI that read stories have been updated
 		if (changes.length > 0) {
-			console.log('[Sync] Dispatching sync-complete event');
 			window.dispatchEvent(new CustomEvent('sync-complete'));
 		}
 	}
@@ -1017,17 +1124,20 @@ class SyncManager {
 		if (pendingHistory.length === 0) return;
 
 		// Bulk upload pending read history
-		const entries = pendingHistory.map((change) => ({
-			clientId:
-				change.data.clientId ||
-				`${this.deviceId}_${change.data.clusterId}_${change.timestamp.toISOString()}_${Math.random().toString(36).substring(2, 11)}`,
-			clusterId: change.data.clusterId,
-			categoryId: change.data.categoryId,
-			batchRunId: change.data.batchRunId,
-			timestamp: change.data.timestamp,
-			readDuration: change.data.readDuration,
-			languageCode: change.data.languageCode || 'en',
-		}));
+		const entries = pendingHistory.map((change) => {
+			const historyData = change.data as import('$lib/types/sync').ReadHistoryChangeData;
+			return {
+				clientId:
+					historyData.clientId ||
+					`${this.deviceId}_${historyData.clusterId}_${change.timestamp.toISOString()}_${Math.random().toString(36).substring(2, 11)}`,
+				clusterId: historyData.clusterId,
+				categoryId: historyData.categoryId,
+				batchRunId: historyData.batchRunId,
+				timestamp: historyData.timestamp,
+				readDuration: historyData.readDuration,
+				languageCode: historyData.languageCode || 'en',
+			};
+		});
 
 		try {
 			const response = await fetch('/api/sync/read-history-bulk', {

@@ -1,7 +1,7 @@
 <script lang="ts">
 import { s } from '$lib/client/localization.svelte';
 import FaviconImage from '$lib/components/common/FaviconImage.svelte';
-import type { Article } from '$lib/types';
+import type { Article, LocalizerFunction } from '$lib/types';
 import type { CitationMapping } from '$lib/utils/citationContext';
 import type { Citation, ParsedTextSegment } from '$lib/utils/citationUtils';
 import CitationTooltip from './CitationTooltip.svelte';
@@ -15,7 +15,7 @@ interface Props {
 	articles?: Article[]; // Articles for citation tooltip
 	citationMapping?: CitationMapping; // Global citation mapping
 	citationTooltip?: CitationTooltip; // External tooltip reference for shared tooltips
-	storyLocalizer?: (key: string) => string; // Story-specific localization function
+	storyLocalizer?: LocalizerFunction; // Story-specific localization function
 }
 
 let {
@@ -190,7 +190,7 @@ const citedArticles = $derived.by(() => {
 
 <div class="citation-wrapper">
   <!-- Main content -->
-  <div class="citation-content {inline ? 'inline' : 'block'}">
+  <div class="citation-content {inline ? 'inline' : 'block'} {inline ? 'text-base' : ''}">
     {#if inline}
       <!-- Inline rendering for list items -->
       {#each parsedData.formattedSegments as segment}
@@ -207,16 +207,12 @@ const citedArticles = $derived.by(() => {
           {:else}
             <!-- Show as clean numbered citation -->
             <!-- svelte-ignore a11y_mouse_events_have_key_events -->
-            <span
-              class="citation-number text-gray-600 dark:text-gray-400 text-xs align-super cursor-help font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded px-0.5 transition-colors"
+            <button
+              type="button"
+              class="citation-number text-gray-600 dark:text-gray-400 text-xs align-super cursor-help font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded px-0.5 transition-colors border-0 bg-transparent p-0"
               title={segment.citation?.domain === "common"
                 ? "Common knowledge"
                 : `Source ${segment.citation?.number}: ${segment.citation?.domain}`}
-              role="button"
-              tabindex="0"
-              aria-label={segment.citation?.domain === "common"
-                ? "Common knowledge citation"
-                : `Citation ${segment.citation?.number}: ${segment.citation?.domain}`}
               onmouseover={(e) =>
                 tooltipReference?.handleCitationInteraction(
                   e,
@@ -224,8 +220,6 @@ const citedArticles = $derived.by(() => {
                   segment.citation?.number,
                 )}
               onmouseleave={(e) => tooltipReference?.handleCitationLeave(e)}
-              onfocus={() => {}}
-              onblur={() => {}}
               onclick={(e) =>
                 tooltipReference?.handleCitationInteraction(
                   e,
@@ -246,9 +240,9 @@ const citedArticles = $derived.by(() => {
                   (tooltipReference as any).recordTouch();
                 }
               }}
-            >
-              {segment.content}
-            </span>
+            ><span class="sr-only">{segment.citation?.domain === "common"
+                ? "Common knowledge citation"
+                : `Citation ${segment.citation?.number} from ${segment.citation?.domain}`}</span><span aria-hidden="true">{segment.content}</span></button>
           {/if}
         {/if}
       {/each}
@@ -269,16 +263,12 @@ const citedArticles = $derived.by(() => {
             {:else}
               <!-- Show as clean numbered citation -->
               <!-- svelte-ignore a11y_mouse_events_have_key_events -->
-              <span
-                class="citation-number text-gray-600 dark:text-gray-400 text-xs align-super cursor-help font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded px-0.5 transition-colors"
+              <button
+                type="button"
+                class="citation-number text-gray-600 dark:text-gray-400 text-xs align-super cursor-help font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded px-0.5 transition-colors border-0 bg-transparent p-0"
                 title={segment.citation?.domain === "common"
                   ? "Common knowledge"
                   : `Source ${segment.citation?.number}: ${segment.citation?.domain}`}
-                role="button"
-                tabindex="0"
-                aria-label={segment.citation?.domain === "common"
-                  ? "Common knowledge citation"
-                  : `Citation ${segment.citation?.number}: ${segment.citation?.domain}`}
                 onmouseover={(e) =>
                   tooltipReference?.handleCitationInteraction(
                     e,
@@ -306,9 +296,9 @@ const citedArticles = $derived.by(() => {
                     (tooltipReference as any).recordTouch();
                   }
                 }}
-              >
-                {segment.content}
-              </span>
+              ><span class="sr-only">{segment.citation?.domain === "common"
+                  ? "Common knowledge citation"
+                  : `Citation ${segment.citation?.number} from ${segment.citation?.domain}`}</span><span aria-hidden="true">{segment.content}</span></button>
             {/if}
           {/if}
         {/each}

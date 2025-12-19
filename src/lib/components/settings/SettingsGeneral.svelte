@@ -274,8 +274,8 @@ function showAbout() {
       {s("settings.subsections.navigation") || "Navigation"}
     </h3>
     <div class="space-y-4 ps-2">
-      <!-- Use Latest URLs Setting -->
-      <div class="flex flex-col space-y-2">
+      <!-- Use Latest URLs Setting - Hidden for now but kept internally -->
+      <!-- <div class="flex flex-col space-y-2">
         <Select
           value={currentUseLatestUrls ? "enabled" : "disabled"}
           options={[
@@ -295,7 +295,7 @@ function showAbout() {
           {s("settings.useLatestUrls.description") ||
             "Use /latest URLs for current news so bookmarks always show the latest content"}
         </p>
-      </div>
+      </div> -->
 
       <!-- Maps Provider Setting -->
       <div class="flex flex-col space-y-2">
@@ -310,28 +310,6 @@ function showAbout() {
             "Choose which maps service to use for location links"}
         </p>
       </div>
-    </div>
-  </div>
-
-  <!-- About Section -->
-  <div class="space-y-4">
-    <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300">
-      {s("settings.subsections.about") || "About"}
-    </h3>
-    <div class="ps-2">
-      <button
-        onclick={showAbout}
-        class="flex w-full items-center justify-center space-x-2 rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-800 transition-colors duration-200 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
-      >
-        <img
-          src={themeSettings.theme === "dark"
-            ? "/svg/kagi_news_icon_dark.svg"
-            : "/svg/kagi_news_icon.svg"}
-          alt=""
-          class="h-4 w-4"
-        />
-        <span>{s("settings.aboutKite.button") || "About Kite"}</span>
-      </button>
     </div>
   </div>
 </div>

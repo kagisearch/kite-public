@@ -18,8 +18,11 @@ interface Props {
 let { showTooltip = false, showLoadingSpinner = false }: Props = $props();
 
 // Language options - include "default" for browser language detection
+// Exclude "source" and "custom" as those are only for content language
 const languageOptions = $derived(
-	SUPPORTED_LANGUAGES.map((lang) => ({
+	SUPPORTED_LANGUAGES.filter(
+		(lang) => lang.code !== 'source' && lang.code !== 'custom',
+	).map((lang) => ({
 		value: lang.code,
 		label:
 			lang.code === 'default'

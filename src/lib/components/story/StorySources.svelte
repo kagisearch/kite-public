@@ -3,7 +3,7 @@ import { s } from '$lib/client/localization.svelte';
 import FaviconImage from '$lib/components/common/FaviconImage.svelte';
 import { languageSettings } from '$lib/data/settings.svelte.js';
 import { dataService } from '$lib/services/dataService';
-import type { MediaInfo } from '$lib/types';
+import type { LocalizerFunction, MediaInfo } from '$lib/types';
 import { getMostRecentArticleDate, getTimeAgo } from '$lib/utils/getTimeAgo';
 
 // Props
@@ -15,7 +15,7 @@ interface Props {
 	sourceArticles?: any[];
 	currentMediaInfo?: MediaInfo | null;
 	isLoadingMediaInfo?: boolean;
-	storyLocalizer?: (key: string, view?: Record<string, string>, strict?: boolean) => string;
+	storyLocalizer?: LocalizerFunction;
 }
 
 let {
@@ -95,8 +95,11 @@ async function handleSourceClick(domain: any) {
     {#if sortedDomains.length > visibleSources}
       <button
         onclick={() => (showAllSources = !showAllSources)}
-        class="text-gray-600 hover:text-gray-800 focus-visible-ring dark:text-gray-400 dark:hover:text-gray-200"
-        aria-label={showAllSources ? "Show fewer sources" : "Show all sources"}
+        class="text-gray-600 hover:text-gray-800 focus-visible-ring rounded dark:text-gray-400 dark:hover:text-gray-200"
+        aria-label={showAllSources
+          ? storyLocalizer("sources.showFewer.aria", { count: sortedDomains.length.toString() }) || `Show fewer sources (${sortedDomains.length} total)`
+          : storyLocalizer("sources.showAll.aria", { count: sortedDomains.length.toString() }) || `Show all ${sortedDomains.length} sources`}
+        aria-expanded={showAllSources}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -125,8 +128,12 @@ async function handleSourceClick(domain: any) {
         <button
           class="flex w-full flex-col items-start space-y-1 rounded-lg py-2 ps-2 text-start transition-colors hover:bg-gray-100 focus-visible-ring dark:hover:bg-gray-700"
           onclick={() => handleSourceClick(domain)}
-          aria-label={`Show articles from ${domain?.name || "Unknown"}`}
-          title={`Show articles from ${domain?.name || "Unknown"}`}
+          aria-label={(() => {
+            const count = articles?.filter((a) => a.domain === domain?.name).length || 0;
+            return count > 0
+              ? `View ${count} ${count === 1 ? 'article' : 'articles'} from ${domain?.name || 'Unknown'}`
+              : `View articles from ${domain?.name || 'Unknown'}`;
+          })()}
         >
           <div class="flex w-full min-w-0 items-center space-x-2">
             <FaviconImage

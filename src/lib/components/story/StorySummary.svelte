@@ -2,21 +2,27 @@
 import { getContext } from 'svelte';
 import { s } from '$lib/client/localization.svelte';
 import { displaySettings } from '$lib/data/settings.svelte';
-import type { Article } from '$lib/types';
+import type { Article, LocalizerFunction } from '$lib/types';
 import { getCitedArticlesForText } from '$lib/utils/citationAggregator';
 import { type CitationMapping, replaceWithNumberedCitations } from '$lib/utils/citationContext';
 import { getMapsProviderDisplayName } from '$lib/utils/mapsProvider';
 import { getMapServiceName, openMapLocation } from '$lib/utils/mapUtils';
 import CitationText from './CitationText.svelte';
+import SelectableText from './SelectableText.svelte';
 
 // Props
 interface Props {
 	story: any;
 	citationMapping?: CitationMapping;
-	storyLocalizer?: (key: string) => string;
+	storyLocalizer?: LocalizerFunction;
+	flashcardMode?: boolean;
+	selectedWords?: Set<string>;
+	selectedPhrases?: Map<string, { phrase: string; sections: Set<string> }>;
+	shouldJiggle?: boolean;
+	onWordClick?: (word: string, section?: string) => void;
 }
 
-let { story, citationMapping, storyLocalizer = s }: Props = $props();
+let { story, citationMapping, storyLocalizer = s, flashcardMode = false, selectedWords = new Set(), selectedPhrases = new Map(), shouldJiggle = false, onWordClick }: Props = $props();
 
 // Get session from context for maps provider detection
 const session = getContext<Session | null>('session');
@@ -64,14 +70,26 @@ const locationCitedArticles = $derived.by(() => {
 
 <section class="mt-6">
   <div class="mb-6" dir="auto">
-    <CitationText
-      text={displaySummary}
-      showFavicons={false}
-      showNumbers={false}
-      articles={summaryCitedArticles.citedArticles}
-      {citationMapping}
-      {storyLocalizer}
-    />
+    {#if flashcardMode}
+      <SelectableText
+        text={displaySummary}
+        {flashcardMode}
+        {selectedWords}
+        {selectedPhrases}
+        {shouldJiggle}
+        {onWordClick}
+        section="short_summary"
+      />
+    {:else}
+      <CitationText
+        text={displaySummary}
+        showFavicons={false}
+        showNumbers={false}
+        articles={summaryCitedArticles.citedArticles}
+        {citationMapping}
+        {storyLocalizer}
+      />
+    {/if}
   </div>
   {#if story.location}
     <button

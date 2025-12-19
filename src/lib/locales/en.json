@@ -1,11 +1,1083 @@
 {
+  "meta.description": {
+    "text": "Kagi News distills thousands of world-wide news sources into one perfect daily briefing. Get every critical perspective in just 5 minutes. No endless scrolling. No attention hijacking.",
+    "translationContext": "Default meta description for SEO"
+  },
+  "meta.categoryDescription": {
+    "text": "Latest {category} news on Kagi News",
+    "translationContext": "Meta description for category pages. {category} will be replaced with the actual category name."
+  },
+  "meta.news": {
+    "text": "News",
+    "translationContext": "The word 'News' used in titles"
+  },
+  "about.approach.description1": {
+    "text": "World doesn't live in echo chambers. The reality emerges from the collision of different viewpoints and perspectives - that's how we separate signal from noise.",
+    "translationContext": "First paragraph of the approach section"
+  },
+  "about.approach.description2": {
+    "text": "We strive for diversity and transparency of resources and welcome your <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">contributions</a> to widen perspectives. This multi-source approach helps reveal the full picture beyond any single viewpoint.",
+    "translationContext": "Second paragraph of the approach section with GitHub link"
+  },
+  "about.approach.description3": {
+    "text": "Kagi News reads public RSS feeds of thousands of (community-curated) world-wide news sources and distills them into one perfect daily briefing. You get every critical perspective and timeline in just 5 minutes. That's it. No endless scrolling. No attention hijacking. Because we deserve better.",
+    "translationContext": "Third paragraph of the approach section"
+  },
+  "about.approach.title": {
+    "text": "Understanding our approach",
+    "translationContext": "Title of the approach section"
+  },
+  "about.contact.description": {
+    "text": "For feedback, please use <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://kagifeedback.org\">Kagi Feedback</a>. For support, <a href=\"mailto:support@kagi.com\" class=\"text-blue-600 hover:underline dark:text-blue-400\">support@kagi.com</a>.",
+    "translationContext": "Contact information with links"
+  },
+  "about.contact.title": {
+    "text": "Contact",
+    "translationContext": "Title of the contact section"
+  },
+  "about.customization.description": {
+    "text": "Personalize your feed by reordering and toggling categories in settings. Want to contribute? Most of Kagi News is <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">open source</a>, including our web app and community-curated feeds.",
+    "translationContext": "Description of customization options with GitHub link"
+  },
+  "about.customization.title": {
+    "text": "Customization",
+    "translationContext": "Title of the customization section"
+  },
+  "about.principles.item1": {
+    "text": "One daily update (~noon UTC), creating a natural endpoint to your news consumption",
+    "translationContext": "First core principle about daily updates"
+  },
+  "about.principles.item2": {
+    "text": "Focus on facts and perspectives over opinions",
+    "translationContext": "Second core principle about facts vs opinions"
+  },
+  "about.principles.item3": {
+    "text": "Zero compromise on privacy - your reading habits are yours alone",
+    "translationContext": "Third core principle about privacy"
+  },
+  "about.principles.item4": {
+    "text": "Quality and depth over quantity",
+    "translationContext": "Fourth core principle about quality"
+  },
+  "about.principles.item5": {
+    "text": "Complete news diet in 5 minutes",
+    "translationContext": "Fifth core principle about time efficiency"
+  },
+  "about.principles.item6": {
+    "text": "Liberation from the attention economy - exist in the moment, not in an endless scroll",
+    "translationContext": "Sixth core principle about attention economy"
+  },
+  "about.principles.title": {
+    "text": "Core principles",
+    "translationContext": "Title of the core principles section"
+  },
+  "about.subtitle": {
+    "text": "News app by Kagi",
+    "translationContext": "Kagi is a company, should not be translated"
+  },
+  "about.understand.button": {
+    "text": "I understand",
+    "translationContext": "Text for the I understand button"
+  },
+  "about.why.description": {
+    "text": "Driven by relentless ad monetization, news has <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://gwern.net/doc/culture/2010-dobelli.pdf\">become</a> mental junk food - an endless stream of clickbait that destroys our ability to <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"http://www.aaronsw.com/weblog/hatethenews\">think deeply and clearly</a>. We can do better, and create what news should have been all along - pure, essential information that respects your intelligence and time.",
+    "translationContext": "Description of why Kagi News exists, including HTML link"
+  },
+  "about.why.title": {
+    "text": "Why Kagi News? Because news is broken.",
+    "translationContext": "Title of the Why Kagi News section"
+  },
+  "app.beta": {
+    "text": "BETA",
+    "translationContext": "Beta label shown next to the app title"
+  },
+  "app.disclaimerAutoGenerated": {
+    "text": "Summaries may contain errors.",
+    "translationContext": "Disclaimer about AI-generated content"
+  },
+  "app.disclaimerVerify": {
+    "text": "Please verify important information.",
+    "translationContext": "Reminder to verify information, goes after 'Summaries are AI/LLM-generated and Kagi News can make mistakes.'"
+  },
+  "app.logo.alt": {
+    "text": "Kagi News Logo",
+    "translationContext": "Alt text for the Kagi News logo image, Kagi News should not be translated as it's a brand name"
+  },
+  "app.logo.iconAlt": {
+    "text": "Kagi News icon",
+    "translationContext": "Alt text for the Kagi News icon image, Kagi News should not be translated as it's a brand name"
+  },
+  "app.logo.newsAlt": {
+    "text": "Kagi News News Logo",
+    "translationContext": "Alt text for the Kagi News News logo image in header, Kagi News should not be translated as it's a brand name"
+  },
+  "app.logo.clickToReset": {
+    "text": "Click to reset view to home",
+    "translationContext": "Aria label for the logo button that resets the view to the home page"
+  },
+  "app.motto": {
+    "text": "News. Elevated.",
+    "translationContext": "Motto of the app, should be translated in a natural way"
+  },
+  "app.temporaryCategoryNotice": {
+    "text": "Temporarily showing this category from shared link",
+    "translationContext": "Notice shown when a user accesses a shared link for a category they haven't enabled."
+  },
+  "app.title": {
+    "text": "Kagi News",
+    "translationContext": "Title of the app, should not be translated"
+  },
+  "article.closeStory": {
+    "text": "Close story",
+    "translationContext": "Button text to close a story"
+  },
+  "article.didYouKnow": {
+    "text": "Did you know?",
+    "translationContext": "Title for the Did You Know section"
+  },
+  "article.location": {
+    "text": "Open location in maps",
+    "translationContext": "Title/tooltip for the location link"
+  },
+  "article.markAllAsRead": {
+    "text": "Mark all as read",
+    "translationContext": "Button text to mark all stories as read"
+  },
+  "article.readStatus": {
+    "text": "Click to toggle read status",
+    "translationContext": "Title/tooltip for the read status toggle button"
+  },
+  "article.reportInaccuracy": {
+    "text": "Report inaccuracy",
+    "translationContext": "Tooltip text for the report button"
+  },
+  "article.reportModal.addSource": {
+    "text": "Add another source",
+    "translationContext": "Button text to add another source URL field"
+  },
+  "article.reportModal.cancel": {
+    "text": "Cancel",
+    "translationContext": "Cancel button text"
+  },
+  "article.reportModal.characterCount": {
+    "text": "{{count}} / {{max}} characters",
+    "translationContext": "Character count display with placeholders for current count and maximum"
+  },
+  "article.reportModal.description": {
+    "text": "Please describe the issue",
+    "translationContext": "Label for the description field"
+  },
+  "article.reportModal.descriptionPlaceholder": {
+    "text": "Explain what's inaccurate or problematic about this summary...",
+    "translationContext": "Placeholder text for the description field"
+  },
+  "article.reportModal.error": {
+    "text": "Failed to submit report. Please try again.",
+    "translationContext": "Generic error message for report submission failure"
+  },
+  "article.reportModal.issueType": {
+    "text": "What's wrong?",
+    "translationContext": "Label for the issue type selection"
+  },
+  "article.reportModal.issueType.factualError": {
+    "text": "Factual error",
+    "translationContext": "Option for reporting factual errors"
+  },
+  "article.reportModal.issueType.misleading": {
+    "text": "Misleading summary",
+    "translationContext": "Option for reporting misleading summaries"
+  },
+  "article.reportModal.issueType.other": {
+    "text": "Other issue",
+    "translationContext": "Option for reporting other types of issues"
+  },
+  "article.reportModal.issueType.outdated": {
+    "text": "Outdated information",
+    "translationContext": "Option for reporting outdated content"
+  },
+  "article.reportModal.reportId": {
+    "text": "Report ID: {{id}}",
+    "translationContext": "Display of the report ID after successful submission"
+  },
+  "article.reportModal.reportingFor": {
+    "text": "Reporting issue with:",
+    "translationContext": "Label showing which story is being reported"
+  },
+  "article.reportModal.source": {
+    "text": "Sources (optional)",
+    "translationContext": "Label for the source URL field"
+  },
+  "article.reportModal.sourceHelper": {
+    "text": "Add links to credible sources that support your report",
+    "translationContext": "Helper text explaining the purpose of source URLs"
+  },
+  "article.reportModal.sourcePlaceholder": {
+    "text": "https://example.com/article",
+    "translationContext": "Placeholder text for the source URL field"
+  },
+  "article.reportModal.submit": {
+    "text": "Submit Report",
+    "translationContext": "Submit button text"
+  },
+  "article.reportModal.submitting": {
+    "text": "Submitting...",
+    "translationContext": "Button text while report is being submitted"
+  },
+  "article.reportModal.subtitle": {
+    "text": "Help us improve by reporting any issues with this story's summary",
+    "translationContext": "Subtitle explaining the purpose of the report modal"
+  },
+  "article.reportModal.success": {
+    "text": "Thank you for your feedback. Your report has been submitted.",
+    "translationContext": "Success message after report submission"
+  },
+  "article.reportModal.title": {
+    "text": "Report Inaccuracy",
+    "translationContext": "Title of the report modal"
+  },
+  "article.shareCopied": {
+    "text": "Copied!",
+    "translationContext": "Success message shown when URL is copied to clipboard"
+  },
+  "article.shareStory": {
+    "text": "Share story",
+    "translationContext": "Tooltip text for the share button"
+  },
+  "category.ai": {
+    "text": "AI",
+    "translationContext": "Display name for the AI news category"
+  },
+  "category.apple": {
+    "text": "Apple",
+    "translationContext": "Display name for the Apple news category"
+  },
+  "category.australia": {
+    "text": "Australia",
+    "translationContext": "Display name for the Australia news category"
+  },
+  "category.bay": {
+    "text": "USA | Bay Area",
+    "translationContext": "Display name for the Bay Area news category"
+  },
+  "category.belgium": {
+    "text": "Belgium",
+    "translationContext": "Display name for the Belgium news category"
+  },
+  "category.bitcoin": {
+    "text": "Bitcoin",
+    "translationContext": "Display name for the Bitcoin news category"
+  },
+  "category.brazil": {
+    "text": "Brazil",
+    "translationContext": "Display name for the Brazil news category"
+  },
+  "category.business": {
+    "text": "Business",
+    "translationContext": "Display name for the Business news category"
+  },
+  "category.canada": {
+    "text": "Canada",
+    "translationContext": "Display name for the Canada news category"
+  },
+  "category.china": {
+    "text": "China",
+    "translationContext": "Display name for the China news category"
+  },
+  "category.taiwan": {
+    "text": "Taiwan",
+    "translationContext": "Display name for the Taiwan news category"
+  },
+  "category.colombia": {
+    "text": "Colombia",
+    "translationContext": "Display name for the Colombia news category"
+  },
+  "category.costaRica": {
+    "text": "Costa Rica",
+    "translationContext": "Display name for the Costa Rica news category"
+  },
+  "category.cryptocurrency": {
+    "text": "Cryptocurrency",
+    "translationContext": "Display name for the Cryptocurrency news category"
+  },
+  "category.cybersecurity": {
+    "text": "Cybersecurity",
+    "translationContext": "Display name for the Cybersecurity news category"
+  },
+  "category.czechRepublic": {
+    "text": "Czech Republic",
+    "translationContext": "Display name for the Czech Republic news category"
+  },
+  "category.denmark": {
+    "text": "Denmark",
+    "translationContext": "Display name for the Denmark news category"
+  },
+  "category.economy": {
+    "text": "Economy",
+    "translationContext": "Display name for the Economy news category"
+  },
+  "category.egypt": {
+    "text": "Egypt",
+    "translationContext": "Display name for the Egypt news category"
+  },
+  "category.entertainment": {
+    "text": "Entertainment",
+    "translationContext": "Display name for the Entertainment news category"
+  },
+  "category.estonia": {
+    "text": "Estonia",
+    "translationContext": "Display name for the Estonia news category"
+  },
+  "category.europe": {
+    "text": "Europe",
+    "translationContext": "Display name for the Europe news category"
+  },
+  "category.finland": {
+    "text": "Finland",
+    "translationContext": "Display name for the Finland news category"
+  },
+  "category.france": {
+    "text": "France",
+    "translationContext": "Display name for the France news category"
+  },
+  "category.gaming": {
+    "text": "Gaming",
+    "translationContext": "Display name for the Gaming news category"
+  },
+  "category.germany": {
+    "text": "Germany",
+    "translationContext": "Display name for the Germany news category"
+  },
+  "category.germanyHesse": {
+    "text": "Germany | Hesse",
+    "translationContext": "Display name for the Germany Hesse regional news category"
+  },
+  "category.health": {
+    "text": "Health",
+    "translationContext": "Display name for the Health news category"
+  },
+  "category.hongKong": {
+    "text": "Hong Kong",
+    "translationContext": "Display name for the Hong Kong news category"
+  },
+  "category.india": {
+    "text": "India",
+    "translationContext": "Display name for the India news category"
+  },
+  "category.indonesia": {
+    "text": "Indonesia",
+    "translationContext": "Display name for the Indonesia news category"
+  },
+  "category.ireland": {
+    "text": "Ireland",
+    "translationContext": "Display name for the Ireland news category"
+  },
+  "category.israel": {
+    "text": "Israel",
+    "translationContext": "Display name for the Israel news category"
+  },
+  "category.italy": {
+    "text": "Italy",
+    "translationContext": "Display name for the Italy news category"
+  },
+  "category.japan": {
+    "text": "Japan",
+    "translationContext": "Display name for the Japan news category"
+  },
+  "category.kenya": {
+    "text": "Kenya",
+    "translationContext": "Display name for the Kenya news category"
+  },
+  "category.korea": {
+    "text": "Korea",
+    "translationContext": "Display name for the Korea news category"
+  },
+  "category.linuxOss": {
+    "text": "Linux & OSS",
+    "translationContext": "Display name for the Linux and Open Source Software news category"
+  },
+  "category.malaysia": {
+    "text": "Malaysia",
+    "translationContext": "Display name for the Malaysia news category"
+  },
+  "category.mexico": {
+    "text": "Mexico",
+    "translationContext": "Display name for the Mexico news category"
+  },
+  "category.middleEast": {
+    "text": "Middle East",
+    "translationContext": "Display name for the Middle East news category"
+  },
+  "category.thenetherlands": {
+    "text": "Netherlands",
+    "translationContext": "Display name for the Netherlands news category"
+  },
+  "category.newZealand": {
+    "text": "New Zealand",
+    "translationContext": "Display name for the New Zealand news category"
+  },
+  "category.nigeria": {
+    "text": "Nigeria",
+    "translationContext": "Display name for the Nigeria news category"
+  },
+  "category.norway": {
+    "text": "Norway",
+    "translationContext": "Display name for the Norway news category"
+  },
+  "category.pakistan": {
+    "text": "Pakistan",
+    "translationContext": "Display name for the Pakistan news category"
+  },
+  "category.philippines": {
+    "text": "Philippines",
+    "translationContext": "Display name for the Philippines news category"
+  },
+  "category.poland": {
+    "text": "Poland",
+    "translationContext": "Display name for the Poland news category"
+  },
+  "category.politics": {
+    "text": "Politics",
+    "translationContext": "Display name for the Politics news category"
+  },
+  "category.portugal": {
+    "text": "Portugal",
+    "translationContext": "Display name for the Portugal news category"
+  },
+  "category.romania": {
+    "text": "Romania",
+    "translationContext": "Display name for the Romania news category"
+  },
+  "category.russia": {
+    "text": "Russia",
+    "translationContext": "Display name for the Russia news category"
+  },
+  "category.science": {
+    "text": "Science",
+    "translationContext": "Display name for the Science news category"
+  },
+  "category.serbia": {
+    "text": "Serbia",
+    "translationContext": "Display name for the Serbia news category"
+  },
+  "category.singapore": {
+    "text": "Singapore",
+    "translationContext": "Display name for the Singapore news category"
+  },
+  "category.slovenia": {
+    "text": "Slovenia",
+    "translationContext": "Display name for the Slovenia news category"
+  },
+  "category.southAfrica": {
+    "text": "South Africa",
+    "translationContext": "Display name for the South Africa news category"
+  },
+  "category.southKorea": {
+    "text": "South Korea",
+    "translationContext": "Display name for the South Korea news category"
+  },
+  "category.spain": {
+    "text": "Spain",
+    "translationContext": "Display name for the Spain news category"
+  },
+  "category.sports": {
+    "text": "Sports",
+    "translationContext": "Display name for the Sports news category"
+  },
+  "category.sweden": {
+    "text": "Sweden",
+    "translationContext": "Display name for the Sweden news category"
+  },
+  "category.switzerland": {
+    "text": "Switzerland",
+    "translationContext": "Display name for the Switzerland news category"
+  },
+  "category.switzerlandDe": {
+    "text": "Switzerland (DE)",
+    "translationContext": "Display name for the Switzerland (DE) news category"
+  },
+  "category.technology": {
+    "text": "Technology",
+    "translationContext": "Display name for the Technology news category"
+  },
+  "category.thailand": {
+    "text": "Thailand",
+    "translationContext": "Display name for the Thailand news category"
+  },
+  "category.the_netherlands": {
+    "text": "Netherlands",
+    "translationContext": "Display name for the The Netherlands news category"
+  },
+  "category.todayInHistory": {
+    "text": "Today in History",
+    "translationContext": "Display name for the OnThisDay category"
+  },
+  "category.turkey": {
+    "text": "Turkey",
+    "translationContext": "Display name for the Turkey news category"
+  },
+  "category.uk": {
+    "text": "UK",
+    "translationContext": "Display name for the United Kingdom news category"
+  },
+  "category.ukraine": {
+    "text": "Ukraine",
+    "translationContext": "Display name for the Ukraine news category"
+  },
+  "category.usa": {
+    "text": "USA",
+    "translationContext": "Display name for the USA news category"
+  },
+  "category.usaAlabama": {
+    "text": "USA | Alabama",
+    "translationContext": "Display name for the USA Alabama news category"
+  },
+  "category.usaAlaska": {
+    "text": "USA | Alaska",
+    "translationContext": "Display name for the USA Alaska news category"
+  },
+  "category.usaArizona": {
+    "text": "USA | Arizona",
+    "translationContext": "Display name for the USA Arizona news category"
+  },
+  "category.usaArkansas": {
+    "text": "USA | Arkansas",
+    "translationContext": "Display name for the USA Arkansas news category"
+  },
+  "category.usaCalifornia": {
+    "text": "USA | California",
+    "translationContext": "Display name for the USA California news category"
+  },
+  "category.usaColorado": {
+    "text": "USA | Colorado",
+    "translationContext": "Display name for the USA Colorado news category"
+  },
+  "category.usaConnecticut": {
+    "text": "USA | Connecticut",
+    "translationContext": "Display name for the USA Connecticut news category"
+  },
+  "category.usaDelaware": {
+    "text": "USA | Delaware",
+    "translationContext": "Display name for the USA Delaware news category"
+  },
+  "category.usaFlorida": {
+    "text": "USA | Florida",
+    "translationContext": "Display name for the USA Florida news category"
+  },
+  "category.usaGeorgia": {
+    "text": "USA | Georgia",
+    "translationContext": "Display name for the USA Georgia news category"
+  },
+  "category.usaHawaii": {
+    "text": "USA | Hawaii",
+    "translationContext": "Display name for the USA Hawaii news category"
+  },
+  "category.usaIdaho": {
+    "text": "USA | Idaho",
+    "translationContext": "Display name for the USA Idaho news category"
+  },
+  "category.usaIllinois": {
+    "text": "USA | Illinois",
+    "translationContext": "Display name for the USA Illinois news category"
+  },
+  "category.usaIndiana": {
+    "text": "USA | Indiana",
+    "translationContext": "Display name for the USA Indiana news category"
+  },
+  "category.usaIowa": {
+    "text": "USA | Iowa",
+    "translationContext": "Display name for the USA Iowa news category"
+  },
+  "category.usaKansas": {
+    "text": "USA | Kansas",
+    "translationContext": "Display name for the USA Kansas news category"
+  },
+  "category.usaKentucky": {
+    "text": "USA | Kentucky",
+    "translationContext": "Display name for the USA Kentucky news category"
+  },
+  "category.usaLouisiana": {
+    "text": "USA | Louisiana",
+    "translationContext": "Display name for the USA Louisiana news category"
+  },
+  "category.usaMaine": {
+    "text": "USA | Maine",
+    "translationContext": "Display name for the USA Maine news category"
+  },
+  "category.usaMaryland": {
+    "text": "USA | Maryland",
+    "translationContext": "Display name for the USA Maryland news category"
+  },
+  "category.usaMassachusetts": {
+    "text": "USA | Massachusetts",
+    "translationContext": "Display name for the USA Massachusetts news category"
+  },
+  "category.usaMichigan": {
+    "text": "USA | Michigan",
+    "translationContext": "Display name for the USA Michigan news category"
+  },
+  "category.usaMinnesota": {
+    "text": "USA | Minnesota",
+    "translationContext": "Display name for the USA Minnesota news category"
+  },
+  "category.usaMississippi": {
+    "text": "USA | Mississippi",
+    "translationContext": "Display name for the USA Mississippi news category"
+  },
+  "category.usaMissouri": {
+    "text": "USA | Missouri",
+    "translationContext": "Display name for the USA Missouri news category"
+  },
+  "category.usaMontana": {
+    "text": "USA | Montana",
+    "translationContext": "Display name for the USA Montana news category"
+  },
+  "category.usaNebraska": {
+    "text": "USA | Nebraska",
+    "translationContext": "Display name for the USA Nebraska news category"
+  },
+  "category.usaNevada": {
+    "text": "USA | Nevada",
+    "translationContext": "Display name for the USA Nevada news category"
+  },
+  "category.usaNewHampshire": {
+    "text": "USA | New Hampshire",
+    "translationContext": "Display name for the USA New Hampshire news category"
+  },
+  "category.usaNewJersey": {
+    "text": "USA | New Jersey",
+    "translationContext": "Display name for the USA New Jersey news category"
+  },
+  "category.usaNewMexico": {
+    "text": "USA | New Mexico",
+    "translationContext": "Display name for the USA New Mexico news category"
+  },
+  "category.usaNewYork": {
+    "text": "USA | New York",
+    "translationContext": "Display name for the USA New York news category"
+  },
+  "category.usaNorthCarolina": {
+    "text": "USA | North Carolina",
+    "translationContext": "Display name for the USA North Carolina news category"
+  },
+  "category.usaNorthDakota": {
+    "text": "USA | North Dakota",
+    "translationContext": "Display name for the USA North Dakota news category"
+  },
+  "category.usaOhio": {
+    "text": "USA | Ohio",
+    "translationContext": "Display name for the USA Ohio news category"
+  },
+  "category.usaOklahoma": {
+    "text": "USA | Oklahoma",
+    "translationContext": "Display name for the USA Oklahoma news category"
+  },
+  "category.usaOregon": {
+    "text": "USA | Oregon",
+    "translationContext": "Display name for the USA Oregon news category"
+  },
+  "category.usaPennsylvania": {
+    "text": "USA | Pennsylvania",
+    "translationContext": "Display name for the USA Pennsylvania news category"
+  },
+  "category.usaRhodeIsland": {
+    "text": "USA | Rhode Island",
+    "translationContext": "Display name for the USA Rhode Island news category"
+  },
+  "category.usaSouthCarolina": {
+    "text": "USA | South Carolina",
+    "translationContext": "Display name for the USA South Carolina news category"
+  },
+  "category.usaSouthDakota": {
+    "text": "USA | South Dakota",
+    "translationContext": "Display name for the USA South Dakota news category"
+  },
+  "category.usaTennessee": {
+    "text": "USA | Tennessee",
+    "translationContext": "Display name for the USA Tennessee news category"
+  },
+  "category.usaTexas": {
+    "text": "USA | Texas",
+    "translationContext": "Display name for the USA Texas news category"
+  },
+  "category.usaUtah": {
+    "text": "USA | Utah",
+    "translationContext": "Display name for the USA Utah news category"
+  },
+  "category.usaVermont": {
+    "text": "USA | Vermont",
+    "translationContext": "Display name for the USA Vermont regional news category"
+  },
+  "category.usaVirginia": {
+    "text": "USA | Virginia",
+    "translationContext": "Display name for the USA Virginia regional news category"
+  },
+  "category.usaWashington": {
+    "text": "USA | Washington",
+    "translationContext": "Display name for the USA Washington news category"
+  },
+  "category.usaWestVirginia": {
+    "text": "USA | West Virginia",
+    "translationContext": "Display name for the USA West Virginia news category"
+  },
+  "category.usaWisconsin": {
+    "text": "USA | Wisconsin",
+    "translationContext": "Display name for the USA Wisconsin news category"
+  },
+  "category.usaWyoming": {
+    "text": "USA | Wyoming",
+    "translationContext": "Display name for the USA Wyoming news category"
+  },
+  "category.vietnam": {
+    "text": "Vietnam",
+    "translationContext": "Display name for the Vietnam news category"
+  },
+  "category.world": {
+    "text": "World",
+    "translationContext": "Display name for the World news category"
+  },
+  "citation.commonKnowledge.description": {
+    "text": "This information is common knowledge not pulled from a specific news source, but is included for context and completeness of the story.",
+    "translationContext": "Description explaining what common knowledge citations are"
+  },
+  "citation.commonKnowledge.title": {
+    "text": "Common Knowledge",
+    "translationContext": "Title for common knowledge citations marked with [*]"
+  },
+  "citation.source": {
+    "text": "Source:",
+    "translationContext": "Label shown before a single citation source"
+  },
+  "citation.sources": {
+    "text": "Sources:",
+    "translationContext": "Label shown before multiple citation sources"
+  },
+  "common.back": {
+    "text": "Back",
+    "translationContext": "Back button text"
+  },
+  "common.cancel": {
+    "text": "Cancel",
+    "translationContext": "Cancel button text"
+  },
+  "common.close": {
+    "text": "Close",
+    "translationContext": "Close button text"
+  },
+  "common.reset": {
+    "text": "Reset",
+    "translationContext": "Reset button text"
+  },
+  "contentFilter.adjustFilters": {
+    "text": "Adjust filters",
+    "translationContext": "Button to go to settings and adjust content filters"
+  },
+  "contentFilter.allStoriesFiltered": {
+    "text": "All stories in this category were filtered",
+    "translationContext": "Title when all stories in a category are filtered out"
+  },
+  "contentFilter.allStoriesFilteredDescription": {
+    "text": "Your content filters have hidden all stories in this category for today.",
+    "translationContext": "Description when all stories are filtered, explaining why"
+  },
+  "contentFilter.clickToReveal": {
+    "text": "Click to show story",
+    "translationContext": "Instruction to reveal filtered story"
+  },
+  "contentFilter.disableCategory": {
+    "text": "Disable category",
+    "translationContext": "Button to go to settings and disable this news category"
+  },
+  "contentFilter.filteredBecause": {
+    "text": "Hidden due to filter:",
+    "translationContext": "Short message explaining why story is filtered"
+  },
+  "contentFilter.linkedStoryFilteredBecause": {
+    "text": "The story you wanted to view is blocked by your content filter:",
+    "translationContext": "Message shown when a linked/pre-opened story is filtered"
+  },
+  "contentFilter.linkedStoryClickToReveal": {
+    "text": "Click to show anyway",
+    "translationContext": "Instruction to reveal a linked/pre-opened filtered story"
+  },
+  "contentFilter.hiddenStory": {
+    "text": "This story was hidden because it matches your content filters:",
+    "translationContext": "Message shown when a story is filtered"
+  },
+  "contentFilter.showStory": {
+    "text": "Show story",
+    "translationContext": "Button to reveal a filtered story"
+  },
+  "contentFilter.storiesFiltered": {
+    "text": "{{count}} stories filtered",
+    "translationContext": "Message showing multiple stories are filtered"
+  },
+  "contentFilter.storiesHidden": {
+    "text": "{{count}} stories hidden",
+    "translationContext": "Message showing multiple stories are hidden"
+  },
+  "contentFilter.storyFiltered": {
+    "text": "{{count}} story filtered",
+    "translationContext": "Message showing 1 story is filtered"
+  },
+  "contentFilter.storyHidden": {
+    "text": "{{count}} story hidden",
+    "translationContext": "Message showing 1 story is hidden"
+  },
+  "date.format": {
+    "text": "{{weekday}}, {{month}} {{day}}",
+    "translationContext": "Format for displaying dates. {weekday} will be replaced with the day of the week, {month} with the month name, and {day} with the day number."
+  },
+  "footer.about": {
+    "text": "About Kagi News",
+    "translationContext": "Link text for about page"
+  },
+  "footer.aboutMobile": {
+    "text": "About",
+    "translationContext": "Shorter link text for about page on mobile devices"
+  },
+  "footer.contribute": {
+    "text": "Contribute",
+    "translationContext": "Link text for contributing to the project"
+  },
+  "footer.rssFeed": {
+    "text": "RSS Feed",
+    "translationContext": "Link text for RSS feed"
+  },
+  "footer.rssFeedMobile": {
+    "text": "RSS",
+    "translationContext": "Shorter link text for RSS feed on mobile devices"
+  },
+  "header.fontSize": {
+    "text": "Font Size",
+    "translationContext": "Tooltip and aria-label for the font size adjustment button in the header"
+  },
+  "header.settings": {
+    "text": "Settings",
+    "translationContext": "Title attribute for the settings button"
+  },
+  "header.search": {
+    "text": "Search",
+    "translationContext": "Tooltip for search button in header"
+  },
+  "header.timeTravel": {
+    "text": "Time Travel",
+    "translationContext": "Tooltip for time travel button in header"
+  },
+  "loading.categories": {
+    "text": "Loading categories...",
+    "translationContext": "Loading message shown when fetching news categories"
+  },
+  "loading.chaosIndex": {
+    "text": "Calculating chaos index...",
+    "translationContext": "Loading message shown when calculating the world chaos index"
+  },
+  "loading.default": {
+    "text": "Loading...",
+    "translationContext": "Default loading message"
+  },
+  "loading.error": {
+    "text": "Error loading data",
+    "translationContext": "Loading message shown when an error occurs"
+  },
+  "loading.errorFallback": {
+    "text": "Continuing with limited functionality...",
+    "translationContext": "Message shown when there's an error but the app continues with fallback data"
+  },
+  "loading.finishing": {
+    "text": "Finishing up...",
+    "translationContext": "Loading message shown when nearly complete"
+  },
+  "loading.images": {
+    "text": "Preloading images...",
+    "translationContext": "Loading message shown when preloading story images"
+  },
+  "loading.initializing": {
+    "text": "Initializing...",
+    "translationContext": "Loading message shown when the app is starting up"
+  },
+  "loading.ready": {
+    "text": "Ready!",
+    "translationContext": "Loading message shown when loading is complete"
+  },
+  "loading.stories": {
+    "text": "Loading stories...",
+    "translationContext": "Loading message shown when fetching news stories"
+  },
+  "onboarding.button.back": {
+    "text": "← Back",
+    "translationContext": "Back button text"
+  },
+  "onboarding.button.getStarted": {
+    "text": "Get Started",
+    "translationContext": "Get started button text"
+  },
+  "onboarding.button.next": {
+    "text": "Next →",
+    "translationContext": "Next button text"
+  },
+  "onboarding.button.skip": {
+    "text": "Skip",
+    "translationContext": "Skip button text"
+  },
+  "onboarding.categories.subtitle": {
+    "text": "Kagi News follows news from around the world, covering national, regional, and local events. Select the categories you're interested in:",
+    "translationContext": "Subtitle for onboarding step 2"
+  },
+  "onboarding.categories.title": {
+    "text": "Choose Your Topics",
+    "translationContext": "Title for onboarding step 2"
+  },
+  "onboarding.sections.subtitle": {
+    "text": "Kagi News articles include various sections like summaries, key points, timelines, and different perspectives. You can reorder these sections by dragging or disable them entirely based on your reading preferences.",
+    "translationContext": "Subtitle for onboarding step 3"
+  },
+  "onboarding.sections.title": {
+    "text": "Content Preferences",
+    "translationContext": "Title for onboarding step 3"
+  },
+  "onboarding.welcome.subtitle": {
+    "text": "Let's personalize your news experience. First, choose your preferences:",
+    "translationContext": "Subtitle for onboarding step 1"
+  },
+  "onboarding.welcome.title": {
+    "text": "Welcome to Kagi News!",
+    "translationContext": "Title for onboarding step 1"
+  },
+  "onthisday.events": {
+    "text": "Events",
+    "translationContext": "Title for the events section in Today in History"
+  },
+  "onthisday.people": {
+    "text": "People",
+    "translationContext": "Title for the people section in Today in History"
+  },
+  "quote.format.authorSaid": {
+    "text": "{{author}} said",
+    "translationContext": "Quote author prefix. {author} is the person who said the quote"
+  },
+  "quote.format.full": {
+    "text": "In {{attribution}}, {{author}} said \"{{quote}\"",
+    "translationContext": "Full quote format with attribution and author. {attribution} is the source/publication, {author} is the person, {quote} is the actual quote"
+  },
+  "quote.format.inAttribution": {
+    "text": "In {{attribution}}",
+    "translationContext": "Quote attribution prefix for the source/publication only. {attribution} is the source/publication"
+  },
+  "section.actionItems": {
+    "text": "Action items",
+    "translationContext": "Title for the action items section"
+  },
+  "section.businessAngle": {
+    "text": "Business angle",
+    "translationContext": "Title for the business angle section"
+  },
+  "section.designPrinciples": {
+    "text": "Design principles",
+    "translationContext": "Title for the design principles section"
+  },
+  "section.didYouKnow": {
+    "text": "Did you know?",
+    "translationContext": "Title for the Did You Know section"
+  },
+  "section.gameplayMechanics": {
+    "text": "Gameplay mechanics",
+    "translationContext": "Title for the gameplay mechanics section"
+  },
+  "section.highlights": {
+    "text": "Highlights",
+    "translationContext": "Title for the highlights section"
+  },
+  "section.historicalBackground": {
+    "text": "Historical background",
+    "translationContext": "Title for the historical background section"
+  },
+  "section.humanitarianImpact": {
+    "text": "Humanitarian impact",
+    "translationContext": "Title for the humanitarian impact section"
+  },
+  "section.industryImpact": {
+    "text": "Industry impact",
+    "translationContext": "Title for the industry impact section"
+  },
+  "section.internationalReactions": {
+    "text": "International reactions",
+    "translationContext": "Title for the international reactions section"
+  },
+  "section.leagueStandings": {
+    "text": "League standings",
+    "translationContext": "Title for the league standings section"
+  },
+  "section.otherDetails": {
+    "text": "Other Details",
+    "translationContext": "Title for the other details section in article settings"
+  },
+  "section.performanceStatistics": {
+    "text": "Performance statistics",
+    "translationContext": "Title for the performance statistics section"
+  },
+  "section.perspectives": {
+    "text": "Perspectives",
+    "translationContext": "Title for the perspectives section"
+  },
+  "section.primaryImage": {
+    "text": "Primary Image",
+    "translationContext": "Title for the primary image section in article settings"
+  },
+  "section.quotes": {
+    "text": "Quotes",
+    "translationContext": "Title for the quotes section in article settings"
+  },
+  "section.scientificSignificance": {
+    "text": "Scientific significance",
+    "translationContext": "Title for the scientific significance section"
+  },
+  "section.secondaryImage": {
+    "text": "Secondary Image",
+    "translationContext": "Title for the secondary image section in article settings"
+  },
+  "section.sources": {
+    "text": "Sources",
+    "translationContext": "Title for the sources section"
+  },
+  "section.suggestedQnA": {
+    "text": "Quick questions",
+    "translationContext": "Title for the suggested Q&A section"
+  },
+  "section.summary": {
+    "text": "Summary",
+    "translationContext": "Title for the summary section in article settings"
+  },
+  "section.technicalDetails": {
+    "text": "Technical details",
+    "translationContext": "Title for the technical details section"
+  },
+  "section.technicalSpecifications": {
+    "text": "Technical specifications",
+    "translationContext": "Title for the technical specifications section"
+  },
+  "section.timeline": {
+    "text": "Timeline of events",
+    "translationContext": "Title for the timeline section"
+  },
+  "section.travelAdvisory": {
+    "text": "Travel advisory",
+    "translationContext": "Title for the travel advisory section"
+  },
+  "section.userExperienceImpact": {
+    "text": "User experience impact",
+    "translationContext": "Title for the user experience impact section"
+  },
   "settings.aboutKite.button": {
     "text": "About Kagi News",
     "translationContext": "Text for the About Kagi News button"
   },
-  "settings.categories.allCategories": {
-    "text": "All Categories",
-    "translationContext": "Label for showing all categories option in settings"
+  "settings.categories.coreTooltip": {
+    "text": "Maintained by Kagi team. High quality, diverse perspectives.",
+    "translationContext": "Tooltip in filter dropdown for core categories"
+  },
+  "settings.categories.communityTooltip": {
+    "text": "Community-maintained feeds. May have fewer sources or perspectives.",
+    "translationContext": "Tooltip in filter dropdown for community categories"
   },
   "settings.categories.contribute": {
     "text": "+ Contribute categories",
@@ -39,17 +1111,21 @@
     "text": "Cannot disable the last category",
     "translationContext": "Tooltip shown when trying to disable the last enabled category"
   },
-  "settings.categories.noDisabled": {
-    "text": "All categories enabled",
-    "translationContext": "Shows when no categories are disabled"
-  },
   "settings.categories.noEnabled": {
     "text": "No categories enabled",
     "translationContext": "Shows when no categories are enabled"
   },
+  "settings.categories.noDisabled": {
+    "text": "All categories enabled",
+    "translationContext": "Shows when no categories are disabled"
+  },
   "settings.categories.noFiltered": {
     "text": "No categories of this type are disabled",
     "translationContext": "Message shown when no categories of the selected filter type are in the disabled section"
+  },
+  "settings.categories.allCategories": {
+    "text": "All Categories",
+    "translationContext": "Label for showing all categories option in settings"
   },
   "settings.categories.types.all": {
     "text": "All types",
@@ -58,6 +1134,10 @@
   "settings.categories.types.city": {
     "text": "Cities",
     "translationContext": "Label for city category type"
+  },
+  "settings.categories.types.community": {
+    "text": "Community",
+    "translationContext": "Label for community-maintained category type"
   },
   "settings.categories.types.core": {
     "text": "Core",
@@ -78,6 +1158,46 @@
   "settings.categories.types.topic": {
     "text": "Topics",
     "translationContext": "Label for topic category type"
+  },
+  "settings.categories.singlePageMode.label": {
+    "text": "Display Mode",
+    "translationContext": "Label for single page mode setting"
+  },
+  "settings.categories.singlePageMode.description": {
+    "text": "Choose how to display stories: in tabs (default), or all in a single page with different ordering options.",
+    "translationContext": "Description for single page mode setting"
+  },
+  "settings.categories.singlePageMode.disabled": {
+    "text": "Tabs (default)",
+    "translationContext": "Option to use traditional tabbed view"
+  },
+  "settings.categories.singlePageMode.disabledTooltip": {
+    "text": "Display stories in separate tabs for each category. Click tabs to switch between categories.",
+    "translationContext": "Tooltip explaining the default tabs mode"
+  },
+  "settings.categories.singlePageMode.sequential": {
+    "text": "Single page - Sequential",
+    "translationContext": "Option for single page mode with sequential ordering"
+  },
+  "settings.categories.singlePageMode.sequentialTooltip": {
+    "text": "Display all stories in one scrollable page. Stories are grouped by category - all stories from the first category, then all from the second, and so on.",
+    "translationContext": "Tooltip explaining sequential single page mode"
+  },
+  "settings.categories.singlePageMode.mixed": {
+    "text": "Single page - Mixed",
+    "translationContext": "Option for single page mode with mixed ordering"
+  },
+  "settings.categories.singlePageMode.mixedTooltip": {
+    "text": "Display all stories in one scrollable page. Stories are interleaved - first story from each category, then second story from each, and so on. Categories with fewer stories are skipped when exhausted.",
+    "translationContext": "Tooltip explaining mixed single page mode"
+  },
+  "settings.categories.singlePageMode.random": {
+    "text": "Single page - Random",
+    "translationContext": "Option for single page mode with random ordering"
+  },
+  "settings.categories.singlePageMode.randomTooltip": {
+    "text": "Display all stories in one scrollable page in random order. Get a serendipitous mix of topics and perspectives.",
+    "translationContext": "Tooltip explaining random single page mode"
   },
   "settings.categoryHeaderPosition.bottom": {
     "text": "Bottom",
@@ -332,7 +1452,7 @@
     "translationContext": "Label for the data/content language setting"
   },
   "settings.dataLanguage.tooltip": {
-    "text": "Controls the language of news stories and their content.\n\n• Default: Most categories in your browser language ({{browserLang}}), countries in local language\n• Source: All content in original language\n• Other: All content translated to selected language",
+    "text": "Controls the language of news stories and their content.\n\n• Default: Most categories in your browser language ({{browserLang}}), countries in local language\n• Source: All content in original language\n• Custom: Choose multiple languages you speak. Articles in those languages shown in original form, others translated to your main language",
     "translationContext": "Tooltip explaining how data language translation works, with browser language variable"
   },
   "settings.experimental.articleIcons.description": {
@@ -407,6 +1527,58 @@
     "text": "Default",
     "translationContext": "Option for default language"
   },
+  "settings.language.source": {
+    "text": "Source",
+    "translationContext": "Option for showing content in original source language"
+  },
+  "settings.language.custom": {
+    "text": "Custom",
+    "translationContext": "Option for custom language preferences"
+  },
+  "settings.language.mainLanguage": {
+    "text": "Main Language",
+    "translationContext": "Label for the main translation language setting"
+  },
+  "settings.language.mainLanguageHelp": {
+    "text": "Articles will be translated into this language when not in a language you speak.",
+    "translationContext": "Help text explaining the main language setting"
+  },
+  "settings.language.languagesISpeak": {
+    "text": "Languages I Speak",
+    "translationContext": "Header for the list of languages the user can read"
+  },
+  "settings.language.languagesISpeakTooltip": {
+    "text": "Select all languages you can read. Articles in these languages will be shown in their original form.",
+    "translationContext": "Tooltip explaining the languages I speak feature"
+  },
+  "settings.language.noLanguagesISpeak": {
+    "text": "No additional languages added. Articles will always be translated into your main language.",
+    "translationContext": "Message shown when no additional languages are set"
+  },
+  "settings.language.selectLanguage": {
+    "text": "Select a language...",
+    "translationContext": "Placeholder for language selection dropdown"
+  },
+  "settings.language.allLanguagesAdded": {
+    "text": "All available languages have been added.",
+    "translationContext": "Message shown when all languages are in the preference list"
+  },
+  "settings.language.cannotRemoveMain": {
+    "text": "Cannot remove your main language",
+    "translationContext": "Tooltip for disabled remove button on main language"
+  },
+  "settings.language.customExplanationMainOnly": {
+    "text": "Articles in {{mainLang}} will be shown in the original language, all others translated into {{mainLang}}.",
+    "translationContext": "Explanation when only main language is selected. {{mainLang}} is the main language."
+  },
+  "settings.language.customExplanationTwoLangs": {
+    "text": "Articles in {{mainLang}} or {{additionalLang}} will be shown in the original language, all others translated into {{mainLang}}.",
+    "translationContext": "Explanation when main + one additional language. {{mainLang}} and {{additionalLang}} are language names."
+  },
+  "settings.language.customExplanationMultipleLangs": {
+    "text": "Articles in {{languages}}, or {{lastLang}} will be shown in the original language, all others translated into {{mainLang}}.",
+    "translationContext": "Explanation when multiple languages selected. {{languages}} is comma-separated, {{lastLang}} is the last one, {{mainLang}} is the main language."
+  },
   "settings.language.label": {
     "text": "Language",
     "translationContext": "Label for the language setting"
@@ -414,38 +1586,6 @@
   "settings.language.poweredBy": {
     "text": "Translated with Kagi Translate",
     "translationContext": "Text for the Kagi Translate powered by link"
-  },
-  "settings.language.source": {
-    "text": "Source",
-    "translationContext": "Option for showing content in original source language"
-  },
-  "settings.mapsProvider.apple": {
-    "text": "Apple Maps",
-    "translationContext": "Option to use Apple Maps"
-  },
-  "settings.mapsProvider.auto": {
-    "text": "Auto",
-    "translationContext": "Option for automatic maps provider selection based on login status"
-  },
-  "settings.mapsProvider.description": {
-    "text": "Choose which maps service to use for location links",
-    "translationContext": "Description explaining what the maps provider setting does"
-  },
-  "settings.mapsProvider.google": {
-    "text": "Google Maps",
-    "translationContext": "Option to use Google Maps"
-  },
-  "settings.mapsProvider.kagi": {
-    "text": "Kagi Maps",
-    "translationContext": "Option to use Kagi Maps"
-  },
-  "settings.mapsProvider.label": {
-    "text": "Maps Provider",
-    "translationContext": "Label for the maps provider setting"
-  },
-  "settings.mapsProvider.openstreetmap": {
-    "text": "OpenStreetMap",
-    "translationContext": "Option to use OpenStreetMap"
   },
   "settings.sections.instructions": {
     "text": "Drag to reorder sections. Use the switch to enable/disable.",
@@ -476,8 +1616,8 @@
     "translationContext": "Button text to toggle all sections on/off at once"
   },
   "settings.shareLanguage.message": {
-    "text": "Check out Kagi News News in {language} - it will skip the intro and load directly in your language!",
-    "translationContext": "Message to share with others, {language} will be replaced with the language name"
+    "text": "Check out Kagi News News in {{language}} - it will skip the intro and load directly in your language!",
+    "translationContext": "Message to share with others, {{language}} will be replaced with the language name"
   },
   "settings.shareLanguage.success": {
     "text": "Link copied to clipboard!",
@@ -507,13 +1647,13 @@
     "text": "Never expand all",
     "translationContext": "Option to disable bulk story expansion"
   },
-  "settings.storyOpenMode.description": {
-    "text": "Choose whether to allow multiple stories open at once or only one",
-    "translationContext": "Description for story open mode setting"
-  },
   "settings.storyOpenMode.label": {
     "text": "Story Open Mode",
     "translationContext": "Label for story open mode setting"
+  },
+  "settings.storyOpenMode.description": {
+    "text": "Choose whether to allow multiple stories open at once or only one",
+    "translationContext": "Description for story open mode setting"
   },
   "settings.storyOpenMode.multiple": {
     "text": "Multiple stories",
@@ -523,10 +1663,6 @@
     "text": "One story at a time",
     "translationContext": "Option to allow only one story open at a time"
   },
-  "settings.subsections.about": {
-    "text": "About",
-    "translationContext": "Subsection heading for about and info section"
-  },
   "settings.subsections.appearance": {
     "text": "Appearance",
     "translationContext": "Subsection heading for appearance-related settings"
@@ -535,121 +1671,17 @@
     "text": "Language & Region",
     "translationContext": "Subsection heading for language and localization settings"
   },
-  "settings.subsections.navigation": {
-    "text": "Navigation",
-    "translationContext": "Subsection heading for navigation and URL settings"
-  },
   "settings.subsections.readingExperience": {
     "text": "Reading Experience",
     "translationContext": "Subsection heading for story display and reading settings"
   },
-  "settings.sync.clear.button": {
-    "text": "Clear All Synced Data",
-    "translationContext": "Button text to clear all synced data"
+  "settings.subsections.navigation": {
+    "text": "Navigation",
+    "translationContext": "Subsection heading for navigation and URL settings"
   },
-  "settings.sync.clear.clearing": {
-    "text": "Clearing...",
-    "translationContext": "Text shown while clearing data"
-  },
-  "settings.sync.clear.confirmButton": {
-    "text": "Delete",
-    "translationContext": "Confirm button text for deleting synced data"
-  },
-  "settings.sync.clear.confirmMessage": {
-    "text": "This will permanently delete all your synced settings and read history from Kagi servers. Your local data will remain intact.",
-    "translationContext": "Confirmation message when clearing synced data"
-  },
-  "settings.sync.clear.confirmTitle": {
-    "text": "Delete All Synced Data?",
-    "translationContext": "Title for confirmation dialog when clearing synced data"
-  },
-  "settings.sync.clear.confirmWarning": {
-    "text": "This action cannot be undone.",
-    "translationContext": "Warning message in confirmation dialog"
-  },
-  "settings.sync.clear.deleting": {
-    "text": "Deleting your data...",
-    "translationContext": "Loading message shown while deleting synced data"
-  },
-  "settings.sync.clear.description": {
-    "text": "You are in control of your data. Export or delete your cloud data at any time. Deletion does not affect local data.",
-    "translationContext": "Description of data management section"
-  },
-  "settings.sync.clear.errorFailed": {
-    "text": "Failed to clear data",
-    "translationContext": "Generic error message when clearing data fails"
-  },
-  "settings.sync.clear.errorNotLoggedIn": {
-    "text": "You must be logged in to clear synced data",
-    "translationContext": "Error message when trying to clear data while not logged in"
-  },
-  "settings.sync.clear.success": {
-    "text": "All synced data has been deleted successfully.",
-    "translationContext": "Success message after clearing synced data"
-  },
-  "settings.sync.clear.title": {
-    "text": "Data Management",
-    "translationContext": "Title for data management section"
-  },
-  "settings.sync.export.button": {
-    "text": "Export Data",
-    "translationContext": "Button text to export synced data"
-  },
-  "settings.sync.export.errorFailed": {
-    "text": "Failed to export data",
-    "translationContext": "Generic error message when exporting data fails"
-  },
-  "settings.sync.export.errorNotLoggedIn": {
-    "text": "You must be logged in to export synced data",
-    "translationContext": "Error message when trying to export data while not logged in"
-  },
-  "settings.sync.export.exporting": {
-    "text": "Exporting...",
-    "translationContext": "Text shown while exporting data"
-  },
-  "settings.sync.info.description": {
-    "text": "Kagi News can sync your settings and read history across all your devices. This data is stored securely on Kagi servers and associated with your Kagi Search account.\n\nYour synced data is not used for any other purpose, not shared with anyone, and is solely stored to provide the sync service to you. You have full control over what gets synced and can delete your data at any time.",
-    "translationContext": "Description of sync and privacy features"
-  },
-  "settings.sync.notLoggedIn.description": {
-    "text": "Sign in to your Kagi account to sync your settings and read history across devices.",
-    "translationContext": "Description when user is not logged in"
-  },
-  "settings.sync.notLoggedIn.signIn": {
-    "text": "Sign In",
-    "translationContext": "Sign in button text"
-  },
-  "settings.sync.notLoggedIn.title": {
-    "text": "Sign In Required",
-    "translationContext": "Title when user is not logged in"
-  },
-  "settings.sync.readHistory.description": {
-    "text": "Stories you've read across all categories",
-    "translationContext": "Description of what read history gets synced"
-  },
-  "settings.sync.readHistory.enableInfo": {
-    "text": "When enabled, your read history will be uploaded and synced across all your devices",
-    "translationContext": "Info shown when sync is disabled, explaining what happens when enabled"
-  },
-  "settings.sync.readHistory.label": {
-    "text": "Sync Read History",
-    "translationContext": "Label for read history sync toggle"
-  },
-  "settings.sync.settings.description": {
-    "text": "Font size, story count, and other preferences",
-    "translationContext": "Description of what settings get synced"
-  },
-  "settings.sync.settings.enableInfo": {
-    "text": "When enabled, your current settings will be uploaded and shared across all your devices",
-    "translationContext": "Info shown when sync is disabled, explaining what happens when enabled"
-  },
-  "settings.sync.settings.label": {
-    "text": "Sync Settings",
-    "translationContext": "Label for settings sync toggle"
-  },
-  "settings.sync.toggles.title": {
-    "text": "Sync Preferences",
-    "translationContext": "Title for sync preferences section"
+  "settings.subsections.about": {
+    "text": "About",
+    "translationContext": "Subsection heading for about and info section"
   },
   "settings.tabs.categories": {
     "text": "Categories",
@@ -675,6 +1707,58 @@
     "text": "Syncing",
     "translationContext": "Title for the sync and privacy settings tab"
   },
+  "settings.tabs.about": {
+    "text": "About",
+    "translationContext": "Title for the about settings tab"
+  },
+  "settings.about.aboutKite": {
+    "text": "About Kagi News",
+    "translationContext": "Title for about Kagi News section"
+  },
+  "settings.about.description": {
+    "text": "Kagi News distills thousands of world-wide news sources into one perfect daily briefing. Get every critical perspective in just 5 minutes. No endless scrolling. No attention hijacking.",
+    "translationContext": "Short description of Kagi News in about settings"
+  },
+  "settings.about.learnMore": {
+    "text": "Learn more",
+    "translationContext": "Link text to open full about page"
+  },
+  "settings.about.apiAccess": {
+    "text": "API Access",
+    "translationContext": "Title for API access section in about settings"
+  },
+  "settings.about.apiDescription": {
+    "text": "Access Kagi News programmatically with our REST API",
+    "translationContext": "Description for API access"
+  },
+  "settings.about.viewApiDocs": {
+    "text": "View API Documentation",
+    "translationContext": "Button text to view API documentation"
+  },
+  "settings.about.mobileApps": {
+    "text": "Mobile Apps",
+    "translationContext": "Title for mobile apps section in about settings"
+  },
+  "settings.about.mobileDescription": {
+    "text": "Get Kagi News on your mobile device",
+    "translationContext": "Description for mobile apps"
+  },
+  "settings.about.downloadIos": {
+    "text": "Download for iOS",
+    "translationContext": "Button text to download iOS app"
+  },
+  "settings.about.downloadAndroid": {
+    "text": "Download for Android",
+    "translationContext": "Button text to download Android app"
+  },
+  "settings.about.madeWith": {
+    "text": "Made with",
+    "translationContext": "Footer text prefix for copyright"
+  },
+  "settings.about.forNews": {
+    "text": "for news readers",
+    "translationContext": "Footer text suffix for copyright"
+  },
   "settings.theme.dark": {
     "text": "Dark",
     "translationContext": "Option for dark theme"
@@ -696,1284 +1780,16 @@
     "translationContext": "Label for the UI language setting"
   },
   "settings.uiLanguage.tooltip": {
-    "text": "Controls the language of buttons, menus, and interface text. 'Default' sets the UI language to your browser's language ({{language}}) automatically, but the headings inside a story to the language of that story.",
+    "text": "Controls the language of buttons, menus, and interface text. 'Default' sets the UI language to your browser's language ({{{language}}}) automatically, but the headings inside a story to the language of that story.",
     "translationContext": "Tooltip explaining how UI language works including default behavior"
   },
-  "settings.useLatestUrls.description": {
-    "text": "Use /latest URLs for current news so bookmarks always show the latest content",
-    "translationContext": "Description explaining what the latest URLs setting does"
-  },
-  "settings.useLatestUrls.disabled": {
-    "text": "Disabled",
-    "translationContext": "Option when latest URLs are disabled"
-  },
-  "settings.useLatestUrls.enabled": {
-    "text": "Enabled",
-    "translationContext": "Option when latest URLs are enabled"
-  },
-  "settings.useLatestUrls.label": {
-    "text": "Use Latest URLs",
-    "translationContext": "Label for the setting that controls URL format"
-  },
-  "common.back": {
-    "text": "Back",
-    "translationContext": "Back button text"
-  },
-  "common.cancel": {
-    "text": "Cancel",
-    "translationContext": "Cancel button text"
-  },
-  "common.close": {
-    "text": "Close",
-    "translationContext": "Close button text"
-  },
-  "common.reset": {
-    "text": "Reset",
-    "translationContext": "Reset button text"
-  },
-  "about.approach.description1": {
-    "text": "World doesn't live in echo chambers. The reality emerges from the collision of different viewpoints and perspectives - that's how we separate signal from noise.",
-    "translationContext": "First paragraph of the approach section"
-  },
-  "about.approach.description2": {
-    "text": "We strive for diversity and transparency of resources and welcome your <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">contributions</a> to widen perspectives. This multi-source approach helps reveal the full picture beyond any single viewpoint.",
-    "translationContext": "Second paragraph of the approach section with GitHub link"
-  },
-  "about.approach.description3": {
-    "text": "Kagi News reads public RSS feeds of thousands of (community-curated) world-wide news sources and distills them into one perfect daily briefing. You get every critical perspective and timeline in just 5 minutes. That's it. No endless scrolling. No attention hijacking. Because we deserve better.",
-    "translationContext": "Third paragraph of the approach section"
-  },
-  "about.approach.title": {
-    "text": "Understanding our approach",
-    "translationContext": "Title of the approach section"
-  },
-  "about.contact.description": {
-    "text": "For feedback, please use <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://kagifeedback.org\">Kagi Feedback</a>. For support, <a href=\"mailto:support@kagi.com\" class=\"text-blue-600 hover:underline dark:text-blue-400\">support@kagi.com</a>.",
-    "translationContext": "Contact information with links"
-  },
-  "about.contact.title": {
-    "text": "Contact",
-    "translationContext": "Title of the contact section"
-  },
-  "about.customization.description": {
-    "text": "Personalize your feed by reordering and toggling categories in settings. Want to contribute? Most of Kagi News is <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://github.com/kagisearch/kite-public\">open source</a>, including our web app and community-curated feeds.",
-    "translationContext": "Description of customization options with GitHub link"
-  },
-  "about.customization.title": {
-    "text": "Customization",
-    "translationContext": "Title of the customization section"
-  },
-  "about.principles.item1": {
-    "text": "One daily update (~noon UTC), creating a natural endpoint to your news consumption",
-    "translationContext": "First core principle about daily updates"
-  },
-  "about.principles.item2": {
-    "text": "Focus on facts and perspectives over opinions",
-    "translationContext": "Second core principle about facts vs opinions"
-  },
-  "about.principles.item3": {
-    "text": "Zero compromise on privacy - your reading habits are yours alone",
-    "translationContext": "Third core principle about privacy"
-  },
-  "about.principles.item4": {
-    "text": "Quality and depth over quantity",
-    "translationContext": "Fourth core principle about quality"
-  },
-  "about.principles.item5": {
-    "text": "Complete news diet in 5 minutes",
-    "translationContext": "Fifth core principle about time efficiency"
-  },
-  "about.principles.item6": {
-    "text": "Liberation from the attention economy - exist in the moment, not in an endless scroll",
-    "translationContext": "Sixth core principle about attention economy"
-  },
-  "about.principles.title": {
-    "text": "Core principles",
-    "translationContext": "Title of the core principles section"
-  },
-  "about.subtitle": {
-    "text": "News app by Kagi",
-    "translationContext": "Kagi is a company, should not be translated"
-  },
-  "about.understand.button": {
-    "text": "I understand",
-    "translationContext": "Text for the I understand button"
-  },
-  "about.why.description": {
-    "text": "Driven by relentless ad monetization, news has <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"https://gwern.net/doc/culture/2010-dobelli.pdf\">become</a> mental junk food - an endless stream of clickbait that destroys our ability to <a class=\"text-blue-600 hover:underline dark:text-blue-400\" href=\"http://www.aaronsw.com/weblog/hatethenews\">think deeply and clearly</a>. We can do better, and create what news should have been all along - pure, essential information that respects your intelligence and time.",
-    "translationContext": "Description of why Kagi News exists, including HTML link"
-  },
-  "about.why.title": {
-    "text": "Why Kagi News? Because news is broken.",
-    "translationContext": "Title of the Why Kagi News section"
-  },
-  "app.beta": {
-    "text": "BETA",
-    "translationContext": "Beta label shown next to the app title"
-  },
-  "app.disclaimerAutoGenerated": {
-    "text": "Summaries may contain errors.",
-    "translationContext": "Disclaimer about AI-generated content"
-  },
-  "app.disclaimerVerify": {
-    "text": "Please verify important information.",
-    "translationContext": "Reminder to verify information, goes after 'Summaries are AI/LLM-generated and Kagi News can make mistakes.'"
-  },
-  "app.logo.alt": {
-    "text": "Kagi News Logo",
-    "translationContext": "Alt text for the Kagi News logo image, Kagi News should not be translated as it's a brand name"
-  },
-  "app.logo.iconAlt": {
-    "text": "Kagi News icon",
-    "translationContext": "Alt text for the Kagi News icon image, Kagi News should not be translated as it's a brand name"
-  },
-  "app.logo.newsAlt": {
-    "text": "Kagi News News Logo",
-    "translationContext": "Alt text for the Kagi News News logo image in header, Kagi News should not be translated as it's a brand name"
-  },
-  "app.motto": {
-    "text": "News. Elevated.",
-    "translationContext": "Motto of the app, should be translated in a natural way"
-  },
-  "app.temporaryCategoryNotice": {
-    "text": "Temporarily showing this category from shared link",
-    "translationContext": "Notice shown when a user accesses a shared link for a category they haven't enabled."
-  },
-  "app.title": {
-    "text": "Kagi News",
-    "translationContext": "Title of the app, should not be translated"
-  },
-  "article.closeStory": {
-    "text": "Close story",
-    "translationContext": "Button text to close a story"
-  },
-  "article.didYouKnow": {
-    "text": "Did you know?",
-    "translationContext": "Title for the Did You Know section"
-  },
-  "article.location": {
-    "text": "Open location in maps",
-    "translationContext": "Title/tooltip for the location link"
-  },
-  "article.markAllAsRead": {
-    "text": "Mark all as read",
-    "translationContext": "Button text to mark all stories as read"
-  },
-  "article.readStatus": {
-    "text": "Click to toggle read status",
-    "translationContext": "Title/tooltip for the read status toggle button"
-  },
-  "article.reportInaccuracy": {
-    "text": "Report inaccuracy",
-    "translationContext": "Tooltip text for the report button"
-  },
-  "article.reportModal.addSource": {
-    "text": "Add another source",
-    "translationContext": "Button text to add another source URL field"
-  },
-  "article.reportModal.cancel": {
-    "text": "Cancel",
-    "translationContext": "Cancel button text"
-  },
-  "article.reportModal.characterCount": {
-    "text": "{{count}} / {{max}} characters",
-    "translationContext": "Character count display with placeholders for current count and maximum"
-  },
-  "article.reportModal.description": {
-    "text": "Please describe the issue",
-    "translationContext": "Label for the description field"
-  },
-  "article.reportModal.descriptionPlaceholder": {
-    "text": "Explain what's inaccurate or problematic about this summary...",
-    "translationContext": "Placeholder text for the description field"
-  },
-  "article.reportModal.error": {
-    "text": "Failed to submit report. Please try again.",
-    "translationContext": "Generic error message for report submission failure"
-  },
-  "article.reportModal.issueType": {
-    "text": "What's wrong?",
-    "translationContext": "Label for the issue type selection"
-  },
-  "article.reportModal.issueType.factualError": {
-    "text": "Factual error",
-    "translationContext": "Option for reporting factual errors"
-  },
-  "article.reportModal.issueType.misleading": {
-    "text": "Misleading summary",
-    "translationContext": "Option for reporting misleading summaries"
-  },
-  "article.reportModal.issueType.other": {
-    "text": "Other issue",
-    "translationContext": "Option for reporting other types of issues"
-  },
-  "article.reportModal.issueType.outdated": {
-    "text": "Outdated information",
-    "translationContext": "Option for reporting outdated content"
-  },
-  "article.reportModal.reportId": {
-    "text": "Report ID: {{id}}",
-    "translationContext": "Display of the report ID after successful submission"
-  },
-  "article.reportModal.reportingFor": {
-    "text": "Reporting issue with:",
-    "translationContext": "Label showing which story is being reported"
-  },
-  "article.reportModal.source": {
-    "text": "Sources (optional)",
-    "translationContext": "Label for the source URL field"
-  },
-  "article.reportModal.sourceHelper": {
-    "text": "Add links to credible sources that support your report",
-    "translationContext": "Helper text explaining the purpose of source URLs"
-  },
-  "article.reportModal.sourcePlaceholder": {
-    "text": "https://example.com/article",
-    "translationContext": "Placeholder text for the source URL field"
-  },
-  "article.reportModal.submit": {
-    "text": "Submit Report",
-    "translationContext": "Submit button text"
-  },
-  "article.reportModal.submitting": {
-    "text": "Submitting...",
-    "translationContext": "Button text while report is being submitted"
-  },
-  "article.reportModal.subtitle": {
-    "text": "Help us improve by reporting any issues with this story's summary",
-    "translationContext": "Subtitle explaining the purpose of the report modal"
-  },
-  "article.reportModal.success": {
-    "text": "Thank you for your feedback. Your report has been submitted.",
-    "translationContext": "Success message after report submission"
-  },
-  "article.reportModal.title": {
-    "text": "Report Inaccuracy",
-    "translationContext": "Title of the report modal"
-  },
-  "article.shareCopied": {
-    "text": "Copied!",
-    "translationContext": "Success message shown when URL is copied to clipboard"
-  },
-  "article.shareStory": {
-    "text": "Share story",
-    "translationContext": "Tooltip text for the share button"
-  },
-  "category.ai": {
-    "text": "AI",
-    "translationContext": "Display name for the AI news category"
-  },
-  "category.apple": {
-    "text": "Apple",
-    "translationContext": "Display name for the Apple news category"
-  },
-  "category.australia": {
-    "text": "Australia",
-    "translationContext": "Display name for the Australia news category"
-  },
-  "category.bayArea": {
-    "text": "USA | Bay",
-    "translationContext": "Display name for the Bay Area news category"
-  },
-  "category.belgium": {
-    "text": "Belgium",
-    "translationContext": "Display name for the Belgium news category"
-  },
-  "category.bitcoin": {
-    "text": "Bitcoin",
-    "translationContext": "Display name for the Bitcoin news category"
-  },
-  "category.brazil": {
-    "text": "Brazil",
-    "translationContext": "Display name for the Brazil news category"
-  },
-  "category.business": {
-    "text": "Business",
-    "translationContext": "Display name for the Business news category"
-  },
-  "category.canada": {
-    "text": "Canada",
-    "translationContext": "Display name for the Canada news category"
-  },
-  "category.china": {
-    "text": "China",
-    "translationContext": "Display name for the China news category"
-  },
-  "category.chinaTaiwan": {
-    "text": "Taiwan",
-    "translationContext": "Display name for the Taiwan news category"
-  },
-  "category.colombia": {
-    "text": "Colombia",
-    "translationContext": "Display name for the Colombia news category"
-  },
-  "category.costaRica": {
-    "text": "Costa Rica",
-    "translationContext": "Display name for the Costa Rica news category"
-  },
-  "category.cryptocurrency": {
-    "text": "Cryptocurrency",
-    "translationContext": "Display name for the Cryptocurrency news category"
-  },
-  "category.cybersecurity": {
-    "text": "Cybersecurity",
-    "translationContext": "Display name for the Cybersecurity news category"
-  },
-  "category.czechRepublic": {
-    "text": "Czech Republic",
-    "translationContext": "Display name for the Czech Republic news category"
-  },
-  "category.denmark": {
-    "text": "Denmark",
-    "translationContext": "Display name for the Denmark news category"
-  },
-  "category.economy": {
-    "text": "Economy",
-    "translationContext": "Display name for the Economy news category"
-  },
-  "category.egypt": {
-    "text": "Egypt",
-    "translationContext": "Display name for the Egypt news category"
-  },
-  "category.entertainment": {
-    "text": "Entertainment",
-    "translationContext": "Display name for the Entertainment news category"
-  },
-  "category.estonia": {
-    "text": "Estonia",
-    "translationContext": "Display name for the Estonia news category"
-  },
-  "category.europe": {
-    "text": "Europe",
-    "translationContext": "Display name for the Europe news category"
-  },
-  "category.finland": {
-    "text": "Finland",
-    "translationContext": "Display name for the Finland news category"
-  },
-  "category.france": {
-    "text": "France",
-    "translationContext": "Display name for the France news category"
-  },
-  "category.gaming": {
-    "text": "Gaming",
-    "translationContext": "Display name for the Gaming news category"
-  },
-  "category.germany": {
-    "text": "Germany",
-    "translationContext": "Display name for the Germany news category"
-  },
-  "category.germanyHesse": {
-    "text": "Germany | Hesse",
-    "translationContext": "Display name for the Germany Hesse regional news category"
-  },
-  "category.health": {
-    "text": "Health",
-    "translationContext": "Display name for the Health news category"
-  },
-  "category.hongKong": {
-    "text": "Hong Kong",
-    "translationContext": "Display name for the Hong Kong news category"
-  },
-  "category.india": {
-    "text": "India",
-    "translationContext": "Display name for the India news category"
-  },
-  "category.indonesia": {
-    "text": "Indonesia",
-    "translationContext": "Display name for the Indonesia news category"
-  },
-  "category.ireland": {
-    "text": "Ireland",
-    "translationContext": "Display name for the Ireland news category"
-  },
-  "category.israel": {
-    "text": "Israel",
-    "translationContext": "Display name for the Israel news category"
-  },
-  "category.italy": {
-    "text": "Italy",
-    "translationContext": "Display name for the Italy news category"
-  },
-  "category.japan": {
-    "text": "Japan",
-    "translationContext": "Display name for the Japan news category"
-  },
-  "category.kenya": {
-    "text": "Kenya",
-    "translationContext": "Display name for the Kenya news category"
-  },
-  "category.korea": {
-    "text": "Korea",
-    "translationContext": "Display name for the Korea news category"
-  },
-  "category.linuxOss": {
-    "text": "Linux & OSS",
-    "translationContext": "Display name for the Linux and Open Source Software news category"
-  },
-  "category.malaysia": {
-    "text": "Malaysia",
-    "translationContext": "Display name for the Malaysia news category"
-  },
-  "category.mexico": {
-    "text": "Mexico",
-    "translationContext": "Display name for the Mexico news category"
-  },
-  "category.middleEast": {
-    "text": "Middle East",
-    "translationContext": "Display name for the Middle East news category"
-  },
-  "category.netherlands": {
-    "text": "The Netherlands",
-    "translationContext": "Display name for the Netherlands news category"
-  },
-  "category.newZealand": {
-    "text": "New Zealand",
-    "translationContext": "Display name for the New Zealand news category"
-  },
-  "category.nigeria": {
-    "text": "Nigeria",
-    "translationContext": "Display name for the Nigeria news category"
-  },
-  "category.norway": {
-    "text": "Norway",
-    "translationContext": "Display name for the Norway news category"
-  },
-  "category.pakistan": {
-    "text": "Pakistan",
-    "translationContext": "Display name for the Pakistan news category"
-  },
-  "category.philippines": {
-    "text": "Philippines",
-    "translationContext": "Display name for the Philippines news category"
-  },
-  "category.poland": {
-    "text": "Poland",
-    "translationContext": "Display name for the Poland news category"
-  },
-  "category.politics": {
-    "text": "Politics",
-    "translationContext": "Display name for the Politics news category"
-  },
-  "category.portugal": {
-    "text": "Portugal",
-    "translationContext": "Display name for the Portugal news category"
-  },
-  "category.romania": {
-    "text": "Romania",
-    "translationContext": "Display name for the Romania news category"
-  },
-  "category.russia": {
-    "text": "Russia",
-    "translationContext": "Display name for the Russia news category"
-  },
-  "category.science": {
-    "text": "Science",
-    "translationContext": "Display name for the Science news category"
-  },
-  "category.serbia": {
-    "text": "Serbia",
-    "translationContext": "Display name for the Serbia news category"
-  },
-  "category.singapore": {
-    "text": "Singapore",
-    "translationContext": "Display name for the Singapore news category"
-  },
-  "category.slovenia": {
-    "text": "Slovenia",
-    "translationContext": "Display name for the Slovenia news category"
-  },
-  "category.southAfrica": {
-    "text": "South Africa",
-    "translationContext": "Display name for the South Africa news category"
-  },
-  "category.southKorea": {
-    "text": "South Korea",
-    "translationContext": "Display name for the South Korea news category"
-  },
-  "category.spain": {
-    "text": "Spain",
-    "translationContext": "Display name for the Spain news category"
-  },
-  "category.sports": {
-    "text": "Sports",
-    "translationContext": "Display name for the Sports news category"
-  },
-  "category.sweden": {
-    "text": "Sweden",
-    "translationContext": "Display name for the Sweden news category"
-  },
-  "category.switzerland": {
-    "text": "Switzerland",
-    "translationContext": "Display name for the Switzerland news category"
-  },
-  "category.switzerlandDe": {
-    "text": "Switzerland (DE)",
-    "translationContext": "Display name for the Switzerland (DE) news category"
-  },
-  "category.technology": {
-    "text": "Technology",
-    "translationContext": "Display name for the Technology news category"
-  },
-  "category.thailand": {
-    "text": "Thailand",
-    "translationContext": "Display name for the Thailand news category"
-  },
-  "category.theNetherlands": {
-    "text": "The Netherlands",
-    "translationContext": "Display name for the The Netherlands news category"
-  },
-  "category.todayInHistory": {
-    "text": "Today in History",
-    "translationContext": "Display name for the OnThisDay category"
-  },
-  "category.turkey": {
-    "text": "Turkey",
-    "translationContext": "Display name for the Turkey news category"
-  },
-  "category.uk": {
-    "text": "UK",
-    "translationContext": "Display name for the United Kingdom news category"
-  },
-  "category.ukraine": {
-    "text": "Ukraine",
-    "translationContext": "Display name for the Ukraine news category"
-  },
-  "category.usa": {
-    "text": "USA",
-    "translationContext": "Display name for the USA news category"
-  },
-  "category.usaAlabama": {
-    "text": "USA | Alabama",
-    "translationContext": "Display name for the USA Alabama news category"
-  },
-  "category.usaAlaska": {
-    "text": "USA | Alaska",
-    "translationContext": "Display name for the USA Alaska news category"
-  },
-  "category.usaArizona": {
-    "text": "USA | Arizona",
-    "translationContext": "Display name for the USA Arizona news category"
-  },
-  "category.usaArkansas": {
-    "text": "USA | Arkansas",
-    "translationContext": "Display name for the USA Arkansas news category"
-  },
-  "category.usaCalifornia": {
-    "text": "USA | California",
-    "translationContext": "Display name for the USA California news category"
-  },
-  "category.usaColorado": {
-    "text": "USA | Colorado",
-    "translationContext": "Display name for the USA Colorado news category"
-  },
-  "category.usaConnecticut": {
-    "text": "USA | Connecticut",
-    "translationContext": "Display name for the USA Connecticut news category"
-  },
-  "category.usaDelaware": {
-    "text": "USA | Delaware",
-    "translationContext": "Display name for the USA Delaware news category"
-  },
-  "category.usaFlorida": {
-    "text": "USA | Florida",
-    "translationContext": "Display name for the USA Florida news category"
-  },
-  "category.usaGeorgia": {
-    "text": "USA | Georgia",
-    "translationContext": "Display name for the USA Georgia news category"
-  },
-  "category.usaHawaii": {
-    "text": "USA | Hawaii",
-    "translationContext": "Display name for the USA Hawaii news category"
-  },
-  "category.usaIdaho": {
-    "text": "USA | Idaho",
-    "translationContext": "Display name for the USA Idaho news category"
-  },
-  "category.usaIllinois": {
-    "text": "USA | Illinois",
-    "translationContext": "Display name for the USA Illinois news category"
-  },
-  "category.usaIndiana": {
-    "text": "USA | Indiana",
-    "translationContext": "Display name for the USA Indiana news category"
-  },
-  "category.usaIowa": {
-    "text": "USA | Iowa",
-    "translationContext": "Display name for the USA Iowa news category"
-  },
-  "category.usaKansas": {
-    "text": "USA | Kansas",
-    "translationContext": "Display name for the USA Kansas news category"
-  },
-  "category.usaKentucky": {
-    "text": "USA | Kentucky",
-    "translationContext": "Display name for the USA Kentucky news category"
-  },
-  "category.usaLouisiana": {
-    "text": "USA | Louisiana",
-    "translationContext": "Display name for the USA Louisiana news category"
-  },
-  "category.usaMaine": {
-    "text": "USA | Maine",
-    "translationContext": "Display name for the USA Maine news category"
-  },
-  "category.usaMaryland": {
-    "text": "USA | Maryland",
-    "translationContext": "Display name for the USA Maryland news category"
-  },
-  "category.usaMassachusetts": {
-    "text": "USA | Massachusetts",
-    "translationContext": "Display name for the USA Massachusetts news category"
-  },
-  "category.usaMichigan": {
-    "text": "USA | Michigan",
-    "translationContext": "Display name for the USA Michigan news category"
-  },
-  "category.usaMinnesota": {
-    "text": "USA | Minnesota",
-    "translationContext": "Display name for the USA Minnesota news category"
-  },
-  "category.usaMississippi": {
-    "text": "USA | Mississippi",
-    "translationContext": "Display name for the USA Mississippi news category"
-  },
-  "category.usaMissouri": {
-    "text": "USA | Missouri",
-    "translationContext": "Display name for the USA Missouri news category"
-  },
-  "category.usaMontana": {
-    "text": "USA | Montana",
-    "translationContext": "Display name for the USA Montana news category"
-  },
-  "category.usaNebraska": {
-    "text": "USA | Nebraska",
-    "translationContext": "Display name for the USA Nebraska news category"
-  },
-  "category.usaNevada": {
-    "text": "USA | Nevada",
-    "translationContext": "Display name for the USA Nevada news category"
-  },
-  "category.usaNewHampshire": {
-    "text": "USA | New Hampshire",
-    "translationContext": "Display name for the USA New Hampshire news category"
-  },
-  "category.usaNewJersey": {
-    "text": "USA | New Jersey",
-    "translationContext": "Display name for the USA New Jersey news category"
-  },
-  "category.usaNewMexico": {
-    "text": "USA | New Mexico",
-    "translationContext": "Display name for the USA New Mexico news category"
-  },
-  "category.usaNewYork": {
-    "text": "USA | New York",
-    "translationContext": "Display name for the USA New York news category"
-  },
-  "category.usaNorthCarolina": {
-    "text": "USA | North Carolina",
-    "translationContext": "Display name for the USA North Carolina news category"
-  },
-  "category.usaNorthDakota": {
-    "text": "USA | North Dakota",
-    "translationContext": "Display name for the USA North Dakota news category"
-  },
-  "category.usaOhio": {
-    "text": "USA | Ohio",
-    "translationContext": "Display name for the USA Ohio news category"
-  },
-  "category.usaOklahoma": {
-    "text": "USA | Oklahoma",
-    "translationContext": "Display name for the USA Oklahoma news category"
-  },
-  "category.usaOregon": {
-    "text": "USA | Oregon",
-    "translationContext": "Display name for the USA Oregon news category"
-  },
-  "category.usaPennsylvania": {
-    "text": "USA | Pennsylvania",
-    "translationContext": "Display name for the USA Pennsylvania news category"
-  },
-  "category.usaRhodeIsland": {
-    "text": "USA | Rhode Island",
-    "translationContext": "Display name for the USA Rhode Island news category"
-  },
-  "category.usaSouthCarolina": {
-    "text": "USA | South Carolina",
-    "translationContext": "Display name for the USA South Carolina news category"
-  },
-  "category.usaSouthDakota": {
-    "text": "USA | South Dakota",
-    "translationContext": "Display name for the USA South Dakota news category"
-  },
-  "category.usaTennessee": {
-    "text": "USA | Tennessee",
-    "translationContext": "Display name for the USA Tennessee news category"
-  },
-  "category.usaTexas": {
-    "text": "USA | Texas",
-    "translationContext": "Display name for the USA Texas news category"
-  },
-  "category.usaUtah": {
-    "text": "USA | Utah",
-    "translationContext": "Display name for the USA Utah news category"
-  },
-  "category.usaVermont": {
-    "text": "USA | Vermont",
-    "translationContext": "Display name for the USA Vermont regional news category"
-  },
-  "category.usaVirginia": {
-    "text": "USA | Virginia",
-    "translationContext": "Display name for the USA Virginia regional news category"
-  },
-  "category.usaWashington": {
-    "text": "USA | Washington",
-    "translationContext": "Display name for the USA Washington news category"
-  },
-  "category.usaWestVirginia": {
-    "text": "USA | West Virginia",
-    "translationContext": "Display name for the USA West Virginia news category"
-  },
-  "category.usaWisconsin": {
-    "text": "USA | Wisconsin",
-    "translationContext": "Display name for the USA Wisconsin news category"
-  },
-  "category.usaWyoming": {
-    "text": "USA | Wyoming",
-    "translationContext": "Display name for the USA Wyoming news category"
-  },
-  "category.vietnam": {
-    "text": "Vietnam",
-    "translationContext": "Display name for the Vietnam news category"
-  },
-  "category.world": {
-    "text": "World",
-    "translationContext": "Display name for the World news category"
-  },
-  "citation.commonKnowledge.description": {
-    "text": "This information is common knowledge not pulled from a specific news source, but is included for context and completeness of the story.",
-    "translationContext": "Description explaining what common knowledge citations are"
-  },
-  "citation.commonKnowledge.title": {
-    "text": "Common Knowledge",
-    "translationContext": "Title for common knowledge citations marked with [*]"
-  },
-  "citation.source": {
-    "text": "Source:",
-    "translationContext": "Label shown before a single citation source"
-  },
-  "citation.sources": {
-    "text": "Sources:",
-    "translationContext": "Label shown before multiple citation sources"
-  },
-  "contentFilter.adjustFilters": {
-    "text": "Adjust filters",
-    "translationContext": "Button to go to settings and adjust content filters"
-  },
-  "contentFilter.allStoriesFiltered": {
-    "text": "All stories in this category were filtered",
-    "translationContext": "Title when all stories in a category are filtered out"
-  },
-  "contentFilter.allStoriesFilteredDescription": {
-    "text": "Your content filters have hidden all stories in this category for today.",
-    "translationContext": "Description when all stories are filtered, explaining why"
-  },
-  "contentFilter.clickToReveal": {
-    "text": "Click to show story",
-    "translationContext": "Instruction to reveal filtered story"
-  },
-  "contentFilter.disableCategory": {
-    "text": "Disable category",
-    "translationContext": "Button to go to settings and disable this news category"
-  },
-  "contentFilter.filteredBecause": {
-    "text": "Hidden due to filter:",
-    "translationContext": "Short message explaining why story is filtered"
-  },
-  "contentFilter.hiddenStory": {
-    "text": "This story was hidden because it matches your content filters:",
-    "translationContext": "Message shown when a story is filtered"
-  },
-  "contentFilter.linkedStoryClickToReveal": {
-    "text": "Click to show anyway",
-    "translationContext": "Instruction to reveal a linked/pre-opened filtered story"
-  },
-  "contentFilter.linkedStoryFilteredBecause": {
-    "text": "The story you wanted to view is blocked by your content filter:",
-    "translationContext": "Message shown when a linked/pre-opened story is filtered"
-  },
-  "contentFilter.showStory": {
-    "text": "Show story",
-    "translationContext": "Button to reveal a filtered story"
-  },
-  "contentFilter.storiesFiltered": {
-    "text": "{{count}} stories filtered",
-    "translationContext": "Message showing multiple stories are filtered"
-  },
-  "contentFilter.storiesHidden": {
-    "text": "{{count}} stories hidden",
-    "translationContext": "Message showing multiple stories are hidden"
-  },
-  "contentFilter.storyFiltered": {
-    "text": "{{count}} story filtered",
-    "translationContext": "Message showing 1 story is filtered"
-  },
-  "contentFilter.storyHidden": {
-    "text": "{{count}} story hidden",
-    "translationContext": "Message showing 1 story is hidden"
-  },
-  "date.format": {
-    "text": "{{weekday}}, {{month}} {{day}}",
-    "translationContext": "Format for displaying dates. {weekday} will be replaced with the day of the week, {month} with the month name, and {day} with the day number."
-  },
-  "footer.about": {
-    "text": "About Kagi News",
-    "translationContext": "Link text for about page"
-  },
-  "footer.aboutMobile": {
-    "text": "About",
-    "translationContext": "Shorter link text for about page on mobile devices"
-  },
-  "footer.contribute": {
-    "text": "Contribute",
-    "translationContext": "Link text for contributing to the project"
-  },
-  "footer.rssFeed": {
-    "text": "RSS Feed",
-    "translationContext": "Link text for RSS feed"
-  },
-  "footer.rssFeedMobile": {
-    "text": "RSS",
-    "translationContext": "Shorter link text for RSS feed on mobile devices"
-  },
-  "header.fontSize": {
-    "text": "Font Size",
-    "translationContext": "Tooltip and aria-label for the font size adjustment button in the header"
-  },
-  "header.search": {
-    "text": "Search",
-    "translationContext": "Tooltip for search button in header"
-  },
-  "header.settings": {
-    "text": "Settings",
-    "translationContext": "Title attribute for the settings button"
-  },
-  "header.timeTravel": {
-    "text": "Time Travel",
-    "translationContext": "Tooltip for time travel button in header"
-  },
-  "loading.categories": {
-    "text": "Loading categories...",
-    "translationContext": "Loading message shown when fetching news categories"
-  },
-  "loading.chaosIndex": {
-    "text": "Calculating chaos index...",
-    "translationContext": "Loading message shown when calculating the world chaos index"
-  },
-  "loading.default": {
-    "text": "Loading...",
-    "translationContext": "Default loading message"
-  },
-  "loading.error": {
-    "text": "Error loading data",
-    "translationContext": "Loading message shown when an error occurs"
-  },
-  "loading.errorFallback": {
-    "text": "Continuing with limited functionality...",
-    "translationContext": "Message shown when there's an error but the app continues with fallback data"
-  },
-  "loading.finishing": {
-    "text": "Finishing up...",
-    "translationContext": "Loading message shown when nearly complete"
-  },
-  "loading.images": {
-    "text": "Preloading images...",
-    "translationContext": "Loading message shown when preloading story images"
-  },
-  "loading.initializing": {
-    "text": "Initializing...",
-    "translationContext": "Loading message shown when the app is starting up"
-  },
-  "loading.ready": {
-    "text": "Ready!",
-    "translationContext": "Loading message shown when loading is complete"
-  },
-  "loading.stories": {
-    "text": "Loading stories...",
-    "translationContext": "Loading message shown when fetching news stories"
-  },
-  "meta.categoryDescription": {
-    "text": "Latest {category} news on Kagi News",
-    "translationContext": "Meta description for category pages. {category} will be replaced with the actual category name."
-  },
-  "meta.description": {
-    "text": "Kagi News distills thousands of world-wide news sources into one perfect daily briefing. Get every critical perspective in just 5 minutes. No endless scrolling. No attention hijacking.",
-    "translationContext": "Default meta description for SEO"
-  },
-  "meta.news": {
-    "text": "News",
-    "translationContext": "The word 'News' used in titles"
-  },
-  "navigation.backToTop": {
-    "text": "Back to top",
-    "translationContext": "Accessibility label for the button that scrolls back to the top of the page"
-  },
-  "notification.newBatch.action": {
-    "text": "View",
-    "translationContext": "Action button label on toast notification to view the new batch of news"
-  },
-  "notification.newBatch.message": {
-    "text": "New news available!",
-    "translationContext": "Toast notification message when a new batch of news is published"
-  },
-  "onboarding.button.back": {
-    "text": "← Back",
-    "translationContext": "Back button text"
-  },
-  "onboarding.button.getStarted": {
-    "text": "Get Started",
-    "translationContext": "Get started button text"
-  },
-  "onboarding.button.next": {
-    "text": "Next →",
-    "translationContext": "Next button text"
-  },
-  "onboarding.button.skip": {
-    "text": "Skip",
-    "translationContext": "Skip button text"
-  },
-  "onboarding.categories.subtitle": {
-    "text": "Kagi News follows news from around the world, covering national, regional, and local events. Select the categories you're interested in:",
-    "translationContext": "Subtitle for onboarding step 2"
-  },
-  "onboarding.categories.title": {
-    "text": "Choose Your Topics",
-    "translationContext": "Title for onboarding step 2"
-  },
-  "onboarding.sections.subtitle": {
-    "text": "Kagi News articles include various sections like summaries, key points, timelines, and different perspectives. You can reorder these sections by dragging or disable them entirely based on your reading preferences.",
-    "translationContext": "Subtitle for onboarding step 3"
-  },
-  "onboarding.sections.title": {
-    "text": "Content Preferences",
-    "translationContext": "Title for onboarding step 3"
-  },
-  "onboarding.welcome.subtitle": {
-    "text": "Let's personalize your news experience. First, choose your preferences:",
-    "translationContext": "Subtitle for onboarding step 1"
-  },
-  "onboarding.welcome.title": {
-    "text": "Welcome to Kagi News!",
-    "translationContext": "Title for onboarding step 1"
-  },
-  "onthisday.events": {
-    "text": "Events",
-    "translationContext": "Title for the events section in Today in History"
-  },
-  "onthisday.people": {
-    "text": "People",
-    "translationContext": "Title for the people section in Today in History"
-  },
-  "quote.format.authorSaid": {
-    "text": "{{author}} said",
-    "translationContext": "Quote author prefix. {author} is the person who said the quote"
-  },
-  "quote.format.full": {
-    "text": "In {{attribution}}, {{author}} said \"{{quote}\"",
-    "translationContext": "Full quote format with attribution and author. {attribution} is the source/publication, {author} is the person, {quote} is the actual quote"
-  },
-  "quote.format.inAttribution": {
-    "text": "In {{attribution}}",
-    "translationContext": "Quote attribution prefix for the source/publication only. {attribution} is the source/publication"
-  },
-  "search.close": {
-    "text": "close",
-    "translationContext": "Keyboard shortcut hint for Escape key"
-  },
-  "search.close_search": {
-    "text": "Close search",
-    "translationContext": "Aria label for close search button"
-  },
-  "search.dismiss_tips": {
-    "text": "Don't show these tips again",
-    "translationContext": "Tooltip for dismissing filter tips permanently"
-  },
-  "search.filter_category_hint": {
-    "text": "Filter by news category (e.g., category:Technology)",
-    "translationContext": "Hint for category filter"
-  },
-  "search.filter_date_hint": {
-    "text": "Search within a date range (e.g., from:2025-01-01 to:today)",
-    "translationContext": "Hint for date filters"
-  },
-  "search.for": {
-    "text": "for",
-    "translationContext": "Preposition used in 'results for query'"
-  },
-  "search.get_started_description": {
-    "text": "Type to search or use filters",
-    "translationContext": "Description shown when search modal is empty"
-  },
-  "search.get_started_title": {
-    "text": "Start searching",
-    "translationContext": "Title shown when search modal is empty"
-  },
-  "search.historical": {
-    "text": "historical",
-    "translationContext": "Label for results from historical batches"
-  },
-  "search.historical_included": {
-    "text": "{{count}} historical results included",
-    "translationContext": "Shows number of historical search results included. {{count}} is replaced with the number."
-  },
-  "search.historical_needs_3_chars": {
-    "text": "Historical search needs 3+ characters",
-    "translationContext": "Message shown when query is too short for historical search"
-  },
-  "search.load_more": {
-    "text": "Load more results",
-    "translationContext": "Button text to load more search results"
-  },
-  "search.loading_historical_data": {
-    "text": "Loading historical data...",
-    "translationContext": "Loading message when fetching historical search results"
-  },
-  "search.loading_more": {
-    "text": "Loading more results...",
-    "translationContext": "Loading message while fetching more results"
-  },
-  "search.navigate": {
-    "text": "navigate",
-    "translationContext": "Keyboard shortcut hint for arrow keys"
-  },
-  "search.no_results": {
-    "text": "No results found",
-    "translationContext": "Message when no results are found"
-  },
-  "search.no_results_description": {
-    "text": "Try adjusting your search terms or filters to find what you're looking for.",
-    "translationContext": "Description for empty search results"
-  },
-  "search.no_results_description_simple": {
-    "text": "Try different search terms to find what you're looking for.",
-    "translationContext": "Simple no results message when historical search is disabled"
-  },
-  "search.no_results_title": {
-    "text": "No results found",
-    "translationContext": "Title for empty search results"
-  },
-  "search.of": {
-    "text": "of",
-    "translationContext": "Preposition used in 'X of Y results'"
-  },
-  "search.placeholder_1": {
-    "text": "Let your search take flight...",
-    "translationContext": "Search placeholder easter egg referencing Kite"
-  },
-  "search.placeholder_10": {
-    "text": "String together your search...",
-    "translationContext": "Search placeholder easter egg referencing kite strings"
-  },
-  "search.placeholder_2": {
-    "text": "Soar through the news...",
-    "translationContext": "Search placeholder easter egg referencing Kite"
-  },
-  "search.placeholder_3": {
-    "text": "Catch the wind of information...",
-    "translationContext": "Search placeholder easter egg referencing Kite"
-  },
-  "search.placeholder_4": {
-    "text": "Navigate the news currents...",
-    "translationContext": "Search placeholder easter egg referencing Kite"
-  },
-  "search.placeholder_5": {
-    "text": "Rise above the noise...",
-    "translationContext": "Search placeholder easter egg referencing Kite"
-  },
-  "search.placeholder_6": {
-    "text": "Fly through today's stories...",
-    "translationContext": "Search placeholder easter egg referencing Kite"
-  },
-  "search.placeholder_7": {
-    "text": "Glide into the news stream...",
-    "translationContext": "Search placeholder easter egg referencing Kite"
-  },
-  "search.placeholder_8": {
-    "text": "Elevate your news search...",
-    "translationContext": "Search placeholder easter egg referencing Kite"
-  },
-  "search.placeholder_9": {
-    "text": "Float through the headlines...",
-    "translationContext": "Search placeholder easter egg referencing Kite"
-  },
-  "search.result_plural": {
-    "text": "results",
-    "translationContext": "Plural form of results"
-  },
-  "search.result_single": {
-    "text": "result",
-    "translationContext": "Singular form of result"
-  },
-  "search.search": {
-    "text": "search",
-    "translationContext": "Keyboard shortcut hint for Cmd/Ctrl+K"
-  },
-  "search.search_news_stories": {
-    "text": "Search news stories",
-    "translationContext": "Aria label for search input field"
-  },
-  "search.searching": {
-    "text": "Searching...",
-    "translationContext": "Loading message while searching"
-  },
-  "search.searching_historical": {
-    "text": "Searching historical...",
-    "translationContext": "Loading message while searching historical data"
-  },
-  "search.select": {
-    "text": "select",
-    "translationContext": "Keyboard shortcut hint for Enter key"
-  },
-  "search.shortcuts_hint": {
-    "text": "Type \"cat\" for categories, dates like \"yesterday\" or \"last week\"",
-    "translationContext": "Hint for search shortcuts"
-  },
-  "search.shortcuts_title": {
-    "text": "Quick shortcuts",
-    "translationContext": "Title for shortcuts section"
-  },
-  "search.showing": {
-    "text": "Showing",
-    "translationContext": "Label used in 'Showing X of Y results'"
-  },
-  "search.showing_of": {
-    "text": "Showing {{shown}} of {{total}} results",
-    "translationContext": "Message showing current vs total results. {{shown}} and {{total}} are replaced with numbers."
-  },
-  "search.source_plural": {
-    "text": "sources",
-    "translationContext": "Plural form of 'sources' for news sources"
-  },
-  "search.source_single": {
-    "text": "source",
-    "translationContext": "Singular form of 'source' for news sources"
-  },
-  "search.try_searching_for": {
-    "text": "Try searching for:",
-    "translationContext": "Prompt before showing search examples"
-  },
-  "search.try_these": {
-    "text": "Try these filters",
-    "translationContext": "Section title for filter suggestions"
-  },
-  "section.actionItems": {
-    "text": "Action items",
-    "translationContext": "Title for the action items section"
-  },
-  "section.businessAngle": {
-    "text": "Business angle",
-    "translationContext": "Title for the business angle section"
-  },
-  "section.designPrinciples": {
-    "text": "Design principles",
-    "translationContext": "Title for the design principles section"
-  },
-  "section.didYouKnow": {
-    "text": "Did you know?",
-    "translationContext": "Title for the Did You Know section"
-  },
-  "section.gameplayMechanics": {
-    "text": "Gameplay mechanics",
-    "translationContext": "Title for the gameplay mechanics section"
-  },
-  "section.highlights": {
-    "text": "Highlights",
-    "translationContext": "Title for the highlights section"
-  },
-  "section.historicalBackground": {
-    "text": "Historical background",
-    "translationContext": "Title for the historical background section"
-  },
-  "section.humanitarianImpact": {
-    "text": "Humanitarian impact",
-    "translationContext": "Title for the humanitarian impact section"
-  },
-  "section.industryImpact": {
-    "text": "Industry impact",
-    "translationContext": "Title for the industry impact section"
-  },
-  "section.internationalReactions": {
-    "text": "International reactions",
-    "translationContext": "Title for the international reactions section"
-  },
-  "section.leagueStandings": {
-    "text": "League standings",
-    "translationContext": "Title for the league standings section"
-  },
-  "section.otherDetails": {
-    "text": "Other Details",
-    "translationContext": "Title for the other details section in article settings"
-  },
-  "section.performanceStatistics": {
-    "text": "Performance statistics",
-    "translationContext": "Title for the performance statistics section"
-  },
-  "section.perspectives": {
-    "text": "Perspectives",
-    "translationContext": "Title for the perspectives section"
-  },
-  "section.primaryImage": {
-    "text": "Primary Image",
-    "translationContext": "Title for the primary image section in article settings"
-  },
-  "section.quotes": {
-    "text": "Quotes",
-    "translationContext": "Title for the quotes section in article settings"
-  },
-  "section.scientificSignificance": {
-    "text": "Scientific significance",
-    "translationContext": "Title for the scientific significance section"
-  },
-  "section.secondaryImage": {
-    "text": "Secondary Image",
-    "translationContext": "Title for the secondary image section in article settings"
-  },
-  "section.sources": {
-    "text": "Sources",
-    "translationContext": "Title for the sources section"
-  },
-  "section.suggestedQnA": {
-    "text": "Quick questions",
-    "translationContext": "Title for the suggested Q&A section"
-  },
-  "section.summary": {
-    "text": "Summary",
-    "translationContext": "Title for the summary section in article settings"
-  },
-  "section.technicalDetails": {
-    "text": "Technical details",
-    "translationContext": "Title for the technical details section"
-  },
-  "section.technicalSpecifications": {
-    "text": "Technical specifications",
-    "translationContext": "Title for the technical specifications section"
-  },
-  "section.timeline": {
-    "text": "Timeline of events",
-    "translationContext": "Title for the timeline section"
-  },
-  "section.travelAdvisory": {
-    "text": "Travel advisory",
-    "translationContext": "Title for the travel advisory section"
-  },
-  "section.userExperienceImpact": {
-    "text": "User experience impact",
-    "translationContext": "Title for the user experience impact section"
-  },
-  "shared.viewAllArticles": {
-    "text": "← View all articles from {{{date}}}",
-    "translationContext": "Button to exit shared article view and see all articles from a specific date. {{date}} will be replaced with a localized date."
+  "shared.viewingStoryFrom": {
+    "text": "Viewing a shared story from {{{date}}}",
+    "translationContext": "Banner text shown when user opens a shared story link, with date placeholder"
+  },
+  "shared.viewLatest": {
+    "text": "View latest stories",
+    "translationContext": "Button text to exit shared view and see latest stories"
   },
   "source.contribute.button": {
     "text": "Contribute Information",
@@ -2087,6 +1903,14 @@
     "text": "Updated {{count}} seconds ago",
     "translationContext": "Shown when content was updated seconds ago, {count} will be replaced with the number of seconds"
   },
+  "time.nextUpdate.soon": {
+    "text": "Next update soon",
+    "translationContext": "Shown when the next update is expected soon (after noon UTC but no update yet today)"
+  },
+  "time.nextUpdate.in": {
+    "text": "Next update in {{time}}",
+    "translationContext": "Shown when the next update time is known, {time} will be replaced with countdown (e.g., '2h 30m')"
+  },
   "timeTravel.latest": {
     "text": "Latest",
     "translationContext": "Label for the most recent batch of the day"
@@ -2135,14 +1959,6 @@
     "text": "Turbulence meter",
     "translationContext": "Tooltip text for the turbulence meter button"
   },
-  "ui.back": {
-    "text": "Back",
-    "translationContext": "Text for back buttons"
-  },
-  "ui.cancel": {
-    "text": "Cancel",
-    "translationContext": "Text for cancel buttons"
-  },
   "ui.citations": {
     "text": "Citations",
     "translationContext": "Title for citations section"
@@ -2155,17 +1971,37 @@
     "text": "Close",
     "translationContext": "Text for close buttons"
   },
-  "ui.closeDialog": {
-    "text": "Close dialog",
-    "translationContext": "Aria label for close dialog button"
+  "ui.skipToMainContent": {
+    "text": "Skip to main content",
+    "translationContext": "Accessibility link to skip navigation and jump to main content"
+  },
+  "ui.cancel": {
+    "text": "Cancel",
+    "translationContext": "Text for cancel buttons"
+  },
+  "ui.ok": {
+    "text": "OK",
+    "translationContext": "Text for OK buttons"
+  },
+  "ui.back": {
+    "text": "Back",
+    "translationContext": "Text for back buttons"
+  },
+  "ui.success": {
+    "text": "Success!",
+    "translationContext": "Text for success messages"
+  },
+  "ui.enable": {
+    "text": "Enable",
+    "translationContext": "Text for enabling features"
   },
   "ui.disable": {
     "text": "Disable",
     "translationContext": "Text for disabling features"
   },
-  "ui.enable": {
-    "text": "Enable",
-    "translationContext": "Text for enabling features"
+  "ui.closeDialog": {
+    "text": "Close dialog",
+    "translationContext": "Aria label for close dialog button"
   },
   "ui.imageUnavailable": {
     "text": "Image unavailable",
@@ -2175,21 +2011,9 @@
     "text": "Next slide",
     "translationContext": "Aria label for next slide button"
   },
-  "ui.ok": {
-    "text": "OK",
-    "translationContext": "Text for OK buttons"
-  },
   "ui.previousSlide": {
     "text": "Previous slide",
     "translationContext": "Aria label for previous slide button"
-  },
-  "ui.skipToMainContent": {
-    "text": "Skip to main content",
-    "translationContext": "Accessibility link to skip navigation and jump to main content"
-  },
-  "ui.success": {
-    "text": "Success!",
-    "translationContext": "Text for success messages"
   },
   "view.list": {
     "text": "List view",
@@ -2302,5 +2126,509 @@
   "worldTension.whatIsThis": {
     "text": "What is this?",
     "translationContext": "Button text to show explanation of world tension"
+  },
+  "search.historical": {
+    "text": "historical",
+    "translationContext": "Label for results from historical batches"
+  },
+  "search.searching": {
+    "text": "Searching...",
+    "translationContext": "Loading message while searching"
+  },
+  "search.searching_historical": {
+    "text": "Searching historical...",
+    "translationContext": "Loading message while searching historical data"
+  },
+  "search.result_single": {
+    "text": "result",
+    "translationContext": "Singular form of result"
+  },
+  "search.result_plural": {
+    "text": "results",
+    "translationContext": "Plural form of results"
+  },
+  "search.of": {
+    "text": "of",
+    "translationContext": "Preposition used in 'X of Y results'"
+  },
+  "search.for": {
+    "text": "for",
+    "translationContext": "Preposition used in 'results for query'"
+  },
+  "search.historical_needs_3_chars": {
+    "text": "Historical search needs 3+ characters",
+    "translationContext": "Message shown when query is too short for historical search"
+  },
+  "search.placeholder_1": {
+    "text": "Let your search take flight...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_2": {
+    "text": "Soar through the news...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_3": {
+    "text": "Catch the wind of information...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_4": {
+    "text": "Navigate the news currents...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_5": {
+    "text": "Rise above the noise...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_6": {
+    "text": "Fly through today's stories...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_7": {
+    "text": "Glide into the news stream...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_8": {
+    "text": "Elevate your news search...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_9": {
+    "text": "Float through the headlines...",
+    "translationContext": "Search placeholder easter egg referencing Kite"
+  },
+  "search.placeholder_10": {
+    "text": "String together your search...",
+    "translationContext": "Search placeholder easter egg referencing kite strings"
+  },
+  "search.historical_included": {
+    "text": "{{count}} historical results included",
+    "translationContext": "Shows number of historical search results included. {{count}} is replaced with the number."
+  },
+  "search.get_started_title": {
+    "text": "Start searching",
+    "translationContext": "Title shown when search modal is empty"
+  },
+  "search.get_started_description": {
+    "text": "Type to search or use filters",
+    "translationContext": "Description shown when search modal is empty"
+  },
+  "search.try_these": {
+    "text": "Try these filters",
+    "translationContext": "Section title for filter suggestions"
+  },
+  "search.filter_category_hint": {
+    "text": "Filter by news category (e.g., category:Technology)",
+    "translationContext": "Hint for category filter"
+  },
+  "search.filter_date_hint": {
+    "text": "Search within a date range (e.g., from:2025-01-01 to:today)",
+    "translationContext": "Hint for date filters"
+  },
+  "search.shortcuts_title": {
+    "text": "Quick shortcuts",
+    "translationContext": "Title for shortcuts section"
+  },
+  "search.shortcuts_hint": {
+    "text": "Type \"cat\" for categories, dates like \"yesterday\" or \"last week\"",
+    "translationContext": "Hint for search shortcuts"
+  },
+  "search.no_results": {
+    "text": "No results found",
+    "translationContext": "Message when no results are found"
+  },
+  "search.no_results_title": {
+    "text": "No results found",
+    "translationContext": "Title for empty search results"
+  },
+  "search.no_results_description": {
+    "text": "Try adjusting your search terms or filters to find what you're looking for.",
+    "translationContext": "Description for empty search results"
+  },
+  "search.showing": {
+    "text": "Showing",
+    "translationContext": "Label used in 'Showing X of Y results'"
+  },
+  "search.load_more": {
+    "text": "Load more results",
+    "translationContext": "Button text to load more search results"
+  },
+  "search.loading_more": {
+    "text": "Loading more results...",
+    "translationContext": "Loading message while fetching more results"
+  },
+  "search.showing_of": {
+    "text": "Showing {{shown}} of {{total}} results",
+    "translationContext": "Message showing current vs total results. {{shown}} and {{total}} are replaced with numbers."
+  },
+  "search.dismiss_tips": {
+    "text": "Don't show these tips again",
+    "translationContext": "Tooltip for dismissing filter tips permanently"
+  },
+  "search.no_results_description_simple": {
+    "text": "Try different search terms to find what you're looking for.",
+    "translationContext": "Simple no results message when historical search is disabled"
+  },
+  "search.try_searching_for": {
+    "text": "Try searching for:",
+    "translationContext": "Prompt before showing search examples"
+  },
+  "search.source_single": {
+    "text": "source",
+    "translationContext": "Singular form of 'source' for news sources"
+  },
+  "search.source_plural": {
+    "text": "sources",
+    "translationContext": "Plural form of 'sources' for news sources"
+  },
+  "search.close_search": {
+    "text": "Close search",
+    "translationContext": "Aria label for close search button"
+  },
+  "search.search_news_stories": {
+    "text": "Search news stories",
+    "translationContext": "Aria label for search input field"
+  },
+  "search.navigate": {
+    "text": "navigate",
+    "translationContext": "Keyboard shortcut hint for arrow keys"
+  },
+  "search.select": {
+    "text": "select",
+    "translationContext": "Keyboard shortcut hint for Enter key"
+  },
+  "search.close": {
+    "text": "close",
+    "translationContext": "Keyboard shortcut hint for Escape key"
+  },
+  "search.search": {
+    "text": "search",
+    "translationContext": "Keyboard shortcut hint for Cmd/Ctrl+K"
+  },
+  "search.loading_historical_data": {
+    "text": "Loading historical data...",
+    "translationContext": "Loading message when fetching historical search results"
+  },
+  "settings.useLatestUrls.label": {
+    "text": "Use Latest URLs",
+    "translationContext": "Label for the setting that controls URL format"
+  },
+  "settings.useLatestUrls.description": {
+    "text": "Use /latest URLs for current news so bookmarks always show the latest content",
+    "translationContext": "Description explaining what the latest URLs setting does"
+  },
+  "settings.useLatestUrls.enabled": {
+    "text": "Enabled",
+    "translationContext": "Option when latest URLs are enabled"
+  },
+  "settings.useLatestUrls.disabled": {
+    "text": "Disabled",
+    "translationContext": "Option when latest URLs are disabled"
+  },
+  "settings.mapsProvider.label": {
+    "text": "Maps Provider",
+    "translationContext": "Label for the maps provider setting"
+  },
+  "settings.mapsProvider.description": {
+    "text": "Choose which maps service to use for location links",
+    "translationContext": "Description explaining what the maps provider setting does"
+  },
+  "settings.mapsProvider.auto": {
+    "text": "Auto",
+    "translationContext": "Option for automatic maps provider selection based on login status"
+  },
+  "settings.mapsProvider.kagi": {
+    "text": "Kagi Maps",
+    "translationContext": "Option to use Kagi Maps"
+  },
+  "settings.mapsProvider.google": {
+    "text": "Google Maps",
+    "translationContext": "Option to use Google Maps"
+  },
+  "settings.mapsProvider.openstreetmap": {
+    "text": "OpenStreetMap",
+    "translationContext": "Option to use OpenStreetMap"
+  },
+  "settings.mapsProvider.apple": {
+    "text": "Apple Maps",
+    "translationContext": "Option to use Apple Maps"
+  },
+  "settings.sync.info.description": {
+    "text": "Kagi News can sync your settings and read history across all your devices. This data is stored securely on Kagi servers and associated with your Kagi Search account.\n\nYour synced data is not used for any other purpose, not shared with anyone, and is solely stored to provide the sync service to you. You have full control over what gets synced and can delete your data at any time.",
+    "translationContext": "Description of sync and privacy features"
+  },
+  "settings.sync.toggles.title": {
+    "text": "Sync Preferences",
+    "translationContext": "Title for sync preferences section"
+  },
+  "settings.sync.settings.label": {
+    "text": "Sync Settings",
+    "translationContext": "Label for settings sync toggle"
+  },
+  "settings.sync.settings.description": {
+    "text": "Font size, story count, and other preferences",
+    "translationContext": "Description of what settings get synced"
+  },
+  "settings.sync.settings.enableInfo": {
+    "text": "When enabled, your current settings will be uploaded and shared across all your devices",
+    "translationContext": "Info shown when sync is disabled, explaining what happens when enabled"
+  },
+  "settings.sync.readHistory.label": {
+    "text": "Sync Read History",
+    "translationContext": "Label for read history sync toggle"
+  },
+  "settings.sync.readHistory.description": {
+    "text": "Stories you've read across all categories",
+    "translationContext": "Description of what read history gets synced"
+  },
+  "settings.sync.readHistory.enableInfo": {
+    "text": "When enabled, your read history will be uploaded and synced across all your devices",
+    "translationContext": "Info shown when sync is disabled, explaining what happens when enabled"
+  },
+  "settings.sync.clear.title": {
+    "text": "Data Management",
+    "translationContext": "Title for data management section"
+  },
+  "settings.sync.clear.description": {
+    "text": "You are in control of your data. Export or delete your cloud data at any time. Deletion does not affect local data.",
+    "translationContext": "Description of data management section"
+  },
+  "settings.sync.clear.button": {
+    "text": "Clear All Synced Data",
+    "translationContext": "Button text to clear all synced data"
+  },
+  "settings.sync.clear.clearing": {
+    "text": "Clearing...",
+    "translationContext": "Text shown while clearing data"
+  },
+  "settings.sync.clear.success": {
+    "text": "All synced data has been deleted successfully.",
+    "translationContext": "Success message after clearing synced data"
+  },
+  "settings.sync.notLoggedIn.title": {
+    "text": "Sign In Required",
+    "translationContext": "Title when user is not logged in"
+  },
+  "settings.sync.notLoggedIn.description": {
+    "text": "Sign in to your Kagi account to sync your settings and read history across devices.",
+    "translationContext": "Description when user is not logged in"
+  },
+  "settings.sync.notLoggedIn.signIn": {
+    "text": "Sign In",
+    "translationContext": "Sign in button text"
+  },
+  "settings.sync.clear.confirmTitle": {
+    "text": "Delete All Synced Data?",
+    "translationContext": "Title for confirmation dialog when clearing synced data"
+  },
+  "settings.sync.clear.confirmMessage": {
+    "text": "This will permanently delete all your synced settings and read history from Kagi servers. Your local data will remain intact.",
+    "translationContext": "Confirmation message when clearing synced data"
+  },
+  "settings.sync.clear.confirmWarning": {
+    "text": "This action cannot be undone.",
+    "translationContext": "Warning message in confirmation dialog"
+  },
+  "settings.sync.clear.confirmButton": {
+    "text": "Delete",
+    "translationContext": "Confirm button text for deleting synced data"
+  },
+  "settings.sync.clear.deleting": {
+    "text": "Deleting your data...",
+    "translationContext": "Loading message shown while deleting synced data"
+  },
+  "settings.sync.clear.errorNotLoggedIn": {
+    "text": "You must be logged in to clear synced data",
+    "translationContext": "Error message when trying to clear data while not logged in"
+  },
+  "settings.sync.clear.errorFailed": {
+    "text": "Failed to clear data",
+    "translationContext": "Generic error message when clearing data fails"
+  },
+  "settings.sync.export.button": {
+    "text": "Export Data",
+    "translationContext": "Button text to export synced data"
+  },
+  "settings.sync.export.exporting": {
+    "text": "Exporting...",
+    "translationContext": "Text shown while exporting data"
+  },
+  "settings.sync.export.errorNotLoggedIn": {
+    "text": "You must be logged in to export synced data",
+    "translationContext": "Error message when trying to export data while not logged in"
+  },
+  "settings.sync.export.errorFailed": {
+    "text": "Failed to export data",
+    "translationContext": "Generic error message when exporting data fails"
+  },
+  "settings.sync.mobileApp.title": {
+    "text": "Note:",
+    "translationContext": "Title for the mobile app sync note"
+  },
+  "settings.sync.mobileApp.description": {
+    "text": "Native iOS and Android apps currently do not support syncing. Sync works on web browsers (including PWA). We'll be adding native app support soon.",
+    "translationContext": "Description explaining that native mobile apps don't support sync yet"
+  },
+  "navigation.backToTop": {
+    "text": "Back to top",
+    "translationContext": "Accessibility label for the button that scrolls back to the top of the page"
+  },
+  "shared.viewAllArticles": {
+    "text": "← View all articles from {{{date}}}",
+    "translationContext": "Button to exit shared article view and see all articles from a specific date. {{date}} will be replaced with a localized date."
+  },
+  "notification.newBatch.message": {
+    "text": "New news available!",
+    "translationContext": "Toast notification message when a new batch of news is published"
+  },
+  "notification.newBatch.action": {
+    "text": "View",
+    "translationContext": "Action button label on toast notification to view the new batch of news"
+  },
+  "keyboard.help.title": {
+    "text": "Keyboard Shortcuts",
+    "translationContext": "Title of the keyboard shortcuts help page"
+  },
+  "keyboard.help.closeInstructions": {
+    "text": "Press {{{key1}}} or {{{key2}}} to close",
+    "translationContext": "Instructions on how to close the keyboard shortcuts help. {{{key1}}} and {{{key2}}} will be replaced with key names (triple braces to allow HTML)."
+  },
+  "keyboard.section.navigation": {
+    "text": "Navigation",
+    "translationContext": "Section heading for navigation keyboard shortcuts"
+  },
+  "keyboard.section.storyActions": {
+    "text": "Story Actions",
+    "translationContext": "Section heading for story action keyboard shortcuts"
+  },
+  "keyboard.section.global": {
+    "text": "Global",
+    "translationContext": "Section heading for global keyboard shortcuts"
+  },
+  "keyboard.action.moveNext": {
+    "text": "Move to next story",
+    "translationContext": "Description for j key - navigating to next story"
+  },
+  "keyboard.action.movePrevious": {
+    "text": "Move to previous story",
+    "translationContext": "Description for k key - navigating to previous story"
+  },
+  "keyboard.action.jumpFirst": {
+    "text": "Jump to first story",
+    "translationContext": "Description for gg keys - jumping to first story"
+  },
+  "keyboard.action.jumpLast": {
+    "text": "Jump to last story",
+    "translationContext": "Description for G key - jumping to last story"
+  },
+  "keyboard.action.clearSelection": {
+    "text": "Clear selection",
+    "translationContext": "Description for Esc key - clearing story selection"
+  },
+  "keyboard.action.toggleExpand": {
+    "text": "Expand/collapse selected story",
+    "translationContext": "Description for Enter key - toggling story expansion"
+  },
+  "keyboard.action.openStory": {
+    "text": "Open (expand) selected story",
+    "translationContext": "Description for o key - opening/expanding a story"
+  },
+  "keyboard.action.closeStory": {
+    "text": "Close (collapse) selected story",
+    "translationContext": "Description for x key - closing/collapsing a story"
+  },
+  "keyboard.action.toggleRead": {
+    "text": "Mark as read/unread",
+    "translationContext": "Description for m key - toggling read status"
+  },
+  "keyboard.action.searchMac": {
+    "text": "Search (Mac)",
+    "translationContext": "Description for Cmd+K shortcut on Mac"
+  },
+  "keyboard.action.searchWindows": {
+    "text": "Search (Windows/Linux)",
+    "translationContext": "Description for Ctrl+K shortcut on Windows/Linux"
+  },
+  "keyboard.action.toggleHelp": {
+    "text": "Toggle this help",
+    "translationContext": "Description for ? key - showing/hiding help"
+  },
+  "keyboard.action.previousCategory": {
+    "text": "Previous category",
+    "translationContext": "Description for h key - navigating to previous category"
+  },
+  "keyboard.action.nextCategory": {
+    "text": "Next category",
+    "translationContext": "Description for l key - navigating to next category"
+  },
+  "story.simplify.tooltip": {
+    "text": "Simplify reading level",
+    "translationContext": "Tooltip for simplify button when not simplified"
+  },
+  "story.simplify.tooltipActive": {
+    "text": "Simplified ({level})",
+    "translationContext": "Tooltip for simplify button when simplified. {level} will be replaced with the reading level."
+  },
+  "story.simplify.verySimple": {
+    "text": "Very Simple",
+    "translationContext": "Very simple reading level option"
+  },
+  "story.simplify.simple": {
+    "text": "Simple",
+    "translationContext": "Simple reading level option"
+  },
+  "story.simplify.normal": {
+    "text": "Normal",
+    "translationContext": "Normal reading level option"
+  },
+  "story.simplify.loading": {
+    "text": "Simplifying...",
+    "translationContext": "Status message while simplifying text"
+  },
+  "story.flashcards.tooltip": {
+    "text": "Select words for flashcards",
+    "translationContext": "Tooltip for flashcard button when not in selection mode"
+  },
+  "story.flashcards.tooltipExit": {
+    "text": "Exit word selection",
+    "translationContext": "Tooltip for flashcard button when in selection mode"
+  },
+  "story.flashcards.selectWords": {
+    "text": "Select words",
+    "translationContext": "Text shown when no words selected in flashcard mode"
+  },
+  "story.flashcards.selectedCount": {
+    "text": "{count} selected",
+    "translationContext": "Text showing count of selected words. {count} will be replaced with the number."
+  },
+  "story.flashcards.export": {
+    "text": "Export",
+    "translationContext": "Button to export selected words to Anki CSV"
+  },
+  "story.flashcards.exportTooltip": {
+    "text": "Export to Anki CSV",
+    "translationContext": "Tooltip for export button"
+  },
+  "story.flashcards.download": {
+    "text": "Download",
+    "translationContext": "Button to download Anki flashcards CSV"
+  },
+  "story.flashcards.downloadTooltip": {
+    "text": "Download Anki flashcards",
+    "translationContext": "Tooltip for download button"
+  },
+  "story.flashcards.generating": {
+    "text": "Generating...",
+    "translationContext": "Status message while generating flashcards"
+  },
+  "story.tts.tooltip": {
+    "text": "Text-to-speech",
+    "translationContext": "Tooltip for TTS button when idle"
+  },
+  "story.tts.tooltipLoading": {
+    "text": "Loading audio...",
+    "translationContext": "Tooltip for TTS button when loading"
+  },
+  "story.tts.tooltipStop": {
+    "text": "Stop playback",
+    "translationContext": "Tooltip for TTS button when playing"
   }
 }

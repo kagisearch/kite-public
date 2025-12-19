@@ -1,6 +1,6 @@
 <script lang="ts">
-import { toastStore, type Toast } from '$lib/stores/toast.svelte';
-import { IconCheck, IconInfoCircle, IconAlertTriangle, IconX } from '@tabler/icons-svelte';
+import { IconAlertTriangle, IconCheck, IconInfoCircle, IconX } from '@tabler/icons-svelte';
+import { type Toast, toastStore } from '$lib/stores/toast.svelte';
 
 const { toasts } = $derived.by(() => ({ toasts: toastStore.toasts }));
 
@@ -12,7 +12,6 @@ function getIcon(type: Toast['type']) {
 			return IconAlertTriangle;
 		case 'error':
 			return IconX;
-		case 'info':
 		default:
 			return IconInfoCircle;
 	}
@@ -26,7 +25,6 @@ function getColorClasses(type: Toast['type']): string {
 			return 'bg-yellow-50 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-200 border-yellow-200 dark:border-yellow-800';
 		case 'error':
 			return 'bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-200 border-red-200 dark:border-red-800';
-		case 'info':
 		default:
 			return 'bg-blue-50 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 border-blue-200 dark:border-blue-800';
 	}
@@ -37,13 +35,14 @@ function getColorClasses(type: Toast['type']): string {
 {#if toasts.length > 0}
 	<div class="fixed bottom-4 right-4 z-[9999] flex flex-col gap-2 max-w-md sm:max-w-sm max-sm:left-4 max-sm:right-4">
 		{#each toasts as toast (toast.id)}
+			{@const Icon = getIcon(toast.type)}
 			<div
 				class="p-4 rounded-lg border shadow-lg backdrop-blur-sm animate-slide-in {getColorClasses(toast.type)}"
 				role="alert"
 			>
 				<div class="flex items-center gap-3">
 					<div class="flex-shrink-0 flex items-center">
-						<svelte:component this={getIcon(toast.type)} size={20} />
+						<Icon size={20} />
 					</div>
 					<div class="flex-1 text-sm leading-5">
 						{toast.message}

@@ -6,20 +6,26 @@ import {
 	isImageCached,
 	onCacheUpdate,
 } from '$lib/utils/imagePreloader';
+import SelectableText from './SelectableText.svelte';
 
 // Props
 interface Props {
 	article: any;
 	imagesPreloaded?: boolean;
 	showCaption?: boolean;
+	flashcardMode?: boolean;
+	selectedWords?: Set<string>;
+	selectedPhrases?: Map<string, { phrase: string; sections: Set<string> }>;
+	shouldJiggle?: boolean;
+	onWordClick?: (word: string, section?: string) => void;
 }
 
-let { article, imagesPreloaded = false, showCaption = false }: Props = $props();
+let { article, imagesPreloaded = false, showCaption = false, flashcardMode = false, selectedWords = new Set(), selectedPhrases = new Map(), shouldJiggle = false, onWordClick }: Props = $props();
 
 // State for image loading
 let imageLoaded = $state(false);
 let imageError = $state(false);
-let currentImageSrc = $state('');
+let currentImageSrc = $state<string | null>('');
 let cacheVersion = $state(0); // Force reactivity
 
 // Get the image source reactively
@@ -55,7 +61,7 @@ function handleImageError() {
 	imageLoaded = false;
 
 	// If we're using a cached version and it failed, try the proxied URL
-	if (currentImageSrc.startsWith('data:')) {
+	if (currentImageSrc?.startsWith('data:')) {
 		const proxiedUrl = getProxiedImageUrl(article.image);
 		console.warn('Cached image failed, falling back to proxied URL:', proxiedUrl);
 		currentImageSrc = proxiedUrl;
@@ -86,6 +92,8 @@ onMount(() => {
           <a
             href={article.link || "#"}
             target="_blank"
+            rel="noopener noreferrer"
+            aria-label={article.link ? `View full article: ${article.image_caption || 'Story image'} at ${article.domain || 'source'}` : undefined}
             class="relative block"
             class:pointer-events-none={!article.link}
           >
@@ -104,9 +112,13 @@ onMount(() => {
             {#if !imageLoaded}
               <div
                 class="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-lg"
+                role="status"
+                aria-live="polite"
+                aria-label="Loading image"
               >
                 <div
                   class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-400"
+                  aria-hidden="true"
                 ></div>
               </div>
             {/if}
@@ -121,7 +133,18 @@ onMount(() => {
           </a>
           {#if showCaption && article.image_caption && imageLoaded && !imageError}
             <p class="mt-2 text-sm text-gray-600 italic dark:text-gray-400">
-              {article.image_caption}
+              {#if flashcardMode}
+                <SelectableText
+                  text={article.image_caption}
+                  {flashcardMode}
+                  {selectedWords}
+                  {shouldJiggle}
+                  {onWordClick}
+                  section="image_caption"
+                />
+              {:else}
+                {article.image_caption}
+              {/if}
             </p>
           {/if}
         </div>

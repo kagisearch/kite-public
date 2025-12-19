@@ -16,8 +16,8 @@ class BatchNotificationService {
 	private eventSource: EventSource | null = null;
 	private callbacks: Set<NotificationCallback> = new Set();
 	private reconnectAttempts = 0;
-	private maxReconnectAttempts = 5;
-	private reconnectDelay = 5000; // 5 seconds
+	private maxReconnectAttempts = 10; // Increased for QUIC issues
+	private reconnectDelay = 3000; // 3 seconds initial delay
 	private isConnecting = false;
 
 	/**
@@ -66,10 +66,11 @@ class BatchNotificationService {
 				this.eventSource?.close();
 				this.eventSource = null;
 
-				// Attempt to reconnect with exponential backoff
+				// Attempt to reconnect with linear backoff (not exponential, since QUIC errors may resolve)
 				if (this.reconnectAttempts < this.maxReconnectAttempts) {
 					this.reconnectAttempts++;
-					const delay = this.reconnectDelay * this.reconnectAttempts;
+					// Linear backoff: 3s, 6s, 9s, 12s... up to 30s max
+					const delay = Math.min(this.reconnectDelay * this.reconnectAttempts, 30000);
 					console.log(
 						`[BatchNotification] Reconnecting in ${delay / 1000}s (attempt ${this.reconnectAttempts}/${this.maxReconnectAttempts})`,
 					);
@@ -139,13 +140,7 @@ class BatchNotificationService {
 	/**
 	 * Get connection status
 	 */
-	getStatus():
-		| 'disconnected'
-		| 'connecting'
-		| 'connected'
-		| 'reconnecting'
-		| 'failed'
-		| 'unknown' {
+	getStatus(): 'disconnected' | 'connecting' | 'connected' | 'reconnecting' | 'failed' | 'unknown' {
 		if (!this.eventSource) {
 			return this.isConnecting ? 'connecting' : 'disconnected';
 		}

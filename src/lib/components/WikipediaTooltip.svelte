@@ -9,10 +9,11 @@ import { fetchWikipediaContent, type WikipediaContent } from '$lib/services/wiki
 import { scrollLock } from '$lib/utils/scrollLock';
 
 interface Props {
+	language?: string; // Language for Wikipedia lookups
 	onWikipediaClick?: (title: string, content: string, imageUrl?: string) => void;
 }
 
-let { onWikipediaClick }: Props = $props();
+let { language = 'en', onWikipediaClick }: Props = $props();
 
 // State for dynamic sizing
 let tooltipMaxHeight = $state(300);
@@ -52,7 +53,7 @@ let tooltipImage = $state('');
 let tooltipFullImage = $state('');
 let tooltipWikiUrl = $state('');
 let currentTooltipId = $state('');
-let isMobile = $state(false);
+let isMobile = $state(browser ? detectMobile() : false);
 let isLoading = $state(false);
 
 // Elements
@@ -77,14 +78,14 @@ export async function handleWikipediaInteraction(event: Event) {
 	if (wikiLink) {
 		const title = wikiLink.getAttribute('title') || wikiLink.textContent || '';
 		const wikiId = wikiLink.getAttribute('data-wiki-id') || '';
-		const href = wikiLink.getAttribute('href') || '';
 		const tooltipId = `${wikiId}-${title}`;
 
-		isMobile = detectMobile();
-
-		// For mobile clicks, prevent default link behavior
-		if (isMobile && event.type === 'click') {
-			event.preventDefault();
+		// On mobile, only handle click events (ignore mouseover/mouseenter)
+		if (isMobile) {
+			if (event.type !== 'click') {
+				return; // Skip hover events on mobile
+			}
+			event.preventDefault(); // Prevent default link behavior
 		}
 
 		// For desktop hovers, skip if already showing same tooltip
@@ -112,7 +113,7 @@ export async function handleWikipediaInteraction(event: Event) {
 		tooltipContent = '';
 		tooltipImage = '';
 		tooltipFullImage = '';
-		tooltipWikiUrl = href || `https://en.wikipedia.org/wiki/${wikiId}`;
+		tooltipWikiUrl = ''; // Will be set by API response
 		isLoading = true;
 
 		// Show tooltip - the floating element will be bound when the template renders
@@ -128,11 +129,9 @@ export async function handleWikipediaInteraction(event: Event) {
 		//   });
 		// }, 0);
 
-		// console.log(`Wiki interaction - Title: "${title}", WikiId: "${wikiId}"`);
-
-		// Fetch Wikipedia content
+		// Fetch Wikipedia content using the provided language
 		try {
-			const loadedData = await fetchWikipediaContent(wikiId);
+			const loadedData = await fetchWikipediaContent(wikiId, language);
 			// Update tooltip if it's still showing for the same ID
 			if (showTooltip && currentTooltipId === tooltipId) {
 				tooltipContent = loadedData?.extract || 'No summary available.';
@@ -305,7 +304,6 @@ onDestroy(() => {
           bind:this={tooltipScrollbars}
           class="w-full overflow-hidden transition-[max-height] duration-200"
           style="max-height: {tooltipMaxHeight}px"
-          defer
           options={{
             overflow: {
               x: "hidden",
@@ -401,7 +399,6 @@ onDestroy(() => {
           <!-- Content -->
           <OverlayScrollbarsComponent
             class="flex-1 overflow-hidden"
-            defer
             options={{
               overflow: {
                 x: "hidden",
@@ -428,7 +425,7 @@ onDestroy(() => {
                   <img
                     src={tooltipFullImage || tooltipImage}
                     alt={tooltipTitle}
-                    class="mb-4 h-48 w-full rounded-lg object-cover"
+                    class="mb-4 w-full rounded-lg object-contain"
                   />
                 {/if}
                 <p class="text-gray-700 dark:text-gray-300" dir="auto">{tooltipContent}</p>

@@ -10,6 +10,7 @@ import {
 import type { Category } from '$lib/types';
 import { createModalBehavior } from '$lib/utils/modalBehavior.svelte';
 import { scrollLock } from '$lib/utils/scrollLock.js';
+import SettingsAbout from './settings/SettingsAbout.svelte';
 import SettingsCategories from './settings/SettingsCategories.svelte';
 import SettingsContentFilter from './settings/SettingsContentFilter.svelte';
 import SettingsExperimental from './settings/SettingsExperimental.svelte';
@@ -241,6 +242,11 @@ const tabs = $derived([
 		labelKey: 'settings.tabs.experimental',
 		fallback: 'Experimental',
 	},
+	{
+		id: 'about',
+		labelKey: 'settings.tabs.about',
+		fallback: 'About',
+	},
 	...(showPreloadingTab
 		? [{ id: 'preloading', labelKey: '', fallback: 'Preloading (Debug)' }]
 		: []),
@@ -345,6 +351,8 @@ const tabs = $derived([
           <SettingsSyncPrivacy />
         {:else if activeTab === "experimental"}
           <SettingsExperimental />
+        {:else if activeTab === "about"}
+          <SettingsAbout {onShowAbout} />
         {:else if activeTab === "preloading"}
           <SettingsImagePreloading />
         {/if}

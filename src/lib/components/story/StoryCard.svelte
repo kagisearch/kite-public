@@ -3,6 +3,9 @@ import { browser } from '$app/environment';
 import { s } from '$lib/client/localization.svelte';
 import { createStoryLocalizer } from '$lib/client/storyLocalization.svelte';
 import { useHoverPreloading, useViewportPreloading } from '$lib/hooks/useImagePreloading.svelte';
+import { useStorySimplification } from '$lib/hooks/useStorySimplification.svelte';
+import { useStoryFlashcards } from '$lib/hooks/useStoryFlashcards.svelte';
+import { useStoryTTS } from '$lib/hooks/useStoryTTS.svelte';
 import StoryActions from './StoryActions.svelte';
 import StoryHeader from './StoryHeader.svelte';
 import StorySectionManager from './StorySectionManager.svelte';
@@ -12,6 +15,7 @@ interface Props {
 	story: any;
 	storyIndex?: number;
 	batchId?: string;
+	batchDateSlug?: string | null;
 	categoryId?: string;
 	isRead?: boolean;
 	isExpanded?: boolean;
@@ -28,12 +32,14 @@ interface Props {
 	shouldAutoScroll?: boolean;
 	isSharedView?: boolean;
 	isLinkedStory?: boolean; // Story opened from URL/link
+	isKeyboardSelected?: boolean; // Story selected via keyboard navigation
 }
 
 let {
 	story,
 	storyIndex,
 	batchId,
+	batchDateSlug = null,
 	categoryId,
 	isRead = false,
 	isExpanded = false,
@@ -50,6 +56,7 @@ let {
 	filterKeywords = [],
 	isSharedView = false,
 	isLinkedStory = false,
+	isKeyboardSelected = false,
 }: Props = $props();
 
 // Story element reference
@@ -60,10 +67,6 @@ let isBlurred = $state(isFiltered);
 // Track if we're actively revealing (for transition)
 let isRevealing = $state(false);
 
-// Create story-specific localization function
-// Pass the story's actual source language when available
-const ss = $derived(createStoryLocalizer(isExpanded, story.sourceLanguage));
-
 // Re-check if story should still be blurred when filter changes
 $effect(() => {
 	// Reset blur state to match current filter state
@@ -71,6 +74,22 @@ $effect(() => {
 	// Reset revealing state when filter changes
 	isRevealing = false;
 });
+
+// Determine language code from story
+const storyLanguageCode = $derived(story.sourceLanguage || 'en');
+
+// Feature composables - each handles its own state and logic
+const simplification = useStorySimplification(story, storyLanguageCode);
+const flashcards = useStoryFlashcards(story, storyLanguageCode);
+const tts = useStoryTTS(() => simplification.current);
+
+// Use simplified story if available, otherwise use original
+const displayStory = $derived(simplification.current);
+
+// Create story-specific localization function
+// Pass the story's actual source language when available
+const ss = $derived(createStoryLocalizer(isExpanded, story.sourceLanguage));
+
 
 // Use hooks for preloading
 const viewportPreloader = useViewportPreloading(() => storyElement, story, {
@@ -103,6 +122,14 @@ function handleStoryClick() {
 		}, 300);
 		return;
 	}
+
+	// If we're closing the story (isExpanded is true), clean up all features
+	if (isExpanded) {
+		tts.stop();
+		simplification.reset();
+		flashcards.reset();
+	}
+
 	if (onToggle) onToggle();
 }
 
@@ -163,12 +190,9 @@ $effect(() => {
   bind:this={storyElement}
   id="story-{story.cluster_number}"
   data-story-id={story.cluster_number?.toString() || story.title}
+  data-story-index={storyIndex}
   aria-label="News story: {story.title}"
-  class="relative py-2 transition-all duration-300"
-  class:cursor-pointer={isBlurred}
-  class:border-b={!isExpanded}
-  class:border-gray-200={!isExpanded}
-  class:dark:border-gray-700={!isExpanded}
+  class="relative py-2 transition-all duration-200 {isKeyboardSelected ? 'ring-2 ring-blue-500 bg-blue-50 dark:bg-blue-900/10 -mx-2 px-2 rounded-lg' : ''} {isBlurred ? 'cursor-pointer' : ''} {!isExpanded ? 'border-b border-gray-200 dark:border-gray-700' : ''}"
   onmouseenter={hoverPreloader.handleMouseEnter}
   onmouseleave={hoverPreloader.handleMouseLeave}
   onfocus={hoverPreloader.handleMouseEnter}
@@ -181,10 +205,25 @@ $effect(() => {
   <div class:transition-all={isRevealing} class:duration-300={isRevealing} class:blur-lg={isBlurred} class:pointer-events-none={isBlurred}>
     <!-- Story Header -->
     <StoryHeader
-      {story}
+      story={displayStory}
       {isRead}
+      {isSharedView}
+      {isExpanded}
       onTitleClick={handleStoryClick}
       onReadClick={handleReadClick}
+      onFlashcardsClick={flashcards.toggle}
+      onExportClick={flashcards.exportFlashcards}
+      onDownloadClick={flashcards.download}
+      onTtsClick={tts.play}
+      onTtsDownloadClick={tts.download}
+      ttsStatus={tts.status}
+      onSimplifyLevelSelect={simplification.selectLevel}
+      selectedLevel={simplification.selectedLevel}
+      isSimplifying={simplification.isLoading}
+      flashcardMode={flashcards.enabled}
+      isExporting={flashcards.isExporting}
+      exportedCSV={flashcards.exportedCSV}
+      selectedWordsCount={flashcards.selectedCount}
     />
 
     <!-- Expanded Content -->
@@ -196,7 +235,7 @@ $effect(() => {
       >
         <!-- Dynamic Sections based on user settings -->
         <StorySectionManager
-          {story}
+          story={displayStory}
           {imagesPreloaded}
           bind:showSourceOverlay
           bind:currentSource
@@ -204,12 +243,18 @@ $effect(() => {
           bind:currentMediaInfo
           bind:isLoadingMediaInfo
           storyLocalizer={ss}
+          flashcardMode={flashcards.enabled && !flashcards.isExporting}
+          selectedWords={flashcards.selectedWords}
+          selectedPhrases={flashcards.selectedPhrases}
+          shouldJiggle={flashcards.shouldJiggle}
+          onWordClick={flashcards.selectWord}
         />
 
         <!-- Action Buttons -->
         <StoryActions
-          {story}
+          story={displayStory}
           {batchId}
+          {batchDateSlug}
           {categoryId}
           {storyIndex}
           onClose={handleStoryClick}
@@ -224,6 +269,8 @@ $effect(() => {
   {#if isBlurred && filterKeywords && filterKeywords.length > 0}
     <div
       class="absolute left-0 top-4 z-10 flex items-center gap-3 px-4"
+      role="alert"
+      aria-live="polite"
     >
       <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
         {isLinkedStory

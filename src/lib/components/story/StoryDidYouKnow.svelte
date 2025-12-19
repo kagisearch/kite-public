@@ -1,16 +1,23 @@
 <script lang="ts">
 import { s } from '$lib/client/localization.svelte';
+import type { LocalizerFunction } from '$lib/types';
 import type { CitationProps } from '$lib/types/citation';
 import { useCitationProcessing } from '$lib/utils/citationProcessing';
 import CitationText from './CitationText.svelte';
+import SelectableText from './SelectableText.svelte';
 
 // Props
 interface Props extends CitationProps {
 	content: string;
-	storyLocalizer?: (key: string) => string;
+	storyLocalizer?: LocalizerFunction;
+	flashcardMode?: boolean;
+	selectedWords?: Set<string>;
+	selectedPhrases?: Map<string, { phrase: string; sections: Set<string> }>;
+	shouldJiggle?: boolean;
+	onWordClick?: (word: string, section?: string) => void;
 }
 
-let { content, articles = [], citationMapping, storyLocalizer = s }: Props = $props();
+let { content, articles = [], citationMapping, storyLocalizer = s, flashcardMode = false, selectedWords = new Set(), selectedPhrases = new Map(), shouldJiggle = false, onWordClick }: Props = $props();
 
 // Convert citations to numbered format if mapping is available
 const displayContent = $derived.by(() => {
@@ -25,12 +32,23 @@ const displayContent = $derived.by(() => {
     {storyLocalizer("section.didYouKnow") || "Did You Know?"}
   </h3>
   <p class="text-base text-gray-700 dark:text-gray-200">
-    <CitationText
-      text={displayContent}
-      inline={false}
-      {articles}
-      {citationMapping}
-      {storyLocalizer}
-    />
+    {#if flashcardMode}
+      <SelectableText
+        text={displayContent}
+        {flashcardMode}
+        {selectedWords}
+        {shouldJiggle}
+        {onWordClick}
+        section="did_you_know"
+      />
+    {:else}
+      <CitationText
+        text={displayContent}
+        inline={false}
+        {articles}
+        {citationMapping}
+        {storyLocalizer}
+      />
+    {/if}
   </p>
 </section>

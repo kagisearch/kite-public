@@ -154,7 +154,7 @@ export function stripCitations(text: string): string {
 	// Remove citations and clean up extra spaces
 	let cleaned = text.replace(citationPattern, '').trim();
 	cleaned = cleaned.replace(/\s+/g, ' '); // Replace multiple spaces with single space
-	cleaned = cleaned.replace(/\s+([.,;:!?])/g, '$1'); // Fix space before punctuation
+	cleaned = cleaned.replace(/\s+([.,;:!?\)])/g, '$1'); // Fix space before punctuation
 
 	return cleaned;
 }

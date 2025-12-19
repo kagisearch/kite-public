@@ -8,13 +8,16 @@ describe('OnThisDayService Integration Tests', () => {
 			// Ensure we're in live mode
 			batchService.setTimeTravelBatch(null);
 
-			const events = await onThisDayService.loadOnThisDayEvents('en');
+			const result = await onThisDayService.loadOnThisDayEvents('en');
 
-			expect(Array.isArray(events)).toBe(true);
+			expect(result).toHaveProperty('events');
+			expect(result).toHaveProperty('language');
+			expect(Array.isArray(result.events)).toBe(true);
+			expect(typeof result.language).toBe('string');
 
 			// OnThisDay might not always have data
-			if (events.length > 0) {
-				events.forEach((event) => {
+			if (result.events.length > 0) {
+				result.events.forEach((event) => {
 					expect(event).toHaveProperty('year');
 					expect(event).toHaveProperty('content');
 					expect(event).toHaveProperty('sort_year');
@@ -32,14 +35,17 @@ describe('OnThisDayService Integration Tests', () => {
 				});
 
 				// Events should be sorted by sort_year
-				for (let i = 1; i < events.length; i++) {
-					expect(events[i].sort_year).toBeGreaterThanOrEqual(events[i - 1].sort_year);
+				for (let i = 1; i < result.events.length; i++) {
+					expect(result.events[i].sort_year).toBeGreaterThanOrEqual(
+						result.events[i - 1].sort_year,
+					);
 				}
 			}
 		});
 
 		it('should separate events and people correctly', async () => {
-			const allEvents = await onThisDayService.loadOnThisDayEvents('en');
+			const result = await onThisDayService.loadOnThisDayEvents('en');
+			const allEvents = result.events;
 
 			const events = allEvents.filter((e) => e.type === 'event');
 			const people = allEvents.filter((e) => e.type === 'person' || e.type === 'people');
@@ -63,9 +69,11 @@ describe('OnThisDayService Integration Tests', () => {
 		});
 
 		it('should handle empty OnThisDay data gracefully', async () => {
-			// Even if there's no data, it should return an empty array
-			const events = await onThisDayService.loadOnThisDayEvents('en');
-			expect(Array.isArray(events)).toBe(true);
+			// Even if there's no data, it should return an empty array and language
+			const result = await onThisDayService.loadOnThisDayEvents('en');
+			expect(result).toHaveProperty('events');
+			expect(result).toHaveProperty('language');
+			expect(Array.isArray(result.events)).toBe(true);
 		});
 	});
 });

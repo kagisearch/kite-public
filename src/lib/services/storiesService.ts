@@ -1,3 +1,4 @@
+import { dev } from '$app/environment';
 import { prefetchFavicons } from '$lib/services/faviconService';
 import type { Story } from '$lib/types';
 import { extractDomainFromUrl } from '$lib/utils/domainUtils';
@@ -15,12 +16,12 @@ class StoriesService {
 		batchId: string,
 		categoryUuid: string,
 		limit: number = 12, // Max 12 stories per category from UI
-		language: string = 'default',
+		lang: string = 'default',
 	): Promise<{ stories: Story[]; readCount: number; timestamp: number }> {
 		try {
 			// Load stories for this category with language parameter
 			const response = await fetch(
-				`${this.baseUrl}/batches/${batchId}/categories/${categoryUuid}/stories?limit=${limit}&lang=${language}`,
+				`${this.baseUrl}/batches/${batchId}/categories/${categoryUuid}/stories?limit=${limit}&lang=${lang}`,
 			);
 			if (!response.ok) {
 				throw new Error(`Failed to load stories: ${response.statusText}`);
@@ -46,6 +47,11 @@ class StoriesService {
 	 * Runs in background without blocking the main flow
 	 */
 	private prefetchStoryFavicons(stories: Story[]) {
+		// Skip favicon preloading in dev mode
+		if (dev) {
+			return;
+		}
+
 		try {
 			// Extract unique domains from all story sources
 			const domains = new Set<string>();

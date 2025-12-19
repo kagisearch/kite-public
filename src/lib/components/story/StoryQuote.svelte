@@ -3,6 +3,7 @@ import { s } from '$lib/client/localization.svelte';
 import type { Article } from '$lib/types';
 import { type CitationMapping, replaceWithNumberedCitations } from '$lib/utils/citationContext';
 import CitationText from './CitationText.svelte';
+import SelectableText from './SelectableText.svelte';
 
 // Props
 interface Props {
@@ -13,6 +14,11 @@ interface Props {
 	sourceDomain?: string;
 	articles?: Article[];
 	citationMapping?: CitationMapping;
+	flashcardMode?: boolean;
+	selectedWords?: Set<string>;
+	selectedPhrases?: Map<string, { phrase: string; sections: Set<string> }>;
+	shouldJiggle?: boolean;
+	onWordClick?: (word: string, section?: string) => void;
 }
 
 let {
@@ -23,6 +29,11 @@ let {
 	sourceDomain,
 	articles = [],
 	citationMapping,
+	flashcardMode = false,
+	selectedWords = new Set(),
+	selectedPhrases = new Map(),
+	shouldJiggle = false,
+	onWordClick,
 }: Props = $props();
 
 // Helper function to strip outer quotes
@@ -63,29 +74,46 @@ const displayQuote = $derived.by(() => {
 
 <section class="my-8 rounded-lg bg-[#F3F6FE] p-4 dark:bg-gray-700">
   <!-- Quote text on first line -->
-  <p class="text-base text-black dark:text-white mb-2 first-letter-capitalize">
-    <span class="italic">"</span>{#if sourceUrl}<a
+  <blockquote class="text-base text-black dark:text-white mb-2 first-letter-capitalize">
+    <span class="italic" aria-hidden="true">"</span>{#if sourceUrl}<a
         href={sourceUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="underline text-black dark:text-white hover:text-[#183FDC] dark:hover:text-[#5B89FF] transition-colors"
-        ><CitationText
+        aria-label={`Read full quote${author ? ` from ${author}` : ''}${attribution ? ` - ${attribution}` : ''} at ${sourceDomain || 'source'}`}
+        class="underline text-black dark:text-white hover:text-[#183FDC] dark:hover:text-[#5B89FF] transition-colors focus-visible-ring rounded"
+        >{#if flashcardMode}<SelectableText
+          text={displayQuote}
+          {flashcardMode}
+          {selectedWords}
+          {selectedPhrases}
+          {shouldJiggle}
+          {onWordClick}
+          section="quote"
+        />{:else}<CitationText
           text={displayQuote}
           showFavicons={true}
           showNumbers={false}
           {articles}
           {citationMapping}
-        /></a
+        />{/if}</a
       >{:else}<span class="underline"
-        ><CitationText
+        >{#if flashcardMode}<SelectableText
+          text={displayQuote}
+          {flashcardMode}
+          {selectedWords}
+          {selectedPhrases}
+          {shouldJiggle}
+          {onWordClick}
+          section="quote"
+        />{:else}<CitationText
           text={displayQuote}
           showFavicons={true}
           showNumbers={false}
           {articles}
           {citationMapping}
-        /></span
-      >{/if}<span class="italic">"</span>
-  </p>
+        />{/if}</span
+      >{/if}<span class="italic" aria-hidden="true">"</span>
+  </blockquote>
 
   <!-- Attribution information on second line -->
   {#if author || attribution}

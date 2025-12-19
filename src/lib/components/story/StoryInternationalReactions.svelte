@@ -1,20 +1,26 @@
 <script lang="ts">
 import { s } from '$lib/client/localization.svelte';
-import type { Article } from '$lib/types';
+import type { Article, LocalizerFunction } from '$lib/types';
 import { getCitedArticlesForText } from '$lib/utils/citationAggregator';
 import { type CitationMapping, replaceWithNumberedCitations } from '$lib/utils/citationContext';
 import { parseStructuredText } from '$lib/utils/textParsing';
 import CitationText from './CitationText.svelte';
+import SelectableText from './SelectableText.svelte';
 
 // Props
 interface Props {
 	reactions: Array<string>;
 	articles?: Article[];
 	citationMapping?: CitationMapping;
-	storyLocalizer?: (key: string) => string;
+	storyLocalizer?: LocalizerFunction;
+	flashcardMode?: boolean;
+	selectedWords?: Set<string>;
+	selectedPhrases?: Map<string, { phrase: string; sections: Set<string> }>;
+	shouldJiggle?: boolean;
+	onWordClick?: (word: string, section?: string) => void;
 }
 
-let { reactions, articles = [], citationMapping, storyLocalizer = s }: Props = $props();
+let { reactions, articles = [], citationMapping, storyLocalizer = s, flashcardMode = false, selectedWords = new Set(), selectedPhrases = new Map(), shouldJiggle = false, onWordClick }: Props = $props();
 
 // Convert citations in reactions if mapping is available
 const displayReactions = $derived.by(() => {
@@ -49,36 +55,60 @@ function parseReaction(reaction: string) {
         citationMapping,
         articles,
       )}
-      <div class="rounded-lg bg-gray-100 p-4 dark:bg-gray-700">
+      <article class="rounded-lg bg-gray-100 p-4 dark:bg-gray-700">
         {#if parsedReaction.country}
           <h4 class="font-semibold text-gray-800 dark:text-gray-200">
             {parsedReaction.country}
           </h4>
           <p class="text-base text-gray-700 dark:text-gray-300" dir="auto">
-            <CitationText
-              text={parsedReaction.response}
-              showFavicons={false}
-              showNumbers={false}
-              inline={true}
-              articles={responseCitations.citedArticles}
-              {citationMapping}
-              {storyLocalizer}
-            />
+            {#if flashcardMode}
+              <SelectableText
+                text={parsedReaction.response}
+                {flashcardMode}
+                {selectedWords}
+                {selectedPhrases}
+                {shouldJiggle}
+                {onWordClick}
+                section="international_reactions"
+              />
+            {:else}
+              <CitationText
+                text={parsedReaction.response}
+                showFavicons={false}
+                showNumbers={false}
+                inline={true}
+                articles={responseCitations.citedArticles}
+                {citationMapping}
+                {storyLocalizer}
+              />
+            {/if}
           </p>
         {:else}
           <p class="text-base text-gray-700 dark:text-gray-300" dir="auto">
-            <CitationText
-              text={parsedReaction.response}
-              showFavicons={false}
-              showNumbers={false}
-              inline={true}
-              articles={responseCitations.citedArticles}
-              {citationMapping}
-              {storyLocalizer}
-            />
+            {#if flashcardMode}
+              <SelectableText
+                text={parsedReaction.response}
+                {flashcardMode}
+                {selectedWords}
+                {selectedPhrases}
+                {shouldJiggle}
+                {onWordClick}
+                section="international_reactions"
+              />
+            {:else}
+              <CitationText
+                text={parsedReaction.response}
+                showFavicons={false}
+                showNumbers={false}
+                inline={true}
+                articles={responseCitations.citedArticles}
+                {citationMapping}
+                {storyLocalizer}
+              />
+            {/if}
           </p>
         {/if}
-      </div>
+      </article>
     {/each}
   </div>
 </section>

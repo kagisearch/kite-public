@@ -166,3 +166,11 @@ When adding or modifying filters:
 - Test that keywords accurately match the intended topic
 
 Feel free to add new filter categories or improve existing ones by adding relevant keywords in multiple languages.
+
+## Custom front-ends
+
+### Raycast
+<a title="Install kagi-news Raycast Extension" href="https://www.raycast.com/mickaphd/kagi-news"><img src="https://www.raycast.com/mickaphd/kagi-news/install_button@2x.png?v=1.1" height="64" style="height: 64px;" alt=""></a>
+
+### Pebble
+<a title="Install Kagi News Pebble Application" href="https://apps.rebble.io/en_US/application/692b3f0549be450009b545ce"><img src="https://assets2.rebble.io/720x320/692d3f44d7dcba0009f1b174" height="100" alt=""></a>
