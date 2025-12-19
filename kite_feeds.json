@@ -73,7 +73,6 @@
       "ca": "Àfrica",
       "fr": "Afrique",
       "xh": "Afrika",
-      "zh-Hant": "非洲",
       "zu": "Afrika"
     },
     "feeds": [
@@ -307,8 +306,7 @@
     "display_names": {
       "en": "Argentina",
       "es": "Argentina",
-      "ca": "Argentina",
-      "zh-Hant": "阿根廷"
+      "ca": "Argentina"
     },
     "feeds": [
       "https://amerika21.de/geo/argentinien/feed",
@@ -1250,8 +1248,7 @@
       "dk": "Danmark",
       "en": "Denmark",
       "es": "Dinamarca",
-      "fr": "Danemark",
-      "zh-Hant": "丹麥"
+      "fr": "Danemark"
     },
     "feeds": [
       "https://borsen.dk/rss",
@@ -5412,8 +5409,7 @@
     "category_type": "topic",
     "source_language": "en",
     "display_names": {
-      "en": "USA | Nevada",
-      "zh-Hant": "美國 | 內華達州"
+      "en": "USA | Nevada"
     },
     "feeds": [
       "https://bouldercityreview.com/feed/",
@@ -5762,8 +5758,7 @@
     "category_type": "topic",
     "source_language": "en",
     "display_names": {
-      "en": "USA | Washington",
-      "zh-Hant": "美國 | 華盛頓"
+      "en": "USA | Washington"
     },
     "feeds": [
       "https://cascadiadaily.com/feed",
