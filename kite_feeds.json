@@ -5920,7 +5920,6 @@
       "https://www.watchtime.com/feed/rss"
     ]
   },
-  
   "Morocco": {
     "category_type": "topic",
     "source_language": "ar",
@@ -5941,7 +5940,7 @@
       "uk": "Марокко",
       "zh-Hans": "摩洛哥",
       "zh-Hant": "摩洛哥"
-    }
+    },
     "feeds": [
       "https://www.hespress.com/feed/",
       "https://assabah.ma/feed",
