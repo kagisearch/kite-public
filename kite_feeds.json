@@ -1989,8 +1989,22 @@
     "category_type": "topic",
     "source_language": "de",
     "display_names": {
-        "en": "Germany | Baden-Württemberg",
-        "de": "Deutschland | Baden-Württemberg"
+      "en": "Germany | Baden-Württemberg",
+      "ar": "ألمانيا | بادن-فورتمبيرغ",
+      "ca": "Alemanya | Baden-Württemberg",
+      "de": "Deutschland | Baden-Württemberg",
+      "es": "Alemania | Baden-Wurtemberg",
+      "fr": "Allemagne | Bade-Wurtemberg",
+      "he": "גרמניה | באדן-וירטמברג",
+      "hi": "जर्मनी | बाडेन-वुर्टेमबर्ग",
+      "it": "Germania | Baden-Württemberg",
+      "ja": "ドイツ | バーデン＝ヴュルテンベルク州",
+      "nl": "Duitsland | Baden-Württemberg",
+      "pt": "Alemanha | Baden-Württemberg",
+      "ru": "Германия | Баден-Вюртемберг",
+      "uk": "Німеччина | Баден-Вюртемберг",
+      "zh-Hans": "德国 | 巴登-符腾堡州",
+      "zh-Hant": "德國 | 巴登-符騰堡邦"
     },
     "feeds": [
       "https://www.stuttgarter-zeitung.de/schlagzeilen.rss.feed",
