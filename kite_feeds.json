@@ -4816,6 +4816,7 @@
       "https://www.moea.gov.tw/MNS/Populace/news/NewsRSSdetail.aspx?Kind=1",
       "https://www.mohw.gov.tw/rss-16-1.html",
       "https://www.motc.gov.tw/ch/app/rss/News",
+      "https://www.rti.org.tw/rss",
       "https://www.storm.mg/api/getRss/channel_id/10?path=https%3A%2F%2Fwww.storm.mg%2Farticle",
       "https://www.storm.mg/api/getRss/channel_id/100?path=https%3A%2F%2Fwww.storm.mg%2Farticle",
       "https://www.storm.mg/api/getRss/channel_id/109?path=https%3A%2F%2Fwww.storm.mg%2Farticle",
@@ -4843,8 +4844,7 @@
       "https://www.ttv.com.tw/rss/RSSHandler.ashx?d=news&t=Q",
       "https://www.ttv.com.tw/rss/RSSHandler.ashx?d=news&t=R",
       "https://www.ttv.com.tw/rss/RSSHandler.ashx?d=news&t=Z",
-      "https://www.worldjournal.com/wj/rssfeed/121098",
-      "https://www.rti.org.tw/rss"
+      "https://www.worldjournal.com/wj/rssfeed/121098"
     ]
   },
   "Thailand": {
