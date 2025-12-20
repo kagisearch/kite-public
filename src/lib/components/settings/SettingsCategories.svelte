@@ -6,12 +6,10 @@ import { dndzone, TRIGGERS } from 'svelte-dnd-action';
 import { s } from '$lib/client/localization.svelte';
 import Select from '$lib/components/Select.svelte';
 import { categorySettings, type SinglePageMode } from '$lib/data/settings.svelte.js';
-import {
-	type CategoryMetadata,
-	categoryMetadataService,
-} from '$lib/services/categoryMetadataService';
+import type { CategoryMetadata } from '$lib/services/categoryMetadataService';
 import type { Category } from '$lib/types';
 import { getCategoryDisplayName } from '$lib/utils/category';
+import { categoryMetadataStore } from '$lib/stores/categoryMetadata.svelte';
 
 // Props
 interface Props {
@@ -31,8 +29,7 @@ const flipDurationMs = 200;
 let enabledItems = $state<Array<{ id: string; name: string }>>([]);
 let disabledItems = $state<Array<{ id: string; name: string }>>([]);
 
-// Category metadata and filtering
-let categoryMetadata = $state<CategoryMetadata[]>([]);
+// Category filtering
 let categoryFilter = $state('all');
 
 // Single page mode
@@ -113,21 +110,10 @@ $effect(() => {
 		untrack(() => {
 			categorySettings.setAllCategories(allCategories);
 			categorySettings.initWithDefaults();
-			loadCategoryMetadata();
 			syncFromStore();
 		});
 	}
 });
-
-// Load category metadata for filtering
-async function loadCategoryMetadata() {
-	try {
-		categoryMetadata = await categoryMetadataService.loadMetadata();
-	} catch (error) {
-		console.error('Failed to load category metadata:', error);
-		categoryMetadata = [];
-	}
-}
 
 // Sync from store when not dragging
 $effect(() => {
@@ -149,9 +135,7 @@ function syncFromStore() {
 			const category = categorySettings.allCategories.find((cat) => cat.id === categoryId);
 			// Fallback to metadata if category not in current batch
 			if (!category) {
-				const metadata = categoryMetadata.find(
-					(meta) => meta.categoryId === categoryId.toLowerCase(),
-				);
+				const metadata = categoryMetadataStore.findById(categoryId);
 				return {
 					id: categoryId,
 					name: metadata?.displayName || categoryId,
@@ -174,9 +158,7 @@ function syncFromStore() {
 			const category = categorySettings.allCategories.find((cat) => cat.id === categoryId);
 			// Fallback to metadata if category not in current batch
 			if (!category) {
-				const metadata = categoryMetadata.find(
-					(meta) => meta.categoryId === categoryId.toLowerCase(),
-				);
+				const metadata = categoryMetadataStore.findById(categoryId);
 				return {
 					id: categoryId,
 					name: metadata?.displayName || categoryId,
@@ -187,7 +169,7 @@ function syncFromStore() {
 				name: category.name,
 			};
 		})
-		.sort((a, b) => getCategoryDisplayName(a).localeCompare(getCategoryDisplayName(b)));
+		.sort((a, b) => getDisplayName(a).localeCompare(getDisplayName(b)));
 }
 
 // Get category type for filtering
@@ -197,10 +179,10 @@ function getCategoryType(categoryId: string): string {
 		return 'other';
 	}
 
-	const metadata = categoryMetadata.find((meta) => meta.categoryId === categoryId.toLowerCase());
+	const metadata = categoryMetadataStore.findById(categoryId);
 	if (!metadata) {
 		// Don't spam warnings for common categories that might not be in metadata
-		if (categoryMetadata.length > 0) {
+		if (categoryMetadataStore.isLoaded) {
 			console.warn(`No metadata found for category: ${categoryId}`);
 		}
 		return 'other';
@@ -210,8 +192,18 @@ function getCategoryType(categoryId: string): string {
 
 // Check if category is core (maintained by Kagi)
 function isCoreCategory(categoryId: string): boolean {
-	const metadata = categoryMetadata.find((meta) => meta.categoryId === categoryId.toLowerCase());
+	const metadata = categoryMetadataStore.findById(categoryId);
 	return metadata?.isCore ?? false;
+}
+
+// Helper to get display name with metadata lookup from global store
+function getDisplayName(category: Category | { id: string; name: string }): string {
+	const metadata = categoryMetadataStore.findById(category.id);
+	if (!metadata) {
+		// Fallback: return the name directly if no metadata found
+		return category.name;
+	}
+	return getCategoryDisplayName(category as Category, metadata);
 }
 
 // Count categories by type for filter labels
@@ -449,8 +441,8 @@ function handleSinglePageModeChange(mode: string) {
           tabindex={enabledItems.length === 1 ? -1 : 0}
           aria-disabled={enabledItems.length === 1}
           aria-label={enabledItems.length === 1
-            ? `${getCategoryDisplayName(category)} - last category, cannot disable`
-            : `${getCategoryDisplayName(category)} - click to disable or drag to reorder`}
+            ? `${getDisplayName(category)} - last category, cannot disable`
+            : `${getDisplayName(category)} - click to disable or drag to reorder`}
           onclick={(e) => {
             e.stopPropagation();
             e.preventDefault();
@@ -474,7 +466,7 @@ function handleSinglePageModeChange(mode: string) {
           }}
         >
           <span class="select-none">
-            {getCategoryDisplayName(category)}
+            {getDisplayName(category)}
           </span>
         </div>
       {/each}
@@ -548,7 +540,7 @@ function handleSinglePageModeChange(mode: string) {
             "Click to enable, drag to reorder"}
           role="button"
           tabindex={isFiltered ? -1 : 0}
-          aria-label={`${getCategoryDisplayName(category)} - click to enable or drag to reorder`}
+          aria-label={`${getDisplayName(category)} - click to enable or drag to reorder`}
           onclick={(e) => {
             e.stopPropagation();
             e.preventDefault();
@@ -564,7 +556,7 @@ function handleSinglePageModeChange(mode: string) {
           onmousedown={(e) => e.stopPropagation()}
         >
           <span class="select-none">
-            {getCategoryDisplayName(category)}
+            {getDisplayName(category)}
           </span>
         </div>
       {/each}

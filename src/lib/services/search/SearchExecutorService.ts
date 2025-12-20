@@ -140,6 +140,7 @@ export class SearchExecutorService {
 		// Define searchable fields with weights
 		const searchableFields = {
 			title: story.title || '',
+			category: story.category || '', // Sub-category field
 			short_summary: story.short_summary || '',
 			did_you_know: story.did_you_know || '',
 			talking_points: story.talking_points?.join(' ') || '',

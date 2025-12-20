@@ -12,6 +12,7 @@ interface Props {
 	story: any;
 	onClose?: () => void;
 	batchId?: string;
+	batchDateSlug?: string | null;
 	categoryId?: string;
 	storyIndex?: number;
 	isSharedView?: boolean;
@@ -22,6 +23,7 @@ let {
 	story,
 	onClose,
 	batchId,
+	batchDateSlug = null,
 	categoryId,
 	storyIndex,
 	isSharedView = false,

@@ -60,7 +60,9 @@ function handleWikipediaLeave(event: Event) {
     <OnThisDayEventTimeline {events} />
 
     <!-- People Section -->
-    <OnThisDayPeopleCarousel {people} />
+    {#if people.length > 0}
+      <OnThisDayPeopleCarousel {people} />
+    {/if}
   {/if}
 </div>
 

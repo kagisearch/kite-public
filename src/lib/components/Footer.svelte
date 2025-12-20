@@ -1,7 +1,19 @@
 <script lang="ts">
 import { s } from '$lib/client/localization.svelte';
-import { languageSettings, themeSettings } from '$lib/data/settings.svelte.js';
+import { displaySettings, languageSettings, themeSettings } from '$lib/data/settings.svelte.js';
 import type { Category, Story } from '$lib/types';
+
+// Helper function for layout width class
+function getContainerWidthClass(): string {
+	switch (displaySettings.layoutWidth) {
+		case 'wide':
+			return 'max-w-4xl';
+		case 'full':
+			return 'max-w-full';
+		default:
+			return 'max-w-[732px]';
+	}
+}
 
 interface Props {
 	currentCategory?: string;
@@ -37,7 +49,7 @@ function getRSSFeedUrl(): string {
 
 <footer class="mt-8 pt-4 pb-8 md:pb-4">
   <div
-    class="container mx-auto flex max-w-[732px] items-center justify-center space-x-3 sm:space-x-6 px-4"
+    class="container mx-auto flex {getContainerWidthClass()} items-center justify-center space-x-3 sm:space-x-6 px-4"
   >
     <a
       href="https://github.com/kagisearch/kite-public"

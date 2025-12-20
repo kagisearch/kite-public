@@ -376,6 +376,15 @@ const allStoriesExpanded = $derived(
       </div>
     {/if}
 
+    <!-- Few stories message -->
+    {#if displayedStories.length > 0 && displayedStories.length <= 3}
+      <div class="mt-6 py-4 text-center text-gray-600 dark:text-gray-400">
+        <p class="text-base">
+          {s("stories.fewStories") || "There were no other significant news today, come back tomorrow!"}
+        </p>
+      </div>
+    {/if}
+
     <!-- Mark all as read button -->
     {#if !allStoriesRead && displayedStories.length > 0}
       <div class="mt-6 w-full text-center">

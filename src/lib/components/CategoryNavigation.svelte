@@ -7,6 +7,7 @@ import { displaySettings } from '$lib/data/settings.svelte.js';
 import type { Category } from '$lib/types';
 import { getCategoryDisplayName } from '$lib/utils/category';
 import { toCamelCase } from '$lib/utils/string.js';
+import { categoryMetadataStore } from '$lib/stores/categoryMetadata.svelte';
 
 // Props
 interface Props {
@@ -38,6 +39,16 @@ let hasOverflow = $state(false);
 let tabsElement: HTMLElement;
 let temporaryCategoryElement = $state<HTMLElement | null>(null);
 let categoryElements = $state<Record<string, HTMLElement>>({});
+
+// Helper to get display name with metadata lookup from global store
+function getDisplayName(category: Category): string {
+	const metadata = categoryMetadataStore.findById(category.id);
+	if (!metadata) {
+		// Fallback: return the name directly if no metadata found
+		return category.name;
+	}
+	return getCategoryDisplayName(category, metadata);
+}
 
 // Expose a function to get the reference element for the tooltip
 export function getCategoryElement(categoryId: string): HTMLElement | null {
@@ -286,7 +297,7 @@ $effect(() => {
               displaySettings.storyExpandMode !== "never" &&
               onCategoryDoubleClick?.(category.id)}
           >
-            {getCategoryDisplayName(category)}
+            {getDisplayName(category)}
           </button>
         {/each}
       </div>

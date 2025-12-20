@@ -544,7 +544,7 @@
         "translationContext": "Second paragraph of the approach section with GitHub link"
     },
     "about.approach.description3": {
-        "text": "Kagi News читает общедоступные RSS-ленты тысяч (отобранных сообществом) мировых источников новостей и превращает их в один идеальный ежедневный дайджест. Вы получаете каждую важную точку зрения и хронологию всего за 5 минут. Вот и все. Никакой бесконечной прокрутки. Никакого похищения внимания. Потому что мы заслуживаем лучшего.",
+        "text": "Kagi News читает общедоступные RSS-ленты тысяч (отобранных сообществом) мировых новостных источников и использует ИИ, чтобы составить из них одну идеальную ежедневную сводку. Вы получаете все ключевые точки зрения и хронологию событий всего за 5 минут. И всё. Никакой бесконечной прокрутки. Никакого захвата внимания. Потому что мы заслуживаем лучшего.",
         "translationContext": "Third paragraph of the approach section"
     },
     "about.approach.title": {
@@ -1636,8 +1636,8 @@
         "translationContext": "Shows the current week and day of the year, {{week}} and {{day}} will be replaced with numbers"
     },
     "stories.noStories": {
-        "text": "Что-то пошло не так, здесь нет новостей!",
-        "translationContext": "Message shown when no stories are found"
+        "text": "Сегодня в этой категории нет значимых новостей.",
+        "translationContext": "Message shown when no stories are found for a category"
     },
     "time.updated.days": {
         "text": "Обновлено {{count}} дней назад",
@@ -2670,5 +2670,589 @@
     "story.tts.tooltipStop": {
         "text": "Остановить воспроизведение",
         "translationContext": "Tooltip for TTS button when playing"
+    },
+    "nhl.title": {
+        "text": "Предстоящие игры",
+        "translationContext": "Title for NHL games section"
+    },
+    "nhl.noGames": {
+        "text": "Нет игр",
+        "translationContext": "Message when there are no NHL games"
+    },
+    "nhl.gamesCount": {
+        "text": "{{count}} игра",
+        "translationContext": "Count of games. {{count}} will be replaced with number. Singular form."
+    },
+    "nhl.gamesCountPlural": {
+        "text": "{{count}} игры",
+        "translationContext": "Count of games. {{count}} will be replaced with number. Plural form."
+    },
+    "nhl.live": {
+        "text": "в эфире",
+        "translationContext": "Label for live games"
+    },
+    "nhl.completed": {
+        "text": "завершено",
+        "translationContext": "Label for completed games"
+    },
+    "nhl.upcoming": {
+        "text": "предстоящие",
+        "translationContext": "Label for upcoming games"
+    },
+    "nhl.total": {
+        "text": "всего",
+        "translationContext": "Label for total games"
+    },
+    "nhl.refresh": {
+        "text": "Обновить счёт",
+        "translationContext": "Aria label for refresh button"
+    },
+    "nhl.final": {
+        "text": "Конец",
+        "translationContext": "Game status: game is finished"
+    },
+    "nhl.finalOvertime": {
+        "text": "К/ОТ",
+        "translationContext": "Game status: finished in overtime"
+    },
+    "nhl.finalShootout": {
+        "text": "К/Б",
+        "translationContext": "Game status: finished in shootout"
+    },
+    "nhl.overtime": {
+        "text": "ОТ",
+        "translationContext": "Game status: in overtime"
+    },
+    "nhl.shootout": {
+        "text": "Б",
+        "translationContext": "Game status: in shootout"
+    },
+    "nhl.period": {
+        "text": "П{{period}}",
+        "translationContext": "Game status: period number. {{period}} will be replaced with 1, 2, or 3"
+    },
+    "nhl.tomorrow": {
+        "text": "Завтра",
+        "translationContext": "Date label for games tomorrow"
+    },
+    "nhl.overUnder": {
+        "text": "Б/М",
+        "translationContext": "Abbreviation for Over/Under betting line"
+    },
+    "nhl.volume": {
+        "text": "Об.",
+        "translationContext": "Abbreviation for trading volume"
+    },
+    "nhl.liquidity": {
+        "text": "Ликв.",
+        "translationContext": "Abbreviation for liquidity"
+    },
+    "nhl.oddsFrom": {
+        "text": "Коэффициенты от Polymarket",
+        "translationContext": "Attribution text for betting odds. Polymarket is a brand name and should not be translated."
+    },
+    "nhl.standings.title": {
+        "text": "Турнирная таблица",
+        "translationContext": "Title for NHL standings section"
+    },
+    "nhl.standings.divisions": {
+        "text": "дивизионы",
+        "translationContext": "Label for number of divisions"
+    },
+    "nhl.standings.teams": {
+        "text": "команды",
+        "translationContext": "Label for number of teams"
+    },
+    "nhl.standings.loading": {
+        "text": "Загрузка...",
+        "translationContext": "Loading message for standings"
+    },
+    "nhl.standings.noData": {
+        "text": "Нет данных о турнирной таблице.",
+        "translationContext": "Message when standings data is not available"
+    },
+    "nhl.standings.error": {
+        "text": "Не удалось загрузить турнирную таблицу. Пожалуйста, попробуйте позже.",
+        "translationContext": "Error message when standings fail to load"
+    },
+    "nhl.standings.refresh": {
+        "text": "Обновить таблицу",
+        "translationContext": "Aria label for refresh standings button"
+    },
+    "nhl.standings.points": {
+        "text": "очк",
+        "translationContext": "Abbreviation for points in standings preview"
+    },
+    "nhl.standings.header.rank": {
+        "text": "#",
+        "translationContext": "Table column header for team rank"
+    },
+    "nhl.standings.header.team": {
+        "text": "Команда",
+        "translationContext": "Table column header for team name"
+    },
+    "nhl.standings.header.gp": {
+        "text": "И",
+        "translationContext": "Table column header abbreviation for Games Played"
+    },
+    "nhl.standings.header.w": {
+        "text": "В",
+        "translationContext": "Table column header abbreviation for Wins"
+    },
+    "nhl.standings.header.l": {
+        "text": "П",
+        "translationContext": "Table column header abbreviation for Losses"
+    },
+    "nhl.standings.header.ot": {
+        "text": "ПО",
+        "translationContext": "Table column header abbreviation for Overtime Losses"
+    },
+    "nhl.standings.header.pts": {
+        "text": "О",
+        "translationContext": "Table column header abbreviation for Points"
+    },
+    "nhl.standings.header.diff": {
+        "text": "РШ",
+        "translationContext": "Table column header abbreviation for Goal Differential"
+    },
+    "nhl.standings.header.strk": {
+        "text": "СЕРИЯ",
+        "translationContext": "Table column header abbreviation for Streak"
+    },
+    "nhl.standings.legend.gp": {
+        "text": "Сыграно игр",
+        "translationContext": "Legend explanation for GP abbreviation"
+    },
+    "nhl.standings.legend.w": {
+        "text": "Победы",
+        "translationContext": "Legend explanation for W abbreviation"
+    },
+    "nhl.standings.legend.l": {
+        "text": "Поражения",
+        "translationContext": "Legend explanation for L abbreviation"
+    },
+    "nhl.standings.legend.ot": {
+        "text": "Поражения в овертайме",
+        "translationContext": "Legend explanation for OT abbreviation"
+    },
+    "nhl.standings.legend.pts": {
+        "text": "Очки",
+        "translationContext": "Legend explanation for PTS abbreviation"
+    },
+    "nhl.standings.legend.diff": {
+        "text": "Разница шайб",
+        "translationContext": "Legend explanation for DIFF abbreviation"
+    },
+    "nhl.standings.legend.strk": {
+        "text": "Серия",
+        "translationContext": "Legend explanation for STRK abbreviation"
+    },
+    "nfl.title": {
+        "text": "Предстоящие игры",
+        "translationContext": "Title for NFL games section"
+    },
+    "nfl.noGames": {
+        "text": "Нет игр",
+        "translationContext": "Message when there are no NFL games"
+    },
+    "nfl.gamesCount": {
+        "text": "{{count}} игра",
+        "translationContext": "Count of games. {{count}} will be replaced with number. Singular form."
+    },
+    "nfl.gamesCountPlural": {
+        "text": "{{count}} игры",
+        "translationContext": "Count of games. {{count}} will be replaced with number. Plural form."
+    },
+    "nfl.live": {
+        "text": "в эфире",
+        "translationContext": "Label for live games"
+    },
+    "nfl.completed": {
+        "text": "завершено",
+        "translationContext": "Label for completed games"
+    },
+    "nfl.upcoming": {
+        "text": "предстоящие",
+        "translationContext": "Label for upcoming games"
+    },
+    "nfl.total": {
+        "text": "всего",
+        "translationContext": "Label for total games"
+    },
+    "nfl.refresh": {
+        "text": "Обновить",
+        "translationContext": "Button text for refresh"
+    },
+    "nfl.refreshing": {
+        "text": "Обновление...",
+        "translationContext": "Button text while refreshing"
+    },
+    "nfl.loading": {
+        "text": "Загрузка...",
+        "translationContext": "Loading message"
+    },
+    "nfl.final": {
+        "text": "Конец",
+        "translationContext": "Game status: game is finished"
+    },
+    "nfl.overtime": {
+        "text": "ОТ",
+        "translationContext": "Game status: in overtime"
+    },
+    "nfl.quarter1": {
+        "text": "1Ч",
+        "translationContext": "Game status: first quarter"
+    },
+    "nfl.quarter2": {
+        "text": "2Ч",
+        "translationContext": "Game status: second quarter"
+    },
+    "nfl.quarter3": {
+        "text": "3Ч",
+        "translationContext": "Game status: third quarter"
+    },
+    "nfl.quarter4": {
+        "text": "4Ч",
+        "translationContext": "Game status: fourth quarter"
+    },
+    "nfl.overUnder": {
+        "text": "Б/М {{line}}",
+        "translationContext": "Over/Under betting line. {{line}} will be replaced with the line value"
+    },
+    "nfl.over": {
+        "text": "Больше",
+        "translationContext": "Over in betting odds"
+    },
+    "nfl.under": {
+        "text": "Меньше",
+        "translationContext": "Under in betting odds"
+    },
+    "nfl.volume": {
+        "text": "Объём",
+        "translationContext": "Trading volume label"
+    },
+    "nfl.liquidity": {
+        "text": "Ликвидность",
+        "translationContext": "Liquidity label"
+    },
+    "nfl.oddsTooltip": {
+        "text": "Коэффициенты от Polymarket",
+        "translationContext": "Tooltip for betting odds. Polymarket is a brand name and should not be translated."
+    },
+    "nfl.showMore": {
+        "text": "Показать ещё {{count}}",
+        "translationContext": "Button to show more games. {{count}} will be replaced with number"
+    },
+    "nfl.showLess": {
+        "text": "Скрыть",
+        "translationContext": "Button to show fewer games"
+    },
+    "nfl.standings.title": {
+        "text": "Турнирная таблица",
+        "translationContext": "Title for NFL standings section"
+    },
+    "nfl.standings.conferences": {
+        "text": "конференции",
+        "translationContext": "Label for number of conferences"
+    },
+    "nfl.standings.divisions": {
+        "text": "дивизионы",
+        "translationContext": "Label for number of divisions"
+    },
+    "nfl.standings.teams": {
+        "text": "команды",
+        "translationContext": "Label for number of teams"
+    },
+    "nfl.standings.loading": {
+        "text": "Загрузка...",
+        "translationContext": "Loading message for standings"
+    },
+    "nfl.standings.noData": {
+        "text": "Нет данных о турнирной таблице",
+        "translationContext": "Message when standings data is not available"
+    },
+    "nfl.standings.refresh": {
+        "text": "Обновить",
+        "translationContext": "Button text for refresh"
+    },
+    "nfl.standings.refreshing": {
+        "text": "Обновление...",
+        "translationContext": "Button text while refreshing"
+    },
+    "nfl.standings.header.rank": {
+        "text": "Место",
+        "translationContext": "Table column header for team rank"
+    },
+    "nfl.standings.header.team": {
+        "text": "Команда",
+        "translationContext": "Table column header for team name"
+    },
+    "nfl.standings.header.w": {
+        "text": "В",
+        "translationContext": "Table column header abbreviation for Wins"
+    },
+    "nfl.standings.header.l": {
+        "text": "П",
+        "translationContext": "Table column header abbreviation for Losses"
+    },
+    "nfl.standings.header.t": {
+        "text": "Н",
+        "translationContext": "Table column header abbreviation for Ties"
+    },
+    "nfl.standings.header.pct": {
+        "text": "%ПОБ",
+        "translationContext": "Table column header abbreviation for Win Percentage"
+    },
+    "nfl.standings.header.pf": {
+        "text": "ОЗ",
+        "translationContext": "Table column header abbreviation for Points For"
+    },
+    "nfl.standings.header.pa": {
+        "text": "ОП",
+        "translationContext": "Table column header abbreviation for Points Against"
+    },
+    "nfl.standings.header.diff": {
+        "text": "РАЗН",
+        "translationContext": "Table column header abbreviation for Point Differential"
+    },
+    "nfl.standings.header.strk": {
+        "text": "СЕРИЯ",
+        "translationContext": "Table column header abbreviation for Streak"
+    },
+    "nfl.standings.legend.w": {
+        "text": "Победы",
+        "translationContext": "Legend explanation for W abbreviation"
+    },
+    "nfl.standings.legend.l": {
+        "text": "Поражения",
+        "translationContext": "Legend explanation for L abbreviation"
+    },
+    "nfl.standings.legend.t": {
+        "text": "Ничьи",
+        "translationContext": "Legend explanation for T abbreviation"
+    },
+    "nfl.standings.legend.pct": {
+        "text": "Процент побед",
+        "translationContext": "Legend explanation for PCT abbreviation"
+    },
+    "nfl.standings.legend.pf": {
+        "text": "Набранные очки",
+        "translationContext": "Legend explanation for PF abbreviation"
+    },
+    "nfl.standings.legend.pa": {
+        "text": "Пропущенные очки",
+        "translationContext": "Legend explanation for PA abbreviation"
+    },
+    "nfl.standings.legend.diff": {
+        "text": "Разница очков",
+        "translationContext": "Legend explanation for DIFF abbreviation"
+    },
+    "nfl.standings.legend.strk": {
+        "text": "Серия",
+        "translationContext": "Legend explanation for STRK abbreviation"
+    },
+    "nfl.standings.showMore": {
+        "text": "Показать ещё {{count}} дивизионов",
+        "translationContext": "Button to show more divisions. {{count}} will be replaced with number"
+    },
+    "nfl.standings.showLess": {
+        "text": "Скрыть",
+        "translationContext": "Button to show fewer divisions"
+    },
+    "f1.standings.title": {
+        "text": "Таблица F1",
+        "translationContext": "Title for Formula 1 standings widget"
+    },
+    "f1.standings.loading": {
+        "text": "Загрузка таблицы...",
+        "translationContext": "Loading message for F1 standings"
+    },
+    "f1.drivers": {
+        "text": "пилоты",
+        "translationContext": "Label for number of drivers in summary"
+    },
+    "f1.constructors": {
+        "text": "конструкторы",
+        "translationContext": "Label for number of constructors/teams in summary"
+    },
+    "f1.driverStandings": {
+        "text": "Личный зачёт",
+        "translationContext": "Section title for driver standings table"
+    },
+    "f1.constructorStandings": {
+        "text": "Кубок конструкторов",
+        "translationContext": "Section title for constructor/team standings table"
+    },
+    "f1.position": {
+        "text": "Поз.",
+        "translationContext": "Table header for position/rank"
+    },
+    "f1.driver": {
+        "text": "Пилот",
+        "translationContext": "Table header for driver name"
+    },
+    "f1.team": {
+        "text": "Команда",
+        "translationContext": "Table header for team/constructor name"
+    },
+    "f1.points": {
+        "text": "Очки",
+        "translationContext": "Table header for championship points"
+    },
+    "f1.wins": {
+        "text": "Победы",
+        "translationContext": "Table header for number of race wins"
+    },
+    "f1.schedule.title": {
+        "text": "Расписание F1",
+        "translationContext": "Title for Formula 1 race schedule widget"
+    },
+    "f1.schedule.loading": {
+        "text": "Загрузка расписания...",
+        "translationContext": "Loading message for F1 schedule"
+    },
+    "f1.schedule.today": {
+        "text": "Сегодня",
+        "translationContext": "Label when race is today"
+    },
+    "f1.schedule.tomorrow": {
+        "text": "Завтра",
+        "translationContext": "Label when race is tomorrow"
+    },
+    "f1.schedule.inDays": {
+        "text": "Через {{days}} дн.",
+        "translationContext": "Label for days until next race. {{days}} will be replaced with number"
+    },
+    "f1.schedule.seasonComplete": {
+        "text": "Сезон завершён",
+        "translationContext": "Message when all races are finished"
+    },
+    "f1.round": {
+        "text": "Этап",
+        "translationContext": "Label for race round number"
+    },
+    "f1.nextRace": {
+        "text": "Следующая гонка",
+        "translationContext": "Badge label for the next upcoming race"
+    },
+    "f1.today": {
+        "text": "Сегодня",
+        "translationContext": "Label when race is today in race list"
+    },
+    "f1.tomorrow": {
+        "text": "Завтра",
+        "translationContext": "Label when race is tomorrow in race list"
+    },
+    "f1.days": {
+        "text": "дней",
+        "translationContext": "Label for days until race"
+    },
+    "f1.completed": {
+        "text": "Завершено",
+        "translationContext": "Status label for completed races"
+    },
+    "f1.winner": {
+        "text": "Победитель",
+        "translationContext": "Label for race winner"
+    },
+    "crypto.grid.title": {
+        "text": "Курсы криптовалют",
+        "translationContext": "Title for cryptocurrency grid widget"
+    },
+    "weather.loading": {
+        "text": "Загрузка погоды...",
+        "translationContext": "Loading state for weather widget"
+    },
+    "weather.error": {
+        "text": "Погода недоступна",
+        "translationContext": "Error state for weather widget"
+    },
+    "weather.clear": {
+        "text": "Ясно",
+        "translationContext": "Clear weather condition"
+    },
+    "weather.cloudy": {
+        "text": "Облачно",
+        "translationContext": "Cloudy weather condition"
+    },
+    "weather.foggy": {
+        "text": "Туман",
+        "translationContext": "Foggy weather condition"
+    },
+    "weather.rainy": {
+        "text": "Дождь",
+        "translationContext": "Rainy weather condition"
+    },
+    "weather.snowy": {
+        "text": "Снег",
+        "translationContext": "Snowy weather condition"
+    },
+    "weather.stormy": {
+        "text": "Гроза",
+        "translationContext": "Stormy weather condition"
+    },
+    "weather.high": {
+        "text": "Макс.",
+        "translationContext": "High temperature label"
+    },
+    "weather.low": {
+        "text": "Мин.",
+        "translationContext": "Low temperature label"
+    },
+    "weather.humidity": {
+        "text": "Влажность",
+        "translationContext": "Humidity label"
+    },
+    "weather.fahrenheit": {
+        "text": "F",
+        "translationContext": "Fahrenheit temperature unit abbreviation"
+    },
+    "weather.mph": {
+        "text": "миль/ч",
+        "translationContext": "Miles per hour wind speed unit"
+    },
+    "weather.location.san-francisco": {
+        "text": "Область залива Сан-Франциско",
+        "translationContext": "Location name for San Francisco Bay Area weather"
+    },
+    "weather.location.new-york": {
+        "text": "Нью-Йорк",
+        "translationContext": "Location name for New York City weather"
+    },
+    "weather.location.austin": {
+        "text": "Остин, Техас",
+        "translationContext": "Location name for Austin, Texas weather"
+    },
+    "stories.fewStories": {
+        "text": "Других важных новостей сегодня не было, заходите завтра!",
+        "translationContext": "Message shown when there are only 1-3 stories in a category"
+    },
+    "sources.paywall": {
+        "text": "Подписка",
+        "translationContext": "Short label indicating that a news source is paywalled"
+    },
+    "sources.paywallTooltip": {
+        "text": "Для доступа к полным статьям может потребоваться подписка.",
+        "translationContext": "Tooltip explaining that a news source requires a paid subscription"
+    },
+    "settings.layoutWidth.label": {
+        "text": "Ширина макета",
+        "translationContext": "Label for the layout width setting"
+    },
+    "settings.layoutWidth.description": {
+        "text": "Выберите ширину области контента для больших экранов",
+        "translationContext": "Description explaining what the layout width setting does"
+    },
+    "settings.layoutWidth.normal": {
+        "text": "Обычная (732px)",
+        "translationContext": "Option for normal/default layout width"
+    },
+    "settings.layoutWidth.wide": {
+        "text": "Широкая (1024px)",
+        "translationContext": "Option for wide layout width"
+    },
+    "settings.layoutWidth.full": {
+        "text": "На всю ширину",
+        "translationContext": "Option for full width layout"
     }
 }

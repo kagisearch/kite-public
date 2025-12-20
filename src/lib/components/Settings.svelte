@@ -10,6 +10,7 @@ import {
 import type { Category } from '$lib/types';
 import { createModalBehavior } from '$lib/utils/modalBehavior.svelte';
 import { scrollLock } from '$lib/utils/scrollLock.js';
+import { ttsManager } from '$lib/stores/ttsManager.svelte';
 import SettingsAbout from './settings/SettingsAbout.svelte';
 import SettingsCategories from './settings/SettingsCategories.svelte';
 import SettingsContentFilter from './settings/SettingsContentFilter.svelte';
@@ -158,6 +159,9 @@ function updateFocusableElements() {
 $effect(() => {
 	if (typeof document !== 'undefined') {
 		if (visible) {
+			// Stop all TTS playback when settings opens
+			ttsManager.stopAll();
+
 			// Store the previously active element
 			previousActiveElement = document.activeElement;
 

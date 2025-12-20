@@ -153,7 +153,6 @@ const isCJKStory = $derived(containsCJK(story.title));
                 class={selectedLevel === 'very-simple' ? 'px-2 py-0.5 text-xs rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200' : 'px-2 py-0.5 text-xs rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'}
                 aria-label="Very simple reading level"
                 aria-pressed={selectedLevel === 'very-simple'}
-                role="button"
               >
                 {s('story.simplify.verySimple')}
               </button>
@@ -163,7 +162,6 @@ const isCJKStory = $derived(containsCJK(story.title));
                 class={selectedLevel === 'simple' ? 'px-2 py-0.5 text-xs rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200' : 'px-2 py-0.5 text-xs rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'}
                 aria-label="Simple reading level"
                 aria-pressed={selectedLevel === 'simple'}
-                role="button"
               >
                 {s('story.simplify.simple')}
               </button>
@@ -173,7 +171,6 @@ const isCJKStory = $derived(containsCJK(story.title));
                 class={selectedLevel === 'normal' ? 'px-2 py-0.5 text-xs rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200' : 'px-2 py-0.5 text-xs rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'}
                 aria-label="Normal reading level"
                 aria-pressed={selectedLevel === 'normal'}
-                role="button"
               >
                 {s('story.simplify.normal')}
               </button>

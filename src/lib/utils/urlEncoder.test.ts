@@ -160,6 +160,18 @@ describe('urlEncoder', () => {
 				buildArticleUrl('world', '2025-06-21T12:00:00Z', 3327998, 'French Prime Minister Resigns'),
 			).toBe('/world/2025062113327998/french-prime-minister-resigns');
 		});
+
+		it('should encode special characters in category IDs', () => {
+			// Category with comma (Austin, TX)
+			expect(buildArticleUrl('usa_|_austin,_tx', '2025-01-15.1', 998, 'Local News')).toBe(
+				'/usa_%7C_austin%2C_tx/202501151998/local-news',
+			);
+
+			// Category with pipe character
+			expect(buildArticleUrl('usa_|_vermont', '2025-01-15.1', 998, 'Vermont News')).toBe(
+				'/usa_%7C_vermont/202501151998/vermont-news',
+			);
+		});
 	});
 
 	describe('buildCategoryUrl', () => {
@@ -170,6 +182,16 @@ describe('urlEncoder', () => {
 
 		it('should build category URLs from ISO timestamp', () => {
 			expect(buildCategoryUrl('world', '2025-01-15T08:00:00Z')).toBe('/world/202501151');
+		});
+
+		it('should encode special characters in category IDs', () => {
+			// Category with comma (Austin, TX)
+			expect(buildCategoryUrl('usa_|_austin,_tx', '2025-01-15.1')).toBe(
+				'/usa_%7C_austin%2C_tx/202501151',
+			);
+
+			// Category with pipe character
+			expect(buildCategoryUrl('usa_|_vermont', '2025-01-15.1')).toBe('/usa_%7C_vermont/202501151');
 		});
 	});
 
@@ -241,6 +263,42 @@ describe('urlEncoder', () => {
 					slug: 'french-prime-minister-resigns',
 				});
 			});
+
+			it('should parse URLs with encoded special characters', () => {
+				// Category with comma (Austin, TX)
+				expect(parseUrl('/usa_%7C_austin%2C_tx/202501151998/local-news')).toEqual({
+					categoryId: 'usa_|_austin,_tx',
+					batchId: '2025-01-15.1',
+					clusterId: 998,
+					slug: 'local-news',
+				});
+
+				// Category-only URL with encoded characters
+				expect(parseUrl('/usa_%7C_austin%2C_tx/202501151')).toEqual({
+					categoryId: 'usa_|_austin,_tx',
+					batchId: '2025-01-15.1',
+				});
+			});
+
+			it('should round-trip build/parse with special characters', () => {
+				// Test with comma in category ID
+				const url1 = buildArticleUrl('usa_|_austin,_tx', '2025-01-15.1', 998, 'Local News');
+				const parsed1 = parseUrl(url1);
+				expect(parsed1).toEqual({
+					categoryId: 'usa_|_austin,_tx',
+					batchId: '2025-01-15.1',
+					clusterId: 998,
+					slug: 'local-news',
+				});
+
+				// Test category-only URL
+				const url2 = buildCategoryUrl('usa_|_austin,_tx', '2025-01-15.1');
+				const parsed2 = parseUrl(url2);
+				expect(parsed2).toEqual({
+					categoryId: 'usa_|_austin,_tx',
+					batchId: '2025-01-15.1',
+				});
+			});
 		});
 
 		describe('legacy format - data slug (YYYY-MM-DD.N)', () => {
@@ -285,6 +343,22 @@ describe('urlEncoder', () => {
 					categoryId: 'world',
 					batchId: '2025-01-15',
 					storyIndex: 3,
+					isLegacyFormat: true,
+				});
+			});
+
+			it('should parse legacy URLs with encoded special characters', () => {
+				// Category with comma in legacy format
+				expect(parseUrl('/2025-01-15.1/usa_%7C_austin%2C_tx')).toEqual({
+					categoryId: 'usa_|_austin,_tx',
+					batchId: '2025-01-15.1',
+					isLegacyFormat: true,
+				});
+
+				expect(parseUrl('/2025-01-15.1/usa_%7C_austin%2C_tx/5')).toEqual({
+					categoryId: 'usa_|_austin,_tx',
+					batchId: '2025-01-15.1',
+					storyIndex: 5,
 					isLegacyFormat: true,
 				});
 			});

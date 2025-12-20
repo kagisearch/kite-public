@@ -20,7 +20,7 @@
     "translationContext": "Second paragraph of the approach section with GitHub link"
   },
   "about.approach.description3": {
-    "text": "Kagi News reads public RSS feeds of thousands of (community-curated) world-wide news sources and distills them into one perfect daily briefing. You get every critical perspective and timeline in just 5 minutes. That's it. No endless scrolling. No attention hijacking. Because we deserve better.",
+    "text": "Kagi News reads public RSS feeds of thousands of (community-curated) world-wide news sources and utilizes AI to distill them into one perfect daily briefing. You get every critical perspective and timeline in just 5 minutes. That's it. No endless scrolling. No attention hijacking. Because we deserve better.",
     "translationContext": "Third paragraph of the approach section"
   },
   "about.approach.title": {
@@ -1851,6 +1851,14 @@
     "text": "{{publishers}} publishers, {{articles}} articles",
     "translationContext": "Shows count of publishers and articles, {{publishers}} and {{articles}} will be replaced with numbers"
   },
+  "sources.paywall": {
+    "text": "Paywall",
+    "translationContext": "Short label indicating that a news source is paywalled"
+  },
+  "sources.paywallTooltip": {
+    "text": "This source may require a subscription to access full articles",
+    "translationContext": "Tooltip explaining that a news source requires a paid subscription"
+  },
   "stats.newsToday": {
     "text": "{{count}} news today",
     "translationContext": "Shows the count of news items today, {count} will be replaced with a number"
@@ -1867,9 +1875,13 @@
     "text": "Week {{week}}, Day {{day}}",
     "translationContext": "Shows the current week and day of the year, {week} and {day} will be replaced with numbers"
   },
+  "stories.fewStories": {
+    "text": "There were no other significant news today, come back tomorrow!",
+    "translationContext": "Message shown when there are only 1-3 stories in a category"
+  },
   "stories.noStories": {
-    "text": "Something went wrong, there are no stories here!",
-    "translationContext": "Message shown when no stories are found"
+    "text": "There are no significant stories in this category today.",
+    "translationContext": "Message shown when no stories are found for a category"
   },
   "time.updated.days": {
     "text": "Updated {{count}} days ago",
@@ -2351,6 +2363,26 @@
     "text": "Apple Maps",
     "translationContext": "Option to use Apple Maps"
   },
+  "settings.layoutWidth.label": {
+    "text": "Layout Width",
+    "translationContext": "Label for the layout width setting"
+  },
+  "settings.layoutWidth.description": {
+    "text": "Choose how wide the content area should be on larger screens",
+    "translationContext": "Description explaining what the layout width setting does"
+  },
+  "settings.layoutWidth.normal": {
+    "text": "Normal (732px)",
+    "translationContext": "Option for normal/default layout width"
+  },
+  "settings.layoutWidth.wide": {
+    "text": "Wide (1024px)",
+    "translationContext": "Option for wide layout width"
+  },
+  "settings.layoutWidth.full": {
+    "text": "Full Width",
+    "translationContext": "Option for full width layout"
+  },
   "settings.sync.info.description": {
     "text": "Kagi News can sync your settings and read history across all your devices. This data is stored securely on Kagi servers and associated with your Kagi Search account.\n\nYour synced data is not used for any other purpose, not shared with anyone, and is solely stored to provide the sync service to you. You have full control over what gets synced and can delete your data at any time.",
     "translationContext": "Description of sync and privacy features"
@@ -2630,5 +2662,557 @@
   "story.tts.tooltipStop": {
     "text": "Stop playback",
     "translationContext": "Tooltip for TTS button when playing"
+  },
+  "nhl.title": {
+    "text": "Upcoming Games",
+    "translationContext": "Title for NHL games section"
+  },
+  "nhl.noGames": {
+    "text": "No games",
+    "translationContext": "Message when there are no NHL games"
+  },
+  "nhl.gamesCount": {
+    "text": "{{count}} game",
+    "translationContext": "Count of games. {{count}} will be replaced with number. Singular form."
+  },
+  "nhl.gamesCountPlural": {
+    "text": "{{count}} games",
+    "translationContext": "Count of games. {{count}} will be replaced with number. Plural form."
+  },
+  "nhl.live": {
+    "text": "live",
+    "translationContext": "Label for live games"
+  },
+  "nhl.completed": {
+    "text": "completed",
+    "translationContext": "Label for completed games"
+  },
+  "nhl.upcoming": {
+    "text": "upcoming",
+    "translationContext": "Label for upcoming games"
+  },
+  "nhl.total": {
+    "text": "total",
+    "translationContext": "Label for total games"
+  },
+  "nhl.refresh": {
+    "text": "Refresh scores",
+    "translationContext": "Aria label for refresh button"
+  },
+  "nhl.final": {
+    "text": "Final",
+    "translationContext": "Game status: game is finished"
+  },
+  "nhl.finalOvertime": {
+    "text": "F/OT",
+    "translationContext": "Game status: finished in overtime"
+  },
+  "nhl.finalShootout": {
+    "text": "F/SO",
+    "translationContext": "Game status: finished in shootout"
+  },
+  "nhl.overtime": {
+    "text": "OT",
+    "translationContext": "Game status: in overtime"
+  },
+  "nhl.shootout": {
+    "text": "SO",
+    "translationContext": "Game status: in shootout"
+  },
+  "nhl.period": {
+    "text": "P{{period}}",
+    "translationContext": "Game status: period number. {{period}} will be replaced with 1, 2, or 3"
+  },
+  "nhl.tomorrow": {
+    "text": "Tomorrow",
+    "translationContext": "Date label for games tomorrow"
+  },
+  "nhl.overUnder": {
+    "text": "O/U",
+    "translationContext": "Abbreviation for Over/Under betting line"
+  },
+  "nhl.volume": {
+    "text": "Vol",
+    "translationContext": "Abbreviation for trading volume"
+  },
+  "nhl.liquidity": {
+    "text": "Liq",
+    "translationContext": "Abbreviation for liquidity"
+  },
+  "nhl.oddsFrom": {
+    "text": "Odds from Polymarket",
+    "translationContext": "Attribution text for betting odds. Polymarket is a brand name and should not be translated."
+  },
+  "nhl.standings.title": {
+    "text": "Standings",
+    "translationContext": "Title for NHL standings section"
+  },
+  "nhl.standings.divisions": {
+    "text": "divisions",
+    "translationContext": "Label for number of divisions"
+  },
+  "nhl.standings.teams": {
+    "text": "teams",
+    "translationContext": "Label for number of teams"
+  },
+  "nhl.standings.loading": {
+    "text": "Loading...",
+    "translationContext": "Loading message for standings"
+  },
+  "nhl.standings.noData": {
+    "text": "No standings data available.",
+    "translationContext": "Message when standings data is not available"
+  },
+  "nhl.standings.error": {
+    "text": "Unable to load standings. Please try again later.",
+    "translationContext": "Error message when standings fail to load"
+  },
+  "nhl.standings.refresh": {
+    "text": "Refresh standings",
+    "translationContext": "Aria label for refresh standings button"
+  },
+  "nhl.standings.points": {
+    "text": "pts",
+    "translationContext": "Abbreviation for points in standings preview"
+  },
+  "nhl.standings.header.rank": {
+    "text": "#",
+    "translationContext": "Table column header for team rank"
+  },
+  "nhl.standings.header.team": {
+    "text": "Team",
+    "translationContext": "Table column header for team name"
+  },
+  "nhl.standings.header.gp": {
+    "text": "GP",
+    "translationContext": "Table column header abbreviation for Games Played"
+  },
+  "nhl.standings.header.w": {
+    "text": "W",
+    "translationContext": "Table column header abbreviation for Wins"
+  },
+  "nhl.standings.header.l": {
+    "text": "L",
+    "translationContext": "Table column header abbreviation for Losses"
+  },
+  "nhl.standings.header.ot": {
+    "text": "OT",
+    "translationContext": "Table column header abbreviation for Overtime Losses"
+  },
+  "nhl.standings.header.pts": {
+    "text": "PTS",
+    "translationContext": "Table column header abbreviation for Points"
+  },
+  "nhl.standings.header.diff": {
+    "text": "DIFF",
+    "translationContext": "Table column header abbreviation for Goal Differential"
+  },
+  "nhl.standings.header.strk": {
+    "text": "STRK",
+    "translationContext": "Table column header abbreviation for Streak"
+  },
+  "nhl.standings.legend.gp": {
+    "text": "Games Played",
+    "translationContext": "Legend explanation for GP abbreviation"
+  },
+  "nhl.standings.legend.w": {
+    "text": "Wins",
+    "translationContext": "Legend explanation for W abbreviation"
+  },
+  "nhl.standings.legend.l": {
+    "text": "Losses",
+    "translationContext": "Legend explanation for L abbreviation"
+  },
+  "nhl.standings.legend.ot": {
+    "text": "OT Losses",
+    "translationContext": "Legend explanation for OT abbreviation"
+  },
+  "nhl.standings.legend.pts": {
+    "text": "Points",
+    "translationContext": "Legend explanation for PTS abbreviation"
+  },
+  "nhl.standings.legend.diff": {
+    "text": "Goal Differential",
+    "translationContext": "Legend explanation for DIFF abbreviation"
+  },
+  "nhl.standings.legend.strk": {
+    "text": "Streak",
+    "translationContext": "Legend explanation for STRK abbreviation"
+  },
+  "nfl.title": {
+    "text": "Upcoming Games",
+    "translationContext": "Title for NFL games section"
+  },
+  "nfl.noGames": {
+    "text": "No games",
+    "translationContext": "Message when there are no NFL games"
+  },
+  "nfl.gamesCount": {
+    "text": "{{count}} game",
+    "translationContext": "Count of games. {{count}} will be replaced with number. Singular form."
+  },
+  "nfl.gamesCountPlural": {
+    "text": "{{count}} games",
+    "translationContext": "Count of games. {{count}} will be replaced with number. Plural form."
+  },
+  "nfl.live": {
+    "text": "live",
+    "translationContext": "Label for live games"
+  },
+  "nfl.completed": {
+    "text": "completed",
+    "translationContext": "Label for completed games"
+  },
+  "nfl.upcoming": {
+    "text": "upcoming",
+    "translationContext": "Label for upcoming games"
+  },
+  "nfl.total": {
+    "text": "total",
+    "translationContext": "Label for total games"
+  },
+  "nfl.refresh": {
+    "text": "Refresh",
+    "translationContext": "Button text for refresh"
+  },
+  "nfl.refreshing": {
+    "text": "Refreshing...",
+    "translationContext": "Button text while refreshing"
+  },
+  "nfl.loading": {
+    "text": "Loading...",
+    "translationContext": "Loading message"
+  },
+  "nfl.final": {
+    "text": "Final",
+    "translationContext": "Game status: game is finished"
+  },
+  "nfl.overtime": {
+    "text": "OT",
+    "translationContext": "Game status: in overtime"
+  },
+  "nfl.quarter1": {
+    "text": "Q1",
+    "translationContext": "Game status: first quarter"
+  },
+  "nfl.quarter2": {
+    "text": "Q2",
+    "translationContext": "Game status: second quarter"
+  },
+  "nfl.quarter3": {
+    "text": "Q3",
+    "translationContext": "Game status: third quarter"
+  },
+  "nfl.quarter4": {
+    "text": "Q4",
+    "translationContext": "Game status: fourth quarter"
+  },
+  "nfl.overUnder": {
+    "text": "O/U {{line}}",
+    "translationContext": "Over/Under betting line. {{line}} will be replaced with the line value"
+  },
+  "nfl.over": {
+    "text": "Over",
+    "translationContext": "Over in betting odds"
+  },
+  "nfl.under": {
+    "text": "Under",
+    "translationContext": "Under in betting odds"
+  },
+  "nfl.volume": {
+    "text": "Volume",
+    "translationContext": "Trading volume label"
+  },
+  "nfl.liquidity": {
+    "text": "Liquidity",
+    "translationContext": "Liquidity label"
+  },
+  "nfl.oddsTooltip": {
+    "text": "Odds from Polymarket",
+    "translationContext": "Tooltip for betting odds. Polymarket is a brand name and should not be translated."
+  },
+  "nfl.showMore": {
+    "text": "Show {{count}} more",
+    "translationContext": "Button to show more games. {{count}} will be replaced with number"
+  },
+  "nfl.showLess": {
+    "text": "Show less",
+    "translationContext": "Button to show fewer games"
+  },
+  "nfl.standings.title": {
+    "text": "Standings",
+    "translationContext": "Title for NFL standings section"
+  },
+  "nfl.standings.conferences": {
+    "text": "conferences",
+    "translationContext": "Label for number of conferences"
+  },
+  "nfl.standings.divisions": {
+    "text": "divisions",
+    "translationContext": "Label for number of divisions"
+  },
+  "nfl.standings.teams": {
+    "text": "teams",
+    "translationContext": "Label for number of teams"
+  },
+  "nfl.standings.loading": {
+    "text": "Loading...",
+    "translationContext": "Loading message for standings"
+  },
+  "nfl.standings.noData": {
+    "text": "No standings data available",
+    "translationContext": "Message when standings data is not available"
+  },
+  "nfl.standings.refresh": {
+    "text": "Refresh",
+    "translationContext": "Button text for refresh"
+  },
+  "nfl.standings.refreshing": {
+    "text": "Refreshing...",
+    "translationContext": "Button text while refreshing"
+  },
+  "nfl.standings.header.rank": {
+    "text": "Rank",
+    "translationContext": "Table column header for team rank"
+  },
+  "nfl.standings.header.team": {
+    "text": "Team",
+    "translationContext": "Table column header for team name"
+  },
+  "nfl.standings.header.w": {
+    "text": "W",
+    "translationContext": "Table column header abbreviation for Wins"
+  },
+  "nfl.standings.header.l": {
+    "text": "L",
+    "translationContext": "Table column header abbreviation for Losses"
+  },
+  "nfl.standings.header.t": {
+    "text": "T",
+    "translationContext": "Table column header abbreviation for Ties"
+  },
+  "nfl.standings.header.pct": {
+    "text": "PCT",
+    "translationContext": "Table column header abbreviation for Win Percentage"
+  },
+  "nfl.standings.header.pf": {
+    "text": "PF",
+    "translationContext": "Table column header abbreviation for Points For"
+  },
+  "nfl.standings.header.pa": {
+    "text": "PA",
+    "translationContext": "Table column header abbreviation for Points Against"
+  },
+  "nfl.standings.header.diff": {
+    "text": "DIFF",
+    "translationContext": "Table column header abbreviation for Point Differential"
+  },
+  "nfl.standings.header.strk": {
+    "text": "STRK",
+    "translationContext": "Table column header abbreviation for Streak"
+  },
+  "nfl.standings.legend.w": {
+    "text": "Wins",
+    "translationContext": "Legend explanation for W abbreviation"
+  },
+  "nfl.standings.legend.l": {
+    "text": "Losses",
+    "translationContext": "Legend explanation for L abbreviation"
+  },
+  "nfl.standings.legend.t": {
+    "text": "Ties",
+    "translationContext": "Legend explanation for T abbreviation"
+  },
+  "nfl.standings.legend.pct": {
+    "text": "Win Percentage",
+    "translationContext": "Legend explanation for PCT abbreviation"
+  },
+  "nfl.standings.legend.pf": {
+    "text": "Points For",
+    "translationContext": "Legend explanation for PF abbreviation"
+  },
+  "nfl.standings.legend.pa": {
+    "text": "Points Against",
+    "translationContext": "Legend explanation for PA abbreviation"
+  },
+  "nfl.standings.legend.diff": {
+    "text": "Point Differential",
+    "translationContext": "Legend explanation for DIFF abbreviation"
+  },
+  "nfl.standings.legend.strk": {
+    "text": "Streak",
+    "translationContext": "Legend explanation for STRK abbreviation"
+  },
+  "nfl.standings.showMore": {
+    "text": "Show {{count}} more divisions",
+    "translationContext": "Button to show more divisions. {{count}} will be replaced with number"
+  },
+  "nfl.standings.showLess": {
+    "text": "Show less",
+    "translationContext": "Button to show fewer divisions"
+  },
+  "f1.standings.title": {
+    "text": "F1 Standings",
+    "translationContext": "Title for Formula 1 standings widget"
+  },
+  "f1.standings.loading": {
+    "text": "Loading standings...",
+    "translationContext": "Loading message for F1 standings"
+  },
+  "f1.drivers": {
+    "text": "drivers",
+    "translationContext": "Label for number of drivers in summary"
+  },
+  "f1.constructors": {
+    "text": "constructors",
+    "translationContext": "Label for number of constructors/teams in summary"
+  },
+  "f1.driverStandings": {
+    "text": "Driver Standings",
+    "translationContext": "Section title for driver standings table"
+  },
+  "f1.constructorStandings": {
+    "text": "Constructor Standings",
+    "translationContext": "Section title for constructor/team standings table"
+  },
+  "f1.position": {
+    "text": "Pos",
+    "translationContext": "Table header for position/rank"
+  },
+  "f1.driver": {
+    "text": "Driver",
+    "translationContext": "Table header for driver name"
+  },
+  "f1.team": {
+    "text": "Team",
+    "translationContext": "Table header for team/constructor name"
+  },
+  "f1.points": {
+    "text": "Points",
+    "translationContext": "Table header for championship points"
+  },
+  "f1.wins": {
+    "text": "Wins",
+    "translationContext": "Table header for number of race wins"
+  },
+  "f1.schedule.title": {
+    "text": "F1 Schedule",
+    "translationContext": "Title for Formula 1 race schedule widget"
+  },
+  "f1.schedule.loading": {
+    "text": "Loading schedule...",
+    "translationContext": "Loading message for F1 schedule"
+  },
+  "f1.schedule.today": {
+    "text": "Today",
+    "translationContext": "Label when race is today"
+  },
+  "f1.schedule.tomorrow": {
+    "text": "Tomorrow",
+    "translationContext": "Label when race is tomorrow"
+  },
+  "f1.schedule.inDays": {
+    "text": "In {{days}} days",
+    "translationContext": "Label for days until next race. {{days}} will be replaced with number"
+  },
+  "f1.schedule.seasonComplete": {
+    "text": "Season complete",
+    "translationContext": "Message when all races are finished"
+  },
+  "f1.round": {
+    "text": "Round",
+    "translationContext": "Label for race round number"
+  },
+  "f1.nextRace": {
+    "text": "Next Race",
+    "translationContext": "Badge label for the next upcoming race"
+  },
+  "f1.today": {
+    "text": "Today",
+    "translationContext": "Label when race is today in race list"
+  },
+  "f1.tomorrow": {
+    "text": "Tomorrow",
+    "translationContext": "Label when race is tomorrow in race list"
+  },
+  "f1.days": {
+    "text": "days",
+    "translationContext": "Label for days until race"
+  },
+  "f1.completed": {
+    "text": "Completed",
+    "translationContext": "Status label for completed races"
+  },
+  "f1.winner": {
+    "text": "Winner",
+    "translationContext": "Label for race winner"
+  },
+  "crypto.grid.title": {
+    "text": "Cryptocurrency Prices",
+    "translationContext": "Title for cryptocurrency grid widget"
+  },
+  "weather.loading": {
+    "text": "Loading weather...",
+    "translationContext": "Loading state for weather widget"
+  },
+  "weather.error": {
+    "text": "Weather unavailable",
+    "translationContext": "Error state for weather widget"
+  },
+  "weather.clear": {
+    "text": "Clear",
+    "translationContext": "Clear weather condition"
+  },
+  "weather.cloudy": {
+    "text": "Cloudy",
+    "translationContext": "Cloudy weather condition"
+  },
+  "weather.foggy": {
+    "text": "Foggy",
+    "translationContext": "Foggy weather condition"
+  },
+  "weather.rainy": {
+    "text": "Rainy",
+    "translationContext": "Rainy weather condition"
+  },
+  "weather.snowy": {
+    "text": "Snowy",
+    "translationContext": "Snowy weather condition"
+  },
+  "weather.stormy": {
+    "text": "Stormy",
+    "translationContext": "Stormy weather condition"
+  },
+  "weather.high": {
+    "text": "High",
+    "translationContext": "High temperature label"
+  },
+  "weather.low": {
+    "text": "Low",
+    "translationContext": "Low temperature label"
+  },
+  "weather.humidity": {
+    "text": "Humidity",
+    "translationContext": "Humidity label"
+  },
+  "weather.fahrenheit": {
+    "text": "F",
+    "translationContext": "Fahrenheit temperature unit abbreviation"
+  },
+  "weather.mph": {
+    "text": "mph",
+    "translationContext": "Miles per hour wind speed unit"
+  },
+  "weather.location.san-francisco": {
+    "text": "San Francisco Bay Area",
+    "translationContext": "Location name for San Francisco Bay Area weather"
+  },
+  "weather.location.new-york": {
+    "text": "New York City",
+    "translationContext": "Location name for New York City weather"
+  },
+  "weather.location.austin": {
+    "text": "Austin, Texas",
+    "translationContext": "Location name for Austin, Texas weather"
   }
 }

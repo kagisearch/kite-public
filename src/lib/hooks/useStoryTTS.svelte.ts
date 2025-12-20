@@ -1,12 +1,21 @@
 import { playSpeech, downloadAudio, selectedVoiceStore, type SpeechState } from '$lib/client/speech-utils';
 import { sections } from '$lib/stores/sections.svelte.js';
 import { extractStoryText } from '$lib/utils/storyTextExtractor';
+import { ttsManager } from '$lib/stores/ttsManager.svelte';
+
+// Generate unique ID for each TTS instance
+let instanceCounter = 0;
+function generateInstanceId(): string {
+	return `tts-${++instanceCounter}-${Date.now()}`;
+}
 
 /**
  * Composable for text-to-speech functionality
  * Handles playing and downloading audio for stories
  */
 export function useStoryTTS(getStory: () => any) {
+	const instanceId = generateInstanceId();
+
 	let state = $state<SpeechState>({
 		status: 'idle',
 		bufferPromise: null,
@@ -43,6 +52,9 @@ export function useStoryTTS(getStory: () => any) {
 			return;
 		}
 
+		// Register this instance with the global manager
+		ttsManager.register(instanceId, stop);
+
 		const story = getStory();
 		const enabledSections = getEnabledSections();
 		const text = extractStoryText(story, enabledSections);
@@ -54,6 +66,9 @@ export function useStoryTTS(getStory: () => any) {
 		} catch (error) {
 			console.error('TTS error:', error);
 			updateState({ status: 'idle', currentAudioInputContext: null });
+		} finally {
+			// Unregister when playback completes or errors
+			ttsManager.unregister(instanceId);
 		}
 	}
 
@@ -82,6 +97,8 @@ export function useStoryTTS(getStory: () => any) {
 			state.currentAudioInputContext.close();
 		}
 		updateState({ status: 'idle', currentAudioInputContext: null });
+		// Unregister from global manager when stopped manually
+		ttsManager.unregister(instanceId);
 	}
 
 	return {

@@ -33,6 +33,8 @@ export function shouldFilterStory(
 
 	if (scope === 'title' || scope === 'all') {
 		textToCheck += `${(story.title || '').toLowerCase()} `;
+		// Also check the sub-category field when checking title
+		textToCheck += `${(story.category || '').toLowerCase()} `;
 	}
 
 	if (scope === 'summary' || scope === 'all') {

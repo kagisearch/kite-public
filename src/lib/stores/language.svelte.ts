@@ -117,6 +117,10 @@ export const language = {
 		return languageState.currentStrings;
 	},
 
+	get currentLocale() {
+		return languageState.currentLocale;
+	},
+
 	set(language: SupportedLanguage) {
 		// Only save if the language actually changed
 		const changed = languageState.current !== language;

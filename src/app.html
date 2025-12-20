@@ -9,10 +9,18 @@
     <meta name="theme-color" content="#ffffff" id="theme-color" />
     <title>Kagi News</title>
     <link rel="manifest" href="%sveltekit.assets%/manifest.json" />
+    <link rel="icon" type="image/x-icon" href="%sveltekit.assets%/favicon.ico" />
     <link
       rel="icon"
       type="image/svg+xml"
       href="%sveltekit.assets%/svg/kagi_news_icon.svg"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="%sveltekit.assets%/svg/kagi_news_icon_dark.svg"
+      media="(prefers-color-scheme: dark)"
     />
     <link
       rel="apple-touch-icon"
@@ -58,14 +66,6 @@
           if (themeColorMeta) {
             const newColor = darkModePreferred ? "#1f2937" : "#ffffff";
             themeColorMeta.setAttribute("content", newColor);
-          }
-
-          // Update favicon for dark mode
-          const favicon = document.querySelector('link[rel="icon"]');
-          if (favicon) {
-            favicon.href = darkModePreferred
-              ? "/svg/kagi_news_icon_dark.svg"
-              : "/svg/kagi_news_icon.svg";
           }
         } catch (e) {
           console.error("Theme detection error:", e);

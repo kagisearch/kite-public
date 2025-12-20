@@ -154,6 +154,7 @@ async function loadInitialData() {
 			chaosIndex,
 			chaosDescription,
 			chaosLastUpdated,
+			timestamp: batchTimestamp,
 		} = initialData;
 		totalReadCount = initialData.totalReadCount;
 
@@ -173,18 +174,20 @@ async function loadInitialData() {
 			categorySettings.initWithDefaults();
 			console.log('📊 After initWithDefaults, enabled:', $state.snapshot(categorySettings.enabled));
 
-			// Filter enabled categories to only those that exist in the current batch
-			validEnabledCategories = categorySettings.enabled.filter((catId) =>
+			// Keep all enabled categories (even if not in current batch - they'll show "no stories" message)
+			// But clean up disabled categories that no longer exist
+			validEnabledCategories = categorySettings.enabled;
+			console.log('📊 Keeping all enabled categories:', validEnabledCategories);
+
+			// Clean up disabled categories that don't exist in current batch
+			const validDisabledCategories = categorySettings.disabled.filter((catId) =>
 				availableCategoryIds.includes(catId),
 			);
-			console.log('📊 After filtering, validEnabledCategories:', validEnabledCategories);
-
-			// Update enabled categories to remove any that don't exist in current batch
-			if (validEnabledCategories.length !== categorySettings.enabled.length) {
-				console.warn(
-					'Some enabled categories are not available in current batch, updating enabled list',
+			if (validDisabledCategories.length !== categorySettings.disabled.length) {
+				console.log(
+					'Cleaning up disabled categories not in current batch',
 				);
-				categorySettings.setEnabled(validEnabledCategories);
+				categorySettings.cleanupDisabled(validDisabledCategories);
 			}
 		} else {
 			console.warn('No categories received from API, keeping existing settings');
@@ -296,7 +299,8 @@ async function loadInitialData() {
 		if (!totalReadCount || totalReadCount === 0) {
 			totalReadCount = totalReadCountSum;
 		}
-		lastUpdated = formatTimeAgo(maxTimestamp, s);
+		// Use batch timestamp for "Updated X ago" display (more accurate than category timestamps)
+		lastUpdated = formatTimeAgo(batchTimestamp, s);
 
 		// Image preloading is now handled by the service which checks time travel mode internally
 		loadingStage = s('loading.images') || 'Preloading first category images...';
@@ -334,7 +338,7 @@ async function loadInitialData() {
 					stories,
 					totalReadCount,
 					lastUpdated,
-					lastUpdatedTimestamp: maxTimestamp,
+					lastUpdatedTimestamp: batchTimestamp,
 					currentCategory,
 					allCategoryStories, // Pass all preloaded stories
 					categoryMap,
@@ -384,6 +388,7 @@ async function reloadAllData() {
 			chaosIndex,
 			chaosDescription,
 			chaosLastUpdated,
+			timestamp: batchTimestamp,
 		} = initialData;
 		totalReadCount = initialData.totalReadCount;
 
@@ -403,17 +408,19 @@ async function reloadAllData() {
 			// Update categories store with new data
 			categorySettings.setAllCategories(categories);
 
-			// Filter enabled categories to only those that exist in the current batch
-			validEnabledCategories = categorySettings.enabled.filter((catId) =>
+			// Keep all enabled categories (even if not in current batch - they'll show "no stories" message)
+			// But clean up disabled categories that no longer exist
+			validEnabledCategories = categorySettings.enabled;
+
+			// Clean up disabled categories that don't exist in current batch
+			const validDisabledCategories = categorySettings.disabled.filter((catId) =>
 				availableCategoryIds.includes(catId),
 			);
-
-			// Update enabled categories to remove any that don't exist in current batch
-			if (validEnabledCategories.length !== categorySettings.enabled.length) {
-				console.warn(
-					'Some enabled categories are not available in current batch, updating enabled list',
+			if (validDisabledCategories.length !== categorySettings.disabled.length) {
+				console.log(
+					'Cleaning up disabled categories not in current batch',
 				);
-				categorySettings.setEnabled(validEnabledCategories);
+				categorySettings.cleanupDisabled(validDisabledCategories);
 			}
 		} else {
 			console.warn(
@@ -511,7 +518,8 @@ async function reloadAllData() {
 		if (!totalReadCount || totalReadCount === 0) {
 			totalReadCount = totalReadCountSum;
 		}
-		lastUpdated = formatTimeAgo(maxTimestamp, s);
+		// Use batch timestamp for "Updated X ago" display (more accurate than category timestamps)
+		lastUpdated = formatTimeAgo(batchTimestamp, s);
 
 		// Preload images for the current category
 		const firstCategoryStories = allCategoryStories[currentCategory] || [];
@@ -530,7 +538,7 @@ async function reloadAllData() {
 				stories,
 				totalReadCount,
 				lastUpdated,
-				lastUpdatedTimestamp: maxTimestamp,
+				lastUpdatedTimestamp: batchTimestamp,
 				currentCategory,
 				allCategoryStories,
 				categoryMap,

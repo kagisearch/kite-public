@@ -186,7 +186,7 @@ if (typeof window !== 'undefined') {
 }
 </script>
 
-<span class="select-none" onmouseleave={handleMouseLeave}>
+<span class="select-none" onmouseleave={handleMouseLeave} role="region" aria-label="Selectable text for flashcards">
 	{#each parts as part, index}
 		{@const phraseRange = getSelectedPhraseRange(index)}
 		{@const isInDragRange = isDragging && dragStartIndex !== null && dragEndIndex !== null &&

@@ -210,7 +210,7 @@ export function buildCategoryUrl(categoryId: string, dateSlugOrCreatedAt: string
 		: dateSlugFromTimestamp(dateSlugOrCreatedAt);
 
 	const batchCode = encodeBatchId(dateSlug);
-	return `/${categoryId}/${batchCode}`;
+	return `/${encodeURIComponent(categoryId)}/${batchCode}`;
 }
 
 /**
@@ -236,7 +236,7 @@ export function buildArticleUrl(
 	const encodedId = encodeArticleId(dateSlug, clusterId);
 	const slug = generateSlug(title);
 
-	return `/${categoryId}/${encodedId}/${slug}`;
+	return `/${encodeURIComponent(categoryId)}/${encodedId}/${slug}`;
 }
 
 /**
@@ -273,7 +273,7 @@ export function parseUrl(pathname: string): {
 	if (isLegacyBatchId) {
 		// Legacy format: /{batchId}/{categoryId}/{storyIndex}
 		const batchId = firstPart;
-		const categoryId = secondPart;
+		const categoryId = decodeURIComponent(secondPart);
 		const storyIndex = restParts[0] ? parseInt(restParts[0], 10) : undefined;
 
 		return {
@@ -285,7 +285,7 @@ export function parseUrl(pathname: string): {
 	}
 
 	// New format: /{category}/{encoded-id}/...
-	const categoryId = firstPart;
+	const categoryId = decodeURIComponent(firstPart);
 	const encoded = secondPart;
 
 	// Try to decode as batch-only (9 digits)

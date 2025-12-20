@@ -75,12 +75,12 @@ export class UrlNavigationService {
 		if (firstSegment === 'latest') {
 			// /latest/... URLs always use the latest batch
 			params.batchId = null; // null means latest
-			params.categoryId = pathSegments[1] || null;
+			params.categoryId = pathSegments[1] ? decodeURIComponent(pathSegments[1]) : null;
 			params.storyIndex = pathSegments[2] ? parseInt(pathSegments[2], 10) : null;
 		} else if (secondSegment === 'latest') {
 			// /category/latest URLs - simplified format for latest batch
 			params.batchId = null; // null means latest
-			params.categoryId = firstSegment;
+			params.categoryId = decodeURIComponent(firstSegment);
 			params.storyIndex = null;
 		} else {
 			// Check if first segment looks like a batch ID
@@ -89,12 +89,12 @@ export class UrlNavigationService {
 			if (!isBatchId) {
 				// No batch ID, this is latest batch with category
 				params.batchId = null;
-				params.categoryId = pathSegments[0];
+				params.categoryId = decodeURIComponent(pathSegments[0]);
 				params.storyIndex = pathSegments[1] ? parseInt(pathSegments[1], 10) : null;
 			} else {
 				// Has batch ID
 				params.batchId = pathSegments[0];
-				params.categoryId = pathSegments[1] || null;
+				params.categoryId = pathSegments[1] ? decodeURIComponent(pathSegments[1]) : null;
 				params.storyIndex = pathSegments[2] ? parseInt(pathSegments[2], 10) : null;
 			}
 		}
@@ -145,7 +145,7 @@ export class UrlNavigationService {
 
 		// For category-only URLs on latest batch, use simplified /category/latest format
 		if (categoryId && !clusterId && useLatestPrefix) {
-			const url = `/${categoryId}/latest`;
+			const url = `/${encodeURIComponent(categoryId)}/latest`;
 			return isShared ? `${url}?shared=1` : url;
 		}
 
@@ -175,7 +175,7 @@ export class UrlNavigationService {
 		}
 
 		if (categoryId) {
-			url += `/${categoryId}`;
+			url += `/${encodeURIComponent(categoryId)}`;
 		}
 		if (storyIndex !== null && storyIndex !== undefined) {
 			url += `/${storyIndex}`;

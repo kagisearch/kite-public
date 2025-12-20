@@ -79,7 +79,9 @@ $effect(() => {
 const storyLanguageCode = $derived(story.sourceLanguage || 'en');
 
 // Feature composables - each handles its own state and logic
+// svelte-ignore state_referenced_locally - storyLanguageCode is intentionally captured at initialization
 const simplification = useStorySimplification(story, storyLanguageCode);
+// svelte-ignore state_referenced_locally - storyLanguageCode is intentionally captured at initialization
 const flashcards = useStoryFlashcards(story, storyLanguageCode);
 const tts = useStoryTTS(() => simplification.current);
 

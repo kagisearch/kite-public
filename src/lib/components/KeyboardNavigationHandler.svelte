@@ -101,8 +101,8 @@ function handleGlobalKeyDown(event: KeyboardEvent) {
 		return;
 	}
 
-	// h - Previous category
-	if (event.key === 'h' && onCategoryChange && categories.length > 0) {
+	// h - Previous category (don't trigger if modifier keys are pressed)
+	if (event.key === 'h' && !event.ctrlKey && !event.metaKey && !event.altKey && !event.shiftKey && onCategoryChange && categories.length > 0) {
 		event.preventDefault();
 		const currentIndex = categories.findIndex(cat => cat.id === currentCategory);
 		if (currentIndex > 0) {
@@ -114,8 +114,8 @@ function handleGlobalKeyDown(event: KeyboardEvent) {
 		return;
 	}
 
-	// l - Next category
-	if (event.key === 'l' && onCategoryChange && categories.length > 0) {
+	// l - Next category (don't trigger if modifier keys are pressed)
+	if (event.key === 'l' && !event.ctrlKey && !event.metaKey && !event.altKey && !event.shiftKey && onCategoryChange && categories.length > 0) {
 		event.preventDefault();
 		const currentIndex = categories.findIndex(cat => cat.id === currentCategory);
 		if (currentIndex >= 0 && currentIndex < categories.length - 1) {
@@ -179,7 +179,7 @@ function handleGlobalKeyDown(event: KeyboardEvent) {
 		event.preventDefault();
 		const story = stories[keyboardNavigation.selectedIndex];
 		if (story) {
-			onStoryToggle(story.cluster_number?.toString() || story.title);
+			onStoryToggle(story.id || story.cluster_number?.toString() || story.title);
 		}
 		return;
 	}
@@ -189,7 +189,7 @@ function handleGlobalKeyDown(event: KeyboardEvent) {
 		event.preventDefault();
 		const story = stories[keyboardNavigation.selectedIndex];
 		if (story) {
-			const storyId = story.cluster_number?.toString() || story.title;
+			const storyId = story.id || story.cluster_number?.toString() || story.title;
 			if (!expandedStories[storyId]) {
 				onStoryToggle(storyId);
 			}
@@ -202,7 +202,7 @@ function handleGlobalKeyDown(event: KeyboardEvent) {
 		event.preventDefault();
 		const story = stories[keyboardNavigation.selectedIndex];
 		if (story) {
-			const storyId = story.cluster_number?.toString() || story.title;
+			const storyId = story.id || story.cluster_number?.toString() || story.title;
 			if (expandedStories[storyId]) {
 				onStoryToggle(storyId);
 			}

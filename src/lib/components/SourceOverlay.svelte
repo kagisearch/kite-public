@@ -1,8 +1,9 @@
 <script lang="ts">
-import { IconBuilding, IconMapPin, IconTag, IconUser } from '@tabler/icons-svelte';
+import { IconBuilding, IconLock, IconMapPin, IconTag, IconUser } from '@tabler/icons-svelte';
 import { useOverlayScrollbars } from 'overlayscrollbars-svelte';
 import { s } from '$lib/client/localization.svelte';
 import FaviconImage from '$lib/components/common/FaviconImage.svelte';
+import Tooltip from '$lib/components/Tooltip.svelte';
 import { getTimeAgo } from '$lib/utils/getTimeAgo';
 import { scrollLock } from '$lib/utils/scrollLock.js';
 import 'overlayscrollbars/overlayscrollbars.css';
@@ -206,6 +207,19 @@ function handleBackdropClick(event: MouseEvent) {
             >
               {currentSource?.name || "Unknown Source"}
             </h3>
+            {#if currentSource?.isPaywalled}
+              <Tooltip
+                text={s("sources.paywallTooltip") || "This source may require a subscription to access full articles"}
+                position="bottom"
+              >
+                <span
+                  class="flex items-center gap-1 rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600 dark:bg-gray-700 dark:text-gray-400 cursor-help"
+                >
+                  <IconLock class="h-3 w-3" />
+                  {s("sources.paywall") || "Paywall"}
+                </span>
+              </Tooltip>
+            {/if}
           </div>
           <button
             onclick={handleClose}

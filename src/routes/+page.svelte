@@ -16,6 +16,15 @@ import OnThisDay from '$lib/components/OnThisDay.svelte';
 import Settings from '$lib/components/Settings.svelte';
 import SourceOverlay from '$lib/components/SourceOverlay.svelte';
 import StoryList from '$lib/components/StoryList.svelte';
+import NHLScores from '$lib/components/nhl/NHLScores.svelte';
+import NHLStandings from '$lib/components/nhl/NHLStandings.svelte';
+import NFLScores from '$lib/components/nfl/NFLScores.svelte';
+import NFLStandings from '$lib/components/nfl/NFLStandings.svelte';
+import CryptoPrice from '$lib/components/crypto/CryptoPrice.svelte';
+import CryptoGrid from '$lib/components/crypto/CryptoGrid.svelte';
+import F1Standings from '$lib/components/f1/F1Standings.svelte';
+import F1Schedule from '$lib/components/f1/F1Schedule.svelte';
+import Weather from '$lib/components/weather/Weather.svelte';
 import { SearchModal } from '$lib/components/search';
 import TemporaryCategoryTooltip from '$lib/components/TemporaryCategoryTooltip.svelte';
 import TimeTravel from '$lib/components/TimeTravel.svelte';
@@ -27,6 +36,18 @@ import { type NavigationParams, UrlNavigationService } from '$lib/services/urlNa
 import { categorySwipeHandler } from '$lib/utils/categorySwipeHandler';
 import { clearImageCache, extractStoryImages, getImageCacheStats } from '$lib/utils/imagePreloader';
 import { imagePreloadingService } from '$lib/services/imagePreloadingService';
+
+// Helper function for layout width class
+function getContainerWidthClass(): string {
+	switch (displaySettings.layoutWidth) {
+		case 'wide':
+			return 'max-w-4xl';
+		case 'full':
+			return 'max-w-full';
+		default:
+			return 'max-w-[732px]';
+	}
+}
 
 // Composables
 import { usePageState } from '$lib/hooks/usePageState.svelte';
@@ -386,7 +407,7 @@ if (browser && typeof window !== 'undefined') {
   />
 
   <div class="md:hidden sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm shadow-sm relative">
-    <div class="container mx-auto max-w-[732px] px-4 pt-8 pb-2">
+    <div class="container mx-auto {getContainerWidthClass()} px-4 pt-8 pb-2">
       <Header
         offlineMode={state.offlineMode}
         totalReadCount={state.totalReadCount}
@@ -433,7 +454,7 @@ if (browser && typeof window !== 'undefined') {
     ontouchmove={categorySwipeHandler.handleTouchMove}
     ontouchend={categorySwipeHandler.handleTouchEnd}
   >
-    <div class="container mx-auto max-w-[732px] px-4 py-8">
+    <div class="container mx-auto {getContainerWidthClass()} px-4 py-8">
       <div class="hidden md:block">
         <Header
           offlineMode={state.offlineMode}
@@ -524,6 +545,35 @@ if (browser && typeof window !== 'undefined') {
             onWikipediaClick={helpers.handleWikipediaClick}
           />
         {:else}
+          {#if state.currentCategory.toLowerCase() === "nhl"}
+            <NHLScores />
+            <NHLStandings />
+          {/if}
+          {#if state.currentCategory.toLowerCase() === "nfl"}
+            <NFLScores />
+            <NFLStandings />
+          {/if}
+          {#if state.currentCategory.toLowerCase() === "formula_1"}
+            <F1Schedule />
+            <F1Standings />
+          {/if}
+          {#if state.currentCategory.toLowerCase() === "bitcoin"}
+            <CryptoPrice cryptoId="bitcoin" />
+          {/if}
+          {#if state.currentCategory.toLowerCase() === "cryptocurrency"}
+            <CryptoGrid />
+          {/if}
+          <!-- Weather widgets temporarily hidden -->
+          <!-- {#if state.currentCategory.toLowerCase() === "bay"}
+            <Weather location="san-francisco" />
+          {/if}
+          {#if state.currentCategory.toLowerCase() === "usa_|_new_york_city"}
+            <Weather location="new-york" />
+          {/if}
+          {#if state.currentCategory.toLowerCase() === "usa_|_austin,_tx"}
+            <Weather location="austin" />
+          {/if} -->
+
           <StoryList
             bind:this={state.storyList}
             stories={state.stories}

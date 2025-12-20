@@ -10,6 +10,7 @@ export interface Article {
 export interface Domain {
 	name: string;
 	favicon?: string;
+	isPaywalled?: boolean;
 }
 
 export interface Perspective {

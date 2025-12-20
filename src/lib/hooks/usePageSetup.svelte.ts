@@ -9,6 +9,7 @@ import { timeTravel } from '$lib/stores/timeTravel.svelte';
 import { timeTravelBatch } from '$lib/stores/timeTravelBatch.svelte';
 import { toastStore } from '$lib/stores/toast.svelte';
 import { kiteDB } from '$lib/db/dexie';
+import { categoryMetadataStore } from '$lib/stores/categoryMetadata.svelte';
 
 interface PageSetupOptions {
 	parseInitialUrl: () => any;
@@ -24,6 +25,9 @@ interface PageSetupOptions {
  */
 export function usePageSetup(options: PageSetupOptions) {
 	onMount(() => {
+		// Initialize category metadata store
+		categoryMetadataStore.init();
+
 		// Preload all locales if UI language is "default"
 		if (languageSettings.ui === 'default') {
 			preloadAllLocales();

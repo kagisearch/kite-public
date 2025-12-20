@@ -1,5 +1,6 @@
 <script lang="ts">
 import Chart from 'chart.js/auto';
+import Portal from 'svelte-portal';
 import { s } from '$lib/client/localization.svelte';
 import { languageSettings } from '$lib/data/settings.svelte.js';
 import { dataService } from '$lib/services/dataService';
@@ -187,7 +188,9 @@ function createChart() {
 					callbacks: {
 						title: (context) => {
 							// For time scale, the parsed.x contains the timestamp
-							const date = new Date(context[0].parsed.x);
+							const timestamp = context[0].parsed.x;
+							if (timestamp === null) return '';
+							const date = new Date(timestamp);
 							return date.toLocaleDateString('en-US', {
 								month: 'short',
 								day: 'numeric',
@@ -296,20 +299,21 @@ function toggleExplanation() {
 
 <!-- Modal -->
 {#if showModal}
-  <div
-    class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 md:p-4 dark:bg-black/80"
-    onclick={(e) => modal.handleBackdropClick(e, closeModal)}
-    onkeydown={(e) => e.key === "Escape" && closeModal()}
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="chaos-title"
-    tabindex="-1"
-    transition:fade={{ duration: modal.getTransitionDuration() }}
-  >
+  <Portal>
     <div
-      class="relative flex h-full w-full flex-col overflow-hidden bg-white shadow-xl md:h-auto md:max-h-[90vh] md:max-w-md md:rounded-lg dark:bg-gray-800"
+      class="fixed inset-0 z-[100] flex items-end justify-center bg-black/60 md:items-center md:p-4 dark:bg-black/80"
+      onclick={(e) => modal.handleBackdropClick(e, closeModal)}
+      onkeydown={(e) => e.key === "Escape" && closeModal()}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="chaos-title"
+      tabindex="-1"
       transition:fade={{ duration: modal.getTransitionDuration() }}
     >
+      <div
+        class="relative flex h-full w-full flex-col overflow-hidden bg-white shadow-xl md:h-auto md:max-h-[90vh] md:max-w-md md:rounded-lg dark:bg-gray-800"
+        transition:fade={{ duration: modal.getTransitionDuration() }}
+      >
       <!-- Header -->
       <div
         class="flex flex-shrink-0 items-center justify-between border-b border-gray-200 px-6 py-4 dark:border-gray-700"
@@ -538,4 +542,5 @@ function toggleExplanation() {
       </main>
     </div>
   </div>
+  </Portal>
 {/if}

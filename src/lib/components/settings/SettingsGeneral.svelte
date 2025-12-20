@@ -5,6 +5,7 @@ import {
 	type CategoryHeaderPosition,
 	displaySettings,
 	type FontSize,
+	type LayoutWidth,
 	type MapsProvider,
 	type StoryExpandMode,
 	type StoryOpenMode,
@@ -84,6 +85,22 @@ const mapsProviderOptions = $derived([
 	},
 ]);
 
+// Layout width options
+const layoutWidthOptions = $derived([
+	{
+		value: 'normal',
+		label: s('settings.layoutWidth.normal') || 'Normal (732px)',
+	},
+	{
+		value: 'wide',
+		label: s('settings.layoutWidth.wide') || 'Wide (1024px)',
+	},
+	{
+		value: 'full',
+		label: s('settings.layoutWidth.full') || 'Full Width',
+	},
+]);
+
 // Local state that syncs with stores
 let currentFontSize = $state(displaySettings.fontSize as string);
 let currentCategoryHeaderPosition = $state(displaySettings.categoryHeaderPosition as string);
@@ -91,6 +108,7 @@ let currentStoryExpandMode = $state(displaySettings.storyExpandMode as string);
 let currentStoryOpenMode = $state(displaySettings.storyOpenMode as string);
 let currentUseLatestUrls = $state(displaySettings.useLatestUrls);
 let currentMapsProvider = $state(displaySettings.mapsProvider as string);
+let currentLayoutWidth = $state(displaySettings.layoutWidth as string);
 
 // Sync local state with stores
 $effect(() => {
@@ -115,6 +133,10 @@ $effect(() => {
 
 $effect(() => {
 	currentMapsProvider = displaySettings.mapsProvider as string;
+});
+
+$effect(() => {
+	currentLayoutWidth = displaySettings.layoutWidth as string;
 });
 
 // Font size change handler
@@ -157,6 +179,12 @@ function handleMapsProviderChange(provider: string) {
 	currentMapsProvider = provider;
 }
 
+function handleLayoutWidthChange(width: string) {
+	displaySettings.layoutWidth = width as LayoutWidth;
+	settings.layoutWidth.save();
+	currentLayoutWidth = width;
+}
+
 // Show about screen
 function showAbout() {
 	// Push /about to the URL
@@ -183,6 +211,20 @@ function showAbout() {
           label={s("settings.fontSize.label") || "Text Size"}
           onChange={handleFontSizeChange}
         />
+      </div>
+
+      <!-- Layout Width Setting (desktop only) -->
+      <div class="hidden md:flex flex-col space-y-2">
+        <Select
+          bind:value={currentLayoutWidth}
+          options={layoutWidthOptions}
+          label={s("settings.layoutWidth.label") || "Layout Width"}
+          onChange={handleLayoutWidthChange}
+        />
+        <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+          {s("settings.layoutWidth.description") ||
+            "Choose how wide the content area should be on larger screens"}
+        </p>
       </div>
     </div>
   </div>

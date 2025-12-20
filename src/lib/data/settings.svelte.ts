@@ -45,6 +45,7 @@ export type FilterScope = 'title' | 'summary' | 'all';
 export type MapsProvider = 'auto' | 'kagi' | 'google' | 'openstreetmap' | 'apple';
 export type SinglePageMode = 'disabled' | 'sequential' | 'mixed' | 'random';
 export type SinglePageMixOrder = 'sequential' | 'mixed' | 'random';
+export type LayoutWidth = 'normal' | 'wide' | 'full';
 
 /**
  * All application settings centralized in one place
@@ -93,6 +94,7 @@ export const settings = {
 	),
 	useLatestUrls: new Setting<boolean>('useLatestUrls', false, 'when_true', 'display'),
 	mapsProvider: new Setting<MapsProvider>('mapsProvider', 'auto', 'when_not_default', 'display'),
+	layoutWidth: new Setting<LayoutWidth>('layoutWidth', 'normal', 'when_not_default', 'display'),
 
 	// Category Settings
 	categoryOrder: new Setting<string[]>('categoryOrder', [], 'always', 'categories'),
@@ -421,6 +423,12 @@ export const displaySettings = $state({
 	set mapsProvider(value: MapsProvider) {
 		settings.mapsProvider.currentValue = value;
 	},
+	get layoutWidth(): LayoutWidth {
+		return settings.layoutWidth.currentValue;
+	},
+	set layoutWidth(value: LayoutWidth) {
+		settings.layoutWidth.currentValue = value;
+	},
 	get showIntro(): boolean {
 		return !settings.introShown.currentValue;
 	},
@@ -544,6 +552,13 @@ export const categorySettings = $state({
 		settings.enabledCategories.currentValue = categoriesState.enabled;
 		settings.disabledCategories.currentValue = categoriesState.disabled;
 		settings.enabledCategories.save();
+		settings.disabledCategories.save();
+	},
+	cleanupDisabled(validDisabledCategories: string[]) {
+		// Only update disabled list, don't touch enabled
+		// Used to clean up categories that no longer exist in the batch
+		categoriesState.disabled = validDisabledCategories;
+		settings.disabledCategories.currentValue = validDisabledCategories;
 		settings.disabledCategories.save();
 	},
 	enableCategory(category: string) {

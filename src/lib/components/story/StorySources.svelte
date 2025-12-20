@@ -1,6 +1,8 @@
 <script lang="ts">
+import { IconLock } from '@tabler/icons-svelte';
 import { s } from '$lib/client/localization.svelte';
 import FaviconImage from '$lib/components/common/FaviconImage.svelte';
+import Tooltip from '$lib/components/Tooltip.svelte';
 import { languageSettings } from '$lib/data/settings.svelte.js';
 import { dataService } from '$lib/services/dataService';
 import type { LocalizerFunction, MediaInfo } from '$lib/types';
@@ -145,6 +147,19 @@ async function handleSourceClick(domain: any) {
             <span class="truncate text-sm font-semibold" dir="auto">
               {domain?.name || "Unknown"}
             </span>
+            {#if domain?.isPaywalled}
+              <Tooltip
+                text={storyLocalizer("sources.paywallTooltip") || "This source may require a subscription to access full articles"}
+                position="top"
+              >
+                <span
+                  class="flex-shrink-0"
+                  aria-label={storyLocalizer("sources.paywall") || "Paywall"}
+                >
+                  <IconLock class="h-3.5 w-3.5 text-gray-400 dark:text-gray-500" />
+                </span>
+              </Tooltip>
+            {/if}
           </div>
           <span class="ms-7 text-xs text-gray-500 dark:text-gray-400">
             {#if articles}

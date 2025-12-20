@@ -2,9 +2,11 @@ import { browser } from '$app/environment';
 import { displaySettings } from '$lib/data/settings.svelte';
 import { getCategoryDisplayName } from '$lib/utils/category';
 import { pageMetadata } from '$lib/stores/pageMetadata.svelte';
+import { ttsManager } from '$lib/stores/ttsManager.svelte';
 import type { Category } from '$lib/types';
 import { navigationHandlerService } from '$lib/services/navigationHandlerService';
 import type { StoryListInstance, HistoryManagerInstance } from '$lib/types/components';
+import { categoryMetadataStore } from '$lib/stores/categoryMetadata.svelte';
 
 interface CategoryManagerOptions {
 	categories: Category[];
@@ -26,12 +28,25 @@ interface CategoryManagerOptions {
  * Manages category navigation and switching
  */
 export function useCategoryManager(options: () => CategoryManagerOptions) {
+	// Helper to get display name with metadata lookup from global store
+	function getDisplayName(category: Category): string {
+		const metadata = categoryMetadataStore.findById(category.id);
+		if (!metadata) {
+			// Fallback: return the name directly if no metadata found
+			return category.name;
+		}
+		return getCategoryDisplayName(category, metadata);
+	}
+
 	function handleCategoryChange(category: string, updateUrl: boolean = true) {
 		const opts = options();
 
 		if (category === opts.currentCategory) {
 			return;
 		}
+
+		// Stop all TTS playback when switching categories
+		ttsManager.stopAll();
 
 		// Set the new category
 		opts.setCurrentCategory(category);
@@ -74,7 +89,7 @@ export function useCategoryManager(options: () => CategoryManagerOptions) {
 		const categoryObj = opts.categories.find((c) => c.id === categoryId);
 
 		if (categoryObj) {
-			const displayName = getCategoryDisplayName(categoryObj);
+			const displayName = getDisplayName(categoryObj);
 			pageMetadata.title = displayName;
 
 			if (browser && document) {
