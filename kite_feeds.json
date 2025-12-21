@@ -4844,7 +4844,13 @@
       "https://www.ttv.com.tw/rss/RSSHandler.ashx?d=news&t=Q",
       "https://www.ttv.com.tw/rss/RSSHandler.ashx?d=news&t=R",
       "https://www.ttv.com.tw/rss/RSSHandler.ashx?d=news&t=Z",
-      "https://www.worldjournal.com/wj/rssfeed/121098"
+      "https://www.worldjournal.com/wj/rssfeed/121098",
+      "https://feeds.feedburner.com/TheNewsLens",
+      "https://www.peopo.org/rss-news",
+      "https://www.twse.com.tw/rwd/zh/news/feed?type=rss",
+      "https://www.president.gov.tw/RSSNEWS.aspx",
+      "https://news.pchome.com.tw/rss/new",
+      "https://www.ydn.com.tw/tw/Home/RSS.aspx?TID=4"
     ]
   },
   "Thailand": {
