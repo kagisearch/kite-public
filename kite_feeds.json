@@ -4850,7 +4850,14 @@
       "https://www.ttv.com.tw/rss/RSSHandler.ashx?d=news&t=Z",
       "https://www.twse.com.tw/rwd/zh/news/feed?type=rss",
       "https://www.worldjournal.com/wj/rssfeed/121098",
-      "https://www.ydn.com.tw/tw/Home/RSS.aspx?TID=4"
+      "https://www.ydn.com.tw/tw/Home/RSS.aspx?TID=4",
+      "https://taronews.tw/feed",
+      "https://www.mdnkids.com/rss",
+      "https://www.moi.gov.tw/OpenData.aspx?SN=76F358C679FAD4CF",
+      "https://dq.yam.com/rss.php",
+      "https://www.mirrordaily.news/rss/rss.xml",
+      "https://www.civilmedia.tw/feed",
+      "https://taiwandaily.net/category/%E5%8D%B3%E6%99%82%E6%96%B0%E8%81%9E/%E5%8F%B0%E7%81%A3%E6%96%B0%E8%81%9E/rss"
     ]
   },
   "Thailand": {
