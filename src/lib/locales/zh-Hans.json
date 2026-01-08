@@ -1155,6 +1155,10 @@
     "text": "蘆果世界",
     "translationContext": "Display name for the Apple news category"
   },
+  "category.argentina": {
+    "text": "阿根廷",
+    "translationContext": "Display name for the Argentina news category"
+  },
   "category.australia": {
     "text": "澳大利亞",
     "translationContext": "Display name for the Australia news category"

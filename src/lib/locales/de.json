@@ -1155,6 +1155,10 @@
     "text": "Apple",
     "translationContext": "Display name for the Apple news category"
   },
+  "category.argentina": {
+    "text": "Argentinien",
+    "translationContext": "Display name for the Argentina news category"
+  },
   "category.australia": {
     "text": "Australien",
     "translationContext": "Display name for the Australia news category"
