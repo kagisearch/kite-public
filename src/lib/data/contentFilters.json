@@ -192,6 +192,25 @@
 					"міністр",
 					"уряд",
 					"політик"
+				],
+				"et": [
+					"trump",
+					"biden",
+					"valimised",
+					"demokraat",
+					"vabariiklane",
+					"kongress",
+					"senat",
+					"parlament",
+					"riigikogu",
+					"minister",
+					"valitsus",
+					"poliitik",
+					"erakond",
+					"reformierakond",
+					"keskerakond",
+					"peaminister",
+					"president"
 				]
 			}
 		},
@@ -400,6 +419,22 @@
 					"військовий",
 					"вторгнення",
 					"бомбардування"
+				],
+				"et": [
+					"ukraina",
+					"venemaa",
+					"iisrael",
+					"gaza",
+					"palestiina",
+					"sõda",
+					"konflikt",
+					"rakett",
+					"rünnak",
+					"sõjavägi",
+					"sissetung",
+					"pommitamine",
+					"relvarahu",
+					"evakueerimine"
 				]
 			}
 		},
@@ -542,6 +577,17 @@
 					"епідемія",
 					"карантин",
 					"локдаун"
+				],
+				"et": [
+					"covid",
+					"koroonaviirus",
+					"pandeemia",
+					"vaktsiin",
+					"viirus",
+					"puhang",
+					"epideemia",
+					"karantiin",
+					"eriolukord"
 				]
 			}
 		},
@@ -674,6 +720,18 @@
 					"різанина",
 					"ножове поранення",
 					"напад"
+				],
+				"et": [
+					"tulistamine",
+					"tapetud",
+					"mõrv",
+					"enesetapp",
+					"surnud",
+					"hukkunute arv",
+					"massimõrv",
+					"pussitamine",
+					"rünnak",
+					"vägivald"
 				]
 			}
 		},
@@ -786,6 +844,16 @@
 					"tmz.com",
 					"pagesix.com",
 					"radaronline.com"
+				],
+				"et": [
+					"dailymail.co.uk",
+					"thesun.co.uk",
+					"mirror.co.uk",
+					"tmz.com",
+					"pagesix.com",
+					"radaronline.com",
+					"elu24.postimees.ee",
+					"kroonika.delfi.ee"
 				]
 			}
 		},
@@ -962,6 +1030,18 @@
 					"web3",
 					"догкоїн",
 					"binance"
+				],
+				"et": [
+					"bitcoin",
+					"ethereum",
+					"krüpto",
+					"krüptoraha",
+					"plokiahel",
+					"nft",
+					"defi",
+					"web3",
+					"dogecoin",
+					"binance"
 				]
 			}
 		},
@@ -1085,6 +1165,17 @@
 					"побачення",
 					"розрив",
 					"скандал"
+				],
+				"et": [
+					"kardashian",
+					"kuulsus",
+					"staar",
+					"kuninglik perekond",
+					"hollywood",
+					"klatš",
+					"suhe",
+					"lahkuminek",
+					"skandaal"
 				]
 			}
 		},
@@ -1222,6 +1313,18 @@
 					"чемпіонат світу",
 					"чемпіонат",
 					"ліга"
+				],
+				"et": [
+					"jalgpall",
+					"korvpall",
+					"pesapall",
+					"tennis",
+					"golf",
+					"olümpia",
+					"maailmameistrivõistlused",
+					"meistrivõistlused",
+					"liiga",
+					"võistlus"
 				]
 			}
 		},
@@ -1495,6 +1598,25 @@
 					"gpt-4",
 					"gpt-5",
 					"велика мовна модель"
+				],
+				"et": [
+					"chatgpt",
+					"openai",
+					"tehisintellekt",
+					"läbimurre tehisintellektis",
+					"masinõpe",
+					"närvivõrk",
+					"süvavõltsing",
+					"generatiivne tehisintellekt",
+					"tehisintellekti ohutus",
+					"üldine tehisintellekt",
+					"suur keelmudel",
+					"anthropic",
+					"claude",
+					"gemini",
+					"gpt-4",
+					"gpt-5",
+					"llm"
 				]
 			}
 		},
@@ -1655,6 +1777,17 @@
 					"підвищення рівня моря",
 					"вимирання",
 					"кліматична надзвичайна ситуація"
+				],
+				"et": [
+					"kliimamuutus",
+					"globaalne soojenemine",
+					"süsinikuheide",
+					"kasvuhoonegaas",
+					"kliimakriis",
+					"äärmuslik ilm",
+					"meretaseme tõus",
+					"väljasuremine",
+					"kliimahädaolukord"
 				]
 			}
 		},
@@ -1815,6 +1948,17 @@
 					"растление",
 					"порноместь",
 					"педофил"
+				],
+				"et": [
+					"seksuaalne väärkohtlemine",
+					"seksuaalne ahistamine",
+					"vägistamine",
+					"seksuaalne kuritarvitamine",
+					"metoo",
+					"käperdamine",
+					"laste väärkohtlemine",
+					"kättemaksuporno",
+					"pedofiil"
 				]
 			}
 		}
