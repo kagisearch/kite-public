@@ -2079,7 +2079,16 @@
       "https://www.mtvuutiset.fi/api/feed/rss/urheilu",
       "https://www.mtvuutiset.fi/api/feed/rss/uutiset",
       "https://www.reddit.com/r/suomi/.rss",
-      "https://www.traficom.fi/feed/rss/fi"
+      "https://www.traficom.fi/feed/rss/fi",
+      "https://www.hbl.fi/rss",
+      "https://www.verkkouutiset.fi/t/suomi/feed/",
+      "https://wp.demokraatti.fi/kategoria/uutiset/kotimaa/feed/",
+      "https://www.suomenmaa.fi/feed/",
+      "https://www.ku.fi/kategoria/kotimaa/feed",
+      "https://www.maaseuduntulevaisuus.fi/feeds/maaseuduntulevaisuus",
+      "https://www.ess.fi/uutissuomalainen/feed/rss/",
+      "https://www.kaleva.fi/feedit/rss/managed-listing/kotimaa/",
+      "https://www.kotimaa.fi/kategoriat/jutut/uutiset/feed/"
     ]
   },
   "Formula 1": {
