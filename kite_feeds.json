@@ -2079,6 +2079,17 @@
       "https://www.mtvuutiset.fi/api/feed/rss/urheilu",
       "https://www.mtvuutiset.fi/api/feed/rss/uutiset",
       "https://www.reddit.com/r/suomi/.rss",
+      "https://poliisi.fi/etusivu/-/asset_publisher/mhkofNyGe9wn/rss",
+      "https://lvm.fi/ajankohtaista/-/asset_publisher/O3uCGYbQn094/rss",
+      "https://valtioneuvosto.fi/staattiset-feedit/-/asset_publisher/Kh4WBNNjLkT0/rss",
+      "https://defmin.fi/ajankohtaista/staattiset-rss-syotteet",
+      "https://okm.fi/ajankohtaista/-/asset_publisher/HplCdJTXh1mx/rss",
+      "https://intermin.fi/en/current-issues/-/asset_publisher/9GvfFtwIt765/rss",
+      "https://www.sttinfo.fi/rss/releases/latest?publisherId=3981",
+      "https://www.sttinfo.fi/rss/releases/latest?publisherId=69818512",
+      "https://www.sttinfo.fi/rss/releases/latest?publisherId=69818513",
+      "https://www.sttinfo.fi/rss/releases/latest?publisherId=69818838",
+      "https://www.ilmatieteenlaitos.fi/api/news/tiedote/rss",
       "https://www.traficom.fi/feed/rss/fi"
     ]
   },
