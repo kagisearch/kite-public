@@ -2028,7 +2028,14 @@
       "https://www.rferl.org/api/",
       "https://www.scmp.com/rss/322263/feed",
       "https://www.spiegel.de/international/europe/index.rss",
-      "https://www.theguardian.com/world/europe-news/rss"
+      "https://www.theguardian.com/world/europe-news/rss",
+      "https://www.consilium.europa.eu/en/rss/pressreleases.ashx",
+      "https://www.europarl.europa.eu/rss/doc/press-releases/en.xml",
+      "https://www.europarl.europa.eu/rss/doc/last-news-delegations/en.xml",
+      "https://www.europarl.europa.eu/rss/doc/last-news-committees/en.xml",
+      "https://www.europarl.europa.eu/rss/doc/press-releases-committees/en.xml",
+      "https://commission.europa.eu/node/29665/rss_en",
+      "https://european-union.europa.eu/node/484/rss_en"
     ]
   },
   "Finland": {
