@@ -5959,7 +5959,12 @@
       "https://www.twse.com.tw/rwd/zh/news/feed?type=rss",
       "https://www.voh.com.tw/tw/Home/ugC_RSS.aspx",
       "https://www.worldjournal.com/wj/rssfeed/121098",
-      "https://www.ydn.com.tw/tw/Home/RSS.aspx?TID=4"
+      "https://www.ydn.com.tw/tw/Home/RSS.aspx?TID=4",
+      "https://kmweb.moa.gov.tw/rss.php?type=5",
+      "https://enews.moenv.gov.tw/RSS/News",
+      "https://penghudaily.blogspot.com/feeds/posts/default?alt=rss",
+      "https://www.ner.gov.tw/api/rss/news",
+      "https://mna.mnd.gov.tw/K2S/RSS"
     ]
   },
   "Thailand": {
