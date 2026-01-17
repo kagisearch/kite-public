@@ -2864,7 +2864,6 @@
       "https://www.megatv.com/feed",
       "https://www.naftemporiki.gr/feed/",
       "https://www.news.gr/rss.ashx",
-      "https://www.newsbeast.gr/feed",
       "https://www.newsbeast.gr/feed/",
       "https://www.newsbomb.gr/oles-oi-eidhseis?format=feed&type=rss",
       "https://www.newsit.gr/feed/",
@@ -2873,7 +2872,12 @@
       "https://www.tanea.gr/feed/",
       "https://www.topontiki.gr/feed/",
       "https://www.tovima.gr/feed/",
-      "https://www.zarpanews.gr/feed/"
+      "https://www.zarpanews.gr/feed/",
+      "https://www.reportersunited.gr/feed/",
+      "https://fyi.news/feed/",
+      "https://www.documentonews.gr/feed/",
+      "https://wearesolomon.com/el/feed/",
+      "https://www.tvopen.gr/rss",
     ]
   },
   "Healthcare | USA": {
