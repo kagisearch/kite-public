@@ -1644,8 +1644,8 @@
       "zh-Hant": "網路安全"
     },
     "feeds": [
-      "https://arstechnica.com/information-technology/category/security/feed/",
       "http://feeds.feedburner.com/Unit42",
+      "https://arstechnica.com/information-technology/category/security/feed/",
       "https://bitwarden.com/blog/feed.xml",
       "https://blog.talosintelligence.com/rss/",
       "https://citizenlab.ca/feed/",
@@ -4284,32 +4284,31 @@
       "zh-Hant": "MMA"
     },
     "feeds": [
+      "https://cagewalks.com/feed/",
+      "https://mmabetz.com/feed/",
+      "https://mmastalker.com/feed/",
+      "https://mmatorch.com/feed/",
+      "https://mmauk.net/feed/",
+      "https://mymmanews.com/feed/",
+      "https://news.paddypower.com/mma/feed/",
+      "https://sports.yahoo.com/mma/rss/",
       "https://www.bjpenn.com/mma-news/rss/",
+      "https://www.cwnsports.com/rss.php?c=21",
+      "https://www.extrememma.com.au/feed/",
+      "https://www.fightful.com/rss.xml",
+      "https://www.fightmatrix.com/category/mma/feed/",
+      "https://www.lowkickmma.com/feed/",
+      "https://www.mixedmartialarts.com/feed",
       "https://www.mmafighting.com/rss/index.xml",
       "https://www.mmamania.com/rss/index.xml",
       "https://www.mmaweekly.com/.rss/full/",
-      "https://www.lowkickmma.com/feed/",
-      "https://mymmanews.com/feed/",
-      "https://mmauk.net/feed/",
-      "https://mmastalker.com/feed/",
-      "https://www.extrememma.com.au/feed/",
-      "https://mmatorch.com/feed/",
-      "https://www.fightmatrix.com/category/mma/feed/",
-      "https://www.sport.de/rss/news/to2782/ufc/",
-      "https://cagewalks.com/feed/",
-      "https://www.cwnsports.com/rss.php?c=21",
-      "https://www.mixedmartialarts.com/feed",
-      "https://www.sherdog.com/rss/news.xml",
+      "https://www.reddit.com/r/MMA/.rss",
       "https://www.sherdog.com/rss/articles.xml",
       "https://www.sherdog.com/rss/interviews.xml",
-      "https://www.ufc.com/rss/news",
-      "https://cagewalks.com/feed/",
+      "https://www.sherdog.com/rss/news.xml",
+      "https://www.sport.de/rss/news/to2782/ufc/",
       "https://www.sportsbettingdime.com/news/mma/feed/",
-      "https://mmabetz.com/feed/",
-      "https://news.paddypower.com/mma/feed/",
-      "https://www.reddit.com/r/MMA/.rss",
-      "https://www.fightful.com/rss.xml",
-      "https://sports.yahoo.com/mma/rss/"
+      "https://www.ufc.com/rss/news"
     ]
   },
   "Morocco": {
@@ -6343,6 +6342,8 @@
       "https://www.cmmedia.com.tw/rss/yahoo/article",
       "https://www.ey.gov.tw/RSS_Content.aspx?ModuleType=2",
       "https://www.fsc.gov.tw/RSS/Messages?serno=201202290009&language=chinese",
+      "https://www.kinmen.gov.tw/OpenData.aspx?SN=CF5DF99964D9DB8E",
+      "https://www.kmdn.gov.tw/1117/1271/1272/RSSList",
       "https://www.limedia.tw/feed/",
       "https://www.mdnkids.com/rss",
       "https://www.mirrordaily.news/rss/rss.xml",
@@ -6389,9 +6390,7 @@
       "https://www.twse.com.tw/rwd/zh/news/feed?type=rss",
       "https://www.voh.com.tw/tw/Home/ugC_RSS.aspx",
       "https://www.worldjournal.com/wj/rssfeed/121098",
-      "https://www.ydn.com.tw/tw/Home/RSS.aspx?TID=4",
-      "https://www.kinmen.gov.tw/OpenData.aspx?SN=CF5DF99964D9DB8E",
-      "https://www.kmdn.gov.tw/1117/1271/1272/RSSList"
+      "https://www.ydn.com.tw/tw/Home/RSS.aspx?TID=4"
     ]
   },
   "Thailand": {
