@@ -3101,7 +3101,6 @@
       "https://eleftherostypos.gr/feed",
       "https://feeds.feedburner.com/dikaiologitika/ZteV",
       "https://feeds.feedburner.com/kathimerini/DJpy",
-      "https://fyi.news/feed/",
       "https://prin.gr/feed/",
       "https://thepressproject.gr/feed/",
       "https://wearesolomon.com/el/feed/",
@@ -3437,8 +3436,7 @@
       "https://www.reddit.com/r/Madurai/.rss",
       "https://www.reddit.com/r/southindianfashion/.rss",
       "https://www.reddit.com/r/tamil/.rss",
-      "https://www.reddit.com/r/tamilnadu/.rss",
-      "https://www.vikatan.com/rss/tamilnadu"
+      "https://www.reddit.com/r/tamilnadu/.rss"
     ]
   },
   "Iran": {
@@ -4588,7 +4586,8 @@
       "https://www.profootballnetwork.com/feed/",
       "https://www.rotowire.com/rss/news.php?sport=NFL",
       "https://www.thecoldwire.com/sports/nfl/feed/",
-      "https://www.yardbarker.com/rss/sport_merged/2"
+      "https://www.yardbarker.com/rss/sport_merged/2",
+      "https://www.sbnation.com/rss/nfl/index.xml"
     ]
   },
   "NHL": {
