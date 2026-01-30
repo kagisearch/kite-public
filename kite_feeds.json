@@ -4585,9 +4585,9 @@
       "https://www.pff.com/feed",
       "https://www.profootballnetwork.com/feed/",
       "https://www.rotowire.com/rss/news.php?sport=NFL",
+      "https://www.sbnation.com/rss/nfl/index.xml",
       "https://www.thecoldwire.com/sports/nfl/feed/",
-      "https://www.yardbarker.com/rss/sport_merged/2",
-      "https://www.sbnation.com/rss/nfl/index.xml"
+      "https://www.yardbarker.com/rss/sport_merged/2"
     ]
   },
   "NHL": {
@@ -4986,6 +4986,9 @@
       "https://philnews.ph/feed/",
       "https://rappler.com/feed/?rss",
       "https://tonite.abante.com.ph/feed/",
+      "https://verafiles.org/section/commentary/feed/",
+      "https://verafiles.org/section/fact-check/feed/",
+      "https://verafiles.org/section/news/feed",
       "https://www.abs-cbn.com/feed",
       "https://www.bworldonline.com/feed/",
       "https://www.inquirer.net/fullfeed",
@@ -4997,10 +5000,7 @@
       "https://www.philstar.com/rss/nation",
       "https://www.philstar.com/rss/sports",
       "https://www.reddit.com/r/newsPH/.rss",
-      "https://www.sunstar.com.ph/api/v1/collections/home.rss",
-      "https://verafiles.org/section/news/feed",
-      "https://verafiles.org/section/fact-check/feed/",
-      "https://verafiles.org/section/commentary/feed/"
+      "https://www.sunstar.com.ph/api/v1/collections/home.rss"
     ]
   },
   "Podcasting": {
