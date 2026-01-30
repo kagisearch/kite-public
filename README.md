@@ -110,11 +110,11 @@ When adding an RSS feed make sure to:
 
 - Check that feed is working and has recent (daily) content.
 - Choose sources that have high quality content. Do not use low quality/gossip/SEO content.
-- Feeds should be in the same language as the rest of the feeds in that category (do not mix languages)
+- **Feeds can be in any language.** Kagi News translates all content automatically, so a single category can (and should) contain feeds in multiple languages. Do not create separate categories for different languages (e.g. "Switzerland (DE)" and "Switzerland (FR)") — keep everything in one category. The `source_language` field in `kite_feeds.json` should be set to the language used by the majority of feeds; its exact value is not critical.
 
 ### Important
 
-We require at least **25 feeds** for a category in order to surface it in Kagi News. This is to make sure we maintain high level of quality of events covered in the app. The more high quality feeds exist for a category, the better Kagi News coverage will be. The feeds should be using the same language.
+We require at least **25 feeds** for a category in order to surface it in Kagi News. This is to make sure we maintain high level of quality of events covered in the app. The more high quality feeds exist for a category, the better Kagi News coverage will be.
 
 Kagi News does not scrape news websites, it only uses publicly available information in RSS feeds.
 
