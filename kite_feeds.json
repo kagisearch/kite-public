@@ -4998,7 +4998,10 @@
       "https://www.philstar.com/rss/nation",
       "https://www.philstar.com/rss/sports",
       "https://www.reddit.com/r/newsPH/.rss",
-      "https://www.sunstar.com.ph/api/v1/collections/home.rss"
+      "https://www.sunstar.com.ph/api/v1/collections/home.rss",
+      "https://verafiles.org/section/news/feed",
+      "https://verafiles.org/section/fact-check/feed/",
+      "https://verafiles.org/section/commentary/feed/"
     ]
   },
   "Podcasting": {
