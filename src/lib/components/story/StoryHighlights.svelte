@@ -34,8 +34,9 @@ let {
 
 // Convert citations to numbered format if mapping is available
 const displayPoints = $derived.by(() => {
-	if (!citationMapping) return points;
-	return points.map((point) => replaceWithNumberedCitations(point, citationMapping));
+  const filteredPoints = points.filter((point) => typeof point === 'string' && point.trim().length > 0);
+	if (!citationMapping) return filteredPoints;
+	return filteredPoints.map((point) => replaceWithNumberedCitations(point, citationMapping));
 });
 </script>
 
