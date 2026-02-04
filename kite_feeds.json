@@ -3471,26 +3471,26 @@
       "ta": "தமிழ்நாடு"
     },
     "feeds": [
-      "https://www.dailythanthi.com/feed",
       "http://www.dinamalar.com/rssfeed.asp",
-      "https://zeenews.india.com/tamil/tamil-nadu.xml",
+      "https://beta.dinamani.com/api/v1/collections/latest-news.rss",
       "https://feeds.bbci.co.uk/tamil/rss.xml",
       "https://indianexpress.com/section/cities/chennai/feed/",
       "https://tamil.hindustantimes.com/rss/tamilnadu",
-      "https://tamil.oneindia.com/rss/feeds/tamil-news-fb.xml",
-      "https://tamil.news18.com/commonfeeds/v1/tam/rss/national.xml",
-      "https://tamil.news18.com/commonfeeds/v1/tam/rss/madurai.xml",
       "https://tamil.news18.com/commonfeeds/v1/tam/rss/chennai.xml",
-      "https://beta.dinamani.com/api/v1/collections/latest-news.rss",
+      "https://tamil.news18.com/commonfeeds/v1/tam/rss/madurai.xml",
+      "https://tamil.news18.com/commonfeeds/v1/tam/rss/national.xml",
+      "https://tamil.oneindia.com/rss/feeds/tamil-news-fb.xml",
+      "https://www.dailythanthi.com/feed",
       "https://www.malaimurasu.com/feed",
-      "https://www.vikatan.com/api/v1/collections/india-news.rss?&time-period=last-24-hours",
       "https://www.reddit.com/r/chennai/.rss",
       "https://www.reddit.com/r/Coimbatore/.rss",
       "https://www.reddit.com/r/kollywood/.rss",
       "https://www.reddit.com/r/Madurai/.rss",
       "https://www.reddit.com/r/southindianfashion/.rss",
       "https://www.reddit.com/r/tamil/.rss",
-      "https://www.reddit.com/r/tamilnadu/.rss"
+      "https://www.reddit.com/r/tamilnadu/.rss",
+      "https://www.vikatan.com/api/v1/collections/india-news.rss?&time-period=last-24-hours",
+      "https://zeenews.india.com/tamil/tamil-nadu.xml"
     ]
   },
   "Indonesia": {
