@@ -1433,6 +1433,18 @@
       "https://www.vozdeamerica.com/rssfeeds"
     ]
   },
+  "Computer Science": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {},
+    "feeds": [
+      "https://news.google.com/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNREZ0YTNFU0FtVnVLQUFQAQ?hl=en-US&gl=US&ceid=US%3Aen",
+      "https://www.wired.com/feed/tag/ai/latest/rss",
+      "https://www.quantamagazine.org/computer-science/feed/",
+      "https://lbscomputerscience.blogspot.com/feeds/posts/default",
+      "https://news.mit.edu/rss/topic/computers"
+    ]
+  },
   "Costa Rica": {
     "category_type": "topic",
     "source_language": "es",
