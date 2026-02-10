@@ -1479,6 +1479,10 @@
     "text": "アメリカ | ハワイ",
     "translationContext": "Display name for the USA Hawaii news category"
   },
+  "category.usaLosAngeles": {
+    "text": "アメリカ | ロサンゼルス",
+    "translationContext": "Display name for the USA Los Angeles news category"
+  },
   "category.usaIdaho": {
     "text": "アメリカ | アイダホ",
     "translationContext": "Display name for the USA Idaho news category"
