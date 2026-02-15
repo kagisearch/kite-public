@@ -1740,6 +1740,52 @@
       "https://www.velonews.com/feed/"
     ]
   },
+  "French Sports": {
+    "category_type": "topic",
+    "source_language": "fr",
+    "display_names": {
+      "en": "French Sports",
+      "ar": "الرياضة الفرنسية",
+      "ca": "Esports Francesos",
+      "de": "Französischer Sport",
+      "es": "Deportes Franceses",
+      "et": "Prantsuse sport",
+      "fr": "Sport français",
+      "he": "ספורט צרפתי",
+      "hi": "फ्रेंच खेल",
+      "it": "Sport Francesi",
+      "ja": "フランススポーツ",
+      "nl": "Franse sport",
+      "pt": "Esportes Franceses",
+      "ru": "Французский спорт",
+      "uk": "Французький спорт",
+      "zh-Hans": "法国体育",
+      "zh-Hant": "法國體育"
+    },
+    "feeds": [
+      "https://news.google.com/rss/search?tbm=nws&q=sport&oq=sport&scoring=n&hl=fr&gl=FR&ceid=FR:fr",
+      "https://partner-feeds.20min.ch/rss/20minutes/sports/",
+      "https://feeds.feedburner.com/euronews/PoHFlo8GFL0",
+      "https://www.franceinfo.fr/sports.rss",
+      "https://www.huffingtonpost.fr/sport/rss_headline.xml",
+      "https://www.francebleu.fr/rss/sports.xml",
+      "https://lactualite.com/sports/feed/",
+      "https://www.lexpress.fr/arc/outboundfeeds/rss/sport.xml",
+      "https://partner-feeds.lessentiel.lu/rss/lessentiel-fr/sports",
+      "https://partner-feeds.lematin.ch/rss/lematin/sports",
+      "https://www.lemonde.fr/sport/rss_full.xml",
+      "https://www.nouvelobs.com/sport/rss.xml",
+      "https://feeds.leparisien.fr/leparisien/rss/sports",
+      "https://www.liberation.fr/arc/outboundfeeds/rss/category/sports/?outputType=xml",
+      "https://le10sport.com/fr/rss/omnisport/",
+      "https://dwh.lequipe.fr/api/edito/rss?path=/",
+      "https://rmcsport.bfmtv.com/rss/societe/",
+      "https://www.letemps.ch/sport.rss",
+      "https://www.humanite.fr/sections/sports/feed",
+      "https://www.france24.com/fr/sports/rss",
+      "https://www.7sur7.be/autres-sports/rss.xml"
+    ]
+  },
   "Czech Republic": {
     "category_type": "topic",
     "source_language": "cs",
