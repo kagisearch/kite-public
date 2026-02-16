@@ -3341,6 +3341,14 @@
       "zh-Hant": "匈牙利"
     },
     "feeds": [
+      "https://kiszamolo.hu/feed/",
+      "https://mfor.hu/rss",
+      "https://privatbankar.hu/rss",
+      "https://forbes.hu/feed/",
+      "https://privatbankar.hu/rss",
+      "https://www.azenpenzem.hu/rss/",
+      "https://zsiday.hu/feed/",
+      "https://hold.hu/holdblog/feed/",
       "https://biztosdontes.hu/rss",
       "https://bankmonitor.hu/category/mediatar/feed/",
       "https://bank360.hu/blog/rss.xml",
