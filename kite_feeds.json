@@ -1771,8 +1771,6 @@
       "https://www.francebleu.fr/rss/sports.xml",
       "https://lactualite.com/sports/feed/",
       "https://www.lexpress.fr/arc/outboundfeeds/rss/sport.xml",
-      "https://partner-feeds.lessentiel.lu/rss/lessentiel-fr/sports",
-      "https://partner-feeds.lematin.ch/rss/lematin/sports",
       "https://www.lemonde.fr/sport/rss_full.xml",
       "https://www.nouvelobs.com/sport/rss.xml",
       "https://feeds.leparisien.fr/leparisien/rss/sports",
@@ -1780,10 +1778,8 @@
       "https://le10sport.com/fr/rss/omnisport/",
       "https://dwh.lequipe.fr/api/edito/rss?path=/",
       "https://rmcsport.bfmtv.com/rss/societe/",
-      "https://www.letemps.ch/sport.rss",
       "https://www.humanite.fr/sections/sports/feed",
       "https://www.france24.com/fr/sports/rss",
-      "https://www.7sur7.be/autres-sports/rss.xml"
     ]
   },
   "Czech Republic": {
