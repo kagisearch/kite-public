@@ -3341,6 +3341,7 @@
       "zh-Hant": "匈牙利"
     },
     "feeds": [
+      "https://biztosdontes.hu/rss",
       "https://bankmonitor.hu/category/mediatar/feed/",
       "https://bank360.hu/blog/rss.xml",
       "https://index.hu/24ora/rss?&rovatkeres=osszes",
