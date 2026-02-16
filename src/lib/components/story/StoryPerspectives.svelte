@@ -1,4 +1,5 @@
 <script lang="ts">
+import { fade } from 'svelte/transition';
 import { s } from '$lib/client/localization.svelte';
 import type { Article, LocalizerFunction } from '$lib/types';
 import { getCitedArticlesForText } from '$lib/utils/citationAggregator';
@@ -26,7 +27,16 @@ interface Props {
 	onWordClick?: (word: string, section?: string) => void;
 }
 
-let { perspectives = [], articles = [], citationMapping, storyLocalizer = s, flashcardMode = false, selectedWords = new Set(), selectedPhrases = new Map(), shouldJiggle = false, onWordClick }: Props = $props();
+let {
+	perspectives = [],
+	articles = [],
+	citationMapping,
+	storyLocalizer = s,
+	flashcardMode = false,
+	selectedWords = new Set(),
+	shouldJiggle = false,
+	onWordClick,
+}: Props = $props();
 
 // Convert citations in perspectives if mapping is available
 const displayPerspectives = $derived.by(() => {
@@ -58,6 +68,8 @@ function handleTouchEnd() {
 	}, 50);
 }
 
+const scrollFadeDuration = 150;
+
 // Scroll indicator state
 let scrollContainer = $state<HTMLDivElement | null>(null);
 let canScrollLeft = $state(false);
@@ -80,7 +92,7 @@ function scrollBy(direction: 'left' | 'right') {
 	const scrollAmount = cardWidth + gap;
 	scrollContainer.scrollBy({
 		left: direction === 'left' ? -scrollAmount : scrollAmount,
-		behavior: 'smooth'
+		behavior: 'smooth',
 	});
 }
 
@@ -99,10 +111,10 @@ $effect(() => {
   <h3 class="mb-4 text-xl font-semibold text-gray-800 dark:text-gray-200">
     {storyLocalizer("section.perspectives") || "Perspectives"}
   </h3>
-  <div class="relative">
+  <div class="relative overflow-x-hidden">
     <div
       bind:this={scrollContainer}
-      class="horizontal-scroll-container flex flex-row gap-3 overflow-x-auto pb-4"
+      class="horizontal-scroll-container flex flex-row gap-3 overflow-x-scroll pb-4"
       role="region"
       aria-label={storyLocalizer("section.perspectives.carousel") || "Perspectives carousel - use arrow keys or swipe to navigate"}
       ontouchstart={handleTouchStart}
@@ -112,7 +124,7 @@ $effect(() => {
     {#each displayPerspectives as perspective}
       {@const parsed = parseStructuredText(perspective.text)}
       <div
-        class="w-52 flex-shrink-0 rounded-lg bg-gray-100 p-4 dark:bg-gray-700"
+        class="w-52 shrink-0 rounded-lg bg-gray-100 p-4 dark:bg-gray-700"
       >
         {#if parsed.hasTitle}
           {@const titleCitations = getCitedArticlesForText(
@@ -220,9 +232,18 @@ $effect(() => {
       </div>
     {/each}
     </div>
+    <!-- Scroll indicator fade (mobile) -->
+    {#if canScrollLeft}
+      <div
+        transition:fade={{ duration: scrollFadeDuration }}
+        class="pointer-events-none absolute left-0 top-0 h-full w-8 bg-linear-to-r from-white to-transparent dark:from-gray-900 md:hidden"
+        aria-hidden="true"
+      ></div>
+    {/if}
     <!-- Left scroll button -->
     {#if canScrollLeft}
       <button
+        transition:fade={{ duration: scrollFadeDuration }}
         onclick={() => scrollBy('left')}
         class="absolute left-0 top-1/2 -translate-y-1/2 hidden md:flex h-8 w-8 items-center justify-center rounded-full bg-white/90 shadow-md hover:bg-white dark:bg-gray-800/90 dark:hover:bg-gray-800 transition-opacity"
         aria-label="Scroll left"
@@ -235,6 +256,7 @@ $effect(() => {
     <!-- Right scroll button -->
     {#if canScrollRight}
       <button
+        transition:fade={{ duration: scrollFadeDuration }}
         onclick={() => scrollBy('right')}
         class="absolute right-0 top-1/2 -translate-y-1/2 hidden md:flex h-8 w-8 items-center justify-center rounded-full bg-white/90 shadow-md hover:bg-white dark:bg-gray-800/90 dark:hover:bg-gray-800 transition-opacity"
         aria-label="Scroll right"
@@ -247,7 +269,8 @@ $effect(() => {
     <!-- Scroll indicator fade (mobile) -->
     {#if canScrollRight}
       <div
-        class="pointer-events-none absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-white to-transparent dark:from-gray-900 md:hidden"
+        transition:fade={{ duration: scrollFadeDuration }}
+        class="pointer-events-none absolute right-0 top-0 h-full w-8 bg-linear-to-l from-white to-transparent dark:from-gray-900 md:hidden"
         aria-hidden="true"
       ></div>
     {/if}
