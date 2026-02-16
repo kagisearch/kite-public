@@ -6329,6 +6329,45 @@
       "https://www.yardbarker.com/rss/sport_merged/11"
     ]
   },
+  "French Football": {
+    "category_type": "topic",
+    "source_language": "fr",
+    "display_names": {
+      "en": "French Soccer",
+      "fr": "Football Français",
+      "de": "Französischer Fußball",
+      "es": "Fútbol Francés",
+      "it": "Calcio Francese",
+      "pt": "Futebol Francês",
+      "zh-Hans": "法国足球",
+      "zh-Hant": "法國足球",
+      "ja": "フランスサッカー",
+      "ru": "Французский футбол",
+      "ar": "كرة القدم الفرنسية",
+      "he": "כדורגל צרפתי",
+      "hi": "फ्रेंच फुटबॉल",
+      "nl": "Frans voetbal",
+      "et": "Prantsuse jalgpall",
+      "ca": "Futbol Francès",
+      "uk": "Французький футбол"
+    },
+    "feeds": [
+      "https://partner-feeds.20min.ch/rss/20minutes/sports/football",
+      "https://www.franceinfo.fr/sports/foot.rss",
+      "https://france3-regions.franceinfo.fr/sport/football/ligue-1/rss",
+      "https://france3-regions.franceinfo.fr/sport/football/ligue-2/rss",
+      "https://rmcsport.bfmtv.com/rss/football/",
+      "https://www.sudouest.fr/sport/football/rss.xml",
+      "https://www.liberation.fr/arc/outboundfeeds/rss/category/sports/football/?outputType=xml",
+      "https://www.lemonde.fr/football/rss_full.xml",
+      "https://www.lefigaro.fr/rss/figaro_football.xml",
+      "https://feeds.leparisien.fr/leparisien/rss/sports/football",
+      "https://www.lindependant.fr/sport/football/rss.xml",
+      "https://dwh.lequipe.fr/api/edito/rss?path=/Football/",
+      "https://www.letelegramme.fr/sports/football/rss.xml",
+      "https://www.sports.fr/football/feed"
+    ]
+  },
   "South Korea": {
     "category_type": "topic",
     "source_language": "ko",
