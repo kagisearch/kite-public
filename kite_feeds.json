@@ -1443,7 +1443,6 @@
     },
     "feeds": [
       "https://news.google.com/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNREZ0YTNFU0FtVnVLQUFQAQ?hl=en-US&gl=US&ceid=US%3Aen",
-      "https://www.wired.com/feed/tag/ai/latest/rss",
       "https://www.quantamagazine.org/computer-science/feed/",
       "https://lbscomputerscience.blogspot.com/feeds/posts/default",
       "https://news.mit.edu/rss/topic/computers",
@@ -1461,7 +1460,6 @@
       "https://techxplore.com/rss-feed/breaking/computer-sciences-news/",
       "https://cacm.acm.org/category/theory/feed",
       "https://cacm.acm.org/category/architecture-and-hardware/feed",
-      "https://cacm.acm.org/category/artificial-intelligence-machine-learning/feed",
       "https://cacm.acm.org/category/computing-applications/feed",
       "https://cacm.acm.org/category/software-engineering-and-programming-languages/feed",
       "https://cacm.acm.org/category/systems-and-networking/feed",
