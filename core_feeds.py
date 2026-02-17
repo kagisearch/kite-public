@@ -723,6 +723,7 @@ feeds = {
         "https://atp.fm/rss",
         "https://betanews.com/feed/",
         "https://cloudseclist.com/feed.xml",
+        "https://coywolf.com/news/feed/",
         "https://digitechbytes.com/feed/",
         "https://electrek.co/feed/",
         "https://feeds.bbci.co.uk/news/technology/rss.xml",
