@@ -6411,7 +6411,16 @@
       "https://www.yonhapnewstv.co.kr/category/news/local/feed/",
       "https://www.yonhapnewstv.co.kr/category/news/politics/feed/",
       "https://www.yonhapnewstv.co.kr/category/news/society/feed/",
-      "https://www.yonhapnewstv.co.kr/category/news/sports/feed/"
+      "https://www.yonhapnewstv.co.kr/category/news/sports/feed/",
+      "https://www.asiae.co.kr/rss/all.htm",
+      "https://biz.heraldcorp.com/rss/google/newsAll",
+      "https://www.sedaily.com/rss/newsall",
+      "https://www.hani.co.kr/rss",
+      "https://www.mt.co.kr/rss/latest-atom.xml",
+      "https://rss.nocutnews.co.kr/news/news.xml",
+      "https://rss.nocutnews.co.kr/news/top.xml",
+      "https://www.koreaherald.com/rss/newsAll",
+      "https://feed.koreatimes.co.kr/k/allnews.xml"
     ]
   },
   "Spain": {
