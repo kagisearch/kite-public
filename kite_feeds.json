@@ -8465,6 +8465,51 @@
       "https://www.yakimaherald.com/search/?f=rss"
     ]
   },
+  "USA | Wyoming": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {
+      "en": "USA | Wyoming"
+    },
+    "feeds": [
+      "https://buckrail.com/category/news/feed",
+      "https://cowboystatedaily.com/rss.xml",
+      "https://k2radio.com/category/local-news/feed",
+      "https://k2radio.com/category/wyoming-news/",
+      "https://kgab.com/category/local-news/feed",
+      "https://kgab.com/category/wyoming-news/feed",
+      "https://laramiereporter.substack.com/feed",
+      "https://newslj.com/rss.xml",
+      "https://oilcity.news/latest-news/feed",
+      "https://sheridanmedia.com/category/news/feed",
+      "https://trib.com/search/?f=rss&t=article&c=news/local",
+      "https://trib.com/search/?f=rss&t=article&c=news/local/education/",
+      "https://trib.com/search/?f=rss&t=article&c=news/local/government-politics",
+      "https://trib.com/search/?f=rss&t=article&c=news/state-regional",
+      "https://www.basinrepublican-rustler.com/rss.xml",
+      "https://www.buffalobulletin.com/search/?f=rss&t=article&c=news",
+      "https://www.buffalobulletin.com/search/?f=rss&t=article&c=news/state",
+      "https://www.carboncountycomet.com/taxonomy/term/23/feed",
+      "https://www.carboncountycomet.com/taxonomy/term/32/feed",
+      "https://www.codyenterprise.com/search/?f=rss&t=article&c=news",
+      "https://www.codyenterprise.com/search/?f=rss&t=article&c=news/wyoming_news",
+      "https://www.gillettenewsrecord.com/search/?f=rss&t=article&c=elections",
+      "https://www.gillettenewsrecord.com/search/?f=rss&t=article&c=news/in_brief",
+      "https://www.gillettenewsrecord.com/search/?f=rss&t=article&c=news/local",
+      "https://www.gillettenewsrecord.com/search/?f=rss&t=article&c=news/wyoming",
+      "https://www.pinebluffspost.com/rss",
+      "https://www.sweetwaternow.com/news/feed",
+      "https://www.thesheridanpress.com/search/?f=rss&t=article&c=business",
+      "https://www.thesheridanpress.com/search/?f=rss&t=article&c=news/local",
+      "https://www.thesheridanpress.com/search/?f=rss&t=article&c=news/regional-news",
+      "https://www.thesheridanpress.com/search/?f=rss&t=article&c=outdoors",
+      "https://www.wyodaily.com/rss",
+      "https://www.wyomingnews.com/search/?f=rss&t=article&c=news",
+      "https://www.wyomingnews.com/search/?f=rss&t=article&c=rocketminer/news",
+      "https://www.wyomingpublicmedia.org/latest-local-content.rss",
+      "https://wyofile.com/category/latest-news/feed"
+    ]
+  },
   "Venezuela": {
     "category_type": "topic",
     "source_language": "es",
