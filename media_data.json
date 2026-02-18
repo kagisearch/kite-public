@@ -4087,6 +4087,16 @@
     "typology": "State Funded Media"
   },
   {
+    "country": "France",
+    "organization": "Mediapart",
+    "domains": [
+      "mediapart.fr"
+    ],
+    "description": "Mediapart is a French independent, nonprofit investigative online newspaper founded in 2008 by Edwy Plenel, a former editor-in-chief of Le Monde. It is known for its in-depth investigative journalism and operates without advertising or state subsidies, relying entirely on reader subscriptions for funding. The platform also hosts subscriber-published content in its 'The Club' section.",
+    "owner": "Mediapart's capital is controlled by its founding journalists, ensuring structural independence from external investors or advertisers. It is structured as a SAS (simplified joint stock company), with initial capital funded entirely by personal contributions from the founders totaling €1.325 million. Edwy Plenel, the co-founder, served as president and publishing editor until 2024, when he passed leadership to Carine Fouteau.",
+    "typology": "Private Independent Media"
+  },
+  {
     "country": "Germany",
     "organization": "Deutsche Welle",
     "domains": [
