@@ -4794,6 +4794,53 @@
       "https://www.vibe.com/c/music/reviews/feed/"
     ]
   },
+  "Networking": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {
+      "en": "Networking",
+      "de": "Netzwerken",
+      "es": "Redes",
+      "et": "Võrgustike loomine",
+      "fr": "Réseautage",
+      "it": "Networking",
+      "ja": "ネットワーキング",
+      "pt": "Networking",
+      "zh-Hans": "网络",
+      "zh-Hant": "網路"
+    },
+    "feeds": [
+      "https://www.networkworld.com/feed/",
+      "https://www.fierce-network.com/rss/Fierce%20Network%20Homepage/xml",
+      "https://arstechnica.com/information-technology/feed/",
+      "https://blog.cloudflare.com/rss/",
+      "https://www.cnet.com/rss/news/",
+      "https://blogs.cisco.com/networking/feed",
+      "https://blog.flashrouters.com/feed/",
+      "https://itcblogs.currentanalysis.com/feed/",
+      "https://blog.router-switch.com/feed/",
+      "https://blogs.arista.com/blog/rss.xml",
+      "https://networkinterview.com/feed/",
+      "https://www.51sec.org/feed/",
+      "https://www.siemon.com/en/category/blogs/feed/",
+      "https://networkphil.com/feed",
+      "https://blog.ipspace.net/feeds/posts/default",
+      "https://networkengineering.stackexchange.com/feeds",
+      "https://www.thousandeyes.com/blog/feed/",
+      "https://blogs.juniper.net/feed",
+      "https://www.networkcomputing.com/rss.xml",
+      "https://blog.torproject.org/feed.xml",
+      "https://www.paloaltonetworks.com/blog/feed/",
+      "https://networkingnerd.net/feed/",
+      "https://www.techrepublic.com/rssfeeds/topic/networking/",
+      "https://www.commscope.com/Blog/rss/",
+      "https://dcnnmagazine.com/feed/",
+      "https://ethernetalliance.org/feed/",
+      "https://wifinowglobal.com/feed/",
+      "https://wballiance.com/feed/",
+      "https://www.theregister.com/on_prem/networks/headlines.atom"
+    ]
+  },
   "New Zealand": {
     "category_type": "topic",
     "source_language": "en",
