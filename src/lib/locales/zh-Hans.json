@@ -1476,8 +1476,12 @@
     "translationContext": "Display name for the USA Georgia news category"
   },
   "category.usaHawaii": {
-    "text": "USA | Hawaii",
+    "text": "美国 | 夏威夷",
     "translationContext": "Display name for the USA Hawaii news category"
+  },
+  "category.usaLosAngeles": {
+    "text": "美国 | 洛杉矶",
+    "translationContext": "Display name for the USA Los Angeles news category"
   },
   "category.usaIdaho": {
     "text": "USA | Idaho",
