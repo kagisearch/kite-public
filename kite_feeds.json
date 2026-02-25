@@ -9324,5 +9324,54 @@
       "https://www.airbus.com/en/newsroom/rss-feeds/corporate",
       "https://centreforaviation.com/rss/news"
     ]
+  },
+  "Music Technology": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {
+      "en": "Music Technology",
+      "ar": "تكنولوجيا الموسيقى",
+      "ca": "Tecnologia musical",
+      "de": "Musiktechnologie",
+      "es": "Tecnología musical",
+      "et": "Muusikatehnoloogia",
+      "fr": "Technologie musicale",
+      "he": "טכנולוגיית מוזיקה",
+      "hi": "संगीत प्रौद्योगिकी",
+      "it": "Tecnologia musicale",
+      "ja": "音楽テクノロジー",
+      "nl": "Muziektechnologie",
+      "pt": "Tecnologia musical",
+      "ru": "Музыкальные технологии",
+      "uk": "Музичні технології",
+      "zh-Hans": "音乐技术",
+      "zh-Hant": "音樂科技"
+    },
+    "feeds": [
+      "https://www.musicradar.com/feeds.xml",
+      "https://www.premierguitar.com/feeds/feed.rss",
+      "https://musictech.com/news/feed/",
+      "https://futuremusic.com/feed/",
+      "https://www.soundonsound.com/latest_news.xml",
+      "https://synthanatomy.com/feed",
+      "https://www.production-expert.com/home-page?format=rss",
+      "https://www.enjoythemusic.com/enjoythemusic.xml",
+      "https://www.digitalmusicnews.com/feed/",
+      "https://musictech.mit.edu/news/feed/",
+      "https://www.gearnews.com/feed/",
+      "https://feeds.feedburner.com/audiomelody",
+      "https://musictechpolicy.com/feed/",
+      "https://www.decodedmagazine.com/category/tech/feed/",
+      "https://feeds.feedburner.com/Sonicstatevid",
+      "https://musictech.solutions/feed/",
+      "https://www.mixonline.com/feed",
+      "https://musicmachinery.com/feed/",
+      "https://varietyofsound.wordpress.com/feed/",
+      "https://djtechtools.com/feed/",
+      "https://sonicscoop.com/feed/",
+      "https://www.audiotechnology.com/category/news/feed",
+      "https://www.synthtopia.com/feed/",
+      "https://www.guitarworld.com/feeds.xml"
+    ]
   }
 }
