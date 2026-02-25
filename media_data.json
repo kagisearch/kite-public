@@ -1,5 +1,15 @@
 [
   {
+    "country": "France",
+    "organization": "Mediapart",
+    "domains": [
+      "mediapart.fr"
+    ],
+    "description": "Mediapart is a French independent, nonprofit investigative online newspaper founded in 2008 by Edwy Plenel, a former editor-in-chief of Le Monde. It is known for its in-depth investigative journalism and operates without advertising or state subsidies, relying entirely on reader subscriptions for funding. The platform also hosts subscriber-published content in its 'The Club' section.",
+    "owner": "Mediapart's capital is controlled by its founding journalists, ensuring structural independence from external investors or advertisers. It is structured as a SAS (simplified joint stock company), with initial capital funded entirely by personal contributions from the founders totaling €1.325 million. Edwy Plenel, the co-founder, served as president and publishing editor until 2024, when he passed leadership to Carine Fouteau.",
+    "typology": "Private Independent Media"
+  },
+  {
     "country": "",
     "organization": "AndroidPCTV",
     "domains": [
@@ -1985,6 +1995,16 @@
   },
   {
     "country": "South Korea",
+    "organization": "ETNews (전자신문)",
+    "domains": [
+      "etnews.com"
+    ],
+    "description": "South Korea's daily newspaper specializing in information technology and industrial news.",
+    "owner": "Douzone Bizon",
+    "typology": "Private Media"
+  },
+  {
+    "country": "South Korea",
     "organization": "EToday (이투데이)",
     "domains": [
       "etoday.co.kr"
@@ -1993,14 +2013,14 @@
     "owner": "Private Ownership",
     "typology": "Private Media"
   },
-    {
+  {
     "country": "South Korea",
-    "organization": "ETNews (전자신문)",
+    "organization": "JTBC",
     "domains": [
-      "etnews.com"
+      "jtbc.co.kr"
     ],
-    "description": "South Korea's daily newspaper specializing in information technology and industrial news.",
-    "owner": "Douzone Bizon",
+    "description": "South Korean nationwide general TV network.",
+    "owner": "JoongAng Group",
     "typology": "Private Media"
   },
   {
@@ -2101,16 +2121,6 @@
     ],
     "description": "Major South Korean daily newspaper covering general news.",
     "owner": "Hoban Group",
-    "typology": "Private Media"
-  },
-    {
-    "country": "South Korea",
-    "organization": "JTBC",
-    "domains": [
-      "jtbc.co.kr"
-    ],
-    "description": "South Korean nationwide general TV network.",
-    "owner": "JoongAng Group",
     "typology": "Private Media"
   },
   {
@@ -2896,6 +2906,16 @@
     ],
     "description": "Established in 2013, Cointelegraph is a digital media platform focused on blockchain technology, cryptocurrency, and fintech news coverage.",
     "owner": "Jay Cassano",
+    "typology": "Private Media"
+  },
+  {
+    "country": "United States",
+    "organization": "Coywolf News",
+    "domains": [
+      "coywolf.com"
+    ],
+    "description": "Coywolf News covers web technologies, digital marketing, and productivity apps. Core topics include Google, Open Social Web, Email Marketing, Web Development, and WordPress.",
+    "owner": "Coywolf LLC",
     "typology": "Private Media"
   },
   {
@@ -4087,16 +4107,6 @@
     "typology": "State Funded Media"
   },
   {
-    "country": "France",
-    "organization": "Mediapart",
-    "domains": [
-      "mediapart.fr"
-    ],
-    "description": "Mediapart is a French independent, nonprofit investigative online newspaper founded in 2008 by Edwy Plenel, a former editor-in-chief of Le Monde. It is known for its in-depth investigative journalism and operates without advertising or state subsidies, relying entirely on reader subscriptions for funding. The platform also hosts subscriber-published content in its 'The Club' section.",
-    "owner": "Mediapart's capital is controlled by its founding journalists, ensuring structural independence from external investors or advertisers. It is structured as a SAS (simplified joint stock company), with initial capital funded entirely by personal contributions from the founders totaling €1.325 million. Edwy Plenel, the co-founder, served as president and publishing editor until 2024, when he passed leadership to Carine Fouteau.",
-    "typology": "Private Independent Media"
-  },
-  {
     "country": "Germany",
     "organization": "Deutsche Welle",
     "domains": [
@@ -4502,15 +4512,5 @@
     "description": "Voice of America is an international multimedia broadcaster funded by the U.S. government, providing news, information, and cultural programming.",
     "owner": "U.S. Agency for Global Media",
     "typology": "State Funded Media"
-  },
-  {
-    "country": "United States",
-    "organization": "Coywolf News",
-    "domains": [
-      "coywolf.com"
-    ],
-    "description": "Coywolf News covers web technologies, digital marketing, and productivity apps. Core topics include Google, Open Social Web, Email Marketing, Web Development, and WordPress.",
-    "owner": "Coywolf LLC",
-    "typology": "Private Media"
   }
 ]
