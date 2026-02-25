@@ -4131,7 +4131,32 @@
       "https://www.thehindubusinessline.com/?service=rss",
       "https://www.thehindubusinessline.com/feeder/default.rss",
       "https://www.theweek.in/news/india.rss.html",
-      "https://zeenews.india.com/rss/india-national-news.xml"
+      "https://zeenews.india.com/rss/india-national-news.xml",
+      "https://www.thehindu.com/news/feeder/default.rss",
+      "https://timesofindia.indiatimes.com/rssfeeds/-2128936835.cms",
+      "https://feeds.feedburner.com/ndtvnews-india-news",
+      "https://www.indiatoday.in/rss/1206514",
+      "https://scroll.in/feeds/latest.rss",
+      "https://thewire.in/rss",
+      "https://theprint.in/feed/",
+      "https://www.deccanherald.com/rss/national.xml",
+      "https://www.tribuneindia.com/rss/nation",
+      "https://www.business-standard.com/rss/india-news-216.rss",
+      "https://economictimes.indiatimes.com/news/india/rssfeeds/17639426.cms",
+      "https://www.financialexpress.com/india-news/feed/",
+      "https://www.livemint.com/rss/politics",
+      "https://www.telegraphindia.com/rss",
+      "https://www.firstpost.com/india/feed",
+      "https://www.rediff.com/rss/newsrss.xml",
+      "https://aninews.in/rss/feed.xml",
+      "https://www.ptinews.com/rss",
+      "https://www.outlookindia.com/rss",
+      "https://swarajyamag.com/feed",
+      "https://www.thestatesman.com/feed",
+      "https://www.freepressjournal.in/rss",
+      "https://www.greaterkashmir.com/feed",
+      "https://www.thehindubusinessline.com/news/national/feeder/default.rss",
+      "https://www.aljazeera.com/tag/india/feed/rss.xml"
     ]
   },
   "India | Tamil Nadu": {
@@ -9336,7 +9361,14 @@
       "https://www.nbcnewyork.com/?rss=y",
       "https://www.nydailynews.com/feed/",
       "https://www.silive.com/arc/outboundfeeds/rss/?outputType=xml",
-      "https://www.thecity.nyc/feed/"
+      "https://www.thecity.nyc/feed/",
+      "https://www.nytimes.com/svc/collections/v1/publish/https://www.nytimes.com/section/nyregion/rss.xml",
+      "https://www.newsday.com/api/rss/recent",
+      "https://www.amny.com/feed/json/",
+      "https://www.cbsnews.com/latest/rss/main",
+      "https://citylimits.org/feed/",
+      "https://nysfocus.com/feed",
+      "https://www.cityandstateny.com/rss/all/"
     ]
   },
   "USA | Ohio": {
