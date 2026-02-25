@@ -1475,10 +1475,6 @@
     "text": "美國 | 夏威夷",
     "translationContext": "Display name for the USA Hawaii news category"
   },
-  "category.usaLosAngeles": {
-    "text": "美國 | 洛杉磯",
-    "translationContext": "Display name for the USA Los Angeles news category"
-  },
   "category.usaIdaho": {
     "text": "美國 | 愛達荷州",
     "translationContext": "Display name for the USA Idaho news category"
@@ -1502,6 +1498,10 @@
   "category.usaKentucky": {
     "text": "美國 | 肯塔基州",
     "translationContext": "Display name for the USA Kentucky news category"
+  },
+  "category.usaLosAngeles": {
+    "text": "美國 | 洛杉磯",
+    "translationContext": "Display name for the USA Los Angeles news category"
   },
   "category.usaLouisiana": {
     "text": "美國 | 路易斯安那州",

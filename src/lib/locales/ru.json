@@ -1487,10 +1487,6 @@
     "text": "США | Гавайи",
     "translationContext": "Display name for the USA Hawaii news category"
   },
-  "category.usaLosAngeles": {
-    "text": "США | Лос-Анджелес",
-    "translationContext": "Display name for the USA Los Angeles news category"
-  },
   "category.usaIdaho": {
     "text": "США | Айдахо",
     "translationContext": "Display name for the USA Idaho news category"
@@ -1514,6 +1510,10 @@
   "category.usaKentucky": {
     "text": "США | Кентуки",
     "translationContext": "Display name for the USA Kentucky news category"
+  },
+  "category.usaLosAngeles": {
+    "text": "США | Лос-Анджелес",
+    "translationContext": "Display name for the USA Los Angeles news category"
   },
   "category.usaLouisiana": {
     "text": "США | Луизиана",

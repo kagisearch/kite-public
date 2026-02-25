@@ -1479,10 +1479,6 @@
     "text": "EUA | Havaí",
     "translationContext": "Display name for the USA Hawaii news category"
   },
-  "category.usaLosAngeles": {
-    "text": "EUA | Los Angeles",
-    "translationContext": "Display name for the USA Los Angeles news category"
-  },
   "category.usaIdaho": {
     "text": "USA | Idaho",
     "translationContext": "Display name for the USA Idaho news category"
@@ -1506,6 +1502,10 @@
   "category.usaKentucky": {
     "text": "USA | Kentucky",
     "translationContext": "Display name for the USA Kentucky news category"
+  },
+  "category.usaLosAngeles": {
+    "text": "EUA | Los Angeles",
+    "translationContext": "Display name for the USA Los Angeles news category"
   },
   "category.usaLouisiana": {
     "text": "USA | Louisiana",
