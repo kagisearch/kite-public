@@ -1453,6 +1453,46 @@
       "https://www.vozdeamerica.com/rssfeeds"
     ]
   },
+  "Computer Science": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {
+      "en": "Computer Science",
+      "pt-BR": "Ciência da Computação",
+      "ar": "Ciencias de la Computación"
+    },
+    "feeds": [
+      "https://news.google.com/topics/CAAqIQgKIhtDQkFTRGdvSUwyMHZNREZ0YTNFU0FtVnVLQUFQAQ?hl=en-US&gl=US&ceid=US%3Aen",
+      "https://www.quantamagazine.org/computer-science/feed/",
+      "https://lbscomputerscience.blogspot.com/feeds/posts/default",
+      "https://news.mit.edu/rss/topic/computers",
+      "https://scitechdaily.com/feeds/computer-science/",
+      "https://blog.computationalcomplexity.org/feeds/posts/default?alt=rss",
+      "https://research.google/blog/rss/",
+      "https://blog.computationalcomplexity.org/feeds/posts/default",
+      "https://news.mit.edu/rss/topic/computers",
+      "https://www.sciencedaily.com/rss/computers_math/computer_science.xml",
+      "https://lbscomputerscience.blogspot.com/feeds/posts/default",
+      "https://thescipub.com/feed/jcs/current.rss",
+      "https://ratfactor.com/atom.xml",
+      "http://rss.sciencedirect.com/publication/science/15740137",
+      "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGRqTVhZU0FtVnVHZ0pWVXlnQVAB?hl=pt-BR&gl=BR&ceid=BR%3Apt-419",
+      "https://techxplore.com/rss-feed/breaking/computer-sciences-news/",
+      "https://cacm.acm.org/category/theory/feed",
+      "https://cacm.acm.org/category/architecture-and-hardware/feed",
+      "https://cacm.acm.org/category/computing-applications/feed",
+      "https://cacm.acm.org/category/software-engineering-and-programming-languages/feed",
+      "https://cacm.acm.org/category/systems-and-networking/feed",
+      "https://agtb.wordpress.com/feed/",
+      "https://lemire.me/blog/feed/",
+      "https://scottaaronson.blog/?feed=rss2",
+      "https://www.cs.uni.edu/~wallingf/blog/index.xml",
+      "https://windowsontheory.org/feed/",
+      "https://news.content.smithbucklin.com/acm/TechNews_rss.xml",
+      "https://11011110.github.io/blog/feed.xml",
+      "https://dmatheorynet.blogspot.com/feeds/posts/default"
+    ]
+  },
   "Costa Rica": {
     "category_type": "topic",
     "source_language": "es",
