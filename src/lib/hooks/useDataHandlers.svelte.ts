@@ -1,12 +1,11 @@
 import { browser } from '$app/environment';
-import { displaySettings } from '$lib/data/settings.svelte';
+import { displaySettings, languageSettings } from '$lib/data/settings.svelte';
 import { dataService } from '$lib/services/dataService';
-import { type NavigationParams, UrlNavigationService } from '$lib/services/urlNavigationService';
+import type { NavigationParams } from '$lib/services/urlNavigationService';
 import { timeTravelBatch } from '$lib/stores/timeTravelBatch.svelte';
-import { formatTimeAgo } from '$lib/utils/formatTimeAgo';
-import { languageSettings } from '$lib/data/settings.svelte';
 import type { Category, OnThisDayEvent, Story } from '$lib/types';
 import type { HistoryManagerInstance } from '$lib/types/components';
+import { formatTimeAgo } from '$lib/utils/formatTimeAgo';
 
 interface DataLoadResult {
 	categories: Category[];
@@ -74,6 +73,7 @@ export function useDataHandlers(
 		// Reset app state for fresh data
 		state.expandedStories = {};
 		state.lastLoadedCategory = '';
+		state.onThisDayEvents = [];
 
 		// Close any open overlays
 		helpers.closeSourceOverlay();
@@ -94,7 +94,12 @@ export function useDataHandlers(
 		state.lastLoadedCategory = data.currentCategory;
 
 		state.isLatestBatch = data.isLatestBatch;
-		timeTravelBatch.set(state.currentBatchId, state.currentBatchCreatedAt || null, state.currentDateSlug || null, !state.isLatestBatch);
+		timeTravelBatch.set(
+			state.currentBatchId,
+			state.currentBatchCreatedAt || null,
+			state.currentDateSlug || null,
+			!state.isLatestBatch,
+		);
 
 		helpers.updatePageTitle(state.currentCategory);
 
@@ -115,6 +120,10 @@ export function useDataHandlers(
 
 		state.dataLoaded = true;
 
+		// Defensive: ensure isLoadingCategory is false after all state updates
+		// This guards against any effects that might run before seeing the updated allCategoryStories
+		state.isLoadingCategory = false;
+
 		// Update URL
 		if (helpers.historyManager) {
 			helpers.historyManager.updateUrl();
@@ -123,6 +132,13 @@ export function useDataHandlers(
 		console.log(
 			`🚀 Loaded ${Object.keys(state.allCategoryStories).length} categories with ${Object.values(state.allCategoryStories).flat().length} total stories`,
 		);
+
+		// If the current category is OnThisDay, load its events now.
+		// OnThisDay is excluded from batch story loading, so lastLoadedCategory being set
+		// to 'onthisday' above prevents the reactive effect from triggering the load.
+		if (data.currentCategory === 'onthisday') {
+			loadOnThisDayEvents();
+		}
 
 		// Handle story expansion from URL
 		if (browser) {
@@ -178,6 +194,7 @@ export function useDataHandlers(
 		if (!categoryUuid) {
 			console.warn(`Category UUID not found for ${categoryId}`);
 			state.stories = [];
+			state.lastLoadedCategory = categoryId;
 			state.isLoadingCategory = false;
 			return;
 		}

@@ -3,6 +3,7 @@ import { browser } from '$app/environment';
 import { page } from '$app/state';
 import { isRtlLocale } from '$lib/client/rtl-detection';
 import { syncManager } from '$lib/client/sync-manager';
+import '../app.css';
 import { syncSettingsWatcher } from '$lib/client/sync-settings-watcher.svelte';
 import {
 	categorySettings,
@@ -13,6 +14,8 @@ import {
 	settings,
 	themeSettings,
 } from '$lib/data/settings.svelte.js';
+import { dataLanguage } from '$lib/stores/dataLanguage.svelte';
+import { experimental } from '$lib/stores/experimental.svelte';
 import { language } from '$lib/stores/language.svelte.js';
 import { pageMetadata } from '$lib/stores/pageMetadata.svelte.js';
 import '../styles/index.css';
@@ -26,6 +29,7 @@ import { deepMerge, MetaTags } from 'svelte-meta-tags';
 let { data, children }: { data: PageData; children: Snippet } = $props();
 
 // Set session context for child components
+// svelte-ignore state_referenced_locally - session context is set once at initialization
 setContext('session', data.session);
 
 // Initialize OverlayScrollbars hook (must be at component level, not in onMount)
@@ -81,6 +85,12 @@ onMount(async () => {
 
 	// Initialize categories
 	categorySettings.init();
+
+	// Initialize experimental features
+	experimental.init();
+
+	// Initialize data language
+	dataLanguage.init();
 
 	// Initialize sync watcher
 	if (syncSettingsWatcher) {

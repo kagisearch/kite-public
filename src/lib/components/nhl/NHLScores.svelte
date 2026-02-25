@@ -1,8 +1,14 @@
 <script lang="ts">
+import {
+	IconChevronDown,
+	IconChevronUp,
+	IconLoader2,
+	IconRefresh,
+	IconTrophy,
+} from '@tabler/icons-svelte';
 import { onMount } from 'svelte';
-import { IconChevronDown, IconChevronUp, IconLoader2, IconRefresh, IconTrophy } from '@tabler/icons-svelte';
-import Tooltip from '$lib/components/Tooltip.svelte';
 import { s } from '$lib/client/localization.svelte';
+import Tooltip from '$lib/components/Tooltip.svelte';
 import { language } from '$lib/stores/language.svelte.js';
 
 interface Team {
@@ -123,12 +129,14 @@ function matchesTeam(team: Team, polymarketName: string): boolean {
 function getOddsForGame(game: Game, odds: PolymarketData | null): GameOdds | undefined {
 	if (!odds?.odds) return undefined;
 
-	const match = odds.odds.find(o => {
+	const match = odds.odds.find((o) => {
 		const homeMatch = matchesTeam(game.homeTeam, o.homeTeam);
 		const awayMatch = matchesTeam(game.awayTeam, o.awayTeam);
 
 		if (homeMatch && awayMatch) {
-			console.log(`✓ Matched: ${game.awayTeam.name} @ ${game.homeTeam.name} with ${o.awayTeam} @ ${o.homeTeam}`);
+			console.log(
+				`✓ Matched: ${game.awayTeam.name} @ ${game.homeTeam.name} with ${o.awayTeam} @ ${o.homeTeam}`,
+			);
 		}
 
 		return homeMatch && awayMatch;
@@ -183,7 +191,7 @@ function formatGameTime(startTime: string): string {
 
 	const timeStr = date.toLocaleTimeString(language.currentLocale, {
 		hour: 'numeric',
-		minute: '2-digit'
+		minute: '2-digit',
 	});
 
 	if (diffDays === 0) {
@@ -197,7 +205,7 @@ function formatGameTime(startTime: string): string {
 		return date.toLocaleDateString(language.currentLocale, {
 			weekday: 'short',
 			hour: 'numeric',
-			minute: '2-digit'
+			minute: '2-digit',
 		});
 	} else {
 		// Further out - show full date
@@ -205,7 +213,7 @@ function formatGameTime(startTime: string): string {
 			month: 'short',
 			day: 'numeric',
 			hour: 'numeric',
-			minute: '2-digit'
+			minute: '2-digit',
 		});
 	}
 }
@@ -235,8 +243,8 @@ function isLive(game: Game): boolean {
 const summaryText = $derived.by(() => {
 	if (!data?.games || data.games.length === 0) return s('nhl.noGames');
 	const liveCount = data.games.filter(isLive).length;
-	const finalCount = data.games.filter(g => g.state === 'FINAL' || g.state === 'OFF').length;
-	const upcomingCount = data.games.filter(g => g.state === 'FUT' || g.state === 'PRE').length;
+	const finalCount = data.games.filter((g) => g.state === 'FINAL' || g.state === 'OFF').length;
+	const upcomingCount = data.games.filter((g) => g.state === 'FUT' || g.state === 'PRE').length;
 
 	if (liveCount > 0) {
 		const liveText = s('nhl.gamesCount', { count: liveCount.toString() });
@@ -247,17 +255,20 @@ const summaryText = $derived.by(() => {
 			? s('nhl.gamesCount', { count: upcomingCount.toString() })
 			: s('nhl.gamesCountPlural', { count: upcomingCount.toString() });
 	} else if (finalCount > 0 && upcomingCount === 0) {
-		const completedText = finalCount === 1
-			? s('nhl.gamesCount', { count: finalCount.toString() })
-			: s('nhl.gamesCountPlural', { count: finalCount.toString() });
+		const completedText =
+			finalCount === 1
+				? s('nhl.gamesCount', { count: finalCount.toString() })
+				: s('nhl.gamesCountPlural', { count: finalCount.toString() });
 		return `${completedText} ${s('nhl.completed')}`;
 	} else {
-		const completedText = finalCount === 1
-			? s('nhl.gamesCount', { count: finalCount.toString() })
-			: s('nhl.gamesCountPlural', { count: finalCount.toString() });
-		const upcomingText = upcomingCount === 1
-			? s('nhl.gamesCount', { count: upcomingCount.toString() })
-			: s('nhl.gamesCountPlural', { count: upcomingCount.toString() });
+		const completedText =
+			finalCount === 1
+				? s('nhl.gamesCount', { count: finalCount.toString() })
+				: s('nhl.gamesCountPlural', { count: finalCount.toString() });
+		const upcomingText =
+			upcomingCount === 1
+				? s('nhl.gamesCount', { count: upcomingCount.toString() })
+				: s('nhl.gamesCountPlural', { count: upcomingCount.toString() });
 		return `${completedText} ${s('nhl.completed')} • ${upcomingText} ${s('nhl.upcoming')}`;
 	}
 });
@@ -286,8 +297,10 @@ onMount(() => {
 		<button
 			onclick={() => expanded = !expanded}
 			class="flex flex-1 items-center gap-2 text-left transition-colors hover:opacity-80"
+			aria-expanded={expanded}
+			aria-label={expanded ? s('nhl.collapse') || 'Collapse NHL scores' : s('nhl.expand') || 'Expand NHL scores'}
 		>
-			<IconTrophy class="h-4 w-4 text-gray-600 dark:text-gray-400" />
+			<IconTrophy class="size-4 text-gray-600 dark:text-gray-400" />
 			<span class="text-sm font-medium text-gray-900 dark:text-gray-100">{s('nhl.title')}</span>
 			<span class="text-xs text-gray-600 dark:text-gray-400">{summaryText}</span>
 			{#if expanded}

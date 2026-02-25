@@ -305,7 +305,7 @@ export function replaceWithNumberedCitations(text: string, mapping: CitationMapp
 				return '';
 			}
 		})
-		.replace(/\s+/g, ' ') // Normalize multiple spaces
-		.replace(/\s+([.,;:!?\)])/g, '$1') // Remove spaces before punctuation
+		.replace(/[^\S\n]+/g, ' ') // Normalize multiple spaces (but preserve newlines)
+		.replace(/[^\S\n]*([.,;:!?)])/g, '$1') // Remove spaces before punctuation (but preserve newlines)
 		.trim(); // Clean up any extra spaces left by removed citations
 }

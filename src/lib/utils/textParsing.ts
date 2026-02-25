@@ -1,3 +1,4 @@
+import type { TimelineEvent } from '$lib/types';
 import { splitAtNonTimeColon } from './colonSplitter';
 
 /**
@@ -8,6 +9,14 @@ export function parseStructuredText(text: string): {
 	title?: string;
 	content: string;
 } {
+	// Handle null/undefined text
+	if (!text) {
+		return {
+			hasTitle: false,
+			content: '',
+		};
+	}
+
 	const splitResult = splitAtNonTimeColon(text);
 	if (splitResult) {
 		const [title, content] = splitResult;
@@ -27,16 +36,15 @@ export function parseStructuredText(text: string): {
 /**
  * Parse timeline event from various formats
  */
-export function parseTimelineEvent(event: unknown): {
-	date: string;
-	content: string;
-} {
+export function parseTimelineEvent(event: unknown): TimelineEvent {
 	let date = '';
+	let date_iso: string | undefined;
 	let content = '';
 
 	if (typeof event === 'object' && event !== null) {
-		const obj = event as { date?: string; content?: string };
+		const obj = event as { date?: string; date_iso?: string; content?: string };
 		date = obj.date || '';
+		date_iso = obj.date_iso || undefined;
 		content = obj.content || '';
 	} else if (typeof event === 'string') {
 		// Handle string format with various separators
@@ -59,7 +67,7 @@ export function parseTimelineEvent(event: unknown): {
 		content = String(event);
 	}
 
-	return { date, content };
+	return { date, date_iso, content };
 }
 
 /**

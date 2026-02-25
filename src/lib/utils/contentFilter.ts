@@ -72,11 +72,24 @@ export function shouldFilterStory(
 
 	// Check each keyword with whole word matching
 	for (const keyword of normalizedKeywords) {
-		// Create a regex for whole word matching
-		// \b ensures word boundaries (start/end of word)
-		// Special regex characters in keywords are escaped
+		// Special regex characters in keywords are escaped to prevent ReDoS
 		const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-		const regex = new RegExp(`\\b${escapedKeyword}\\b`, 'i');
+
+		// Check if keyword starts/ends with word characters (letters, digits, underscore)
+		const startsWithWordChar = /^\w/.test(keyword);
+		const endsWithWordChar = /\w$/.test(keyword);
+
+		// Build appropriate boundary patterns:
+		// - For word chars: use \b (standard word boundary)
+		// - For non-word chars (like periods in "u.s."): use lookahead/lookbehind
+		//   to match at string edges or when adjacent to non-word characters
+		// This fixes matching "u.s." in "U.S. adults" where the trailing period
+		// is followed by a space (two non-word chars have no word boundary between them)
+		const startBoundary = startsWithWordChar ? '\\b' : '(?:^|(?<=[^\\w]))';
+		const endBoundary = endsWithWordChar ? '\\b' : '(?:$|(?=[^\\w]))';
+
+		// nosemgrep: detect-non-literal-regexp - keyword is escaped above, safe from ReDoS
+		const regex = new RegExp(`${startBoundary}${escapedKeyword}${endBoundary}`, 'i');
 
 		if (regex.test(textToCheck)) {
 			matchedKeywords.push(keyword);

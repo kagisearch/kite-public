@@ -106,8 +106,8 @@ export function splitSentences(text: string): string[] {
 		if (char === '(') inParentheses++;
 		if (char === ')') inParentheses--;
 
-		// Track quotes (simple toggle for now)
-		if (char === '"' || char === '"' || char === '"') inQuotes = !inQuotes;
+		// Track quotes (simple toggle for now) - regular ", left curly ", right curly "
+		if (char === '"' || char === '\u201C' || char === '\u201D') inQuotes = !inQuotes;
 
 		currentSentence += char;
 
@@ -199,8 +199,8 @@ export function splitFirstSentence(text: string): [string, string] {
 		if (char === '(') inParentheses++;
 		if (char === ')') inParentheses--;
 
-		// Track quotes
-		if (char === '"' || char === '"' || char === '"') inQuotes = !inQuotes;
+		// Track quotes - regular ", left curly ", right curly "
+		if (char === '"' || char === '\u201C' || char === '\u201D') inQuotes = !inQuotes;
 
 		// Check for sentence boundaries
 		if (!inQuotes && inParentheses === 0) {

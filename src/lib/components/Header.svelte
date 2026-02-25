@@ -1,6 +1,6 @@
 <script lang="ts">
-import { IconClock, IconSearch } from '@tabler/icons-svelte';
-import { untrack } from 'svelte';
+import { IconClock, IconSearch, IconSettings, IconTextSize } from '@tabler/icons-svelte';
+import { getContext, untrack } from 'svelte';
 import { browser } from '$app/environment';
 import { s } from '$lib/client/localization.svelte';
 import { features } from '$lib/config/features';
@@ -12,12 +12,14 @@ import {
 	settingsModalState,
 	themeSettings,
 } from '$lib/data/settings.svelte.js';
-import { experimental } from '$lib/stores/experimental.svelte.js';
 import { dataReloadService, dataService } from '$lib/services/dataService';
+import { experimental } from '$lib/stores/experimental.svelte';
 import { headerAnimation } from '$lib/stores/headerAnimation.svelte';
 import { timeTravel } from '$lib/stores/timeTravel.svelte.js';
 import { timeTravelBatch } from '$lib/stores/timeTravelBatch.svelte';
+import { formatTimeAgo } from '$lib/utils/formatTimeAgo';
 import { getNextUpdateCountdown } from '$lib/utils/getTimeAgo';
+import AppNavigation from './AppNavigation.svelte';
 import ChaosIndex from './ChaosIndex.svelte';
 
 // Props
@@ -36,6 +38,8 @@ interface Props {
 	isSharedView?: boolean;
 	onLogoClick?: () => void;
 	dataLoaded?: boolean;
+	chaosModalOpen?: boolean;
+	onChaosModalChange?: (open: boolean) => void;
 }
 
 let {
@@ -49,46 +53,47 @@ let {
 	isSharedView = false,
 	onLogoClick,
 	dataLoaded = false,
+	chaosModalOpen = $bindable(false),
+	onChaosModalChange,
 }: Props = $props();
+
+// Get session from context for subscription check
+const session = getContext<Session | null>('session');
+const isSubscriber = $derived(session?.subscription === true);
 
 // Date click state for cycling through different stats
 let dateClickCount = $state(0);
 
-// Loading state for exiting time travel
+// Time travel state
 let isExitingTimeTravel = $state(false);
+const isInTimeTravel = $derived(!!timeTravel.selectedDate || isExitingTimeTravel);
 
 // Kite animation state
 let showFlyingKite = $state(false);
 let kiteStartPosition = $state({ x: 0, y: 0 });
 let hoverTimeout: ReturnType<typeof setTimeout> | null = null;
 
-// Mobile alternation state (logo vs date) - one-time animation
-let showMobileLogo = $state(true);
-// Use a variable outside of $state to ensure it persists across re-renders
-let animationStarted = false;
-
-// Next update countdown state (updates every minute)
+// Time-based display state (updates every minute)
 let nextUpdateText = $state('');
 let nextUpdateIsSoon = $state(false);
+let lastUpdatedText = $state('');
 
-// Update next update countdown every minute
+// Update time-based displays every minute so they stay current
 $effect(() => {
 	if (browser && lastUpdatedTimestamp) {
-		// Convert Unix timestamp (seconds) to ISO string
 		const lastUpdateDate = new Date(lastUpdatedTimestamp * 1000).toISOString();
 
-		const updateCountdown = () => {
+		const updateTimeDisplays = () => {
+			// Update "Next update in X" countdown
 			const countdown = getNextUpdateCountdown(lastUpdateDate);
 			nextUpdateText = countdown.text;
 			nextUpdateIsSoon = countdown.isSoon;
+			// Update "Updated X ago" text
+			lastUpdatedText = formatTimeAgo(lastUpdatedTimestamp, s);
 		};
 
-		// Initial update
-		updateCountdown();
-
-		// Update every minute
-		const interval = setInterval(updateCountdown, 60000);
-
+		updateTimeDisplays();
+		const interval = setInterval(updateTimeDisplays, 60000);
 		return () => clearInterval(interval);
 	}
 });
@@ -125,6 +130,7 @@ function handleLogoHover(event: MouseEvent) {
 	// Only trigger animation on hover, not on click
 	if (hoverTimeout) return; // Already hovering
 	if (!browser) return; // Only in browser
+	if (isExitingTimeTravel) return; // Don't trigger right after exiting time travel
 
 	// Capture the element and its position immediately (before setTimeout)
 	const logoElement = event.currentTarget as HTMLElement;
@@ -171,22 +177,14 @@ function handleDateClick(event?: Event) {
 		event?.stopPropagation();
 		showAnimation = false;
 		isAnimating = false;
-		// Clear all pending timeouts
 		animationTimeouts.forEach(clearTimeout);
 		animationTimeouts = [];
 		// If still on index 0, cycle to 1 instead of staying at 0
-		if (headerAnimation.index === 0) {
-			dateClickCount = 1;
-			currentDisplayIndex = 1;
-		} else {
-			currentDisplayIndex = headerAnimation.index;
-			dateClickCount = headerAnimation.index;
-		}
+		dateClickCount = headerAnimation.index === 0 ? 1 : headerAnimation.index;
 		return;
 	}
-	// Normal cycling behavior
-	dateClickCount = (dateClickCount + 1) % 6; // Now 6 states: date, next update, last update, news today, stories read, week/day
-	currentDisplayIndex = dateClickCount;
+	// Normal cycling behavior (6 states: date, last update, next update, news today, stories read, week/day)
+	dateClickCount = (dateClickCount + 1) % 6;
 }
 
 // Handle date area keyboard events
@@ -234,7 +232,7 @@ const dateDisplay = $derived.by(() => {
 		}).format(now);
 		return capitalizeFirst(dateStr);
 	} else if (dateClickCount === 1) {
-		return getLastUpdated();
+		return lastUpdatedText || getLastUpdated();
 	} else if (dateClickCount === 2) {
 		// Next update countdown
 		if (nextUpdateIsSoon) {
@@ -264,17 +262,25 @@ const dateDisplay = $derived.by(() => {
 	}
 });
 
-// Track if animation is currently running
+// Header cycling animation state
 let isAnimating = $state(false);
-let showAnimation = $state(true); // true = show animation, false = show normal cycling
+let showAnimation = $state(true);
 let animationTimeouts: ReturnType<typeof setTimeout>[] = [];
-let currentDisplayIndex = $state(0);
 
-// One-time mobile animation - triggered when data is loaded
+// Cancel animation when entering time travel mode
 $effect(() => {
-	// Only trigger based on dataLoaded, using shared store to ensure it only runs once
-	// Don't play animation if in time travel mode
-	if (browser && dataLoaded && !headerAnimation.hasRun && !timeTravel.selectedDate) {
+	if (isInTimeTravel && isAnimating) {
+		isAnimating = false;
+		showAnimation = false;
+		animationTimeouts.forEach(clearTimeout);
+		animationTimeouts = [];
+		headerAnimation.index = 0;
+	}
+});
+
+// One-time header animation - triggered when data is loaded
+$effect(() => {
+	if (browser && dataLoaded && !headerAnimation.hasRun && !isInTimeTravel) {
 		headerAnimation.markAsRun();
 		isAnimating = true;
 		showAnimation = true;
@@ -333,7 +339,7 @@ $effect(() => {
     </div>
   {:else if timeTravel.selectedDate}
     <div
-      class="flex items-center gap-2 bg-blue-50 dark:bg-blue-900/30 px-2 py-1 rounded-lg"
+      class="flex items-center gap-2 px-2 py-1 rounded-lg {timeTravelBatch.entrySource === 'url' && !settings.timeTravelBannerDismissed.currentValue ? 'tt-pill-highlight bg-blue-100 dark:bg-blue-800/50' : 'bg-blue-50 dark:bg-blue-900/30'}"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -354,15 +360,10 @@ $effect(() => {
       </div>
       <button
         onclick={async () => {
-          // Immediately reset time travel to give instant feedback
           timeTravel.reset();
           timeTravelBatch.clear();
-
-          // Show loading state
           isExitingTimeTravel = true;
-
           try {
-            // Trigger a reload of the data
             await dataReloadService.reloadData();
           } finally {
             isExitingTimeTravel = false;
@@ -373,7 +374,7 @@ $effect(() => {
         disabled={isExitingTimeTravel}
       >
         <svg
-          class="w-3 h-3 text-blue-600 dark:text-blue-400"
+          class="size-3 text-blue-600 dark:text-blue-400"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -389,7 +390,7 @@ $effect(() => {
     </div>
   {:else}
     <div
-      class="cursor-pointer text-gray-600 dark:text-gray-400 focus-visible-ring rounded px-1 py-1"
+      class="cursor-pointer text-gray-500 dark:text-gray-400 text-base focus-visible-ring rounded px-1 py-1"
       onclick={handleDateClick}
       onkeydown={handleDateKeydown}
       role="button"
@@ -418,69 +419,124 @@ $effect(() => {
   {/if}
 {/snippet}
 
-<header class="mb-1">
+<header class="h-12">
   <!-- First row: Logo, Chaos Index (mobile), and buttons -->
-  <div class="flex items-center justify-between relative">
-    <!-- Mobile: Cycles through logo and date displays with flick-up animation -->
-    <div class="sm:hidden flex items-center h-[36px] overflow-hidden">
-      <div
-        class="flex flex-col transition-transform duration-300 ease-out"
-        style="transform: translateY({(2.5 - headerAnimation.index) * 36}px);"
-      >
-        <!-- Logo (index 0) -->
-        <div class="h-[36px] flex items-center">
-          <button
-            onclick={handleLogoClick}
-            onmouseenter={handleLogoHover}
-            onmouseleave={handleLogoLeave}
-            aria-label={s("app.logo.clickToReset") || "Click to reset view to home"}
-            disabled={isAnimating}
-            class="p-0 border-0 bg-transparent focus-visible-ring rounded"
-            class:cursor-pointer={!isAnimating}
-            class:cursor-default={isAnimating}
-          >
-            <img
-              src={themeSettings.isDark
-                ? "/svg/kagi_news_full_dark.svg"
-                : "/svg/kagi_news_full.svg"}
-              alt={s("app.logo.newsAlt") || "Kite News"}
-              class="h-9 w-auto logo z-50"
-              style="isolation: isolate;"
-            />
-          </button>
-        </div>
-        <!-- Date displays (indices 1-5) -->
-        {#each [1, 2, 3, 4, 5] as index}
-          <div class="h-[36px] flex items-center text-sm whitespace-nowrap text-gray-600 dark:text-gray-400">
-            {#if index === 1}
-              {getLastUpdated()}
-            {:else if index === 2}
-              {#if nextUpdateIsSoon}
-                {s('time.nextUpdate.soon') || 'Next update: soon'}
-              {:else if nextUpdateText}
-                {s('time.nextUpdate.in', { time: nextUpdateText }) || `Next update in ${nextUpdateText}`}
-              {/if}
-            {:else if index === 3}
-              {s('stats.newsToday', { count: totalReadCount.toString() }) || `News today: ${totalReadCount}`}
-            {:else if index === 4}
-              {#if totalStoriesRead === 1}
-                {s('stats.storyRead', { count: totalStoriesRead.toString() }) || `Story read: ${totalStoriesRead}`}
-              {:else}
-                {s('stats.storiesRead', { count: totalStoriesRead.toString() }) || `Stories read: ${totalStoriesRead}`}
-              {/if}
-            {:else if index === 5}
-              {(() => {
-                const now = new Date();
-                const start = new Date(now.getFullYear(), 0, 1);
-                const week = Math.ceil((now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24 * 7));
-                const day = Math.ceil((now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
-                return s('stats.weekDay', { week: week.toString(), day: day.toString() }) || `Week ${week}, Day ${day}`;
-              })()}
-            {/if}
+  <div class="flex items-center justify-between relative h-full">
+    <!-- Mobile: Time travel mode OR normal logo cycling -->
+    {#if isInTimeTravel}
+      <!-- Compact time travel display for mobile -->
+      <div class="sm:hidden flex items-center h-12">
+        {#if isExitingTimeTravel}
+          <div class="flex items-center gap-1.5 text-gray-600 dark:text-gray-400">
+            <div class="animate-spin h-4 w-4 border-2 border-gray-300 dark:border-gray-600 border-t-blue-500 dark:border-t-blue-400 rounded-full"></div>
+            <span class="text-sm">{s("timeTravel.returningToLive") || "Returning to live..."}</span>
           </div>
-        {/each}
+        {:else}
+          <div class="flex items-center gap-1.5 bg-blue-50 dark:bg-blue-900/30 px-2 py-1 rounded-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-blue-600 dark:text-blue-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="text-sm font-medium text-blue-600 dark:text-blue-400">
+              {timeTravel.selectedDate ? new Intl.DateTimeFormat(languageSettings.ui, { month: 'short', day: 'numeric' }).format(timeTravel.selectedDate) : ''}
+            </span>
+            <button
+              onclick={async () => {
+                timeTravel.reset();
+                timeTravelBatch.clear();
+                isExitingTimeTravel = true;
+                try {
+                  await dataReloadService.reloadData();
+                } finally {
+                  isExitingTimeTravel = false;
+                }
+              }}
+              class="p-0.5 focus-visible-ring rounded shrink-0"
+              aria-label={s("timeTravel.exitLabel") || "Exit time travel mode"}
+              disabled={isExitingTimeTravel}
+            >
+              <svg class="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        {/if}
       </div>
-    </div>
+    {:else}
+      <!-- Normal mobile logo cycling -->
+      <div class="sm:hidden flex items-center h-12 overflow-hidden">
+        <div
+          class="flex flex-col transition-transform duration-200 ease-out"
+          style="transform: translateY({(2.5 - headerAnimation.index) * 48}px);"
+        >
+          <!-- Logo (index 0) -->
+          <div class="h-12 flex items-center">
+            <button
+              onclick={handleLogoClick}
+              onmouseenter={handleLogoHover}
+              onmouseleave={handleLogoLeave}
+              aria-label={s("app.logo.clickToReset") || "Click to reset view to home"}
+              disabled={isAnimating}
+              class="p-0 border-0 bg-transparent focus-visible-ring rounded"
+              class:cursor-pointer={!isAnimating}
+              class:cursor-default={isAnimating}
+            >
+              <img
+                src={themeSettings.isDark
+                  ? "/svg/kagi_news_compact_dark.svg"
+                  : "/svg/kagi_news_compact.svg"}
+                alt={s("app.logo.newsAlt") || "Kite News"}
+                class="w-[90px] h-auto logo z-modal-backdrop"
+                style="isolation: isolate;"
+              />
+            </button>
+          </div>
+          <!-- Date displays (indices 1-5) -->
+          {#each [1, 2, 3, 4, 5] as index}
+            <div class="h-12 flex items-center text-base whitespace-nowrap text-gray-500 dark:text-gray-400">
+              {#if index === 1}
+                {lastUpdatedText || getLastUpdated()}
+              {:else if index === 2}
+                {#if nextUpdateIsSoon}
+                  {s('time.nextUpdate.soon') || 'Next update: soon'}
+                {:else if nextUpdateText}
+                  {s('time.nextUpdate.in', { time: nextUpdateText }) || `Next update in ${nextUpdateText}`}
+                {/if}
+              {:else if index === 3}
+                {s('stats.newsToday', { count: totalReadCount.toString() }) || `News today: ${totalReadCount}`}
+              {:else if index === 4}
+                {#if totalStoriesRead === 1}
+                  {s('stats.storyRead', { count: totalStoriesRead.toString() }) || `Story read: ${totalStoriesRead}`}
+                {:else}
+                  {s('stats.storiesRead', { count: totalStoriesRead.toString() }) || `Stories read: ${totalStoriesRead}`}
+                {/if}
+              {:else if index === 5}
+                {(() => {
+                  const now = new Date();
+                  const start = new Date(now.getFullYear(), 0, 1);
+                  const week = Math.ceil((now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24 * 7));
+                  const day = Math.ceil((now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+                  return s('stats.weekDay', { week: week.toString(), day: day.toString() }) || `Week ${week}, Day ${day}`;
+                })()}
+              {/if}
+            </div>
+          {/each}
+        </div>
+      </div>
+    {/if}
+
+    <!-- Chaos Index - Mobile: hidden during animation and time travel -->
+    {#if isSubscriber && experimental.showChaosIndex && chaosIndex && chaosIndex.score > 0 && !isAnimating && !isInTimeTravel}
+      <div class="sm:hidden ms-2 me-3">
+        <ChaosIndex
+          score={chaosIndex.score}
+          summary={chaosIndex.summary}
+          lastUpdated={chaosIndex.lastUpdated}
+          bind:open={chaosModalOpen}
+          onOpenChange={onChaosModalChange}
+          renderModal={false}
+        />
+      </div>
+    {/if}
 
     <!-- Desktop: Full logo -->
     <div class="hidden sm:flex items-center">
@@ -493,29 +549,18 @@ $effect(() => {
       >
         <img
           src={themeSettings.isDark
-            ? "/svg/kagi_news_full_dark.svg"
-            : "/svg/kagi_news_full.svg"}
+            ? "/svg/kagi_news_compact_dark.svg"
+            : "/svg/kagi_news_compact.svg"}
           alt={s("app.logo.newsAlt") || "Kite News"}
-          class="h-9 w-auto logo relative z-50"
+          class="w-[90px] h-auto logo relative z-modal-backdrop"
           style="isolation: isolate;"
         />
       </button>
     </div>
 
-    <!-- Chaos Index - Mobile: centered in first row -->
-    {#if experimental.showChaosIndex && chaosIndex && chaosIndex.score > 0}
-      <div class="sm:hidden absolute start-1/2 ltr:-translate-x-1/2 rtl:translate-x-1/2">
-        <ChaosIndex
-          score={chaosIndex.score}
-          summary={chaosIndex.summary}
-          lastUpdated={chaosIndex.lastUpdated}
-        />
-      </div>
-    {/if}
-
     <!-- Date section hidden on mobile, shown on desktop in center -->
-    <div class="hidden sm:flex absolute start-1/2 ltr:-translate-x-1/2 rtl:translate-x-1/2 items-center h-[36px] overflow-hidden">
-      {#if showAnimation}
+    <div class="hidden sm:flex absolute start-1/2 ltr:-translate-x-1/2 rtl:translate-x-1/2 items-center h-12 overflow-hidden">
+      {#if showAnimation && !isInTimeTravel}
         <!-- Animation mode: auto-cycling through stats -->
         <div
           class="cursor-pointer"
@@ -527,19 +572,19 @@ $effect(() => {
         >
           <div
             class="flex flex-col transition-transform duration-200 ease-out"
-            style="transform: translateY({(2.5 - headerAnimation.index) * 36}px);"
+            style="transform: translateY({(2.5 - headerAnimation.index) * 48}px);"
           >
             <!-- Date section (index 0) -->
-            <div class="h-[36px] flex items-center justify-center">
+            <div class="h-12 flex items-center justify-center">
               {@render dateSection()}
             </div>
             <!-- Stats displays (indices 1-5) -->
             {#each [1, 2, 3, 4, 5] as index}
               <div
-                class="h-[36px] flex items-center justify-center whitespace-nowrap text-gray-600 dark:text-gray-400"
+                class="h-12 flex items-center justify-center whitespace-nowrap text-gray-500 dark:text-gray-400 text-base"
               >
                 {#if index === 1}
-                  {getLastUpdated()}
+                  {lastUpdatedText || getLastUpdated()}
                 {:else if index === 2}
                   {#if nextUpdateIsSoon}
                     {s('time.nextUpdate.soon') || 'Next update: soon'}
@@ -573,54 +618,49 @@ $effect(() => {
       {/if}
     </div>
 
-    <div class="ms-auto flex items-center space-x-1 sm:space-x-2">
+    <div class="ms-auto flex items-center gap-1.5 sm:gap-2">
       <!-- Chaos Index - Desktop only, in first row -->
-      {#if experimental.showChaosIndex && chaosIndex && chaosIndex.score > 0}
+      {#if isSubscriber && experimental.showChaosIndex && chaosIndex && chaosIndex.score > 0}
         <div class="hidden sm:block">
           <ChaosIndex
             score={chaosIndex.score}
             summary={chaosIndex.summary}
             lastUpdated={chaosIndex.lastUpdated}
+            bind:open={chaosModalOpen}
+            onOpenChange={onChaosModalChange}
           />
         </div>
       {/if}
 
-      <!-- Time Travel button - shown when historical search is enabled -->
-      {#if features.historicalSearch}
-        <button
-          onclick={() => timeTravel.toggle()}
-          title={s("header.timeTravel") || "Time Travel"}
-          aria-label={s("header.timeTravel") || "Time Travel"}
-          class="p-1 sm:ms-2"
-          type="button"
-        >
-          <IconClock size={24} stroke={2} class="text-black dark:text-white" />
-        </button>
-      {/if}
+      <!-- Time Travel button - available for everyone during beta -->
+      <button
+        onclick={() => timeTravel.toggle()}
+        title={s("header.timeTravel") || "Time Travel"}
+        aria-label={s("header.timeTravel") || "Time Travel"}
+        class="p-1 sm:w-8 sm:h-8 sm:flex sm:items-center sm:justify-center sm:rounded-lg sm:hover:bg-gray-100 sm:dark:hover:bg-gray-800"
+        type="button"
+      >
+        <IconClock size={24} stroke={1.5} class="text-gray-600 dark:text-gray-400" />
+      </button>
 
       <button
         onclick={onSearchClick}
         title={searchTooltip}
         aria-label={s("header.search") || "Search"}
-        class="p-1 sm:ms-2"
+        class="p-1 sm:w-8 sm:h-8 sm:flex sm:items-center sm:justify-center sm:rounded-lg sm:hover:bg-gray-100 sm:dark:hover:bg-gray-800"
         type="button"
       >
-        <IconSearch size={24} stroke={2} class="text-black dark:text-white" />
+        <IconSearch size={24} stroke={1.5} class="text-gray-600 dark:text-gray-400" />
       </button>
 
       <button
         onclick={toggleFontSize}
         title={s("header.fontSize") || "Font Size"}
         aria-label={s("header.fontSize") || "Font Size"}
-        class="p-1 sm:ms-2"
+        class="p-1 sm:w-8 sm:h-8 sm:flex sm:items-center sm:justify-center sm:rounded-lg sm:hover:bg-gray-100 sm:dark:hover:bg-gray-800"
         type="button"
       >
-        <img
-          src="/svg/font-size.svg"
-          alt=""
-          class="h-5 w-5 sm:h-6 sm:w-6 text-gray-600 dark:text-gray-400 dark:invert"
-          aria-hidden="true"
-        />
+        <IconTextSize size={24} stroke={1.5} class="text-gray-600 dark:text-gray-400" />
       </button>
 
       <button
@@ -630,16 +670,19 @@ $effect(() => {
         }}
         title={s("header.settings") || "Settings"}
         aria-label={s("header.settings") || "Settings"}
-        class="p-1 sm:ms-2"
+        class="p-1 sm:w-8 sm:h-8 sm:flex sm:items-center sm:justify-center sm:rounded-lg sm:hover:bg-gray-100 sm:dark:hover:bg-gray-800"
         type="button"
       >
-        <img
-          src="/svg/gear.svg"
-          alt=""
-          class="h-5 w-5 sm:h-6 sm:w-6 text-gray-600 dark:text-gray-400 dark:invert"
-          aria-hidden="true"
-        />
+        <IconSettings size={24} stroke={1.5} class="text-gray-600 dark:text-gray-400" />
       </button>
+
+      <!-- Divider -->
+      <div class="h-[25px] flex items-center justify-center">
+        <div class="w-px h-full bg-gray-200 dark:bg-gray-700"></div>
+      </div>
+
+      <!-- App Navigation -->
+      <AppNavigation />
     </div>
   </div>
 </header>
@@ -658,3 +701,14 @@ $effect(() => {
     />
   </div>
 {/if}
+
+<style>
+  .tt-pill-highlight {
+    animation: tt-pulse 2s ease-in-out 3;
+  }
+
+  @keyframes tt-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+</style>

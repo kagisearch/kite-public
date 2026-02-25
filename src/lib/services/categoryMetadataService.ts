@@ -1,6 +1,6 @@
 export interface CategoryMetadata {
 	categoryId: string;
-	categoryType: 'core' | 'country' | 'region' | 'city' | 'topic' | 'other';
+	categoryType: 'core' | 'community';
 	isCore: boolean; // True if maintained by Kagi team
 	displayName: string;
 	displayNames?: Record<string, string>;
@@ -13,17 +13,12 @@ export interface CategoriesMetadataResponse {
 
 export interface GroupedCategories {
 	core: CategoryMetadata[];
-	countries: CategoryMetadata[];
-	regions: CategoryMetadata[];
-	cities: CategoryMetadata[];
-	topics: CategoryMetadata[];
-	other: CategoryMetadata[];
+	community: CategoryMetadata[];
 }
 
 export interface CategoryGroup {
 	type: keyof GroupedCategories;
 	title: string;
-	icon: string;
 	categories: CategoryMetadata[];
 }
 
@@ -54,16 +49,12 @@ class CategoryMetadataService {
 	}
 
 	/**
-	 * Group categories by type
+	 * Group categories by type (core vs community)
 	 */
 	groupCategories(categories: CategoryMetadata[]): GroupedCategories {
 		return {
-			core: categories.filter((c) => c.categoryType === 'core'),
-			countries: categories.filter((c) => c.categoryType === 'country'),
-			regions: categories.filter((c) => c.categoryType === 'region'),
-			cities: categories.filter((c) => c.categoryType === 'city'),
-			topics: categories.filter((c) => c.categoryType === 'topic'),
-			other: categories.filter((c) => c.categoryType === 'other'),
+			core: categories.filter((c) => c.isCore),
+			community: categories.filter((c) => !c.isCore),
 		};
 	}
 
@@ -76,43 +67,40 @@ class CategoryMetadataService {
 		const groups: CategoryGroup[] = [
 			{
 				type: 'core',
-				title: 'Core News',
-				icon: '📋',
+				title: 'Kagi Curated',
 				categories: grouped.core,
 			},
 			{
-				type: 'countries',
-				title: 'Countries',
-				icon: '🌍',
-				categories: grouped.countries,
-			},
-			{
-				type: 'regions',
-				title: 'Regions',
-				icon: '🗺️',
-				categories: grouped.regions,
-			},
-			{
-				type: 'cities',
-				title: 'Cities & States',
-				icon: '🏙️',
-				categories: grouped.cities,
-			},
-			{
-				type: 'topics',
-				title: 'Topics',
-				icon: '💡',
-				categories: grouped.topics,
-			},
-			{
-				type: 'other',
-				title: 'Other',
-				icon: '📅',
-				categories: grouped.other,
+				type: 'community',
+				title: 'Community',
+				categories: grouped.community,
 			},
 		];
 
-		return groups.filter((group) => group.categories.length > 0); // Only show groups with categories
+		return groups.filter((group) => group.categories.length > 0);
+	}
+
+	/**
+	 * Group categories alphabetically by first letter
+	 */
+	groupCategoriesAlphabetically(categories: CategoryMetadata[]): Map<string, CategoryMetadata[]> {
+		const grouped = new Map<string, CategoryMetadata[]>();
+
+		// Sort categories alphabetically first
+		const sorted = [...categories].sort((a, b) => a.displayName.localeCompare(b.displayName));
+
+		for (const category of sorted) {
+			const firstLetter = category.displayName.charAt(0).toUpperCase();
+			// Handle non-alphabetic characters
+			const key = /[A-Z]/.test(firstLetter) ? firstLetter : '#';
+
+			if (!grouped.has(key)) {
+				grouped.set(key, []);
+			}
+			grouped.get(key)!.push(category);
+		}
+
+		return grouped;
 	}
 
 	/**

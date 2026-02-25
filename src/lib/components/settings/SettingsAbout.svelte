@@ -1,6 +1,8 @@
 <script lang="ts">
+import { IconKeyboard } from '@tabler/icons-svelte';
 import { s } from '$lib/client/localization.svelte';
-import { themeSettings } from '$lib/data/settings.svelte.js';
+import { settingsModalState, themeSettings } from '$lib/data/settings.svelte.js';
+import { keyboardNavigation } from '$lib/stores/keyboardNavigation.svelte';
 import { language } from '$lib/stores/language.svelte';
 
 interface Props {
@@ -8,6 +10,15 @@ interface Props {
 }
 
 let { onShowAbout }: Props = $props();
+
+function showKeyboardShortcuts() {
+	// Close settings modal first, then show keyboard help
+	settingsModalState.isOpen = false;
+	// Small delay to allow modal to close
+	setTimeout(() => {
+		keyboardNavigation.openHelp();
+	}, 100);
+}
 
 function showAbout() {
 	// Push /about to the URL
@@ -17,26 +28,43 @@ function showAbout() {
 
 // Map Kite locale codes to App Store badge folder names
 const localeToAppStoreBadge: Record<string, string> = {
-	'ar': 'AR',
-	'de': 'DE',
-	'en': 'US',
-	'es': 'ES',
-	'fr': 'FR',
-	'he': 'IL',
-	'hi': 'IN',
-	'it': 'IT',
-	'ja': 'JP',
-	'nl': 'NL',
-	'pt': 'PTPT',
+	ar: 'AR',
+	de: 'DE',
+	en: 'US',
+	es: 'ES',
+	fr: 'FR',
+	he: 'IL',
+	hi: 'IN',
+	it: 'IT',
+	ja: 'JP',
+	nl: 'NL',
+	pt: 'PTPT',
 	'pt-BR': 'PTBR',
-	'ru': 'RU',
-	'uk': 'UA',
+	ru: 'RU',
+	uk: 'UA',
 	'zh-Hans': 'CN(SC)',
 	'zh-Hant': 'HKTW(TC)',
 };
 
 // Google Play badges use locale codes directly (ar, de, en, etc.)
-const supportedGooglePlayLocales = ['ar', 'de', 'en', 'es', 'fr', 'he', 'hi', 'it', 'ja', 'nl', 'pt', 'pt-BR', 'ru', 'uk', 'zh-Hans', 'zh-Hant'];
+const supportedGooglePlayLocales = [
+	'ar',
+	'de',
+	'en',
+	'es',
+	'fr',
+	'he',
+	'hi',
+	'it',
+	'ja',
+	'nl',
+	'pt',
+	'pt-BR',
+	'ru',
+	'uk',
+	'zh-Hans',
+	'zh-Hant',
+];
 
 // Some locales have extra padding in their badge SVGs and need to be scaled up
 const badgesWithExtraPadding = ['en', 'he', 'ja', 'ru'];
@@ -44,23 +72,31 @@ const badgesWithExtraPadding = ['en', 'he', 'ja', 'ru'];
 // Get the appropriate badges based on current locale and theme
 const appStoreBadgeFolder = $derived(localeToAppStoreBadge[language.current] || 'US');
 const appStoreBadgeVariant = $derived(themeSettings.theme === 'dark' ? 'white' : 'black');
-const appStoreBadgePath = $derived(`/badges/app-store/${appStoreBadgeFolder}/${appStoreBadgeVariant}.svg`);
+const appStoreBadgePath = $derived(
+	`/badges/app-store/${appStoreBadgeFolder}/${appStoreBadgeVariant}.svg`,
+);
 
-const googlePlayLocale = $derived(supportedGooglePlayLocales.includes(language.current) ? language.current : 'en');
-const googlePlayBadgeExt = $derived(['pt', 'pt-BR', 'zh-Hans'].includes(googlePlayLocale) ? 'png' : 'svg');
-const googlePlayBadgePath = $derived(`/badges/google-play/${googlePlayLocale}.${googlePlayBadgeExt}`);
+const googlePlayLocale = $derived(
+	supportedGooglePlayLocales.includes(language.current) ? language.current : 'en',
+);
+const googlePlayBadgeExt = $derived(
+	['pt', 'pt-BR', 'zh-Hans'].includes(googlePlayLocale) ? 'png' : 'svg',
+);
+const googlePlayBadgePath = $derived(
+	`/badges/google-play/${googlePlayLocale}.${googlePlayBadgeExt}`,
+);
 const googlePlayNeedsScaling = $derived(badgesWithExtraPadding.includes(googlePlayLocale));
 </script>
 
 <div class="space-y-6">
 	<!-- About Kite -->
 	<div
-		class="bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 p-6 rounded-xl border border-blue-100 dark:border-blue-700/50"
+		class="bg-blue-50 dark:bg-blue-900/30 p-6 rounded-xl border border-blue-100 dark:border-blue-700/50"
 	>
 		<div class="flex flex-col sm:flex-row items-start gap-6">
 			<!-- Doggo on the left -->
 			<div class="flex-shrink-0">
-				<img src="/doggo_default.svg" alt="Kagi Doggo" class="w-24 h-24 object-contain" />
+				<img src="/doggo_default.svg" alt="Kagi Doggo" class="size-24 object-contain" />
 			</div>
 
 			<!-- Content on the right -->
@@ -93,6 +129,27 @@ const googlePlayNeedsScaling = $derived(badgesWithExtraPadding.includes(googlePl
 					</svg>
 				</button>
 			</div>
+		</div>
+	</div>
+
+	<!-- Keyboard Shortcuts -->
+	<div class="space-y-3">
+		<h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300">
+			{s('settings.about.keyboardShortcuts') || 'Keyboard Shortcuts'}
+		</h3>
+		<div class="ps-2">
+			<p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+				{s('settings.about.keyboardDescription') ||
+					'Navigate stories and categories using vim-style keyboard shortcuts'}
+			</p>
+			<button
+				onclick={showKeyboardShortcuts}
+				class="inline-flex items-center gap-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 focus-visible-ring"
+			>
+				<IconKeyboard size={18} />
+				<span>{s('settings.about.viewShortcuts') || 'View Keyboard Shortcuts'}</span>
+				<kbd class="ms-2 px-1.5 py-0.5 text-xs font-semibold bg-gray-100 dark:bg-gray-700 rounded">?</kbd>
+			</button>
 		</div>
 	</div>
 

@@ -1,11 +1,14 @@
 <script lang="ts">
+import { IconCards, IconDownload, IconSparkles, IconVolume } from '@tabler/icons-svelte';
 import { getContext } from 'svelte';
 import { s } from '$lib/client/localization.svelte';
 import { experimental } from '$lib/stores/experimental.svelte.js';
+import { sections } from '$lib/stores/sections.svelte.js';
+import { language } from '$lib/stores/language.svelte';
 import { type CitationMapping, replaceWithNumberedCitations } from '$lib/utils/citationContext';
-import { IconSparkles, IconCards, IconVolume, IconDownload } from '@tabler/icons-svelte';
-import Tooltip from '../Tooltip.svelte';
 import { containsCJK } from '$lib/utils/textUtils';
+import { extractStoryText } from '$lib/utils/storyTextExtractor';
+import Tooltip from '../Tooltip.svelte';
 
 // Props
 interface Props {
@@ -66,6 +69,70 @@ const session = getContext<Session | null>('session');
 
 // Check if user is a subscriber
 const isSubscriber = $derived(session?.subscription === true);
+
+// Check if user is logged in (for assistant feature)
+const isLoggedIn = $derived(session?.loggedIn === true);
+
+// Assistant input state
+let showAssistantInput = $state(false);
+let assistantQuestion = $state('');
+
+// Maximum safe URL length for browsers
+const MAX_URL_LENGTH = 2000;
+
+// Get user's interface language name for assistant prompt
+function getUserLanguageName(): string {
+	const locale = language.currentLocale || 'en';
+	try {
+		const displayNames = new Intl.DisplayNames([locale], { type: 'language' });
+		return displayNames.of(locale) || 'English';
+	} catch {
+		return 'English';
+	}
+}
+
+// Build the assistant query, truncating story text to fit the user's question + context within URL limit
+function buildAssistantUrl(userQuestion: string): string {
+	const userLanguageName = getUserLanguageName();
+	const userLocale = language.currentLocale || 'en';
+	const today = new Date().toLocaleDateString('en-US', {
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
+	});
+
+	const suffix = `\n\nThis is a news story from Kagi News, reported on ${today}. Please respond in the same language as the user's question.\n\nUser's question: ${userQuestion}`;
+	const prefix = 'News story:\n\n';
+	const enabledSections = sections.list
+		.filter((sec) => sec.enabled)
+		.sort((a, b) => a.order - b.order);
+	const fullText = extractStoryText(story, enabledSections);
+
+	const baseUrl = 'https://kagi.com/assistant?q=';
+	let text = fullText;
+	while (text.length > 0) {
+		const query = `${prefix}${text}${suffix}`;
+		const url = `${baseUrl}${encodeURIComponent(query)}`;
+		if (url.length <= MAX_URL_LENGTH) return url;
+		// Truncate to ~80% and snap to last sentence boundary
+		const targetLen = Math.floor(text.length * 0.8);
+		const truncated = text.slice(0, targetLen);
+		const lastSentence = truncated.lastIndexOf('. ');
+		text = lastSentence > 0 ? truncated.slice(0, lastSentence + 1) : truncated.trimEnd();
+		if (text.length === fullText.length) break;
+	}
+
+	return `${baseUrl}${encodeURIComponent(`News topic: ${story.title}${suffix}`)}`;
+}
+
+// Submit question to Kagi Assistant
+function submitAssistantQuestion() {
+	const question = assistantQuestion.trim();
+	if (!question) return;
+	window.open(buildAssistantUrl(question), '_blank', 'noopener,noreferrer');
+	assistantQuestion = '';
+	showAssistantInput = false;
+}
 
 // Define colors ordered by perceptual distinctness
 // These are maximally distinct colors that work well together
@@ -273,6 +340,28 @@ const isCJKStory = $derived(containsCJK(story.title));
             </Tooltip>
           {/if}
 
+          <!-- Ask Assistant toggle (logged-in users only) -->
+          {#if isLoggedIn}
+            <Tooltip text={s('story.assistant.tooltip')} position="bottom">
+              <button
+                onclick={() => showAssistantInput = !showAssistantInput}
+                class={`transition-all rounded flex items-center gap-1.5 ${showAssistantInput ? 'px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200' : 'p-1 hover:bg-gray-100 dark:hover:bg-gray-800'}`}
+                aria-label={s('story.assistant.tooltip')}
+                aria-expanded={showAssistantInput}
+                type="button"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" class={showAssistantInput ? "text-blue-600 dark:text-blue-300" : "text-gray-500 dark:text-gray-400"}>
+                  <circle cx="12" cy="12" r="11.25"></circle>
+                  <circle cx="12" cy="12" r="7.75"></circle>
+                  <path d="M19.2 14.9c-1.1.5-2.1 1.1-4.2 1.1-4 0-5-3-8.5-3-.9 0-1.6.1-2.1.3m15-3.5c-1.1.5-2.1 1.2-4.4 1.2-4 0-5-3-8.5-3-.4 0-.8 0-1.2.1"></path>
+                </svg>
+                {#if showAssistantInput}
+                  <span class="text-xs font-medium">{s('story.assistant.tooltip')}</span>
+                {/if}
+              </button>
+            </Tooltip>
+          {/if}
+
           <!-- Progress/Status (appears at the end after everything) -->
           {#if isSimplifying}
             <div class="flex items-center gap-2 px-2 py-0.5 text-xs text-gray-600 dark:text-gray-400 ml-1" role="status" aria-live="polite">
@@ -335,6 +424,30 @@ const isCJKStory = $derived(containsCJK(story.title));
     </div>
   {/if}
 </div>
+
+<!-- Assistant question input (below title, full width) -->
+{#if showAssistantInput && isLoggedIn && isExpanded}
+  <form
+    onsubmit={(e) => { e.preventDefault(); submitAssistantQuestion(); }}
+    class="flex items-center gap-2 mb-2"
+  >
+    <input
+      type="text"
+      bind:value={assistantQuestion}
+      placeholder={s('story.assistant.placeholder')}
+      class="flex-1 min-w-0 px-3 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+      onkeydown={(e) => e.stopPropagation()}
+      autofocus
+    />
+    <button
+      type="submit"
+      disabled={!assistantQuestion.trim()}
+      class="px-4 py-2 text-sm rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shrink-0 font-medium"
+    >
+      {s('story.assistant.submit')}
+    </button>
+  </form>
+{/if}
 
 <style>
   /* Topic color classes - ordered by perceptual distinctness */

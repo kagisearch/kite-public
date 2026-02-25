@@ -1,5 +1,5 @@
-import type { Category, Story } from '$lib/types';
 import type { SinglePageMode } from '$lib/data/settings.svelte';
+import type { Category, Story } from '$lib/types';
 
 export interface StoryWithCategory extends Story {
 	_categoryId: string;

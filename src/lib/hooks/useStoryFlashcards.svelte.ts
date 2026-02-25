@@ -1,4 +1,5 @@
-import { SvelteSet, SvelteMap } from 'svelte/reactivity';
+import { SvelteMap, SvelteSet } from 'svelte/reactivity';
+import type { Story } from '$lib/types';
 import { generateAnkiCSV } from '$lib/utils/csv';
 import { downloadCSV } from '$lib/utils/download';
 
@@ -16,8 +17,8 @@ export interface FlashcardState {
  * Composable for vocabulary flashcard generation
  * Allows selecting words/phrases and exporting to Anki CSV format
  */
-export function useStoryFlashcards(story: any, languageCode: string) {
-	let state = $state<FlashcardState>({
+export function useStoryFlashcards(story: Story, languageCode: string) {
+	const state = $state<FlashcardState>({
 		enabled: false,
 		selectedWords: new SvelteSet<string>(),
 		selectedPhrases: new SvelteMap<string, { phrase: string; sections: Set<string> }>(),
@@ -90,7 +91,7 @@ export function useStoryFlashcards(story: any, languageCode: string) {
 	 * Export selected words as flashcards
 	 */
 	async function exportFlashcards() {
-		if (state.selectedWords.size === 0 && state.selectedPhrases.size === 0 || state.isExporting) {
+		if ((state.selectedWords.size === 0 && state.selectedPhrases.size === 0) || state.isExporting) {
 			return;
 		}
 
@@ -104,22 +105,23 @@ export function useStoryFlashcards(story: any, languageCode: string) {
 			];
 
 			// Extract section context for selected words and phrases
-			const contextSections: Record<string, any> = {};
+			const contextSections: Record<string, unknown> = {};
 
 			// Add context from single words
-			for (const [word, sections] of state.wordContext.entries()) {
+			const storyRecord = story as unknown as Record<string, unknown>;
+			for (const [_word, sections] of state.wordContext.entries()) {
 				for (const sectionName of sections) {
-					if (story[sectionName]) {
-						contextSections[sectionName] = story[sectionName];
+					if (storyRecord[sectionName]) {
+						contextSections[sectionName] = storyRecord[sectionName];
 					}
 				}
 			}
 
 			// Add context from phrases
-			for (const [phraseKey, phraseData] of state.selectedPhrases.entries()) {
+			for (const [_phraseKey, phraseData] of state.selectedPhrases.entries()) {
 				for (const sectionName of phraseData.sections) {
-					if (story[sectionName]) {
-						contextSections[sectionName] = story[sectionName];
+					if (storyRecord[sectionName]) {
+						contextSections[sectionName] = storyRecord[sectionName];
 					}
 				}
 			}

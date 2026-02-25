@@ -141,16 +141,18 @@ export function isImageCached(src: string): boolean {
 /**
  * Preload (download and cache) a single image
  */
-export function preloadImage(src: string): Promise<void> {
-	if (!browser || !src) return Promise.resolve();
+export function preloadImage(src: string): Promise<undefined> {
+	if (!browser || !src) return Promise.resolve(undefined);
 
 	return downloadImageAsDataURL(src)
 		.then(() => {
 			// Image is now cached, nothing else to do
+			return undefined;
 		})
 		.catch((error) => {
 			console.warn('Failed to preload image:', src, error);
 			// Don't throw - allow graceful degradation
+			return undefined;
 		});
 }
 
@@ -178,7 +180,7 @@ function isMobileDevice(): boolean {
 /**
  * Preload multiple images - disabled on mobile devices to save data
  */
-export function preloadImages(imageUrls: string[], _priority = false): Promise<void[]> {
+export function preloadImages(imageUrls: string[], _priority = false): Promise<undefined[]> {
 	if (!browser) return Promise.resolve([]);
 
 	// Skip preloading on mobile devices to save data

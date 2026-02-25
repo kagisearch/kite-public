@@ -74,12 +74,13 @@ const positionClasses = {
 
 // Transition config
 const backdropTransition = { duration: 150 };
-const modalTransition =
+const modalTransition = $derived(
 	position === 'bottom'
 		? { y: 200, duration: 200 }
 		: position === 'top'
 			? { y: -50, duration: 200 }
-			: { duration: 200 };
+			: { duration: 200 },
+);
 
 // Handle backdrop click
 function handleBackdropClick(e: MouseEvent) {
@@ -121,33 +122,33 @@ function trapFocus(e: KeyboardEvent) {
 
 // Manage scroll lock and focus
 $effect(() => {
-	if (browser) {
-		if (isOpen) {
-			// Store current active element
-			previousActiveElement = document.activeElement;
+	if (!browser) return;
 
-			// Lock scroll if enabled
-			if (lockScroll) {
-				scrollLock.lock();
+	if (isOpen) {
+		// Store current active element
+		previousActiveElement = document.activeElement;
+
+		// Lock scroll if enabled
+		if (lockScroll) {
+			scrollLock.lock();
+		}
+
+		// Focus modal after a tick
+		setTimeout(() => {
+			if (modalElement) {
+				modalElement.focus();
 			}
+		}, 50);
 
-			// Focus modal after a tick
-			setTimeout(() => {
-				if (modalElement) {
-					modalElement.focus();
-				}
-			}, 50);
-		} else {
-			// Unlock scroll
+		return () => {
 			if (lockScroll) {
 				scrollLock.unlock();
 			}
-
 			// Restore focus without scrolling
 			if (previousActiveElement && previousActiveElement instanceof HTMLElement) {
 				previousActiveElement.focus({ preventScroll: true });
 			}
-		}
+		};
 	}
 });
 
@@ -155,13 +156,6 @@ $effect(() => {
 $effect(() => {
 	if (contentElement && isOpen) {
 		initialize(contentElement);
-	}
-});
-
-// Cleanup on destroy
-onDestroy(() => {
-	if (browser && isOpen && lockScroll) {
-		scrollLock.unlock();
 	}
 });
 </script>
@@ -215,7 +209,7 @@ onDestroy(() => {
           {#if showCloseButton}
             <button
               onclick={onClose}
-              class="rounded-full p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200 focus-visible-ring touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
+              class="rounded-full p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200 focus-visible-ring touch-manipulation min-h-11 min-w-11 flex items-center justify-center"
               aria-label={s("ui.close") || "Close"}
             >
               <svg

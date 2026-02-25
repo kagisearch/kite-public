@@ -10,7 +10,7 @@
 export function safeGetItem(key: string): string | null {
 	try {
 		return localStorage.getItem(key);
-	} catch (_e) {
+	} catch {
 		console.warn(`localStorage not available for key: ${key}`);
 		return null;
 	}
@@ -23,7 +23,7 @@ export function safeSetItem(key: string, value: string): boolean {
 	try {
 		localStorage.setItem(key, value);
 		return true;
-	} catch (_e) {
+	} catch {
 		console.warn(`Could not save to localStorage: ${key}`);
 		return false;
 	}
@@ -36,7 +36,7 @@ export function safeRemoveItem(key: string): boolean {
 	try {
 		localStorage.removeItem(key);
 		return true;
-	} catch (_e) {
+	} catch {
 		console.warn(`Could not remove from localStorage: ${key}`);
 		return false;
 	}
@@ -51,7 +51,7 @@ export function isLocalStorageAvailable(): boolean {
 		localStorage.setItem(testKey, 'test');
 		localStorage.removeItem(testKey);
 		return true;
-	} catch (_e) {
+	} catch {
 		return false;
 	}
 }

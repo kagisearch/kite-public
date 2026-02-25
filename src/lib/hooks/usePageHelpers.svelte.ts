@@ -1,13 +1,14 @@
 import { browser } from '$app/environment';
 import { goto } from '$app/navigation';
 import { s } from '$lib/client/localization.svelte';
-import { displaySettings, languageSettings, categorySettings } from '$lib/data/settings.svelte';
+import { displaySettings, languageSettings } from '$lib/data/settings.svelte';
+import { kiteDB } from '$lib/db/dexie';
+import { dataReloadService } from '$lib/services/dataService';
 import { timeTravelNavigationService } from '$lib/services/timeTravelNavigationService';
+import { UrlNavigationService } from '$lib/services/urlNavigationService';
 import { timeTravel } from '$lib/stores/timeTravel.svelte';
 import { timeTravelBatch } from '$lib/stores/timeTravelBatch.svelte';
-import { dataReloadService } from '$lib/services/dataService';
-import type { Story, Category, Article, Domain, MediaInfo } from '$lib/types';
-import { kiteDB } from '$lib/db/dexie';
+import type { Article, Category, Domain, MediaInfo, Story } from '$lib/types';
 import type { HistoryManagerInstance } from '$lib/types/components';
 
 interface PageHelpersOptions {
@@ -182,12 +183,18 @@ export function usePageHelpers(
 						}
 					}, 100);
 				} else {
-					let targetUrl = '/';
-					if (displaySettings.useLatestUrls) {
-						targetUrl = `/latest/${categoryId}/${storyIndex}`;
-					} else {
-						targetUrl = `/${batchId}/${categoryId}/${storyIndex}`;
-					}
+					// For latest batch, use UrlNavigationService for consistent URL format
+					const targetUrl = UrlNavigationService.buildUrl(
+						{
+							batchId,
+							categoryId,
+							storyIndex,
+							clusterId: story.cluster_number,
+							storyTitle: story.title,
+						},
+						undefined,
+						displaySettings.useLatestUrls, // use /latest prefix
+					);
 					await goto(targetUrl);
 				}
 

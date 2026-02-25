@@ -20,7 +20,17 @@ interface Props {
 	onWordClick?: (word: string, section?: string) => void;
 }
 
-let { reactions, articles = [], citationMapping, storyLocalizer = s, flashcardMode = false, selectedWords = new Set(), selectedPhrases = new Map(), shouldJiggle = false, onWordClick }: Props = $props();
+let {
+	reactions,
+	articles = [],
+	citationMapping,
+	storyLocalizer = s,
+	flashcardMode = false,
+	selectedWords = new Set(),
+	selectedPhrases = new Map(),
+	shouldJiggle = false,
+	onWordClick,
+}: Props = $props();
 
 // Convert citations in reactions if mapping is available
 const displayReactions = $derived.by(() => {

@@ -1,6 +1,15 @@
 <script lang="ts">
+import {
+	IconChevronDown,
+	IconChevronUp,
+	IconLoader2,
+	IconMedal,
+	IconMinus,
+	IconRefresh,
+	IconTrendingDown,
+	IconTrendingUp,
+} from '@tabler/icons-svelte';
 import { onMount } from 'svelte';
-import { IconChevronDown, IconChevronUp, IconLoader2, IconRefresh, IconTrendingUp, IconTrendingDown, IconMinus, IconMedal } from '@tabler/icons-svelte';
 import { s } from '$lib/client/localization.svelte';
 
 interface Team {
@@ -85,10 +94,8 @@ const summaryText = $derived.by(() => {
 // Get top 3 teams across all divisions for preview
 const topTeams: Team[] = $derived.by(() => {
 	if (!data?.divisions) return [];
-	const allTeams = data.divisions.flatMap(div => div.teams);
-	return allTeams
-		.sort((a, b) => b.points - a.points)
-		.slice(0, 3);
+	const allTeams = data.divisions.flatMap((div) => div.teams);
+	return allTeams.sort((a, b) => b.points - a.points).slice(0, 3);
 });
 
 onMount(() => {
@@ -105,8 +112,10 @@ onMount(() => {
 		<button
 			onclick={() => expanded = !expanded}
 			class="flex flex-1 items-center gap-2 text-left transition-colors hover:opacity-80"
+			aria-expanded={expanded}
+			aria-label={expanded ? s('nhl.standings.collapse') || 'Collapse NHL standings' : s('nhl.standings.expand') || 'Expand NHL standings'}
 		>
-			<IconMedal class="h-4 w-4 text-gray-600 dark:text-gray-400" />
+			<IconMedal class="size-4 text-gray-600 dark:text-gray-400" />
 			<span class="text-sm font-medium text-gray-900 dark:text-gray-100">{s('nhl.standings.title')}</span>
 			<span class="text-xs text-gray-600 dark:text-gray-400">{summaryText}</span>
 			{#if expanded}

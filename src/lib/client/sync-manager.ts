@@ -29,6 +29,8 @@ class SyncManager {
 	private conflictResolutionStrategy: 'local' | 'remote' | 'merge' = 'merge';
 	private syncDebounceTimer: ReturnType<typeof setTimeout> | null = null;
 	private syncQueued = false;
+	private backoffDelay = 0; // Exponential backoff for rate limiting
+	private consecutiveFailures = 0;
 
 	constructor() {
 		// Get or create device ID using shared utility
@@ -270,10 +272,21 @@ class SyncManager {
 			});
 
 			if (!response.ok) {
+				// Handle rate limiting with backoff
+				if (response.status === 429) {
+					this.consecutiveFailures++;
+					// Exponential backoff: 5s, 10s, 20s, 40s, max 60s
+					this.backoffDelay = Math.min(5000 * 2 ** (this.consecutiveFailures - 1), 60000);
+					console.warn(`[Sync] Rate limited (429). Backing off for ${this.backoffDelay / 1000}s`);
+				}
 				throw new Error(`Sync failed: ${response.statusText}`);
 			}
 
 			const result = await response.json();
+
+			// Reset backoff on success
+			this.consecutiveFailures = 0;
+			this.backoffDelay = 0;
 
 			// Process sync response
 			await this.processSyncResponse(result);
@@ -308,8 +321,10 @@ class SyncManager {
 			// Check if we need another sync (new changes added during this sync)
 			if (this.pendingChanges.length > 0 || this.syncQueued) {
 				this.syncQueued = false;
-				console.log('[Sync] Running another sync - new changes detected');
-				setTimeout(() => this.sync(), 100); // Small delay to avoid stack overflow
+				// Use backoff delay if we're rate limited, otherwise small delay
+				const retryDelay = this.backoffDelay > 0 ? this.backoffDelay : 100;
+				console.log(`[Sync] Scheduling retry in ${retryDelay}ms`);
+				setTimeout(() => this.sync(), retryDelay);
 			}
 		}
 	}
@@ -320,15 +335,12 @@ class SyncManager {
 	private async prepareSyncData(forceAllSettings = false, changesToSync?: LocalChange[]) {
 		// Check sync preferences
 		const syncSettings = this.getSyncSetting('syncSettings', true);
-		const _syncReadHistory = this.getSyncSetting('syncReadHistory', true);
+		// Note: Read history is handled separately via syncReadHistory()
 
 		// Gather data based on user preferences AND specific changes
-		const [localSettings] = await Promise.all([
-			syncSettings
-				? this.gatherLocalSettings(forceAllSettings, changesToSync)
-				: Promise.resolve([]),
-			// Note: Read history is handled separately via syncReadHistory()
-		]);
+		const localSettings = syncSettings
+			? await this.gatherLocalSettings(forceAllSettings, changesToSync)
+			: [];
 
 		return {
 			deviceId: this.deviceId,
@@ -432,6 +444,8 @@ class SyncManager {
 				'kite-experimental-features',
 				// Preloading config (complex with multiple settings)
 				'kite-preloading-config',
+				// Preferred sources (pinned sources for ordering)
+				'kite-preferred-sources',
 			];
 
 			// Only send non-default values
@@ -521,6 +535,24 @@ class SyncManager {
 				}
 			}
 		}
+
+		// Notify user about resolved conflicts
+		const settingConflicts = conflicts.filter((c) => c.type === 'setting');
+		if (settingConflicts.length > 0) {
+			Promise.all([import('$lib/stores/toast.svelte'), import('$lib/client/localization.svelte')])
+				.then(([{ toastStore }, { s }]) => {
+					const count = settingConflicts.length;
+					const message =
+						count === 1
+							? s('sync.conflict.single') || 'A setting was updated from another device'
+							: s('sync.conflict.multiple', { count: String(count) }) ||
+								`${count} settings were updated from another device`;
+					toastStore.info(message);
+				})
+				.catch((err) => {
+					console.warn('[Sync] Could not show conflict toast:', err);
+				});
+		}
 	}
 
 	/**
@@ -528,9 +560,6 @@ class SyncManager {
 	 */
 	private async updateLocalSettings(remoteSettings: RemoteSetting[]) {
 		console.log('[Sync] Updating local settings from remote:', remoteSettings);
-
-		// Create a set of all remote setting keys
-		const _remoteSettingKeys = new Set(remoteSettings.map((s) => s.settingKey));
 
 		// Get keys of settings we have pending changes for
 		const pendingSettingKeys = new Set(
@@ -643,6 +672,18 @@ class SyncManager {
 							.catch((err) => {
 								console.warn(`[Sync] Could not update preloading config:`, err);
 							});
+					} else if (key === 'kite-preferred-sources') {
+						// Special handling for preferred sources
+						console.log(`[Sync] Updating preferred sources from sync`);
+						import('$lib/stores/preferredSources.svelte')
+							.then(({ preferredSources }) => {
+								if (preferredSources) {
+									preferredSources.init();
+								}
+							})
+							.catch((err) => {
+								console.warn(`[Sync] Could not update preferred sources:`, err);
+							});
 					} else if (key === 'theme') {
 						// Special handling for theme - need to apply to DOM
 						console.log(`[Sync] Updating theme from sync`);
@@ -684,7 +725,7 @@ class SyncManager {
 									// Also update the old language store if it exists
 									import('$lib/stores/language.svelte')
 										.then(({ language }) => {
-											if (language && language.set) {
+											if (language?.set) {
 												language.set(settings.language.currentValue);
 											}
 										})
@@ -701,7 +742,8 @@ class SyncManager {
 						console.log(`[Sync] Updating ${key} from sync`);
 						import('$lib/data/settings.svelte')
 							.then(({ settings }) => {
-								const setting = settings[key === 'dataLanguage' ? 'dataLanguage' : 'contentLanguages'];
+								const setting =
+									settings[key === 'dataLanguage' ? 'dataLanguage' : 'contentLanguages'];
 								if (setting) {
 									// Store old value before loading
 									const oldValue = JSON.stringify(setting.currentValue);
@@ -710,7 +752,9 @@ class SyncManager {
 
 									// Only reload data if the value actually changed
 									if (oldValue !== newValue) {
-										console.log(`[Sync] ${key} changed from ${oldValue} to ${newValue}, reloading data`);
+										console.log(
+											`[Sync] ${key} changed from ${oldValue} to ${newValue}, reloading data`,
+										);
 										// Trigger data reload with the new language settings
 										import('$lib/services/dataService')
 											.then(({ dataReloadService }) => {
@@ -748,29 +792,6 @@ class SyncManager {
 				}
 			}
 		}
-
-		// Second, check for any local settings that aren't in remote (deletions)
-		// Since we now get ALL settings from remote, any missing ones should be reset to default
-		const _allSettingKeys = [
-			'fontSize',
-			'storyCount',
-			'categoryHeaderPosition',
-			'introShown',
-			'storyExpandMode',
-			'storyOpenMode',
-			'useLatestUrls',
-			'theme',
-			'kiteLanguage',
-			'dataLanguage',
-			'contentLanguages',
-			'categoryOrder',
-			'enabledCategories',
-			'disabledCategories',
-			'kite-content-filter', // Complex content filter with keywords, presets, mode, scope
-			'kite-sections',
-			'kite-experimental-features',
-			'kite-preloading-config', // Complex preloading configuration
-		];
 
 		// Don't reset settings that are missing from remote
 		// Missing settings in the response mean "no change" not "reset to default"

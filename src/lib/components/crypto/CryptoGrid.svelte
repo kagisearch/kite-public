@@ -1,6 +1,6 @@
 <script lang="ts">
+import { IconRefresh, IconTrendingDown, IconTrendingUp } from '@tabler/icons-svelte';
 import { onMount } from 'svelte';
-import { IconTrendingUp, IconTrendingDown, IconRefresh } from '@tabler/icons-svelte';
 import { s } from '$lib/client/localization.svelte';
 
 interface CryptoConfig {
@@ -17,7 +17,7 @@ const cryptos: CryptoConfig[] = [
 	{ id: 'ripple', color: 'bg-blue-500' },
 	{ id: 'cardano', color: 'bg-indigo-500' },
 	{ id: 'avalanche-2', color: 'bg-red-500' },
-	{ id: 'polkadot', color: 'bg-pink-500' }
+	{ id: 'polkadot', color: 'bg-pink-500' },
 ];
 
 interface PriceData {
@@ -56,7 +56,7 @@ async function fetchPrices() {
 		const results = await Promise.all(promises);
 
 		// Update data with all results
-		results.forEach(result => {
+		results.forEach((result) => {
 			if (result) {
 				newData.set(result[0], result[1]);
 			}
@@ -81,7 +81,7 @@ function formatPrice(price: number): string {
 		style: 'currency',
 		currency: 'USD',
 		minimumFractionDigits: decimals,
-		maximumFractionDigits: decimals
+		maximumFractionDigits: decimals,
 	}).format(price);
 }
 
@@ -113,7 +113,7 @@ const symbolMap: Record<string, string> = {
 	ripple: 'xrp',
 	cardano: 'ada',
 	'avalanche-2': 'avax',
-	polkadot: 'dot'
+	polkadot: 'dot',
 };
 
 onMount(() => {

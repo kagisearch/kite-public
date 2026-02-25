@@ -1,15 +1,26 @@
 <script lang="ts">
-import { IconBulb, IconCheck, IconDots, IconWorld } from '@tabler/icons-svelte';
+import { IconCheck, IconSearch, IconWorld } from '@tabler/icons-svelte';
 import { untrack } from 'svelte';
 import { flip } from 'svelte/animate';
 import { dndzone, TRIGGERS } from 'svelte-dnd-action';
 import { s } from '$lib/client/localization.svelte';
 import Select from '$lib/components/Select.svelte';
-import { categorySettings, type SinglePageMode } from '$lib/data/settings.svelte.js';
+import {
+	type CategoryHeaderPosition,
+	categorySettings,
+	displaySettings,
+	type SinglePageMode,
+	settings,
+} from '$lib/data/settings.svelte.js';
 import type { CategoryMetadata } from '$lib/services/categoryMetadataService';
+import { categoryMetadataStore } from '$lib/stores/categoryMetadata.svelte';
+import { experimental } from '$lib/stores/experimental.svelte.js';
 import type { Category } from '$lib/types';
 import { getCategoryDisplayName } from '$lib/utils/category';
-import { categoryMetadataStore } from '$lib/stores/categoryMetadata.svelte';
+import ContributeCategoryModal from './ContributeCategoryModal.svelte';
+
+// Contribute modal state
+let showContributeModal = $state(false);
 
 // Props
 interface Props {
@@ -32,8 +43,70 @@ let disabledItems = $state<Array<{ id: string; name: string }>>([]);
 // Category filtering
 let categoryFilter = $state('all');
 
+// Search state
+let searchQuery = $state('');
+
+// Quick-jump letter filter
+let letterFilter = $state<string | null>(null);
+
+// Track container height to prevent shrinking when filtering
+let disabledContainerRef = $state<HTMLElement | null>(null);
+let containerMinHeight = $state<number>(320); // Default min height
+
+// Capture natural height when showing all items (no filters)
+$effect(() => {
+	if (disabledContainerRef && categoryFilter === 'all' && !letterFilter && !searchQuery) {
+		// Measure after DOM updates
+		requestAnimationFrame(() => {
+			if (disabledContainerRef) {
+				const height = disabledContainerRef.scrollHeight;
+				if (height > containerMinHeight) {
+					containerMinHeight = height;
+				}
+			}
+		});
+	}
+});
+
+// Get all available letters from disabled items
+const availableLetters = $derived.by(() => {
+	const letters = new Set<string>();
+	disabledItems.forEach((item) => {
+		const displayName = getDisplayName(item);
+		const firstLetter = displayName.charAt(0).toUpperCase();
+		if (/[A-Z]/.test(firstLetter)) {
+			letters.add(firstLetter);
+		} else {
+			letters.add('#');
+		}
+	});
+	return Array.from(letters).sort();
+});
+
+// All possible letters for the quick-jump bar
+const allLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+
 // Single page mode
 let currentSinglePageMode = $state<string>(categorySettings.singlePageMode);
+
+// Category header position (mobile only)
+let currentCategoryHeaderPosition = $state(displaySettings.categoryHeaderPosition as string);
+
+// Sync category header position with store
+$effect(() => {
+	currentCategoryHeaderPosition = displaySettings.categoryHeaderPosition as string;
+});
+
+function handleCategoryHeaderPositionChange(position: string) {
+	displaySettings.categoryHeaderPosition = position as CategoryHeaderPosition;
+	settings.categoryHeaderPosition.save();
+	currentCategoryHeaderPosition = position;
+}
+
+// Toggle handler for horizontal swiping
+function toggleDisableCategorySwipe() {
+	experimental.toggleFeature('disableCategorySwipe');
+}
 
 // Single page mode options
 const singlePageModeOptions = $derived([
@@ -74,10 +147,10 @@ $effect(() => {
 
 // Filter options for the Select component
 const filterOptions = $derived([
-	{ value: 'all', label: s('settings.categories.types.all') || 'All types' },
+	{ value: 'all', label: s('settings.categories.types.all') || 'All' },
 	{
 		value: 'core',
-		label: s('settings.categories.types.core') || 'Core',
+		label: s('settings.categories.types.core') || 'Kagi Curated',
 		icon: IconCheck,
 		tooltip:
 			s('settings.categories.coreTooltip') ||
@@ -90,17 +163,6 @@ const filterOptions = $derived([
 		tooltip:
 			s('settings.categories.communityTooltip') ||
 			'Community-maintained feeds. May have fewer sources or perspectives.',
-	},
-	{ value: 'separator', label: '───────', disabled: true },
-	{
-		value: 'topic',
-		label: s('settings.categories.types.topic') || 'Topics',
-		icon: IconBulb,
-	},
-	{
-		value: 'other',
-		label: s('settings.categories.types.other') || 'Other',
-		icon: IconDots,
 	},
 ]);
 
@@ -118,9 +180,9 @@ $effect(() => {
 // Sync from store when not dragging
 $effect(() => {
 	// Explicitly track dependencies
-	categorySettings.enabled;
-	categorySettings.disabled;
-	categorySettings.temporaryCategory;
+	void categorySettings.enabled;
+	void categorySettings.disabled;
+	void categorySettings.temporaryCategory;
 
 	if (!isDragging) {
 		syncFromStore();
@@ -172,11 +234,11 @@ function syncFromStore() {
 		.sort((a, b) => getDisplayName(a).localeCompare(getDisplayName(b)));
 }
 
-// Get category type for filtering
-function getCategoryType(categoryId: string): string {
+// Get category type for filtering (core or community)
+function getCategoryType(categoryId: string): 'core' | 'community' {
 	// Skip shadow placeholder items created by the drag library
 	if (categoryId.startsWith('id:dnd-shadow-placeholder')) {
-		return 'other';
+		return 'community';
 	}
 
 	const metadata = categoryMetadataStore.findById(categoryId);
@@ -185,9 +247,9 @@ function getCategoryType(categoryId: string): string {
 		if (categoryMetadataStore.isLoaded) {
 			console.warn(`No metadata found for category: ${categoryId}`);
 		}
-		return 'other';
+		return 'community';
 	}
-	return metadata.categoryType;
+	return metadata.isCore ? 'core' : 'community';
 }
 
 // Check if category is core (maintained by Kagi)
@@ -206,34 +268,37 @@ function getDisplayName(category: Category | { id: string; name: string }): stri
 	return getCategoryDisplayName(category as Category, metadata);
 }
 
+// Check if category matches search query and letter filter
+function matchesSearch(category: { id: string; name: string }): boolean {
+	const displayName = getDisplayName(category);
+
+	// Check letter filter
+	if (letterFilter) {
+		const firstLetter = displayName.charAt(0).toUpperCase();
+		const categoryLetter = /[A-Z]/.test(firstLetter) ? firstLetter : '#';
+		if (categoryLetter !== letterFilter) return false;
+	}
+
+	// Check search query
+	if (!searchQuery.trim()) return true;
+	const query = searchQuery.toLowerCase().trim();
+	return displayName.toLowerCase().includes(query) || category.id.toLowerCase().includes(query);
+}
+
 // Count categories by type for filter labels
 function getCategoryCounts() {
 	const counts = {
 		all: disabledItems.length,
 		core: 0,
 		community: 0,
-		topic: 0,
-		other: 0,
 	};
 
 	disabledItems.forEach((item) => {
 		const isCore = isCoreCategory(item.id);
-		const type = getCategoryType(item.id);
-
-		// Count for core/community filter
 		if (isCore) {
 			counts.core++;
 		} else {
 			counts.community++;
-		}
-
-		// Count for type filters (topic or other)
-		// Only count topic and other (core type is handled above)
-		if (type === 'topic') {
-			counts.topic++;
-		} else if (type === 'other' || type !== 'core') {
-			// Anything that's not 'core' or 'topic' goes to 'other'
-			counts.other++;
 		}
 	});
 
@@ -246,11 +311,9 @@ const filterOptionsWithCounts = $derived.by(() => {
 	return filterOptions.map((option) => ({
 		...option,
 		label:
-			option.value === 'separator'
-				? option.label // Don't add count to separator
-				: option.value === 'all'
-					? `${s('settings.categories.allCategories')} (${counts.all})`
-					: `${option.label} (${(counts as any)[option.value] || 0})`,
+			option.value === 'all'
+				? `${s('settings.categories.allCategories') || 'All'} (${counts.all})`
+				: `${option.label} (${counts[option.value as keyof typeof counts] || 0})`,
 	}));
 });
 
@@ -398,6 +461,71 @@ function handleSinglePageModeChange(mode: string) {
     </p>
   </div>
 
+  <!-- Navigation Settings (mobile) -->
+  <div class="mb-6 space-y-4">
+    <!-- Mobile-only category header position setting -->
+    <div class="flex flex-col space-y-2 md:hidden">
+      <Select
+        bind:value={currentCategoryHeaderPosition}
+        options={[
+          {
+            value: "bottom",
+            label: s("settings.categoryHeaderPosition.bottom") || "Bottom",
+          },
+          {
+            value: "top",
+            label: s("settings.categoryHeaderPosition.top") || "Top",
+          },
+        ]}
+        label={s("settings.categoryHeaderPosition.label") ||
+          "Category Header Position"}
+        onChange={handleCategoryHeaderPositionChange}
+      />
+      <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+        {s("settings.categoryHeaderPosition.description") ||
+          "Choose where category tabs appear on mobile devices"}
+      </p>
+    </div>
+
+    <!-- Disable Category Swipe -->
+    <div class="flex items-center justify-between rounded-lg border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-800/50 md:hidden">
+      <div class="flex-1 pe-4">
+        <label
+          for="disable-category-swipe"
+          id="label-disable-swipe"
+          class="text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
+          {s("settings.experimental.disableCategorySwipe.label") ||
+            "Disable horizontal category swiping"}
+        </label>
+        <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+          {s("settings.experimental.disableCategorySwipe.description") ||
+            "When enabled, horizontal swiping to change categories on mobile devices will be disabled."}
+        </p>
+      </div>
+      <button
+        id="disable-category-swipe"
+        onclick={toggleDisableCategorySwipe}
+        type="button"
+        class="focus-visible-ring relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition"
+        class:bg-blue-600={experimental.disableCategorySwipe}
+        class:bg-gray-200={!experimental.disableCategorySwipe}
+        class:dark:bg-gray-600={!experimental.disableCategorySwipe}
+        role="switch"
+        aria-checked={experimental.disableCategorySwipe}
+        aria-labelledby="label-disable-swipe"
+      >
+        <span
+          class="inline-block h-4 w-4 transform rounded-full bg-white transition"
+          class:ltr:translate-x-6={experimental.disableCategorySwipe}
+          class:rtl:-translate-x-6={experimental.disableCategorySwipe}
+          class:ltr:translate-x-1={!experimental.disableCategorySwipe}
+          class:rtl:-translate-x-1={!experimental.disableCategorySwipe}
+        ></span>
+      </button>
+    </div>
+  </div>
+
   <div>
     <h4 class="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
       {s("settings.categories.enabled") || "Enabled Categories"}
@@ -426,7 +554,7 @@ function handleSinglePageModeChange(mode: string) {
         {@const isCore = isCoreCategory(category.id)}
         <div
           animate:flip={{ duration: flipDurationMs }}
-          class="group inline-flex items-center gap-1.5 rounded-md bg-blue-100 px-3 py-2 text-sm font-medium text-blue-800 dark:bg-blue-800 dark:text-blue-200
+          class="group inline-flex items-center gap-1.5 rounded-md bg-blue-100 px-3 py-2 text-sm font-medium text-blue-800 dark:bg-blue-800 dark:text-blue-200 focus-visible-ring
 						{draggedItemId === category.id ? 'opacity-50' : ''}
 						{enabledItems.length === 1
             ? 'cursor-not-allowed opacity-75'
@@ -479,28 +607,86 @@ function handleSinglePageModeChange(mode: string) {
   </div>
 
   <div>
-    <div class="flex items-center justify-between mb-3">
-      <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300">
-        {s("settings.categories.disabled") || "Disabled Categories"}
-      </h4>
-      <div class="w-48">
-        <Select
-          bind:value={categoryFilter}
-          options={filterOptionsWithCounts}
-          label={s("settings.categories.filterByType") || "Filter by type"}
-          placeholder={s("settings.categories.filterPlaceholder") || "All types"}
-          className="text-xs"
-          height="h-8"
-          onChange={(value: string) => {
-            categoryFilter = value;
-          }}
+    <div class="mb-3 space-y-3">
+      <div class="flex items-center justify-between">
+        <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300">
+          {s("settings.categories.disabled") || "Available Categories"}
+        </h4>
+        <div class="w-48">
+          <Select
+            bind:value={categoryFilter}
+            options={filterOptionsWithCounts}
+            label={s("settings.categories.filterByType") || "Filter"}
+            placeholder={s("settings.categories.filterPlaceholder") || "All"}
+            className="text-xs"
+            height="h-8"
+            onChange={(value: string) => {
+              categoryFilter = value;
+            }}
+          />
+        </div>
+      </div>
+      <!-- Search input -->
+      <div class="relative">
+        <IconSearch size={16} class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+        <input
+          type="text"
+          bind:value={searchQuery}
+          placeholder={s("settings.categories.searchPlaceholder") || "Search categories..."}
+          class="w-full pl-9 pr-8 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus-visible-ring"
         />
+        {#if searchQuery}
+          <button
+            type="button"
+            onclick={() => searchQuery = ''}
+            class="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 rounded focus-visible-ring"
+            aria-label={s("ui.clear") || "Clear search"}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        {/if}
+      </div>
+
+      <!-- Quick-jump letter bar -->
+      <div class="flex flex-wrap gap-0.5 justify-center">
+        <button
+          type="button"
+          onclick={() => letterFilter = null}
+          class="px-1.5 py-0.5 text-xs font-medium rounded transition-colors focus-visible-ring
+            {letterFilter === null
+              ? 'bg-blue-100 text-blue-700 dark:bg-blue-800 dark:text-blue-200'
+              : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-gray-200 dark:hover:bg-gray-700'}"
+          aria-pressed={letterFilter === null}
+        >
+          All
+        </button>
+        {#each allLetters as letter}
+          {@const hasItems = availableLetters.includes(letter)}
+          <button
+            type="button"
+            onclick={() => letterFilter = letterFilter === letter ? null : letter}
+            disabled={!hasItems}
+            class="size-6 text-xs font-medium rounded transition-colors focus-visible-ring
+              {letterFilter === letter
+                ? 'bg-blue-100 text-blue-700 dark:bg-blue-800 dark:text-blue-200'
+                : hasItems
+                  ? 'text-gray-600 hover:text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-gray-200 dark:hover:bg-gray-700'
+                  : 'text-gray-300 dark:text-gray-600 cursor-not-allowed'}"
+            aria-pressed={letterFilter === letter}
+          >
+            {letter}
+          </button>
+        {/each}
       </div>
     </div>
 
-    <!-- Always use dndzone, but hide filtered items with CSS -->
+    <!-- Always use dndzone, dynamic min-height to prevent shrinking when filtering -->
     <div
-      class="min-h-[40px] rounded-lg p-3 flex flex-wrap gap-2 border-2 border-dashed"
+      bind:this={disabledContainerRef}
+      class="rounded-lg p-3 flex flex-wrap gap-2 content-start border-2 border-dashed"
+      style="min-height: {containerMinHeight}px"
       class:border-gray-300={!isDragging}
       class:dark:border-gray-600={!isDragging}
       class:border-transparent={isDragging}
@@ -519,17 +705,15 @@ function handleSinglePageModeChange(mode: string) {
       onfinalize={handleDisabledFinalize}
     >
       {#each disabledItems as category, index (`disabled-${category.id}-${index}`)}
-        {@const categoryType = getCategoryType(category.id)}
         {@const isCore = isCoreCategory(category.id)}
-        {@const isFiltered =
-          categoryFilter !== "all" && categoryFilter !== "separator" &&
-          (categoryFilter === "core" ? !isCore :
-           categoryFilter === "community" ? isCore :
-           categoryType !== categoryFilter)}
+        {@const matchesTypeFilter =
+          categoryFilter === "all" ||
+          (categoryFilter === "core" ? isCore : !isCore)}
+        {@const isFiltered = !matchesTypeFilter || !matchesSearch(category)}
         {@const isBeingDragged = draggedItemId === category.id}
         <div
           animate:flip={{ duration: flipDurationMs }}
-          class="group inline-flex items-center gap-1.5 rounded-md bg-gray-100 px-3 py-2 text-sm font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300
+          class="group inline-flex items-center gap-1.5 rounded-md bg-gray-100 px-3 py-2 text-sm font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300 focus-visible-ring
 						{isBeingDragged
             ? 'opacity-50'
             : ''} cursor-grab active:cursor-grabbing hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
@@ -566,27 +750,33 @@ function handleSinglePageModeChange(mode: string) {
         >
           {s("settings.categories.noDisabled") || "All categories enabled"}
         </div>
-      {:else if categoryFilter !== "all" && disabledItems.every((item) => getCategoryType(item.id) !== categoryFilter)}
+      {:else if disabledItems.every((item) => !matchesSearch(item))}
         <div
           class="text-sm text-gray-500 dark:text-gray-400 pointer-events-none select-none"
         >
-          {s("settings.categories.noFiltered") ||
-            "No categories of this type are disabled"}
+          {#if searchQuery}
+            {s("settings.categories.noSearchResults") || "No categories match your search"}
+          {:else if letterFilter}
+            {s("settings.categories.noLetterResults") || `No categories starting with "${letterFilter}"`}
+          {:else}
+            {s("settings.categories.noFiltered") || "No categories match the current filter"}
+          {/if}
         </div>
       {/if}
     </div>
   </div>
 
   <div class="text-center">
-    <a
-      href="https://github.com/kagisearch/kite-public"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={s("settings.categories.contribute.aria") || "Suggest new categories on GitHub (opens in new tab)"}
+    <button
+      onclick={() => showContributeModal = true}
       class="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 focus-visible-ring rounded"
     >
-      {s("settings.categories.contribute") ||
-        "Suggest new categories on GitHub"}
-    </a>
+      {s("settings.categories.contribute") || "+ Contribute a category"}
+    </button>
   </div>
 </div>
+
+<ContributeCategoryModal
+  visible={showContributeModal}
+  onClose={() => showContributeModal = false}
+/>

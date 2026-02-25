@@ -1,8 +1,14 @@
 <script lang="ts">
+import {
+	IconBallFootball,
+	IconChevronDown,
+	IconChevronUp,
+	IconLoader2,
+	IconRefresh,
+} from '@tabler/icons-svelte';
 import { onMount } from 'svelte';
-import { IconChevronDown, IconChevronUp, IconLoader2, IconRefresh, IconBallFootball } from '@tabler/icons-svelte';
-import Tooltip from '$lib/components/Tooltip.svelte';
 import { s } from '$lib/client/localization.svelte';
+import Tooltip from '$lib/components/Tooltip.svelte';
 import { language } from '$lib/stores/language.svelte.js';
 
 interface Team {
@@ -106,7 +112,7 @@ function matchesTeam(teamName: string, polymarketName: string): boolean {
 	// Also check the reverse - if Polymarket name contains ESPN team name parts
 	// This handles cases like "49ers" matching "San Francisco 49ers"
 	const teamParts = lowerTeamName.split(' ');
-	return teamParts.some(part => {
+	return teamParts.some((part) => {
 		if (part.length < 3) return false; // Skip very short words
 		return lowerPolyName.includes(part);
 	});
@@ -116,7 +122,7 @@ function matchesTeam(teamName: string, polymarketName: string): boolean {
 function getOddsForGame(game: Game, odds: PolymarketData | null): GameOdds | undefined {
 	if (!odds?.odds) return undefined;
 
-	const match = odds.odds.find(o => {
+	const match = odds.odds.find((o) => {
 		const homeMatch = matchesTeam(game.homeTeam.name, o.homeTeam);
 		const awayMatch = matchesTeam(game.awayTeam.name, o.awayTeam);
 
@@ -124,7 +130,9 @@ function getOddsForGame(game: Game, odds: PolymarketData | null): GameOdds | und
 	});
 
 	if (match) {
-		console.log(`✓ Matched: ${game.awayTeam.name} @ ${game.homeTeam.name} ↔ ${match.awayTeam} @ ${match.homeTeam}`);
+		console.log(
+			`✓ Matched: ${game.awayTeam.name} @ ${game.homeTeam.name} ↔ ${match.awayTeam} @ ${match.homeTeam}`,
+		);
 	}
 
 	return match;
@@ -172,7 +180,7 @@ function formatGameTime(startTime: string): string {
 
 	const timeStr = date.toLocaleTimeString(language.currentLocale, {
 		hour: 'numeric',
-		minute: '2-digit'
+		minute: '2-digit',
 	});
 
 	if (diffDays === 0) {
@@ -183,24 +191,30 @@ function formatGameTime(startTime: string): string {
 		return date.toLocaleDateString(language.currentLocale, {
 			weekday: 'short',
 			hour: 'numeric',
-			minute: '2-digit'
+			minute: '2-digit',
 		});
 	} else {
 		return date.toLocaleDateString(language.currentLocale, {
 			month: 'short',
 			day: 'numeric',
 			hour: 'numeric',
-			minute: '2-digit'
+			minute: '2-digit',
 		});
 	}
 }
 
 function getGameStatus(game: Game): string {
 	if (game.state === 'in') {
-		const quarterText = game.quarter === 1 ? s('nfl.quarter1') :
-						   game.quarter === 2 ? s('nfl.quarter2') :
-						   game.quarter === 3 ? s('nfl.quarter3') :
-						   game.quarter === 4 ? s('nfl.quarter4') : s('nfl.overtime');
+		const quarterText =
+			game.quarter === 1
+				? s('nfl.quarter1')
+				: game.quarter === 2
+					? s('nfl.quarter2')
+					: game.quarter === 3
+						? s('nfl.quarter3')
+						: game.quarter === 4
+							? s('nfl.quarter4')
+							: s('nfl.overtime');
 		return quarterText;
 	}
 	if (game.state === 'pre') {
@@ -220,33 +234,38 @@ function isLive(game: Game): boolean {
 const summaryText = $derived.by(() => {
 	if (!data?.games || data.games.length === 0) return s('nfl.noGames');
 	const liveCount = data.games.filter(isLive).length;
-	const finalCount = data.games.filter(g => g.state === 'post').length;
-	const upcomingCount = data.games.filter(g => g.state === 'pre').length;
+	const finalCount = data.games.filter((g) => g.state === 'post').length;
+	const upcomingCount = data.games.filter((g) => g.state === 'pre').length;
 
 	if (liveCount > 0) {
-		const liveText = liveCount === 1
-			? s('nfl.gamesCount', { count: liveCount.toString() })
-			: s('nfl.gamesCountPlural', { count: liveCount.toString() });
-		const totalText = data.games.length === 1
-			? s('nfl.gamesCount', { count: data.games.length.toString() })
-			: s('nfl.gamesCountPlural', { count: data.games.length.toString() });
+		const liveText =
+			liveCount === 1
+				? s('nfl.gamesCount', { count: liveCount.toString() })
+				: s('nfl.gamesCountPlural', { count: liveCount.toString() });
+		const totalText =
+			data.games.length === 1
+				? s('nfl.gamesCount', { count: data.games.length.toString() })
+				: s('nfl.gamesCountPlural', { count: data.games.length.toString() });
 		return `${liveText} ${s('nfl.live')} • ${totalText} ${s('nfl.total')}`;
 	} else if (upcomingCount > 0 && finalCount === 0) {
 		return upcomingCount === 1
 			? s('nfl.gamesCount', { count: upcomingCount.toString() })
 			: s('nfl.gamesCountPlural', { count: upcomingCount.toString() });
 	} else if (finalCount > 0 && upcomingCount === 0) {
-		const completedText = finalCount === 1
-			? s('nfl.gamesCount', { count: finalCount.toString() })
-			: s('nfl.gamesCountPlural', { count: finalCount.toString() });
+		const completedText =
+			finalCount === 1
+				? s('nfl.gamesCount', { count: finalCount.toString() })
+				: s('nfl.gamesCountPlural', { count: finalCount.toString() });
 		return `${completedText} ${s('nfl.completed')}`;
 	} else {
-		const completedText = finalCount === 1
-			? s('nfl.gamesCount', { count: finalCount.toString() })
-			: s('nfl.gamesCountPlural', { count: finalCount.toString() });
-		const upcomingText = upcomingCount === 1
-			? s('nfl.gamesCount', { count: upcomingCount.toString() })
-			: s('nfl.gamesCountPlural', { count: upcomingCount.toString() });
+		const completedText =
+			finalCount === 1
+				? s('nfl.gamesCount', { count: finalCount.toString() })
+				: s('nfl.gamesCountPlural', { count: finalCount.toString() });
+		const upcomingText =
+			upcomingCount === 1
+				? s('nfl.gamesCount', { count: upcomingCount.toString() })
+				: s('nfl.gamesCountPlural', { count: upcomingCount.toString() });
 		return `${completedText} ${s('nfl.completed')} • ${upcomingText} ${s('nfl.upcoming')}`;
 	}
 });
@@ -275,8 +294,10 @@ onMount(() => {
 		<button
 			onclick={() => expanded = !expanded}
 			class="flex flex-1 items-center gap-2 text-left transition-colors hover:opacity-80"
+			aria-expanded={expanded}
+			aria-label={expanded ? s('nfl.collapse') || 'Collapse NFL scores' : s('nfl.expand') || 'Expand NFL scores'}
 		>
-			<IconBallFootball class="h-4 w-4 text-gray-600 dark:text-gray-400" />
+			<IconBallFootball class="size-4 text-gray-600 dark:text-gray-400" />
 			<span class="text-sm font-medium text-gray-900 dark:text-gray-100">{s('nfl.title')}</span>
 			<span class="text-xs text-gray-600 dark:text-gray-400">{summaryText}</span>
 			{#if expanded}

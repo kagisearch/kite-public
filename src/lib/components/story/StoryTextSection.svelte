@@ -18,7 +18,18 @@ interface Props {
 	section?: string; // Section identifier for context
 }
 
-let { title, content, articles = [], citationMapping, flashcardMode = false, selectedWords = new Set(), selectedPhrases = new Map(), shouldJiggle = false, onWordClick, section }: Props = $props();
+let {
+	title,
+	content,
+	articles = [],
+	citationMapping,
+	flashcardMode = false,
+	selectedWords = new Set(),
+	selectedPhrases = new Map(),
+	shouldJiggle = false,
+	onWordClick,
+	section,
+}: Props = $props();
 
 // Convert citations to numbered format if mapping is available
 const displayContent = $derived.by(() => {

@@ -20,7 +20,16 @@ interface Props {
 	onWordClick?: (word: string, section?: string) => void;
 }
 
-let { article, imagesPreloaded = false, showCaption = false, flashcardMode = false, selectedWords = new Set(), selectedPhrases = new Map(), shouldJiggle = false, onWordClick }: Props = $props();
+let {
+	article,
+	imagesPreloaded = false,
+	showCaption = false,
+	flashcardMode = false,
+	selectedWords = new Set(),
+	selectedPhrases = new Map(),
+	shouldJiggle = false,
+	onWordClick,
+}: Props = $props();
 
 // State for image loading
 let imageLoaded = $state(false);
@@ -30,7 +39,7 @@ let cacheVersion = $state(0); // Force reactivity
 
 // Get the image source reactively
 const imageSrc = $derived(() => {
-	cacheVersion; // Subscribe to cache changes
+	void cacheVersion; // Subscribe to cache changes
 	return getImageSrc(article.image);
 });
 

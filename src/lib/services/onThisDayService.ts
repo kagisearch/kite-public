@@ -24,9 +24,8 @@ class OnThisDayService {
 			const currentBatchId = batchService.getCurrentBatchId();
 
 			// Ensure English is always included as fallback (if not already present)
-			const langWithFallback = language === 'default' || language.includes('en')
-				? language
-				: `${language},en`;
+			const langWithFallback =
+				language === 'default' || language.includes('en') ? language : `${language},en`;
 
 			const endpoint = currentBatchId
 				? `${this.baseUrl}/batches/${currentBatchId}/onthisday?lang=${langWithFallback}`

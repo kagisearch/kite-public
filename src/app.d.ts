@@ -1,5 +1,6 @@
 /// <reference types="@sveltejs/kit" />
 import type { Writable } from 'svelte/store';
+import type { Story } from '$lib/types';
 
 // src/app.d.ts
 declare global {
@@ -54,12 +55,16 @@ declare global {
 		};
 		// Kite debug helpers
 		kiteDebug?: {
-			getCacheStats: () => { cachedCount: number; downloadingCount: number; cachedImages: string[] };
+			getCacheStats: () => {
+				cachedCount: number;
+				downloadingCount: number;
+				cachedImages: string[];
+			};
 			clearCache: () => void;
 			preloadCurrentCategory: () => Promise<void>;
-			getCurrentStories: () => any[];
+			getCurrentStories: () => Story[];
 			getCurrentCategory: () => string;
-			getAllCategoryStories: () => Record<string, any[]>;
+			getAllCategoryStories: () => Record<string, Story[]>;
 			getPreloadedCategories: () => string[];
 			getImageUrls: () => string[];
 			getAllImageUrls: () => string[];

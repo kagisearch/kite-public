@@ -1,7 +1,11 @@
 /**
  * Download content as a file in the browser
  */
-export function downloadFile(content: string, filename: string, mimeType: string = 'text/csv;charset=utf-8;') {
+export function downloadFile(
+	content: string,
+	filename: string,
+	mimeType: string = 'text/csv;charset=utf-8;',
+) {
 	const blob = new Blob([content], { type: mimeType });
 	const link = document.createElement('a');
 	const url = URL.createObjectURL(blob);

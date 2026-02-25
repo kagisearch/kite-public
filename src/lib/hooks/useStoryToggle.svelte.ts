@@ -1,8 +1,8 @@
 import { displaySettings } from '$lib/data/settings.svelte';
 import { kiteDB } from '$lib/db/dexie';
 import type { Story } from '$lib/types';
-import type { StoryWithCategory } from '$lib/utils/storyOrdering';
 import type { HistoryManagerInstance } from '$lib/types/components';
+import type { StoryWithCategory } from '$lib/utils/storyOrdering';
 
 interface StoryToggleOptions {
 	isSinglePageMode: boolean;
@@ -59,7 +59,10 @@ export function useStoryToggle(
 			// In single page mode, if the story is from a different category, switch to that category first
 			if (opts.isSinglePageMode && story && opts.handleCategoryChange) {
 				const storyWithCategory = story as StoryWithCategory;
-				if (storyWithCategory._categoryId && storyWithCategory._categoryId !== opts.currentCategory) {
+				if (
+					storyWithCategory._categoryId &&
+					storyWithCategory._categoryId !== opts.currentCategory
+				) {
 					opts.handleCategoryChange(storyWithCategory._categoryId, false);
 				}
 			}
@@ -79,12 +82,7 @@ export function useStoryToggle(
 				// Also save to IndexedDB (non-blocking)
 				const categoryUuid = opts.categoryMap[opts.currentCategory];
 				if (story.id) {
-					kiteDB.markStoryAsRead(
-						story.id,
-						story.title,
-						opts.currentBatchId,
-						categoryUuid,
-					);
+					kiteDB.markStoryAsRead(story.id, story.title, opts.currentBatchId, categoryUuid);
 				}
 
 				// Update URL with story index

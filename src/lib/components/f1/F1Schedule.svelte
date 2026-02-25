@@ -1,6 +1,12 @@
 <script lang="ts">
+import {
+	IconChevronDown,
+	IconChevronUp,
+	IconFlag,
+	IconLoader2,
+	IconRefresh,
+} from '@tabler/icons-svelte';
 import { onMount } from 'svelte';
-import { IconChevronDown, IconChevronUp, IconFlag, IconRefresh, IconLoader2 } from '@tabler/icons-svelte';
 import { s } from '$lib/client/localization.svelte';
 
 interface Race {
@@ -86,7 +92,7 @@ const summaryText = $derived.by(() => {
 // Get upcoming races for preview (next 3)
 const upcomingRaces = $derived.by(() => {
 	if (!data?.races) return [];
-	return data.races.filter(r => r.status === 'upcoming').slice(0, 3);
+	return data.races.filter((r) => r.status === 'upcoming').slice(0, 3);
 });
 
 onMount(() => {

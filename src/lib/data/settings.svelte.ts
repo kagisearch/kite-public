@@ -31,7 +31,8 @@ export type SupportedLanguage =
 	| 'ru'
 	| 'sv'
 	| 'th'
-	| 'tr';
+	| 'tr'
+	| 'et';
 
 // Type definitions for settings
 export type Theme = 'system' | 'light' | 'dark';
@@ -46,6 +47,7 @@ export type MapsProvider = 'auto' | 'kagi' | 'google' | 'openstreetmap' | 'apple
 export type SinglePageMode = 'disabled' | 'sequential' | 'mixed' | 'random';
 export type SinglePageMixOrder = 'sequential' | 'mixed' | 'random';
 export type LayoutWidth = 'normal' | 'wide' | 'full';
+export type ReadingLevel = 'very-simple' | 'simple' | 'normal';
 
 /**
  * All application settings centralized in one place
@@ -115,6 +117,23 @@ export const settings = {
 		'content',
 	),
 
+	// Global reading level setting (applies to all categories unless overridden)
+	globalReadingLevel: new Setting<ReadingLevel>(
+		'globalReadingLevel',
+		'normal',
+		'when_not_default',
+		'content',
+	),
+
+	// Per-category reading level settings (overrides global setting)
+	// Maps category ID to preferred reading level
+	categoryReadingLevels: new Setting<Record<string, ReadingLevel>>(
+		'categoryReadingLevels',
+		{},
+		'when_not_default',
+		'content',
+	),
+
 	// Section Visibility Settings
 	sections: new Setting<Record<string, boolean>>(
 		'sections',
@@ -154,8 +173,14 @@ export const settings = {
 		'preloading',
 	),
 
-	// UI State (not synced)
+	// UI State
 	introShown: new Setting<boolean>('introShown', false, 'when_true', 'ui_state'),
+	timeTravelBannerDismissed: new Setting<boolean>(
+		'timeTravelBannerDismissed',
+		false,
+		'when_true',
+		'ui_state',
+	),
 
 	// Sync Settings (local-only, not synced) - enabled by default
 	syncSettings: new Setting<boolean>('syncSettings', true, 'always', 'sync_local'),
@@ -179,13 +204,6 @@ function applyTheme(theme: Theme) {
 	const metaThemeColor = document.querySelector('meta[name="theme-color"]');
 	if (metaThemeColor) {
 		metaThemeColor.setAttribute('content', isDark ? '#1f2937' : '#ffffff');
-	}
-
-	// Update favicon based on browser's theme preference (not app theme)
-	const favicon = document.querySelector('link[rel="icon"]') as HTMLLinkElement;
-	if (favicon) {
-		const browserPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-		favicon.href = browserPrefersDark ? '/svg/kagi_news_icon_dark.svg' : '/svg/kagi_news_icon.svg';
 	}
 }
 
@@ -289,12 +307,6 @@ if (browser) {
 		// Re-apply theme if using system theme
 		if (settings.theme.currentValue === 'system') {
 			applyTheme('system');
-		}
-
-		// Always update favicon based on system preference (regardless of app theme)
-		const favicon = document.querySelector('link[rel="icon"]') as HTMLLinkElement;
-		if (favicon) {
-			favicon.href = e.matches ? '/svg/kagi_news_icon_dark.svg' : '/svg/kagi_news_icon.svg';
 		}
 	});
 }
@@ -450,7 +462,7 @@ const categoriesState = $state({
 	order: settings.categoryOrder.currentValue,
 	enabled: settings.enabledCategories.currentValue,
 	disabled: settings.disabledCategories.currentValue,
-	singlePageMode: settings.singlePageMode.currentValue || 'disabled' as SinglePageMode,
+	singlePageMode: settings.singlePageMode.currentValue || ('disabled' as SinglePageMode),
 });
 
 // Make categorySettings reactive by wrapping in $state
@@ -621,10 +633,30 @@ export const categorySettings = $state({
 		settings.disabledCategories.load();
 		settings.singlePageMode.load();
 
+		// Deduplicate arrays (keeps first occurrence) - duplicates can sneak in via sync
+		const dedupe = (arr: string[]) => [...new Set(arr)];
+		const order = dedupe(settings.categoryOrder.currentValue);
+		const enabled = dedupe(settings.enabledCategories.currentValue);
+		const disabled = dedupe(settings.disabledCategories.currentValue);
+
+		// If we found duplicates, save the clean versions back
+		if (order.length !== settings.categoryOrder.currentValue.length) {
+			settings.categoryOrder.currentValue = order;
+			settings.categoryOrder.save();
+		}
+		if (enabled.length !== settings.enabledCategories.currentValue.length) {
+			settings.enabledCategories.currentValue = enabled;
+			settings.enabledCategories.save();
+		}
+		if (disabled.length !== settings.disabledCategories.currentValue.length) {
+			settings.disabledCategories.currentValue = disabled;
+			settings.disabledCategories.save();
+		}
+
 		// Update the reactive state after loading
-		categoriesState.order = settings.categoryOrder.currentValue;
-		categoriesState.enabled = settings.enabledCategories.currentValue;
-		categoriesState.disabled = settings.disabledCategories.currentValue;
+		categoriesState.order = order;
+		categoriesState.enabled = enabled;
+		categoriesState.disabled = disabled;
 		categoriesState.singlePageMode = settings.singlePageMode.currentValue;
 	},
 	// Reload from localStorage (called after sync updates)
@@ -708,6 +740,96 @@ export const contentFilterSettings = $state({
 	init() {
 		if (!browser) return;
 		settings.contentFilter.load();
+	},
+});
+
+export const readingLevelSettings = $state({
+	/**
+	 * Get the global reading level
+	 */
+	get global(): ReadingLevel {
+		return settings.globalReadingLevel.currentValue;
+	},
+	/**
+	 * Set the global reading level
+	 */
+	set global(value: ReadingLevel) {
+		settings.globalReadingLevel.currentValue = value;
+		settings.globalReadingLevel.save();
+	},
+	/**
+	 * Get all category-specific reading levels (overrides only)
+	 */
+	get categoryOverrides(): Record<string, ReadingLevel> {
+		return settings.categoryReadingLevels.currentValue;
+	},
+	/**
+	 * Get the effective reading level for a specific category
+	 * Returns category-specific level if set, otherwise global level
+	 * Returns undefined only if both are 'normal' (no simplification needed)
+	 */
+	getForCategory(categoryId: string): ReadingLevel | undefined {
+		const categoryLevel = settings.categoryReadingLevels.currentValue[categoryId];
+		if (categoryLevel) {
+			return categoryLevel === 'normal' ? undefined : categoryLevel;
+		}
+		const globalLevel = settings.globalReadingLevel.currentValue;
+		return globalLevel === 'normal' ? undefined : globalLevel;
+	},
+	/**
+	 * Get the raw category-specific level (without global fallback)
+	 * Returns undefined if no category-specific override is set
+	 */
+	getCategoryOverride(categoryId: string): ReadingLevel | undefined {
+		return settings.categoryReadingLevels.currentValue[categoryId];
+	},
+	/**
+	 * Set the reading level for a specific category
+	 * Pass undefined or 'use-global' to remove the override and use global setting
+	 */
+	setForCategory(categoryId: string, level: ReadingLevel | 'use-global' | undefined) {
+		const current = { ...settings.categoryReadingLevels.currentValue };
+		if (level === undefined || level === 'use-global') {
+			// Remove the override - will use global setting
+			delete current[categoryId];
+		} else {
+			current[categoryId] = level;
+		}
+		settings.categoryReadingLevels.currentValue = current;
+		settings.categoryReadingLevels.save();
+	},
+	/**
+	 * Clear all category-specific overrides
+	 */
+	clearAllOverrides() {
+		settings.categoryReadingLevels.currentValue = {};
+		settings.categoryReadingLevels.save();
+	},
+	/**
+	 * Reset everything to defaults (global to normal, clear all overrides)
+	 */
+	resetAll() {
+		settings.globalReadingLevel.currentValue = 'normal';
+		settings.globalReadingLevel.save();
+		settings.categoryReadingLevels.currentValue = {};
+		settings.categoryReadingLevels.save();
+	},
+	/**
+	 * Check if a category has a specific override set
+	 */
+	hasOverride(categoryId: string): boolean {
+		return categoryId in settings.categoryReadingLevels.currentValue;
+	},
+	/**
+	 * Get all categories that have specific overrides
+	 */
+	getCategoriesWithOverrides(): string[] {
+		return Object.keys(settings.categoryReadingLevels.currentValue);
+	},
+	init() {
+		if (!browser) return;
+		settings.globalReadingLevel.load();
+		settings.categoryReadingLevels.load();
 	},
 });
 
@@ -822,14 +944,6 @@ export function loadAllSettings(context?: { isLoggedIn?: boolean }) {
 		// Update app theme if set to system
 		if (settings.theme.currentValue === 'system') {
 			applyTheme('system');
-		}
-
-		// Always update favicon based on browser preference
-		const favicon = document.querySelector('link[rel="icon"]') as HTMLLinkElement;
-		if (favicon) {
-			favicon.href = mediaQuery.matches
-				? '/svg/kagi_news_icon_dark.svg'
-				: '/svg/kagi_news_icon.svg';
 		}
 	});
 }

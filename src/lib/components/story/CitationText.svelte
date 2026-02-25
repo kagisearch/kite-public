@@ -29,17 +29,16 @@ let {
 	storyLocalizer = s, // Use regular localization if not provided
 }: Props = $props();
 
-// Parse text and format citations
-const parsedData = $derived.by(() => {
-	// Ensure text is a string
-	const textString = typeof text === 'string' ? text : String(text || '');
-
-	// Parse citations - text should already have numbered citations if citationMapping is provided
-	// Also handle [*] for common knowledge
+// Helper function to parse citations from a text string
+function parseCitationsFromText(textString: string): {
+	segments: ParsedTextSegment[];
+	citations: Citation[];
+	citedArticleIndices: number[];
+} {
 	const citationPattern = /\[(\d+|\*)\]/g;
 	const segments: ParsedTextSegment[] = [];
 	const citations: Citation[] = [];
-	const citedArticleIndices: number[] = []; // Track which articles are actually cited
+	const citedArticleIndices: number[] = [];
 	let lastIndex = 0;
 	let match: RegExpExecArray | null = citationPattern.exec(textString);
 
@@ -130,10 +129,49 @@ const parsedData = $derived.by(() => {
 		});
 	}
 
+	return { segments, citations, citedArticleIndices };
+}
+
+// Parse text into paragraphs, then parse citations within each paragraph
+const parsedData = $derived.by(() => {
+	// Ensure text is a string
+	let textString = typeof text === 'string' ? text : String(text || '');
+
+	// Handle both actual newlines and escaped \n sequences (from JSON)
+	textString = textString.replace(/\\n\\n/g, '\n\n').replace(/\\n/g, '\n');
+
+	// Split into paragraphs (by double newline)
+	const paragraphTexts = textString.split(/\n\n+/).filter((p) => p.trim());
+
+	// If only one paragraph or inline mode, parse as single block
+	if (paragraphTexts.length <= 1 || inline) {
+		const result = parseCitationsFromText(textString.replace(/\n\n+/g, ' '));
+		return {
+			paragraphs: [{ segments: result.segments }],
+			formattedSegments: result.segments, // Keep for backwards compatibility
+			citations: result.citations,
+			citedArticleIndices: result.citedArticleIndices,
+		};
+	}
+
+	// Parse each paragraph separately
+	const allCitations: Citation[] = [];
+	const allCitedIndices: number[] = [];
+	const paragraphs = paragraphTexts.map((paragraphText) => {
+		const result = parseCitationsFromText(paragraphText);
+		allCitations.push(...result.citations);
+		allCitedIndices.push(...result.citedArticleIndices);
+		return { segments: result.segments };
+	});
+
+	// Flatten segments for backwards compatibility
+	const allSegments = paragraphs.flatMap((p) => p.segments);
+
 	return {
-		formattedSegments: segments,
-		citations,
-		citedArticleIndices,
+		paragraphs,
+		formattedSegments: allSegments,
+		citations: allCitations,
+		citedArticleIndices: allCitedIndices,
 	};
 });
 
@@ -146,6 +184,141 @@ const uniqueDomains = $derived.by(() => {
 		}
 	});
 	return Array.from(domains);
+});
+
+// Threshold for collapsing citations (more than this will be collapsed)
+const CITATION_COLLAPSE_THRESHOLD = 3;
+
+// Group consecutive citations for collapsed display
+interface CitationGroup {
+	type: 'single' | 'group';
+	citations: Citation[];
+	numbers: number[];
+	displayText: string;
+}
+
+function groupConsecutiveCitations(
+	segments: ParsedTextSegment[],
+): (ParsedTextSegment | { type: 'citation-group'; group: CitationGroup })[] {
+	const result: (ParsedTextSegment | { type: 'citation-group'; group: CitationGroup })[] = [];
+	let currentCitationRun: ParsedTextSegment[] = [];
+
+	const flushCitationRun = () => {
+		if (currentCitationRun.length === 0) return;
+
+		if (currentCitationRun.length <= CITATION_COLLAPSE_THRESHOLD) {
+			// Keep individual citations
+			result.push(...currentCitationRun);
+		} else {
+			// Collapse into a group
+			const citations = currentCitationRun
+				.map((seg) => seg.citation)
+				.filter((c): c is Citation => c !== undefined);
+			const numbers = citations
+				.map((c) => c.number)
+				.filter((n): n is number => n !== undefined && n !== -1);
+
+			// Format the display text using range notation where possible
+			const displayText = formatCitationRange(numbers);
+
+			result.push({
+				type: 'citation-group',
+				group: {
+					type: 'group',
+					citations,
+					numbers,
+					displayText,
+				},
+			});
+		}
+		currentCitationRun = [];
+	};
+
+	for (const segment of segments) {
+		if (segment.type === 'citation') {
+			currentCitationRun.push(segment);
+		} else {
+			// Check if this is just whitespace between citations
+			if (
+				segment.type === 'text' &&
+				/^\s*$/.test(segment.content) &&
+				currentCitationRun.length > 0
+			) {
+				// Keep accumulating - whitespace between citations shouldn't break the run
+				currentCitationRun.push(segment);
+			} else {
+				flushCitationRun();
+				result.push(segment);
+			}
+		}
+	}
+	flushCitationRun();
+
+	return result;
+}
+
+// Format citation numbers as a compact range string
+// e.g., [1,2,3,4,5] -> "[1-5]", [1,3,4,5] -> "[1,3-5]", [1,3,5,7] -> "[1,3,5,7]"
+function formatCitationRange(numbers: number[]): string {
+	if (numbers.length === 0) return '';
+	if (numbers.length === 1) return `[${numbers[0]}]`;
+
+	// Sort numbers
+	const sorted = [...numbers].sort((a, b) => a - b);
+
+	// Find consecutive ranges
+	const ranges: (number | [number, number])[] = [];
+	let rangeStart = sorted[0];
+	let rangeEnd = sorted[0];
+
+	for (let i = 1; i < sorted.length; i++) {
+		if (sorted[i] === rangeEnd + 1) {
+			// Extend current range
+			rangeEnd = sorted[i];
+		} else {
+			// Push current range and start new one
+			if (rangeStart === rangeEnd) {
+				ranges.push(rangeStart);
+			} else {
+				ranges.push([rangeStart, rangeEnd]);
+			}
+			rangeStart = sorted[i];
+			rangeEnd = sorted[i];
+		}
+	}
+	// Push final range
+	if (rangeStart === rangeEnd) {
+		ranges.push(rangeStart);
+	} else {
+		ranges.push([rangeStart, rangeEnd]);
+	}
+
+	// Format as string
+	const parts = ranges.map((r) => {
+		if (typeof r === 'number') {
+			return `${r}`;
+		} else {
+			const [start, end] = r;
+			// Use hyphen for ranges of 3+, comma for just 2
+			if (end - start >= 2) {
+				return `${start}-${end}`;
+			} else {
+				return `${start},${end}`;
+			}
+		}
+	});
+
+	return `[${parts.join(',')}]`;
+}
+
+// Group segments for display
+const groupedSegments = $derived.by(() => {
+	return {
+		paragraphs: parsedData.paragraphs.map((p) => ({
+			segments: groupConsecutiveCitations(p.segments),
+		})),
+		formattedSegments: groupConsecutiveCitations(parsedData.formattedSegments),
+	};
 });
 
 // State for showing citation sources
@@ -193,7 +366,7 @@ const citedArticles = $derived.by(() => {
   <div class="citation-content {inline ? 'inline' : 'block'} {inline ? 'text-base' : ''}">
     {#if inline}
       <!-- Inline rendering for list items -->
-      {#each parsedData.formattedSegments as segment}
+      {#each groupedSegments.formattedSegments as segment}
         {#if segment.type === "text"}
           {segment.content}
         {:else if segment.type === "citation"}
@@ -244,65 +417,135 @@ const citedArticles = $derived.by(() => {
                 ? "Common knowledge citation"
                 : `Citation ${segment.citation?.number} from ${segment.citation?.domain}`}</span><span aria-hidden="true">{segment.content}</span></button>
           {/if}
+        {:else if segment.type === "citation-group"}
+          <!-- Collapsed citation group -->
+          <!-- svelte-ignore a11y_mouse_events_have_key_events -->
+          <button
+            type="button"
+            class="citation-number citation-group-badge text-gray-600 dark:text-gray-400 text-xs align-super cursor-help font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded px-0.5 transition-colors border-0 bg-transparent p-0"
+            title={`${segment.group.numbers.length} sources: ${segment.group.numbers.join(', ')}`}
+            onmouseover={(e) =>
+              tooltipReference?.handleCitationInteraction(
+                e,
+                uniqueDomains,
+                segment.group.numbers,
+              )}
+            onmouseleave={(e) => tooltipReference?.handleCitationLeave(e)}
+            onclick={(e) =>
+              tooltipReference?.handleCitationInteraction(
+                e,
+                uniqueDomains,
+                segment.group.numbers,
+              )}
+            onkeydown={(e) =>
+              (e.key === "Enter" || e.key === " ") &&
+              tooltipReference?.handleCitationInteraction(
+                e,
+                uniqueDomains,
+                segment.group.numbers,
+              )}
+            ontouchstart={(e) => {
+              e.stopPropagation();
+              if (tooltipReference && "recordTouch" in tooltipReference) {
+                (tooltipReference as any).recordTouch();
+              }
+            }}
+          ><span class="sr-only">{segment.group.numbers.length} citations from multiple sources</span><span aria-hidden="true">{segment.group.displayText}</span></button>
         {/if}
       {/each}
     {:else}
       <!-- Block rendering for paragraphs -->
-      <p class="mb-2 text-base" dir="auto">
-        {#each parsedData.formattedSegments as segment}
-          {#if segment.type === "text"}
-            {segment.content}
-          {:else if segment.type === "citation"}
-            {#if showNumbers}
-              <span
-                class="citation-number text-gray-600 dark:text-gray-400 text-xs align-super cursor-help"
-                title="Source: {segment.citation?.domain}"
-              >
-                {segment.content}
-              </span>
-            {:else}
-              <!-- Show as clean numbered citation -->
+      {#each groupedSegments.paragraphs as paragraph, paragraphIndex}
+        <p class="text-base {paragraphIndex < groupedSegments.paragraphs.length - 1 ? 'mb-4' : 'mb-2'}" dir="auto">
+          {#each paragraph.segments as segment}
+            {#if segment.type === "text"}
+              {segment.content}
+            {:else if segment.type === "citation"}
+              {#if showNumbers}
+                <span
+                  class="citation-number text-gray-600 dark:text-gray-400 text-xs align-super cursor-help"
+                  title="Source: {segment.citation?.domain}"
+                >
+                  {segment.content}
+                </span>
+              {:else}
+                <!-- Show as clean numbered citation -->
+                <!-- svelte-ignore a11y_mouse_events_have_key_events -->
+                <button
+                  type="button"
+                  class="citation-number text-gray-600 dark:text-gray-400 text-xs align-super cursor-help font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded px-0.5 transition-colors border-0 bg-transparent p-0"
+                  title={segment.citation?.domain === "common"
+                    ? "Common knowledge"
+                    : `Source ${segment.citation?.number}: ${segment.citation?.domain}`}
+                  onmouseover={(e) =>
+                    tooltipReference?.handleCitationInteraction(
+                      e,
+                      uniqueDomains,
+                      segment.citation?.number,
+                    )}
+                  onmouseleave={(e) => tooltipReference?.handleCitationLeave(e)}
+                  onclick={(e) =>
+                    tooltipReference?.handleCitationInteraction(
+                      e,
+                      uniqueDomains,
+                      segment.citation?.number,
+                    )}
+                  onkeydown={(e) =>
+                    (e.key === "Enter" || e.key === " ") &&
+                    tooltipReference?.handleCitationInteraction(
+                      e,
+                      uniqueDomains,
+                      segment.citation?.number,
+                    )}
+                  ontouchstart={(e) => {
+                    e.stopPropagation();
+                    // Record touch time to ignore subsequent mouseover
+                    if (tooltipReference && "recordTouch" in tooltipReference) {
+                      (tooltipReference as any).recordTouch();
+                    }
+                  }}
+                ><span class="sr-only">{segment.citation?.domain === "common"
+                    ? "Common knowledge citation"
+                    : `Citation ${segment.citation?.number} from ${segment.citation?.domain}`}</span><span aria-hidden="true">{segment.content}</span></button>
+              {/if}
+            {:else if segment.type === "citation-group"}
+              <!-- Collapsed citation group -->
               <!-- svelte-ignore a11y_mouse_events_have_key_events -->
               <button
                 type="button"
-                class="citation-number text-gray-600 dark:text-gray-400 text-xs align-super cursor-help font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded px-0.5 transition-colors border-0 bg-transparent p-0"
-                title={segment.citation?.domain === "common"
-                  ? "Common knowledge"
-                  : `Source ${segment.citation?.number}: ${segment.citation?.domain}`}
+                class="citation-number citation-group-badge text-gray-600 dark:text-gray-400 text-xs align-super cursor-help font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded px-0.5 transition-colors border-0 bg-transparent p-0"
+                title={`${segment.group.numbers.length} sources: ${segment.group.numbers.join(', ')}`}
                 onmouseover={(e) =>
                   tooltipReference?.handleCitationInteraction(
                     e,
                     uniqueDomains,
-                    segment.citation?.number,
+                    segment.group.numbers,
                   )}
                 onmouseleave={(e) => tooltipReference?.handleCitationLeave(e)}
                 onclick={(e) =>
                   tooltipReference?.handleCitationInteraction(
                     e,
                     uniqueDomains,
-                    segment.citation?.number,
+                    segment.group.numbers,
                   )}
                 onkeydown={(e) =>
                   (e.key === "Enter" || e.key === " ") &&
                   tooltipReference?.handleCitationInteraction(
                     e,
                     uniqueDomains,
-                    segment.citation?.number,
+                    segment.group.numbers,
                   )}
                 ontouchstart={(e) => {
                   e.stopPropagation();
-                  // Record touch time to ignore subsequent mouseover
                   if (tooltipReference && "recordTouch" in tooltipReference) {
                     (tooltipReference as any).recordTouch();
                   }
                 }}
-              ><span class="sr-only">{segment.citation?.domain === "common"
-                  ? "Common knowledge citation"
-                  : `Citation ${segment.citation?.number} from ${segment.citation?.domain}`}</span><span aria-hidden="true">{segment.content}</span></button>
+              ><span class="sr-only">{segment.group.numbers.length} citations from multiple sources</span><span aria-hidden="true">{segment.group.displayText}</span></button>
             {/if}
-          {/if}
-        {/each}
-      </p>
+          {/each}
+        </p>
+      {/each}
     {/if}
   </div>
 
@@ -338,14 +581,14 @@ const citedArticles = $derived.by(() => {
       <div class="flex items-center -space-x-3">
         {#each uniqueDomains.slice(0, 5) as domain, index}
           <div
-            class="favicon-wrapper relative w-6 h-6 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 flex items-center justify-center hover:z-10 transition-all hover:scale-110"
+            class="favicon-wrapper relative size-6 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 flex items-center justify-center hover:z-10 transition-all hover:scale-110"
             style="z-index: {5 - index}"
             title={domain}
           >
             <FaviconImage
               {domain}
               alt="{domain} favicon"
-              class="w-5 h-5 rounded-full"
+              class="size-5 rounded-sm"
               loading="lazy"
             />
           </div>
@@ -377,7 +620,7 @@ const citedArticles = $derived.by(() => {
               <FaviconImage
                 domain={citation.domain}
                 alt="{citation.domain} favicon"
-                class="inline-block w-3 h-3 ms-1 rounded-full"
+                class="inline-block size-3 ms-1 rounded-sm"
                 loading="lazy"
               />
             {/if}
@@ -425,7 +668,6 @@ const citedArticles = $derived.by(() => {
     font-weight: 500;
     margin: 0;
     margin-right: -2px;
-    letter-spacing: -0.5px;
   }
 
   .favicon-wrapper {

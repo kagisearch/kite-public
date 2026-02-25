@@ -26,7 +26,17 @@ interface Props {
 	onWordClick?: (word: string, section?: string) => void;
 }
 
-let { perspectives = [], articles = [], citationMapping, storyLocalizer = s, flashcardMode = false, selectedWords = new Set(), selectedPhrases = new Map(), shouldJiggle = false, onWordClick }: Props = $props();
+let {
+	perspectives = [],
+	articles = [],
+	citationMapping,
+	storyLocalizer = s,
+	flashcardMode = false,
+	selectedWords = new Set(),
+	selectedPhrases = new Map(),
+	shouldJiggle = false,
+	onWordClick,
+}: Props = $props();
 
 // Convert citations in perspectives if mapping is available
 const displayPerspectives = $derived.by(() => {
@@ -80,7 +90,7 @@ function scrollBy(direction: 'left' | 'right') {
 	const scrollAmount = cardWidth + gap;
 	scrollContainer.scrollBy({
 		left: direction === 'left' ? -scrollAmount : scrollAmount,
-		behavior: 'smooth'
+		behavior: 'smooth',
 	});
 }
 

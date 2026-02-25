@@ -29,7 +29,8 @@ export type SupportedLanguage =
 	| 'zh-Hant'
 	| 'sv'
 	| 'th'
-	| 'tr';
+	| 'tr'
+	| 'et';
 
 interface LocaleEntry {
 	text: string;

@@ -153,15 +153,15 @@ async function handleShare() {
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify(shortenPayload),
 				})
-					.then(response => {
+					.then((response) => {
 						if (!response.ok) throw new Error('Failed to create short URL');
 						return response.json();
 					})
-					.then(data => {
+					.then((data) => {
 						if (!data.shortUrl) throw new Error('No short URL returned');
 						return data.shortUrl;
 					})
-					.catch(err => {
+					.catch((err) => {
 						console.error('Failed to create share URL:', err);
 						throw err;
 					});
@@ -169,7 +169,7 @@ async function handleShare() {
 				// Use ClipboardItem to pass the Promise directly to clipboard API
 				// This preserves user gesture context in Safari
 				const item = new ClipboardItem({
-					'text/plain': urlPromise.then(url => new Blob([url], { type: 'text/plain' }))
+					'text/plain': urlPromise.then((url) => new Blob([url], { type: 'text/plain' })),
 				});
 
 				await navigator.clipboard.write([item]);
@@ -259,7 +259,7 @@ async function handleShare() {
   <Portal>
     <div
       bind:this={floating.elements.floating}
-      class="absolute top-0 left-0 z-[2000] flex items-center gap-1.5 rounded-md bg-green-600 px-3 py-2 text-sm font-medium text-white shadow-lg transition-opacity duration-200 dark:bg-green-700 {floating.isPositioned
+      class="absolute top-0 left-0 z-tooltip flex items-center gap-1.5 rounded-md bg-green-600 px-3 py-2 text-sm font-medium text-white shadow-lg transition-opacity duration-200 dark:bg-green-700 {floating.isPositioned
         ? 'opacity-100'
         : 'opacity-0 invisible'}"
       style={floating.floatingStyles}

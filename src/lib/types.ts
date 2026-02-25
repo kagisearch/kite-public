@@ -23,6 +23,7 @@ export interface Perspective {
 
 export interface TimelineEvent {
 	date: string;
+	date_iso?: string;
 	content: string;
 }
 
@@ -270,4 +271,16 @@ export interface BatchStoriesResponse {
 	totalStories: number;
 	domains: Domain[];
 	readCount: number;
+}
+
+export interface ContributionItem {
+	id: string;
+	category: string;
+	isNew: boolean;
+	feedCount: number;
+	prNumber: number;
+	prUrl: string;
+	createdAt: Date;
+	pipelineStatus: 'submitted' | 'merged' | 'live' | 'declined';
+	declineReason?: string | null;
 }

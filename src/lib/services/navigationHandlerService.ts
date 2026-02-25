@@ -104,7 +104,7 @@ export class NavigationHandlerService {
 					paramsCategoryId: params.categoryId,
 					normalizedTarget,
 					normalizedCurrent,
-					needsChange: normalizedTarget !== normalizedCurrent
+					needsChange: normalizedTarget !== normalizedCurrent,
 				});
 
 				if (normalizedTarget !== normalizedCurrent) {
@@ -136,7 +136,14 @@ export class NavigationHandlerService {
 				// New format: find story by clusterId
 				// Use the effective category (the one we just switched to, if any)
 				const categoryStories = state.allCategoryStories[effectiveCategoryId] || state.stories;
-				console.log('🔍 [NavigationHandler] Searching for clusterId:', params.clusterId, 'in category:', effectiveCategoryId, 'stories count:', categoryStories.length);
+				console.log(
+					'🔍 [NavigationHandler] Searching for clusterId:',
+					params.clusterId,
+					'in category:',
+					effectiveCategoryId,
+					'stories count:',
+					categoryStories.length,
+				);
 
 				targetStoryIndex = categoryStories.findIndex(
 					(story) => story.cluster_number === params.clusterId,
@@ -163,7 +170,10 @@ export class NavigationHandlerService {
 						const story = categoryStories[targetStoryIndex];
 						// Use the same identifier logic as StoryList: id (UUID) first, then cluster_number, then title
 						const storyId = story.id || story.cluster_number?.toString() || story.title;
-						console.log('🔍 [NavigationHandler] Setting expandedStories:', { storyId, storyTitle: story.title });
+						console.log('🔍 [NavigationHandler] Setting expandedStories:', {
+							storyId,
+							storyTitle: story.title,
+						});
 						updates.expandedStories = { [storyId]: true };
 
 						// Check if we need to override story count limit

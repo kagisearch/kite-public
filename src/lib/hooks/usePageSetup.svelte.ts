@@ -1,18 +1,18 @@
 import { onMount } from 'svelte';
 import { browser } from '$app/environment';
 import { preloadAllLocales } from '$lib/client/storyLocalization.svelte';
-import { languageSettings, displaySettings, settingsModalState } from '$lib/data/settings.svelte';
-import { UrlNavigationService } from '$lib/services/urlNavigationService';
-import { dataReloadService } from '$lib/services/dataService';
+import { displaySettings, languageSettings, settingsModalState } from '$lib/data/settings.svelte';
+import { kiteDB } from '$lib/db/dexie';
 import { batchNotificationService } from '$lib/services/batchNotificationService';
+import { dataReloadService } from '$lib/services/dataService';
+import { type NavigationParams, UrlNavigationService } from '$lib/services/urlNavigationService';
+import { categoryMetadataStore } from '$lib/stores/categoryMetadata.svelte';
 import { timeTravel } from '$lib/stores/timeTravel.svelte';
 import { timeTravelBatch } from '$lib/stores/timeTravelBatch.svelte';
 import { toastStore } from '$lib/stores/toast.svelte';
-import { kiteDB } from '$lib/db/dexie';
-import { categoryMetadataStore } from '$lib/stores/categoryMetadata.svelte';
 
 interface PageSetupOptions {
-	parseInitialUrl: () => any;
+	parseInitialUrl: () => NavigationParams;
 	s: (key: string) => string;
 	setIsLoadingCategory: (value: boolean) => void;
 	setIsSharedArticleView: (value: boolean) => void;

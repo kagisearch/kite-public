@@ -32,4 +32,5 @@ export const SUPPORTED_LANGUAGES: SupportedLanguage[] = [
 	{ code: 'sv', name: 'Svenska (Swedish)' },
 	{ code: 'th', name: 'ไทย (Thai)' },
 	{ code: 'tr', name: 'Türkçe (Turkish)' },
+	{ code: 'et', name: 'Eesti (Estonian)' },
 ];

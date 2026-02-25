@@ -1,12 +1,16 @@
 <script lang="ts">
+import { IconClock, IconInfoCircle } from '@tabler/icons-svelte';
 import { s } from '$lib/client/localization.svelte';
 import { categorySettings, displaySettings } from '$lib/data/settings.svelte.js';
 import { kiteDB } from '$lib/db/dexie';
-import { keyboardNavigation } from '$lib/stores/keyboardNavigation.svelte';
 import { contentFilter } from '$lib/stores/contentFilter.svelte.js';
+import { categoryMetadataStore } from '$lib/stores/categoryMetadata.svelte';
+import { keyboardNavigation } from '$lib/stores/keyboardNavigation.svelte';
+import { timeTravelBatch } from '$lib/stores/timeTravelBatch.svelte';
 import type { Story } from '$lib/types';
 import { type FilteredStory, filterStories } from '$lib/utils/contentFilter';
 import type { StoryWithCategory } from '$lib/utils/storyOrdering';
+import ClusteringExplainerModal from './ClusteringExplainerModal.svelte';
 import StoryCard from './story/StoryCard.svelte';
 
 // Props
@@ -56,6 +60,15 @@ let {
 	skipStoryCountLimit = false,
 }: Props = $props();
 
+// Modal state
+let showClusteringModal = $state(false);
+
+// Whether the current category is community (not core)
+const isCommunityCategory = $derived.by(() => {
+	const metadata = categoryMetadataStore.findById(currentCategory);
+	return metadata ? !metadata.isCore : false;
+});
+
 // Handle story toggle
 function handleStoryToggle(story: Story) {
 	// Use UUID as primary identifier for uniqueness across categories
@@ -92,20 +105,11 @@ async function handleReadToggle(story: Story) {
 	// Persist to database in background
 	if (isNowRead) {
 		if (story.id) {
-			await kiteDB.markStoryAsRead(
-				story.id,
-				story.title,
-				batchId,
-				categoryUuid,
-			);
+			await kiteDB.markStoryAsRead(story.id, story.title, batchId, categoryUuid);
 		}
 	} else {
 		if (story.id) {
-			await kiteDB.unmarkStoryAsRead(
-				story.id,
-				batchId,
-				categoryUuid,
-			);
+			await kiteDB.unmarkStoryAsRead(story.id, batchId, categoryUuid);
 		}
 	}
 
@@ -174,14 +178,24 @@ const { displayedStories, filteredCount, hiddenStories } = $derived.by(() => {
 			storiesCount: stories.length,
 			expandedStories,
 			firstStory: stories[0]?.title,
-			firstCluster: stories[0]?.cluster_number
+			firstCluster: stories[0]?.cluster_number,
 		});
 
 		// First try to find by UUID from expandedStories (most reliable)
 		const expandedStoryId = Object.keys(expandedStories).find((id) => expandedStories[id]);
 		if (expandedStoryId) {
-			sharedStory = stories.find(s => s.id === expandedStoryId || s.cluster_number?.toString() === expandedStoryId || s.title === expandedStoryId);
-			console.log('🔍 [StoryList] Found by expandedStoryId:', expandedStoryId, '->', sharedStory?.title);
+			sharedStory = stories.find(
+				(s) =>
+					s.id === expandedStoryId ||
+					s.cluster_number?.toString() === expandedStoryId ||
+					s.title === expandedStoryId,
+			);
+			console.log(
+				'🔍 [StoryList] Found by expandedStoryId:',
+				expandedStoryId,
+				'->',
+				sharedStory?.title,
+			);
 		}
 		// Fall back to index (legacy format)
 		else if (sharedArticleIndex !== null && stories[sharedArticleIndex]) {
@@ -190,7 +204,7 @@ const { displayedStories, filteredCount, hiddenStories } = $derived.by(() => {
 		}
 		// Fall back to clusterId (old format, unreliable in single page mode)
 		else if (sharedClusterId !== null) {
-			sharedStory = stories.find(s => s.cluster_number === sharedClusterId);
+			sharedStory = stories.find((s) => s.cluster_number === sharedClusterId);
 			console.log('🔍 [StoryList] Found by clusterId:', sharedClusterId, '->', sharedStory?.title);
 		}
 
@@ -199,7 +213,7 @@ const { displayedStories, filteredCount, hiddenStories } = $derived.by(() => {
 			return {
 				displayedStories: [sharedStory] as FilteredStory[],
 				filteredCount: 0,
-				hiddenStories: stories.filter(s => s !== sharedStory),
+				hiddenStories: stories.filter((s) => s !== sharedStory),
 			};
 		} else {
 			console.warn('❌ [StoryList] Shared story not found!');
@@ -297,9 +311,39 @@ const allStoriesExpanded = $derived(
           </button>
         </div>
       {:else}
-        <p>
-          {s("stories.noStories") || "No stories available for this category."}
-        </p>
+        {#if timeTravelBatch.isHistoricalBatch}
+          <p>
+            {s("stories.noStoriesHistorical") || "This category had no news on this date."}
+          </p>
+        {:else if isCommunityCategory}
+          <div class="max-w-md mx-auto">
+            <p class="text-base font-medium mb-2">
+              {s("stories.noStoriesCommunity") || "No stories for this community category today."}
+            </p>
+            <p class="text-sm mb-4">
+              {s("stories.noStoriesCommunityDescription") || "Not enough shared news between feeds to form stories. This happens sometimes with community categories."}
+            </p>
+            <button
+              onclick={() => showClusteringModal = true}
+              class="px-4 py-2 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 inline-flex items-center gap-1.5"
+            >
+              <IconInfoCircle size={16} />
+              {s("stories.noStoriesCommunityLearnMore") || "Learn how it works"}
+            </button>
+          </div>
+        {:else}
+          <div class="max-w-md mx-auto">
+            <div class="inline-flex items-center gap-2 text-gray-400 dark:text-gray-500 mb-3">
+              <IconClock size={20} />
+              <span class="text-sm font-medium">
+                {s("stories.noStoriesCoreUpdates") || "Temporarily unavailable"}
+              </span>
+            </div>
+            <p class="text-base">
+              {s("stories.noStoriesCore") || "Stories for this category should be available soon. Check back in a bit."}
+            </p>
+          </div>
+        {/if}
       {/if}
     </div>
   {:else}
@@ -316,7 +360,7 @@ const allStoriesExpanded = $derived(
 
       <!-- Category Header for Single Page Mode -->
       {#if showCategoryHeader}
-        <div class="mb-4 mt-8 first:mt-0">
+        <div class="mb-4 mt-8 first:mt-0 category-section-header" data-category-id={categoryId}>
           <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100 border-b-2 border-gray-300 dark:border-gray-600 pb-2">
             {categoryName}
           </h2>
@@ -399,3 +443,8 @@ const allStoriesExpanded = $derived(
     {/if}
   {/if}
 </div>
+
+<ClusteringExplainerModal
+  visible={showClusteringModal}
+  onClose={() => showClusteringModal = false}
+/>

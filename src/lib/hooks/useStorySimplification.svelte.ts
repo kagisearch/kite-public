@@ -1,29 +1,47 @@
-import { type ReadingLevel } from '$lib/services/translateApi';
+import type { ReadingLevel, SimplifiedStory } from '$lib/services/translateApi';
 
 export interface SimplificationState {
-	simplified: any | null;
+	simplified: SimplifiedStory | null;
 	selectedLevel: ReadingLevel | null;
 	isLoading: boolean;
+	isAutoSimplified: boolean; // Whether the current simplification was auto-triggered
+}
+
+export interface SimplificationOptions {
+	/** Default reading level for auto-simplification when story expands */
+	defaultLevel?: ReadingLevel;
+	/** Whether auto-simplification should be triggered */
+	autoSimplify?: boolean;
 }
 
 /**
  * Composable for story simplification feature
  * Handles AI-powered text simplification at different reading levels
  */
-export function useStorySimplification(story: any, languageCode: string) {
-	let state = $state<SimplificationState>({
+export function useStorySimplification(
+	story: { headline: string; summary: string; tldr: string },
+	languageCode: string,
+	options: SimplificationOptions = {},
+) {
+	const { defaultLevel, autoSimplify = false } = options;
+
+	const state = $state<SimplificationState>({
 		simplified: null,
 		selectedLevel: null,
 		isLoading: false,
+		isAutoSimplified: false,
 	});
+
+	// Track if auto-simplification has been triggered
+	let hasAutoSimplified = $state(false);
 
 	/**
 	 * Select a reading level and simplify the story
 	 * Clicking the same level again will reset to original
 	 */
-	async function selectLevel(level: ReadingLevel) {
-		// If clicking the same level, reset to original
-		if (state.selectedLevel === level) {
+	async function selectLevel(level: ReadingLevel, isAuto = false) {
+		// If clicking the same level, reset to original (but only for manual clicks)
+		if (state.selectedLevel === level && !isAuto) {
 			reset();
 			return;
 		}
@@ -31,6 +49,7 @@ export function useStorySimplification(story: any, languageCode: string) {
 		// Mark this level as selected and start loading
 		state.selectedLevel = level;
 		state.isLoading = true;
+		state.isAutoSimplified = isAuto;
 
 		try {
 			// Dynamic import to avoid loading simplify code unless needed
@@ -43,9 +62,27 @@ export function useStorySimplification(story: any, languageCode: string) {
 			} else {
 				console.error('Failed to simplify story:', result.error);
 				state.selectedLevel = null;
+				state.isAutoSimplified = false;
 			}
 		} finally {
 			state.isLoading = false;
+		}
+	}
+
+	/**
+	 * Trigger auto-simplification if configured
+	 * Should be called when the story expands
+	 */
+	function triggerAutoSimplify() {
+		if (
+			autoSimplify &&
+			defaultLevel &&
+			defaultLevel !== 'normal' &&
+			!hasAutoSimplified &&
+			!state.simplified
+		) {
+			hasAutoSimplified = true;
+			selectLevel(defaultLevel, true);
 		}
 	}
 
@@ -56,6 +93,7 @@ export function useStorySimplification(story: any, languageCode: string) {
 		state.simplified = null;
 		state.selectedLevel = null;
 		state.isLoading = false;
+		state.isAutoSimplified = false;
 	}
 
 	/**
@@ -73,7 +111,14 @@ export function useStorySimplification(story: any, languageCode: string) {
 		get isLoading() {
 			return state.isLoading;
 		},
-		selectLevel,
+		get isAutoSimplified() {
+			return state.isAutoSimplified;
+		},
+		get defaultLevel() {
+			return defaultLevel;
+		},
+		selectLevel: (level: ReadingLevel) => selectLevel(level, false),
+		triggerAutoSimplify,
 		reset,
 	};
 }

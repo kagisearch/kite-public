@@ -18,7 +18,7 @@ const helpSections = $derived([
 			{ key: 'h', desc: s('keyboard.action.previousCategory') },
 			{ key: 'l', desc: s('keyboard.action.nextCategory') },
 			{ key: 'Esc', desc: s('keyboard.action.clearSelection') },
-		]
+		],
 	},
 	{
 		title: s('keyboard.section.storyActions'),
@@ -27,7 +27,7 @@ const helpSections = $derived([
 			{ key: 'o', desc: s('keyboard.action.openStory') },
 			{ key: 'x', desc: s('keyboard.action.closeStory') },
 			{ key: 'm', desc: s('keyboard.action.toggleRead') },
-		]
+		],
 	},
 	{
 		title: s('keyboard.section.global'),
@@ -35,15 +35,15 @@ const helpSections = $derived([
 			{ key: '⌘K', desc: s('keyboard.action.searchMac') },
 			{ key: 'Ctrl+K', desc: s('keyboard.action.searchWindows') },
 			{ key: '?', desc: s('keyboard.action.toggleHelp') },
-		]
-	}
+		],
+	},
 ]);
 </script>
 
 {#if keyboardNavigation.showHelp}
 	<!-- Full-screen help overlay -->
 	<div
-		class="fixed inset-0 z-[100] bg-white dark:bg-gray-900 overflow-auto help-page"
+		class="fixed inset-0 z-modal bg-white dark:bg-gray-900 overflow-auto help-page"
 		role="dialog"
 		aria-modal="true"
 		aria-label="Keyboard shortcuts help"

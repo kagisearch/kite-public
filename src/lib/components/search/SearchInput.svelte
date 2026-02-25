@@ -110,7 +110,7 @@ $effect(() => {
   <!-- Search Input with Chips -->
   <div class="relative">
     <svg
-      class="absolute start-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500"
+      class="absolute start-3 top-1/2 -translate-y-1/2 size-5 text-gray-400 dark:text-gray-500"
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"
@@ -135,7 +135,7 @@ $effect(() => {
             class="ml-1 hover:bg-blue-200 dark:hover:bg-blue-800 rounded p-0.5"
             aria-label="Remove filter"
           >
-            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+            <svg class="size-3" fill="currentColor" viewBox="0 0 20 20">
               <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
             </svg>
           </button>
@@ -165,7 +165,7 @@ $effect(() => {
     <!-- Loading indicator -->
     {#if isLoading}
       <div class="absolute end-3 top-1/2 -translate-y-1/2">
-        <IconLoader2 class="w-4 h-4 text-blue-500 animate-spin" />
+        <IconLoader2 class="size-4 text-blue-500 animate-spin" />
       </div>
     {/if}
   </div>

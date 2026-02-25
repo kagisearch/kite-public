@@ -1,64 +1,40 @@
-import { OverlayScrollbars } from 'overlayscrollbars';
-
 /**
- * Scroll lock utility that works with OverlayScrollbars
+ * Scroll lock utility using position:fixed approach.
+ * This is the most reliable cross-browser method to prevent background scrolling.
  */
 class ScrollLock {
 	private isLocked = false;
-	private lockCount = 0;
-	private mainScrollbarInstance: OverlayScrollbars | null = null;
+	private scrollY = 0;
 
 	lock() {
-		this.lockCount++;
-
 		if (this.isLocked) return;
 
-		// Find the main OverlayScrollbars instance on the body
-		const instance = OverlayScrollbars(document.body);
-		this.mainScrollbarInstance = instance || null;
+		// Save current scroll position
+		this.scrollY = window.scrollY;
 
-		if (this.mainScrollbarInstance) {
-			// Disable the main scrollbars
-			this.mainScrollbarInstance.options({
-				scrollbars: {
-					autoHide: 'never',
-					autoHideDelay: 0,
-				},
-				overflow: {
-					x: 'hidden',
-					y: 'hidden',
-				},
-			});
-		}
+		// Apply fixed positioning to body - this completely prevents scrolling
+		document.body.style.position = 'fixed';
+		document.body.style.top = `-${this.scrollY}px`;
+		document.body.style.left = '0';
+		document.body.style.right = '0';
 
 		this.isLocked = true;
 	}
 
 	unlock() {
-		this.lockCount--;
-
-		if (this.lockCount > 0) return;
-
 		if (!this.isLocked) return;
 
-		if (this.mainScrollbarInstance) {
-			// Re-enable the main scrollbars
-			this.mainScrollbarInstance.options({
-				scrollbars: {
-					autoHide: 'leave',
-					autoHideDelay: 100,
-				},
-				overflow: {
-					x: 'visible',
-					y: 'scroll',
-				},
-			});
-		}
+		// Remove fixed positioning
+		document.body.style.position = '';
+		document.body.style.top = '';
+		document.body.style.left = '';
+		document.body.style.right = '';
+
+		// Restore scroll position
+		window.scrollTo(0, this.scrollY);
 
 		this.isLocked = false;
-		this.lockCount = 0;
 	}
 }
 
-// Export singleton instance
 export const scrollLock = new ScrollLock();

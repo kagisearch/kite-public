@@ -1,7 +1,12 @@
-import { playSpeech, downloadAudio, selectedVoiceStore, type SpeechState } from '$lib/client/speech-utils';
+import {
+	downloadAudio,
+	playSpeech,
+	type SpeechState,
+	selectedVoiceStore,
+} from '$lib/client/speech-utils';
 import { sections } from '$lib/stores/sections.svelte.js';
-import { extractStoryText } from '$lib/utils/storyTextExtractor';
 import { ttsManager } from '$lib/stores/ttsManager.svelte';
+import { extractStoryText } from '$lib/utils/storyTextExtractor';
 
 // Generate unique ID for each TTS instance
 let instanceCounter = 0;
@@ -13,7 +18,7 @@ function generateInstanceId(): string {
  * Composable for text-to-speech functionality
  * Handles playing and downloading audio for stories
  */
-export function useStoryTTS(getStory: () => any) {
+export function useStoryTTS(getStory: () => Record<string, unknown> | null) {
 	const instanceId = generateInstanceId();
 
 	let state = $state<SpeechState>({
@@ -38,7 +43,10 @@ export function useStoryTTS(getStory: () => any) {
 	 */
 	function getVoice(): string {
 		let voice = 'coral';
-		selectedVoiceStore.subscribe((v) => (voice = v))();
+		const unsubscribe = selectedVoiceStore.subscribe((v) => {
+			voice = v;
+		});
+		unsubscribe();
 		return voice;
 	}
 
@@ -56,9 +64,14 @@ export function useStoryTTS(getStory: () => any) {
 		ttsManager.register(instanceId, stop);
 
 		const story = getStory();
+		if (!story) {
+			console.error('TTS error: No story available');
+			updateState({ status: 'idle', currentAudioInputContext: null });
+			return;
+		}
 		const enabledSections = getEnabledSections();
 		const text = extractStoryText(story, enabledSections);
-		const language = story.sourceLanguage || 'en';
+		const language = (story.sourceLanguage as string) || 'en';
 		const voice = getVoice();
 
 		try {
@@ -77,9 +90,13 @@ export function useStoryTTS(getStory: () => any) {
 	 */
 	async function download() {
 		const story = getStory();
+		if (!story) {
+			console.error('TTS download error: No story available');
+			return;
+		}
 		const enabledSections = getEnabledSections();
 		const text = extractStoryText(story, enabledSections);
-		const language = story.sourceLanguage || 'en';
+		const language = (story.sourceLanguage as string) || 'en';
 		const voice = getVoice();
 
 		try {

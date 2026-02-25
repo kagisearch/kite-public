@@ -3,6 +3,16 @@ import { s } from '$lib/client/localization.svelte';
 import { sections } from '$lib/stores/sections.svelte.js';
 import type { LocalizerFunction } from '$lib/types';
 import { aggregateCitationsFromTexts } from '$lib/utils/citationAggregator';
+
+// Helper to extract domain from a URL for image attribution fallback
+function extractDomain(url: string | undefined | null): string {
+	if (!url) return '';
+	try {
+		return new URL(url).hostname;
+	} catch {
+		return '';
+	}
+}
 import {
 	buildCitationMapping,
 	type CitationMapping,
@@ -168,8 +178,8 @@ const businessAngleCitedArticles = $derived.by(() => {
         article={{
           image: story.primary_image.url,
           image_caption: story.primary_image.caption,
-          link: sourceArticle?.link,
-          domain: story.primary_image.credit || sourceArticle?.domain || "",
+          link: sourceArticle?.link || story.primary_image.link,
+          domain: story.primary_image.credit || sourceArticle?.domain || extractDomain(story.primary_image.link),
         }}
         {imagesPreloaded}
         showCaption={true}
@@ -222,8 +232,8 @@ const businessAngleCitedArticles = $derived.by(() => {
         article={{
           image: story.secondary_image.url,
           image_caption: story.secondary_image.caption,
-          link: sourceArticle?.link,
-          domain: story.secondary_image.credit || sourceArticle?.domain || "",
+          link: sourceArticle?.link || story.secondary_image.link,
+          domain: story.secondary_image.credit || sourceArticle?.domain || extractDomain(story.secondary_image.link),
         }}
         {imagesPreloaded}
         showCaption={true}
