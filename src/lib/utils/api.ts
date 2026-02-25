@@ -12,7 +12,20 @@ export function removeNullFields<T>(obj: T): T {
 	}
 
 	if (Array.isArray(obj)) {
-		return obj.map((item) => removeNullFields(item)) as T;
+		return obj
+			.filter((item) => item !== null && item !== undefined)
+			.map((item) => removeNullFields(item))
+			.filter((item) => {
+				// Filter out null/undefined that may have been introduced
+				if (item === null || item === undefined) {
+					return false;
+				}
+				// Filter out empty objects after cleaning
+				if (typeof item === 'object' && !Array.isArray(item)) {
+					return Object.keys(item).length > 0;
+				}
+				return true;
+			}) as T;
 	}
 
 	if (typeof obj === 'object') {

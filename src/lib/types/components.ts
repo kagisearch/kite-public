@@ -15,9 +15,5 @@ export interface CategoryNavigationInstance {
 
 // HistoryManager component instance type
 export interface HistoryManagerInstance {
-	updateUrl(params?: {
-		categoryId?: string;
-		storyIndex?: number | null;
-		isShared?: boolean;
-	}): void;
+	updateUrl(params?: { categoryId?: string; storyIndex?: number | null; isShared?: boolean }): void;
 }

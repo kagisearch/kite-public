@@ -244,8 +244,7 @@ function closeMobileModal() {
 $effect(() => {
 	if (isMobile && showTooltip) {
 		scrollLock.lock();
-	} else {
-		scrollLock.unlock();
+		return () => scrollLock.unlock();
 	}
 });
 
@@ -270,10 +269,6 @@ onDestroy(() => {
 	if (browser) {
 		window.removeEventListener('scroll', hideTooltipOnScroll);
 	}
-	// Make sure scroll is unlocked
-	if (showTooltip) {
-		scrollLock.unlock();
-	}
 });
 </script>
 
@@ -283,7 +278,7 @@ onDestroy(() => {
     <Portal>
       <div
         bind:this={floating.elements.floating}
-        class="absolute top-0 left-0 z-[2000] w-80 max-w-[min(320px,calc(100vw-16px))] rounded-lg border border-gray-300 bg-white shadow-lg transition-opacity duration-200 dark:border-gray-600 dark:bg-gray-700 {floating.isPositioned
+        class="absolute top-0 left-0 z-tooltip w-80 max-w-[min(320px,calc(100vw-16px))] rounded-lg border border-gray-300 bg-white shadow-lg transition-opacity duration-200 dark:border-gray-600 dark:bg-gray-700 {floating.isPositioned
           ? 'opacity-100'
           : 'opacity-0 invisible'}"
         style={floating.floatingStyles}
@@ -351,7 +346,7 @@ onDestroy(() => {
     <!-- Mobile Modal (Fullscreen) -->
     <Portal>
       <div
-        class="fixed inset-0 z-[2000] flex items-center justify-center bg-black/60 dark:bg-black/80"
+        class="fixed inset-0 z-tooltip flex items-center justify-center bg-black/60 dark:bg-black/80"
         onclick={closeMobileModal}
         onkeydown={(e) => e.key === "Escape" && closeMobileModal()}
         role="dialog"

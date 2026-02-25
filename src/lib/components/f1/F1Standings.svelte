@@ -1,6 +1,12 @@
 <script lang="ts">
+import {
+	IconChevronDown,
+	IconChevronUp,
+	IconLoader2,
+	IconRefresh,
+	IconTrophy,
+} from '@tabler/icons-svelte';
 import { onMount } from 'svelte';
-import { IconChevronDown, IconChevronUp, IconTrophy, IconRefresh, IconLoader2 } from '@tabler/icons-svelte';
 import { s } from '$lib/client/localization.svelte';
 
 interface DriverStanding {

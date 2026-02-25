@@ -31,7 +31,7 @@ let {
 } = $props();
 
 // Internal state
-let container: HTMLDivElement;
+let container: HTMLDivElement = undefined!; // Assigned via bind:this
 let dropdown: HTMLDivElement | null = $state(null);
 let fieldset: HTMLDivElement | null = $state(null);
 let search: HTMLInputElement | null = $state(null);
@@ -341,7 +341,7 @@ onMount(() => {
 // Update dropdown position when options change (which affects dropdown size)
 $effect(() => {
 	if (isOpen) {
-		filteredOptions;
+		void filteredOptions; // Track changes to trigger reposition
 		requestAnimationFrame(positionDropdown);
 	}
 });
@@ -363,7 +363,7 @@ $effect(() => {
 
 <div
   bind:this={container}
-  class="relative select-none {className} z-20"
+  class="relative select-none {className} z-dropdown"
 >
   <button
     type="button"
@@ -459,7 +459,7 @@ $effect(() => {
     <Portal target="body">
       <div
         bind:this={dropdown}
-        class="pointer-events-auto fixed z-[1000] overflow-hidden rounded-lg border border-gray-300 bg-white shadow-lg dark:border-gray-600 dark:bg-gray-700"
+        class="pointer-events-auto fixed z-popover overflow-hidden rounded-lg border border-gray-300 bg-white shadow-lg dark:border-gray-600 dark:bg-gray-700"
         style="min-width: 100px; width: auto; max-height: 300px;"
         role="dialog"
         aria-modal="true"

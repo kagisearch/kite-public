@@ -19,7 +19,17 @@ interface Props {
 	onWordClick?: (word: string, section?: string) => void;
 }
 
-let { actionItems, articles = [], citationMapping, storyLocalizer = s, flashcardMode = false, selectedWords = new Set(), selectedPhrases = new Map(), shouldJiggle = false, onWordClick }: Props = $props();
+let {
+	actionItems,
+	articles = [],
+	citationMapping,
+	storyLocalizer = s,
+	flashcardMode = false,
+	selectedWords = new Set(),
+	selectedPhrases = new Map(),
+	shouldJiggle = false,
+	onWordClick,
+}: Props = $props();
 
 // Convert citations to numbered format if mapping is available
 const displayItems = $derived.by(() => {

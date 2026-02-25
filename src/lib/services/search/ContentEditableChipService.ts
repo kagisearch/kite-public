@@ -224,7 +224,17 @@ export class ContentEditableChipService {
 		chip.contentEditable = 'false';
 		chip.setAttribute('data-filter', filterText);
 		chip.setAttribute('data-filter-type', type);
-		chip.innerHTML = `<span class="text-xs opacity-70">${type}:</span><span>${displayValue}</span>`;
+
+		// Use DOM methods instead of innerHTML to prevent XSS
+		const typeSpan = document.createElement('span');
+		typeSpan.className = 'text-xs opacity-70';
+		typeSpan.textContent = `${type}:`;
+
+		const valueSpan = document.createElement('span');
+		valueSpan.textContent = displayValue;
+
+		chip.appendChild(typeSpan);
+		chip.appendChild(valueSpan);
 
 		return chip;
 	}

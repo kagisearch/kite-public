@@ -27,6 +27,14 @@
     "text": "voor nieuwslezers",
     "translationContext": "Footer text suffix for copyright"
   },
+  "settings.about.keyboardDescription": {
+    "text": "Navigeer door verhalen en categorieën met sneltoetsen in vim-stijl",
+    "translationContext": "Description of keyboard navigation feature"
+  },
+  "settings.about.keyboardShortcuts": {
+    "text": "Sneltoetsen",
+    "translationContext": "Section header for keyboard shortcuts in settings"
+  },
   "settings.about.learnMore": {
     "text": "Meer informatie",
     "translationContext": "Link text to open full about page"
@@ -47,6 +55,10 @@
     "text": "Bekijk API-documentatie",
     "translationContext": "Button text to view API documentation"
   },
+  "settings.about.viewShortcuts": {
+    "text": "Bekijk sneltoetsen",
+    "translationContext": "Button text to open keyboard shortcuts help overlay"
+  },
   "settings.aboutKite.button": {
     "text": "Over Kagi News",
     "translationContext": "Text for the About Kagi News button"
@@ -62,6 +74,78 @@
   "settings.categories.contribute": {
     "text": "+ Categorieën bijdragen",
     "translationContext": "Link text for contributing categories"
+  },
+  "settings.categories.contribute.intro": {
+    "text": "Help de dekking van Kagi News uit te breiden door nieuwe categorieën voor te stellen. Bijdragen van de gemeenschap maken Kagi News divers en uitgebreid.",
+    "translationContext": "Introduction text in the contribute category modal"
+  },
+  "settings.categories.contribute.learnMore": {
+    "text": "Zie",
+    "translationContext": "Start of sentence linking to source inclusion rationale"
+  },
+  "settings.categories.contribute.learnMoreLink": {
+    "text": "deze discussie",
+    "translationContext": "Link text for the source inclusion rationale discussion"
+  },
+  "settings.categories.contribute.learnMoreSuffix": {
+    "text": "voor onze volledige redenering over het opnemen van bronnen.",
+    "translationContext": "End of sentence after the discussion link"
+  },
+  "settings.categories.contribute.openIssue": {
+    "text": "Open een GitHub issue",
+    "translationContext": "Link text to open a GitHub issue for category suggestions"
+  },
+  "settings.categories.contribute.or": {
+    "text": "of",
+    "translationContext": "Divider text between options in contribute modal"
+  },
+  "settings.categories.contribute.prHint": {
+    "text": "Voor ontwikkelaars die bekend zijn met GitHub",
+    "translationContext": "Hint text below the pull request link"
+  },
+  "settings.categories.contribute.prLink": {
+    "text": "Dien direct een Pull Request in",
+    "translationContext": "Link text for developers to submit a PR"
+  },
+  "settings.categories.contribute.req1Desc": {
+    "text": "— hoe meer hoogwaardige feeds, hoe beter de dekking",
+    "translationContext": "Description explaining more feeds = better"
+  },
+  "settings.categories.contribute.req1Title": {
+    "text": "25+ RSS-feeds (meer is beter)",
+    "translationContext": "Title for the feeds requirement emphasizing more is better"
+  },
+  "settings.categories.contribute.req2Desc": {
+    "text": "— een linkse bron heeft geen rechtse tegenhanger nodig. Staatsmedia, partijdige media, allemaal prima. Ons systeem bevestigt feiten via meerdere bronnen, zodat uitschieters de resultaten niet kunnen vertekenen. Dit is ook waarom meer bronnen = beter",
+    "translationContext": "Detailed explanation of why biased sources are OK and why more sources help"
+  },
+  "settings.categories.contribute.req2Title": {
+    "text": "Geen \"balans\" nodig",
+    "translationContext": "Title clarifying sources don't need to be balanced"
+  },
+  "settings.categories.contribute.req3Desc": {
+    "text": "— geen verzonnen beweringen, ontkenning van gebeurtenissen of hoax-inhoud",
+    "translationContext": "Description for the no conspiracy content requirement"
+  },
+  "settings.categories.contribute.req3Title": {
+    "text": "Geen complotinhoud",
+    "translationContext": "Title for the no conspiracy content requirement"
+  },
+  "settings.categories.contribute.requirements": {
+    "text": "Richtlijnen:",
+    "translationContext": "Header for the guidelines section in contribute modal"
+  },
+  "settings.categories.contribute.suggestButton": {
+    "text": "Stel een categorie voor",
+    "translationContext": "Primary button text to open GitHub issue form"
+  },
+  "settings.categories.contribute.suggestHint": {
+    "text": "Opent een GitHub issue-formulier — geen programmeerkennis vereist",
+    "translationContext": "Hint text below the suggest button"
+  },
+  "settings.categories.contribute.title": {
+    "text": "Draag een categorie bij",
+    "translationContext": "Title of the contribute category modal"
   },
   "settings.categories.coreTooltip": {
     "text": "Onderhouden door het Kagi-team. Hoge kwaliteit, diverse perspectieven.",
@@ -87,6 +171,10 @@
     "text": "Filteren op type...",
     "translationContext": "Placeholder text for category type filter dropdown"
   },
+  "settings.categories.filterPlaceholder": {
+    "text": "Alles",
+    "translationContext": "Placeholder text for the category type filter dropdown"
+  },
   "settings.categories.instructions": {
     "text": "Verslepen om de volgorde te wijzigen, of klikken om in/uit te schakelen. Versleep tussen secties om categorieën te verplaatsen.",
     "translationContext": "Instructions for managing categories"
@@ -106,6 +194,18 @@
   "settings.categories.noFiltered": {
     "text": "Er zijn geen categorieën van dit type uitgeschakeld",
     "translationContext": "Message shown when no categories of the selected filter type are in the disabled section"
+  },
+  "settings.categories.noLetterResults": {
+    "text": "Geen categorieën die met deze letter beginnen",
+    "translationContext": "Message shown when no categories match the selected letter filter"
+  },
+  "settings.categories.noSearchResults": {
+    "text": "Geen categorieën komen overeen met uw zoekopdracht",
+    "translationContext": "Message shown when no categories match the search query"
+  },
+  "settings.categories.searchPlaceholder": {
+    "text": "Zoek categorieën...",
+    "translationContext": "Placeholder text for the category search input"
   },
   "settings.categories.singlePageMode.description": {
     "text": "Kies hoe verhalen worden weergegeven: in tabbladen (standaard), of allemaal op één pagina met verschillende sorteeropties.",
@@ -615,6 +715,118 @@
     "text": "OpenStreetMap",
     "translationContext": "Option to use OpenStreetMap"
   },
+  "settings.preferredSources.clearAll": {
+    "text": "Alle vastgepinde bronnen wissen",
+    "translationContext": "Button text to clear all pinned sources"
+  },
+  "settings.preferredSources.cleared": {
+    "text": "Gewist!",
+    "translationContext": "Confirmation message after clearing pinned sources"
+  },
+  "settings.preferredSources.description": {
+    "text": "Vastgepinde bronnen verschijnen als eerste in de bronnenlijst van elk verhaal. Klik op het speldicoon bij een bron om deze hier toe te voegen.",
+    "translationContext": "Description explaining the pinned sources feature"
+  },
+  "settings.preferredSources.empty": {
+    "text": "Nog geen vastgepinde bronnen. Open een verhaal, klik op een bron en gebruik het speldicoon om deze hier toe te voegen.",
+    "translationContext": "Message shown when no preferred sources have been selected"
+  },
+  "settings.preferredSources.remove": {
+    "text": "Verwijderen",
+    "translationContext": "Aria label for button to remove a source from pinned list"
+  },
+  "settings.preferredSources.title": {
+    "text": "Vastgepinde bronnen",
+    "translationContext": "Title for preferred sources section in settings"
+  },
+  "settings.readingLevel.categories.description": {
+    "text": "Stel een afwijkend niveau in voor specifieke categorieën. Categorieën die op \"Globaal\" zijn ingesteld, gebruiken uw standaardinstelling hierboven.",
+    "translationContext": "Description explaining how category-specific overrides work"
+  },
+  "settings.readingLevel.categories.label": {
+    "text": "Uitzonderingen per categorie",
+    "translationContext": "Label for the category-specific reading level overrides section"
+  },
+  "settings.readingLevel.clearOverrides": {
+    "text": "Uitzonderingen wissen",
+    "translationContext": "Button to clear all category-specific reading level overrides"
+  },
+  "settings.readingLevel.fromGlobal": {
+    "text": "globaal",
+    "translationContext": "Indicator that a category is using the global reading level setting"
+  },
+  "settings.readingLevel.global.description": {
+    "text": "Dit is van toepassing op alle categorieën, tenzij u hieronder een specifiek niveau instelt.",
+    "translationContext": "Description for the global reading level setting"
+  },
+  "settings.readingLevel.global.label": {
+    "text": "Standaard leesniveau",
+    "translationContext": "Label for the global reading level setting"
+  },
+  "settings.readingLevel.info.howItWorks": {
+    "text": "Wanneer u een verhaal opent, wordt de inhoud automatisch vereenvoudigd naar het door u gekozen leesniveau. U kunt het niveau voor elk verhaal nog steeds handmatig wijzigen.",
+    "translationContext": "Explanation of how automatic reading level simplification works"
+  },
+  "settings.readingLevel.info.simpleDescription": {
+    "text": "Duidelijke taal op een gemiddeld niveau (B1). Geschikt voor de algemene lezer.",
+    "translationContext": "Description of the Simple reading level"
+  },
+  "settings.readingLevel.info.verySimpleDescription": {
+    "text": "Basiswoordenschat en korte zinnen (A2). Ideaal voor wie een taal leert.",
+    "translationContext": "Description of the Very Simple reading level"
+  },
+  "settings.readingLevel.levels.default": {
+    "text": "Normaal",
+    "translationContext": "Default/normal reading level option"
+  },
+  "settings.readingLevel.levels.simple": {
+    "text": "Eenvoudig",
+    "translationContext": "Simple reading level option"
+  },
+  "settings.readingLevel.levels.useGlobal": {
+    "text": "Globaal",
+    "translationContext": "Option to use the global reading level (no override)"
+  },
+  "settings.readingLevel.levels.verySimple": {
+    "text": "Zeer eenvoudig",
+    "translationContext": "Very simple reading level option"
+  },
+  "settings.readingLevel.noCategories": {
+    "text": "Geen categorieën ingeschakeld. Schakel categorieën in op het tabblad Categorieën.",
+    "translationContext": "Message shown when no categories are enabled"
+  },
+  "settings.readingLevel.resetAll": {
+    "text": "Alles resetten",
+    "translationContext": "Button to reset both global level and all category overrides"
+  },
+  "settings.readingLevel.subscriberOnly": {
+    "text": "Vereenvoudiging van het leesniveau is beschikbaar voor Kagi-abonnees. Upgrade om artikelen automatisch te vereenvoudigen naar uw voorkeursleesniveau.",
+    "translationContext": "Message shown to non-subscribers about reading level feature"
+  },
+  "settings.readingLevel.subscriberOnly.description": {
+    "text": "Automatische tekstvereenvoudiging is beschikbaar voor Kagi-abonnees. Upgrade om toegang te krijgen tot deze functie.",
+    "translationContext": "Description explaining this is a subscriber-only feature"
+  },
+  "settings.readingLevel.subscriberOnly.title": {
+    "text": "Functie voor abonnees",
+    "translationContext": "Title for subscriber-only feature notice"
+  },
+  "settings.readingLevel.subscriberOnly.upgrade": {
+    "text": "Upgrade naar Kagi",
+    "translationContext": "Link text to upgrade to Kagi subscription"
+  },
+  "settings.readingLevel.tab.description": {
+    "text": "Stel een standaard leesniveau in voor alle verhalen. U kunt het niveau ook aanpassen voor specifieke categorieën.",
+    "translationContext": "Description shown at the top of the reading level settings tab"
+  },
+  "settings.readingLevel.title": {
+    "text": "Leesniveau",
+    "translationContext": "Title for reading level section"
+  },
+  "settings.readingLevel.upgrade": {
+    "text": "Upgrade naar Kagi",
+    "translationContext": "Link text to upgrade to Kagi subscription"
+  },
   "settings.sections.instructions": {
     "text": "Secties verslepen om de volgorde te wijzigen. Gebruik de schakelaar om in/uit te schakelen.",
     "translationContext": "Instructions for managing article sections"
@@ -699,6 +911,10 @@
     "text": "Uiterlijk",
     "translationContext": "Subsection heading for appearance-related settings"
   },
+  "settings.subsections.display": {
+    "text": "Weergave",
+    "translationContext": "Subsection heading for display settings"
+  },
   "settings.subsections.localization": {
     "text": "Taal en regio",
     "translationContext": "Subsection heading for language and localization settings"
@@ -710,6 +926,14 @@
   "settings.subsections.readingExperience": {
     "text": "Leeservaring",
     "translationContext": "Subsection heading for story display and reading settings"
+  },
+  "settings.subsections.storyDisplay": {
+    "text": "Verhaalweergave",
+    "translationContext": "Subsection heading for story display settings"
+  },
+  "settings.subsections.visualEnhancements": {
+    "text": "Visuele verbeteringen",
+    "translationContext": "Subsection heading for visual enhancement toggles"
   },
   "settings.sync.clear.button": {
     "text": "Alle gesynchroniseerde gegevens wissen",
@@ -775,6 +999,14 @@
     "text": "Exporteren...",
     "translationContext": "Text shown while exporting data"
   },
+  "settings.sync.import.button": {
+    "text": "Instellingen importeren",
+    "translationContext": "Button label to import settings from a backup JSON file"
+  },
+  "settings.sync.import.importing": {
+    "text": "Importeren...",
+    "translationContext": "Loading text shown while importing settings from a backup file"
+  },
   "settings.sync.info.description": {
     "text": "Kagi News kan uw instellingen en leesgeschiedenis synchroniseren op al uw apparaten. Deze gegevens worden veilig opgeslagen op Kagi-servers en gekoppeld aan uw Kagi Search-account.\n\nUw gesynchroniseerde gegevens worden niet voor andere doeleinden gebruikt, met niemand gedeeld en worden uitsluitend opgeslagen om u de synchronisatiedienst te bieden. U heeft volledige controle over wat er wordt gesynchroniseerd en kunt uw gegevens op elk moment verwijderen.",
     "translationContext": "Description of sync and privacy features"
@@ -831,6 +1063,14 @@
     "text": "Over",
     "translationContext": "Title for the about settings tab"
   },
+  "settings.tabs.account": {
+    "text": "Account",
+    "translationContext": "Title for the account settings tab"
+  },
+  "settings.tabs.appearance": {
+    "text": "Uiterlijk",
+    "translationContext": "Title for the appearance settings tab"
+  },
   "settings.tabs.categories": {
     "text": "Categorieën",
     "translationContext": "Title for the categories settings tab"
@@ -843,13 +1083,33 @@
     "text": "Experimenteel",
     "translationContext": "Title for the experimental settings tab"
   },
+  "settings.tabs.filters": {
+    "text": "Filters",
+    "translationContext": "Title for the filters settings tab"
+  },
   "settings.tabs.general": {
     "text": "Algemeen",
     "translationContext": "Title for the general settings tab"
   },
+  "settings.tabs.language": {
+    "text": "Taal",
+    "translationContext": "Title for the language settings tab"
+  },
+  "settings.tabs.preferredSources": {
+    "text": "Vastgepinde bronnen",
+    "translationContext": "Tab name for preferred/pinned sources settings"
+  },
+  "settings.tabs.readingLevel": {
+    "text": "Leesniveau",
+    "translationContext": "Tab name for per-category reading level settings"
+  },
   "settings.tabs.sections": {
     "text": "Secties",
     "translationContext": "Title for the sections settings tab"
+  },
+  "settings.tabs.stories": {
+    "text": "Verhalen",
+    "translationContext": "Title for the stories settings tab"
   },
   "settings.tabs.syncPrivacy": {
     "text": "Synchroniseren",
@@ -907,9 +1167,17 @@
     "text": "Sluiten",
     "translationContext": "Close button text"
   },
+  "common.no_results": {
+    "text": "Geen resultaten gevonden",
+    "translationContext": "Shown in search/select dropdowns when no matches are found"
+  },
   "common.reset": {
     "text": "Resetten",
     "translationContext": "Reset button text"
+  },
+  "common.search": {
+    "text": "Zoeken",
+    "translationContext": "Generic search input placeholder"
   },
   "about.approach.description1": {
     "text": "De wereld leeft niet in echokamers. De realiteit ontstaat uit de botsing van verschillende standpunten en perspectieven - zo scheiden we het signaal van de ruis.",
@@ -986,6 +1254,42 @@
   "about.why.title": {
     "text": "Waarom Kagi News? Omdat nieuws kapot is.",
     "translationContext": "Title of the Why Kagi News section"
+  },
+  "app_navigation.assistant": {
+    "text": "Assistent",
+    "translationContext": "Label for Kagi Assistant in the app navigation menu"
+  },
+  "app_navigation.fastgpt": {
+    "text": "FastGPT",
+    "translationContext": "Label for Kagi FastGPT in the app navigation menu, should not be translated"
+  },
+  "app_navigation.news": {
+    "text": "Nieuws",
+    "translationContext": "Label for Kagi News in the app navigation menu"
+  },
+  "app_navigation.open_navigation": {
+    "text": "App-navigatie openen",
+    "translationContext": "Accessibility label for opening the app navigation menu"
+  },
+  "app_navigation.search": {
+    "text": "Zoeken",
+    "translationContext": "Label for Kagi Search in the app navigation menu"
+  },
+  "app_navigation.small_web": {
+    "text": "Small Web",
+    "translationContext": "Label for Kagi Small Web in the app navigation menu"
+  },
+  "app_navigation.tooltip": {
+    "text": "Kagi-apps",
+    "translationContext": "Tooltip for the app navigation button"
+  },
+  "app_navigation.translate": {
+    "text": "Vertalen",
+    "translationContext": "Label for Kagi Translate in the app navigation menu"
+  },
+  "app_navigation.universal_summarizer": {
+    "text": "Universele Samenvatter",
+    "translationContext": "Label for Kagi Universal Summarizer in the app navigation menu"
   },
   "app.beta": {
     "text": "BETA",
@@ -1714,6 +2018,546 @@
   "contentFilter.storyHidden": {
     "text": "{{count}} verhaal verborgen",
     "translationContext": "Message showing 1 story is hidden"
+  },
+  "contribute.addFeeds": {
+    "text": "Voeg feeds toe",
+    "translationContext": "Button to add pasted feed URLs to the list"
+  },
+  "contribute.allDuplicates": {
+    "text": "Alle {{count}} URL('s) staan al in deze categorie",
+    "translationContext": "Error when all pasted URLs are duplicates"
+  },
+  "contribute.allFeedsFailed": {
+    "text": "Alle feeds zijn mislukt bij de validatie. Controleer de URL's en probeer het opnieuw, of verwijder de feeds met fouten en voeg werkende toe.",
+    "translationContext": "Error message when every feed fails validation"
+  },
+  "contribute.cannotSubmit": {
+    "text": "Kan niet indienen. Alle feeds zijn mislukt bij de validatie. Verwijder de feeds met fouten en voeg werkende toe.",
+    "translationContext": "Error explaining why submission is blocked"
+  },
+  "contribute.categoryExists": {
+    "text": "Deze categorie bestaat al.",
+    "translationContext": "Warning when the entered category name already exists"
+  },
+  "contribute.categoryName": {
+    "text": "Categorienaam",
+    "translationContext": "Label for the new category name input field"
+  },
+  "contribute.categoryNamePlaceholder": {
+    "text": "bijv. Luchtvaart, Zuid-Korea, Klimaat...",
+    "translationContext": "Placeholder text for the category name input"
+  },
+  "contribute.checkingCount": {
+    "text": "{{count}} aan het controleren...",
+    "translationContext": "Number of feeds currently being validated"
+  },
+  "contribute.coreCategory": {
+    "text": "Kern",
+    "translationContext": "Badge label for core categories maintained by the Kagi team"
+  },
+  "contribute.coreCategoryNote": {
+    "text": "Dit is een kerncategorie van Kite. Je feeds worden toegevoegd naast de bestaande, samengestelde bronnen.",
+    "translationContext": "Info note shown when a core category is selected in the contribute dropdown"
+  },
+  "contribute.createPr": {
+    "text": "Pull Request aanmaken",
+    "translationContext": "Button text to submit and create a GitHub pull request"
+  },
+  "contribute.creatingPr": {
+    "text": "PR aanmaken...",
+    "translationContext": "Button text while the pull request is being created"
+  },
+  "contribute.duplicatesSkipped": {
+    "text": "{{count}} dubbele feed(s) overgeslagen (al in deze categorie)",
+    "translationContext": "Warning showing how many duplicate feeds were skipped"
+  },
+  "contribute.errorCount": {
+    "text": "{{count}} fout(en)",
+    "translationContext": "Number of feeds that failed validation"
+  },
+  "contribute.excludedNote": {
+    "text": "({{count}} feed(s) met fouten worden uitgesloten)",
+    "translationContext": "Note about errored feeds being excluded from submission"
+  },
+  "contribute.existingCategory": {
+    "text": "Bestaande categorie",
+    "translationContext": "Toggle button to add feeds to an existing category"
+  },
+  "contribute.failedPr": {
+    "text": "Aanmaken van pull request mislukt",
+    "translationContext": "Fallback error message when PR creation fails"
+  },
+  "contribute.feedCount": {
+    "text": "{{count}} feeds",
+    "translationContext": "Number of feeds in a category, e.g. '42 feeds'"
+  },
+  "contribute.feedInputPlaceholder": {
+    "text": "Plak hier feed-URL's (één per regel of gescheiden door komma's)",
+    "translationContext": "Placeholder for the feed URL textarea input"
+  },
+  "contribute.feedLanguage": {
+    "text": "Feedtaal",
+    "translationContext": "Label for the feed language selector"
+  },
+  "contribute.feedLanguageTooltip": {
+    "text": "Stel dit in op de taal waarin de meeste feeds zijn geschreven (meerderheid of pluraliteit). Dit beperkt de beschikbaarheid niet — alle categorieën worden vertaald naar elke taal die we ondersteunen.",
+    "translationContext": "Tooltip explaining the feed language setting"
+  },
+  "contribute.feedsAdded": {
+    "text": "{{count}} feed(s) toegevoegd",
+    "translationContext": "Summary showing total number of feeds added"
+  },
+  "contribute.guidelineBalance": {
+    "text": "Geen \"balans\" nodig",
+    "translationContext": "Guideline title: sources don't need political balance"
+  },
+  "contribute.guidelineBalanceDesc": {
+    "text": "een linkse bron heeft geen rechtse tegenhanger nodig. Staatsmedia, partijdige kanalen, allemaal prima. Ons systeem bevestigt feiten via meerdere bronnen.",
+    "translationContext": "Guideline description explaining why biased sources are acceptable"
+  },
+  "contribute.guidelineConspiracy": {
+    "text": "Geen complottheorieën",
+    "translationContext": "Guideline title: no conspiracy theories allowed"
+  },
+  "contribute.guidelineConspiracyDesc": {
+    "text": "geen verzonnen beweringen, ontkenning van gebeurtenissen of hoax-inhoud",
+    "translationContext": "Guideline description for the no conspiracy requirement"
+  },
+  "contribute.guidelineFeeds": {
+    "text": "25+ RSS-feeds (meer is beter)",
+    "translationContext": "Guideline title: minimum number of feeds required"
+  },
+  "contribute.guidelineFeedsDesc": {
+    "text": "hoe meer kwalitatieve feeds, hoe beter de dekking",
+    "translationContext": "Guideline description explaining more feeds = better coverage"
+  },
+  "contribute.guidelineLanguage": {
+    "text": "Splits categorieën niet op taal",
+    "translationContext": "Guideline title: keep one category per topic regardless of language"
+  },
+  "contribute.guidelineLanguageDesc": {
+    "text": "\"Zwitserland\" moet één categorie zijn, niet \"Zwitserland (EN)\" en \"Zwitserland (IT)\". Alle categorieën worden vertaald naar elke taal die we ondersteunen.",
+    "translationContext": "Guideline description explaining not to split by language"
+  },
+  "contribute.guidelines": {
+    "text": "Richtlijnen",
+    "translationContext": "Collapsible section header for contribution guidelines"
+  },
+  "contribute.heading": {
+    "text": "Feeds bijdragen",
+    "translationContext": "Main heading on the contribute page"
+  },
+  "contribute.hideFeeds": {
+    "text": "Verberg feeds",
+    "translationContext": "Button to collapse the list of existing feeds"
+  },
+  "contribute.history.declineReason": {
+    "text": "Reden",
+    "translationContext": "Label before the decline reason text when a contribution PR was closed"
+  },
+  "contribute.history.existingCategory": {
+    "text": "Toegevoegd aan bestaande",
+    "translationContext": "Badge indicating feeds were added to an existing category"
+  },
+  "contribute.history.feedsAdded": {
+    "text": "{{count}} feed(s) toegevoegd",
+    "translationContext": "Shows how many feeds were added in a contribution"
+  },
+  "contribute.history.legend": {
+    "text": "Bijdragen worden handmatig beoordeeld. Eenmaal samengevoegd, gaan feeds live met de volgende dagelijkse batch.",
+    "translationContext": "Legend text below the contributions list explaining the process"
+  },
+  "contribute.history.newCategory": {
+    "text": "Nieuwe categorie",
+    "translationContext": "Badge indicating the contribution created a new category"
+  },
+  "contribute.history.pr": {
+    "text": "PR #{{number}}",
+    "translationContext": "Link text showing the GitHub pull request number"
+  },
+  "contribute.history.showLess": {
+    "text": "Minder weergeven",
+    "translationContext": "Button to collapse the contributions list back to the preview"
+  },
+  "contribute.history.status.declined": {
+    "text": "Afgewezen",
+    "translationContext": "Pipeline step label: PR was closed without merging"
+  },
+  "contribute.history.status.declined.tooltip": {
+    "text": "Deze pull request is gesloten zonder samenvoeging.",
+    "translationContext": "Tooltip for the Declined pipeline step"
+  },
+  "contribute.history.status.live": {
+    "text": "Live",
+    "translationContext": "Pipeline step label: feeds are active on Kagi News"
+  },
+  "contribute.history.status.live.tooltip": {
+    "text": "Je feeds zijn actief op Kagi News. Als een categorie geen verhalen toont, betekent dit dat artikelen niet geclusterd zijn — dit is normaal.",
+    "translationContext": "Tooltip for the Live pipeline step"
+  },
+  "contribute.history.status.merged": {
+    "text": "Samengevoegd",
+    "translationContext": "Pipeline step label: PR has been merged"
+  },
+  "contribute.history.status.merged.tooltip": {
+    "text": "Je pull request is samengevoegd. Wijzigingen gaan live met de volgende Kagi News-batch.",
+    "translationContext": "Tooltip for the Merged pipeline step"
+  },
+  "contribute.history.status.submitted": {
+    "text": "Ingediend",
+    "translationContext": "Pipeline step label: PR has been created"
+  },
+  "contribute.history.status.submitted.tooltip": {
+    "text": "Je pull request is aangemaakt en wacht op beoordeling.",
+    "translationContext": "Tooltip for the Submitted pipeline step"
+  },
+  "contribute.history.title": {
+    "text": "Mijn bijdragen",
+    "translationContext": "Heading for the section showing the user's past feed contributions"
+  },
+  "contribute.history.titleWithCount": {
+    "text": "Mijn bijdragen ({{count}})",
+    "translationContext": "Heading for contributions section showing total count, e.g. 'My Contributions (4)'"
+  },
+  "contribute.history.typeExisting": {
+    "text": "Bestaande categorie",
+    "translationContext": "Inline text in expanded contribution detail indicating feeds were added to an existing category"
+  },
+  "contribute.history.typeNew": {
+    "text": "Nieuwe categorie",
+    "translationContext": "Inline text in expanded contribution detail indicating this created a new category"
+  },
+  "contribute.history.viewAll": {
+    "text": "Bekijk {{count}} meer",
+    "translationContext": "Button to expand and show remaining hidden contributions, e.g. 'See 3 more'"
+  },
+  "contribute.howItWorks": {
+    "text": "Hoe het werkt",
+    "translationContext": "Small link in the contribute form header to re-show the onboarding"
+  },
+  "contribute.inThisCategory": {
+    "text": "in deze categorie",
+    "translationContext": "Text after feed count, e.g. '42 feeds in this category'"
+  },
+  "contribute.languageInNameWarning": {
+    "text": "Voeg geen taalcode toe aan de categorienaam. Gebruik alleen de basisnaam (bijv. \"Zwitserland\" in plaats van \"Zwitserland (IT)\") en stel hieronder de primaire feedtaal in. Alle categorieën worden vertaald naar elke taal die we ondersteunen.",
+    "translationContext": "Warning shown when a language code like (IT) is detected in the category name"
+  },
+  "contribute.loadingCategories": {
+    "text": "Categorieën laden...",
+    "translationContext": "Loading state while fetching category list"
+  },
+  "contribute.manual.addTo": {
+    "text": "Toevoegen aan {{fileName}}:",
+    "translationContext": "Label above the copyable code snippet (snippet mode)"
+  },
+  "contribute.manual.copied": {
+    "text": "Gekopieerd!",
+    "translationContext": "Confirmation after copying to clipboard"
+  },
+  "contribute.manual.copy": {
+    "text": "Kopiëren",
+    "translationContext": "Copy to clipboard button"
+  },
+  "contribute.manual.editOnGithub": {
+    "text": "Bewerk {{fileName}} op GitHub",
+    "translationContext": "Button to open the file editor on GitHub"
+  },
+  "contribute.manual.fullFile": {
+    "text": "Volledige {{fileName}}:",
+    "translationContext": "Label above the copyable code block (full file mode)"
+  },
+  "contribute.manual.instructions": {
+    "text": "Maak een pull request aan op GitHub met deze wijzigingen:",
+    "translationContext": "Header for manual PR creation instructions"
+  },
+  "contribute.manual.step1": {
+    "text": "Kopieer het onderstaande fragment",
+    "translationContext": "Step 1 of manual PR instructions (snippet mode for core_feeds.py)"
+  },
+  "contribute.manual.step1Full": {
+    "text": "Kopieer de volledige bestandsinhoud hieronder",
+    "translationContext": "Step 1 of manual PR instructions (full file mode for kite_feeds.json)"
+  },
+  "contribute.manual.step2Existing": {
+    "text": "Klik op de knop om {{fileName}} op GitHub te bewerken. Zoek de sectie \"{{category}}\" en voeg de feed-URL's toe aan de feeds-lijst",
+    "translationContext": "Step 2 for adding feeds to an existing category manually (snippet mode for core_feeds.py)"
+  },
+  "contribute.manual.step2Full": {
+    "text": "Klik op de knop om {{fileName}} op GitHub te bewerken, selecteer alles en vervang het door de gekopieerde inhoud",
+    "translationContext": "Step 2 for full file replacement mode (kite_feeds.json)"
+  },
+  "contribute.manual.step2New": {
+    "text": "Klik op de knop om {{fileName}} op GitHub te bewerken. Voeg het fragment in alfabetische volgorde toe tussen de bestaande categorieën",
+    "translationContext": "Step 2 for adding a new category manually (snippet mode fallback)"
+  },
+  "contribute.manual.step3": {
+    "text": "Commit de wijziging en open een pull request. GitHub zal je hierbij begeleiden",
+    "translationContext": "Step 3 of manual PR instructions"
+  },
+  "contribute.manual.submit": {
+    "text": "Ontvang PR-instructies",
+    "translationContext": "Button text for manual mode where user creates PR themselves"
+  },
+  "contribute.networkError": {
+    "text": "Netwerkfout. Probeer het opnieuw.",
+    "translationContext": "Error message for network failures during submission"
+  },
+  "contribute.newCategory": {
+    "text": "Nieuwe categorie",
+    "translationContext": "Toggle button to create a new category"
+  },
+  "contribute.noValidUrls": {
+    "text": "Geen geldige URL's gevonden. URL's moeten beginnen met http:// of https://",
+    "translationContext": "Error when pasted text contains no valid URLs"
+  },
+  "contribute.onboarding.community.description": {
+    "text": "Geen enkele Kagi-medewerker beslist welke categorieën bestaan of welke verhalen verschijnen. Dat alles komt voort uit de feeds, en de feeds komen van de community.",
+    "translationContext": "Main explanation of community-driven categories"
+  },
+  "contribute.onboarding.community.networkLabelStories": {
+    "text": "verhalen",
+    "translationContext": "Label on the story cluster nodes in the feed flow animation"
+  },
+  "contribute.onboarding.community.networkLabelYou": {
+    "text": "+ jij",
+    "translationContext": "Label on the contributor node in the feed network animation"
+  },
+  "contribute.onboarding.community.networkNote": {
+    "text": "Feeds aan de linkerkant vloeien naar verhalen aan de rechterkant. Meer feeds betekent meer verhalen en een betere dekking.",
+    "translationContext": "Caption under the feed-to-story flow animation"
+  },
+  "contribute.onboarding.community.noStories": {
+    "text": "Soms levert een categorie geen verhalen op. Dat betekent meestal dat er niet genoeg feeds zijn met overlappende dekking om de groepering te activeren. Meer feeds betekent meer overlap, wat meer verhalen betekent.",
+    "translationContext": "Explaining why some categories don't generate stories"
+  },
+  "contribute.onboarding.community.title": {
+    "text": "Alles wordt door de community aangedreven",
+    "translationContext": "Section title for explaining community-driven nature of categories"
+  },
+  "contribute.onboarding.community.whyXnotY": {
+    "text": "Als je je afvraagt waarom er een categorie voor X is maar niet voor Y, dan is dat omdat iemand die om X gaf de tijd heeft genomen om er feeds voor toe te voegen. Als een onderwerp dat jij belangrijk vindt ontbreekt, kun jij degene zijn die het start.",
+    "translationContext": "Explaining why certain categories exist and others don't"
+  },
+  "contribute.onboarding.cta": {
+    "text": "Begin met het toevoegen van feeds",
+    "translationContext": "CTA button on the onboarding page to proceed to the contribute form"
+  },
+  "contribute.onboarding.feedTypes.community.description": {
+    "text": "Samengesteld door bijdragers zoals jij in kite_feeds.json. Dekken alles van regionaal nieuws tot niche-onderwerpen. Hier komt jouw bijdrage terecht.",
+    "translationContext": "Description of community feeds that contributors add to"
+  },
+  "contribute.onboarding.feedTypes.community.title": {
+    "text": "Community-feeds",
+    "translationContext": "Title for the community feeds card"
+  },
+  "contribute.onboarding.feedTypes.core.description": {
+    "text": "Dekken essentiële categorieën zoals Wereldnieuws, Zaken, Technologie, Wetenschap, Sport en Cultuur. Ze zijn volledig open source op GitHub, dus je kunt er ook aan bijdragen.",
+    "translationContext": "Description of core feeds, emphasizing they are open source and open to contributions"
+  },
+  "contribute.onboarding.feedTypes.core.title": {
+    "text": "Kernfeeds",
+    "translationContext": "Title for the core feeds card"
+  },
+  "contribute.onboarding.feedTypes.title": {
+    "text": "Twee soorten feeds drijven Kagi News aan",
+    "translationContext": "Section title for core vs community feeds comparison"
+  },
+  "contribute.onboarding.guidelines.anyLanguage": {
+    "text": "Elke taal is welkom. Kagi News vertaalt alles automatisch, dus één categorie kan en moet talen mixen.",
+    "translationContext": "Guideline: feeds in any language are accepted"
+  },
+  "contribute.onboarding.guidelines.minimum": {
+    "text": "Nieuwe categorieën hebben minstens 25 feeds nodig om in Kagi News te verschijnen. Dit zorgt voor voldoende overlap zodat de clustering werkt.",
+    "translationContext": "Guideline: minimum feed count for new categories"
+  },
+  "contribute.onboarding.guidelines.noLanguageSplit": {
+    "text": "Maak geen aparte categorieën per taal. Gebruik \"Zwitserland\", niet \"Zwitserland (DE)\" en \"Zwitserland (FR)\".",
+    "translationContext": "Guideline: don't split categories by language"
+  },
+  "contribute.onboarding.guidelines.quality": {
+    "text": "Geef de voorkeur aan gevestigde nieuwsbronnen, blogs of kanalen. Meer feeds is over het algemeen beter — de clustering regelt de rest.",
+    "translationContext": "Guideline: source quality preference"
+  },
+  "contribute.onboarding.guidelines.rssOnly": {
+    "text": "Alleen RSS- of Atom-feeds. Kagi News scraapt geen websites, het gebruikt alleen openbaar beschikbare feed-gegevens.",
+    "translationContext": "Guideline: only RSS/Atom feeds are accepted"
+  },
+  "contribute.onboarding.guidelines.title": {
+    "text": "Richtlijnen voor feeds",
+    "translationContext": "Section title for feed submission guidelines"
+  },
+  "contribute.onboarding.guidelines.topicSpecific": {
+    "text": "Feeds moeten specifiek het onderwerp van de categorie behandelen. Het toevoegen van een algemene krant zoals The Guardian aan een \"VK\"-categorie zal voornamelijk wereldnieuwsclusters produceren, geen VK-specifieke. Zoek naar op onderwerp gefilterde feeds, of gebruik RSS-filtertools om een brede feed te verfijnen.",
+    "translationContext": "Guideline: feeds should be topic-specific, not general outlets, with example"
+  },
+  "contribute.onboarding.guidelines.working": {
+    "text": "Feeds moeten werken en recente (idealiter dagelijkse) inhoud hebben.",
+    "translationContext": "Guideline: feeds should be active"
+  },
+  "contribute.onboarding.pipeline.note": {
+    "text": "Het hele proces draait op de automatische piloot. Niemand bij Kagi kiest welke verhalen verschijnen of welke categorieën worden aangemaakt.",
+    "translationContext": "Note below the pipeline emphasizing the automated nature"
+  },
+  "contribute.onboarding.pipeline.step1.description": {
+    "text": "Elke categorie heeft een lijst met RSS-feeds. Het systeem haalt nieuwe artikelen op van al deze feeds. Sommige categorieën hebben honderden feeds, andere zijn net begonnen.",
+    "translationContext": "Pipeline step 1 description"
+  },
+  "contribute.onboarding.pipeline.step1.title": {
+    "text": "Feeds worden gecontroleerd",
+    "translationContext": "Pipeline step 1 title"
+  },
+  "contribute.onboarding.pipeline.step2.description": {
+    "text": "Het systeem bepaalt welke artikelen over hetzelfde onderwerp gaan en groepeert ze. Elke groep wordt een \"verhaal\". Als een artikel nergens mee overeenkomt, wordt het overgeslagen.",
+    "translationContext": "Pipeline step 2 description"
+  },
+  "contribute.onboarding.pipeline.step2.title": {
+    "text": "Gerelateerde artikelen worden gegroepeerd",
+    "translationContext": "Pipeline step 2 title"
+  },
+  "contribute.onboarding.pipeline.step3.description": {
+    "text": "AI leest alle artikelen in een groep en schrijft één enkele samenvatting, waarbij de verschillende invalshoeken van elke bron worden meegenomen.",
+    "translationContext": "Pipeline step 3 description"
+  },
+  "contribute.onboarding.pipeline.step3.title": {
+    "text": "Er wordt een samenvatting geschreven",
+    "translationContext": "Pipeline step 3 title"
+  },
+  "contribute.onboarding.pipeline.title": {
+    "text": "Hoe verhalen tot stand komen",
+    "translationContext": "Section title for the pipeline explanation"
+  },
+  "contribute.onboarding.skip": {
+    "text": "Overslaan",
+    "translationContext": "Link to skip the onboarding and go straight to the contribute form"
+  },
+  "contribute.onboarding.subtitle": {
+    "text": "Help mee aan een betere nieuwservaring door RSS-feeds toe te voegen aan door de community samengestelde categorieën.",
+    "translationContext": "Subtitle on the contribute onboarding info page"
+  },
+  "contribute.onboarding.title": {
+    "text": "Draag bij aan Kagi News",
+    "translationContext": "Title on the contribute onboarding info page"
+  },
+  "contribute.onboarding.whatToDo.existing.description": {
+    "text": "Blader door de categorieën en voeg RSS-feeds toe die volgens jou ontbreken. Meer diverse bronnen betekenen een betere dekking en meer verhalen die naar boven komen.",
+    "translationContext": "Description of adding feeds to existing categories"
+  },
+  "contribute.onboarding.whatToDo.existing.title": {
+    "text": "Voeg feeds toe aan bestaande categorieën",
+    "translationContext": "Title for existing category contribution option"
+  },
+  "contribute.onboarding.whatToDo.new.description": {
+    "text": "Lokaal nieuws, regionale dekking, niche-onderwerpen. Nieuwe categorieën hebben minstens 25 feeds nodig om live te gaan in Kagi News. Dit zorgt voor voldoende overlap zodat de clustering echte verhalen kan produceren.",
+    "translationContext": "Description of proposing new categories"
+  },
+  "contribute.onboarding.whatToDo.new.title": {
+    "text": "Stel een nieuwe categorie voor",
+    "translationContext": "Title for new category contribution option"
+  },
+  "contribute.onboarding.whatToDo.title": {
+    "text": "Wat je kunt bijdragen",
+    "translationContext": "Section title for contribution options"
+  },
+  "contribute.pageTitle": {
+    "text": "Feeds bijdragen - Kagi News",
+    "translationContext": "Browser tab title for the contribute page"
+  },
+  "contribute.pendingFeedCount": {
+    "text": "{{count}} feeds voorgesteld",
+    "translationContext": "Number of feeds proposed in a pending pull request"
+  },
+  "contribute.pendingFeedsAdded": {
+    "text": "+{{count}} feeds in behandeling",
+    "translationContext": "Indicator showing additional feeds pending for an existing category"
+  },
+  "contribute.pendingPr": {
+    "text": "PR in behandeling",
+    "translationContext": "Badge label for categories from unmerged pull requests"
+  },
+  "contribute.pendingPrLink": {
+    "text": "Bekijk PR #{{number}}",
+    "translationContext": "Link text to view the related pending pull request"
+  },
+  "contribute.pendingPrNote": {
+    "text": "Deze categorie is voorgesteld door een andere bijdrager en wacht op beoordeling.",
+    "translationContext": "Info note shown when a pending PR category is selected"
+  },
+  "contribute.removeErrored": {
+    "text": "Verwijder {{count}} met fouten",
+    "translationContext": "Button to remove all feeds that failed validation"
+  },
+  "contribute.removeFeed": {
+    "text": "Verwijder feed",
+    "translationContext": "Aria label for the button to remove a single feed"
+  },
+  "contribute.retry": {
+    "text": "Opnieuw proberen",
+    "translationContext": "Button to retry loading categories after an error"
+  },
+  "contribute.reviewNote": {
+    "text": "Ons team zal je inzending beoordelen en samenvoegen als alles in orde is.",
+    "translationContext": "Note explaining what happens after submission"
+  },
+  "contribute.searchCategories": {
+    "text": "Zoek categorieën...",
+    "translationContext": "Placeholder for the category search dropdown"
+  },
+  "contribute.showFeeds": {
+    "text": "Toon feeds",
+    "translationContext": "Button to expand the list of existing feeds"
+  },
+  "contribute.step1": {
+    "text": "1. Kies een categorie",
+    "translationContext": "Step 1 heading in the contribute form"
+  },
+  "contribute.step2": {
+    "text": "2. Voeg feeds toe",
+    "translationContext": "Step 2 heading in the contribute form"
+  },
+  "contribute.step3": {
+    "text": "3. Indienen",
+    "translationContext": "Step 3 heading in the contribute form"
+  },
+  "contribute.submitAnother": {
+    "text": "Dien nog een bijdrage in",
+    "translationContext": "Link to reset the form and submit another contribution"
+  },
+  "contribute.subtitle": {
+    "text": "Voeg RSS-feeds toe aan bestaande categorieën of stel nieuwe voor",
+    "translationContext": "Subtitle below the heading on the contribute page"
+  },
+  "contribute.successMessage": {
+    "text": "Bedankt voor je bijdrage! Pull request #{{prNumber}} is aangemaakt.",
+    "translationContext": "Success message after PR is created, with PR number"
+  },
+  "contribute.summaryExisting": {
+    "text": "{{count}} feed(s) toevoegen aan {{category}}",
+    "translationContext": "Summary text before adding feeds to an existing category"
+  },
+  "contribute.summaryNew": {
+    "text": "Nieuwe categorie {{category}} aanmaken met {{count}} feed(s)",
+    "translationContext": "Summary text before submitting a new category"
+  },
+  "contribute.switchToIt": {
+    "text": "Wil je ernaar overschakelen?",
+    "translationContext": "Link to switch to an existing category instead of creating new"
+  },
+  "contribute.unverifiedCount": {
+    "text": "{{count}} niet-geverifieerd",
+    "translationContext": "Number of feeds with unknown validation status"
+  },
+  "contribute.validCount": {
+    "text": "{{count}} geldig",
+    "translationContext": "Number of feeds that passed validation"
+  },
+  "contribute.viewPr": {
+    "text": "Bekijk Pull Request",
+    "translationContext": "Link text to view the created pull request on GitHub"
+  },
+  "contribute.waitingValidation": {
+    "text": "Wachten tot de validatie van {{count}} feed(s) is voltooid...",
+    "translationContext": "Note shown while feeds are still being validated"
   },
   "crypto.grid.title": {
     "text": "Cryptocurrencykoersen",
@@ -2823,6 +3667,10 @@
     "text": "Broninformatie",
     "translationContext": "Title for source information section"
   },
+  "sources.addPreferred": {
+    "text": "Bovenaan bronnen vastpinnen",
+    "translationContext": "Tooltip for pin button to add source to preferred list"
+  },
   "sources.article": {
     "text": "{{count}} artikel",
     "translationContext": "Shows singular article count from a source, {{count}} will be replaced with a number"
@@ -2838,6 +3686,10 @@
   "sources.paywallTooltip": {
     "text": "Voor deze bron is mogelijk een abonnement vereist om volledige artikelen te kunnen lezen",
     "translationContext": "Tooltip explaining that a news source requires a paid subscription"
+  },
+  "sources.removePreferred": {
+    "text": "Vastpinnen ongedaan maken",
+    "translationContext": "Tooltip for pin button to remove source from preferred list"
   },
   "sources.showArticlesFrom": {
     "text": "Toon artikelen van {{source}}",
@@ -2863,6 +3715,38 @@
     "text": "Week {{{week}}}, Dag {{{day}}}",
     "translationContext": "Shows the current week and day of the year, {{week}} and {{day}} will be replaced with numbers"
   },
+  "stories.clusteringModal.clusteringDescription": {
+    "text": "Wanneer artikelen uit verschillende feeds over hetzelfde onderwerp gaan, worden ze gegroepeerd in een verhaal. Hoe meer feeds iets oppikken, hoe sterker het signaal.",
+    "translationContext": "Explains how story clustering works"
+  },
+  "stories.clusteringModal.communityFeedsDescription": {
+    "text": "De RSS-feeds voor deze categorie worden samengesteld door leden van de community, niet door het Kagi-team.",
+    "translationContext": "Explains that community categories have user-curated feeds"
+  },
+  "stories.clusteringModal.fullyAutomaticDescription": {
+    "text": "Niemand kiest wat er verschijnt. Het hele proces verloopt automatisch, van het ophalen van feeds en het clusteren tot het schrijven van samenvattingen.",
+    "translationContext": "Explains that the process is fully automatic with no human curation"
+  },
+  "stories.clusteringModal.helpImprove": {
+    "text": "Help deze categorie te verbeteren",
+    "translationContext": "Call-to-action divider text for contributing feeds"
+  },
+  "stories.clusteringModal.helpImproveDescription": {
+    "text": "Het toevoegen van meer feeds zorgt ervoor dat het clusteren beter werkt. Je kunt nieuwe feeds voorstellen op GitHub.",
+    "translationContext": "Encourages users to contribute feeds"
+  },
+  "stories.clusteringModal.noClusterDescription": {
+    "text": "Als feeds niet genoeg overlap hebben in wat ze behandelen, worden er geen clusters gevormd en verschijnen er geen verhalen. Dit is normaal en gebeurt vaker bij niche- of regionale categorieën.",
+    "translationContext": "Explains why community categories sometimes have no stories"
+  },
+  "stories.clusteringModal.suggestFeeds": {
+    "text": "Stel feeds voor op GitHub",
+    "translationContext": "Button label for the GitHub link to suggest feeds"
+  },
+  "stories.clusteringModal.title": {
+    "text": "Hoe verhalen worden gegenereerd",
+    "translationContext": "Title for the modal explaining the story clustering process"
+  },
   "stories.fewStories": {
     "text": "Er was vandaag geen ander belangrijk nieuws, kom morgen terug!",
     "translationContext": "Message shown when there are only 1-3 stories in a category"
@@ -2870,6 +3754,38 @@
   "stories.noStories": {
     "text": "Er zijn vandaag geen belangrijke nieuwsberichten in deze categorie.",
     "translationContext": "Message shown when no stories are found for a category"
+  },
+  "stories.noStoriesCommunity": {
+    "text": "Vandaag geen verhalen voor deze community-categorie.",
+    "translationContext": "Message shown when a community (non-core) category has no stories"
+  },
+  "stories.noStoriesCommunityDescription": {
+    "text": "Er is onvoldoende gedeeld nieuws tussen de feeds om verhalen te kunnen vormen. Dit komt soms voor bij community-categorieën.",
+    "translationContext": "Secondary description explaining why community categories sometimes have no stories"
+  },
+  "stories.noStoriesCommunityLearnMore": {
+    "text": "Lees hoe het werkt",
+    "translationContext": "Button label to open modal explaining the clustering process"
+  },
+  "stories.noStoriesCore": {
+    "text": "Verhalen voor deze categorie zijn binnenkort beschikbaar. Kijk later nog eens.",
+    "translationContext": "Message shown when a core (Kagi-maintained) category temporarily has no stories, usually due to a pipeline issue"
+  },
+  "stories.noStoriesCoreUpdates": {
+    "text": "Tijdelijk niet beschikbaar",
+    "translationContext": "Small label shown with a clock icon when a core category has no stories, indicating the update schedule"
+  },
+  "story.assistant.placeholder": {
+    "text": "Vraag over dit verhaal...",
+    "translationContext": "Placeholder text in the assistant question input field"
+  },
+  "story.assistant.submit": {
+    "text": "Vragen",
+    "translationContext": "Submit button label for assistant question"
+  },
+  "story.assistant.tooltip": {
+    "text": "Vraag de Assistent",
+    "translationContext": "Tooltip for button that opens Kagi Assistant with the current story topic"
   },
   "story.flashcards.download": {
     "text": "Downloaden",
@@ -2907,6 +3823,10 @@
     "text": "Woordselectie verlaten",
     "translationContext": "Tooltip for flashcard button when in selection mode"
   },
+  "story.simplify.autoSimplifying": {
+    "text": "Vereenvoudigen naar {level}...",
+    "translationContext": "Status message while auto-simplifying. {level} is the reading level name."
+  },
   "story.simplify.loading": {
     "text": "Vereenvoudigen...",
     "translationContext": "Status message while simplifying text"
@@ -2943,6 +3863,66 @@
     "text": "Afspelen stoppen",
     "translationContext": "Tooltip for TTS button when playing"
   },
+  "sync.conflict.multiple": {
+    "text": "{{{count}}} instellingen zijn bijgewerkt vanaf een ander apparaat",
+    "translationContext": "Toast notification when multiple settings were overridden during sync. {count} is the number of settings."
+  },
+  "sync.conflict.single": {
+    "text": "Een instelling is bijgewerkt vanaf een ander apparaat",
+    "translationContext": "Toast notification when one setting was overridden during sync"
+  },
+  "syncSetup.description": {
+    "text": "We hebben bestaande instellingen op je account gevonden van een ander apparaat. Hoe wil je verdergaan?",
+    "translationContext": "Description shown in sync setup wizard when cloud settings already exist"
+  },
+  "syncSetup.done": {
+    "text": "Instellingen succesvol gesynchroniseerd!",
+    "translationContext": "Success message after sync setup completes"
+  },
+  "syncSetup.merge.description": {
+    "text": "Behoud je instellingen en voeg eventuele ontbrekende cloudinstellingen toe",
+    "translationContext": "Description for the merge option in sync setup"
+  },
+  "syncSetup.merge.title": {
+    "text": "Samenvoegen",
+    "translationContext": "Option to merge local and cloud settings together"
+  },
+  "syncSetup.pullRemote.description": {
+    "text": "Vervang je huidige instellingen door cloudinstellingen",
+    "translationContext": "Description for the pull remote option in sync setup"
+  },
+  "syncSetup.pullRemote.title": {
+    "text": "Gebruik cloudinstellingen",
+    "translationContext": "Option to overwrite local settings with cloud settings"
+  },
+  "syncSetup.pushLocal.description": {
+    "text": "Vervang cloudinstellingen door je huidige instellingen",
+    "translationContext": "Description for the push local option in sync setup"
+  },
+  "syncSetup.pushLocal.title": {
+    "text": "Gebruik dit apparaat",
+    "translationContext": "Option to overwrite cloud settings with current device settings"
+  },
+  "syncSetup.syncing.merging": {
+    "text": "Instellingen samenvoegen...",
+    "translationContext": "Loading text while merging local and cloud settings"
+  },
+  "syncSetup.syncing.pulling": {
+    "text": "Cloudinstellingen downloaden...",
+    "translationContext": "Loading text while pulling cloud settings to device"
+  },
+  "syncSetup.syncing.pushing": {
+    "text": "Je instellingen uploaden...",
+    "translationContext": "Loading text while pushing local settings to cloud"
+  },
+  "syncSetup.title": {
+    "text": "Synchronisatie instellen",
+    "translationContext": "Title for the sync setup wizard modal shown when enabling sync with existing cloud settings"
+  },
+  "syncSetup.tryAgain": {
+    "text": "Probeer opnieuw",
+    "translationContext": "Link to retry sync setup after an error"
+  },
   "time.nextUpdate.in": {
     "text": "Volgende update over {{time}}",
     "translationContext": "Shown when the next update time is known, {time} will be replaced with countdown (e.g., '2h 30m')"
@@ -2950,6 +3930,34 @@
   "time.nextUpdate.soon": {
     "text": "Volgende update binnenkort",
     "translationContext": "Shown when the next update is expected soon (after noon UTC but no update yet today)"
+  },
+  "time.relative.days": {
+    "text": "{{count}} dagen geleden",
+    "translationContext": "Relative time: multiple days ago, {count} is the number"
+  },
+  "time.relative.hours": {
+    "text": "{{count}} uur geleden",
+    "translationContext": "Relative time: multiple hours ago, {count} is the number"
+  },
+  "time.relative.justNow": {
+    "text": "zojuist",
+    "translationContext": "Relative time: less than a minute ago"
+  },
+  "time.relative.minutes": {
+    "text": "{{count}} minuten geleden",
+    "translationContext": "Relative time: multiple minutes ago, {count} is the number"
+  },
+  "time.relative.oneDay": {
+    "text": "1 dag geleden",
+    "translationContext": "Relative time: exactly 1 day ago"
+  },
+  "time.relative.oneHour": {
+    "text": "1 uur geleden",
+    "translationContext": "Relative time: exactly 1 hour ago"
+  },
+  "time.relative.oneMinute": {
+    "text": "1 minuut geleden",
+    "translationContext": "Relative time: exactly 1 minute ago"
   },
   "time.updated.days": {
     "text": "Laatste update: {{count}} dagen geleden",
@@ -2982,6 +3990,10 @@
   "time.updated.seconds": {
     "text": "Bijgewerkt {{count}} seconden geleden",
     "translationContext": "Shown when content was updated seconds ago, {{count}} will be replaced with the number of seconds"
+  },
+  "timeTravel.description": {
+    "text": "Toegang tot historische dagoverzichten.\nGereserveerd voor Kagi-abonnees.\nBeschikbaar voor alle gebruikers tijdens de bèta.",
+    "translationContext": "Description of Time Travel - line 1 is subtitle, line 2 is info, line 3 is italicized beta note"
   },
   "timeTravel.latest": {
     "text": "Nieuwste",
@@ -3022,6 +4034,18 @@
   "timeTravel.today": {
     "text": "Vandaag",
     "translationContext": "Button to navigate to today"
+  },
+  "timeTravel.urlBanner.dismiss": {
+    "text": "Begrepen",
+    "translationContext": "Button to dismiss the time travel info banner"
+  },
+  "timeTravel.urlBanner.viewing": {
+    "text": "Deze link verwijst naar nieuws van {{{date}}}. Je kunt op elk moment terugkeren naar het nieuws van vandaag via de ✕ naast de datum hierboven.",
+    "translationContext": "One-time info banner shown when user arrives via a bookmarked time travel URL (no referrer). Points user to the header date pill with X button."
+  },
+  "timeTravel.urlBanner.viewingShared": {
+    "text": "Iemand heeft een link met je gedeeld naar nieuws van {{{date}}}. Je kunt op elk moment terugkeren naar het nieuws van vandaag via de ✕ naast de datum hierboven.",
+    "translationContext": "One-time info banner shown when user arrives via a shared time travel URL (has referrer). Points user to the header date pill with X button."
   },
   "turbulence.title": {
     "text": "Wereldwijde turbulentiemeter",
@@ -3179,6 +4203,14 @@
     "text": "Chaosindex",
     "translationContext": "Label for the chaos index chart"
   },
+  "worldTension.consistencyText": {
+    "text": "Tussen alarmerende krantenkoppen, doomscrolling en de 24/7-nieuwscyclus, kan het voelen alsof de wereld constant in brand staat. Deze index heeft als doel een nuchter perspectief te bieden. Vaak is de situatie niet zo erg als het voelt.",
+    "translationContext": "Explanation of purpose: cutting through media noise"
+  },
+  "worldTension.consistencyTitle": {
+    "text": "Waarom deze index?",
+    "translationContext": "Section header explaining purpose of the index"
+  },
   "worldTension.cool": {
     "text": "Koel",
     "translationContext": "Temperature description for low world tension (0-20%)"
@@ -3207,6 +4239,26 @@
     "text": "Extreem",
     "translationContext": "Status label for 81-100% range (deprecated, use burning)"
   },
+  "worldTension.factor.novelty": {
+    "text": "Nieuwigheid — Nieuwe crises of escalaties wegen zwaarder dan aanhoudende situaties die al zijn \"ingeprijsd\".",
+    "translationContext": "Explanation of novelty factor"
+  },
+  "worldTension.factor.reversibility": {
+    "text": "Omkeerbaarheid — Onomkeerbare acties (invasies, verlies van mensenlevens) wegen zwaarder dan omkeerbare (sancties, retoriek).",
+    "translationContext": "Explanation of reversibility factor"
+  },
+  "worldTension.factor.scope": {
+    "text": "Omvang van de impact — Wereldwijde systeemrisico's, economische besmetting en het activeren van allianties worden afgewogen tegen gelokaliseerde gebeurtenissen.",
+    "translationContext": "Explanation of scope factor"
+  },
+  "worldTension.factor.worstCase": {
+    "text": "Nabijheid van het worstcasescenario — Hoe dicht gebeurtenissen bij een catastrofale afloop zijn, waarbij situaties met kernwapens/massavernietigingswapens een onevenredig groot gewicht krijgen.",
+    "translationContext": "Explanation of worst case factor"
+  },
+  "worldTension.factorsTitle": {
+    "text": "De AI houdt rekening met vier belangrijke factoren:",
+    "translationContext": "Header for list of factors"
+  },
   "worldTension.high": {
     "text": "Warm",
     "translationContext": "Status label for 41-60% range (deprecated, use warm)"
@@ -3214,6 +4266,14 @@
   "worldTension.hot": {
     "text": "Warm",
     "translationContext": "Temperature description for moderate world tension (41-60%)"
+  },
+  "worldTension.howCalculated": {
+    "text": "Hoe het wordt berekend",
+    "translationContext": "Section header for methodology explanation"
+  },
+  "worldTension.methodologyIntro": {
+    "text": "De Wereldspanningsindex wordt gegenereerd door een AI-analyse van actuele wereldwijde nieuwskoppen. In plaats van een vaste formule, gebruikt het redeneringen om de mondiale stabiliteit te evalueren.",
+    "translationContext": "Introduction explaining AI-based methodology"
   },
   "worldTension.mild": {
     "text": "Mild",

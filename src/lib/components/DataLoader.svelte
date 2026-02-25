@@ -69,6 +69,47 @@ async function preloadCategoryImages(stories: Story[]) {
 	await imagePreloadingService.preloadCategory(stories);
 }
 
+/**
+ * Select which categories to preload based on device, mode, and a max cap.
+ * Returns the target + adjacent categories from the ordered list, up to the cap.
+ */
+const MAX_PRELOAD_CATEGORIES = 6;
+
+function selectCategoriesToPreload(
+	allCategories: string[],
+	targetCategory: string,
+	opts: { isMobile: boolean; isTimeTravel?: boolean; isSinglePageMode: boolean },
+): string[] {
+	if (opts.isSinglePageMode) return allCategories;
+	if (dev || opts.isMobile || opts.isTimeTravel) return [targetCategory];
+	if (allCategories.length <= MAX_PRELOAD_CATEGORIES) return allCategories;
+
+	const targetIndex = allCategories.indexOf(targetCategory);
+	if (targetIndex === -1) {
+		// Target not in list (e.g. onthisday) — just take the first N
+		return allCategories.slice(0, MAX_PRELOAD_CATEGORIES);
+	}
+
+	const half = Math.floor((MAX_PRELOAD_CATEGORIES - 1) / 2);
+	let start = targetIndex - half;
+	let end = targetIndex + half + 1;
+
+	if (start < 0) {
+		end = Math.min(allCategories.length, end - start);
+		start = 0;
+	} else if (end > allCategories.length) {
+		start = Math.max(0, start - (end - allCategories.length));
+		end = allCategories.length;
+	}
+
+	const selected = allCategories.slice(start, end);
+	if (!selected.includes(targetCategory)) {
+		selected.unshift(targetCategory);
+		return selected.slice(0, MAX_PRELOAD_CATEGORIES);
+	}
+	return selected;
+}
+
 // Main data loading function
 async function loadInitialData() {
 	try {
@@ -108,7 +149,13 @@ async function loadInitialData() {
 							timeTravel.selectBatch(initialBatchId);
 
 							// Set time travel batch with createdAt for URL generation (historical = true)
-							timeTravelBatch.set(initialBatchId, batchData.createdAt, batchData.dateSlug, true);
+							timeTravelBatch.set(
+								initialBatchId,
+								batchData.createdAt,
+								batchData.dateSlug,
+								true,
+								'url',
+							);
 
 							// Store the batch info to pass to batchService
 							providedBatchInfo = {
@@ -184,9 +231,7 @@ async function loadInitialData() {
 				availableCategoryIds.includes(catId),
 			);
 			if (validDisabledCategories.length !== categorySettings.disabled.length) {
-				console.log(
-					'Cleaning up disabled categories not in current batch',
-				);
+				console.log('Cleaning up disabled categories not in current batch');
 				categorySettings.cleanupDisabled(validDisabledCategories);
 			}
 		} else {
@@ -198,7 +243,10 @@ async function loadInitialData() {
 			validEnabledCategories = categorySettings.enabled;
 		}
 
-		console.log('📊 Valid enabled categories for loading:', $state.snapshot(validEnabledCategories));
+		console.log(
+			'📊 Valid enabled categories for loading:',
+			$state.snapshot(validEnabledCategories),
+		);
 
 		// Initialize sections store
 		sectionSettings.init();
@@ -232,16 +280,17 @@ async function loadInitialData() {
 		const targetCategory = initialCategoryId || enabledCategoriesForLoading[0] || 'World';
 		currentCategory = targetCategory;
 
-		// On mobile, only load the first category to save bandwidth and improve performance
-		// UNLESS we're in single-page mode, where we need all categories preloaded
 		const isMobile = isMobileDevice();
 		const isInSinglePageMode = categorySettings.singlePageMode !== 'disabled';
-		const categoriesToActuallyLoad = isMobile && !isInSinglePageMode ? [targetCategory] : categoriesToLoad;
+		const categoriesToActuallyLoad = selectCategoriesToPreload(categoriesToLoad, targetCategory, {
+			isMobile,
+			isSinglePageMode: isInSinglePageMode,
+		});
 
-		if (isMobile && !isInSinglePageMode) {
-			console.log(`📱 Mobile device detected - loading only first category: ${targetCategory}`);
-		} else if (isMobile && isInSinglePageMode) {
-			console.log(`📱 Mobile device in single-page mode - loading all ${categoriesToLoad.length} categories`);
+		if (categoriesToActuallyLoad.length < categoriesToLoad.length) {
+			console.log(
+				`🖥️ Preloading ${categoriesToActuallyLoad.length}/${categoriesToLoad.length} categories (capped at ${MAX_PRELOAD_CATEGORIES})`,
+			);
 		}
 
 		// Load stories for categories (only first on mobile, all on desktop)
@@ -392,9 +441,13 @@ async function reloadAllData() {
 		} = initialData;
 		totalReadCount = initialData.totalReadCount;
 
-		// If not in time travel mode, we're viewing the latest batch
-		if (!timeTravelBatch.isTimeTravelMode()) {
-			isLatestBatch = true;
+		// Set isLatestBatch based on time travel mode
+		// If in time travel mode (historical batch), isLatestBatch should be false
+		isLatestBatch = !timeTravelBatch.isTimeTravelMode();
+
+		// Update timeTravelBatch with the dateSlug from API response (important for URL generation)
+		if (timeTravelBatch.isTimeTravelMode() && dateSlug) {
+			timeTravelBatch.set(batchId, batchCreatedAt, dateSlug, true);
 		}
 
 		// Get available category IDs
@@ -417,9 +470,7 @@ async function reloadAllData() {
 				availableCategoryIds.includes(catId),
 			);
 			if (validDisabledCategories.length !== categorySettings.disabled.length) {
-				console.log(
-					'Cleaning up disabled categories not in current batch',
-				);
+				console.log('Cleaning up disabled categories not in current batch');
 				categorySettings.cleanupDisabled(validDisabledCategories);
 			}
 		} else {
@@ -453,13 +504,18 @@ async function reloadAllData() {
 		const firstEnabledCategory = initialCategoryId || enabledCategoriesForLoading[0] || 'World';
 		currentCategory = firstEnabledCategory;
 
-		// On mobile, only load the first category to save bandwidth and improve performance
 		const isMobile = isMobileDevice();
-		const categoriesToActuallyLoad = isMobile ? [firstEnabledCategory] : categoriesToLoad;
+		const isTimeTravel = timeTravelBatch.isHistoricalBatch;
+		const isInSinglePageMode = categorySettings.singlePageMode !== 'disabled';
+		const categoriesToActuallyLoad = selectCategoriesToPreload(
+			categoriesToLoad,
+			firstEnabledCategory,
+			{ isMobile, isTimeTravel, isSinglePageMode: isInSinglePageMode },
+		);
 
-		if (isMobile) {
+		if (categoriesToActuallyLoad.length < categoriesToLoad.length) {
 			console.log(
-				`📱 Mobile device detected during reload - loading only first category: ${firstEnabledCategory}`,
+				`🖥️ Reload - preloading ${categoriesToActuallyLoad.length}/${categoriesToLoad.length} categories (capped at ${MAX_PRELOAD_CATEGORIES})`,
 			);
 		}
 
@@ -568,7 +624,10 @@ onMount(() => {
 	console.log(`🚀 DataLoader mounted - loading initial data`);
 	loadInitialData();
 
-	// Register reload callback
+	// Register reload callback - we DON'T unregister on unmount because:
+	// 1. DataLoader unmounts after initial load (when dataLoaded becomes true)
+	// 2. But we still need the callback for language changes, time travel, etc.
+	// 3. The callback captures the parent's onDataLoaded which stays valid
 	dataReloadService.onReload(reloadAllData);
 });
 
@@ -579,6 +638,13 @@ $effect(() => {
 
 	// If batch changed and we're not in initial loading
 	if (currentBatchId !== previousBatchId && !initialLoading && previousBatchId !== null) {
+		// Skip if a reload is already in progress (e.g., from timeTravelNavigationService)
+		if (dataReloadService.isReloading()) {
+			console.log(`🔄 Batch changed but reload already in progress, skipping...`);
+			previousBatchId = currentBatchId;
+			return;
+		}
+
 		console.log(`🔄 Batch changed from ${previousBatchId} to ${currentBatchId}, reloading data...`);
 		previousBatchId = currentBatchId;
 

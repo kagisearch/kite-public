@@ -27,6 +27,14 @@
     "text": "для читачів новин",
     "translationContext": "Footer text suffix for copyright"
   },
+  "settings.about.keyboardDescription": {
+    "text": "Переміщуйтеся між історіями та категоріями за допомогою гарячих клавіш у стилі vim",
+    "translationContext": "Description of keyboard navigation feature"
+  },
+  "settings.about.keyboardShortcuts": {
+    "text": "Гарячі клавіші",
+    "translationContext": "Section header for keyboard shortcuts in settings"
+  },
   "settings.about.learnMore": {
     "text": "Дізнатися більше",
     "translationContext": "Link text to open full about page"
@@ -47,6 +55,10 @@
     "text": "Переглянути документацію API",
     "translationContext": "Button text to view API documentation"
   },
+  "settings.about.viewShortcuts": {
+    "text": "Переглянути гарячі клавіші",
+    "translationContext": "Button text to open keyboard shortcuts help overlay"
+  },
   "settings.aboutKite.button": {
     "text": "Про Кайт",
     "translationContext": "Text for the About Kagi News button"
@@ -62,6 +74,78 @@
   "settings.categories.contribute": {
     "text": "+ Додати категорії",
     "translationContext": "Link text for contributing categories"
+  },
+  "settings.categories.contribute.intro": {
+    "text": "Допоможіть розширити охоплення Kagi News, пропонуючи нові категорії. Внески спільноти роблять Kagi News різноманітними та всеосяжними.",
+    "translationContext": "Introduction text in the contribute category modal"
+  },
+  "settings.categories.contribute.learnMore": {
+    "text": "Дивіться",
+    "translationContext": "Start of sentence linking to source inclusion rationale"
+  },
+  "settings.categories.contribute.learnMoreLink": {
+    "text": "це обговорення",
+    "translationContext": "Link text for the source inclusion rationale discussion"
+  },
+  "settings.categories.contribute.learnMoreSuffix": {
+    "text": "щоб ознайомитися з повним обґрунтуванням включення джерел.",
+    "translationContext": "End of sentence after the discussion link"
+  },
+  "settings.categories.contribute.openIssue": {
+    "text": "Створити issue на GitHub",
+    "translationContext": "Link text to open a GitHub issue for category suggestions"
+  },
+  "settings.categories.contribute.or": {
+    "text": "або",
+    "translationContext": "Divider text between options in contribute modal"
+  },
+  "settings.categories.contribute.prHint": {
+    "text": "Для розробників, знайомих з GitHub",
+    "translationContext": "Hint text below the pull request link"
+  },
+  "settings.categories.contribute.prLink": {
+    "text": "Надіслати Pull Request напряму",
+    "translationContext": "Link text for developers to submit a PR"
+  },
+  "settings.categories.contribute.req1Desc": {
+    "text": "— чим більше якісних стрічок, тим краще охоплення",
+    "translationContext": "Description explaining more feeds = better"
+  },
+  "settings.categories.contribute.req1Title": {
+    "text": "25+ RSS-стрічок (чим більше, тим краще)",
+    "translationContext": "Title for the feeds requirement emphasizing more is better"
+  },
+  "settings.categories.contribute.req2Desc": {
+    "text": "— джерело лівого спрямування не потребує відповідника правого спрямування. Державні ЗМІ, партійні видання — все це прийнятно. Наша система перевіряє факти з кількох джерел, тому поодинокі викиди не можуть спотворити результат. Саме тому більше джерел = краще",
+    "translationContext": "Detailed explanation of why biased sources are OK and why more sources help"
+  },
+  "settings.categories.contribute.req2Title": {
+    "text": "Немає потреби в \"балансі\"",
+    "translationContext": "Title clarifying sources don't need to be balanced"
+  },
+  "settings.categories.contribute.req3Desc": {
+    "text": "— жодних сфабрикованих заяв, заперечення подій чи фейкового контенту",
+    "translationContext": "Description for the no conspiracy content requirement"
+  },
+  "settings.categories.contribute.req3Title": {
+    "text": "Без конспірологічного контенту",
+    "translationContext": "Title for the no conspiracy content requirement"
+  },
+  "settings.categories.contribute.requirements": {
+    "text": "Настанови:",
+    "translationContext": "Header for the guidelines section in contribute modal"
+  },
+  "settings.categories.contribute.suggestButton": {
+    "text": "Запропонувати категорію",
+    "translationContext": "Primary button text to open GitHub issue form"
+  },
+  "settings.categories.contribute.suggestHint": {
+    "text": "Відкриває форму задачі на GitHub — навички програмування не потрібні",
+    "translationContext": "Hint text below the suggest button"
+  },
+  "settings.categories.contribute.title": {
+    "text": "Додати категорію",
+    "translationContext": "Title of the contribute category modal"
   },
   "settings.categories.coreTooltip": {
     "text": "Підтримується командою Kagi. Висока якість, різноманітні точки зору.",
@@ -87,6 +171,10 @@
     "text": "Фільтрувати за типом...",
     "translationContext": "Placeholder text for category type filter dropdown"
   },
+  "settings.categories.filterPlaceholder": {
+    "text": "Усі",
+    "translationContext": "Placeholder text for the category type filter dropdown"
+  },
   "settings.categories.instructions": {
     "text": "Перетягніть, щоб змінити порядок, або натисніть, щоб увімкнути чи вимкнути. Перетягуйте між розділами, щоб перемістити категорії.",
     "translationContext": "Instructions for managing categories"
@@ -106,6 +194,18 @@
   "settings.categories.noFiltered": {
     "text": "Жодна категорія цього типу не вимкнена",
     "translationContext": "Message shown when no categories of the selected filter type are in the disabled section"
+  },
+  "settings.categories.noLetterResults": {
+    "text": "Немає категорій, що починаються на цю літеру",
+    "translationContext": "Message shown when no categories match the selected letter filter"
+  },
+  "settings.categories.noSearchResults": {
+    "text": "Жодна категорія не відповідає вашому пошуку",
+    "translationContext": "Message shown when no categories match the search query"
+  },
+  "settings.categories.searchPlaceholder": {
+    "text": "Пошук категорій...",
+    "translationContext": "Placeholder text for the category search input"
   },
   "settings.categories.singlePageMode.description": {
     "text": "Виберіть, як відображати історії: у вкладках (за замовчуванням) або всі на одній сторінці з різними варіантами впорядкування.",
@@ -615,6 +715,118 @@
     "text": "OpenStreetMap",
     "translationContext": "Option to use OpenStreetMap"
   },
+  "settings.preferredSources.clearAll": {
+    "text": "Очистити всі закріплені джерела",
+    "translationContext": "Button text to clear all pinned sources"
+  },
+  "settings.preferredSources.cleared": {
+    "text": "Очищено!",
+    "translationContext": "Confirmation message after clearing pinned sources"
+  },
+  "settings.preferredSources.description": {
+    "text": "Закріплені джерела з'являються першими у списку джерел кожної новини. Натисніть іконку шпильки біля будь-якого джерела, щоб додати його сюди.",
+    "translationContext": "Description explaining the pinned sources feature"
+  },
+  "settings.preferredSources.empty": {
+    "text": "Ще немає закріплених джерел. Відкрийте новину, натисніть на джерело та скористайтеся іконкою шпильки, щоб додати його сюди.",
+    "translationContext": "Message shown when no preferred sources have been selected"
+  },
+  "settings.preferredSources.remove": {
+    "text": "Видалити",
+    "translationContext": "Aria label for button to remove a source from pinned list"
+  },
+  "settings.preferredSources.title": {
+    "text": "Закріплені джерела",
+    "translationContext": "Title for preferred sources section in settings"
+  },
+  "settings.readingLevel.categories.description": {
+    "text": "Змініть рівень за замовчуванням для окремих категорій. Для категорій, де встановлено \"Загальний\", буде застосовано ваше налаштування вище.",
+    "translationContext": "Description explaining how category-specific overrides work"
+  },
+  "settings.readingLevel.categories.label": {
+    "text": "Налаштування для категорій",
+    "translationContext": "Label for the category-specific reading level overrides section"
+  },
+  "settings.readingLevel.clearOverrides": {
+    "text": "Скинути винятки",
+    "translationContext": "Button to clear all category-specific reading level overrides"
+  },
+  "settings.readingLevel.fromGlobal": {
+    "text": "загальний",
+    "translationContext": "Indicator that a category is using the global reading level setting"
+  },
+  "settings.readingLevel.global.description": {
+    "text": "Це налаштування застосовується до всіх категорій, якщо ви не встановите інший рівень нижче.",
+    "translationContext": "Description for the global reading level setting"
+  },
+  "settings.readingLevel.global.label": {
+    "text": "Рівень читання за замовчуванням",
+    "translationContext": "Label for the global reading level setting"
+  },
+  "settings.readingLevel.info.howItWorks": {
+    "text": "Коли ви відкриваєте матеріал, його вміст автоматично спрощується до обраного вами рівня читання. Ви все одно можете вручну змінити рівень для будь-якого матеріалу.",
+    "translationContext": "Explanation of how automatic reading level simplification works"
+  },
+  "settings.readingLevel.info.simpleDescription": {
+    "text": "Зрозуміла мова середнього рівня (B1). Добре підходить для звичайних читачів.",
+    "translationContext": "Description of the Simple reading level"
+  },
+  "settings.readingLevel.info.verySimpleDescription": {
+    "text": "Базовий словниковий запас і короткі речення (A2). Ідеально для тих, хто вивчає мову.",
+    "translationContext": "Description of the Very Simple reading level"
+  },
+  "settings.readingLevel.levels.default": {
+    "text": "Звичайний",
+    "translationContext": "Default/normal reading level option"
+  },
+  "settings.readingLevel.levels.simple": {
+    "text": "Простий",
+    "translationContext": "Simple reading level option"
+  },
+  "settings.readingLevel.levels.useGlobal": {
+    "text": "Загальний",
+    "translationContext": "Option to use the global reading level (no override)"
+  },
+  "settings.readingLevel.levels.verySimple": {
+    "text": "Дуже простий",
+    "translationContext": "Very simple reading level option"
+  },
+  "settings.readingLevel.noCategories": {
+    "text": "Категорії не ввімкнено. Увімкніть їх на вкладці \"Категорії\".",
+    "translationContext": "Message shown when no categories are enabled"
+  },
+  "settings.readingLevel.resetAll": {
+    "text": "Скинути все",
+    "translationContext": "Button to reset both global level and all category overrides"
+  },
+  "settings.readingLevel.subscriberOnly": {
+    "text": "Спрощення до певного рівня читання доступне для підписників Kagi. Оновіть підписку, щоб автоматично спрощувати статті до бажаного рівня читання.",
+    "translationContext": "Message shown to non-subscribers about reading level feature"
+  },
+  "settings.readingLevel.subscriberOnly.description": {
+    "text": "Автоматичне спрощення тексту доступне для підписників Kagi. Оновіть підписку, щоб отримати доступ до цієї функції.",
+    "translationContext": "Description explaining this is a subscriber-only feature"
+  },
+  "settings.readingLevel.subscriberOnly.title": {
+    "text": "Функція для підписників",
+    "translationContext": "Title for subscriber-only feature notice"
+  },
+  "settings.readingLevel.subscriberOnly.upgrade": {
+    "text": "Оновити підписку Kagi",
+    "translationContext": "Link text to upgrade to Kagi subscription"
+  },
+  "settings.readingLevel.tab.description": {
+    "text": "Встановіть рівень читання за замовчуванням для всіх матеріалів. Ви також можете налаштувати рівень для окремих категорій.",
+    "translationContext": "Description shown at the top of the reading level settings tab"
+  },
+  "settings.readingLevel.title": {
+    "text": "Рівень читання",
+    "translationContext": "Title for reading level section"
+  },
+  "settings.readingLevel.upgrade": {
+    "text": "Оновити підписку Kagi",
+    "translationContext": "Link text to upgrade to Kagi subscription"
+  },
   "settings.sections.instructions": {
     "text": "Перетягніть, щоб змінити порядок розділів. Використовуйте перемикач, щоб увімкнути/вимкнути.",
     "translationContext": "Instructions for managing article sections"
@@ -699,6 +911,10 @@
     "text": "Зовнішній вигляд",
     "translationContext": "Subsection heading for appearance-related settings"
   },
+  "settings.subsections.display": {
+    "text": "Відображення",
+    "translationContext": "Subsection heading for display settings"
+  },
   "settings.subsections.localization": {
     "text": "Мова та регіон",
     "translationContext": "Subsection heading for language and localization settings"
@@ -710,6 +926,14 @@
   "settings.subsections.readingExperience": {
     "text": "Досвід читання",
     "translationContext": "Subsection heading for story display and reading settings"
+  },
+  "settings.subsections.storyDisplay": {
+    "text": "Відображення історій",
+    "translationContext": "Subsection heading for story display settings"
+  },
+  "settings.subsections.visualEnhancements": {
+    "text": "Візуальні покращення",
+    "translationContext": "Subsection heading for visual enhancement toggles"
   },
   "settings.sync.clear.button": {
     "text": "Очистити всі синхронізовані дані",
@@ -775,6 +999,14 @@
     "text": "Експорт...",
     "translationContext": "Text shown while exporting data"
   },
+  "settings.sync.import.button": {
+    "text": "Імпортувати налаштування",
+    "translationContext": "Button label to import settings from a backup JSON file"
+  },
+  "settings.sync.import.importing": {
+    "text": "Імпорт...",
+    "translationContext": "Loading text shown while importing settings from a backup file"
+  },
   "settings.sync.info.description": {
     "text": "Kagi News може синхронізувати ваші налаштування та історію читання на всіх ваших пристроях. Ці дані надійно зберігаються на серверах Kagi та пов'язані з вашим обліковим записом Kagi Search.\n\nВаші синхронізовані дані не використовуються для жодних інших цілей, не передаються нікому і зберігаються виключно для надання вам послуги синхронізації. Ви маєте повний контроль над тим, що синхронізується, і можете видалити свої дані в будь-який час.",
     "translationContext": "Description of sync and privacy features"
@@ -831,6 +1063,14 @@
     "text": "Про",
     "translationContext": "Title for the about settings tab"
   },
+  "settings.tabs.account": {
+    "text": "Обліковий запис",
+    "translationContext": "Title for the account settings tab"
+  },
+  "settings.tabs.appearance": {
+    "text": "Вигляд",
+    "translationContext": "Title for the appearance settings tab"
+  },
   "settings.tabs.categories": {
     "text": "Категорії",
     "translationContext": "Title for the categories settings tab"
@@ -843,13 +1083,33 @@
     "text": "Експериментальні",
     "translationContext": "Title for the experimental settings tab"
   },
+  "settings.tabs.filters": {
+    "text": "Фільтри",
+    "translationContext": "Title for the filters settings tab"
+  },
   "settings.tabs.general": {
     "text": "Загальні",
     "translationContext": "Title for the general settings tab"
   },
+  "settings.tabs.language": {
+    "text": "Мова",
+    "translationContext": "Title for the language settings tab"
+  },
+  "settings.tabs.preferredSources": {
+    "text": "Закріплені джерела",
+    "translationContext": "Tab name for preferred/pinned sources settings"
+  },
+  "settings.tabs.readingLevel": {
+    "text": "Рівень читання",
+    "translationContext": "Tab name for per-category reading level settings"
+  },
   "settings.tabs.sections": {
     "text": "Розділи",
     "translationContext": "Title for the sections settings tab"
+  },
+  "settings.tabs.stories": {
+    "text": "Історії",
+    "translationContext": "Title for the stories settings tab"
   },
   "settings.tabs.syncPrivacy": {
     "text": "Синхронізація",
@@ -907,9 +1167,17 @@
     "text": "Закрити",
     "translationContext": "Close button text"
   },
+  "common.no_results": {
+    "text": "Результатів не знайдено",
+    "translationContext": "Shown in search/select dropdowns when no matches are found"
+  },
   "common.reset": {
     "text": "Скинути",
     "translationContext": "Reset button text"
+  },
+  "common.search": {
+    "text": "Пошук",
+    "translationContext": "Generic search input placeholder"
   },
   "about.approach.description1": {
     "text": "Світ не живе в ехокамерах. Реальність виникає зі зіткнення різних точок зору та поглядів – так ми відокремлюємо сигнал від шуму.",
@@ -986,6 +1254,42 @@
   "about.why.title": {
     "text": "Чому Kagi News? Тому що новини є викривленими.",
     "translationContext": "Title of the Why Kagi News section"
+  },
+  "app_navigation.assistant": {
+    "text": "Асистент",
+    "translationContext": "Label for Kagi Assistant in the app navigation menu"
+  },
+  "app_navigation.fastgpt": {
+    "text": "FastGPT",
+    "translationContext": "Label for Kagi FastGPT in the app navigation menu, should not be translated"
+  },
+  "app_navigation.news": {
+    "text": "Новини",
+    "translationContext": "Label for Kagi News in the app navigation menu"
+  },
+  "app_navigation.open_navigation": {
+    "text": "Відкрити навігацію застосунків",
+    "translationContext": "Accessibility label for opening the app navigation menu"
+  },
+  "app_navigation.search": {
+    "text": "Пошук",
+    "translationContext": "Label for Kagi Search in the app navigation menu"
+  },
+  "app_navigation.small_web": {
+    "text": "Мала мережа",
+    "translationContext": "Label for Kagi Small Web in the app navigation menu"
+  },
+  "app_navigation.tooltip": {
+    "text": "Застосунки Kagi",
+    "translationContext": "Tooltip for the app navigation button"
+  },
+  "app_navigation.translate": {
+    "text": "Перекладач",
+    "translationContext": "Label for Kagi Translate in the app navigation menu"
+  },
+  "app_navigation.universal_summarizer": {
+    "text": "Універсальний підсумовувач",
+    "translationContext": "Label for Kagi Universal Summarizer in the app navigation menu"
   },
   "app.beta": {
     "text": "БЕТА",
@@ -1714,6 +2018,546 @@
   "contentFilter.storyHidden": {
     "text": "Приховано {{count}} історію",
     "translationContext": "Message showing 1 story is hidden"
+  },
+  "contribute.addFeeds": {
+    "text": "Додати стрічки",
+    "translationContext": "Button to add pasted feed URLs to the list"
+  },
+  "contribute.allDuplicates": {
+    "text": "Усі {{count}} URL-адреси вже є в цій категорії",
+    "translationContext": "Error when all pasted URLs are duplicates"
+  },
+  "contribute.allFeedsFailed": {
+    "text": "Усі стрічки не пройшли перевірку. Будь ласка, перевірте URL-адреси та спробуйте ще раз, або видаліть стрічки з помилками та додайте робочі.",
+    "translationContext": "Error message when every feed fails validation"
+  },
+  "contribute.cannotSubmit": {
+    "text": "Неможливо надіслати. Усі стрічки не пройшли перевірку. Видаліть стрічки з помилками та додайте робочі.",
+    "translationContext": "Error explaining why submission is blocked"
+  },
+  "contribute.categoryExists": {
+    "text": "Ця категорія вже існує.",
+    "translationContext": "Warning when the entered category name already exists"
+  },
+  "contribute.categoryName": {
+    "text": "Назва категорії",
+    "translationContext": "Label for the new category name input field"
+  },
+  "contribute.categoryNamePlaceholder": {
+    "text": "напр., Авіація, Південна Корея, Клімат...",
+    "translationContext": "Placeholder text for the category name input"
+  },
+  "contribute.checkingCount": {
+    "text": "{{count}} перевіряється...",
+    "translationContext": "Number of feeds currently being validated"
+  },
+  "contribute.coreCategory": {
+    "text": "Основна",
+    "translationContext": "Badge label for core categories maintained by the Kagi team"
+  },
+  "contribute.coreCategoryNote": {
+    "text": "Це основна категорія Kite. Ваші стрічки будуть додані до існуючих курованих джерел.",
+    "translationContext": "Info note shown when a core category is selected in the contribute dropdown"
+  },
+  "contribute.createPr": {
+    "text": "Створити запит на злиття",
+    "translationContext": "Button text to submit and create a GitHub pull request"
+  },
+  "contribute.creatingPr": {
+    "text": "Створення PR...",
+    "translationContext": "Button text while the pull request is being created"
+  },
+  "contribute.duplicatesSkipped": {
+    "text": "Пропущено {{count}} дублікат(ів) стрічок (вже є в цій категорії)",
+    "translationContext": "Warning showing how many duplicate feeds were skipped"
+  },
+  "contribute.errorCount": {
+    "text": "{{count}} помилка(ок)",
+    "translationContext": "Number of feeds that failed validation"
+  },
+  "contribute.excludedNote": {
+    "text": "({{count}} стрічка(ок) з помилками буде виключено)",
+    "translationContext": "Note about errored feeds being excluded from submission"
+  },
+  "contribute.existingCategory": {
+    "text": "Існуюча категорія",
+    "translationContext": "Toggle button to add feeds to an existing category"
+  },
+  "contribute.failedPr": {
+    "text": "Не вдалося створити запит на злиття",
+    "translationContext": "Fallback error message when PR creation fails"
+  },
+  "contribute.feedCount": {
+    "text": "{{count}} стрічок",
+    "translationContext": "Number of feeds in a category, e.g. '42 feeds'"
+  },
+  "contribute.feedInputPlaceholder": {
+    "text": "Вставте URL-адреси стрічок сюди (по одній на рядок або через кому)",
+    "translationContext": "Placeholder for the feed URL textarea input"
+  },
+  "contribute.feedLanguage": {
+    "text": "Мова стрічки",
+    "translationContext": "Label for the feed language selector"
+  },
+  "contribute.feedLanguageTooltip": {
+    "text": "Встановіть мову, якою написана більшість стрічок. Це не обмежує доступність — усі категорії перекладаються на кожну мову, яку ми підтримуємо.",
+    "translationContext": "Tooltip explaining the feed language setting"
+  },
+  "contribute.feedsAdded": {
+    "text": "Додано {{count}} стрічку(ок)",
+    "translationContext": "Summary showing total number of feeds added"
+  },
+  "contribute.guidelineBalance": {
+    "text": "Немає потреби в \"балансі\"",
+    "translationContext": "Guideline title: sources don't need political balance"
+  },
+  "contribute.guidelineBalanceDesc": {
+    "text": "джерелу лівого спрямування не потрібен аналог правого спрямування. Державні ЗМІ, партійні видання — все підходить. Наша система перевіряє факти з кількох джерел.",
+    "translationContext": "Guideline description explaining why biased sources are acceptable"
+  },
+  "contribute.guidelineConspiracy": {
+    "text": "Без конспірологічного контенту",
+    "translationContext": "Guideline title: no conspiracy theories allowed"
+  },
+  "contribute.guidelineConspiracyDesc": {
+    "text": "без сфабрикованих заяв, заперечення подій чи фейкового контенту",
+    "translationContext": "Guideline description for the no conspiracy requirement"
+  },
+  "contribute.guidelineFeeds": {
+    "text": "25+ RSS-стрічок (чим більше, тим краще)",
+    "translationContext": "Guideline title: minimum number of feeds required"
+  },
+  "contribute.guidelineFeedsDesc": {
+    "text": "чим більше якісних стрічок, тим краще покриття",
+    "translationContext": "Guideline description explaining more feeds = better coverage"
+  },
+  "contribute.guidelineLanguage": {
+    "text": "Не розділяйте категорії за мовою",
+    "translationContext": "Guideline title: keep one category per topic regardless of language"
+  },
+  "contribute.guidelineLanguageDesc": {
+    "text": "«Швейцарія» має бути однією категорією, а не «Швейцарія (EN)» та «Швейцарія (IT)». Усі категорії перекладаються на кожну мову, яку ми підтримуємо.",
+    "translationContext": "Guideline description explaining not to split by language"
+  },
+  "contribute.guidelines": {
+    "text": "Правила",
+    "translationContext": "Collapsible section header for contribution guidelines"
+  },
+  "contribute.heading": {
+    "text": "Додати стрічки",
+    "translationContext": "Main heading on the contribute page"
+  },
+  "contribute.hideFeeds": {
+    "text": "Сховати стрічки",
+    "translationContext": "Button to collapse the list of existing feeds"
+  },
+  "contribute.history.declineReason": {
+    "text": "Причина",
+    "translationContext": "Label before the decline reason text when a contribution PR was closed"
+  },
+  "contribute.history.existingCategory": {
+    "text": "Додано до існуючої",
+    "translationContext": "Badge indicating feeds were added to an existing category"
+  },
+  "contribute.history.feedsAdded": {
+    "text": "Додано {{count}} стрічку(ок)",
+    "translationContext": "Shows how many feeds were added in a contribution"
+  },
+  "contribute.history.legend": {
+    "text": "Внески перевіряються вручну. Після об'єднання стрічки стають активними з наступним щоденним оновленням.",
+    "translationContext": "Legend text below the contributions list explaining the process"
+  },
+  "contribute.history.newCategory": {
+    "text": "Нова категорія",
+    "translationContext": "Badge indicating the contribution created a new category"
+  },
+  "contribute.history.pr": {
+    "text": "PR #{{number}}",
+    "translationContext": "Link text showing the GitHub pull request number"
+  },
+  "contribute.history.showLess": {
+    "text": "Показати менше",
+    "translationContext": "Button to collapse the contributions list back to the preview"
+  },
+  "contribute.history.status.declined": {
+    "text": "Відхилено",
+    "translationContext": "Pipeline step label: PR was closed without merging"
+  },
+  "contribute.history.status.declined.tooltip": {
+    "text": "Цей запит на злиття було закрито без об'єднання.",
+    "translationContext": "Tooltip for the Declined pipeline step"
+  },
+  "contribute.history.status.live": {
+    "text": "Активно",
+    "translationContext": "Pipeline step label: feeds are active on Kagi News"
+  },
+  "contribute.history.status.live.tooltip": {
+    "text": "Ваші стрічки активні в Kagi News. Якщо категорія не показує новин, це означає, що статті не згрупувалися — це нормально.",
+    "translationContext": "Tooltip for the Live pipeline step"
+  },
+  "contribute.history.status.merged": {
+    "text": "Об'єднано",
+    "translationContext": "Pipeline step label: PR has been merged"
+  },
+  "contribute.history.status.merged.tooltip": {
+    "text": "Ваш запит на злиття об'єднано. Зміни з'являться з наступним оновленням Kagi News.",
+    "translationContext": "Tooltip for the Merged pipeline step"
+  },
+  "contribute.history.status.submitted": {
+    "text": "Надіслано",
+    "translationContext": "Pipeline step label: PR has been created"
+  },
+  "contribute.history.status.submitted.tooltip": {
+    "text": "Ваш запит на злиття створено та очікує на перевірку.",
+    "translationContext": "Tooltip for the Submitted pipeline step"
+  },
+  "contribute.history.title": {
+    "text": "Мої внески",
+    "translationContext": "Heading for the section showing the user's past feed contributions"
+  },
+  "contribute.history.titleWithCount": {
+    "text": "Мої внески ({{count}})",
+    "translationContext": "Heading for contributions section showing total count, e.g. 'My Contributions (4)'"
+  },
+  "contribute.history.typeExisting": {
+    "text": "Існуюча категорія",
+    "translationContext": "Inline text in expanded contribution detail indicating feeds were added to an existing category"
+  },
+  "contribute.history.typeNew": {
+    "text": "Нова категорія",
+    "translationContext": "Inline text in expanded contribution detail indicating this created a new category"
+  },
+  "contribute.history.viewAll": {
+    "text": "Показати ще {{count}}",
+    "translationContext": "Button to expand and show remaining hidden contributions, e.g. 'See 3 more'"
+  },
+  "contribute.howItWorks": {
+    "text": "Як це працює",
+    "translationContext": "Small link in the contribute form header to re-show the onboarding"
+  },
+  "contribute.inThisCategory": {
+    "text": "у цій категорії",
+    "translationContext": "Text after feed count, e.g. '42 feeds in this category'"
+  },
+  "contribute.languageInNameWarning": {
+    "text": "Не вказуйте код мови в назві категорії. Використовуйте лише базову назву (наприклад, «Швейцарія» замість «Швейцарія (IT)») і встановіть основну мову стрічки нижче. Усі категорії перекладаються на кожну мову, яку ми підтримуємо.",
+    "translationContext": "Warning shown when a language code like (IT) is detected in the category name"
+  },
+  "contribute.loadingCategories": {
+    "text": "Завантаження категорій...",
+    "translationContext": "Loading state while fetching category list"
+  },
+  "contribute.manual.addTo": {
+    "text": "Додати до {{fileName}}:",
+    "translationContext": "Label above the copyable code snippet (snippet mode)"
+  },
+  "contribute.manual.copied": {
+    "text": "Скопійовано!",
+    "translationContext": "Confirmation after copying to clipboard"
+  },
+  "contribute.manual.copy": {
+    "text": "Копіювати",
+    "translationContext": "Copy to clipboard button"
+  },
+  "contribute.manual.editOnGithub": {
+    "text": "Редагувати {{fileName}} на GitHub",
+    "translationContext": "Button to open the file editor on GitHub"
+  },
+  "contribute.manual.fullFile": {
+    "text": "Повний {{fileName}}:",
+    "translationContext": "Label above the copyable code block (full file mode)"
+  },
+  "contribute.manual.instructions": {
+    "text": "Створіть запит на злиття на GitHub з цими змінами:",
+    "translationContext": "Header for manual PR creation instructions"
+  },
+  "contribute.manual.step1": {
+    "text": "Скопіюйте фрагмент коду нижче",
+    "translationContext": "Step 1 of manual PR instructions (snippet mode for core_feeds.py)"
+  },
+  "contribute.manual.step1Full": {
+    "text": "Скопіюйте весь вміст файлу нижче",
+    "translationContext": "Step 1 of manual PR instructions (full file mode for kite_feeds.json)"
+  },
+  "contribute.manual.step2Existing": {
+    "text": "Натисніть кнопку, щоб редагувати {{fileName}} на GitHub. Знайдіть розділ «{{category}}» і додайте URL-адреси стрічок до його списку стрічок",
+    "translationContext": "Step 2 for adding feeds to an existing category manually (snippet mode for core_feeds.py)"
+  },
+  "contribute.manual.step2Full": {
+    "text": "Натисніть кнопку, щоб редагувати {{fileName}} на GitHub, виділіть усе та замініть скопійованим вмістом",
+    "translationContext": "Step 2 for full file replacement mode (kite_feeds.json)"
+  },
+  "contribute.manual.step2New": {
+    "text": "Натисніть кнопку, щоб редагувати {{fileName}} на GitHub. Додайте фрагмент коду в алфавітному порядку серед існуючих категорій",
+    "translationContext": "Step 2 for adding a new category manually (snippet mode fallback)"
+  },
+  "contribute.manual.step3": {
+    "text": "Збережіть зміни та відкрийте запит на злиття. GitHub допоможе вам у цьому",
+    "translationContext": "Step 3 of manual PR instructions"
+  },
+  "contribute.manual.submit": {
+    "text": "Отримати інструкції для PR",
+    "translationContext": "Button text for manual mode where user creates PR themselves"
+  },
+  "contribute.networkError": {
+    "text": "Помилка мережі. Будь ласка, спробуйте ще раз.",
+    "translationContext": "Error message for network failures during submission"
+  },
+  "contribute.newCategory": {
+    "text": "Нова категорія",
+    "translationContext": "Toggle button to create a new category"
+  },
+  "contribute.noValidUrls": {
+    "text": "Не знайдено дійсних URL-адрес. URL-адреси повинні починатися з http:// або https://",
+    "translationContext": "Error when pasted text contains no valid URLs"
+  },
+  "contribute.onboarding.community.description": {
+    "text": "Жоден співробітник Kagi не вирішує, які категорії існують або які новини з'являються. Все це походить від стрічок, а стрічки — від спільноти.",
+    "translationContext": "Main explanation of community-driven categories"
+  },
+  "contribute.onboarding.community.networkLabelStories": {
+    "text": "новини",
+    "translationContext": "Label on the story cluster nodes in the feed flow animation"
+  },
+  "contribute.onboarding.community.networkLabelYou": {
+    "text": "+ ви",
+    "translationContext": "Label on the contributor node in the feed network animation"
+  },
+  "contribute.onboarding.community.networkNote": {
+    "text": "Стрічки зліва перетворюються на новини справа. Більше стрічок означає більше новин і краще покриття.",
+    "translationContext": "Caption under the feed-to-story flow animation"
+  },
+  "contribute.onboarding.community.noStories": {
+    "text": "Іноді категорія не створює жодних новин. Зазвичай це означає, що недостатньо стрічок з пересічним покриттям, щоб спрацювало групування. Більше стрічок означає більше перетинів, а отже — більше новин.",
+    "translationContext": "Explaining why some categories don't generate stories"
+  },
+  "contribute.onboarding.community.title": {
+    "text": "Усе керується спільнотою",
+    "translationContext": "Section title for explaining community-driven nature of categories"
+  },
+  "contribute.onboarding.community.whyXnotY": {
+    "text": "Якщо ви дивуєтеся, чому існує категорія для X, але не для Y, це тому, що хтось, кому була небайдужа тема X, витратив час, щоб додати для неї стрічки. Якщо тема, яка вас цікавить, відсутня, ви можете стати тим, хто її започаткує.",
+    "translationContext": "Explaining why certain categories exist and others don't"
+  },
+  "contribute.onboarding.cta": {
+    "text": "Почати додавати стрічки",
+    "translationContext": "CTA button on the onboarding page to proceed to the contribute form"
+  },
+  "contribute.onboarding.feedTypes.community.description": {
+    "text": "Куруються такими учасниками, як ви, у файлі kite_feeds.json. Охоплюють усе, від регіональних новин до нішевих тем. Саме сюди йде ваш внесок.",
+    "translationContext": "Description of community feeds that contributors add to"
+  },
+  "contribute.onboarding.feedTypes.community.title": {
+    "text": "Стрічки спільноти",
+    "translationContext": "Title for the community feeds card"
+  },
+  "contribute.onboarding.feedTypes.core.description": {
+    "text": "Охоплюють основні категорії, такі як Світові новини, Бізнес, Технології, Наука, Спорт та Культура. Вони повністю відкриті на GitHub, тож ви також можете робити свій внесок.",
+    "translationContext": "Description of core feeds, emphasizing they are open source and open to contributions"
+  },
+  "contribute.onboarding.feedTypes.core.title": {
+    "text": "Основні стрічки",
+    "translationContext": "Title for the core feeds card"
+  },
+  "contribute.onboarding.feedTypes.title": {
+    "text": "Два типи стрічок живлять Kagi News",
+    "translationContext": "Section title for core vs community feeds comparison"
+  },
+  "contribute.onboarding.guidelines.anyLanguage": {
+    "text": "Будь-яка мова вітається. Kagi News перекладає все автоматично, тому одна категорія може і повинна містити різні мови.",
+    "translationContext": "Guideline: feeds in any language are accepted"
+  },
+  "contribute.onboarding.guidelines.minimum": {
+    "text": "Новим категоріям потрібно щонайменше 25 стрічок, щоб з'явитися в Kagi News. Це забезпечує достатнє перекриття для роботи кластеризації.",
+    "translationContext": "Guideline: minimum feed count for new categories"
+  },
+  "contribute.onboarding.guidelines.noLanguageSplit": {
+    "text": "Не створюйте окремі категорії за мовою. Використовуйте «Швейцарія», а не «Швейцарія (DE)» та «Швейцарія (FR)».",
+    "translationContext": "Guideline: don't split categories by language"
+  },
+  "contribute.onboarding.guidelines.quality": {
+    "text": "Надавайте перевагу відомим новинним джерелам, блогам або виданням. Загалом, чим більше стрічок, тим краще — кластеризація зробить решту.",
+    "translationContext": "Guideline: source quality preference"
+  },
+  "contribute.onboarding.guidelines.rssOnly": {
+    "text": "Лише RSS або Atom стрічки. Kagi News не парсить веб-сайти, а використовує лише загальнодоступні дані зі стрічок.",
+    "translationContext": "Guideline: only RSS/Atom feeds are accepted"
+  },
+  "contribute.onboarding.guidelines.title": {
+    "text": "Правила для стрічок",
+    "translationContext": "Section title for feed submission guidelines"
+  },
+  "contribute.onboarding.guidelines.topicSpecific": {
+    "text": "Стрічки мають конкретно висвітлювати тему категорії. Додавання загальної газети, як-от The Guardian, до категорії «Велика Британія» переважно створюватиме кластери світових новин, а не специфічних для Великої Британії. Шукайте стрічки, відфільтровані за темою, або використовуйте інструменти фільтрації RSS, щоб звузити широку стрічку.",
+    "translationContext": "Guideline: feeds should be topic-specific, not general outlets, with example"
+  },
+  "contribute.onboarding.guidelines.working": {
+    "text": "Стрічки мають бути робочими та містити свіжий (в ідеалі щоденний) контент.",
+    "translationContext": "Guideline: feeds should be active"
+  },
+  "contribute.onboarding.pipeline.note": {
+    "text": "Весь процес автоматизований. Ніхто в Kagi не обирає, які новини з'являться або які категорії будуть створені.",
+    "translationContext": "Note below the pipeline emphasizing the automated nature"
+  },
+  "contribute.onboarding.pipeline.step1.description": {
+    "text": "Кожна категорія має список RSS-стрічок. Система збирає нові статті з усіх них. Деякі категорії мають сотні стрічок, інші тільки починають наповнюватися.",
+    "translationContext": "Pipeline step 1 description"
+  },
+  "contribute.onboarding.pipeline.step1.title": {
+    "text": "Стрічки перевіряються",
+    "translationContext": "Pipeline step 1 title"
+  },
+  "contribute.onboarding.pipeline.step2.description": {
+    "text": "Система визначає, які статті стосуються однієї теми, і групує їх. Кожна група стає «новиною». Якщо стаття не збігається з іншими, її пропускають.",
+    "translationContext": "Pipeline step 2 description"
+  },
+  "contribute.onboarding.pipeline.step2.title": {
+    "text": "Схожі статті групуються",
+    "translationContext": "Pipeline step 2 title"
+  },
+  "contribute.onboarding.pipeline.step3.description": {
+    "text": "ШІ читає всі статті в групі та пише єдине резюме, враховуючи різні точки зору з кожного джерела.",
+    "translationContext": "Pipeline step 3 description"
+  },
+  "contribute.onboarding.pipeline.step3.title": {
+    "text": "Створюється резюме",
+    "translationContext": "Pipeline step 3 title"
+  },
+  "contribute.onboarding.pipeline.title": {
+    "text": "Як створюються новини",
+    "translationContext": "Section title for the pipeline explanation"
+  },
+  "contribute.onboarding.skip": {
+    "text": "Пропустити",
+    "translationContext": "Link to skip the onboarding and go straight to the contribute form"
+  },
+  "contribute.onboarding.subtitle": {
+    "text": "Допоможіть створити кращий новинний досвід, додаючи RSS-стрічки до категорій, що куруються спільнотою.",
+    "translationContext": "Subtitle on the contribute onboarding info page"
+  },
+  "contribute.onboarding.title": {
+    "text": "Зробіть внесок у Kagi News",
+    "translationContext": "Title on the contribute onboarding info page"
+  },
+  "contribute.onboarding.whatToDo.existing.description": {
+    "text": "Перегляньте категорії та додайте RSS-стрічки, яких, на вашу думку, не вистачає. Більш різноманітні джерела означають краще покриття та появу більшої кількості новин.",
+    "translationContext": "Description of adding feeds to existing categories"
+  },
+  "contribute.onboarding.whatToDo.existing.title": {
+    "text": "Додати стрічки до існуючих категорій",
+    "translationContext": "Title for existing category contribution option"
+  },
+  "contribute.onboarding.whatToDo.new.description": {
+    "text": "Місцеві новини, регіональне покриття, нішеві теми. Новим категоріям потрібно щонайменше 25 стрічок, щоб з'явитися в Kagi News. Це забезпечує достатнє перекриття для того, щоб кластеризація створювала справжні новини.",
+    "translationContext": "Description of proposing new categories"
+  },
+  "contribute.onboarding.whatToDo.new.title": {
+    "text": "Запропонувати нову категорію",
+    "translationContext": "Title for new category contribution option"
+  },
+  "contribute.onboarding.whatToDo.title": {
+    "text": "Що ви можете додати",
+    "translationContext": "Section title for contribution options"
+  },
+  "contribute.pageTitle": {
+    "text": "Додати стрічки - Kagi News",
+    "translationContext": "Browser tab title for the contribute page"
+  },
+  "contribute.pendingFeedCount": {
+    "text": "Запропоновано {{count}} стрічок",
+    "translationContext": "Number of feeds proposed in a pending pull request"
+  },
+  "contribute.pendingFeedsAdded": {
+    "text": "+{{count}} стрічок в очікуванні",
+    "translationContext": "Indicator showing additional feeds pending for an existing category"
+  },
+  "contribute.pendingPr": {
+    "text": "PR в очікуванні",
+    "translationContext": "Badge label for categories from unmerged pull requests"
+  },
+  "contribute.pendingPrLink": {
+    "text": "Переглянути PR #{{number}}",
+    "translationContext": "Link text to view the related pending pull request"
+  },
+  "contribute.pendingPrNote": {
+    "text": "Цю категорію запропонував інший учасник, і вона очікує на перевірку.",
+    "translationContext": "Info note shown when a pending PR category is selected"
+  },
+  "contribute.removeErrored": {
+    "text": "Видалити {{count}} з помилками",
+    "translationContext": "Button to remove all feeds that failed validation"
+  },
+  "contribute.removeFeed": {
+    "text": "Видалити стрічку",
+    "translationContext": "Aria label for the button to remove a single feed"
+  },
+  "contribute.retry": {
+    "text": "Спробувати ще раз",
+    "translationContext": "Button to retry loading categories after an error"
+  },
+  "contribute.reviewNote": {
+    "text": "Наша команда перевірить ваш запит і об'єднає його, якщо все буде гаразд.",
+    "translationContext": "Note explaining what happens after submission"
+  },
+  "contribute.searchCategories": {
+    "text": "Пошук категорій...",
+    "translationContext": "Placeholder for the category search dropdown"
+  },
+  "contribute.showFeeds": {
+    "text": "Показати стрічки",
+    "translationContext": "Button to expand the list of existing feeds"
+  },
+  "contribute.step1": {
+    "text": "1. Виберіть категорію",
+    "translationContext": "Step 1 heading in the contribute form"
+  },
+  "contribute.step2": {
+    "text": "2. Додайте стрічки",
+    "translationContext": "Step 2 heading in the contribute form"
+  },
+  "contribute.step3": {
+    "text": "3. Надіслати",
+    "translationContext": "Step 3 heading in the contribute form"
+  },
+  "contribute.submitAnother": {
+    "text": "Зробити ще один внесок",
+    "translationContext": "Link to reset the form and submit another contribution"
+  },
+  "contribute.subtitle": {
+    "text": "Додайте RSS-стрічки до існуючих категорій або запропонуйте нові",
+    "translationContext": "Subtitle below the heading on the contribute page"
+  },
+  "contribute.successMessage": {
+    "text": "Дякуємо за ваш внесок! Запит на злиття #{{prNumber}} створено.",
+    "translationContext": "Success message after PR is created, with PR number"
+  },
+  "contribute.summaryExisting": {
+    "text": "Додавання {{count}} стрічки(ок) до {{category}}",
+    "translationContext": "Summary text before adding feeds to an existing category"
+  },
+  "contribute.summaryNew": {
+    "text": "Створення нової категорії {{category}} з {{count}} стрічкою(ами)",
+    "translationContext": "Summary text before submitting a new category"
+  },
+  "contribute.switchToIt": {
+    "text": "Перейти до неї?",
+    "translationContext": "Link to switch to an existing category instead of creating new"
+  },
+  "contribute.unverifiedCount": {
+    "text": "{{count}} неперевірених",
+    "translationContext": "Number of feeds with unknown validation status"
+  },
+  "contribute.validCount": {
+    "text": "{{count}} дійсних",
+    "translationContext": "Number of feeds that passed validation"
+  },
+  "contribute.viewPr": {
+    "text": "Переглянути запит на злиття",
+    "translationContext": "Link text to view the created pull request on GitHub"
+  },
+  "contribute.waitingValidation": {
+    "text": "Очікування завершення перевірки {{count}} стрічки(ок)...",
+    "translationContext": "Note shown while feeds are still being validated"
   },
   "crypto.grid.title": {
     "text": "Ціни на криптовалюти",
@@ -2823,6 +3667,10 @@
     "text": "Джерело інформації",
     "translationContext": "Title for source information section"
   },
+  "sources.addPreferred": {
+    "text": "Закріпити на початку списку джерел",
+    "translationContext": "Tooltip for pin button to add source to preferred list"
+  },
   "sources.article": {
     "text": "{{count}} стаття",
     "translationContext": "Shows singular article count from a source, {{count}} will be replaced with a number"
@@ -2838,6 +3686,10 @@
   "sources.paywallTooltip": {
     "text": "Це джерело може вимагати підписки для доступу до повних статей",
     "translationContext": "Tooltip explaining that a news source requires a paid subscription"
+  },
+  "sources.removePreferred": {
+    "text": "Відкріпити з початку списку джерел",
+    "translationContext": "Tooltip for pin button to remove source from preferred list"
   },
   "sources.showArticlesFrom": {
     "text": "Показати статті з {{source}}",
@@ -2863,6 +3715,38 @@
     "text": "Тиждень {{{week}}}, День {{{day}}}",
     "translationContext": "Shows the current week and day of the year, {{week}} and {{day}} will be replaced with numbers"
   },
+  "stories.clusteringModal.clusteringDescription": {
+    "text": "Коли статті з різних стрічок висвітлюють одну й ту саму тему, вони групуються в історію. Чим більше стрічок підхоплюють тему, тим сильніший сигнал.",
+    "translationContext": "Explains how story clustering works"
+  },
+  "stories.clusteringModal.communityFeedsDescription": {
+    "text": "RSS-стрічки для цієї категорії зібрані членами спільноти, а не командою Kagi.",
+    "translationContext": "Explains that community categories have user-curated feeds"
+  },
+  "stories.clusteringModal.fullyAutomaticDescription": {
+    "text": "Ніхто не відбирає та не обирає, що з'явиться. Весь процес відбувається автоматично: від завантаження стрічок до кластеризації та написання резюме.",
+    "translationContext": "Explains that the process is fully automatic with no human curation"
+  },
+  "stories.clusteringModal.helpImprove": {
+    "text": "Допоможіть покращити цю категорію",
+    "translationContext": "Call-to-action divider text for contributing feeds"
+  },
+  "stories.clusteringModal.helpImproveDescription": {
+    "text": "Додавання більшої кількості стрічок покращує роботу кластеризації. Ви можете запропонувати нові на GitHub.",
+    "translationContext": "Encourages users to contribute feeds"
+  },
+  "stories.clusteringModal.noClusterDescription": {
+    "text": "Якщо у стрічках недостатньо перетинів у висвітлюваних темах, кластери не утворюються, і історії не з'являються. Це нормально і частіше трапляється з нішевими або регіональними категоріями.",
+    "translationContext": "Explains why community categories sometimes have no stories"
+  },
+  "stories.clusteringModal.suggestFeeds": {
+    "text": "Запропонувати стрічки на GitHub",
+    "translationContext": "Button label for the GitHub link to suggest feeds"
+  },
+  "stories.clusteringModal.title": {
+    "text": "Як генеруються історії",
+    "translationContext": "Title for the modal explaining the story clustering process"
+  },
   "stories.fewStories": {
     "text": "Більше важливих новин на сьогодні немає, повертайтеся завтра!",
     "translationContext": "Message shown when there are only 1-3 stories in a category"
@@ -2870,6 +3754,38 @@
   "stories.noStories": {
     "text": "Сьогодні у цій категорії немає важливих новин.",
     "translationContext": "Message shown when no stories are found for a category"
+  },
+  "stories.noStoriesCommunity": {
+    "text": "Сьогодні немає історій для цієї спільнотної категорії.",
+    "translationContext": "Message shown when a community (non-core) category has no stories"
+  },
+  "stories.noStoriesCommunityDescription": {
+    "text": "Недостатньо спільних новин у стрічках для формування історій. Таке іноді трапляється зі спільнотними категоріями.",
+    "translationContext": "Secondary description explaining why community categories sometimes have no stories"
+  },
+  "stories.noStoriesCommunityLearnMore": {
+    "text": "Дізнайтеся, як це працює",
+    "translationContext": "Button label to open modal explaining the clustering process"
+  },
+  "stories.noStoriesCore": {
+    "text": "Історії для цієї категорії незабаром з'являться. Зайдіть трохи пізніше.",
+    "translationContext": "Message shown when a core (Kagi-maintained) category temporarily has no stories, usually due to a pipeline issue"
+  },
+  "stories.noStoriesCoreUpdates": {
+    "text": "Тимчасово недоступно",
+    "translationContext": "Small label shown with a clock icon when a core category has no stories, indicating the update schedule"
+  },
+  "story.assistant.placeholder": {
+    "text": "Запитайте про цю історію...",
+    "translationContext": "Placeholder text in the assistant question input field"
+  },
+  "story.assistant.submit": {
+    "text": "Запитати",
+    "translationContext": "Submit button label for assistant question"
+  },
+  "story.assistant.tooltip": {
+    "text": "Запитати Асистента",
+    "translationContext": "Tooltip for button that opens Kagi Assistant with the current story topic"
   },
   "story.flashcards.download": {
     "text": "Завантажити",
@@ -2907,6 +3823,10 @@
     "text": "Вийти з режиму вибору слів",
     "translationContext": "Tooltip for flashcard button when in selection mode"
   },
+  "story.simplify.autoSimplifying": {
+    "text": "Спрощення до рівня {level}...",
+    "translationContext": "Status message while auto-simplifying. {level} is the reading level name."
+  },
   "story.simplify.loading": {
     "text": "Спрощення...",
     "translationContext": "Status message while simplifying text"
@@ -2943,6 +3863,66 @@
     "text": "Зупинити відтворення",
     "translationContext": "Tooltip for TTS button when playing"
   },
+  "sync.conflict.multiple": {
+    "text": "{{{count}}} налаштувань було оновлено з іншого пристрою",
+    "translationContext": "Toast notification when multiple settings were overridden during sync. {count} is the number of settings."
+  },
+  "sync.conflict.single": {
+    "text": "Одне налаштування було оновлено з іншого пристрою",
+    "translationContext": "Toast notification when one setting was overridden during sync"
+  },
+  "syncSetup.description": {
+    "text": "Ми знайшли існуючі налаштування у вашому обліковому записі з іншого пристрою. Як ви бажаєте продовжити?",
+    "translationContext": "Description shown in sync setup wizard when cloud settings already exist"
+  },
+  "syncSetup.done": {
+    "text": "Налаштування успішно синхронізовано!",
+    "translationContext": "Success message after sync setup completes"
+  },
+  "syncSetup.merge.description": {
+    "text": "Зберегти ваші налаштування та додати відсутні хмарні",
+    "translationContext": "Description for the merge option in sync setup"
+  },
+  "syncSetup.merge.title": {
+    "text": "Об'єднати",
+    "translationContext": "Option to merge local and cloud settings together"
+  },
+  "syncSetup.pullRemote.description": {
+    "text": "Замінити поточні налаштування хмарними",
+    "translationContext": "Description for the pull remote option in sync setup"
+  },
+  "syncSetup.pullRemote.title": {
+    "text": "Використовувати хмарні налаштування",
+    "translationContext": "Option to overwrite local settings with cloud settings"
+  },
+  "syncSetup.pushLocal.description": {
+    "text": "Замінити хмарні налаштування поточними",
+    "translationContext": "Description for the push local option in sync setup"
+  },
+  "syncSetup.pushLocal.title": {
+    "text": "Використовувати цей пристрій",
+    "translationContext": "Option to overwrite cloud settings with current device settings"
+  },
+  "syncSetup.syncing.merging": {
+    "text": "Об'єднання налаштувань...",
+    "translationContext": "Loading text while merging local and cloud settings"
+  },
+  "syncSetup.syncing.pulling": {
+    "text": "Завантаження хмарних налаштувань...",
+    "translationContext": "Loading text while pulling cloud settings to device"
+  },
+  "syncSetup.syncing.pushing": {
+    "text": "Завантаження ваших налаштувань...",
+    "translationContext": "Loading text while pushing local settings to cloud"
+  },
+  "syncSetup.title": {
+    "text": "Налаштувати синхронізацію",
+    "translationContext": "Title for the sync setup wizard modal shown when enabling sync with existing cloud settings"
+  },
+  "syncSetup.tryAgain": {
+    "text": "Спробувати ще раз",
+    "translationContext": "Link to retry sync setup after an error"
+  },
   "time.nextUpdate.in": {
     "text": "Наступне оновлення через {{time}}",
     "translationContext": "Shown when the next update time is known, {time} will be replaced with countdown (e.g., '2h 30m')"
@@ -2950,6 +3930,34 @@
   "time.nextUpdate.soon": {
     "text": "Наступне оновлення незабаром",
     "translationContext": "Shown when the next update is expected soon (after noon UTC but no update yet today)"
+  },
+  "time.relative.days": {
+    "text": "{{count}} дн. тому",
+    "translationContext": "Relative time: multiple days ago, {count} is the number"
+  },
+  "time.relative.hours": {
+    "text": "{{count}} год. тому",
+    "translationContext": "Relative time: multiple hours ago, {count} is the number"
+  },
+  "time.relative.justNow": {
+    "text": "щойно",
+    "translationContext": "Relative time: less than a minute ago"
+  },
+  "time.relative.minutes": {
+    "text": "{{count}} хв. тому",
+    "translationContext": "Relative time: multiple minutes ago, {count} is the number"
+  },
+  "time.relative.oneDay": {
+    "text": "1 день тому",
+    "translationContext": "Relative time: exactly 1 day ago"
+  },
+  "time.relative.oneHour": {
+    "text": "1 годину тому",
+    "translationContext": "Relative time: exactly 1 hour ago"
+  },
+  "time.relative.oneMinute": {
+    "text": "1 хвилину тому",
+    "translationContext": "Relative time: exactly 1 minute ago"
   },
   "time.updated.days": {
     "text": "Оновлено {{count}} днів тому",
@@ -2982,6 +3990,10 @@
   "time.updated.seconds": {
     "text": "Оновлено {{count}} секунд тому",
     "translationContext": "Shown when content was updated seconds ago, {{count}} will be replaced with the number of seconds"
+  },
+  "timeTravel.description": {
+    "text": "Доступ до історичних щоденних зведень.\nЛише для підписників Kagi.\nДоступно всім під час бета-тестування.",
+    "translationContext": "Description of Time Travel - line 1 is subtitle, line 2 is info, line 3 is italicized beta note"
   },
   "timeTravel.latest": {
     "text": "Останнє",
@@ -3022,6 +4034,18 @@
   "timeTravel.today": {
     "text": "Сьогодні",
     "translationContext": "Button to navigate to today"
+  },
+  "timeTravel.urlBanner.dismiss": {
+    "text": "Зрозуміло",
+    "translationContext": "Button to dismiss the time travel info banner"
+  },
+  "timeTravel.urlBanner.viewing": {
+    "text": "Це посилання веде до новин за {{{date}}}. Ви можете повернутися до сьогоднішніх новин у будь-який час, натиснувши ✕ біля дати вище.",
+    "translationContext": "One-time info banner shown when user arrives via a bookmarked time travel URL (no referrer). Points user to the header date pill with X button."
+  },
+  "timeTravel.urlBanner.viewingShared": {
+    "text": "Хтось поділився з вами посиланням на новини за {{{date}}}. Ви можете повернутися до сьогоднішніх новин у будь-який час, натиснувши ✕ біля дати вище.",
+    "translationContext": "One-time info banner shown when user arrives via a shared time travel URL (has referrer). Points user to the header date pill with X button."
   },
   "turbulence.title": {
     "text": "Світовий вимірювач турбулентності",
@@ -3179,6 +4203,14 @@
     "text": "Індекс Хаосу",
     "translationContext": "Label for the chaos index chart"
   },
+  "worldTension.consistencyText": {
+    "text": "Через тривожні заголовки, безперервне читання поганих новин та цілодобовий потік новин може здаватися, що світ постійно у вогні. Цей індекс має на меті надати зважену точку зору. Часто все не так погано, як здається.",
+    "translationContext": "Explanation of purpose: cutting through media noise"
+  },
+  "worldTension.consistencyTitle": {
+    "text": "Для чого це потрібно",
+    "translationContext": "Section header explaining purpose of the index"
+  },
   "worldTension.cool": {
     "text": "Прохолодно",
     "translationContext": "Temperature description for low world tension (0-20%)"
@@ -3207,6 +4239,26 @@
     "text": "Надзвичайно",
     "translationContext": "Status label for 81-100% range (deprecated, use burning)"
   },
+  "worldTension.factor.novelty": {
+    "text": "Новизна — Нові кризи чи ескалації мають більшу вагу, ніж тривалі ситуації, які вже враховані.",
+    "translationContext": "Explanation of novelty factor"
+  },
+  "worldTension.factor.reversibility": {
+    "text": "Зворотність — Незворотні дії (вторгнення, людські жертви) мають більшу вагу, ніж зворотні (санкції, риторика).",
+    "translationContext": "Explanation of reversibility factor"
+  },
+  "worldTension.factor.scope": {
+    "text": "Масштаб впливу — Глобальні системні ризики, економічне «зараження» та активація союзницьких зобов'язань зважуються порівняно з локалізованими подіями.",
+    "translationContext": "Explanation of scope factor"
+  },
+  "worldTension.factor.worstCase": {
+    "text": "Близькість до найгіршого сценарію — Наскільки події близькі до катастрофічних наслідків, при цьому ситуаціям, пов'язаним з ядерною зброєю або зброєю масового ураження (ЗМУ), надається значно більша вага.",
+    "translationContext": "Explanation of worst case factor"
+  },
+  "worldTension.factorsTitle": {
+    "text": "ШІ враховує чотири ключові фактори:",
+    "translationContext": "Header for list of factors"
+  },
   "worldTension.high": {
     "text": "Тепло",
     "translationContext": "Status label for 41-60% range (deprecated, use warm)"
@@ -3214,6 +4266,14 @@
   "worldTension.hot": {
     "text": "Жарко",
     "translationContext": "Temperature description for moderate world tension (41-60%)"
+  },
+  "worldTension.howCalculated": {
+    "text": "Як це розраховується",
+    "translationContext": "Section header for methodology explanation"
+  },
+  "worldTension.methodologyIntro": {
+    "text": "Індекс світової напруженості генерується на основі аналізу штучним інтелектом актуальних заголовків світових новин. Замість фіксованої формули, він використовує міркування для оцінки глобальної стабільності.",
+    "translationContext": "Introduction explaining AI-based methodology"
   },
   "worldTension.mild": {
     "text": "Помірна",

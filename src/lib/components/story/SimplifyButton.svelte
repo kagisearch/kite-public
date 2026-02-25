@@ -1,6 +1,6 @@
 <script lang="ts">
 import { getContext } from 'svelte';
-import { simplifyStory, type ReadingLevel } from '$lib/services/translateApi';
+import { type ReadingLevel, simplifyStory } from '$lib/services/translateApi';
 
 interface Props {
 	story: any;

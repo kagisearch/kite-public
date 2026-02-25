@@ -1,8 +1,11 @@
 <script lang="ts">
 import { s } from '$lib/client/localization.svelte';
+import { languageSettings } from '$lib/data/settings.svelte.js';
+import { timeTravelBatch } from '$lib/stores/timeTravelBatch.svelte';
 import type { Article, LocalizerFunction } from '$lib/types';
 import { getCitedArticlesForText } from '$lib/utils/citationAggregator';
 import { type CitationMapping, replaceWithNumberedCitations } from '$lib/utils/citationContext';
+import { formatTimelineDate } from '$lib/utils/formatTimelineDate';
 import { parseTimelineEvent } from '$lib/utils/textParsing';
 import CitationText from './CitationText.svelte';
 import SelectableText from './SelectableText.svelte';
@@ -20,19 +23,46 @@ interface Props {
 	onWordClick?: (word: string, section?: string) => void;
 }
 
-let { timeline, articles = [], citationMapping, storyLocalizer = s, flashcardMode = false, selectedWords = new Set(), selectedPhrases = new Map(), shouldJiggle = false, onWordClick }: Props = $props();
+let {
+	timeline,
+	articles = [],
+	citationMapping,
+	storyLocalizer = s,
+	flashcardMode = false,
+	selectedWords = new Set(),
+	selectedPhrases = new Map(),
+	shouldJiggle = false,
+	onWordClick,
+}: Props = $props();
+
+// Derive batch year for date formatting
+const batchYear = $derived.by(() => {
+	const createdAt = timeTravelBatch.getCreatedAt();
+	if (createdAt) {
+		const year = new Date(createdAt).getFullYear();
+		if (!Number.isNaN(year)) return year;
+	}
+	return new Date().getFullYear();
+});
 
 // Parse timeline events and prepare display data
 const displayEvents = $derived.by(() => {
 	return timeline.map((event) => {
 		const parsed = parseTimelineEvent(event);
-		if (citationMapping && parsed.content) {
+		const formattedDate = formatTimelineDate(
+			parsed.date_iso,
+			parsed.date,
+			languageSettings.ui,
+			batchYear,
+		);
+		const result = { ...parsed, date: formattedDate };
+		if (citationMapping && result.content) {
 			return {
-				...parsed,
-				content: replaceWithNumberedCitations(parsed.content, citationMapping),
+				...result,
+				content: replaceWithNumberedCitations(result.content, citationMapping),
 			};
 		}
-		return parsed;
+		return result;
 	});
 });
 </script>
@@ -41,14 +71,22 @@ const displayEvents = $derived.by(() => {
   <h3 class="mb-2 text-xl font-semibold text-gray-800 dark:text-gray-200">
     {storyLocalizer("section.timeline") || "Timeline"}
   </h3>
-  <ol class="timeline" role="list" aria-label="Chronological timeline of events">
+  <ol
+    class="timeline"
+    role="list"
+    aria-label="Chronological timeline of events"
+  >
     {#each displayEvents as event, index}
       {@const eventCitations = getCitedArticlesForText(
         event.content,
         citationMapping,
         articles,
       )}
-      <li class="timeline-item" role="listitem" aria-label="Event {index + 1} of {displayEvents.length}">
+      <li
+        class="timeline-item"
+        role="listitem"
+        aria-label="Event {index + 1} of {displayEvents.length}"
+      >
         <div class="timeline-marker" aria-hidden="true">
           <div class="timeline-dot">
             {index + 1}

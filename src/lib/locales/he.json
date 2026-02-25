@@ -27,6 +27,14 @@
     "text": "עבור קוראי חדשות",
     "translationContext": "Footer text suffix for copyright"
   },
+  "settings.about.keyboardDescription": {
+    "text": "נווטו בין כתבות וקטגוריות באמצעות קיצורי מקלדת בסגנון vim",
+    "translationContext": "Description of keyboard navigation feature"
+  },
+  "settings.about.keyboardShortcuts": {
+    "text": "קיצורי מקלדת",
+    "translationContext": "Section header for keyboard shortcuts in settings"
+  },
   "settings.about.learnMore": {
     "text": "למידע נוסף",
     "translationContext": "Link text to open full about page"
@@ -47,6 +55,10 @@
     "text": "צפייה בתיעוד ה-API",
     "translationContext": "Button text to view API documentation"
   },
+  "settings.about.viewShortcuts": {
+    "text": "הצגת קיצורי מקלדת",
+    "translationContext": "Button text to open keyboard shortcuts help overlay"
+  },
   "settings.aboutKite.button": {
     "text": "אודות Kagi News",
     "translationContext": "Text for the About Kagi News button"
@@ -62,6 +74,78 @@
   "settings.categories.contribute": {
     "text": "+ תרום קטגוריות",
     "translationContext": "Link text for contributing categories"
+  },
+  "settings.categories.contribute.intro": {
+    "text": "עזרו להרחיב את הסיקור של Kagi News על ידי הצעת קטגוריות חדשות. תרומות הקהילה הן שהופכות את Kagi News למגוון ומקיף.",
+    "translationContext": "Introduction text in the contribute category modal"
+  },
+  "settings.categories.contribute.learnMore": {
+    "text": "ראו",
+    "translationContext": "Start of sentence linking to source inclusion rationale"
+  },
+  "settings.categories.contribute.learnMoreLink": {
+    "text": "דיון זה",
+    "translationContext": "Link text for the source inclusion rationale discussion"
+  },
+  "settings.categories.contribute.learnMoreSuffix": {
+    "text": "לקבלת הרציונל המלא שלנו לגבי הכללת מקורות.",
+    "translationContext": "End of sentence after the discussion link"
+  },
+  "settings.categories.contribute.openIssue": {
+    "text": "פתיחת פנייה ב-GitHub",
+    "translationContext": "Link text to open a GitHub issue for category suggestions"
+  },
+  "settings.categories.contribute.or": {
+    "text": "או",
+    "translationContext": "Divider text between options in contribute modal"
+  },
+  "settings.categories.contribute.prHint": {
+    "text": "למפתחים שמכירים את GitHub",
+    "translationContext": "Hint text below the pull request link"
+  },
+  "settings.categories.contribute.prLink": {
+    "text": "שלחו Pull Request ישירות",
+    "translationContext": "Link text for developers to submit a PR"
+  },
+  "settings.categories.contribute.req1Desc": {
+    "text": "— ככל שיש יותר פידים איכותיים, כך הסיקור טוב יותר",
+    "translationContext": "Description explaining more feeds = better"
+  },
+  "settings.categories.contribute.req1Title": {
+    "text": "25+ פידי RSS (יותר זה יותר טוב)",
+    "translationContext": "Title for the feeds requirement emphasizing more is better"
+  },
+  "settings.categories.contribute.req2Desc": {
+    "text": "— אין צורך ״לאזן״ מקור שמאלני עם מקור ימני. כלי תקשורת ממלכתיים, אתרים מפלגתיים - כולם מתקבלים. המערכת שלנו מצליבה עובדות ממספר מקורות, כך שחריגים לא יכולים להטות את התוצאה. זו גם הסיבה שיותר מקורות = יותר טוב.",
+    "translationContext": "Detailed explanation of why biased sources are OK and why more sources help"
+  },
+  "settings.categories.contribute.req2Title": {
+    "text": "אין צורך ב״איזון״",
+    "translationContext": "Title clarifying sources don't need to be balanced"
+  },
+  "settings.categories.contribute.req3Desc": {
+    "text": "— ללא טענות מפוברקות, הכחשת אירועים או תוכן מתיחה",
+    "translationContext": "Description for the no conspiracy content requirement"
+  },
+  "settings.categories.contribute.req3Title": {
+    "text": "ללא תוכן קונספירטיבי",
+    "translationContext": "Title for the no conspiracy content requirement"
+  },
+  "settings.categories.contribute.requirements": {
+    "text": "הנחיות:",
+    "translationContext": "Header for the guidelines section in contribute modal"
+  },
+  "settings.categories.contribute.suggestButton": {
+    "text": "הצעת קטגוריה",
+    "translationContext": "Primary button text to open GitHub issue form"
+  },
+  "settings.categories.contribute.suggestHint": {
+    "text": "פותח טופס issue ב-GitHub — אין צורך בקידוד",
+    "translationContext": "Hint text below the suggest button"
+  },
+  "settings.categories.contribute.title": {
+    "text": "תרומת קטגוריה",
+    "translationContext": "Title of the contribute category modal"
   },
   "settings.categories.coreTooltip": {
     "text": "מתוחזק על ידי צוות Kagi. איכות גבוהה, נקודות מבט מגוונות.",
@@ -87,6 +171,10 @@
     "text": "סינון לפי סוג...",
     "translationContext": "Placeholder text for category type filter dropdown"
   },
+  "settings.categories.filterPlaceholder": {
+    "text": "הכל",
+    "translationContext": "Placeholder text for the category type filter dropdown"
+  },
   "settings.categories.instructions": {
     "text": "גרור/י לסידור מחדש, או לחץ/י להפעלה/השבתה. גרור/י בין החלקים כדי להעביר קטגוריות.",
     "translationContext": "Instructions for managing categories"
@@ -106,6 +194,18 @@
   "settings.categories.noFiltered": {
     "text": "אין קטגוריות מסוג זה המושבתות",
     "translationContext": "Message shown when no categories of the selected filter type are in the disabled section"
+  },
+  "settings.categories.noLetterResults": {
+    "text": "אין קטגוריות שמתחילות באות זו",
+    "translationContext": "Message shown when no categories match the selected letter filter"
+  },
+  "settings.categories.noSearchResults": {
+    "text": "אין קטגוריות התואמות לחיפוש שלך",
+    "translationContext": "Message shown when no categories match the search query"
+  },
+  "settings.categories.searchPlaceholder": {
+    "text": "חיפוש קטגוריות...",
+    "translationContext": "Placeholder text for the category search input"
   },
   "settings.categories.singlePageMode.description": {
     "text": "בחר כיצד להציג סיפורים: בלשוניות (ברירת מחדל), או כולם בעמוד יחיד עם אפשרויות סידור שונות.",
@@ -615,6 +715,118 @@
     "text": "OpenStreetMap",
     "translationContext": "Option to use OpenStreetMap"
   },
+  "settings.preferredSources.clearAll": {
+    "text": "נקה את כל המקורות הנעוצים",
+    "translationContext": "Button text to clear all pinned sources"
+  },
+  "settings.preferredSources.cleared": {
+    "text": "נוקה!",
+    "translationContext": "Confirmation message after clearing pinned sources"
+  },
+  "settings.preferredSources.description": {
+    "text": "מקורות נעוצים מופיעים ראשונים ברשימת המקורות של כל סיפור. לחצו על סמל הנעץ של כל מקור כדי להוסיף אותו לכאן.",
+    "translationContext": "Description explaining the pinned sources feature"
+  },
+  "settings.preferredSources.empty": {
+    "text": "אין עדיין מקורות נעוצים. פתחו סיפור, לחצו על מקור, והשתמשו בסמל הנעץ כדי להוסיף אותו לכאן.",
+    "translationContext": "Message shown when no preferred sources have been selected"
+  },
+  "settings.preferredSources.remove": {
+    "text": "הסרה",
+    "translationContext": "Aria label for button to remove a source from pinned list"
+  },
+  "settings.preferredSources.title": {
+    "text": "מקורות נעוצים",
+    "translationContext": "Title for preferred sources section in settings"
+  },
+  "settings.readingLevel.categories.description": {
+    "text": "שנו את רמת ברירת המחדל עבור קטגוריות ספציפיות. קטגוריות שיוגדרו כ\"גלובלי\" ישתמשו בהגדרת ברירת המחדל שלכם למעלה.",
+    "translationContext": "Description explaining how category-specific overrides work"
+  },
+  "settings.readingLevel.categories.label": {
+    "text": "הגדרות מותאמות לקטגוריות",
+    "translationContext": "Label for the category-specific reading level overrides section"
+  },
+  "settings.readingLevel.clearOverrides": {
+    "text": "ניקוי הגדרות מותאמות",
+    "translationContext": "Button to clear all category-specific reading level overrides"
+  },
+  "settings.readingLevel.fromGlobal": {
+    "text": "גלובלי",
+    "translationContext": "Indicator that a category is using the global reading level setting"
+  },
+  "settings.readingLevel.global.description": {
+    "text": "הגדרה זו תחול על כל הקטגוריות, אלא אם תגדירו רמה ספציפית למטה.",
+    "translationContext": "Description for the global reading level setting"
+  },
+  "settings.readingLevel.global.label": {
+    "text": "רמת קריאה ברירת מחדל",
+    "translationContext": "Label for the global reading level setting"
+  },
+  "settings.readingLevel.info.howItWorks": {
+    "text": "כאשר תפתחו כתבה, התוכן יפושט אוטומטית לרמת הקריאה שבחרתם. עדיין תוכלו לשנות ידנית את הרמה עבור כל כתבה.",
+    "translationContext": "Explanation of how automatic reading level simplification works"
+  },
+  "settings.readingLevel.info.simpleDescription": {
+    "text": "שפה ברורה ברמה בינונית (B1). מתאים לקהל קוראים כללי.",
+    "translationContext": "Description of the Simple reading level"
+  },
+  "settings.readingLevel.info.verySimpleDescription": {
+    "text": "אוצר מילים בסיסי ומשפטים קצרים (A2). אידיאלי ללומדי שפה.",
+    "translationContext": "Description of the Very Simple reading level"
+  },
+  "settings.readingLevel.levels.default": {
+    "text": "רגילה",
+    "translationContext": "Default/normal reading level option"
+  },
+  "settings.readingLevel.levels.simple": {
+    "text": "פשוטה",
+    "translationContext": "Simple reading level option"
+  },
+  "settings.readingLevel.levels.useGlobal": {
+    "text": "גלובלי",
+    "translationContext": "Option to use the global reading level (no override)"
+  },
+  "settings.readingLevel.levels.verySimple": {
+    "text": "פשוטה מאוד",
+    "translationContext": "Very simple reading level option"
+  },
+  "settings.readingLevel.noCategories": {
+    "text": "אין קטגוריות מופעלות. הפעילו קטגוריות בלשונית \"קטגוריות\".",
+    "translationContext": "Message shown when no categories are enabled"
+  },
+  "settings.readingLevel.resetAll": {
+    "text": "איפוס הכל",
+    "translationContext": "Button to reset both global level and all category overrides"
+  },
+  "settings.readingLevel.subscriberOnly": {
+    "text": "פישוט לפי רמת קריאה זמין למנויי Kagi. שדרגו כדי לפשט כתבות באופן אוטומטי לרמת הקריאה המועדפת עליכם.",
+    "translationContext": "Message shown to non-subscribers about reading level feature"
+  },
+  "settings.readingLevel.subscriberOnly.description": {
+    "text": "פישוט טקסט אוטומטי זמין למנויי Kagi. שדרגו כדי לקבל גישה לתכונה זו.",
+    "translationContext": "Description explaining this is a subscriber-only feature"
+  },
+  "settings.readingLevel.subscriberOnly.title": {
+    "text": "תכונה למנויים",
+    "translationContext": "Title for subscriber-only feature notice"
+  },
+  "settings.readingLevel.subscriberOnly.upgrade": {
+    "text": "שדרוג ל-Kagi",
+    "translationContext": "Link text to upgrade to Kagi subscription"
+  },
+  "settings.readingLevel.tab.description": {
+    "text": "הגדירו רמת קריאה ברירת מחדל לכל הכתבות. ניתן גם להתאים אישית את הרמה עבור קטגוריות ספציפיות.",
+    "translationContext": "Description shown at the top of the reading level settings tab"
+  },
+  "settings.readingLevel.title": {
+    "text": "רמת קריאה",
+    "translationContext": "Title for reading level section"
+  },
+  "settings.readingLevel.upgrade": {
+    "text": "שדרוג ל-Kagi",
+    "translationContext": "Link text to upgrade to Kagi subscription"
+  },
   "settings.sections.instructions": {
     "text": "גרור/י כדי לסדר מחדש את החלקים. השתמש/י במתג כדי להפעיל/להשבית.",
     "translationContext": "Instructions for managing article sections"
@@ -699,6 +911,10 @@
     "text": "מראה",
     "translationContext": "Subsection heading for appearance-related settings"
   },
+  "settings.subsections.display": {
+    "text": "תצוגה",
+    "translationContext": "Subsection heading for display settings"
+  },
   "settings.subsections.localization": {
     "text": "שפה ואזור",
     "translationContext": "Subsection heading for language and localization settings"
@@ -710,6 +926,14 @@
   "settings.subsections.readingExperience": {
     "text": "חווית קריאה",
     "translationContext": "Subsection heading for story display and reading settings"
+  },
+  "settings.subsections.storyDisplay": {
+    "text": "תצוגת כתבות",
+    "translationContext": "Subsection heading for story display settings"
+  },
+  "settings.subsections.visualEnhancements": {
+    "text": "שיפורים חזותיים",
+    "translationContext": "Subsection heading for visual enhancement toggles"
   },
   "settings.sync.clear.button": {
     "text": "מחיקת כל הנתונים המסונכרנים",
@@ -775,6 +999,14 @@
     "text": "מייצא...",
     "translationContext": "Text shown while exporting data"
   },
+  "settings.sync.import.button": {
+    "text": "ייבוא הגדרות",
+    "translationContext": "Button label to import settings from a backup JSON file"
+  },
+  "settings.sync.import.importing": {
+    "text": "מייבא...",
+    "translationContext": "Loading text shown while importing settings from a backup file"
+  },
   "settings.sync.info.description": {
     "text": "Kagi News יכול לסנכרן את ההגדרות והיסטוריית הקריאה שלכם בין כל המכשירים שלכם. מידע זה מאוחסן באופן מאובטח בשרתי Kagi ומשויך לחשבון Kagi Search שלכם.\n\nהמידע המסונכרן שלכם אינו משמש לשום מטרה אחרת, אינו משותף עם איש, ומאוחסן אך ורק כדי לספק לכם את שירות הסנכרון. יש לכם שליטה מלאה על מה שמסונכרן ותוכלו למחוק את המידע שלכם בכל עת.",
     "translationContext": "Description of sync and privacy features"
@@ -831,6 +1063,14 @@
     "text": "אודות",
     "translationContext": "Title for the about settings tab"
   },
+  "settings.tabs.account": {
+    "text": "חשבון",
+    "translationContext": "Title for the account settings tab"
+  },
+  "settings.tabs.appearance": {
+    "text": "מראה",
+    "translationContext": "Title for the appearance settings tab"
+  },
   "settings.tabs.categories": {
     "text": "קטגוריות",
     "translationContext": "Title for the categories settings tab"
@@ -843,13 +1083,33 @@
     "text": "ניסיוני",
     "translationContext": "Title for the experimental settings tab"
   },
+  "settings.tabs.filters": {
+    "text": "מסננים",
+    "translationContext": "Title for the filters settings tab"
+  },
   "settings.tabs.general": {
     "text": "כללי",
     "translationContext": "Title for the general settings tab"
   },
+  "settings.tabs.language": {
+    "text": "שפה",
+    "translationContext": "Title for the language settings tab"
+  },
+  "settings.tabs.preferredSources": {
+    "text": "מקורות נעוצים",
+    "translationContext": "Tab name for preferred/pinned sources settings"
+  },
+  "settings.tabs.readingLevel": {
+    "text": "רמת קריאה",
+    "translationContext": "Tab name for per-category reading level settings"
+  },
   "settings.tabs.sections": {
     "text": "חלקים",
     "translationContext": "Title for the sections settings tab"
+  },
+  "settings.tabs.stories": {
+    "text": "כתבות",
+    "translationContext": "Title for the stories settings tab"
   },
   "settings.tabs.syncPrivacy": {
     "text": "סנכרון",
@@ -907,9 +1167,17 @@
     "text": "סגירה",
     "translationContext": "Close button text"
   },
+  "common.no_results": {
+    "text": "לא נמצאו תוצאות",
+    "translationContext": "Shown in search/select dropdowns when no matches are found"
+  },
   "common.reset": {
     "text": "איפוס",
     "translationContext": "Reset button text"
+  },
+  "common.search": {
+    "text": "חיפוש",
+    "translationContext": "Generic search input placeholder"
   },
   "about.approach.description1": {
     "text": "העולם אינו חי בתיבות תהודה. המציאות צומחת מהתנגשות של נקודות מבט ופרספקטיבות שונות - כך אנו מפרידים בין עיקר לטפל.",
@@ -986,6 +1254,42 @@
   "about.why.title": {
     "text": "למה Kagi News? כי החדשות שבורות.",
     "translationContext": "Title of the Why Kagi News section"
+  },
+  "app_navigation.assistant": {
+    "text": "עוזר",
+    "translationContext": "Label for Kagi Assistant in the app navigation menu"
+  },
+  "app_navigation.fastgpt": {
+    "text": "FastGPT",
+    "translationContext": "Label for Kagi FastGPT in the app navigation menu, should not be translated"
+  },
+  "app_navigation.news": {
+    "text": "חדשות",
+    "translationContext": "Label for Kagi News in the app navigation menu"
+  },
+  "app_navigation.open_navigation": {
+    "text": "פתיחת ניווט האפליקציות",
+    "translationContext": "Accessibility label for opening the app navigation menu"
+  },
+  "app_navigation.search": {
+    "text": "חיפוש",
+    "translationContext": "Label for Kagi Search in the app navigation menu"
+  },
+  "app_navigation.small_web": {
+    "text": "רשת קטנה",
+    "translationContext": "Label for Kagi Small Web in the app navigation menu"
+  },
+  "app_navigation.tooltip": {
+    "text": "אפליקציות Kagi",
+    "translationContext": "Tooltip for the app navigation button"
+  },
+  "app_navigation.translate": {
+    "text": "תרגום",
+    "translationContext": "Label for Kagi Translate in the app navigation menu"
+  },
+  "app_navigation.universal_summarizer": {
+    "text": "מסכם אוניברסלי",
+    "translationContext": "Label for Kagi Universal Summarizer in the app navigation menu"
   },
   "app.beta": {
     "text": "בטא",
@@ -1710,6 +2014,546 @@
   "contentFilter.storyHidden": {
     "text": "כתבה {{count}} הוסתרה",
     "translationContext": "Message showing 1 story is hidden"
+  },
+  "contribute.addFeeds": {
+    "text": "הוספת פידים",
+    "translationContext": "Button to add pasted feed URLs to the list"
+  },
+  "contribute.allDuplicates": {
+    "text": "כל {{count}} כתובות ה-URL כבר נמצאות בקטגוריה זו",
+    "translationContext": "Error when all pasted URLs are duplicates"
+  },
+  "contribute.allFeedsFailed": {
+    "text": "כל הפידים נכשלו באימות. אנא בדוק את כתובות ה-URL ונסה שוב, או הסר את הפידים השגויים והוסף פידים תקינים.",
+    "translationContext": "Error message when every feed fails validation"
+  },
+  "contribute.cannotSubmit": {
+    "text": "לא ניתן לשלוח. כל הפידים נכשלו באימות. הסר את הפידים השגויים והוסף פידים תקינים.",
+    "translationContext": "Error explaining why submission is blocked"
+  },
+  "contribute.categoryExists": {
+    "text": "קטגוריה זו כבר קיימת.",
+    "translationContext": "Warning when the entered category name already exists"
+  },
+  "contribute.categoryName": {
+    "text": "שם הקטגוריה",
+    "translationContext": "Label for the new category name input field"
+  },
+  "contribute.categoryNamePlaceholder": {
+    "text": "לדוגמה: תעופה, דרום קוריאה, אקלים...",
+    "translationContext": "Placeholder text for the category name input"
+  },
+  "contribute.checkingCount": {
+    "text": "{{count}} בבדיקה...",
+    "translationContext": "Number of feeds currently being validated"
+  },
+  "contribute.coreCategory": {
+    "text": "ליבה",
+    "translationContext": "Badge label for core categories maintained by the Kagi team"
+  },
+  "contribute.coreCategoryNote": {
+    "text": "זוהי קטגוריית ליבה של Kite. הפידים שלך יתווספו לצד המקורות הקיימים שנאצרו.",
+    "translationContext": "Info note shown when a core category is selected in the contribute dropdown"
+  },
+  "contribute.createPr": {
+    "text": "יצירת בקשת משיכה",
+    "translationContext": "Button text to submit and create a GitHub pull request"
+  },
+  "contribute.creatingPr": {
+    "text": "יוצר בקשת משיכה...",
+    "translationContext": "Button text while the pull request is being created"
+  },
+  "contribute.duplicatesSkipped": {
+    "text": "דילוג על {{count}} פיד(ים) כפול(ים) (כבר נמצאים בקטגוריה זו)",
+    "translationContext": "Warning showing how many duplicate feeds were skipped"
+  },
+  "contribute.errorCount": {
+    "text": "{{count}} שגיאה(ות)",
+    "translationContext": "Number of feeds that failed validation"
+  },
+  "contribute.excludedNote": {
+    "text": "({{count}} פיד(ים) שגוי(ים) לא ייכללו)",
+    "translationContext": "Note about errored feeds being excluded from submission"
+  },
+  "contribute.existingCategory": {
+    "text": "קטגוריה קיימת",
+    "translationContext": "Toggle button to add feeds to an existing category"
+  },
+  "contribute.failedPr": {
+    "text": "יצירת בקשת המשיכה נכשלה",
+    "translationContext": "Fallback error message when PR creation fails"
+  },
+  "contribute.feedCount": {
+    "text": "{{count}} פידים",
+    "translationContext": "Number of feeds in a category, e.g. '42 feeds'"
+  },
+  "contribute.feedInputPlaceholder": {
+    "text": "הדבק כאן כתובות URL של פידים (אחד בכל שורה או מופרדים בפסיק)",
+    "translationContext": "Placeholder for the feed URL textarea input"
+  },
+  "contribute.feedLanguage": {
+    "text": "שפת הפיד",
+    "translationContext": "Label for the feed language selector"
+  },
+  "contribute.feedLanguageTooltip": {
+    "text": "יש להגדיר זאת לשפה שבה כתובים רוב הפידים (רוב או ריבוי). זה לא מגביל את הזמינות — כל הקטגוריות מתורגמות לכל שפה שאנו תומכים בה.",
+    "translationContext": "Tooltip explaining the feed language setting"
+  },
+  "contribute.feedsAdded": {
+    "text": "{{count}} פיד(ים) נוספו",
+    "translationContext": "Summary showing total number of feeds added"
+  },
+  "contribute.guidelineBalance": {
+    "text": "אין צורך ב\"איזון\"",
+    "translationContext": "Guideline title: sources don't need political balance"
+  },
+  "contribute.guidelineBalanceDesc": {
+    "text": "מקור שמאלני לא זקוק למקבילה ימנית. כלי תקשורת ממלכתיים, ערוצים מפלגתיים, הכל בסדר. המערכת שלנו מאמתת עובדות מול מספר מקורות.",
+    "translationContext": "Guideline description explaining why biased sources are acceptable"
+  },
+  "contribute.guidelineConspiracy": {
+    "text": "בלי תכני קונספירציה",
+    "translationContext": "Guideline title: no conspiracy theories allowed"
+  },
+  "contribute.guidelineConspiracyDesc": {
+    "text": "בלי טענות מפוברקות, הכחשת אירועים או תכני מתיחה",
+    "translationContext": "Guideline description for the no conspiracy requirement"
+  },
+  "contribute.guidelineFeeds": {
+    "text": "25+ פידי RSS (יותר זה יותר טוב)",
+    "translationContext": "Guideline title: minimum number of feeds required"
+  },
+  "contribute.guidelineFeedsDesc": {
+    "text": "ככל שיש יותר פידים איכותיים, כך הכיסוי טוב יותר",
+    "translationContext": "Guideline description explaining more feeds = better coverage"
+  },
+  "contribute.guidelineLanguage": {
+    "text": "אין לפצל קטגוריות לפי שפה",
+    "translationContext": "Guideline title: keep one category per topic regardless of language"
+  },
+  "contribute.guidelineLanguageDesc": {
+    "text": "\"שווייץ\" צריכה להיות קטגוריה אחת, לא \"שווייץ (EN)\" ו\"שווייץ (IT)\". כל הקטגוריות מתורגמות לכל שפה שאנו תומכים בה.",
+    "translationContext": "Guideline description explaining not to split by language"
+  },
+  "contribute.guidelines": {
+    "text": "הנחיות",
+    "translationContext": "Collapsible section header for contribution guidelines"
+  },
+  "contribute.heading": {
+    "text": "תרומת פידים",
+    "translationContext": "Main heading on the contribute page"
+  },
+  "contribute.hideFeeds": {
+    "text": "הסתרת פידים",
+    "translationContext": "Button to collapse the list of existing feeds"
+  },
+  "contribute.history.declineReason": {
+    "text": "סיבה",
+    "translationContext": "Label before the decline reason text when a contribution PR was closed"
+  },
+  "contribute.history.existingCategory": {
+    "text": "נוסף לקיימת",
+    "translationContext": "Badge indicating feeds were added to an existing category"
+  },
+  "contribute.history.feedsAdded": {
+    "text": "{{count}} פיד(ים) נוספו",
+    "translationContext": "Shows how many feeds were added in a contribution"
+  },
+  "contribute.history.legend": {
+    "text": "תרומות נבדקות ידנית. לאחר המיזוג, הפידים עולים לאוויר עם האצווה היומית הבאה.",
+    "translationContext": "Legend text below the contributions list explaining the process"
+  },
+  "contribute.history.newCategory": {
+    "text": "קטגוריה חדשה",
+    "translationContext": "Badge indicating the contribution created a new category"
+  },
+  "contribute.history.pr": {
+    "text": "PR מספר {{number}}",
+    "translationContext": "Link text showing the GitHub pull request number"
+  },
+  "contribute.history.showLess": {
+    "text": "הצג פחות",
+    "translationContext": "Button to collapse the contributions list back to the preview"
+  },
+  "contribute.history.status.declined": {
+    "text": "נדחה",
+    "translationContext": "Pipeline step label: PR was closed without merging"
+  },
+  "contribute.history.status.declined.tooltip": {
+    "text": "בקשת משיכה זו נסגרה ללא מיזוג.",
+    "translationContext": "Tooltip for the Declined pipeline step"
+  },
+  "contribute.history.status.live": {
+    "text": "באוויר",
+    "translationContext": "Pipeline step label: feeds are active on Kagi News"
+  },
+  "contribute.history.status.live.tooltip": {
+    "text": "הפידים שלך פעילים ב-Kagi News. אם קטגוריה לא מציגה סיפורים, זה אומר שהמאמרים לא קובצו — זה נורמלי.",
+    "translationContext": "Tooltip for the Live pipeline step"
+  },
+  "contribute.history.status.merged": {
+    "text": "מוזג",
+    "translationContext": "Pipeline step label: PR has been merged"
+  },
+  "contribute.history.status.merged.tooltip": {
+    "text": "בקשת המשיכה שלך מוזגה. השינויים יעלו לאוויר עם האצווה הבאה של Kagi News.",
+    "translationContext": "Tooltip for the Merged pipeline step"
+  },
+  "contribute.history.status.submitted": {
+    "text": "נשלח",
+    "translationContext": "Pipeline step label: PR has been created"
+  },
+  "contribute.history.status.submitted.tooltip": {
+    "text": "בקשת המשיכה שלך נוצרה וממתינה לבדיקה.",
+    "translationContext": "Tooltip for the Submitted pipeline step"
+  },
+  "contribute.history.title": {
+    "text": "התרומות שלי",
+    "translationContext": "Heading for the section showing the user's past feed contributions"
+  },
+  "contribute.history.titleWithCount": {
+    "text": "התרומות שלי ({{count}})",
+    "translationContext": "Heading for contributions section showing total count, e.g. 'My Contributions (4)'"
+  },
+  "contribute.history.typeExisting": {
+    "text": "קטגוריה קיימת",
+    "translationContext": "Inline text in expanded contribution detail indicating feeds were added to an existing category"
+  },
+  "contribute.history.typeNew": {
+    "text": "קטגוריה חדשה",
+    "translationContext": "Inline text in expanded contribution detail indicating this created a new category"
+  },
+  "contribute.history.viewAll": {
+    "text": "הצגת {{count}} נוספים",
+    "translationContext": "Button to expand and show remaining hidden contributions, e.g. 'See 3 more'"
+  },
+  "contribute.howItWorks": {
+    "text": "איך זה עובד",
+    "translationContext": "Small link in the contribute form header to re-show the onboarding"
+  },
+  "contribute.inThisCategory": {
+    "text": "בקטגוריה זו",
+    "translationContext": "Text after feed count, e.g. '42 feeds in this category'"
+  },
+  "contribute.languageInNameWarning": {
+    "text": "אין לכלול קוד שפה בשם הקטגוריה. יש להשתמש בשם הבסיסי בלבד (לדוגמה, \"שווייץ\" במקום \"שווייץ (IT)\") ולהגדיר את שפת הפיד הראשית למטה. כל הקטגוריות מתורגמות לכל שפה שאנו תומכים בה.",
+    "translationContext": "Warning shown when a language code like (IT) is detected in the category name"
+  },
+  "contribute.loadingCategories": {
+    "text": "טוען קטגוריות...",
+    "translationContext": "Loading state while fetching category list"
+  },
+  "contribute.manual.addTo": {
+    "text": "הוסף ל-{{fileName}}:",
+    "translationContext": "Label above the copyable code snippet (snippet mode)"
+  },
+  "contribute.manual.copied": {
+    "text": "הועתק!",
+    "translationContext": "Confirmation after copying to clipboard"
+  },
+  "contribute.manual.copy": {
+    "text": "העתק",
+    "translationContext": "Copy to clipboard button"
+  },
+  "contribute.manual.editOnGithub": {
+    "text": "ערוך את {{fileName}} ב-GitHub",
+    "translationContext": "Button to open the file editor on GitHub"
+  },
+  "contribute.manual.fullFile": {
+    "text": "{{fileName}} המלא:",
+    "translationContext": "Label above the copyable code block (full file mode)"
+  },
+  "contribute.manual.instructions": {
+    "text": "צור בקשת משיכה ב-GitHub עם השינויים הבאים:",
+    "translationContext": "Header for manual PR creation instructions"
+  },
+  "contribute.manual.step1": {
+    "text": "העתק את קטע הקוד למטה",
+    "translationContext": "Step 1 of manual PR instructions (snippet mode for core_feeds.py)"
+  },
+  "contribute.manual.step1Full": {
+    "text": "העתק את תוכן הקובץ המלא למטה",
+    "translationContext": "Step 1 of manual PR instructions (full file mode for kite_feeds.json)"
+  },
+  "contribute.manual.step2Existing": {
+    "text": "לחץ על הכפתור כדי לערוך את {{fileName}} ב-GitHub. מצא את החלק \"{{category}}\" והוסף את כתובות ה-URL של הפידים לרשימת הפידים שלו",
+    "translationContext": "Step 2 for adding feeds to an existing category manually (snippet mode for core_feeds.py)"
+  },
+  "contribute.manual.step2Full": {
+    "text": "לחץ על הכפתור כדי לערוך את {{fileName}} ב-GitHub, בחר הכל והחלף בתוכן שהועתק",
+    "translationContext": "Step 2 for full file replacement mode (kite_feeds.json)"
+  },
+  "contribute.manual.step2New": {
+    "text": "לחץ על הכפתור כדי לערוך את {{fileName}} ב-GitHub. הוסף את קטע הקוד בסדר אלפביתי בין הקטגוריות הקיימות",
+    "translationContext": "Step 2 for adding a new category manually (snippet mode fallback)"
+  },
+  "contribute.manual.step3": {
+    "text": "בצע Commit לשינוי ופתח בקשת משיכה. GitHub ינחה אותך בתהליך",
+    "translationContext": "Step 3 of manual PR instructions"
+  },
+  "contribute.manual.submit": {
+    "text": "קבלת הוראות ליצירת PR",
+    "translationContext": "Button text for manual mode where user creates PR themselves"
+  },
+  "contribute.networkError": {
+    "text": "שגיאת רשת. אנא נסה שוב.",
+    "translationContext": "Error message for network failures during submission"
+  },
+  "contribute.newCategory": {
+    "text": "קטגוריה חדשה",
+    "translationContext": "Toggle button to create a new category"
+  },
+  "contribute.noValidUrls": {
+    "text": "לא נמצאו כתובות URL תקינות. כתובות URL חייבות להתחיל ב-http:// או https://",
+    "translationContext": "Error when pasted text contains no valid URLs"
+  },
+  "contribute.onboarding.community.description": {
+    "text": "אף איש צוות ב-Kagi לא מחליט אילו קטגוריות קיימות או אילו סיפורים מופיעים. כל זה מגיע מהפידים, והפידים מגיעים מהקהילה.",
+    "translationContext": "Main explanation of community-driven categories"
+  },
+  "contribute.onboarding.community.networkLabelStories": {
+    "text": "סיפורים",
+    "translationContext": "Label on the story cluster nodes in the feed flow animation"
+  },
+  "contribute.onboarding.community.networkLabelYou": {
+    "text": "+ אתם",
+    "translationContext": "Label on the contributor node in the feed network animation"
+  },
+  "contribute.onboarding.community.networkNote": {
+    "text": "פידים מצד שמאל זורמים לסיפורים מצד ימין. יותר פידים פירושם יותר סיפורים וכיסוי טוב יותר.",
+    "translationContext": "Caption under the feed-to-story flow animation"
+  },
+  "contribute.onboarding.community.noStories": {
+    "text": "לפעמים קטגוריה לא מייצרת סיפורים. זה בדרך כלל אומר שאין מספיק פידים עם כיסוי חופף כדי שהקיבוץ יפעל. יותר פידים פירושם יותר חפיפה, מה שפירושו יותר סיפורים.",
+    "translationContext": "Explaining why some categories don't generate stories"
+  },
+  "contribute.onboarding.community.title": {
+    "text": "הכל מונע על ידי הקהילה",
+    "translationContext": "Section title for explaining community-driven nature of categories"
+  },
+  "contribute.onboarding.community.whyXnotY": {
+    "text": "אם אתם תוהים מדוע יש קטגוריה ל-X אבל לא ל-Y, זה בגלל שמישהו שהיה אכפת לו מ-X השקיע את הזמן להוסיף פידים עבורה. אם נושא שחשוב לכם חסר, אתם יכולים להיות אלה שיתחילו אותו.",
+    "translationContext": "Explaining why certain categories exist and others don't"
+  },
+  "contribute.onboarding.cta": {
+    "text": "התחלת הוספת פידים",
+    "translationContext": "CTA button on the onboarding page to proceed to the contribute form"
+  },
+  "contribute.onboarding.feedTypes.community.description": {
+    "text": "נאצרים על ידי תורמים כמוכם בקובץ kite_feeds.json. מכסים הכל, מחדשות אזוריות ועד נושאי נישה. לכאן מגיעה התרומה שלכם.",
+    "translationContext": "Description of community feeds that contributors add to"
+  },
+  "contribute.onboarding.feedTypes.community.title": {
+    "text": "פידי קהילה",
+    "translationContext": "Title for the community feeds card"
+  },
+  "contribute.onboarding.feedTypes.core.description": {
+    "text": "מכסים קטגוריות חיוניות כמו חדשות עולם, עסקים, טכנולוגיה, מדע, ספורט ותרבות. הם קוד פתוח מלא ב-GitHub, כך שגם אתם יכולים לתרום להם.",
+    "translationContext": "Description of core feeds, emphasizing they are open source and open to contributions"
+  },
+  "contribute.onboarding.feedTypes.core.title": {
+    "text": "פידי ליבה",
+    "translationContext": "Title for the core feeds card"
+  },
+  "contribute.onboarding.feedTypes.title": {
+    "text": "שני סוגי פידים מפעילים את Kagi News",
+    "translationContext": "Section title for core vs community feeds comparison"
+  },
+  "contribute.onboarding.guidelines.anyLanguage": {
+    "text": "כל שפה תתקבל בברכה. Kagi News מתרגם הכל אוטומטית, כך שקטגוריה אחת יכולה וצריכה לערבב שפות.",
+    "translationContext": "Guideline: feeds in any language are accepted"
+  },
+  "contribute.onboarding.guidelines.minimum": {
+    "text": "קטגוריות חדשות צריכות לפחות 25 פידים כדי להופיע ב-Kagi News. זה מבטיח מספיק חפיפה כדי שהקיבוץ יעבוד.",
+    "translationContext": "Guideline: minimum feed count for new categories"
+  },
+  "contribute.onboarding.guidelines.noLanguageSplit": {
+    "text": "אין ליצור קטגוריות נפרדות לפי שפה. השתמשו ב\"שווייץ\", לא ב\"שווייץ (DE)\" ו\"שווייץ (FR)\".",
+    "translationContext": "Guideline: don't split categories by language"
+  },
+  "contribute.onboarding.guidelines.quality": {
+    "text": "עדיפות למקורות חדשות, בלוגים או ערוצים מבוססים. יותר פידים זה בדרך כלל יותר טוב — הקיבוץ מטפל בשאר.",
+    "translationContext": "Guideline: source quality preference"
+  },
+  "contribute.onboarding.guidelines.rssOnly": {
+    "text": "פידי RSS או Atom בלבד. Kagi News לא גורף אתרים, הוא משתמש רק בנתוני פידים זמינים לציבור.",
+    "translationContext": "Guideline: only RSS/Atom feeds are accepted"
+  },
+  "contribute.onboarding.guidelines.title": {
+    "text": "הנחיות לפידים",
+    "translationContext": "Section title for feed submission guidelines"
+  },
+  "contribute.onboarding.guidelines.topicSpecific": {
+    "text": "פידים צריכים לכסות את נושא הקטגוריה באופן ספציפי. הוספת עיתון כללי כמו The Guardian לקטגוריית \"בריטניה\" תייצר בעיקר אשכולות של חדשות עולם, לא כאלה הספציפיים לבריטניה. חפשו פידים מסוננים לפי נושא, או השתמשו בכלי סינון RSS כדי לצמצם פיד רחב.",
+    "translationContext": "Guideline: feeds should be topic-specific, not general outlets, with example"
+  },
+  "contribute.onboarding.guidelines.working": {
+    "text": "הפידים חייבים להיות תקינים ולהכיל תוכן עדכני (רצוי יומי).",
+    "translationContext": "Guideline: feeds should be active"
+  },
+  "contribute.onboarding.pipeline.note": {
+    "text": "כל התהליך פועל על טייס אוטומטי. אף אחד ב-Kagi לא בוחר אילו סיפורים יופיעו או אילו קטגוריות ייווצרו.",
+    "translationContext": "Note below the pipeline emphasizing the automated nature"
+  },
+  "contribute.onboarding.pipeline.step1.description": {
+    "text": "לכל קטגוריה יש רשימת פידי RSS מאחוריה. המערכת שואבת מאמרים חדשים מכולם. לחלק מהקטגוריות יש מאות פידים, אחרות רק בתחילת דרכן.",
+    "translationContext": "Pipeline step 1 description"
+  },
+  "contribute.onboarding.pipeline.step1.title": {
+    "text": "הפידים נבדקים",
+    "translationContext": "Pipeline step 1 title"
+  },
+  "contribute.onboarding.pipeline.step2.description": {
+    "text": "המערכת מזהה אילו מאמרים עוסקים באותו נושא ומקבצת אותם יחד. כל קבוצה הופכת ל\"סיפור\". אם מאמר לא תואם לשום דבר אחר, מדלגים עליו.",
+    "translationContext": "Pipeline step 2 description"
+  },
+  "contribute.onboarding.pipeline.step2.title": {
+    "text": "מאמרים קשורים מקובצים יחד",
+    "translationContext": "Pipeline step 2 title"
+  },
+  "contribute.onboarding.pipeline.step3.description": {
+    "text": "בינה מלאכותית קוראת את כל המאמרים בקבוצה וכותבת תקציר יחיד, תוך שילוב נקודות המבט השונות מכל מקור.",
+    "translationContext": "Pipeline step 3 description"
+  },
+  "contribute.onboarding.pipeline.step3.title": {
+    "text": "נכתב תקציר",
+    "translationContext": "Pipeline step 3 title"
+  },
+  "contribute.onboarding.pipeline.title": {
+    "text": "איך נוצרים סיפורים",
+    "translationContext": "Section title for the pipeline explanation"
+  },
+  "contribute.onboarding.skip": {
+    "text": "דלג",
+    "translationContext": "Link to skip the onboarding and go straight to the contribute form"
+  },
+  "contribute.onboarding.subtitle": {
+    "text": "עזרו לבנות חווית חדשות טובה יותר על ידי הוספת פידי RSS לקטגוריות שנאצרו על ידי הקהילה.",
+    "translationContext": "Subtitle on the contribute onboarding info page"
+  },
+  "contribute.onboarding.title": {
+    "text": "תרומה ל-Kagi News",
+    "translationContext": "Title on the contribute onboarding info page"
+  },
+  "contribute.onboarding.whatToDo.existing.description": {
+    "text": "עיינו בקטגוריות והוסיפו פידי RSS שלדעתכם חסרים. מקורות מגוונים יותר פירושם כיסוי טוב יותר ויותר סיפורים שעולים.",
+    "translationContext": "Description of adding feeds to existing categories"
+  },
+  "contribute.onboarding.whatToDo.existing.title": {
+    "text": "הוספת פידים לקטגוריות קיימות",
+    "translationContext": "Title for existing category contribution option"
+  },
+  "contribute.onboarding.whatToDo.new.description": {
+    "text": "חדשות מקומיות, כיסוי אזורי, נושאי נישה. קטגוריות חדשות צריכות לפחות 25 פידים כדי לעלות לאוויר ב-Kagi News. זה מבטיח מספיק חפיפה כדי שהקיבוץ ייצר סיפורים אמיתיים.",
+    "translationContext": "Description of proposing new categories"
+  },
+  "contribute.onboarding.whatToDo.new.title": {
+    "text": "הצעת קטגוריה חדשה",
+    "translationContext": "Title for new category contribution option"
+  },
+  "contribute.onboarding.whatToDo.title": {
+    "text": "מה אתם יכולים לתרום",
+    "translationContext": "Section title for contribution options"
+  },
+  "contribute.pageTitle": {
+    "text": "תרומת פידים - Kagi News",
+    "translationContext": "Browser tab title for the contribute page"
+  },
+  "contribute.pendingFeedCount": {
+    "text": "{{count}} פידים הוצעו",
+    "translationContext": "Number of feeds proposed in a pending pull request"
+  },
+  "contribute.pendingFeedsAdded": {
+    "text": "+{{count}} פידים ממתינים",
+    "translationContext": "Indicator showing additional feeds pending for an existing category"
+  },
+  "contribute.pendingPr": {
+    "text": "PR ממתין",
+    "translationContext": "Badge label for categories from unmerged pull requests"
+  },
+  "contribute.pendingPrLink": {
+    "text": "צפייה ב-PR מספר {{number}}",
+    "translationContext": "Link text to view the related pending pull request"
+  },
+  "contribute.pendingPrNote": {
+    "text": "קטגוריה זו הוצעה על ידי תורם אחר וממתינה לבדיקה.",
+    "translationContext": "Info note shown when a pending PR category is selected"
+  },
+  "contribute.removeErrored": {
+    "text": "הסרת {{count}} שגויים",
+    "translationContext": "Button to remove all feeds that failed validation"
+  },
+  "contribute.removeFeed": {
+    "text": "הסרת פיד",
+    "translationContext": "Aria label for the button to remove a single feed"
+  },
+  "contribute.retry": {
+    "text": "ניסיון חוזר",
+    "translationContext": "Button to retry loading categories after an error"
+  },
+  "contribute.reviewNote": {
+    "text": "הצוות שלנו יבדוק את השליחה שלך וימזג אותה אם הכל נראה תקין.",
+    "translationContext": "Note explaining what happens after submission"
+  },
+  "contribute.searchCategories": {
+    "text": "חיפוש קטגוריות...",
+    "translationContext": "Placeholder for the category search dropdown"
+  },
+  "contribute.showFeeds": {
+    "text": "הצגת פידים",
+    "translationContext": "Button to expand the list of existing feeds"
+  },
+  "contribute.step1": {
+    "text": "1. בחירת קטגוריה",
+    "translationContext": "Step 1 heading in the contribute form"
+  },
+  "contribute.step2": {
+    "text": "2. הוספת פידים",
+    "translationContext": "Step 2 heading in the contribute form"
+  },
+  "contribute.step3": {
+    "text": "3. שליחה",
+    "translationContext": "Step 3 heading in the contribute form"
+  },
+  "contribute.submitAnother": {
+    "text": "שליחת תרומה נוספת",
+    "translationContext": "Link to reset the form and submit another contribution"
+  },
+  "contribute.subtitle": {
+    "text": "הוספת פידי RSS לקטגוריות קיימות או הצעה של קטגוריות חדשות",
+    "translationContext": "Subtitle below the heading on the contribute page"
+  },
+  "contribute.successMessage": {
+    "text": "תודה על תרומתך! בקשת משיכה (Pull request) מספר {{prNumber}} נוצרה.",
+    "translationContext": "Success message after PR is created, with PR number"
+  },
+  "contribute.summaryExisting": {
+    "text": "הוספת {{count}} פיד(ים) ל{{category}}",
+    "translationContext": "Summary text before adding feeds to an existing category"
+  },
+  "contribute.summaryNew": {
+    "text": "יצירת קטגוריה חדשה {{category}} עם {{count}} פיד(ים)",
+    "translationContext": "Summary text before submitting a new category"
+  },
+  "contribute.switchToIt": {
+    "text": "לעבור אליה?",
+    "translationContext": "Link to switch to an existing category instead of creating new"
+  },
+  "contribute.unverifiedCount": {
+    "text": "{{count}} לא מאומתים",
+    "translationContext": "Number of feeds with unknown validation status"
+  },
+  "contribute.validCount": {
+    "text": "{{count}} תקינים",
+    "translationContext": "Number of feeds that passed validation"
+  },
+  "contribute.viewPr": {
+    "text": "צפייה בבקשת המשיכה",
+    "translationContext": "Link text to view the created pull request on GitHub"
+  },
+  "contribute.waitingValidation": {
+    "text": "ממתין לסיום האימות של {{count}} פיד(ים)...",
+    "translationContext": "Note shown while feeds are still being validated"
   },
   "crypto.grid.title": {
     "text": "שערי קריפטו",
@@ -2779,6 +3623,10 @@
     "text": "מידע על המקור",
     "translationContext": "Title for source information section"
   },
+  "sources.addPreferred": {
+    "text": "הצמד לראש רשימת המקורות",
+    "translationContext": "Tooltip for pin button to add source to preferred list"
+  },
   "sources.article": {
     "text": "כתבה {{count}}",
     "translationContext": "Shows singular article count from a source, {{count}} will be replaced with a number"
@@ -2794,6 +3642,10 @@
   "sources.paywallTooltip": {
     "text": "מקור זה עשוי לדרוש מנוי כדי לגשת למאמרים מלאים",
     "translationContext": "Tooltip explaining that a news source requires a paid subscription"
+  },
+  "sources.removePreferred": {
+    "text": "בטל נעיצה מראש רשימת המקורות",
+    "translationContext": "Tooltip for pin button to remove source from preferred list"
   },
   "sources.showArticlesFrom": {
     "text": "הצג כתבות מ-{source}",
@@ -2819,6 +3671,38 @@
     "text": "שבוע {{week}}, יום {{day}}",
     "translationContext": "Shows the current week and day of the year, {week} and {day} will be replaced with numbers"
   },
+  "stories.clusteringModal.clusteringDescription": {
+    "text": "כאשר כתבות ממקורות שונים עוסקות באותו נושא, הן מקובצות יחד לסיפור. ככל שיותר מקורות מדווחים על משהו, כך האות חזק יותר.",
+    "translationContext": "Explains how story clustering works"
+  },
+  "stories.clusteringModal.communityFeedsDescription": {
+    "text": "מקורות ה-RSS בקטגוריה זו נאספים על ידי חברי הקהילה, לא על ידי צוות Kagi.",
+    "translationContext": "Explains that community categories have user-curated feeds"
+  },
+  "stories.clusteringModal.fullyAutomaticDescription": {
+    "text": "אף אחד לא בוחר או מחליט מה יופיע. התהליך כולו מתבצע באופן אוטומטי, החל מאיסוף המקורות, דרך יצירת האשכולות ועד לכתיבת הסיכומים.",
+    "translationContext": "Explains that the process is fully automatic with no human curation"
+  },
+  "stories.clusteringModal.helpImprove": {
+    "text": "עזרו לשפר את הקטגוריה הזו",
+    "translationContext": "Call-to-action divider text for contributing feeds"
+  },
+  "stories.clusteringModal.helpImproveDescription": {
+    "text": "הוספת מקורות נוספים משפרת את יצירת האשכולות. ניתן להציע מקורות חדשים ב-GitHub.",
+    "translationContext": "Encourages users to contribute feeds"
+  },
+  "stories.clusteringModal.noClusterDescription": {
+    "text": "אם אין מספיק חפיפה בסיקור בין המקורות, לא נוצרים אשכולות ולא מופיעים סיפורים. זהו מצב תקין שקורה לעיתים קרובות יותר בקטגוריות נישה או אזוריות.",
+    "translationContext": "Explains why community categories sometimes have no stories"
+  },
+  "stories.clusteringModal.suggestFeeds": {
+    "text": "הציעו מקורות ב-GitHub",
+    "translationContext": "Button label for the GitHub link to suggest feeds"
+  },
+  "stories.clusteringModal.title": {
+    "text": "איך נוצרים הסיפורים",
+    "translationContext": "Title for the modal explaining the story clustering process"
+  },
   "stories.fewStories": {
     "text": "לא היו היום חדשות משמעותיות נוספות, חזרו מחר!",
     "translationContext": "Message shown when there are only 1-3 stories in a category"
@@ -2826,6 +3710,38 @@
   "stories.noStories": {
     "text": "אין כתבות משמעותיות בקטגוריה זו היום.",
     "translationContext": "Message shown when no stories are found for a category"
+  },
+  "stories.noStoriesCommunity": {
+    "text": "אין סיפורים היום בקטגוריה קהילתית זו.",
+    "translationContext": "Message shown when a community (non-core) category has no stories"
+  },
+  "stories.noStoriesCommunityDescription": {
+    "text": "אין מספיק חדשות משותפות בין המקורות כדי ליצור סיפורים. זה קורה לפעמים בקטגוריות קהילתיות.",
+    "translationContext": "Secondary description explaining why community categories sometimes have no stories"
+  },
+  "stories.noStoriesCommunityLearnMore": {
+    "text": "למדו איך זה עובד",
+    "translationContext": "Button label to open modal explaining the clustering process"
+  },
+  "stories.noStoriesCore": {
+    "text": "הסיפורים בקטגוריה זו אמורים להיות זמינים בקרוב. נסו שוב בעוד זמן קצר.",
+    "translationContext": "Message shown when a core (Kagi-maintained) category temporarily has no stories, usually due to a pipeline issue"
+  },
+  "stories.noStoriesCoreUpdates": {
+    "text": "לא זמין זמנית",
+    "translationContext": "Small label shown with a clock icon when a core category has no stories, indicating the update schedule"
+  },
+  "story.assistant.placeholder": {
+    "text": "שאלו על הכתבה...",
+    "translationContext": "Placeholder text in the assistant question input field"
+  },
+  "story.assistant.submit": {
+    "text": "שאלו",
+    "translationContext": "Submit button label for assistant question"
+  },
+  "story.assistant.tooltip": {
+    "text": "שאלו את הסייען",
+    "translationContext": "Tooltip for button that opens Kagi Assistant with the current story topic"
   },
   "story.flashcards.download": {
     "text": "הורד",
@@ -2863,6 +3779,10 @@
     "text": "צא מבחירת מילים",
     "translationContext": "Tooltip for flashcard button when in selection mode"
   },
+  "story.simplify.autoSimplifying": {
+    "text": "מפשט לרמה {level}...",
+    "translationContext": "Status message while auto-simplifying. {level} is the reading level name."
+  },
   "story.simplify.loading": {
     "text": "מפשט...",
     "translationContext": "Status message while simplifying text"
@@ -2899,6 +3819,66 @@
     "text": "הפסק ניגון",
     "translationContext": "Tooltip for TTS button when playing"
   },
+  "sync.conflict.multiple": {
+    "text": "{{{count}}} הגדרות עודכנו ממכשיר אחר",
+    "translationContext": "Toast notification when multiple settings were overridden during sync. {count} is the number of settings."
+  },
+  "sync.conflict.single": {
+    "text": "הגדרה עודכנה ממכשיר אחר",
+    "translationContext": "Toast notification when one setting was overridden during sync"
+  },
+  "syncSetup.description": {
+    "text": "מצאנו הגדרות קיימות בחשבונך ממכשיר אחר. כיצד תרצה להמשיך?",
+    "translationContext": "Description shown in sync setup wizard when cloud settings already exist"
+  },
+  "syncSetup.done": {
+    "text": "ההגדרות סונכרנו בהצלחה!",
+    "translationContext": "Success message after sync setup completes"
+  },
+  "syncSetup.merge.description": {
+    "text": "שמור על ההגדרות שלך והוסף הגדרות ענן חסרות",
+    "translationContext": "Description for the merge option in sync setup"
+  },
+  "syncSetup.merge.title": {
+    "text": "מזג",
+    "translationContext": "Option to merge local and cloud settings together"
+  },
+  "syncSetup.pullRemote.description": {
+    "text": "החלף את ההגדרות הנוכחיות שלך בהגדרות הענן",
+    "translationContext": "Description for the pull remote option in sync setup"
+  },
+  "syncSetup.pullRemote.title": {
+    "text": "השתמש בהגדרות הענן",
+    "translationContext": "Option to overwrite local settings with cloud settings"
+  },
+  "syncSetup.pushLocal.description": {
+    "text": "החלף את הגדרות הענן בהגדרות הנוכחיות שלך",
+    "translationContext": "Description for the push local option in sync setup"
+  },
+  "syncSetup.pushLocal.title": {
+    "text": "השתמש במכשיר זה",
+    "translationContext": "Option to overwrite cloud settings with current device settings"
+  },
+  "syncSetup.syncing.merging": {
+    "text": "ממזג הגדרות...",
+    "translationContext": "Loading text while merging local and cloud settings"
+  },
+  "syncSetup.syncing.pulling": {
+    "text": "מוריד הגדרות ענן...",
+    "translationContext": "Loading text while pulling cloud settings to device"
+  },
+  "syncSetup.syncing.pushing": {
+    "text": "מעלה את ההגדרות שלך...",
+    "translationContext": "Loading text while pushing local settings to cloud"
+  },
+  "syncSetup.title": {
+    "text": "הגדרת סנכרון",
+    "translationContext": "Title for the sync setup wizard modal shown when enabling sync with existing cloud settings"
+  },
+  "syncSetup.tryAgain": {
+    "text": "נסה שוב",
+    "translationContext": "Link to retry sync setup after an error"
+  },
   "time.nextUpdate.in": {
     "text": "עדכון הבא בעוד {{time}}",
     "translationContext": "Shown when the next update time is known, {time} will be replaced with countdown (e.g., '2h 30m')"
@@ -2906,6 +3886,34 @@
   "time.nextUpdate.soon": {
     "text": "עדכון הבא בקרוב",
     "translationContext": "Shown when the next update is expected soon (after noon UTC but no update yet today)"
+  },
+  "time.relative.days": {
+    "text": "לפני {{count}} ימים",
+    "translationContext": "Relative time: multiple days ago, {count} is the number"
+  },
+  "time.relative.hours": {
+    "text": "לפני {{count}} שעות",
+    "translationContext": "Relative time: multiple hours ago, {count} is the number"
+  },
+  "time.relative.justNow": {
+    "text": "ממש עכשיו",
+    "translationContext": "Relative time: less than a minute ago"
+  },
+  "time.relative.minutes": {
+    "text": "לפני {{count}} דקות",
+    "translationContext": "Relative time: multiple minutes ago, {count} is the number"
+  },
+  "time.relative.oneDay": {
+    "text": "לפני יום",
+    "translationContext": "Relative time: exactly 1 day ago"
+  },
+  "time.relative.oneHour": {
+    "text": "לפני שעה",
+    "translationContext": "Relative time: exactly 1 hour ago"
+  },
+  "time.relative.oneMinute": {
+    "text": "לפני דקה",
+    "translationContext": "Relative time: exactly 1 minute ago"
   },
   "time.updated.days": {
     "text": "עודכן לפני {{count}} ימים",
@@ -2938,6 +3946,10 @@
   "time.updated.seconds": {
     "text": "עודכן לפני {{count}} שניות",
     "translationContext": "Shown when content was updated seconds ago, {count} will be replaced with the number of seconds"
+  },
+  "timeTravel.description": {
+    "text": "גישה לסיכומים יומיים היסטוריים.\nשמור למנויי Kagi.\nזמין לכל המשתמשים במהלך תקופת הבטא.",
+    "translationContext": "Description of Time Travel - line 1 is subtitle, line 2 is info, line 3 is italicized beta note"
   },
   "timeTravel.latest": {
     "text": "האחרון",
@@ -2978,6 +3990,18 @@
   "timeTravel.today": {
     "text": "היום",
     "translationContext": "Button to navigate to today"
+  },
+  "timeTravel.urlBanner.dismiss": {
+    "text": "הבנתי",
+    "translationContext": "Button to dismiss the time travel info banner"
+  },
+  "timeTravel.urlBanner.viewing": {
+    "text": "קישור זה מפנה לחדשות מהתאריך {{{date}}}. ניתן לחזור לחדשות של היום בכל עת באמצעות ה-✕ שליד התאריך למעלה.",
+    "translationContext": "One-time info banner shown when user arrives via a bookmarked time travel URL (no referrer). Points user to the header date pill with X button."
+  },
+  "timeTravel.urlBanner.viewingShared": {
+    "text": "מישהו שיתף איתך קישור לחדשות מהתאריך {{{date}}}. ניתן לחזור לחדשות של היום בכל עת באמצעות ה-✕ שליד התאריך למעלה.",
+    "translationContext": "One-time info banner shown when user arrives via a shared time travel URL (has referrer). Points user to the header date pill with X button."
   },
   "turbulence.title": {
     "text": "מד סערת עולם",
@@ -3135,6 +4159,14 @@
     "text": "מדד הכאוס",
     "translationContext": "Label for the chaos index chart"
   },
+  "worldTension.consistencyText": {
+    "text": "בין כותרות מדאיגות, 'דומסקרולינג' ומחזורי חדשות בלתי פוסקים, קל להרגיש שהעולם כל הזמן בוער. מטרת המדד היא לספק פרספקטיבה מעוגנת. לעתים קרובות, המצב אינו גרוע כפי שהוא מרגיש.",
+    "translationContext": "Explanation of purpose: cutting through media noise"
+  },
+  "worldTension.consistencyTitle": {
+    "text": "למה זה קיים",
+    "translationContext": "Section header explaining purpose of the index"
+  },
   "worldTension.cool": {
     "text": "קריר",
     "translationContext": "Temperature description for low world tension (0-20%)"
@@ -3163,6 +4195,26 @@
     "text": "קיצוני",
     "translationContext": "Status label for 81-100% range (deprecated, use burning)"
   },
+  "worldTension.factor.novelty": {
+    "text": "חידוש — משברים חדשים או הסלמות מקבלים משקל רב יותר ממצבים מתמשכים שכבר \"מתומחרים\".",
+    "translationContext": "Explanation of novelty factor"
+  },
+  "worldTension.factor.reversibility": {
+    "text": "הפיכות — פעולות בלתי הפיכות (כגון פלישות, אובדן חיי אדם) מקבלות משקל רב יותר מפעולות הפיכות (כגון סנקציות, רטוריקה).",
+    "translationContext": "Explanation of reversibility factor"
+  },
+  "worldTension.factor.scope": {
+    "text": "היקף ההשפעה — סיכונים מערכתיים גלובליים, הדבקה כלכלית וטריגרים להפעלת בריתות נשקלים אל מול אירועים מקומיים.",
+    "translationContext": "Explanation of scope factor"
+  },
+  "worldTension.factor.worstCase": {
+    "text": "קרבה לתרחיש הגרוע ביותר — מידת הקרבה של אירועים לתוצאות קטסטרופליות, כאשר מצבים הקשורים לנשק גרעיני או נשק להשמדה המונית מקבלים משקל עודף.",
+    "translationContext": "Explanation of worst case factor"
+  },
+  "worldTension.factorsTitle": {
+    "text": "הבינה המלאכותית לוקחת בחשבון ארבעה גורמים מרכזיים:",
+    "translationContext": "Header for list of factors"
+  },
   "worldTension.high": {
     "text": "גבוה",
     "translationContext": "Status label for 41-60% range (deprecated, use warm)"
@@ -3170,6 +4222,14 @@
   "worldTension.hot": {
     "text": "חם",
     "translationContext": "Temperature description for serious world tension (61-80%)"
+  },
+  "worldTension.howCalculated": {
+    "text": "איך זה מחושב",
+    "translationContext": "Section header for methodology explanation"
+  },
+  "worldTension.methodologyIntro": {
+    "text": "מדד המתח העולמי נוצר באמצעות ניתוח בינה מלאכותית של כותרות חדשות עולמיות עדכניות. במקום להסתמך על נוסחה קבועה, הוא מפעיל שיקול דעת כדי להעריך את היציבות הגלובלית.",
+    "translationContext": "Introduction explaining AI-based methodology"
   },
   "worldTension.mild": {
     "text": "מתון",

@@ -187,13 +187,15 @@ export function decodeArticleId(encoded: string): { batchId: string; clusterId: 
  * Converts title to lowercase, replaces spaces and special chars with hyphens
  */
 export function generateSlug(title: string): string {
-	return title
-		.toLowerCase()
-		// Keep Unicode letters/numbers, whitespace, and hyphens; remove punctuation and special chars
-		.replace(/[^\p{L}\p{N}\s-]/gu, '') // \p{L} = any Unicode letter, \p{N} = any Unicode number
-		.replace(/\s+/g, '-') // Replace spaces with hyphens
-		.replace(/-+/g, '-') // Replace multiple hyphens with single
-		.replace(/^-+|-+$/g, ''); // Trim hyphens from start/end
+	return (
+		title
+			.toLowerCase()
+			// Keep Unicode letters/numbers, whitespace, and hyphens; remove punctuation and special chars
+			.replace(/[^\p{L}\p{N}\s-]/gu, '') // \p{L} = any Unicode letter, \p{N} = any Unicode number
+			.replace(/\s+/g, '-') // Replace spaces with hyphens
+			.replace(/-+/g, '-') // Replace multiple hyphens with single
+			.replace(/^-+|-+$/g, '')
+	); // Trim hyphens from start/end
 }
 
 /**

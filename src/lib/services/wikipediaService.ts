@@ -39,7 +39,10 @@ const wikipediaCache = new Map<string, WikipediaContent>();
  * @param wikiId - Wikipedia page ID or Wikidata Q-ID
  * @param language - Wikipedia language code (e.g., 'en', 'it', 'fr'). Defaults to 'en'
  */
-export async function fetchWikipediaContent(wikiId: string, language: string = 'en'): Promise<WikipediaContent> {
+export async function fetchWikipediaContent(
+	wikiId: string,
+	language: string = 'en',
+): Promise<WikipediaContent> {
 	// Include language in cache key
 	const cacheKey = `${wikiId}:${language}`;
 
@@ -64,7 +67,8 @@ export async function fetchWikipediaContent(wikiId: string, language: string = '
 
 			const wikidataData = (await wikidataResponse.json()) as WikidataApiResponse;
 			const entity = wikidataData.entities?.[wikiId];
-			const wikiTitle = entity?.sitelinks?.[`${language}wiki` as keyof typeof entity.sitelinks]?.title;
+			const wikiTitle =
+				entity?.sitelinks?.[`${language}wiki` as keyof typeof entity.sitelinks]?.title;
 
 			if (!wikiTitle) {
 				throw new Error(`No ${language.toUpperCase()} Wikipedia page found for this entity`);
@@ -72,7 +76,9 @@ export async function fetchWikipediaContent(wikiId: string, language: string = '
 
 			// Now fetch the Wikipedia content using the resolved title
 			url = `https://${language}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(wikiTitle)}`;
-			console.log(`Resolved Q-ID ${wikiId} to ${language.toUpperCase()} Wikipedia page: ${wikiTitle}`);
+			console.log(
+				`Resolved Q-ID ${wikiId} to ${language.toUpperCase()} Wikipedia page: ${wikiTitle}`,
+			);
 		} else {
 			// Regular Wikipedia page ID
 			url = `https://${language}.wikipedia.org/api/rest_v1/page/summary/${wikiId}`;
@@ -82,7 +88,9 @@ export async function fetchWikipediaContent(wikiId: string, language: string = '
 
 		// If the article doesn't exist in the requested language, fall back to English
 		if (!response.ok && language !== 'en') {
-			console.log(`Article not found in ${language.toUpperCase()} Wikipedia, falling back to English`);
+			console.log(
+				`Article not found in ${language.toUpperCase()} Wikipedia, falling back to English`,
+			);
 
 			// Try to fetch from English Wikipedia instead
 			if (/^Q\d+$/.test(wikiId)) {

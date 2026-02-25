@@ -97,25 +97,17 @@ function handleKeydown(e: KeyboardEvent) {
 
 // Handle visibility changes and scroll lock
 $effect(() => {
-	if (browser) {
-		if (visible) {
-			// Lock background scroll
-			scrollLock.lock();
+	if (!browser) return;
 
-			// Add keyboard listener
-			document.addEventListener('keydown', handleKeydown);
-		} else {
-			// Unlock background scroll
-			scrollLock.unlock();
+	if (visible) {
+		// Lock background scroll
+		scrollLock.lock();
 
-			// Remove keyboard listener
-			document.removeEventListener('keydown', handleKeydown);
-		}
+		// Add keyboard listener
+		document.addEventListener('keydown', handleKeydown);
 
-		// Cleanup
 		return () => {
 			document.removeEventListener('keydown', handleKeydown);
-			// Ensure scroll is unlocked on cleanup
 			scrollLock.unlock();
 		};
 	}
@@ -131,18 +123,18 @@ $effect(() => {
 
 {#if visible}
   <div
-    class="fixed inset-0 z-100 overflow-y-auto bg-black/30"
-    transition:fade={{ duration: 300 }}
+    class="fixed inset-0 z-modal overflow-y-auto bg-black/30"
+    transition:fade={{ duration: 200 }}
   >
     <div class="flex min-h-full items-center justify-center p-4">
       <div
         class="w-full max-w-2xl shadow-2xl"
-        transition:slide={{ duration: 300 }}
+        transition:slide={{ duration: 200 }}
       >
         <!-- Progress Bar -->
         <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-t-2xl">
           <div
-            class="h-full bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-400 dark:to-blue-500 transition-all duration-300 rounded-t-2xl"
+            class="h-full bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-400 dark:to-blue-500 transition-all duration-200 rounded-t-2xl"
             style="width: {(currentStep / totalSteps) * 100}%"
           ></div>
         </div>

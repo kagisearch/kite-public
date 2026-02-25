@@ -27,6 +27,14 @@
     "text": "para leitores de notícias",
     "translationContext": "Footer text suffix for copyright"
   },
+  "settings.about.keyboardDescription": {
+    "text": "Navegue por notícias e categorias usando atalhos de teclado no estilo vim",
+    "translationContext": "Description of keyboard navigation feature"
+  },
+  "settings.about.keyboardShortcuts": {
+    "text": "Atalhos de Teclado",
+    "translationContext": "Section header for keyboard shortcuts in settings"
+  },
   "settings.about.learnMore": {
     "text": "Saiba mais",
     "translationContext": "Link text to open full about page"
@@ -47,6 +55,10 @@
     "text": "Ver Documentação da API",
     "translationContext": "Button text to view API documentation"
   },
+  "settings.about.viewShortcuts": {
+    "text": "Ver Atalhos de Teclado",
+    "translationContext": "Button text to open keyboard shortcuts help overlay"
+  },
   "settings.aboutKite.button": {
     "text": "Sobre o Kagi News",
     "translationContext": "Text for the About Kagi News button"
@@ -62,6 +74,78 @@
   "settings.categories.contribute": {
     "text": "+ Contribuir categorias",
     "translationContext": "Link text for contributing categories"
+  },
+  "settings.categories.contribute.intro": {
+    "text": "Ajude a expandir a cobertura do Kagi News sugerindo novas categorias. As contribuições da comunidade são o que tornam o Kagi News diversificado e abrangente.",
+    "translationContext": "Introduction text in the contribute category modal"
+  },
+  "settings.categories.contribute.learnMore": {
+    "text": "Veja",
+    "translationContext": "Start of sentence linking to source inclusion rationale"
+  },
+  "settings.categories.contribute.learnMoreLink": {
+    "text": "esta discussão",
+    "translationContext": "Link text for the source inclusion rationale discussion"
+  },
+  "settings.categories.contribute.learnMoreSuffix": {
+    "text": "para a nossa justificação completa sobre a inclusão de fontes.",
+    "translationContext": "End of sentence after the discussion link"
+  },
+  "settings.categories.contribute.openIssue": {
+    "text": "Abrir um problema no GitHub",
+    "translationContext": "Link text to open a GitHub issue for category suggestions"
+  },
+  "settings.categories.contribute.or": {
+    "text": "ou",
+    "translationContext": "Divider text between options in contribute modal"
+  },
+  "settings.categories.contribute.prHint": {
+    "text": "Para desenvolvedores familiarizados com o GitHub",
+    "translationContext": "Hint text below the pull request link"
+  },
+  "settings.categories.contribute.prLink": {
+    "text": "Envie um Pull Request diretamente",
+    "translationContext": "Link text for developers to submit a PR"
+  },
+  "settings.categories.contribute.req1Desc": {
+    "text": "— quanto mais feeds de alta qualidade, melhor a cobertura",
+    "translationContext": "Description explaining more feeds = better"
+  },
+  "settings.categories.contribute.req1Title": {
+    "text": "Mais de 25 feeds RSS (quanto mais, melhor)",
+    "translationContext": "Title for the feeds requirement emphasizing more is better"
+  },
+  "settings.categories.contribute.req2Desc": {
+    "text": "— uma fonte de esquerda não precisa de uma contraparte de direita. Mídia estatal, veículos partidários, tudo bem. Nosso sistema corrobora fatos em múltiplas fontes, então fontes discrepantes não podem distorcer o resultado. É também por isso que mais fontes = melhor.",
+    "translationContext": "Detailed explanation of why biased sources are OK and why more sources help"
+  },
+  "settings.categories.contribute.req2Title": {
+    "text": "Não há necessidade de \"equilíbrio\"",
+    "translationContext": "Title clarifying sources don't need to be balanced"
+  },
+  "settings.categories.contribute.req3Desc": {
+    "text": "— sem alegações fabricadas, negação de eventos ou conteúdo de boatos",
+    "translationContext": "Description for the no conspiracy content requirement"
+  },
+  "settings.categories.contribute.req3Title": {
+    "text": "Sem conteúdo conspiratório",
+    "translationContext": "Title for the no conspiracy content requirement"
+  },
+  "settings.categories.contribute.requirements": {
+    "text": "Diretrizes:",
+    "translationContext": "Header for the guidelines section in contribute modal"
+  },
+  "settings.categories.contribute.suggestButton": {
+    "text": "Sugerir uma Categoria",
+    "translationContext": "Primary button text to open GitHub issue form"
+  },
+  "settings.categories.contribute.suggestHint": {
+    "text": "Abre um formulário de issue no GitHub — não é necessário programar",
+    "translationContext": "Hint text below the suggest button"
+  },
+  "settings.categories.contribute.title": {
+    "text": "Contribuir com uma Categoria",
+    "translationContext": "Title of the contribute category modal"
   },
   "settings.categories.coreTooltip": {
     "text": "Mantidos pela equipe Kagi. Alta qualidade, perspectivas diversas.",
@@ -87,6 +171,10 @@
     "text": "Filtrar por tipo...",
     "translationContext": "Placeholder text for category type filter dropdown"
   },
+  "settings.categories.filterPlaceholder": {
+    "text": "Todas",
+    "translationContext": "Placeholder text for the category type filter dropdown"
+  },
   "settings.categories.instructions": {
     "text": "Arraste para reordenar, ou clique para ativar/desativar. Arraste entre seções para mover categorias.",
     "translationContext": "Instructions for managing categories"
@@ -106,6 +194,18 @@
   "settings.categories.noFiltered": {
     "text": "Nenhuma categoria desse tipo está desabilitada.",
     "translationContext": "Message shown when no categories of the selected filter type are in the disabled section"
+  },
+  "settings.categories.noLetterResults": {
+    "text": "Nenhuma categoria começa com esta letra",
+    "translationContext": "Message shown when no categories match the selected letter filter"
+  },
+  "settings.categories.noSearchResults": {
+    "text": "Nenhuma categoria corresponde à sua pesquisa",
+    "translationContext": "Message shown when no categories match the search query"
+  },
+  "settings.categories.searchPlaceholder": {
+    "text": "Pesquisar categorias...",
+    "translationContext": "Placeholder text for the category search input"
   },
   "settings.categories.singlePageMode.description": {
     "text": "Escolha como exibir as histórias: em abas (padrão) ou todas em uma única página com diferentes opções de ordenação.",
@@ -615,6 +715,118 @@
     "text": "OpenStreetMap",
     "translationContext": "Option to use OpenStreetMap"
   },
+  "settings.preferredSources.clearAll": {
+    "text": "Limpar todas as fontes fixadas",
+    "translationContext": "Button text to clear all pinned sources"
+  },
+  "settings.preferredSources.cleared": {
+    "text": "Limpo!",
+    "translationContext": "Confirmation message after clearing pinned sources"
+  },
+  "settings.preferredSources.description": {
+    "text": "As fontes fixadas aparecem primeiro na lista de fontes de cada notícia. Clique no ícone de pino em qualquer fonte para a adicionar aqui.",
+    "translationContext": "Description explaining the pinned sources feature"
+  },
+  "settings.preferredSources.empty": {
+    "text": "Ainda não há fontes fixadas. Abra uma notícia, clique numa fonte e use o ícone de pino para a adicionar aqui.",
+    "translationContext": "Message shown when no preferred sources have been selected"
+  },
+  "settings.preferredSources.remove": {
+    "text": "Remover",
+    "translationContext": "Aria label for button to remove a source from pinned list"
+  },
+  "settings.preferredSources.title": {
+    "text": "Fontes Fixadas",
+    "translationContext": "Title for preferred sources section in settings"
+  },
+  "settings.readingLevel.categories.description": {
+    "text": "Substitua o nível padrão para categorias específicas. As categorias definidas como \"Global\" usarão a sua definição padrão acima.",
+    "translationContext": "Description explaining how category-specific overrides work"
+  },
+  "settings.readingLevel.categories.label": {
+    "text": "Substituições por Categoria",
+    "translationContext": "Label for the category-specific reading level overrides section"
+  },
+  "settings.readingLevel.clearOverrides": {
+    "text": "Limpar substituições",
+    "translationContext": "Button to clear all category-specific reading level overrides"
+  },
+  "settings.readingLevel.fromGlobal": {
+    "text": "global",
+    "translationContext": "Indicator that a category is using the global reading level setting"
+  },
+  "settings.readingLevel.global.description": {
+    "text": "Aplica-se a todas as categorias, a menos que defina um nível específico abaixo.",
+    "translationContext": "Description for the global reading level setting"
+  },
+  "settings.readingLevel.global.label": {
+    "text": "Nível de Leitura Padrão",
+    "translationContext": "Label for the global reading level setting"
+  },
+  "settings.readingLevel.info.howItWorks": {
+    "text": "Quando abrir uma história, o conteúdo será automaticamente simplificado para o nível de leitura escolhido. Você ainda pode alterar manualmente o nível para qualquer história.",
+    "translationContext": "Explanation of how automatic reading level simplification works"
+  },
+  "settings.readingLevel.info.simpleDescription": {
+    "text": "Linguagem clara de nível intermediário (B1). Bom para leitores em geral.",
+    "translationContext": "Description of the Simple reading level"
+  },
+  "settings.readingLevel.info.verySimpleDescription": {
+    "text": "Vocabulário básico e frases curtas (A2). Ideal para estudantes de idiomas.",
+    "translationContext": "Description of the Very Simple reading level"
+  },
+  "settings.readingLevel.levels.default": {
+    "text": "Normal",
+    "translationContext": "Default/normal reading level option"
+  },
+  "settings.readingLevel.levels.simple": {
+    "text": "Simples",
+    "translationContext": "Simple reading level option"
+  },
+  "settings.readingLevel.levels.useGlobal": {
+    "text": "Global",
+    "translationContext": "Option to use the global reading level (no override)"
+  },
+  "settings.readingLevel.levels.verySimple": {
+    "text": "Muito Simples",
+    "translationContext": "Very simple reading level option"
+  },
+  "settings.readingLevel.noCategories": {
+    "text": "Nenhuma categoria ativada. Ative categorias na aba Categorias.",
+    "translationContext": "Message shown when no categories are enabled"
+  },
+  "settings.readingLevel.resetAll": {
+    "text": "Redefinir tudo",
+    "translationContext": "Button to reset both global level and all category overrides"
+  },
+  "settings.readingLevel.subscriberOnly": {
+    "text": "A simplificação do nível de leitura está disponível para assinantes do Kagi. Faça um upgrade para simplificar automaticamente os artigos para o seu nível de leitura preferido.",
+    "translationContext": "Message shown to non-subscribers about reading level feature"
+  },
+  "settings.readingLevel.subscriberOnly.description": {
+    "text": "A simplificação automática de texto está disponível para assinantes do Kagi. Faça o upgrade para acessar este recurso.",
+    "translationContext": "Description explaining this is a subscriber-only feature"
+  },
+  "settings.readingLevel.subscriberOnly.title": {
+    "text": "Recurso para Assinantes",
+    "translationContext": "Title for subscriber-only feature notice"
+  },
+  "settings.readingLevel.subscriberOnly.upgrade": {
+    "text": "Fazer upgrade para o Kagi",
+    "translationContext": "Link text to upgrade to Kagi subscription"
+  },
+  "settings.readingLevel.tab.description": {
+    "text": "Defina um nível de leitura padrão para todas as histórias. Você também pode personalizar o nível para categorias específicas.",
+    "translationContext": "Description shown at the top of the reading level settings tab"
+  },
+  "settings.readingLevel.title": {
+    "text": "Nível de Leitura",
+    "translationContext": "Title for reading level section"
+  },
+  "settings.readingLevel.upgrade": {
+    "text": "Fazer upgrade para o Kagi",
+    "translationContext": "Link text to upgrade to Kagi subscription"
+  },
   "settings.sections.instructions": {
     "text": "Arraste para reordenar as seções. Use o interruptor para ativar/desativar.",
     "translationContext": "Instructions for managing article sections"
@@ -699,6 +911,10 @@
     "text": "Aparência",
     "translationContext": "Subsection heading for appearance-related settings"
   },
+  "settings.subsections.display": {
+    "text": "Exibição",
+    "translationContext": "Subsection heading for display settings"
+  },
   "settings.subsections.localization": {
     "text": "Idioma e Região",
     "translationContext": "Subsection heading for language and localization settings"
@@ -710,6 +926,14 @@
   "settings.subsections.readingExperience": {
     "text": "Experiência de Leitura",
     "translationContext": "Subsection heading for story display and reading settings"
+  },
+  "settings.subsections.storyDisplay": {
+    "text": "Exibição de Notícias",
+    "translationContext": "Subsection heading for story display settings"
+  },
+  "settings.subsections.visualEnhancements": {
+    "text": "Melhorias Visuais",
+    "translationContext": "Subsection heading for visual enhancement toggles"
   },
   "settings.sync.clear.button": {
     "text": "Limpar Todos os Dados Sincronizados",
@@ -775,6 +999,14 @@
     "text": "A exportar...",
     "translationContext": "Text shown while exporting data"
   },
+  "settings.sync.import.button": {
+    "text": "Importar Configurações",
+    "translationContext": "Button label to import settings from a backup JSON file"
+  },
+  "settings.sync.import.importing": {
+    "text": "A importar...",
+    "translationContext": "Loading text shown while importing settings from a backup file"
+  },
   "settings.sync.info.description": {
     "text": "O Kagi News pode sincronizar as suas configurações e histórico de leitura em todos os seus dispositivos. Estes dados são armazenados de forma segura nos servidores da Kagi e associados à sua conta Kagi Search.\n\nOs seus dados sincronizados não são utilizados para qualquer outro fim, não são partilhados com ninguém e são armazenados exclusivamente para lhe fornecer o serviço de sincronização. Tem controlo total sobre o que é sincronizado e pode eliminar os seus dados a qualquer momento.",
     "translationContext": "Description of sync and privacy features"
@@ -831,6 +1063,14 @@
     "text": "Sobre",
     "translationContext": "Title for the about settings tab"
   },
+  "settings.tabs.account": {
+    "text": "Conta",
+    "translationContext": "Title for the account settings tab"
+  },
+  "settings.tabs.appearance": {
+    "text": "Aparência",
+    "translationContext": "Title for the appearance settings tab"
+  },
   "settings.tabs.categories": {
     "text": "Categorias",
     "translationContext": "Title for the categories settings tab"
@@ -843,13 +1083,33 @@
     "text": "Experimental",
     "translationContext": "Title for the experimental settings tab"
   },
+  "settings.tabs.filters": {
+    "text": "Filtros",
+    "translationContext": "Title for the filters settings tab"
+  },
   "settings.tabs.general": {
     "text": "Geral",
     "translationContext": "Title for the general settings tab"
   },
+  "settings.tabs.language": {
+    "text": "Idioma",
+    "translationContext": "Title for the language settings tab"
+  },
+  "settings.tabs.preferredSources": {
+    "text": "Fontes Fixadas",
+    "translationContext": "Tab name for preferred/pinned sources settings"
+  },
+  "settings.tabs.readingLevel": {
+    "text": "Nível de Leitura",
+    "translationContext": "Tab name for per-category reading level settings"
+  },
   "settings.tabs.sections": {
     "text": "Seções",
     "translationContext": "Title for the sections settings tab"
+  },
+  "settings.tabs.stories": {
+    "text": "Notícias",
+    "translationContext": "Title for the stories settings tab"
   },
   "settings.tabs.syncPrivacy": {
     "text": "Sincronização",
@@ -907,9 +1167,17 @@
     "text": "Fechar",
     "translationContext": "Close button text"
   },
+  "common.no_results": {
+    "text": "Nenhum resultado encontrado",
+    "translationContext": "Shown in search/select dropdowns when no matches are found"
+  },
   "common.reset": {
     "text": "Redefinir",
     "translationContext": "Reset button text"
+  },
+  "common.search": {
+    "text": "Pesquisar",
+    "translationContext": "Generic search input placeholder"
   },
   "about.approach.description1": {
     "text": "O mundo não vive em câmaras de eco. A realidade surge da colisão de diferentes pontos de vista e perspectivas - é assim que separamos o sinal do ruído.",
@@ -986,6 +1254,42 @@
   "about.why.title": {
     "text": "Por que Kagi News? Porque as notícias estão quebradas.",
     "translationContext": "Title of the Why Kagi News section"
+  },
+  "app_navigation.assistant": {
+    "text": "Assistente",
+    "translationContext": "Label for Kagi Assistant in the app navigation menu"
+  },
+  "app_navigation.fastgpt": {
+    "text": "FastGPT",
+    "translationContext": "Label for Kagi FastGPT in the app navigation menu, should not be translated"
+  },
+  "app_navigation.news": {
+    "text": "Notícias",
+    "translationContext": "Label for Kagi News in the app navigation menu"
+  },
+  "app_navigation.open_navigation": {
+    "text": "Abrir navegação de aplicações",
+    "translationContext": "Accessibility label for opening the app navigation menu"
+  },
+  "app_navigation.search": {
+    "text": "Pesquisa",
+    "translationContext": "Label for Kagi Search in the app navigation menu"
+  },
+  "app_navigation.small_web": {
+    "text": "Small Web",
+    "translationContext": "Label for Kagi Small Web in the app navigation menu"
+  },
+  "app_navigation.tooltip": {
+    "text": "Aplicações Kagi",
+    "translationContext": "Tooltip for the app navigation button"
+  },
+  "app_navigation.translate": {
+    "text": "Traduzir",
+    "translationContext": "Label for Kagi Translate in the app navigation menu"
+  },
+  "app_navigation.universal_summarizer": {
+    "text": "Sumarizador Universal",
+    "translationContext": "Label for Kagi Universal Summarizer in the app navigation menu"
   },
   "app.beta": {
     "text": "BETA",
@@ -1714,6 +2018,546 @@
   "contentFilter.storyHidden": {
     "text": "{{count}} história oculta",
     "translationContext": "Message showing 1 story is hidden"
+  },
+  "contribute.addFeeds": {
+    "text": "Adicionar feeds",
+    "translationContext": "Button to add pasted feed URLs to the list"
+  },
+  "contribute.allDuplicates": {
+    "text": "Todos os {{count}} URL(s) já estão nesta categoria",
+    "translationContext": "Error when all pasted URLs are duplicates"
+  },
+  "contribute.allFeedsFailed": {
+    "text": "Todos os feeds falharam na validação. Por favor, verifique os URLs e tente novamente, ou remova os feeds com erro e adicione outros que funcionem.",
+    "translationContext": "Error message when every feed fails validation"
+  },
+  "contribute.cannotSubmit": {
+    "text": "Não é possível enviar. Todos os feeds falharam na validação. Remova os feeds com erro e adicione outros que funcionem.",
+    "translationContext": "Error explaining why submission is blocked"
+  },
+  "contribute.categoryExists": {
+    "text": "Esta categoria já existe.",
+    "translationContext": "Warning when the entered category name already exists"
+  },
+  "contribute.categoryName": {
+    "text": "Nome da categoria",
+    "translationContext": "Label for the new category name input field"
+  },
+  "contribute.categoryNamePlaceholder": {
+    "text": "ex: Aviação, Coreia do Sul, Clima...",
+    "translationContext": "Placeholder text for the category name input"
+  },
+  "contribute.checkingCount": {
+    "text": "{{count}} a verificar...",
+    "translationContext": "Number of feeds currently being validated"
+  },
+  "contribute.coreCategory": {
+    "text": "Principal",
+    "translationContext": "Badge label for core categories maintained by the Kagi team"
+  },
+  "contribute.coreCategoryNote": {
+    "text": "Esta é uma categoria principal do Kite. Os seus feeds serão adicionados juntamente com as fontes curadas existentes.",
+    "translationContext": "Info note shown when a core category is selected in the contribute dropdown"
+  },
+  "contribute.createPr": {
+    "text": "Criar Pull Request",
+    "translationContext": "Button text to submit and create a GitHub pull request"
+  },
+  "contribute.creatingPr": {
+    "text": "A criar PR...",
+    "translationContext": "Button text while the pull request is being created"
+  },
+  "contribute.duplicatesSkipped": {
+    "text": "{{count}} feed(s) duplicado(s) ignorado(s) (já nesta categoria)",
+    "translationContext": "Warning showing how many duplicate feeds were skipped"
+  },
+  "contribute.errorCount": {
+    "text": "{{count}} erro(s)",
+    "translationContext": "Number of feeds that failed validation"
+  },
+  "contribute.excludedNote": {
+    "text": "({{count}} feed(s) com erro serão excluídos)",
+    "translationContext": "Note about errored feeds being excluded from submission"
+  },
+  "contribute.existingCategory": {
+    "text": "Categoria existente",
+    "translationContext": "Toggle button to add feeds to an existing category"
+  },
+  "contribute.failedPr": {
+    "text": "Falha ao criar o pull request",
+    "translationContext": "Fallback error message when PR creation fails"
+  },
+  "contribute.feedCount": {
+    "text": "{{count}} feeds",
+    "translationContext": "Number of feeds in a category, e.g. '42 feeds'"
+  },
+  "contribute.feedInputPlaceholder": {
+    "text": "Cole os URLs dos feeds aqui (um por linha ou separados por vírgula)",
+    "translationContext": "Placeholder for the feed URL textarea input"
+  },
+  "contribute.feedLanguage": {
+    "text": "Idioma do feed",
+    "translationContext": "Label for the feed language selector"
+  },
+  "contribute.feedLanguageTooltip": {
+    "text": "Defina este como o idioma em que a maioria dos feeds está escrita (maioria ou pluralidade). Isto não limita a disponibilidade — todas as categorias são traduzidas para todos os idiomas que suportamos.",
+    "translationContext": "Tooltip explaining the feed language setting"
+  },
+  "contribute.feedsAdded": {
+    "text": "{{count}} feed(s) adicionado(s)",
+    "translationContext": "Summary showing total number of feeds added"
+  },
+  "contribute.guidelineBalance": {
+    "text": "Não há necessidade de \"equilíbrio\"",
+    "translationContext": "Guideline title: sources don't need political balance"
+  },
+  "contribute.guidelineBalanceDesc": {
+    "text": "uma fonte de esquerda não precisa de uma contraparte de direita. Mídia estatal, veículos partidários, tudo bem. O nosso sistema corrobora factos em múltiplas fontes.",
+    "translationContext": "Guideline description explaining why biased sources are acceptable"
+  },
+  "contribute.guidelineConspiracy": {
+    "text": "Sem conteúdo conspiratório",
+    "translationContext": "Guideline title: no conspiracy theories allowed"
+  },
+  "contribute.guidelineConspiracyDesc": {
+    "text": "sem alegações fabricadas, negação de eventos ou conteúdo de boatos",
+    "translationContext": "Guideline description for the no conspiracy requirement"
+  },
+  "contribute.guidelineFeeds": {
+    "text": "Mais de 25 feeds RSS (quanto mais, melhor)",
+    "translationContext": "Guideline title: minimum number of feeds required"
+  },
+  "contribute.guidelineFeedsDesc": {
+    "text": "quanto mais feeds de alta qualidade, melhor a cobertura",
+    "translationContext": "Guideline description explaining more feeds = better coverage"
+  },
+  "contribute.guidelineLanguage": {
+    "text": "Não divida as categorias por idioma",
+    "translationContext": "Guideline title: keep one category per topic regardless of language"
+  },
+  "contribute.guidelineLanguageDesc": {
+    "text": "\"Suíça\" deve ser uma única categoria, não \"Suíça (EN)\" e \"Suíça (IT)\". Todas as categorias são traduzidas para todos os idiomas que suportamos.",
+    "translationContext": "Guideline description explaining not to split by language"
+  },
+  "contribute.guidelines": {
+    "text": "Diretrizes",
+    "translationContext": "Collapsible section header for contribution guidelines"
+  },
+  "contribute.heading": {
+    "text": "Contribuir com Feeds",
+    "translationContext": "Main heading on the contribute page"
+  },
+  "contribute.hideFeeds": {
+    "text": "Ocultar feeds",
+    "translationContext": "Button to collapse the list of existing feeds"
+  },
+  "contribute.history.declineReason": {
+    "text": "Motivo",
+    "translationContext": "Label before the decline reason text when a contribution PR was closed"
+  },
+  "contribute.history.existingCategory": {
+    "text": "Adicionado a existente",
+    "translationContext": "Badge indicating feeds were added to an existing category"
+  },
+  "contribute.history.feedsAdded": {
+    "text": "{{count}} feed(s) adicionado(s)",
+    "translationContext": "Shows how many feeds were added in a contribution"
+  },
+  "contribute.history.legend": {
+    "text": "As contribuições são revistas manualmente. Uma vez fundidos, os feeds entram em vigor com o próximo lote diário.",
+    "translationContext": "Legend text below the contributions list explaining the process"
+  },
+  "contribute.history.newCategory": {
+    "text": "Nova categoria",
+    "translationContext": "Badge indicating the contribution created a new category"
+  },
+  "contribute.history.pr": {
+    "text": "PR #{{number}}",
+    "translationContext": "Link text showing the GitHub pull request number"
+  },
+  "contribute.history.showLess": {
+    "text": "Mostrar menos",
+    "translationContext": "Button to collapse the contributions list back to the preview"
+  },
+  "contribute.history.status.declined": {
+    "text": "Recusado",
+    "translationContext": "Pipeline step label: PR was closed without merging"
+  },
+  "contribute.history.status.declined.tooltip": {
+    "text": "Este pull request foi fechado sem ser fundido.",
+    "translationContext": "Tooltip for the Declined pipeline step"
+  },
+  "contribute.history.status.live": {
+    "text": "Ativo",
+    "translationContext": "Pipeline step label: feeds are active on Kagi News"
+  },
+  "contribute.history.status.live.tooltip": {
+    "text": "Os seus feeds estão ativos no Kagi News. Se uma categoria não mostrar notícias, significa que os artigos não foram agrupados — isto é normal.",
+    "translationContext": "Tooltip for the Live pipeline step"
+  },
+  "contribute.history.status.merged": {
+    "text": "Fundido",
+    "translationContext": "Pipeline step label: PR has been merged"
+  },
+  "contribute.history.status.merged.tooltip": {
+    "text": "O seu pull request foi fundido. As alterações entrarão em vigor com o próximo lote do Kagi News.",
+    "translationContext": "Tooltip for the Merged pipeline step"
+  },
+  "contribute.history.status.submitted": {
+    "text": "Enviado",
+    "translationContext": "Pipeline step label: PR has been created"
+  },
+  "contribute.history.status.submitted.tooltip": {
+    "text": "O seu pull request foi criado e aguarda revisão.",
+    "translationContext": "Tooltip for the Submitted pipeline step"
+  },
+  "contribute.history.title": {
+    "text": "As Minhas Contribuições",
+    "translationContext": "Heading for the section showing the user's past feed contributions"
+  },
+  "contribute.history.titleWithCount": {
+    "text": "As Minhas Contribuições ({{count}})",
+    "translationContext": "Heading for contributions section showing total count, e.g. 'My Contributions (4)'"
+  },
+  "contribute.history.typeExisting": {
+    "text": "Categoria existente",
+    "translationContext": "Inline text in expanded contribution detail indicating feeds were added to an existing category"
+  },
+  "contribute.history.typeNew": {
+    "text": "Nova categoria",
+    "translationContext": "Inline text in expanded contribution detail indicating this created a new category"
+  },
+  "contribute.history.viewAll": {
+    "text": "Ver mais {{count}}",
+    "translationContext": "Button to expand and show remaining hidden contributions, e.g. 'See 3 more'"
+  },
+  "contribute.howItWorks": {
+    "text": "Como funciona",
+    "translationContext": "Small link in the contribute form header to re-show the onboarding"
+  },
+  "contribute.inThisCategory": {
+    "text": "nesta categoria",
+    "translationContext": "Text after feed count, e.g. '42 feeds in this category'"
+  },
+  "contribute.languageInNameWarning": {
+    "text": "Não inclua um código de idioma no nome da categoria. Use apenas o nome base (ex: \"Suíça\" em vez de \"Suíça (IT)\") e defina o idioma principal do feed abaixo. Todas as categorias são traduzidas para todos os idiomas que suportamos.",
+    "translationContext": "Warning shown when a language code like (IT) is detected in the category name"
+  },
+  "contribute.loadingCategories": {
+    "text": "A carregar categorias...",
+    "translationContext": "Loading state while fetching category list"
+  },
+  "contribute.manual.addTo": {
+    "text": "Adicionar a {{fileName}}:",
+    "translationContext": "Label above the copyable code snippet (snippet mode)"
+  },
+  "contribute.manual.copied": {
+    "text": "Copiado!",
+    "translationContext": "Confirmation after copying to clipboard"
+  },
+  "contribute.manual.copy": {
+    "text": "Copiar",
+    "translationContext": "Copy to clipboard button"
+  },
+  "contribute.manual.editOnGithub": {
+    "text": "Editar {{fileName}} no GitHub",
+    "translationContext": "Button to open the file editor on GitHub"
+  },
+  "contribute.manual.fullFile": {
+    "text": "{{fileName}} completo:",
+    "translationContext": "Label above the copyable code block (full file mode)"
+  },
+  "contribute.manual.instructions": {
+    "text": "Crie um pull request no GitHub com estas alterações:",
+    "translationContext": "Header for manual PR creation instructions"
+  },
+  "contribute.manual.step1": {
+    "text": "Copie o trecho abaixo",
+    "translationContext": "Step 1 of manual PR instructions (snippet mode for core_feeds.py)"
+  },
+  "contribute.manual.step1Full": {
+    "text": "Copie o conteúdo completo do ficheiro abaixo",
+    "translationContext": "Step 1 of manual PR instructions (full file mode for kite_feeds.json)"
+  },
+  "contribute.manual.step2Existing": {
+    "text": "Clique no botão para editar {{fileName}} no GitHub. Encontre a secção \"{{category}}\" e adicione os URLs dos feeds à sua lista de feeds",
+    "translationContext": "Step 2 for adding feeds to an existing category manually (snippet mode for core_feeds.py)"
+  },
+  "contribute.manual.step2Full": {
+    "text": "Clique no botão para editar {{fileName}} no GitHub, selecione tudo e substitua pelo conteúdo copiado",
+    "translationContext": "Step 2 for full file replacement mode (kite_feeds.json)"
+  },
+  "contribute.manual.step2New": {
+    "text": "Clique no botão para editar {{fileName}} no GitHub. Adicione o trecho em ordem alfabética entre as categorias existentes",
+    "translationContext": "Step 2 for adding a new category manually (snippet mode fallback)"
+  },
+  "contribute.manual.step3": {
+    "text": "Faça o commit da alteração e abra um pull request. O GitHub irá guiá-lo através do processo",
+    "translationContext": "Step 3 of manual PR instructions"
+  },
+  "contribute.manual.submit": {
+    "text": "Obter Instruções de PR",
+    "translationContext": "Button text for manual mode where user creates PR themselves"
+  },
+  "contribute.networkError": {
+    "text": "Erro de rede. Por favor, tente novamente.",
+    "translationContext": "Error message for network failures during submission"
+  },
+  "contribute.newCategory": {
+    "text": "Nova categoria",
+    "translationContext": "Toggle button to create a new category"
+  },
+  "contribute.noValidUrls": {
+    "text": "Nenhum URL válido encontrado. Os URLs devem começar com http:// ou https://",
+    "translationContext": "Error when pasted text contains no valid URLs"
+  },
+  "contribute.onboarding.community.description": {
+    "text": "Nenhum membro da equipa Kagi decide que categorias existem ou que notícias aparecem. Tudo isso vem dos feeds, e os feeds vêm da comunidade.",
+    "translationContext": "Main explanation of community-driven categories"
+  },
+  "contribute.onboarding.community.networkLabelStories": {
+    "text": "notícias",
+    "translationContext": "Label on the story cluster nodes in the feed flow animation"
+  },
+  "contribute.onboarding.community.networkLabelYou": {
+    "text": "+ você",
+    "translationContext": "Label on the contributor node in the feed network animation"
+  },
+  "contribute.onboarding.community.networkNote": {
+    "text": "Os feeds à esquerda fluem para as notícias à direita. Mais feeds significam mais notícias e melhor cobertura.",
+    "translationContext": "Caption under the feed-to-story flow animation"
+  },
+  "contribute.onboarding.community.noStories": {
+    "text": "Às vezes, uma categoria não produz nenhuma notícia. Isso geralmente significa que não há feeds suficientes com cobertura sobreposta para que o agrupamento funcione. Mais feeds significam mais sobreposição, o que significa mais notícias.",
+    "translationContext": "Explaining why some categories don't generate stories"
+  },
+  "contribute.onboarding.community.title": {
+    "text": "Tudo é impulsionado pela comunidade",
+    "translationContext": "Section title for explaining community-driven nature of categories"
+  },
+  "contribute.onboarding.community.whyXnotY": {
+    "text": "Se está a perguntar-se por que existe uma categoria para X mas não para Y, é porque alguém que se importava com X dedicou tempo para adicionar feeds para ela. Se um tópico do seu interesse está em falta, você pode ser a pessoa a iniciá-lo.",
+    "translationContext": "Explaining why certain categories exist and others don't"
+  },
+  "contribute.onboarding.cta": {
+    "text": "Começar a adicionar feeds",
+    "translationContext": "CTA button on the onboarding page to proceed to the contribute form"
+  },
+  "contribute.onboarding.feedTypes.community.description": {
+    "text": "Curados por contribuidores como você em kite_feeds.json. Cobrem tudo, desde notícias regionais a tópicos de nicho. É aqui que a sua contribuição entra.",
+    "translationContext": "Description of community feeds that contributors add to"
+  },
+  "contribute.onboarding.feedTypes.community.title": {
+    "text": "Feeds da comunidade",
+    "translationContext": "Title for the community feeds card"
+  },
+  "contribute.onboarding.feedTypes.core.description": {
+    "text": "Cobrem categorias essenciais como Notícias do Mundo, Negócios, Tecnologia, Ciência, Desportos e Cultura. São totalmente de código aberto no GitHub, pelo que também pode contribuir para eles.",
+    "translationContext": "Description of core feeds, emphasizing they are open source and open to contributions"
+  },
+  "contribute.onboarding.feedTypes.core.title": {
+    "text": "Feeds principais",
+    "translationContext": "Title for the core feeds card"
+  },
+  "contribute.onboarding.feedTypes.title": {
+    "text": "Dois tipos de feeds alimentam o Kagi News",
+    "translationContext": "Section title for core vs community feeds comparison"
+  },
+  "contribute.onboarding.guidelines.anyLanguage": {
+    "text": "Qualquer idioma é bem-vindo. O Kagi News traduz tudo automaticamente, pelo que uma categoria pode e deve misturar idiomas.",
+    "translationContext": "Guideline: feeds in any language are accepted"
+  },
+  "contribute.onboarding.guidelines.minimum": {
+    "text": "Novas categorias precisam de pelo menos 25 feeds para aparecerem no Kagi News. Isso garante sobreposição suficiente para que o agrupamento funcione.",
+    "translationContext": "Guideline: minimum feed count for new categories"
+  },
+  "contribute.onboarding.guidelines.noLanguageSplit": {
+    "text": "Não crie categorias separadas por idioma. Use \"Suíça\", não \"Suíça (DE)\" e \"Suíça (FR)\".",
+    "translationContext": "Guideline: don't split categories by language"
+  },
+  "contribute.onboarding.guidelines.quality": {
+    "text": "Prefira fontes de notícias, blogs ou veículos estabelecidos. Geralmente, mais feeds é melhor — o agrupamento trata do resto.",
+    "translationContext": "Guideline: source quality preference"
+  },
+  "contribute.onboarding.guidelines.rssOnly": {
+    "text": "Apenas feeds RSS ou Atom. O Kagi News não extrai dados de sites, usa apenas dados de feeds disponíveis publicamente.",
+    "translationContext": "Guideline: only RSS/Atom feeds are accepted"
+  },
+  "contribute.onboarding.guidelines.title": {
+    "text": "Diretrizes para feeds",
+    "translationContext": "Section title for feed submission guidelines"
+  },
+  "contribute.onboarding.guidelines.topicSpecific": {
+    "text": "Os feeds devem cobrir o tópico da categoria especificamente. Adicionar um jornal geral como o The Guardian a uma categoria \"Reino Unido\" produzirá principalmente grupos de notícias mundiais, não específicos do Reino Unido. Procure por feeds filtrados por tópico ou use ferramentas de filtragem de RSS para restringir um feed amplo.",
+    "translationContext": "Guideline: feeds should be topic-specific, not general outlets, with example"
+  },
+  "contribute.onboarding.guidelines.working": {
+    "text": "Os feeds devem estar a funcionar e ter conteúdo recente (idealmente diário).",
+    "translationContext": "Guideline: feeds should be active"
+  },
+  "contribute.onboarding.pipeline.note": {
+    "text": "Todo o processo funciona em piloto automático. Ninguém na Kagi escolhe que notícias aparecem ou que categorias são criadas.",
+    "translationContext": "Note below the pipeline emphasizing the automated nature"
+  },
+  "contribute.onboarding.pipeline.step1.description": {
+    "text": "Cada categoria tem uma lista de feeds RSS por trás dela. O sistema recolhe novos artigos de todos eles. Algumas categorias têm centenas de feeds, outras estão apenas a começar.",
+    "translationContext": "Pipeline step 1 description"
+  },
+  "contribute.onboarding.pipeline.step1.title": {
+    "text": "Os feeds são verificados",
+    "translationContext": "Pipeline step 1 title"
+  },
+  "contribute.onboarding.pipeline.step2.description": {
+    "text": "O sistema identifica quais artigos são sobre o mesmo assunto e agrupa-os. Cada grupo torna-se uma \"notícia\". Se um artigo não corresponder a mais nada, é ignorado.",
+    "translationContext": "Pipeline step 2 description"
+  },
+  "contribute.onboarding.pipeline.step2.title": {
+    "text": "Artigos relacionados são agrupados",
+    "translationContext": "Pipeline step 2 title"
+  },
+  "contribute.onboarding.pipeline.step3.description": {
+    "text": "A IA lê todos os artigos de um grupo e escreve um único resumo, reunindo as diferentes perspetivas de cada fonte.",
+    "translationContext": "Pipeline step 3 description"
+  },
+  "contribute.onboarding.pipeline.step3.title": {
+    "text": "Um resumo é escrito",
+    "translationContext": "Pipeline step 3 title"
+  },
+  "contribute.onboarding.pipeline.title": {
+    "text": "Como as notícias são criadas",
+    "translationContext": "Section title for the pipeline explanation"
+  },
+  "contribute.onboarding.skip": {
+    "text": "Saltar",
+    "translationContext": "Link to skip the onboarding and go straight to the contribute form"
+  },
+  "contribute.onboarding.subtitle": {
+    "text": "Ajude a construir uma melhor experiência de notícias adicionando feeds RSS a categorias curadas pela comunidade.",
+    "translationContext": "Subtitle on the contribute onboarding info page"
+  },
+  "contribute.onboarding.title": {
+    "text": "Contribua para o Kagi News",
+    "translationContext": "Title on the contribute onboarding info page"
+  },
+  "contribute.onboarding.whatToDo.existing.description": {
+    "text": "Navegue pelas categorias e adicione os feeds RSS que acha que estão em falta. Fontes mais diversas significam melhor cobertura e mais notícias a surgir.",
+    "translationContext": "Description of adding feeds to existing categories"
+  },
+  "contribute.onboarding.whatToDo.existing.title": {
+    "text": "Adicionar feeds a categorias existentes",
+    "translationContext": "Title for existing category contribution option"
+  },
+  "contribute.onboarding.whatToDo.new.description": {
+    "text": "Notícias locais, cobertura regional, tópicos de nicho. Novas categorias precisam de pelo menos 25 feeds para serem ativadas no Kagi News. Isso garante sobreposição suficiente para que o agrupamento produza notícias reais.",
+    "translationContext": "Description of proposing new categories"
+  },
+  "contribute.onboarding.whatToDo.new.title": {
+    "text": "Propor uma nova categoria",
+    "translationContext": "Title for new category contribution option"
+  },
+  "contribute.onboarding.whatToDo.title": {
+    "text": "Com o que pode contribuir",
+    "translationContext": "Section title for contribution options"
+  },
+  "contribute.pageTitle": {
+    "text": "Contribuir com Feeds - Kagi News",
+    "translationContext": "Browser tab title for the contribute page"
+  },
+  "contribute.pendingFeedCount": {
+    "text": "{{count}} feeds propostos",
+    "translationContext": "Number of feeds proposed in a pending pull request"
+  },
+  "contribute.pendingFeedsAdded": {
+    "text": "+{{count}} feeds pendentes",
+    "translationContext": "Indicator showing additional feeds pending for an existing category"
+  },
+  "contribute.pendingPr": {
+    "text": "PR Pendente",
+    "translationContext": "Badge label for categories from unmerged pull requests"
+  },
+  "contribute.pendingPrLink": {
+    "text": "Ver PR #{{number}}",
+    "translationContext": "Link text to view the related pending pull request"
+  },
+  "contribute.pendingPrNote": {
+    "text": "Esta categoria foi proposta por outro contribuidor e aguarda revisão.",
+    "translationContext": "Info note shown when a pending PR category is selected"
+  },
+  "contribute.removeErrored": {
+    "text": "Remover {{count}} com erro",
+    "translationContext": "Button to remove all feeds that failed validation"
+  },
+  "contribute.removeFeed": {
+    "text": "Remover feed",
+    "translationContext": "Aria label for the button to remove a single feed"
+  },
+  "contribute.retry": {
+    "text": "Tentar novamente",
+    "translationContext": "Button to retry loading categories after an error"
+  },
+  "contribute.reviewNote": {
+    "text": "A nossa equipa irá rever a sua submissão e irá fundi-la se tudo estiver correto.",
+    "translationContext": "Note explaining what happens after submission"
+  },
+  "contribute.searchCategories": {
+    "text": "Pesquisar categorias...",
+    "translationContext": "Placeholder for the category search dropdown"
+  },
+  "contribute.showFeeds": {
+    "text": "Mostrar feeds",
+    "translationContext": "Button to expand the list of existing feeds"
+  },
+  "contribute.step1": {
+    "text": "1. Escolha uma categoria",
+    "translationContext": "Step 1 heading in the contribute form"
+  },
+  "contribute.step2": {
+    "text": "2. Adicionar feeds",
+    "translationContext": "Step 2 heading in the contribute form"
+  },
+  "contribute.step3": {
+    "text": "3. Enviar",
+    "translationContext": "Step 3 heading in the contribute form"
+  },
+  "contribute.submitAnother": {
+    "text": "Enviar outra contribuição",
+    "translationContext": "Link to reset the form and submit another contribution"
+  },
+  "contribute.subtitle": {
+    "text": "Adicione feeds RSS a categorias existentes ou sugira novas",
+    "translationContext": "Subtitle below the heading on the contribute page"
+  },
+  "contribute.successMessage": {
+    "text": "Obrigado pela sua contribuição! O pull request #{{prNumber}} foi criado.",
+    "translationContext": "Success message after PR is created, with PR number"
+  },
+  "contribute.summaryExisting": {
+    "text": "A adicionar {{count}} feed(s) a {{category}}",
+    "translationContext": "Summary text before adding feeds to an existing category"
+  },
+  "contribute.summaryNew": {
+    "text": "A criar nova categoria {{category}} com {{count}} feed(s)",
+    "translationContext": "Summary text before submitting a new category"
+  },
+  "contribute.switchToIt": {
+    "text": "Mudar para ela?",
+    "translationContext": "Link to switch to an existing category instead of creating new"
+  },
+  "contribute.unverifiedCount": {
+    "text": "{{count}} não verificado(s)",
+    "translationContext": "Number of feeds with unknown validation status"
+  },
+  "contribute.validCount": {
+    "text": "{{count}} válido(s)",
+    "translationContext": "Number of feeds that passed validation"
+  },
+  "contribute.viewPr": {
+    "text": "Ver Pull Request",
+    "translationContext": "Link text to view the created pull request on GitHub"
+  },
+  "contribute.waitingValidation": {
+    "text": "A aguardar que {{count}} feed(s) terminem a validação...",
+    "translationContext": "Note shown while feeds are still being validated"
   },
   "crypto.grid.title": {
     "text": "Preços de Criptomoedas",
@@ -2823,6 +3667,10 @@
     "text": "Informações da fonte",
     "translationContext": "Title for source information section"
   },
+  "sources.addPreferred": {
+    "text": "Fixar no topo das fontes",
+    "translationContext": "Tooltip for pin button to add source to preferred list"
+  },
   "sources.article": {
     "text": "{{count}} artigo",
     "translationContext": "Shows singular article count from a source, {{count}} will be replaced with a number"
@@ -2838,6 +3686,10 @@
   "sources.paywallTooltip": {
     "text": "Esta fonte pode requerer uma assinatura para aceder aos artigos completos.",
     "translationContext": "Tooltip explaining that a news source requires a paid subscription"
+  },
+  "sources.removePreferred": {
+    "text": "Desafixar do topo das fontes",
+    "translationContext": "Tooltip for pin button to remove source from preferred list"
   },
   "sources.showArticlesFrom": {
     "text": "Mostrar artigos de {{source}}",
@@ -2863,6 +3715,38 @@
     "text": "Semana {{{week}}}, Dia {{{day}}}",
     "translationContext": "Shows the current week and day of the year, {{week}} and {{day}} will be replaced with numbers"
   },
+  "stories.clusteringModal.clusteringDescription": {
+    "text": "Quando artigos de diferentes feeds cobrem o mesmo tópico, são agrupados numa história. Quantos mais feeds abordarem o mesmo assunto, mais forte é o sinal.",
+    "translationContext": "Explains how story clustering works"
+  },
+  "stories.clusteringModal.communityFeedsDescription": {
+    "text": "Os feeds RSS para esta categoria são selecionados por membros da comunidade, não pela equipa da Kagi.",
+    "translationContext": "Explains that community categories have user-curated feeds"
+  },
+  "stories.clusteringModal.fullyAutomaticDescription": {
+    "text": "Ninguém seleciona ou escolhe o que aparece. Todo o processo é executado automaticamente, desde a recolha dos feeds e o seu agrupamento até à redação dos resumos.",
+    "translationContext": "Explains that the process is fully automatic with no human curation"
+  },
+  "stories.clusteringModal.helpImprove": {
+    "text": "Ajude a melhorar esta categoria",
+    "translationContext": "Call-to-action divider text for contributing feeds"
+  },
+  "stories.clusteringModal.helpImproveDescription": {
+    "text": "Adicionar mais feeds melhora o funcionamento do agrupamento. Pode sugerir novos feeds no GitHub.",
+    "translationContext": "Encourages users to contribute feeds"
+  },
+  "stories.clusteringModal.noClusterDescription": {
+    "text": "Se os feeds não tiverem sobreposição suficiente nos tópicos que cobrem, não se formam agrupamentos e não aparecem histórias. Isto é normal e acontece com mais frequência em categorias de nicho ou regionais.",
+    "translationContext": "Explains why community categories sometimes have no stories"
+  },
+  "stories.clusteringModal.suggestFeeds": {
+    "text": "Sugerir feeds no GitHub",
+    "translationContext": "Button label for the GitHub link to suggest feeds"
+  },
+  "stories.clusteringModal.title": {
+    "text": "Como as histórias são geradas",
+    "translationContext": "Title for the modal explaining the story clustering process"
+  },
   "stories.fewStories": {
     "text": "Não há mais notícias de destaque hoje, volte amanhã!",
     "translationContext": "Message shown when there are only 1-3 stories in a category"
@@ -2870,6 +3754,38 @@
   "stories.noStories": {
     "text": "Não há notícias significativas nesta categoria hoje.",
     "translationContext": "Message shown when no stories are found for a category"
+  },
+  "stories.noStoriesCommunity": {
+    "text": "Hoje não há notícias para esta categoria da comunidade.",
+    "translationContext": "Message shown when a community (non-core) category has no stories"
+  },
+  "stories.noStoriesCommunityDescription": {
+    "text": "Não há notícias partilhadas suficientes entre os feeds para formar histórias. Isto acontece por vezes com as categorias da comunidade.",
+    "translationContext": "Secondary description explaining why community categories sometimes have no stories"
+  },
+  "stories.noStoriesCommunityLearnMore": {
+    "text": "Saiba como funciona",
+    "translationContext": "Button label to open modal explaining the clustering process"
+  },
+  "stories.noStoriesCore": {
+    "text": "As notícias para esta categoria devem estar disponíveis em breve. Volte a verificar daqui a pouco.",
+    "translationContext": "Message shown when a core (Kagi-maintained) category temporarily has no stories, usually due to a pipeline issue"
+  },
+  "stories.noStoriesCoreUpdates": {
+    "text": "Temporariamente indisponível",
+    "translationContext": "Small label shown with a clock icon when a core category has no stories, indicating the update schedule"
+  },
+  "story.assistant.placeholder": {
+    "text": "Pergunte sobre esta história...",
+    "translationContext": "Placeholder text in the assistant question input field"
+  },
+  "story.assistant.submit": {
+    "text": "Perguntar",
+    "translationContext": "Submit button label for assistant question"
+  },
+  "story.assistant.tooltip": {
+    "text": "Perguntar ao Assistente",
+    "translationContext": "Tooltip for button that opens Kagi Assistant with the current story topic"
   },
   "story.flashcards.download": {
     "text": "Baixar",
@@ -2907,6 +3823,10 @@
     "text": "Sair da seleção de palavras",
     "translationContext": "Tooltip for flashcard button when in selection mode"
   },
+  "story.simplify.autoSimplifying": {
+    "text": "Simplificando para {level}...",
+    "translationContext": "Status message while auto-simplifying. {level} is the reading level name."
+  },
   "story.simplify.loading": {
     "text": "Simplificando...",
     "translationContext": "Status message while simplifying text"
@@ -2943,6 +3863,66 @@
     "text": "Parar reprodução",
     "translationContext": "Tooltip for TTS button when playing"
   },
+  "sync.conflict.multiple": {
+    "text": "{{{count}}} configurações foram atualizadas a partir de outro dispositivo",
+    "translationContext": "Toast notification when multiple settings were overridden during sync. {count} is the number of settings."
+  },
+  "sync.conflict.single": {
+    "text": "Uma configuração foi atualizada a partir de outro dispositivo",
+    "translationContext": "Toast notification when one setting was overridden during sync"
+  },
+  "syncSetup.description": {
+    "text": "Encontrámos configurações existentes na sua conta de outro dispositivo. Como gostaria de proceder?",
+    "translationContext": "Description shown in sync setup wizard when cloud settings already exist"
+  },
+  "syncSetup.done": {
+    "text": "Configurações sincronizadas com sucesso!",
+    "translationContext": "Success message after sync setup completes"
+  },
+  "syncSetup.merge.description": {
+    "text": "Manter as suas configurações e adicionar quaisquer configurações da nuvem em falta",
+    "translationContext": "Description for the merge option in sync setup"
+  },
+  "syncSetup.merge.title": {
+    "text": "Fundir",
+    "translationContext": "Option to merge local and cloud settings together"
+  },
+  "syncSetup.pullRemote.description": {
+    "text": "Substituir as suas configurações atuais pelas configurações da nuvem",
+    "translationContext": "Description for the pull remote option in sync setup"
+  },
+  "syncSetup.pullRemote.title": {
+    "text": "Usar configurações da nuvem",
+    "translationContext": "Option to overwrite local settings with cloud settings"
+  },
+  "syncSetup.pushLocal.description": {
+    "text": "Substituir as configurações da nuvem pelas suas configurações atuais",
+    "translationContext": "Description for the push local option in sync setup"
+  },
+  "syncSetup.pushLocal.title": {
+    "text": "Usar este dispositivo",
+    "translationContext": "Option to overwrite cloud settings with current device settings"
+  },
+  "syncSetup.syncing.merging": {
+    "text": "A fundir configurações...",
+    "translationContext": "Loading text while merging local and cloud settings"
+  },
+  "syncSetup.syncing.pulling": {
+    "text": "A descarregar as configurações da nuvem...",
+    "translationContext": "Loading text while pulling cloud settings to device"
+  },
+  "syncSetup.syncing.pushing": {
+    "text": "A enviar as suas configurações...",
+    "translationContext": "Loading text while pushing local settings to cloud"
+  },
+  "syncSetup.title": {
+    "text": "Configurar Sincronização",
+    "translationContext": "Title for the sync setup wizard modal shown when enabling sync with existing cloud settings"
+  },
+  "syncSetup.tryAgain": {
+    "text": "Tentar novamente",
+    "translationContext": "Link to retry sync setup after an error"
+  },
   "time.nextUpdate.in": {
     "text": "Próxima atualização em {{time}}",
     "translationContext": "Shown when the next update time is known, {time} will be replaced with countdown (e.g., '2h 30m')"
@@ -2950,6 +3930,34 @@
   "time.nextUpdate.soon": {
     "text": "Próxima atualização em breve",
     "translationContext": "Shown when the next update is expected soon (after noon UTC but no update yet today)"
+  },
+  "time.relative.days": {
+    "text": "há {{count}} dias",
+    "translationContext": "Relative time: multiple days ago, {count} is the number"
+  },
+  "time.relative.hours": {
+    "text": "há {{count}} horas",
+    "translationContext": "Relative time: multiple hours ago, {count} is the number"
+  },
+  "time.relative.justNow": {
+    "text": "agora mesmo",
+    "translationContext": "Relative time: less than a minute ago"
+  },
+  "time.relative.minutes": {
+    "text": "há {{count}} minutos",
+    "translationContext": "Relative time: multiple minutes ago, {count} is the number"
+  },
+  "time.relative.oneDay": {
+    "text": "há 1 dia",
+    "translationContext": "Relative time: exactly 1 day ago"
+  },
+  "time.relative.oneHour": {
+    "text": "há 1 hora",
+    "translationContext": "Relative time: exactly 1 hour ago"
+  },
+  "time.relative.oneMinute": {
+    "text": "há 1 minuto",
+    "translationContext": "Relative time: exactly 1 minute ago"
   },
   "time.updated.days": {
     "text": "Atualizado há {{count}} dias",
@@ -2982,6 +3990,10 @@
   "time.updated.seconds": {
     "text": "Atualizado há {{count}} segundos",
     "translationContext": "Shown when content was updated seconds ago, {{count}} will be replaced with the number of seconds"
+  },
+  "timeTravel.description": {
+    "text": "Acesse os resumos diários históricos.\nReservado para assinantes Kagi.\nDisponível para todos os usuários durante o Beta.",
+    "translationContext": "Description of Time Travel - line 1 is subtitle, line 2 is info, line 3 is italicized beta note"
   },
   "timeTravel.latest": {
     "text": "Último",
@@ -3022,6 +4034,18 @@
   "timeTravel.today": {
     "text": "Hoje",
     "translationContext": "Button to navigate to today"
+  },
+  "timeTravel.urlBanner.dismiss": {
+    "text": "Entendido",
+    "translationContext": "Button to dismiss the time travel info banner"
+  },
+  "timeTravel.urlBanner.viewing": {
+    "text": "Este link aponta para notícias de {{{date}}}. Pode voltar às notícias de hoje a qualquer momento usando o ✕ ao lado da data acima.",
+    "translationContext": "One-time info banner shown when user arrives via a bookmarked time travel URL (no referrer). Points user to the header date pill with X button."
+  },
+  "timeTravel.urlBanner.viewingShared": {
+    "text": "Alguém partilhou consigo um link para notícias de {{{date}}}. Pode voltar às notícias de hoje a qualquer momento usando o ✕ ao lado da data acima.",
+    "translationContext": "One-time info banner shown when user arrives via a shared time travel URL (has referrer). Points user to the header date pill with X button."
   },
   "turbulence.title": {
     "text": "Medidor de turbulência mundial",
@@ -3179,6 +4203,14 @@
     "text": "Índice de Caos",
     "translationContext": "Label for the chaos index chart"
   },
+  "worldTension.consistencyText": {
+    "text": "Entre manchetes alarmantes, 'doomscrolling' e ciclos de notícias 24/7, pode parecer que o mundo está constantemente em chamas. Este índice visa fornecer uma perspectiva realista. Muitas vezes, as coisas não são tão ruins quanto parecem.",
+    "translationContext": "Explanation of purpose: cutting through media noise"
+  },
+  "worldTension.consistencyTitle": {
+    "text": "Por que isto existe",
+    "translationContext": "Section header explaining purpose of the index"
+  },
   "worldTension.cool": {
     "text": "Fresco",
     "translationContext": "Temperature description for low world tension (0-20%)"
@@ -3207,6 +4239,26 @@
     "text": "Extremo",
     "translationContext": "Status label for 81-100% range (deprecated, use burning)"
   },
+  "worldTension.factor.novelty": {
+    "text": "Novidade — Novas crises ou escaladas têm um peso maior do que situações em andamento que já estão \"precificadas\".",
+    "translationContext": "Explanation of novelty factor"
+  },
+  "worldTension.factor.reversibility": {
+    "text": "Reversibilidade — Ações irreversíveis (invasões, perda de vidas) têm um peso maior do que as reversíveis (sanções, retórica).",
+    "translationContext": "Explanation of reversibility factor"
+  },
+  "worldTension.factor.scope": {
+    "text": "Escopo do impacto — Riscos sistêmicos globais, contágio econômico e gatilhos de alianças são ponderados em relação a eventos localizados.",
+    "translationContext": "Explanation of scope factor"
+  },
+  "worldTension.factor.worstCase": {
+    "text": "Proximidade do pior cenário — A proximidade dos eventos a resultados catastróficos, com situações nucleares/ADM recebendo um peso desproporcional.",
+    "translationContext": "Explanation of worst case factor"
+  },
+  "worldTension.factorsTitle": {
+    "text": "A IA considera quatro fatores-chave:",
+    "translationContext": "Header for list of factors"
+  },
   "worldTension.high": {
     "text": "Alto",
     "translationContext": "Status label for 41-60% range (deprecated, use warm)"
@@ -3214,6 +4266,14 @@
   "worldTension.hot": {
     "text": "Quente",
     "translationContext": "Temperature description for moderate world tension (41-60%)"
+  },
+  "worldTension.howCalculated": {
+    "text": "Como é calculado",
+    "translationContext": "Section header for methodology explanation"
+  },
+  "worldTension.methodologyIntro": {
+    "text": "O índice de Tensão Mundial é gerado pela análise de IA das manchetes de notícias globais. Em vez de uma fórmula fixa, ele utiliza o raciocínio para avaliar a estabilidade mundial.",
+    "translationContext": "Introduction explaining AI-based methodology"
   },
   "worldTension.mild": {
     "text": "Suave",

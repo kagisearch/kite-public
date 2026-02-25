@@ -27,6 +27,14 @@
     "text": "uudiste lugejatele",
     "translationContext": "Footer text suffix for copyright"
   },
+  "settings.about.keyboardDescription": {
+    "text": "Navigeeri lugude ja kategooriate vahel, kasutades vim-stiilis klaviatuuri otseteid",
+    "translationContext": "Description of keyboard navigation feature"
+  },
+  "settings.about.keyboardShortcuts": {
+    "text": "Klaviatuuri otseteed",
+    "translationContext": "Section header for keyboard shortcuts in settings"
+  },
   "settings.about.learnMore": {
     "text": "Loe lähemalt",
     "translationContext": "Link text to open full about page"
@@ -47,6 +55,10 @@
     "text": "Vaata API dokumentatsiooni",
     "translationContext": "Button text to view API documentation"
   },
+  "settings.about.viewShortcuts": {
+    "text": "Vaata klaviatuuri otseteid",
+    "translationContext": "Button text to open keyboard shortcuts help overlay"
+  },
   "settings.aboutKite.button": {
     "text": "Kagi News lehe kohta",
     "translationContext": "Text for the About Kagi News button"
@@ -62,6 +74,78 @@
   "settings.categories.contribute": {
     "text": "+ Lisa kategooriaid",
     "translationContext": "Link text for contributing categories"
+  },
+  "settings.categories.contribute.intro": {
+    "text": "Aita laiendada Kagi Newsi katvust, soovitades uusi kategooriaid. Kogukonna panus on see, mis teeb Kagi Newsi mitmekesiseks ja põhjalikuks.",
+    "translationContext": "Introduction text in the contribute category modal"
+  },
+  "settings.categories.contribute.learnMore": {
+    "text": "Vaata",
+    "translationContext": "Start of sentence linking to source inclusion rationale"
+  },
+  "settings.categories.contribute.learnMoreLink": {
+    "text": "seda arutelu",
+    "translationContext": "Link text for the source inclusion rationale discussion"
+  },
+  "settings.categories.contribute.learnMoreSuffix": {
+    "text": "meie allikate kaasamise täieliku põhjenduse kohta.",
+    "translationContext": "End of sentence after the discussion link"
+  },
+  "settings.categories.contribute.openIssue": {
+    "text": "Ava GitHubis probleem",
+    "translationContext": "Link text to open a GitHub issue for category suggestions"
+  },
+  "settings.categories.contribute.or": {
+    "text": "või",
+    "translationContext": "Divider text between options in contribute modal"
+  },
+  "settings.categories.contribute.prHint": {
+    "text": "Arendajatele, kes on GitHubiga tuttavad",
+    "translationContext": "Hint text below the pull request link"
+  },
+  "settings.categories.contribute.prLink": {
+    "text": "Esita otse Pull Request",
+    "translationContext": "Link text for developers to submit a PR"
+  },
+  "settings.categories.contribute.req1Desc": {
+    "text": "— mida rohkem kvaliteetseid vooge, seda parem katvus",
+    "translationContext": "Description explaining more feeds = better"
+  },
+  "settings.categories.contribute.req1Title": {
+    "text": "25+ RSS-voogu (rohkem on parem)",
+    "translationContext": "Title for the feeds requirement emphasizing more is better"
+  },
+  "settings.categories.contribute.req2Desc": {
+    "text": "— vasakpoolne allikas ei vaja parempoolset vastet. Riigimeedia, erapoolikud väljaanded – kõik sobib. Meie süsteem kinnitab fakte mitme allika põhjal, nii et erandid ei saa tulemust moonutada. See on ka põhjus, miks rohkem allikaid on parem.",
+    "translationContext": "Detailed explanation of why biased sources are OK and why more sources help"
+  },
+  "settings.categories.contribute.req2Title": {
+    "text": "Tasakaalustamine pole vajalik",
+    "translationContext": "Title clarifying sources don't need to be balanced"
+  },
+  "settings.categories.contribute.req3Desc": {
+    "text": "— ei mingeid väljamõeldud väiteid, sündmuste eitamist ega pettussisu",
+    "translationContext": "Description for the no conspiracy content requirement"
+  },
+  "settings.categories.contribute.req3Title": {
+    "text": "Ei vandenõusisu",
+    "translationContext": "Title for the no conspiracy content requirement"
+  },
+  "settings.categories.contribute.requirements": {
+    "text": "Juhised:",
+    "translationContext": "Header for the guidelines section in contribute modal"
+  },
+  "settings.categories.contribute.suggestButton": {
+    "text": "Soovita kategooriat",
+    "translationContext": "Primary button text to open GitHub issue form"
+  },
+  "settings.categories.contribute.suggestHint": {
+    "text": "Avab GitHubi issue vormi — kodeerimisoskus pole vajalik",
+    "translationContext": "Hint text below the suggest button"
+  },
+  "settings.categories.contribute.title": {
+    "text": "Panusta kategooriaga",
+    "translationContext": "Title of the contribute category modal"
   },
   "settings.categories.coreTooltip": {
     "text": "Kagi meeskonna hallatav. Kõrge kvaliteet, mitmekesised vaatenurgad.",
@@ -87,6 +171,10 @@
     "text": "Filtreeri tüübi järgi...",
     "translationContext": "Placeholder text for category type filter dropdown"
   },
+  "settings.categories.filterPlaceholder": {
+    "text": "Kõik",
+    "translationContext": "Placeholder text for the category type filter dropdown"
+  },
   "settings.categories.instructions": {
     "text": "Lohista järjestamiseks või kliki lubamiseks/keelamiseks. Lohista sektsioonide vahel kategooriate liigutamiseks.",
     "translationContext": "Instructions for managing categories"
@@ -106,6 +194,18 @@
   "settings.categories.noFiltered": {
     "text": "Seda tüüpi kategooriaid pole keelatud",
     "translationContext": "Message shown when no categories of the selected filter type are in the disabled section"
+  },
+  "settings.categories.noLetterResults": {
+    "text": "Selle tähega algavaid kategooriaid ei ole",
+    "translationContext": "Message shown when no categories match the selected letter filter"
+  },
+  "settings.categories.noSearchResults": {
+    "text": "Sinu otsingule ei vasta ükski kategooria",
+    "translationContext": "Message shown when no categories match the search query"
+  },
+  "settings.categories.searchPlaceholder": {
+    "text": "Otsi kategooriaid...",
+    "translationContext": "Placeholder text for the category search input"
   },
   "settings.categories.singlePageMode.description": {
     "text": "Vali, kuidas lugusid kuvada: vahekaartidel (vaikimisi) või kõik ühel lehel erinevate järjestusvalikutega.",
@@ -615,6 +715,118 @@
     "text": "OpenStreetMap",
     "translationContext": "Option to use OpenStreetMap"
   },
+  "settings.preferredSources.clearAll": {
+    "text": "Tühjenda kõik kinnitatud allikad",
+    "translationContext": "Button text to clear all pinned sources"
+  },
+  "settings.preferredSources.cleared": {
+    "text": "Tühjendatud!",
+    "translationContext": "Confirmation message after clearing pinned sources"
+  },
+  "settings.preferredSources.description": {
+    "text": "Kinnitatud allikad kuvatakse iga uudisloo allikate loendi alguses. Klõpsa mis tahes allika juures nööpnõela ikoonil, et see siia lisada.",
+    "translationContext": "Description explaining the pinned sources feature"
+  },
+  "settings.preferredSources.empty": {
+    "text": "Kinnitatud allikaid veel pole. Ava mõni uudislugu, klõpsa allikal ja kasuta nööpnõela ikooni, et see siia lisada.",
+    "translationContext": "Message shown when no preferred sources have been selected"
+  },
+  "settings.preferredSources.remove": {
+    "text": "Eemalda",
+    "translationContext": "Aria label for button to remove a source from pinned list"
+  },
+  "settings.preferredSources.title": {
+    "text": "Kinnitatud allikad",
+    "translationContext": "Title for preferred sources section in settings"
+  },
+  "settings.readingLevel.categories.description": {
+    "text": "Kirjuta vaiketase üle konkreetsete kategooriate jaoks. Kategooriad, mille seadeks on \"Üldine\", kasutavad sinu ülaltoodud vaikeseadet.",
+    "translationContext": "Description explaining how category-specific overrides work"
+  },
+  "settings.readingLevel.categories.label": {
+    "text": "Kategooriate ülekirjutused",
+    "translationContext": "Label for the category-specific reading level overrides section"
+  },
+  "settings.readingLevel.clearOverrides": {
+    "text": "Tühista ülekirjutused",
+    "translationContext": "Button to clear all category-specific reading level overrides"
+  },
+  "settings.readingLevel.fromGlobal": {
+    "text": "üldine",
+    "translationContext": "Indicator that a category is using the global reading level setting"
+  },
+  "settings.readingLevel.global.description": {
+    "text": "See kehtib kõigile kategooriatele, kui sa ei määra allpool konkreetset taset.",
+    "translationContext": "Description for the global reading level setting"
+  },
+  "settings.readingLevel.global.label": {
+    "text": "Vaikelugemistase",
+    "translationContext": "Label for the global reading level setting"
+  },
+  "settings.readingLevel.info.howItWorks": {
+    "text": "Kui avad loo, lihtsustatakse sisu automaatselt sinu valitud lugemistasemele. Saad siiski iga loo puhul taset käsitsi muuta.",
+    "translationContext": "Explanation of how automatic reading level simplification works"
+  },
+  "settings.readingLevel.info.simpleDescription": {
+    "text": "Selge keel kesktasemel (B1). Sobib tavalugejatele.",
+    "translationContext": "Description of the Simple reading level"
+  },
+  "settings.readingLevel.info.verySimpleDescription": {
+    "text": "Põhisõnavara ja lühikesed laused (A2). Ideaalne keeleõppijatele.",
+    "translationContext": "Description of the Very Simple reading level"
+  },
+  "settings.readingLevel.levels.default": {
+    "text": "Tavaline",
+    "translationContext": "Default/normal reading level option"
+  },
+  "settings.readingLevel.levels.simple": {
+    "text": "Lihtne",
+    "translationContext": "Simple reading level option"
+  },
+  "settings.readingLevel.levels.useGlobal": {
+    "text": "Üldine",
+    "translationContext": "Option to use the global reading level (no override)"
+  },
+  "settings.readingLevel.levels.verySimple": {
+    "text": "Väga lihtne",
+    "translationContext": "Very simple reading level option"
+  },
+  "settings.readingLevel.noCategories": {
+    "text": "Ühtegi kategooriat pole lubatud. Luba kategooriad vahekaardil Kategooriad.",
+    "translationContext": "Message shown when no categories are enabled"
+  },
+  "settings.readingLevel.resetAll": {
+    "text": "Lähtesta kõik",
+    "translationContext": "Button to reset both global level and all category overrides"
+  },
+  "settings.readingLevel.subscriberOnly": {
+    "text": "Lugemistaseme lihtsustamine on saadaval Kagi tellijatele. Uuenda paketti, et artikleid automaatselt eelistatud lugemistasemele lihtsustada.",
+    "translationContext": "Message shown to non-subscribers about reading level feature"
+  },
+  "settings.readingLevel.subscriberOnly.description": {
+    "text": "Automaatne teksti lihtsustamine on saadaval Kagi tellijatele. Selle funktsiooni kasutamiseks uuenda oma paketti.",
+    "translationContext": "Description explaining this is a subscriber-only feature"
+  },
+  "settings.readingLevel.subscriberOnly.title": {
+    "text": "Tellija funktsioon",
+    "translationContext": "Title for subscriber-only feature notice"
+  },
+  "settings.readingLevel.subscriberOnly.upgrade": {
+    "text": "Uuenda Kagi paketile",
+    "translationContext": "Link text to upgrade to Kagi subscription"
+  },
+  "settings.readingLevel.tab.description": {
+    "text": "Määra kõigile lugudele vaikelugemistase. Samuti saad taset kohandada konkreetsete kategooriate jaoks.",
+    "translationContext": "Description shown at the top of the reading level settings tab"
+  },
+  "settings.readingLevel.title": {
+    "text": "Lugemistase",
+    "translationContext": "Title for reading level section"
+  },
+  "settings.readingLevel.upgrade": {
+    "text": "Uuenda Kagi paketile",
+    "translationContext": "Link text to upgrade to Kagi subscription"
+  },
   "settings.sections.instructions": {
     "text": "Lohista sektsioonide järjestamiseks. Kasuta lülitit lubamiseks/keelamiseks.",
     "translationContext": "Instructions for managing article sections"
@@ -699,6 +911,10 @@
     "text": "Välimus",
     "translationContext": "Subsection heading for appearance-related settings"
   },
+  "settings.subsections.display": {
+    "text": "Kuva",
+    "translationContext": "Subsection heading for display settings"
+  },
   "settings.subsections.localization": {
     "text": "Keel ja piirkond",
     "translationContext": "Subsection heading for language and localization settings"
@@ -710,6 +926,14 @@
   "settings.subsections.readingExperience": {
     "text": "Lugemiskogemus",
     "translationContext": "Subsection heading for story display and reading settings"
+  },
+  "settings.subsections.storyDisplay": {
+    "text": "Lugude kuvamine",
+    "translationContext": "Subsection heading for story display settings"
+  },
+  "settings.subsections.visualEnhancements": {
+    "text": "Visuaalsed täiustused",
+    "translationContext": "Subsection heading for visual enhancement toggles"
   },
   "settings.sync.clear.button": {
     "text": "Kustuta kõik sünkroniseeritud andmed",
@@ -775,6 +999,14 @@
     "text": "Eksportimine...",
     "translationContext": "Text shown while exporting data"
   },
+  "settings.sync.import.button": {
+    "text": "Impordi seaded",
+    "translationContext": "Button label to import settings from a backup JSON file"
+  },
+  "settings.sync.import.importing": {
+    "text": "Importimine...",
+    "translationContext": "Loading text shown while importing settings from a backup file"
+  },
   "settings.sync.info.description": {
     "text": "Kagi News saab sünkroniseerida sinu seadeid ja lugemisajalugu kõigis sinu seadmetes. Need andmed salvestatakse turvaliselt Kagi serverites ja on seotud sinu Kagi Search kontoga.\n\nSinu sünkroniseeritud andmeid ei kasutata muul eesmärgil, ei jagata kellegagi ja neid salvestatakse ainult sünkroonimisteenuse pakkumiseks. Sul on täielik kontroll selle üle, mida sünkroniseeritakse, ja saad oma andmed igal ajal kustutada.",
     "translationContext": "Description of sync and privacy features"
@@ -831,6 +1063,14 @@
     "text": "Teave",
     "translationContext": "Title for the about settings tab"
   },
+  "settings.tabs.account": {
+    "text": "Konto",
+    "translationContext": "Title for the account settings tab"
+  },
+  "settings.tabs.appearance": {
+    "text": "Välimus",
+    "translationContext": "Title for the appearance settings tab"
+  },
   "settings.tabs.categories": {
     "text": "Kategooriad",
     "translationContext": "Title for the categories settings tab"
@@ -843,13 +1083,33 @@
     "text": "Eksperimentaalne",
     "translationContext": "Title for the experimental settings tab"
   },
+  "settings.tabs.filters": {
+    "text": "Filtrid",
+    "translationContext": "Title for the filters settings tab"
+  },
   "settings.tabs.general": {
     "text": "Üldine",
     "translationContext": "Title for the general settings tab"
   },
+  "settings.tabs.language": {
+    "text": "Keel",
+    "translationContext": "Title for the language settings tab"
+  },
+  "settings.tabs.preferredSources": {
+    "text": "Kinnitatud allikad",
+    "translationContext": "Tab name for preferred/pinned sources settings"
+  },
+  "settings.tabs.readingLevel": {
+    "text": "Lugemistase",
+    "translationContext": "Tab name for per-category reading level settings"
+  },
   "settings.tabs.sections": {
     "text": "Sektsioonid",
     "translationContext": "Title for the sections settings tab"
+  },
+  "settings.tabs.stories": {
+    "text": "Lood",
+    "translationContext": "Title for the stories settings tab"
   },
   "settings.tabs.syncPrivacy": {
     "text": "Sünkroonimine",
@@ -907,9 +1167,17 @@
     "text": "Sulge",
     "translationContext": "Close button text"
   },
+  "common.no_results": {
+    "text": "Tulemusi ei leitud",
+    "translationContext": "Shown in search/select dropdowns when no matches are found"
+  },
   "common.reset": {
     "text": "Lähtesta",
     "translationContext": "Reset button text"
+  },
+  "common.search": {
+    "text": "Otsi",
+    "translationContext": "Generic search input placeholder"
   },
   "about.approach.description1": {
     "text": "Maailm ei ela kajakambritesse suletuna. Tegelikkus sünnib erinevate vaatenurkade ja perspektiivide kokkupõrkest - nii eraldame signaali mürast.",
@@ -986,6 +1254,42 @@
   "about.why.title": {
     "text": "Miks Kagi News? Sest uudised on katki.",
     "translationContext": "Title of the Why Kagi News section"
+  },
+  "app_navigation.assistant": {
+    "text": "Assistent",
+    "translationContext": "Label for Kagi Assistant in the app navigation menu"
+  },
+  "app_navigation.fastgpt": {
+    "text": "FastGPT",
+    "translationContext": "Label for Kagi FastGPT in the app navigation menu, should not be translated"
+  },
+  "app_navigation.news": {
+    "text": "Uudised",
+    "translationContext": "Label for Kagi News in the app navigation menu"
+  },
+  "app_navigation.open_navigation": {
+    "text": "Ava rakenduste navigeerimine",
+    "translationContext": "Accessibility label for opening the app navigation menu"
+  },
+  "app_navigation.search": {
+    "text": "Otsing",
+    "translationContext": "Label for Kagi Search in the app navigation menu"
+  },
+  "app_navigation.small_web": {
+    "text": "Väike veeb",
+    "translationContext": "Label for Kagi Small Web in the app navigation menu"
+  },
+  "app_navigation.tooltip": {
+    "text": "Kagi rakendused",
+    "translationContext": "Tooltip for the app navigation button"
+  },
+  "app_navigation.translate": {
+    "text": "Tõlgi",
+    "translationContext": "Label for Kagi Translate in the app navigation menu"
+  },
+  "app_navigation.universal_summarizer": {
+    "text": "Universaalne kokkuvõtja",
+    "translationContext": "Label for Kagi Universal Summarizer in the app navigation menu"
   },
   "app.beta": {
     "text": "BEETA",
@@ -1706,6 +2010,546 @@
   "contentFilter.storyHidden": {
     "text": "{{count}} lugu peidetud",
     "translationContext": "Message showing 1 story is hidden"
+  },
+  "contribute.addFeeds": {
+    "text": "Lisa vood",
+    "translationContext": "Button to add pasted feed URLs to the list"
+  },
+  "contribute.allDuplicates": {
+    "text": "Kõik {{count}} URL(-i) on juba selles kategoorias",
+    "translationContext": "Error when all pasted URLs are duplicates"
+  },
+  "contribute.allFeedsFailed": {
+    "text": "Kõikide voogude valideerimine ebaõnnestus. Palun kontrolli URL-e ja proovi uuesti või eemalda vigased vood ja lisa töötavad.",
+    "translationContext": "Error message when every feed fails validation"
+  },
+  "contribute.cannotSubmit": {
+    "text": "Ei saa esitada. Kõikide voogude valideerimine ebaõnnestus. Eemalda vigased vood ja lisa töötavad.",
+    "translationContext": "Error explaining why submission is blocked"
+  },
+  "contribute.categoryExists": {
+    "text": "See kategooria on juba olemas.",
+    "translationContext": "Warning when the entered category name already exists"
+  },
+  "contribute.categoryName": {
+    "text": "Kategooria nimi",
+    "translationContext": "Label for the new category name input field"
+  },
+  "contribute.categoryNamePlaceholder": {
+    "text": "nt Lennundus, Lõuna-Korea, Kliima...",
+    "translationContext": "Placeholder text for the category name input"
+  },
+  "contribute.checkingCount": {
+    "text": "{{count}} kontrollimisel...",
+    "translationContext": "Number of feeds currently being validated"
+  },
+  "contribute.coreCategory": {
+    "text": "Põhi",
+    "translationContext": "Badge label for core categories maintained by the Kagi team"
+  },
+  "contribute.coreCategoryNote": {
+    "text": "See on Kite'i põhikategooria. Sinu vood lisatakse olemasolevate kureeritud allikate kõrvale.",
+    "translationContext": "Info note shown when a core category is selected in the contribute dropdown"
+  },
+  "contribute.createPr": {
+    "text": "Loo Pull Request",
+    "translationContext": "Button text to submit and create a GitHub pull request"
+  },
+  "contribute.creatingPr": {
+    "text": "Loome PR-i...",
+    "translationContext": "Button text while the pull request is being created"
+  },
+  "contribute.duplicatesSkipped": {
+    "text": "{{count}} duplikaatvoog(u) jäeti vahele (juba selles kategoorias)",
+    "translationContext": "Warning showing how many duplicate feeds were skipped"
+  },
+  "contribute.errorCount": {
+    "text": "{{count}} viga(vigadega)",
+    "translationContext": "Number of feeds that failed validation"
+  },
+  "contribute.excludedNote": {
+    "text": "({{count}} vigast voogu jäetakse välja)",
+    "translationContext": "Note about errored feeds being excluded from submission"
+  },
+  "contribute.existingCategory": {
+    "text": "Olemasolev kategooria",
+    "translationContext": "Toggle button to add feeds to an existing category"
+  },
+  "contribute.failedPr": {
+    "text": "Pull requesti loomine ebaõnnestus",
+    "translationContext": "Fallback error message when PR creation fails"
+  },
+  "contribute.feedCount": {
+    "text": "{{count}} voogu",
+    "translationContext": "Number of feeds in a category, e.g. '42 feeds'"
+  },
+  "contribute.feedInputPlaceholder": {
+    "text": "Kleebi siia voogude URL-id (üks rea kohta või komadega eraldatult)",
+    "translationContext": "Placeholder for the feed URL textarea input"
+  },
+  "contribute.feedLanguage": {
+    "text": "Voo keel",
+    "translationContext": "Label for the feed language selector"
+  },
+  "contribute.feedLanguageTooltip": {
+    "text": "Määra see keeleks, milles enamik vooge on kirjutatud (enamus või suhteline enamus). See ei piira saadavust — kõik kategooriad tõlgitakse igasse meie toetatud keelde.",
+    "translationContext": "Tooltip explaining the feed language setting"
+  },
+  "contribute.feedsAdded": {
+    "text": "{{count}} voog(u) lisatud",
+    "translationContext": "Summary showing total number of feeds added"
+  },
+  "contribute.guidelineBalance": {
+    "text": "Pole vaja \"tasakaalu\"",
+    "translationContext": "Guideline title: sources don't need political balance"
+  },
+  "contribute.guidelineBalanceDesc": {
+    "text": "vasakpoolne allikas ei vaja parempoolset vastet. Riigimeedia, erapoolikud väljaanded, kõik sobib. Meie süsteem kinnitab fakte mitme allika põhjal.",
+    "translationContext": "Guideline description explaining why biased sources are acceptable"
+  },
+  "contribute.guidelineConspiracy": {
+    "text": "Ei mingit vandenõusisu",
+    "translationContext": "Guideline title: no conspiracy theories allowed"
+  },
+  "contribute.guidelineConspiracyDesc": {
+    "text": "ei mingeid väljamõeldud väiteid, sündmuste eitamist ega pettusesisu",
+    "translationContext": "Guideline description for the no conspiracy requirement"
+  },
+  "contribute.guidelineFeeds": {
+    "text": "25+ RSS-voogu (rohkem on parem)",
+    "translationContext": "Guideline title: minimum number of feeds required"
+  },
+  "contribute.guidelineFeedsDesc": {
+    "text": "mida rohkem kvaliteetseid vooge, seda parem on katvus",
+    "translationContext": "Guideline description explaining more feeds = better coverage"
+  },
+  "contribute.guidelineLanguage": {
+    "text": "Ära jaota kategooriaid keele järgi",
+    "translationContext": "Guideline title: keep one category per topic regardless of language"
+  },
+  "contribute.guidelineLanguageDesc": {
+    "text": "\"Šveits\" peaks olema üks kategooria, mitte \"Šveits (EN)\" ja \"Šveits (IT)\". Kõik kategooriad tõlgitakse igasse meie toetatud keelde.",
+    "translationContext": "Guideline description explaining not to split by language"
+  },
+  "contribute.guidelines": {
+    "text": "Juhised",
+    "translationContext": "Collapsible section header for contribution guidelines"
+  },
+  "contribute.heading": {
+    "text": "Panusta voogudega",
+    "translationContext": "Main heading on the contribute page"
+  },
+  "contribute.hideFeeds": {
+    "text": "Peida vood",
+    "translationContext": "Button to collapse the list of existing feeds"
+  },
+  "contribute.history.declineReason": {
+    "text": "Põhjus",
+    "translationContext": "Label before the decline reason text when a contribution PR was closed"
+  },
+  "contribute.history.existingCategory": {
+    "text": "Lisatud olemasolevale",
+    "translationContext": "Badge indicating feeds were added to an existing category"
+  },
+  "contribute.history.feedsAdded": {
+    "text": "{{count}} voog(u) lisatud",
+    "translationContext": "Shows how many feeds were added in a contribution"
+  },
+  "contribute.history.legend": {
+    "text": "Panused vaadatakse käsitsi üle. Pärast liitmist lähevad vood aktiivseks järgmise igapäevase partiiga.",
+    "translationContext": "Legend text below the contributions list explaining the process"
+  },
+  "contribute.history.newCategory": {
+    "text": "Uus kategooria",
+    "translationContext": "Badge indicating the contribution created a new category"
+  },
+  "contribute.history.pr": {
+    "text": "PR #{{number}}",
+    "translationContext": "Link text showing the GitHub pull request number"
+  },
+  "contribute.history.showLess": {
+    "text": "Näita vähem",
+    "translationContext": "Button to collapse the contributions list back to the preview"
+  },
+  "contribute.history.status.declined": {
+    "text": "Tagasi lükatud",
+    "translationContext": "Pipeline step label: PR was closed without merging"
+  },
+  "contribute.history.status.declined.tooltip": {
+    "text": "See pull request suleti ilma liitmata.",
+    "translationContext": "Tooltip for the Declined pipeline step"
+  },
+  "contribute.history.status.live": {
+    "text": "Aktiivne",
+    "translationContext": "Pipeline step label: feeds are active on Kagi News"
+  },
+  "contribute.history.status.live.tooltip": {
+    "text": "Sinu vood on Kagi Newsis aktiivsed. Kui kategooria ei näita lugusid, tähendab see, et artiklid ei klasterdunud — see on normaalne.",
+    "translationContext": "Tooltip for the Live pipeline step"
+  },
+  "contribute.history.status.merged": {
+    "text": "Liidetud",
+    "translationContext": "Pipeline step label: PR has been merged"
+  },
+  "contribute.history.status.merged.tooltip": {
+    "text": "Sinu pull request on liidetud. Muudatused jõustuvad järgmise Kagi Newsi partiiga.",
+    "translationContext": "Tooltip for the Merged pipeline step"
+  },
+  "contribute.history.status.submitted": {
+    "text": "Esitatud",
+    "translationContext": "Pipeline step label: PR has been created"
+  },
+  "contribute.history.status.submitted.tooltip": {
+    "text": "Sinu pull request on loodud ja ootab ülevaatamist.",
+    "translationContext": "Tooltip for the Submitted pipeline step"
+  },
+  "contribute.history.title": {
+    "text": "Minu panused",
+    "translationContext": "Heading for the section showing the user's past feed contributions"
+  },
+  "contribute.history.titleWithCount": {
+    "text": "Minu panused ({{count}})",
+    "translationContext": "Heading for contributions section showing total count, e.g. 'My Contributions (4)'"
+  },
+  "contribute.history.typeExisting": {
+    "text": "Olemasolev kategooria",
+    "translationContext": "Inline text in expanded contribution detail indicating feeds were added to an existing category"
+  },
+  "contribute.history.typeNew": {
+    "text": "Uus kategooria",
+    "translationContext": "Inline text in expanded contribution detail indicating this created a new category"
+  },
+  "contribute.history.viewAll": {
+    "text": "Vaata veel {{count}}",
+    "translationContext": "Button to expand and show remaining hidden contributions, e.g. 'See 3 more'"
+  },
+  "contribute.howItWorks": {
+    "text": "Kuidas see töötab",
+    "translationContext": "Small link in the contribute form header to re-show the onboarding"
+  },
+  "contribute.inThisCategory": {
+    "text": "selles kategoorias",
+    "translationContext": "Text after feed count, e.g. '42 feeds in this category'"
+  },
+  "contribute.languageInNameWarning": {
+    "text": "Ära lisa kategooria nimesse keelekoodi. Kasuta ainult põhinime (nt \"Šveits\" asemel \"Šveits (IT)\") ja määra allpool peamine voo keel. Kõik kategooriad tõlgitakse igasse meie toetatud keelde.",
+    "translationContext": "Warning shown when a language code like (IT) is detected in the category name"
+  },
+  "contribute.loadingCategories": {
+    "text": "Kategooriate laadimine...",
+    "translationContext": "Loading state while fetching category list"
+  },
+  "contribute.manual.addTo": {
+    "text": "Lisa faili {{fileName}}:",
+    "translationContext": "Label above the copyable code snippet (snippet mode)"
+  },
+  "contribute.manual.copied": {
+    "text": "Kopeeritud!",
+    "translationContext": "Confirmation after copying to clipboard"
+  },
+  "contribute.manual.copy": {
+    "text": "Kopeeri",
+    "translationContext": "Copy to clipboard button"
+  },
+  "contribute.manual.editOnGithub": {
+    "text": "Muuda faili {{fileName}} GitHubis",
+    "translationContext": "Button to open the file editor on GitHub"
+  },
+  "contribute.manual.fullFile": {
+    "text": "Kogu {{fileName}}:",
+    "translationContext": "Label above the copyable code block (full file mode)"
+  },
+  "contribute.manual.instructions": {
+    "text": "Loo GitHubis nende muudatustega pull request:",
+    "translationContext": "Header for manual PR creation instructions"
+  },
+  "contribute.manual.step1": {
+    "text": "Kopeeri allolev koodijupp",
+    "translationContext": "Step 1 of manual PR instructions (snippet mode for core_feeds.py)"
+  },
+  "contribute.manual.step1Full": {
+    "text": "Kopeeri allolev kogu faili sisu",
+    "translationContext": "Step 1 of manual PR instructions (full file mode for kite_feeds.json)"
+  },
+  "contribute.manual.step2Existing": {
+    "text": "Klõpsa nupul, et muuta faili {{fileName}} GitHubis. Leia jaotis \"{{category}}\" ja lisa voogude URL-id selle voogude loendisse",
+    "translationContext": "Step 2 for adding feeds to an existing category manually (snippet mode for core_feeds.py)"
+  },
+  "contribute.manual.step2Full": {
+    "text": "Klõpsa nupul, et muuta faili {{fileName}} GitHubis, vali kõik ja asenda kopeeritud sisuga",
+    "translationContext": "Step 2 for full file replacement mode (kite_feeds.json)"
+  },
+  "contribute.manual.step2New": {
+    "text": "Klõpsa nupul, et muuta faili {{fileName}} GitHubis. Lisa koodijupp tähestikulises järjekorras olemasolevate kategooriate hulka",
+    "translationContext": "Step 2 for adding a new category manually (snippet mode fallback)"
+  },
+  "contribute.manual.step3": {
+    "text": "Kinnita muudatus ja ava pull request. GitHub juhendab sind edasi",
+    "translationContext": "Step 3 of manual PR instructions"
+  },
+  "contribute.manual.submit": {
+    "text": "Hangi PR-i juhised",
+    "translationContext": "Button text for manual mode where user creates PR themselves"
+  },
+  "contribute.networkError": {
+    "text": "Võrguviga. Palun proovi uuesti.",
+    "translationContext": "Error message for network failures during submission"
+  },
+  "contribute.newCategory": {
+    "text": "Uus kategooria",
+    "translationContext": "Toggle button to create a new category"
+  },
+  "contribute.noValidUrls": {
+    "text": "Kehtivaid URL-e ei leitud. URL-id peavad algama http:// või https://",
+    "translationContext": "Error when pasted text contains no valid URLs"
+  },
+  "contribute.onboarding.community.description": {
+    "text": "Ükski Kagi töötaja ei otsusta, millised kategooriad on olemas või millised lood ilmuvad. Kõik see tuleb voogudest ja vood tulevad kogukonnalt.",
+    "translationContext": "Main explanation of community-driven categories"
+  },
+  "contribute.onboarding.community.networkLabelStories": {
+    "text": "lood",
+    "translationContext": "Label on the story cluster nodes in the feed flow animation"
+  },
+  "contribute.onboarding.community.networkLabelYou": {
+    "text": "+ sina",
+    "translationContext": "Label on the contributor node in the feed network animation"
+  },
+  "contribute.onboarding.community.networkNote": {
+    "text": "Vasakul olevad vood voolavad paremal olevatesse lugudesse. Rohkem vooge tähendab rohkem lugusid ja paremat katvust.",
+    "translationContext": "Caption under the feed-to-story flow animation"
+  },
+  "contribute.onboarding.community.noStories": {
+    "text": "Mõnikord ei tooda kategooria ühtegi lugu. See tähendab tavaliselt, et grupeerimiseks pole piisavalt kattuva katvusega vooge. Rohkem vooge tähendab rohkem kattuvust, mis tähendab rohkem lugusid.",
+    "translationContext": "Explaining why some categories don't generate stories"
+  },
+  "contribute.onboarding.community.title": {
+    "text": "Kõik on kogukonnapõhine",
+    "translationContext": "Section title for explaining community-driven nature of categories"
+  },
+  "contribute.onboarding.community.whyXnotY": {
+    "text": "Kui sa mõtled, miks on olemas kategooria X, aga mitte Y, siis sellepärast, et keegi, kes hoolis X-ist, võttis aega, et selle jaoks vooge lisada. Kui sinu jaoks oluline teema on puudu, võid sina olla see, kes sellega alustab.",
+    "translationContext": "Explaining why certain categories exist and others don't"
+  },
+  "contribute.onboarding.cta": {
+    "text": "Alusta voogude lisamist",
+    "translationContext": "CTA button on the onboarding page to proceed to the contribute form"
+  },
+  "contribute.onboarding.feedTypes.community.description": {
+    "text": "Kureeritud sinusuguste panustajate poolt failis kite_feeds.json. Katavad kõike alates piirkondlikest uudistest kuni nišiteemadeni. Siia läheb sinu panus.",
+    "translationContext": "Description of community feeds that contributors add to"
+  },
+  "contribute.onboarding.feedTypes.community.title": {
+    "text": "Kogukonna vood",
+    "translationContext": "Title for the community feeds card"
+  },
+  "contribute.onboarding.feedTypes.core.description": {
+    "text": "Katavad olulisi kategooriaid nagu Maailmauudised, Äri, Tehnoloogia, Teadus, Sport ja Kultuur. Need on GitHubis täielikult avatud lähtekoodiga, nii et ka sina saad neisse panustada.",
+    "translationContext": "Description of core feeds, emphasizing they are open source and open to contributions"
+  },
+  "contribute.onboarding.feedTypes.core.title": {
+    "text": "Põhivood",
+    "translationContext": "Title for the core feeds card"
+  },
+  "contribute.onboarding.feedTypes.title": {
+    "text": "Kagi Newsi toidavad kahte tüüpi vood",
+    "translationContext": "Section title for core vs community feeds comparison"
+  },
+  "contribute.onboarding.guidelines.anyLanguage": {
+    "text": "Iga keel on teretulnud. Kagi News tõlgib kõik automaatselt, nii et üks kategooria võib ja peaks segama keeli.",
+    "translationContext": "Guideline: feeds in any language are accepted"
+  },
+  "contribute.onboarding.guidelines.minimum": {
+    "text": "Uued kategooriad vajavad Kagi Newsis esile toomiseks vähemalt 25 voogu. See tagab piisava kattuvuse klasterdamise toimimiseks.",
+    "translationContext": "Guideline: minimum feed count for new categories"
+  },
+  "contribute.onboarding.guidelines.noLanguageSplit": {
+    "text": "Ära loo eraldi kategooriaid keele järgi. Kasuta \"Šveits\", mitte \"Šveits (DE)\" ja \"Šveits (FR)\".",
+    "translationContext": "Guideline: don't split categories by language"
+  },
+  "contribute.onboarding.guidelines.quality": {
+    "text": "Eelista väljakujunenud uudisteallikaid, blogisid või väljaandeid. Rohkem vooge on üldiselt parem — klasterdamine teeb ülejäänu.",
+    "translationContext": "Guideline: source quality preference"
+  },
+  "contribute.onboarding.guidelines.rssOnly": {
+    "text": "Ainult RSS- või Atom-vood. Kagi News ei kraabi veebisaite, vaid kasutab ainult avalikult kättesaadavaid vooandmeid.",
+    "translationContext": "Guideline: only RSS/Atom feeds are accepted"
+  },
+  "contribute.onboarding.guidelines.title": {
+    "text": "Voogude juhised",
+    "translationContext": "Section title for feed submission guidelines"
+  },
+  "contribute.onboarding.guidelines.topicSpecific": {
+    "text": "Vood peaksid katma konkreetselt kategooria teemat. Üldise ajalehe nagu The Guardian lisamine \"UK\" kategooriasse toodab peamiselt maailmauudiste klastreid, mitte Ühendkuningriigi-spetsiifilisi. Otsi teemafiltreeritud vooge või kasuta RSS-filtreerimisvahendeid laia voo kitsendamiseks.",
+    "translationContext": "Guideline: feeds should be topic-specific, not general outlets, with example"
+  },
+  "contribute.onboarding.guidelines.working": {
+    "text": "Vood peavad töötama ja sisaldama värsket (ideaalis igapäevast) sisu.",
+    "translationContext": "Guideline: feeds should be active"
+  },
+  "contribute.onboarding.pipeline.note": {
+    "text": "Kogu asi töötab autopiloodil. Keegi Kagis ei vali, millised lood ilmuvad või millised kategooriad luuakse.",
+    "translationContext": "Note below the pipeline emphasizing the automated nature"
+  },
+  "contribute.onboarding.pipeline.step1.description": {
+    "text": "Iga kategooria taga on RSS-voogude loend. Süsteem tõmbab neist kõigist uusi artikleid. Mõnes kategoorias on sadu vooge, teised alles alustavad.",
+    "translationContext": "Pipeline step 1 description"
+  },
+  "contribute.onboarding.pipeline.step1.title": {
+    "text": "Vooge kontrollitakse",
+    "translationContext": "Pipeline step 1 title"
+  },
+  "contribute.onboarding.pipeline.step2.description": {
+    "text": "Süsteem teeb kindlaks, millised artiklid räägivad samast asjast, ja grupeerib need kokku. Igast grupist saab \"lugu\". Kui artikkel ei sobi millegi muuga, jäetakse see vahele.",
+    "translationContext": "Pipeline step 2 description"
+  },
+  "contribute.onboarding.pipeline.step2.title": {
+    "text": "Seotud artiklid grupeeritakse",
+    "translationContext": "Pipeline step 2 title"
+  },
+  "contribute.onboarding.pipeline.step3.description": {
+    "text": "Tehisintellekt loeb kõik grupis olevad artiklid ja kirjutab ühe kokkuvõtte, tuues esile iga allika erinevad vaatenurgad.",
+    "translationContext": "Pipeline step 3 description"
+  },
+  "contribute.onboarding.pipeline.step3.title": {
+    "text": "Kirjutatakse kokkuvõte",
+    "translationContext": "Pipeline step 3 title"
+  },
+  "contribute.onboarding.pipeline.title": {
+    "text": "Kuidas lood sünnivad",
+    "translationContext": "Section title for the pipeline explanation"
+  },
+  "contribute.onboarding.skip": {
+    "text": "Jäta vahele",
+    "translationContext": "Link to skip the onboarding and go straight to the contribute form"
+  },
+  "contribute.onboarding.subtitle": {
+    "text": "Aita luua paremat uudiskogemust, lisades RSS-vooge kogukonna kureeritud kategooriatesse.",
+    "translationContext": "Subtitle on the contribute onboarding info page"
+  },
+  "contribute.onboarding.title": {
+    "text": "Panusta Kagi Newsi",
+    "translationContext": "Title on the contribute onboarding info page"
+  },
+  "contribute.onboarding.whatToDo.existing.description": {
+    "text": "Sirvi kategooriaid ja lisa RSS-vooge, mis sinu arvates puuduvad. Mitmekesisemad allikad tähendavad paremat katvust ja rohkem esile kerkivaid lugusid.",
+    "translationContext": "Description of adding feeds to existing categories"
+  },
+  "contribute.onboarding.whatToDo.existing.title": {
+    "text": "Lisa vooge olemasolevatesse kategooriatesse",
+    "translationContext": "Title for existing category contribution option"
+  },
+  "contribute.onboarding.whatToDo.new.description": {
+    "text": "Kohalikud uudised, piirkondlik katvus, nišiteemad. Uued kategooriad vajavad Kagi Newsis avaldamiseks vähemalt 25 voogu. See tagab piisava kattuvuse, et klasterdamine saaks toota tõelisi lugusid.",
+    "translationContext": "Description of proposing new categories"
+  },
+  "contribute.onboarding.whatToDo.new.title": {
+    "text": "Paku välja uus kategooria",
+    "translationContext": "Title for new category contribution option"
+  },
+  "contribute.onboarding.whatToDo.title": {
+    "text": "Mida saad panustada",
+    "translationContext": "Section title for contribution options"
+  },
+  "contribute.pageTitle": {
+    "text": "Panusta voogudega - Kagi News",
+    "translationContext": "Browser tab title for the contribute page"
+  },
+  "contribute.pendingFeedCount": {
+    "text": "{{count}} voogu pakutud",
+    "translationContext": "Number of feeds proposed in a pending pull request"
+  },
+  "contribute.pendingFeedsAdded": {
+    "text": "+{{count}} voogu ootel",
+    "translationContext": "Indicator showing additional feeds pending for an existing category"
+  },
+  "contribute.pendingPr": {
+    "text": "Ootel PR",
+    "translationContext": "Badge label for categories from unmerged pull requests"
+  },
+  "contribute.pendingPrLink": {
+    "text": "Vaata PR-i #{{number}}",
+    "translationContext": "Link text to view the related pending pull request"
+  },
+  "contribute.pendingPrNote": {
+    "text": "Selle kategooria pakkus välja teine panustaja ja see ootab ülevaatamist.",
+    "translationContext": "Info note shown when a pending PR category is selected"
+  },
+  "contribute.removeErrored": {
+    "text": "Eemalda {{count}} vigast",
+    "translationContext": "Button to remove all feeds that failed validation"
+  },
+  "contribute.removeFeed": {
+    "text": "Eemalda voog",
+    "translationContext": "Aria label for the button to remove a single feed"
+  },
+  "contribute.retry": {
+    "text": "Proovi uuesti",
+    "translationContext": "Button to retry loading categories after an error"
+  },
+  "contribute.reviewNote": {
+    "text": "Meie meeskond vaatab sinu esituse üle ja liidab selle, kui kõik on korras.",
+    "translationContext": "Note explaining what happens after submission"
+  },
+  "contribute.searchCategories": {
+    "text": "Otsi kategooriaid...",
+    "translationContext": "Placeholder for the category search dropdown"
+  },
+  "contribute.showFeeds": {
+    "text": "Näita vooge",
+    "translationContext": "Button to expand the list of existing feeds"
+  },
+  "contribute.step1": {
+    "text": "1. Vali kategooria",
+    "translationContext": "Step 1 heading in the contribute form"
+  },
+  "contribute.step2": {
+    "text": "2. Lisa vood",
+    "translationContext": "Step 2 heading in the contribute form"
+  },
+  "contribute.step3": {
+    "text": "3. Esita",
+    "translationContext": "Step 3 heading in the contribute form"
+  },
+  "contribute.submitAnother": {
+    "text": "Esita veel üks panus",
+    "translationContext": "Link to reset the form and submit another contribution"
+  },
+  "contribute.subtitle": {
+    "text": "Lisa RSS-vooge olemasolevatesse kategooriatesse või paku välja uusi",
+    "translationContext": "Subtitle below the heading on the contribute page"
+  },
+  "contribute.successMessage": {
+    "text": "Täname panuse eest! Pull request #{{prNumber}} on loodud.",
+    "translationContext": "Success message after PR is created, with PR number"
+  },
+  "contribute.summaryExisting": {
+    "text": "Lisan {{count}} voog(u) kategooriasse {{category}}",
+    "translationContext": "Summary text before adding feeds to an existing category"
+  },
+  "contribute.summaryNew": {
+    "text": "Loon uue kategooria {{category}} {{count}} voo(gude)ga",
+    "translationContext": "Summary text before submitting a new category"
+  },
+  "contribute.switchToIt": {
+    "text": "Vaheta sellele?",
+    "translationContext": "Link to switch to an existing category instead of creating new"
+  },
+  "contribute.unverifiedCount": {
+    "text": "{{count}} kontrollimata",
+    "translationContext": "Number of feeds with unknown validation status"
+  },
+  "contribute.validCount": {
+    "text": "{{count}} kehtiv(at)",
+    "translationContext": "Number of feeds that passed validation"
+  },
+  "contribute.viewPr": {
+    "text": "Vaata Pull Requesti",
+    "translationContext": "Link text to view the created pull request on GitHub"
+  },
+  "contribute.waitingValidation": {
+    "text": "Ootan {{count}} voo valideerimise lõppemist...",
+    "translationContext": "Note shown while feeds are still being validated"
   },
   "crypto.grid.title": {
     "text": "Krüptovaluutade hinnad",
@@ -2775,6 +3619,10 @@
     "text": "Allika teave",
     "translationContext": "Title for source information section"
   },
+  "sources.addPreferred": {
+    "text": "Kinnita allikate algusesse",
+    "translationContext": "Tooltip for pin button to add source to preferred list"
+  },
   "sources.article": {
     "text": "{{count}} artikkel",
     "translationContext": "Shows singular article count from a source, {{count}} will be replaced with a number"
@@ -2790,6 +3638,10 @@
   "sources.paywallTooltip": {
     "text": "See allikas võib nõuda tellimust täisartiklite lugemiseks",
     "translationContext": "Tooltip explaining that a news source requires a paid subscription"
+  },
+  "sources.removePreferred": {
+    "text": "Eemalda kinnitus",
+    "translationContext": "Tooltip for pin button to remove source from preferred list"
   },
   "sources.showArticlesFrom": {
     "text": "Näita artikleid allikast {source}",
@@ -2815,6 +3667,38 @@
     "text": "Nädal {{week}}, päev {{day}}",
     "translationContext": "Shows the current week and day of the year, {week} and {day} will be replaced with numbers"
   },
+  "stories.clusteringModal.clusteringDescription": {
+    "text": "Kui erinevate voogude artiklid käsitlevad sama teemat, grupeeritakse need looks. Mida rohkem vooge midagi kajastab, seda tugevam on signaal.",
+    "translationContext": "Explains how story clustering works"
+  },
+  "stories.clusteringModal.communityFeedsDescription": {
+    "text": "Selle kategooria RSS-vood on kokku pannud kogukonna liikmed, mitte Kagi meeskond.",
+    "translationContext": "Explains that community categories have user-curated feeds"
+  },
+  "stories.clusteringModal.fullyAutomaticDescription": {
+    "text": "Keegi ei vali, mis sisu kuvatakse. Kogu protsess on automaatne, alates voogude hankimisest kuni klasterdamise ja kokkuvõtete kirjutamiseni.",
+    "translationContext": "Explains that the process is fully automatic with no human curation"
+  },
+  "stories.clusteringModal.helpImprove": {
+    "text": "Aita seda kategooriat paremaks muuta",
+    "translationContext": "Call-to-action divider text for contributing feeds"
+  },
+  "stories.clusteringModal.helpImproveDescription": {
+    "text": "Rohkemate voogude lisamine parandab klasterdamist. Saad GitHubis uusi soovitada.",
+    "translationContext": "Encourages users to contribute feeds"
+  },
+  "stories.clusteringModal.noClusterDescription": {
+    "text": "Kui voogude kajastuses pole piisavalt kattuvust, siis klastreid ei moodustu ja lugusid ei kuvata. See on normaalne ja juhtub sagedamini niši- või piirkondlike kategooriate puhul.",
+    "translationContext": "Explains why community categories sometimes have no stories"
+  },
+  "stories.clusteringModal.suggestFeeds": {
+    "text": "Soovita vooge GitHubis",
+    "translationContext": "Button label for the GitHub link to suggest feeds"
+  },
+  "stories.clusteringModal.title": {
+    "text": "Kuidas lugusid luuakse",
+    "translationContext": "Title for the modal explaining the story clustering process"
+  },
   "stories.fewStories": {
     "text": "Täna polnud muid olulisi uudiseid, tule homme tagasi!",
     "translationContext": "Message shown when there are only 1-3 stories in a category"
@@ -2822,6 +3706,38 @@
   "stories.noStories": {
     "text": "Selles kategoorias pole täna olulisi lugusid.",
     "translationContext": "Message shown when no stories are found for a category"
+  },
+  "stories.noStoriesCommunity": {
+    "text": "Selles kogukonna kategoorias täna lugusid pole.",
+    "translationContext": "Message shown when a community (non-core) category has no stories"
+  },
+  "stories.noStoriesCommunityDescription": {
+    "text": "Voogude vahel pole piisavalt kattuvaid uudiseid, et lugusid moodustada. Kogukonna kategooriate puhul juhtub seda vahel.",
+    "translationContext": "Secondary description explaining why community categories sometimes have no stories"
+  },
+  "stories.noStoriesCommunityLearnMore": {
+    "text": "Uuri, kuidas see töötab",
+    "translationContext": "Button label to open modal explaining the clustering process"
+  },
+  "stories.noStoriesCore": {
+    "text": "Selle kategooria lood peaksid varsti saadaval olema. Vaata veidi hiljem uuesti.",
+    "translationContext": "Message shown when a core (Kagi-maintained) category temporarily has no stories, usually due to a pipeline issue"
+  },
+  "stories.noStoriesCoreUpdates": {
+    "text": "Ajutiselt pole saadaval",
+    "translationContext": "Small label shown with a clock icon when a core category has no stories, indicating the update schedule"
+  },
+  "story.assistant.placeholder": {
+    "text": "Küsi selle loo kohta...",
+    "translationContext": "Placeholder text in the assistant question input field"
+  },
+  "story.assistant.submit": {
+    "text": "Küsi",
+    "translationContext": "Submit button label for assistant question"
+  },
+  "story.assistant.tooltip": {
+    "text": "Küsi assistendilt",
+    "translationContext": "Tooltip for button that opens Kagi Assistant with the current story topic"
   },
   "story.flashcards.download": {
     "text": "Laadi alla",
@@ -2859,6 +3775,10 @@
     "text": "Välju sõnade valikust",
     "translationContext": "Tooltip for flashcard button when in selection mode"
   },
+  "story.simplify.autoSimplifying": {
+    "text": "Lihtsustan tasemele {level}...",
+    "translationContext": "Status message while auto-simplifying. {level} is the reading level name."
+  },
   "story.simplify.loading": {
     "text": "Lihtsustamine...",
     "translationContext": "Status message while simplifying text"
@@ -2895,6 +3815,66 @@
     "text": "Peata esitus",
     "translationContext": "Tooltip for TTS button when playing"
   },
+  "sync.conflict.multiple": {
+    "text": "{{{count}}} seadet värskendati teisest seadmest",
+    "translationContext": "Toast notification when multiple settings were overridden during sync. {count} is the number of settings."
+  },
+  "sync.conflict.single": {
+    "text": "Üks seade värskendati teisest seadmest",
+    "translationContext": "Toast notification when one setting was overridden during sync"
+  },
+  "syncSetup.description": {
+    "text": "Leidsime sinu kontolt teisest seadmest pärinevad seaded. Kuidas soovid jätkata?",
+    "translationContext": "Description shown in sync setup wizard when cloud settings already exist"
+  },
+  "syncSetup.done": {
+    "text": "Seaded sünkrooniti edukalt!",
+    "translationContext": "Success message after sync setup completes"
+  },
+  "syncSetup.merge.description": {
+    "text": "Säilita oma seaded ja lisa puuduvad pilveseaded",
+    "translationContext": "Description for the merge option in sync setup"
+  },
+  "syncSetup.merge.title": {
+    "text": "Ühenda",
+    "translationContext": "Option to merge local and cloud settings together"
+  },
+  "syncSetup.pullRemote.description": {
+    "text": "Asenda oma praegused seaded pilveseadetega",
+    "translationContext": "Description for the pull remote option in sync setup"
+  },
+  "syncSetup.pullRemote.title": {
+    "text": "Kasuta pilveseadeid",
+    "translationContext": "Option to overwrite local settings with cloud settings"
+  },
+  "syncSetup.pushLocal.description": {
+    "text": "Asenda pilveseaded oma praeguste seadetega",
+    "translationContext": "Description for the push local option in sync setup"
+  },
+  "syncSetup.pushLocal.title": {
+    "text": "Kasuta seda seadet",
+    "translationContext": "Option to overwrite cloud settings with current device settings"
+  },
+  "syncSetup.syncing.merging": {
+    "text": "Seadete ühendamine...",
+    "translationContext": "Loading text while merging local and cloud settings"
+  },
+  "syncSetup.syncing.pulling": {
+    "text": "Pilveseadete allalaadimine...",
+    "translationContext": "Loading text while pulling cloud settings to device"
+  },
+  "syncSetup.syncing.pushing": {
+    "text": "Sinu seadete üleslaadimine...",
+    "translationContext": "Loading text while pushing local settings to cloud"
+  },
+  "syncSetup.title": {
+    "text": "Seadista sünkroonimine",
+    "translationContext": "Title for the sync setup wizard modal shown when enabling sync with existing cloud settings"
+  },
+  "syncSetup.tryAgain": {
+    "text": "Proovi uuesti",
+    "translationContext": "Link to retry sync setup after an error"
+  },
   "time.nextUpdate.in": {
     "text": "Järgmine uuendus {{time}} pärast",
     "translationContext": "Shown when the next update time is known, {time} will be replaced with countdown (e.g., '2h 30m')"
@@ -2902,6 +3882,34 @@
   "time.nextUpdate.soon": {
     "text": "Järgmine uuendus varsti",
     "translationContext": "Shown when the next update is expected soon (after noon UTC but no update yet today)"
+  },
+  "time.relative.days": {
+    "text": "{{count}} päeva tagasi",
+    "translationContext": "Relative time: multiple days ago, {count} is the number"
+  },
+  "time.relative.hours": {
+    "text": "{{count}} tundi tagasi",
+    "translationContext": "Relative time: multiple hours ago, {count} is the number"
+  },
+  "time.relative.justNow": {
+    "text": "just praegu",
+    "translationContext": "Relative time: less than a minute ago"
+  },
+  "time.relative.minutes": {
+    "text": "{{count}} minutit tagasi",
+    "translationContext": "Relative time: multiple minutes ago, {count} is the number"
+  },
+  "time.relative.oneDay": {
+    "text": "1 päev tagasi",
+    "translationContext": "Relative time: exactly 1 day ago"
+  },
+  "time.relative.oneHour": {
+    "text": "1 tund tagasi",
+    "translationContext": "Relative time: exactly 1 hour ago"
+  },
+  "time.relative.oneMinute": {
+    "text": "1 minut tagasi",
+    "translationContext": "Relative time: exactly 1 minute ago"
   },
   "time.updated.days": {
     "text": "Uuendatud {{count}} päeva tagasi",
@@ -2934,6 +3942,10 @@
   "time.updated.seconds": {
     "text": "Uuendatud {{count}} sekundit tagasi",
     "translationContext": "Shown when content was updated seconds ago, {count} will be replaced with the number of seconds"
+  },
+  "timeTravel.description": {
+    "text": "Juurdepääs ajaloolistele päevakokkuvõtetele.\nAinult Kagi tellijatele.\nBeetaversiooni ajal kõigile kasutajatele saadaval.",
+    "translationContext": "Description of Time Travel - line 1 is subtitle, line 2 is info, line 3 is italicized beta note"
   },
   "timeTravel.latest": {
     "text": "Viimane",
@@ -2974,6 +3986,18 @@
   "timeTravel.today": {
     "text": "Täna",
     "translationContext": "Button to navigate to today"
+  },
+  "timeTravel.urlBanner.dismiss": {
+    "text": "Sain aru",
+    "translationContext": "Button to dismiss the time travel info banner"
+  },
+  "timeTravel.urlBanner.viewing": {
+    "text": "See link viitab uudistele kuupäevast {{{date}}}. Saate igal ajal naasta tänaste uudiste juurde, kasutades ülal kuupäeva kõrval olevat ✕-märki.",
+    "translationContext": "One-time info banner shown when user arrives via a bookmarked time travel URL (no referrer). Points user to the header date pill with X button."
+  },
+  "timeTravel.urlBanner.viewingShared": {
+    "text": "Keegi jagas teiega linki uudistele kuupäevast {{{date}}}. Saate igal ajal naasta tänaste uudiste juurde, kasutades ülal kuupäeva kõrval olevat ✕-märki.",
+    "translationContext": "One-time info banner shown when user arrives via a shared time travel URL (has referrer). Points user to the header date pill with X button."
   },
   "turbulence.title": {
     "text": "Maailma turbulentsimõõdik",
@@ -3131,6 +4155,14 @@
     "text": "Kaose indeks",
     "translationContext": "Label for the chaos index chart"
   },
+  "worldTension.consistencyText": {
+    "text": "Ärevust tekitavate pealkirjade, hukatuse-kerimise ja ööpäevaringsete uudistetsüklite keskel võib tunduda, et maailm on pidevalt leekides. Selle indeksi eesmärk on pakkuda tasakaalustatud perspektiivi. Tihtipeale pole asjad nii halvad, kui tunduvad.",
+    "translationContext": "Explanation of purpose: cutting through media noise"
+  },
+  "worldTension.consistencyTitle": {
+    "text": "Miks see olemas on",
+    "translationContext": "Section header explaining purpose of the index"
+  },
   "worldTension.cool": {
     "text": "Jahe",
     "translationContext": "Temperature description for low world tension (0-20%)"
@@ -3159,6 +4191,26 @@
     "text": "Ekstreemne",
     "translationContext": "Status label for 81-100% range (deprecated, use burning)"
   },
+  "worldTension.factor.novelty": {
+    "text": "Uudsus — Uutele kriisidele või eskalatsioonidele antakse suurem kaal kui käimasolevatele olukordadele, millega on juba arvestatud.",
+    "translationContext": "Explanation of novelty factor"
+  },
+  "worldTension.factor.reversibility": {
+    "text": "Pööratavus — Pöördumatutele tegevustele (invasioonid, inimkaotused) antakse suurem kaal kui pööratavatele (sanktsioonid, retoorika).",
+    "translationContext": "Explanation of reversibility factor"
+  },
+  "worldTension.factor.scope": {
+    "text": "Mõju ulatus — Globaalseid süsteemseid riske, majanduslikku nakkust ja liitlassuhete käivitajaid kaalutakse võrreldes lokaliseeritud sündmustega.",
+    "translationContext": "Explanation of scope factor"
+  },
+  "worldTension.factor.worstCase": {
+    "text": "Halvima stsenaariumi lähedus — Kui lähedal on sündmused katastroofilistele tagajärgedele, kusjuures tuuma- või massihävitusrelvadega seotud olukordadele antakse erakordselt suur kaal.",
+    "translationContext": "Explanation of worst case factor"
+  },
+  "worldTension.factorsTitle": {
+    "text": "Tehisintellekt arvestab nelja peamist tegurit:",
+    "translationContext": "Header for list of factors"
+  },
   "worldTension.high": {
     "text": "Kõrge",
     "translationContext": "Status label for 41-60% range (deprecated, use warm)"
@@ -3166,6 +4218,14 @@
   "worldTension.hot": {
     "text": "Kuum",
     "translationContext": "Temperature description for serious world tension (61-80%)"
+  },
+  "worldTension.howCalculated": {
+    "text": "Kuidas seda arvutatakse",
+    "translationContext": "Section header for methodology explanation"
+  },
+  "worldTension.methodologyIntro": {
+    "text": "Maailma pingeindeks luuakse tehisintellekti abil, mis analüüsib maailma uudiste pealkirju. Kindla valemi asemel kasutab see globaalse stabiilsuse hindamiseks arutluskäiku.",
+    "translationContext": "Introduction explaining AI-based methodology"
   },
   "worldTension.mild": {
     "text": "Leige",

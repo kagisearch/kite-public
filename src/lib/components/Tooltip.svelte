@@ -330,7 +330,7 @@ function handleMouseLeave() {
   <Portal target="body">
     <div
       bind:this={tooltipElement}
-      class="svelte-tooltip z-[9999999] max-w-xs overflow-hidden rounded-md bg-gray-900 dark:bg-gray-800 px-3 py-2 text-xs text-white shadow-lg"
+      class="svelte-tooltip z-tooltip max-w-xs overflow-hidden rounded-md bg-gray-900 dark:bg-gray-800 px-3 py-2 text-xs text-white shadow-lg"
       transition:fade={{ duration: 150 }}
       style="position: fixed; pointer-events: none;"
     >

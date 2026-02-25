@@ -54,15 +54,17 @@ function buildUrl(params?: Partial<NavigationParams>): string {
 			targetStoryIndex,
 			storiesLength: stories.length,
 			foundStory: story?.title,
-			clusterId: story?.cluster_number
+			clusterId: story?.cluster_number,
 		});
 	}
 
 	// In single page mode with no story on latest batch, don't include category in URL
-	// But for historical batches, always include category
+	// But for historical batches or sequential mode, always include category
 	const effectiveCategoryId = params?.categoryId !== undefined ? params.categoryId : categoryId;
 	const isSinglePageMode = categorySettings.singlePageMode !== 'disabled';
-	const shouldIncludeCategory = story !== null || !isSinglePageMode || !isLatestBatch;
+	const isSequentialMode = categorySettings.singlePageMode === 'sequential';
+	const shouldIncludeCategory =
+		story !== null || !isSinglePageMode || !isLatestBatch || isSequentialMode;
 
 	const navigationParams: NavigationParams = {
 		batchId: batchIdentifier,
@@ -88,6 +90,16 @@ function buildUrl(params?: Partial<NavigationParams>): string {
 	);
 }
 
+// Preserve overlay query params (e.g. ?view=chaos) that live outside the navigation model
+function preserveOverlayParams(newUrl: string): string {
+	const viewParam = new URL(window.location.href).searchParams.get('view');
+	if (viewParam) {
+		const separator = newUrl.includes('?') ? '&' : '?';
+		return `${newUrl}${separator}view=${viewParam}`;
+	}
+	return newUrl;
+}
+
 // Update URL without triggering navigation
 export function updateUrl(params?: Partial<NavigationParams>) {
 	if (!browser) return;
@@ -97,7 +109,7 @@ export function updateUrl(params?: Partial<NavigationParams>) {
 		isSharedView = params.isShared;
 	}
 
-	const newUrl = buildUrl(params);
+	const newUrl = preserveOverlayParams(buildUrl(params));
 	const currentUrl = UrlNavigationService.getFullUrl(page.url);
 
 	// Only update if URL actually changed
@@ -111,7 +123,7 @@ export function updateUrl(params?: Partial<NavigationParams>) {
 export function navigateTo(params: Partial<NavigationParams>) {
 	if (!browser) return;
 
-	const newUrl = buildUrl(params);
+	const newUrl = preserveOverlayParams(buildUrl(params));
 
 	// Only navigate if URL actually changed
 	if (newUrl !== lastProcessedUrl) {
@@ -144,8 +156,9 @@ $effect(() => {
 	const params = UrlNavigationService.parseUrl(page.url);
 
 	// Update shared view state from URL
-	const hasStory = (params.storyIndex !== null && params.storyIndex !== undefined) ||
-	                 (params.clusterId !== null && params.clusterId !== undefined);
+	const hasStory =
+		(params.storyIndex !== null && params.storyIndex !== undefined) ||
+		(params.clusterId !== null && params.clusterId !== undefined);
 
 	if (params.isShared && hasStory) {
 		isSharedView = true;
@@ -212,10 +225,11 @@ $effect(() => {
 		// This prevents overwriting article URLs with category URLs when loading from a direct link
 		if (storiesLoaded && !storyChanged && !batchChanged && !categoryChanged) {
 			const parsedUrl = UrlNavigationService.parseUrl(page.url);
-			const hasStoryInUrl = parsedUrl.storyIndex !== null || parsedUrl.clusterId !== null;
+			// Use != null (loose equality) to catch both null and undefined
+			const hasStoryInUrl = parsedUrl.storyIndex != null || parsedUrl.clusterId != null;
 
-			if (hasStoryInUrl) {
-				// Don't update URL - keep the original story URL
+			if (hasStoryInUrl || isSharedView) {
+				// Don't update URL - keep the original story URL or shared view state
 				return;
 			}
 		}

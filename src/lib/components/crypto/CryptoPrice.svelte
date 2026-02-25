@@ -1,6 +1,6 @@
 <script lang="ts">
+import { IconRefresh, IconTrendingDown, IconTrendingUp } from '@tabler/icons-svelte';
 import { onMount } from 'svelte';
-import { IconTrendingUp, IconTrendingDown, IconRefresh } from '@tabler/icons-svelte';
 import { s } from '$lib/client/localization.svelte';
 
 interface Props {
@@ -55,7 +55,7 @@ function formatPrice(price: number): string {
 		style: 'currency',
 		currency: 'USD',
 		minimumFractionDigits: decimals,
-		maximumFractionDigits: decimals
+		maximumFractionDigits: decimals,
 	}).format(price);
 }
 
@@ -92,9 +92,21 @@ function generateSparklinePath(prices: number[]): string {
 
 // Crypto color schemes
 const cryptoColors: Record<string, { bg: string; border: string; icon: string }> = {
-	bitcoin: { bg: 'from-orange-50 to-yellow-50 dark:from-gray-800 dark:to-gray-900', border: 'border-orange-200 dark:border-gray-700', icon: 'bg-orange-500' },
-	ethereum: { bg: 'from-purple-50 to-blue-50 dark:from-gray-800 dark:to-gray-900', border: 'border-purple-200 dark:border-gray-700', icon: 'bg-purple-500' },
-	default: { bg: 'from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900', border: 'border-gray-200 dark:border-gray-700', icon: 'bg-blue-500' }
+	bitcoin: {
+		bg: 'from-orange-50 to-yellow-50 dark:from-gray-800 dark:to-gray-900',
+		border: 'border-orange-200 dark:border-gray-700',
+		icon: 'bg-orange-500',
+	},
+	ethereum: {
+		bg: 'from-purple-50 to-blue-50 dark:from-gray-800 dark:to-gray-900',
+		border: 'border-purple-200 dark:border-gray-700',
+		icon: 'bg-purple-500',
+	},
+	default: {
+		bg: 'from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900',
+		border: 'border-gray-200 dark:border-gray-700',
+		icon: 'bg-blue-500',
+	},
 };
 
 // Symbol mapping for cryptocurrency-icons library
@@ -106,12 +118,12 @@ const symbolMap: Record<string, string> = {
 	ripple: 'xrp',
 	cardano: 'ada',
 	'avalanche-2': 'avax',
-	polkadot: 'dot'
+	polkadot: 'dot',
 };
 
 const colors = $derived(cryptoColors[cryptoId] || cryptoColors.default);
 const sparklinePath = $derived.by(() => {
-	if (data && data.sparkline) {
+	if (data?.sparkline) {
 		return generateSparklinePath(data.sparkline);
 	}
 	return '';

@@ -317,7 +317,7 @@ class ContentFilterStore {
 
 			this.saveToStorage();
 			return { success: true, warningKey };
-		} catch (_error) {
+		} catch {
 			return {
 				success: false,
 				errorKey: 'settings.contentFilter.importError.parseFailed',

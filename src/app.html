@@ -9,19 +9,7 @@
     <meta name="theme-color" content="#ffffff" id="theme-color" />
     <title>Kagi News</title>
     <link rel="manifest" href="%sveltekit.assets%/manifest.json" />
-    <link rel="icon" type="image/x-icon" href="%sveltekit.assets%/favicon.ico" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="%sveltekit.assets%/svg/kagi_news_icon.svg"
-      media="(prefers-color-scheme: light)"
-    />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="%sveltekit.assets%/svg/kagi_news_icon_dark.svg"
-      media="(prefers-color-scheme: dark)"
-    />
+    <link rel="icon" type="image/svg+xml" href="%sveltekit.assets%/favicon.svg" />
     <link
       rel="apple-touch-icon"
       href="%sveltekit.assets%/apple-touch-icon.png"
@@ -29,7 +17,7 @@
 
     <!-- Prevent flash of wrong theme - minimal script that only handles dark mode detection -->
     <script>
-      (function () {
+      (() => {
         try {
           // Check if we're in a browser environment
           if (typeof window === "undefined") return;
@@ -77,7 +65,7 @@
   </head>
   <body
     data-sveltekit-preload-data="hover"
-    class="dark:bg-dark-bg dark:text-dark-text min-h-screen bg-white text-black"
+    class="dark:bg-dark-bg dark:text-dark-text min-h-dvh bg-white text-black"
   >
     <div style="display: contents">%sveltekit.body%</div>
   </body>

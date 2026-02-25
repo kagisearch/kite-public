@@ -23,7 +23,7 @@ let {
 	loopFrameOffset = 0,
 }: Props = $props();
 
-let container: HTMLDivElement;
+let container: HTMLDivElement = undefined!; // Assigned via bind:this
 let animation: AnimationItem | null = null;
 
 onMount(() => {

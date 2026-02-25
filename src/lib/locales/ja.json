@@ -27,6 +27,14 @@
     "text": "ニュース読者のために",
     "translationContext": "Footer text suffix for copyright"
   },
+  "settings.about.keyboardDescription": {
+    "text": "vimスタイルのキーボードショートカットを使用して、ストーリーやカテゴリを操作できます",
+    "translationContext": "Description of keyboard navigation feature"
+  },
+  "settings.about.keyboardShortcuts": {
+    "text": "キーボードショートカット",
+    "translationContext": "Section header for keyboard shortcuts in settings"
+  },
   "settings.about.learnMore": {
     "text": "詳細はこちら",
     "translationContext": "Link text to open full about page"
@@ -47,6 +55,10 @@
     "text": "APIドキュメントを見る",
     "translationContext": "Button text to view API documentation"
   },
+  "settings.about.viewShortcuts": {
+    "text": "キーボードショートカットを表示",
+    "translationContext": "Button text to open keyboard shortcuts help overlay"
+  },
   "settings.aboutKite.button": {
     "text": "Kagi Newsについて",
     "translationContext": "Text for the About Kagi News button"
@@ -62,6 +74,78 @@
   "settings.categories.contribute": {
     "text": "+ カテゴリーを追加",
     "translationContext": "Link text for contributing categories"
+  },
+  "settings.categories.contribute.intro": {
+    "text": "新しいカテゴリを提案して、Kagiニュースの対象範囲を広げましょう。コミュニティからの貢献が、Kagiニュースを多様で包括的なものにします。",
+    "translationContext": "Introduction text in the contribute category modal"
+  },
+  "settings.categories.contribute.learnMore": {
+    "text": "ソース採用の基本方針については、",
+    "translationContext": "Start of sentence linking to source inclusion rationale"
+  },
+  "settings.categories.contribute.learnMoreLink": {
+    "text": "こちらのディスカッション",
+    "translationContext": "Link text for the source inclusion rationale discussion"
+  },
+  "settings.categories.contribute.learnMoreSuffix": {
+    "text": "をご覧ください。",
+    "translationContext": "End of sentence after the discussion link"
+  },
+  "settings.categories.contribute.openIssue": {
+    "text": "GitHubでIssueを開く",
+    "translationContext": "Link text to open a GitHub issue for category suggestions"
+  },
+  "settings.categories.contribute.or": {
+    "text": "または",
+    "translationContext": "Divider text between options in contribute modal"
+  },
+  "settings.categories.contribute.prHint": {
+    "text": "GitHubに詳しい開発者の方へ",
+    "translationContext": "Hint text below the pull request link"
+  },
+  "settings.categories.contribute.prLink": {
+    "text": "プルリクエストを直接送信",
+    "translationContext": "Link text for developers to submit a PR"
+  },
+  "settings.categories.contribute.req1Desc": {
+    "text": "— 高品質なフィードが多ければ多いほど、カバレッジは向上します",
+    "translationContext": "Description explaining more feeds = better"
+  },
+  "settings.categories.contribute.req1Title": {
+    "text": "25以上のRSSフィード（多いほど良い）",
+    "translationContext": "Title for the feeds requirement emphasizing more is better"
+  },
+  "settings.categories.contribute.req2Desc": {
+    "text": "— 左翼的なソースに対して右翼的なソースでバランスを取る必要はありません。国営メディアや党派的な報道機関も問題ありません。私たちのシステムは複数のソースから事実を裏付けるため、外れ値が出力を歪めることはありません。これが、ソースが多いほど良い理由でもあります",
+    "translationContext": "Detailed explanation of why biased sources are OK and why more sources help"
+  },
+  "settings.categories.contribute.req2Title": {
+    "text": "「バランス」は不要",
+    "translationContext": "Title clarifying sources don't need to be balanced"
+  },
+  "settings.categories.contribute.req3Desc": {
+    "text": "— 捏造された主張、出来事の否定、デマのコンテンツは含みません",
+    "translationContext": "Description for the no conspiracy content requirement"
+  },
+  "settings.categories.contribute.req3Title": {
+    "text": "陰謀論コンテンツは不可",
+    "translationContext": "Title for the no conspiracy content requirement"
+  },
+  "settings.categories.contribute.requirements": {
+    "text": "ガイドライン：",
+    "translationContext": "Header for the guidelines section in contribute modal"
+  },
+  "settings.categories.contribute.suggestButton": {
+    "text": "カテゴリを提案",
+    "translationContext": "Primary button text to open GitHub issue form"
+  },
+  "settings.categories.contribute.suggestHint": {
+    "text": "GitHubのIssueフォームが開きます — コーディングは不要です",
+    "translationContext": "Hint text below the suggest button"
+  },
+  "settings.categories.contribute.title": {
+    "text": "カテゴリを投稿",
+    "translationContext": "Title of the contribute category modal"
   },
   "settings.categories.coreTooltip": {
     "text": "Kagiチームが管理。高品質で多様な視点。",
@@ -87,6 +171,10 @@
     "text": "種類でフィルタ",
     "translationContext": "Placeholder text for category type filter dropdown"
   },
+  "settings.categories.filterPlaceholder": {
+    "text": "すべて",
+    "translationContext": "Placeholder text for the category type filter dropdown"
+  },
   "settings.categories.instructions": {
     "text": "ドラッグして順番を変更、またはクリックして有効/無効を切り替え。セクション間でドラッグするとカテゴリを移動できます。",
     "translationContext": "Instructions for managing categories"
@@ -106,6 +194,18 @@
   "settings.categories.noFiltered": {
     "text": "この種類のカテゴリは無効になっていません",
     "translationContext": "Message shown when no categories of the selected filter type are in the disabled section"
+  },
+  "settings.categories.noLetterResults": {
+    "text": "この文字で始まるカテゴリはありません",
+    "translationContext": "Message shown when no categories match the selected letter filter"
+  },
+  "settings.categories.noSearchResults": {
+    "text": "検索に一致するカテゴリはありません",
+    "translationContext": "Message shown when no categories match the search query"
+  },
+  "settings.categories.searchPlaceholder": {
+    "text": "カテゴリを検索...",
+    "translationContext": "Placeholder text for the category search input"
   },
   "settings.categories.singlePageMode.description": {
     "text": "記事の表示方法を選択します。タブ表示（デフォルト）、またはすべての記事を1つのページに表示します。",
@@ -615,6 +715,118 @@
     "text": "OpenStreetMap",
     "translationContext": "Option to use OpenStreetMap"
   },
+  "settings.preferredSources.clearAll": {
+    "text": "ピン留めしたソースをすべてクリア",
+    "translationContext": "Button text to clear all pinned sources"
+  },
+  "settings.preferredSources.cleared": {
+    "text": "クリアしました！",
+    "translationContext": "Confirmation message after clearing pinned sources"
+  },
+  "settings.preferredSources.description": {
+    "text": "ピン留めしたソースは、各記事のソースリストの最初に表示されます。ソースのピンアイコンをクリックして、ここに追加してください。",
+    "translationContext": "Description explaining the pinned sources feature"
+  },
+  "settings.preferredSources.empty": {
+    "text": "まだピン留めされたソースはありません。記事を開き、ソースをクリックして、ピンアイコンでここに追加してください。",
+    "translationContext": "Message shown when no preferred sources have been selected"
+  },
+  "settings.preferredSources.remove": {
+    "text": "削除",
+    "translationContext": "Aria label for button to remove a source from pinned list"
+  },
+  "settings.preferredSources.title": {
+    "text": "ピン留めしたソース",
+    "translationContext": "Title for preferred sources section in settings"
+  },
+  "settings.readingLevel.categories.description": {
+    "text": "特定のカテゴリについて、デフォルトのレベルを上書き設定します。「グローバル」に設定されたカテゴリは、上記のデフォルト設定が適用されます。",
+    "translationContext": "Description explaining how category-specific overrides work"
+  },
+  "settings.readingLevel.categories.label": {
+    "text": "カテゴリごとの設定",
+    "translationContext": "Label for the category-specific reading level overrides section"
+  },
+  "settings.readingLevel.clearOverrides": {
+    "text": "上書きをクリア",
+    "translationContext": "Button to clear all category-specific reading level overrides"
+  },
+  "settings.readingLevel.fromGlobal": {
+    "text": "グローバル",
+    "translationContext": "Indicator that a category is using the global reading level setting"
+  },
+  "settings.readingLevel.global.description": {
+    "text": "以下でカテゴリごとに特定のレベルを設定しない限り、この設定がすべてのカテゴリに適用されます。",
+    "translationContext": "Description for the global reading level setting"
+  },
+  "settings.readingLevel.global.label": {
+    "text": "デフォルトの読解レベル",
+    "translationContext": "Label for the global reading level setting"
+  },
+  "settings.readingLevel.info.howItWorks": {
+    "text": "記事を開くと、選択した読解レベルに合わせてコンテンツが自動的に平易化されます。どの記事でも、後から手動でレベルを変更することも可能です。",
+    "translationContext": "Explanation of how automatic reading level simplification works"
+  },
+  "settings.readingLevel.info.simpleDescription": {
+    "text": "中級レベル（B1）の分かりやすい言葉遣いです。一般の読者に適しています。",
+    "translationContext": "Description of the Simple reading level"
+  },
+  "settings.readingLevel.info.verySimpleDescription": {
+    "text": "基本的な語彙と短い文章（A2）で構成されます。語学学習者に最適です。",
+    "translationContext": "Description of the Very Simple reading level"
+  },
+  "settings.readingLevel.levels.default": {
+    "text": "標準",
+    "translationContext": "Default/normal reading level option"
+  },
+  "settings.readingLevel.levels.simple": {
+    "text": "やさしい",
+    "translationContext": "Simple reading level option"
+  },
+  "settings.readingLevel.levels.useGlobal": {
+    "text": "グローバル",
+    "translationContext": "Option to use the global reading level (no override)"
+  },
+  "settings.readingLevel.levels.verySimple": {
+    "text": "とてもやさしい",
+    "translationContext": "Very simple reading level option"
+  },
+  "settings.readingLevel.noCategories": {
+    "text": "有効なカテゴリがありません。「カテゴリ」タブでカテゴリを有効にしてください。",
+    "translationContext": "Message shown when no categories are enabled"
+  },
+  "settings.readingLevel.resetAll": {
+    "text": "すべてリセット",
+    "translationContext": "Button to reset both global level and all category overrides"
+  },
+  "settings.readingLevel.subscriberOnly": {
+    "text": "リーディングレベルの簡易化はKagiのサブスクライバー向け機能です。アップグレードすると、記事を好みのリーディングレベルに自動で簡易化できます。",
+    "translationContext": "Message shown to non-subscribers about reading level feature"
+  },
+  "settings.readingLevel.subscriberOnly.description": {
+    "text": "テキストの自動平易化はKagiの会員様限定の機能です。この機能を利用するには、アップグレードしてください。",
+    "translationContext": "Description explaining this is a subscriber-only feature"
+  },
+  "settings.readingLevel.subscriberOnly.title": {
+    "text": "会員限定機能",
+    "translationContext": "Title for subscriber-only feature notice"
+  },
+  "settings.readingLevel.subscriberOnly.upgrade": {
+    "text": "Kagiにアップグレード",
+    "translationContext": "Link text to upgrade to Kagi subscription"
+  },
+  "settings.readingLevel.tab.description": {
+    "text": "すべての記事のデフォルトの読解レベルを設定します。特定のカテゴリごとにレベルをカスタマイズすることも可能です。",
+    "translationContext": "Description shown at the top of the reading level settings tab"
+  },
+  "settings.readingLevel.title": {
+    "text": "リーディングレベル",
+    "translationContext": "Title for reading level section"
+  },
+  "settings.readingLevel.upgrade": {
+    "text": "Kagiにアップグレード",
+    "translationContext": "Link text to upgrade to Kagi subscription"
+  },
   "settings.sections.instructions": {
     "text": "ドラッグしてセクションの順番を変更できます。スイッチで有効・無効を切り替えてください。",
     "translationContext": "Instructions for managing article sections"
@@ -699,6 +911,10 @@
     "text": "外観",
     "translationContext": "Subsection heading for appearance-related settings"
   },
+  "settings.subsections.display": {
+    "text": "表示",
+    "translationContext": "Subsection heading for display settings"
+  },
   "settings.subsections.localization": {
     "text": "言語と地域",
     "translationContext": "Subsection heading for language and localization settings"
@@ -710,6 +926,14 @@
   "settings.subsections.readingExperience": {
     "text": "読書体験",
     "translationContext": "Subsection heading for story display and reading settings"
+  },
+  "settings.subsections.storyDisplay": {
+    "text": "ストーリーの表示",
+    "translationContext": "Subsection heading for story display settings"
+  },
+  "settings.subsections.visualEnhancements": {
+    "text": "視覚的な強化",
+    "translationContext": "Subsection heading for visual enhancement toggles"
   },
   "settings.sync.clear.button": {
     "text": "同期データをすべて消去",
@@ -775,6 +999,14 @@
     "text": "エクスポート中...",
     "translationContext": "Text shown while exporting data"
   },
+  "settings.sync.import.button": {
+    "text": "設定をインポート",
+    "translationContext": "Button label to import settings from a backup JSON file"
+  },
+  "settings.sync.import.importing": {
+    "text": "インポート中...",
+    "translationContext": "Loading text shown while importing settings from a backup file"
+  },
   "settings.sync.info.description": {
     "text": "Kagiニュースは、設定と閲覧履歴をすべてのデバイスで同期できます。このデータはKagiのサーバーに安全に保存され、あなたのKagi検索アカウントに関連付けられます。\n\n同期されたデータは他の目的で使用されたり、誰かと共有されたりすることはなく、同期サービスを提供するためだけに保存されます。同期する内容を完全に管理でき、いつでもデータを削除できます。",
     "translationContext": "Description of sync and privacy features"
@@ -831,6 +1063,14 @@
     "text": "概要",
     "translationContext": "Title for the about settings tab"
   },
+  "settings.tabs.account": {
+    "text": "アカウント",
+    "translationContext": "Title for the account settings tab"
+  },
+  "settings.tabs.appearance": {
+    "text": "外観",
+    "translationContext": "Title for the appearance settings tab"
+  },
   "settings.tabs.categories": {
     "text": "カテゴリー",
     "translationContext": "Title for the categories settings tab"
@@ -843,13 +1083,33 @@
     "text": "実験的",
     "translationContext": "Title for the experimental settings tab"
   },
+  "settings.tabs.filters": {
+    "text": "フィルター",
+    "translationContext": "Title for the filters settings tab"
+  },
   "settings.tabs.general": {
     "text": "一般",
     "translationContext": "Title for the general settings tab"
   },
+  "settings.tabs.language": {
+    "text": "言語",
+    "translationContext": "Title for the language settings tab"
+  },
+  "settings.tabs.preferredSources": {
+    "text": "ピン留めしたソース",
+    "translationContext": "Tab name for preferred/pinned sources settings"
+  },
+  "settings.tabs.readingLevel": {
+    "text": "読解レベル",
+    "translationContext": "Tab name for per-category reading level settings"
+  },
   "settings.tabs.sections": {
     "text": "セクション",
     "translationContext": "Title for the sections settings tab"
+  },
+  "settings.tabs.stories": {
+    "text": "ストーリー",
+    "translationContext": "Title for the stories settings tab"
   },
   "settings.tabs.syncPrivacy": {
     "text": "同期",
@@ -907,9 +1167,17 @@
     "text": "閉じる",
     "translationContext": "Close button text"
   },
+  "common.no_results": {
+    "text": "検索結果がありません",
+    "translationContext": "Shown in search/select dropdowns when no matches are found"
+  },
   "common.reset": {
     "text": "リセット",
     "translationContext": "Reset button text"
+  },
+  "common.search": {
+    "text": "検索",
+    "translationContext": "Generic search input placeholder"
   },
   "about.approach.description1": {
     "text": "世界はエコーチェンバーの中では生きていない。現実は異なる視点や見方の衝突から生まれる——それが信号とノイズを分ける方法だ。",
@@ -986,6 +1254,42 @@
   "about.why.title": {
     "text": "なぜkiteなのか？それはニュースは壊れているから。",
     "translationContext": "Title of the Why Kagi News section"
+  },
+  "app_navigation.assistant": {
+    "text": "アシスタント",
+    "translationContext": "Label for Kagi Assistant in the app navigation menu"
+  },
+  "app_navigation.fastgpt": {
+    "text": "FastGPT",
+    "translationContext": "Label for Kagi FastGPT in the app navigation menu, should not be translated"
+  },
+  "app_navigation.news": {
+    "text": "ニュース",
+    "translationContext": "Label for Kagi News in the app navigation menu"
+  },
+  "app_navigation.open_navigation": {
+    "text": "アプリナビゲーションを開く",
+    "translationContext": "Accessibility label for opening the app navigation menu"
+  },
+  "app_navigation.search": {
+    "text": "検索",
+    "translationContext": "Label for Kagi Search in the app navigation menu"
+  },
+  "app_navigation.small_web": {
+    "text": "スモールウェブ",
+    "translationContext": "Label for Kagi Small Web in the app navigation menu"
+  },
+  "app_navigation.tooltip": {
+    "text": "Kagiアプリ",
+    "translationContext": "Tooltip for the app navigation button"
+  },
+  "app_navigation.translate": {
+    "text": "翻訳",
+    "translationContext": "Label for Kagi Translate in the app navigation menu"
+  },
+  "app_navigation.universal_summarizer": {
+    "text": "ユニバーサルサマライザー",
+    "translationContext": "Label for Kagi Universal Summarizer in the app navigation menu"
   },
   "app.beta": {
     "text": "ベータ機能",
@@ -1714,6 +2018,546 @@
   "contentFilter.storyHidden": {
     "text": "{{count}}件のストーリーが非表示です",
     "translationContext": "Message showing 1 story is hidden"
+  },
+  "contribute.addFeeds": {
+    "text": "フィードを追加",
+    "translationContext": "Button to add pasted feed URLs to the list"
+  },
+  "contribute.allDuplicates": {
+    "text": "{{count}}件のURLはすべてこのカテゴリに既に存在します。",
+    "translationContext": "Error when all pasted URLs are duplicates"
+  },
+  "contribute.allFeedsFailed": {
+    "text": "すべてのフィードの検証に失敗しました。URLを確認して再試行するか、エラーのあるフィードを削除して有効なものを追加してください。",
+    "translationContext": "Error message when every feed fails validation"
+  },
+  "contribute.cannotSubmit": {
+    "text": "提出できません。すべてのフィードの検証に失敗しました。エラーのあるフィードを削除し、有効なものを追加してください。",
+    "translationContext": "Error explaining why submission is blocked"
+  },
+  "contribute.categoryExists": {
+    "text": "このカテゴリは既に存在します。",
+    "translationContext": "Warning when the entered category name already exists"
+  },
+  "contribute.categoryName": {
+    "text": "カテゴリ名",
+    "translationContext": "Label for the new category name input field"
+  },
+  "contribute.categoryNamePlaceholder": {
+    "text": "例：航空、韓国、気候...",
+    "translationContext": "Placeholder text for the category name input"
+  },
+  "contribute.checkingCount": {
+    "text": "{{count}}件確認中...",
+    "translationContext": "Number of feeds currently being validated"
+  },
+  "contribute.coreCategory": {
+    "text": "コア",
+    "translationContext": "Badge label for core categories maintained by the Kagi team"
+  },
+  "contribute.coreCategoryNote": {
+    "text": "これはコアのKiteカテゴリです。あなたのフィードは既存のキュレーションされたソースと共に追加されます。",
+    "translationContext": "Info note shown when a core category is selected in the contribute dropdown"
+  },
+  "contribute.createPr": {
+    "text": "プルリクエストを作成",
+    "translationContext": "Button text to submit and create a GitHub pull request"
+  },
+  "contribute.creatingPr": {
+    "text": "PRを作成中...",
+    "translationContext": "Button text while the pull request is being created"
+  },
+  "contribute.duplicatesSkipped": {
+    "text": "{{count}}件の重複フィードをスキップしました（このカテゴリに既に存在します）",
+    "translationContext": "Warning showing how many duplicate feeds were skipped"
+  },
+  "contribute.errorCount": {
+    "text": "{{count}}件のエラー",
+    "translationContext": "Number of feeds that failed validation"
+  },
+  "contribute.excludedNote": {
+    "text": "（エラーのある{{count}}件のフィードは除外されます）",
+    "translationContext": "Note about errored feeds being excluded from submission"
+  },
+  "contribute.existingCategory": {
+    "text": "既存のカテゴリ",
+    "translationContext": "Toggle button to add feeds to an existing category"
+  },
+  "contribute.failedPr": {
+    "text": "プルリクエストの作成に失敗しました",
+    "translationContext": "Fallback error message when PR creation fails"
+  },
+  "contribute.feedCount": {
+    "text": "{{count}}件のフィード",
+    "translationContext": "Number of feeds in a category, e.g. '42 feeds'"
+  },
+  "contribute.feedInputPlaceholder": {
+    "text": "ここにフィードのURLを貼り付けます（1行に1つ、またはカンマ区切り）",
+    "translationContext": "Placeholder for the feed URL textarea input"
+  },
+  "contribute.feedLanguage": {
+    "text": "フィードの言語",
+    "translationContext": "Label for the feed language selector"
+  },
+  "contribute.feedLanguageTooltip": {
+    "text": "フィードの大部分が書かれている言語（過半数または最多）に設定してください。これにより利用が制限されることはありません — すべてのカテゴリはサポートされている各言語に翻訳されます。",
+    "translationContext": "Tooltip explaining the feed language setting"
+  },
+  "contribute.feedsAdded": {
+    "text": "{{count}}件のフィードを追加しました",
+    "translationContext": "Summary showing total number of feeds added"
+  },
+  "contribute.guidelineBalance": {
+    "text": "「バランス」は不要",
+    "translationContext": "Guideline title: sources don't need political balance"
+  },
+  "contribute.guidelineBalanceDesc": {
+    "text": "左翼的な情報源に右翼的な情報源を対置する必要はありません。国営メディア、党派的なメディア、すべて問題ありません。私たちのシステムは複数の情報源から事実を裏付けます。",
+    "translationContext": "Guideline description explaining why biased sources are acceptable"
+  },
+  "contribute.guidelineConspiracy": {
+    "text": "陰謀論コンテンツは不可",
+    "translationContext": "Guideline title: no conspiracy theories allowed"
+  },
+  "contribute.guidelineConspiracyDesc": {
+    "text": "捏造された主張、事件の否定、デマコンテンツは含めないでください",
+    "translationContext": "Guideline description for the no conspiracy requirement"
+  },
+  "contribute.guidelineFeeds": {
+    "text": "25以上のRSSフィード（多いほど良い）",
+    "translationContext": "Guideline title: minimum number of feeds required"
+  },
+  "contribute.guidelineFeedsDesc": {
+    "text": "高品質なフィードが多いほど、カバレッジが向上します",
+    "translationContext": "Guideline description explaining more feeds = better coverage"
+  },
+  "contribute.guidelineLanguage": {
+    "text": "カテゴリを言語で分割しない",
+    "translationContext": "Guideline title: keep one category per topic regardless of language"
+  },
+  "contribute.guidelineLanguageDesc": {
+    "text": "「スイス」は一つのカテゴリにすべきで、「スイス (EN)」と「スイス (IT)」に分けるべきではありません。すべてのカテゴリはサポートされている各言語に翻訳されます。",
+    "translationContext": "Guideline description explaining not to split by language"
+  },
+  "contribute.guidelines": {
+    "text": "ガイドライン",
+    "translationContext": "Collapsible section header for contribution guidelines"
+  },
+  "contribute.heading": {
+    "text": "フィードの提供",
+    "translationContext": "Main heading on the contribute page"
+  },
+  "contribute.hideFeeds": {
+    "text": "フィードを非表示",
+    "translationContext": "Button to collapse the list of existing feeds"
+  },
+  "contribute.history.declineReason": {
+    "text": "理由",
+    "translationContext": "Label before the decline reason text when a contribution PR was closed"
+  },
+  "contribute.history.existingCategory": {
+    "text": "既存に追加",
+    "translationContext": "Badge indicating feeds were added to an existing category"
+  },
+  "contribute.history.feedsAdded": {
+    "text": "{{count}}件のフィードを追加",
+    "translationContext": "Shows how many feeds were added in a contribution"
+  },
+  "contribute.history.legend": {
+    "text": "貢献は手動でレビューされます。マージされると、フィードは次の日次バッチで公開されます。",
+    "translationContext": "Legend text below the contributions list explaining the process"
+  },
+  "contribute.history.newCategory": {
+    "text": "新しいカテゴリ",
+    "translationContext": "Badge indicating the contribution created a new category"
+  },
+  "contribute.history.pr": {
+    "text": "PR #{{number}}",
+    "translationContext": "Link text showing the GitHub pull request number"
+  },
+  "contribute.history.showLess": {
+    "text": "表示を減らす",
+    "translationContext": "Button to collapse the contributions list back to the preview"
+  },
+  "contribute.history.status.declined": {
+    "text": "却下",
+    "translationContext": "Pipeline step label: PR was closed without merging"
+  },
+  "contribute.history.status.declined.tooltip": {
+    "text": "このプルリクエストはマージされずにクローズされました。",
+    "translationContext": "Tooltip for the Declined pipeline step"
+  },
+  "contribute.history.status.live": {
+    "text": "公開中",
+    "translationContext": "Pipeline step label: feeds are active on Kagi News"
+  },
+  "contribute.history.status.live.tooltip": {
+    "text": "あなたのフィードはKagi Newsで有効です。カテゴリにストーリーが表示されない場合、記事がクラスタリングされなかったことを意味します — これは正常です。",
+    "translationContext": "Tooltip for the Live pipeline step"
+  },
+  "contribute.history.status.merged": {
+    "text": "マージ済み",
+    "translationContext": "Pipeline step label: PR has been merged"
+  },
+  "contribute.history.status.merged.tooltip": {
+    "text": "プルリクエストはマージされました。変更は次のKagi Newsのバッチで公開されます。",
+    "translationContext": "Tooltip for the Merged pipeline step"
+  },
+  "contribute.history.status.submitted": {
+    "text": "提出済み",
+    "translationContext": "Pipeline step label: PR has been created"
+  },
+  "contribute.history.status.submitted.tooltip": {
+    "text": "プルリクエストが作成され、レビュー待ちです。",
+    "translationContext": "Tooltip for the Submitted pipeline step"
+  },
+  "contribute.history.title": {
+    "text": "私の貢献",
+    "translationContext": "Heading for the section showing the user's past feed contributions"
+  },
+  "contribute.history.titleWithCount": {
+    "text": "私の貢献 ({{count}})",
+    "translationContext": "Heading for contributions section showing total count, e.g. 'My Contributions (4)'"
+  },
+  "contribute.history.typeExisting": {
+    "text": "既存のカテゴリ",
+    "translationContext": "Inline text in expanded contribution detail indicating feeds were added to an existing category"
+  },
+  "contribute.history.typeNew": {
+    "text": "新しいカテゴリ",
+    "translationContext": "Inline text in expanded contribution detail indicating this created a new category"
+  },
+  "contribute.history.viewAll": {
+    "text": "さらに{{count}}件表示",
+    "translationContext": "Button to expand and show remaining hidden contributions, e.g. 'See 3 more'"
+  },
+  "contribute.howItWorks": {
+    "text": "仕組み",
+    "translationContext": "Small link in the contribute form header to re-show the onboarding"
+  },
+  "contribute.inThisCategory": {
+    "text": "このカテゴリ内",
+    "translationContext": "Text after feed count, e.g. '42 feeds in this category'"
+  },
+  "contribute.languageInNameWarning": {
+    "text": "カテゴリ名に言語コードを含めないでください。基本名のみを使用し（例：「スイス (IT)」ではなく「スイス」）、下の主要なフィード言語を設定してください。すべてのカテゴリはサポートされている各言語に翻訳されます。",
+    "translationContext": "Warning shown when a language code like (IT) is detected in the category name"
+  },
+  "contribute.loadingCategories": {
+    "text": "カテゴリを読み込み中...",
+    "translationContext": "Loading state while fetching category list"
+  },
+  "contribute.manual.addTo": {
+    "text": "{{fileName}}に追加：",
+    "translationContext": "Label above the copyable code snippet (snippet mode)"
+  },
+  "contribute.manual.copied": {
+    "text": "コピーしました！",
+    "translationContext": "Confirmation after copying to clipboard"
+  },
+  "contribute.manual.copy": {
+    "text": "コピー",
+    "translationContext": "Copy to clipboard button"
+  },
+  "contribute.manual.editOnGithub": {
+    "text": "GitHubで{{fileName}}を編集",
+    "translationContext": "Button to open the file editor on GitHub"
+  },
+  "contribute.manual.fullFile": {
+    "text": "{{fileName}}全体：",
+    "translationContext": "Label above the copyable code block (full file mode)"
+  },
+  "contribute.manual.instructions": {
+    "text": "GitHubでこれらの変更を含むプルリクエストを作成してください：",
+    "translationContext": "Header for manual PR creation instructions"
+  },
+  "contribute.manual.step1": {
+    "text": "下のスニペットをコピーしてください",
+    "translationContext": "Step 1 of manual PR instructions (snippet mode for core_feeds.py)"
+  },
+  "contribute.manual.step1Full": {
+    "text": "下のファイル内容全体をコピーしてください",
+    "translationContext": "Step 1 of manual PR instructions (full file mode for kite_feeds.json)"
+  },
+  "contribute.manual.step2Existing": {
+    "text": "ボタンをクリックしてGitHubで{{fileName}}を編集します。「{{category}}」セクションを見つけ、そのフィードリストにフィードURLを追加してください。",
+    "translationContext": "Step 2 for adding feeds to an existing category manually (snippet mode for core_feeds.py)"
+  },
+  "contribute.manual.step2Full": {
+    "text": "ボタンをクリックしてGitHubで{{fileName}}を編集し、すべて選択してコピーした内容で置き換えてください。",
+    "translationContext": "Step 2 for full file replacement mode (kite_feeds.json)"
+  },
+  "contribute.manual.step2New": {
+    "text": "ボタンをクリックしてGitHubで{{fileName}}を編集します。既存のカテゴリの中でアルファベット順にスニペットを追加してください。",
+    "translationContext": "Step 2 for adding a new category manually (snippet mode fallback)"
+  },
+  "contribute.manual.step3": {
+    "text": "変更をコミットし、プルリクエストを開きます。GitHubが手順を案内します。",
+    "translationContext": "Step 3 of manual PR instructions"
+  },
+  "contribute.manual.submit": {
+    "text": "PR手順を取得",
+    "translationContext": "Button text for manual mode where user creates PR themselves"
+  },
+  "contribute.networkError": {
+    "text": "ネットワークエラーです。もう一度お試しください。",
+    "translationContext": "Error message for network failures during submission"
+  },
+  "contribute.newCategory": {
+    "text": "新しいカテゴリ",
+    "translationContext": "Toggle button to create a new category"
+  },
+  "contribute.noValidUrls": {
+    "text": "有効なURLが見つかりません。URLは http:// または https:// で始まる必要があります。",
+    "translationContext": "Error when pasted text contains no valid URLs"
+  },
+  "contribute.onboarding.community.description": {
+    "text": "Kagiのスタッフがどのカテゴリが存在するか、どのストーリーが表示されるかを決定することはありません。それらはすべてフィードから生まれ、フィードはコミュニティから提供されます。",
+    "translationContext": "Main explanation of community-driven categories"
+  },
+  "contribute.onboarding.community.networkLabelStories": {
+    "text": "ストーリー",
+    "translationContext": "Label on the story cluster nodes in the feed flow animation"
+  },
+  "contribute.onboarding.community.networkLabelYou": {
+    "text": "+ あなた",
+    "translationContext": "Label on the contributor node in the feed network animation"
+  },
+  "contribute.onboarding.community.networkNote": {
+    "text": "左のフィードが右のストーリーに流れます。フィードが多いほど、ストーリーが増え、カバレッジが向上します。",
+    "translationContext": "Caption under the feed-to-story flow animation"
+  },
+  "contribute.onboarding.community.noStories": {
+    "text": "カテゴリがストーリーを全く生成しないことがあります。これは通常、グループ化が機能するのに十分な重複したカバレッジを持つフィードがないことを意味します。フィードが多ければ多いほど重複も増え、より多くのストーリーが生まれます。",
+    "translationContext": "Explaining why some categories don't generate stories"
+  },
+  "contribute.onboarding.community.title": {
+    "text": "すべてはコミュニティ主導",
+    "translationContext": "Section title for explaining community-driven nature of categories"
+  },
+  "contribute.onboarding.community.whyXnotY": {
+    "text": "なぜXのカテゴリはあるのにYのカテゴリはないのか不思議に思うなら、それはXに関心のある誰かが時間をかけてフィードを追加したからです。もしあなたに関心のあるトピックがなければ、あなたがそれを始めることができます。",
+    "translationContext": "Explaining why certain categories exist and others don't"
+  },
+  "contribute.onboarding.cta": {
+    "text": "フィードの追加を開始",
+    "translationContext": "CTA button on the onboarding page to proceed to the contribute form"
+  },
+  "contribute.onboarding.feedTypes.community.description": {
+    "text": "あなたのような貢献者によってkite_feeds.jsonでキュレーションされます。地域のニュースからニッチなトピックまで、あらゆるものをカバーします。あなたの貢献はここに含まれます。",
+    "translationContext": "Description of community feeds that contributors add to"
+  },
+  "contribute.onboarding.feedTypes.community.title": {
+    "text": "コミュニティフィード",
+    "translationContext": "Title for the community feeds card"
+  },
+  "contribute.onboarding.feedTypes.core.description": {
+    "text": "世界のニュース、ビジネス、テクノロジー、科学、スポーツ、文化などの主要カテゴリをカバーします。これらはGitHubで完全にオープンソースなので、あなたも貢献できます。",
+    "translationContext": "Description of core feeds, emphasizing they are open source and open to contributions"
+  },
+  "contribute.onboarding.feedTypes.core.title": {
+    "text": "コアフィード",
+    "translationContext": "Title for the core feeds card"
+  },
+  "contribute.onboarding.feedTypes.title": {
+    "text": "Kagi Newsを支える2種類のフィード",
+    "translationContext": "Section title for core vs community feeds comparison"
+  },
+  "contribute.onboarding.guidelines.anyLanguage": {
+    "text": "どの言語でも歓迎します。Kagi Newsはすべてを自動的に翻訳するため、1つのカテゴリで複数の言語を混在させることができますし、そうすべきです。",
+    "translationContext": "Guideline: feeds in any language are accepted"
+  },
+  "contribute.onboarding.guidelines.minimum": {
+    "text": "新しいカテゴリがKagi Newsに表示されるには、少なくとも25のフィードが必要です。これにより、クラスタリングが機能するのに十分な重複が確保されます。",
+    "translationContext": "Guideline: minimum feed count for new categories"
+  },
+  "contribute.onboarding.guidelines.noLanguageSplit": {
+    "text": "言語ごとに別のカテゴリを作成しないでください。「スイス (DE)」や「スイス (FR)」ではなく、「スイス」を使用してください。",
+    "translationContext": "Guideline: don't split categories by language"
+  },
+  "contribute.onboarding.guidelines.quality": {
+    "text": "定評のあるニュースソース、ブログ、またはメディアを優先してください。一般的にフィードが多いほど良く、残りはクラスタリングが処理します。",
+    "translationContext": "Guideline: source quality preference"
+  },
+  "contribute.onboarding.guidelines.rssOnly": {
+    "text": "RSSまたはAtomフィードのみ。Kagi Newsはウェブサイトをスクレイピングせず、公開されているフィードデータのみを使用します。",
+    "translationContext": "Guideline: only RSS/Atom feeds are accepted"
+  },
+  "contribute.onboarding.guidelines.title": {
+    "text": "フィードのガイドライン",
+    "translationContext": "Section title for feed submission guidelines"
+  },
+  "contribute.onboarding.guidelines.topicSpecific": {
+    "text": "フィードはカテゴリのトピックを具体的にカバーする必要があります。「UK」カテゴリにThe Guardianのような一般的な新聞を追加すると、UK固有のクラスターではなく、主に世界のニュースのクラスターが生成されます。トピックでフィルタリングされたフィードを探すか、RSSフィルタリングツールを使用して広範なフィードを絞り込んでください。",
+    "translationContext": "Guideline: feeds should be topic-specific, not general outlets, with example"
+  },
+  "contribute.onboarding.guidelines.working": {
+    "text": "フィードは機能しており、最近の（理想的には毎日の）コンテンツが必要です。",
+    "translationContext": "Guideline: feeds should be active"
+  },
+  "contribute.onboarding.pipeline.note": {
+    "text": "全ては自動で実行されます。Kagiの誰もどのストーリーが表示されるか、どのカテゴリが作成されるかを選んでいません。",
+    "translationContext": "Note below the pipeline emphasizing the automated nature"
+  },
+  "contribute.onboarding.pipeline.step1.description": {
+    "text": "各カテゴリにはRSSフィードのリストがあります。システムはそれらすべてから新しい記事を取得します。数百のフィードを持つカテゴリもあれば、始まったばかりのカテゴリもあります。",
+    "translationContext": "Pipeline step 1 description"
+  },
+  "contribute.onboarding.pipeline.step1.title": {
+    "text": "フィードがチェックされる",
+    "translationContext": "Pipeline step 1 title"
+  },
+  "contribute.onboarding.pipeline.step2.description": {
+    "text": "システムはどの記事が同じ事柄について書かれているかを判断し、それらをグループ化します。各グループが「ストーリー」になります。他の記事と一致しない記事はスキップされます。",
+    "translationContext": "Pipeline step 2 description"
+  },
+  "contribute.onboarding.pipeline.step2.title": {
+    "text": "関連する記事がグループ化される",
+    "translationContext": "Pipeline step 2 title"
+  },
+  "contribute.onboarding.pipeline.step3.description": {
+    "text": "AIがグループ内のすべての記事を読み、各情報源からの異なる視点を取り入れて一つの要約を作成します。",
+    "translationContext": "Pipeline step 3 description"
+  },
+  "contribute.onboarding.pipeline.step3.title": {
+    "text": "要約が作成される",
+    "translationContext": "Pipeline step 3 title"
+  },
+  "contribute.onboarding.pipeline.title": {
+    "text": "ストーリーが作られる仕組み",
+    "translationContext": "Section title for the pipeline explanation"
+  },
+  "contribute.onboarding.skip": {
+    "text": "スキップ",
+    "translationContext": "Link to skip the onboarding and go straight to the contribute form"
+  },
+  "contribute.onboarding.subtitle": {
+    "text": "コミュニティがキュレーションするカテゴリにRSSフィードを追加して、より良いニュース体験の構築にご協力ください。",
+    "translationContext": "Subtitle on the contribute onboarding info page"
+  },
+  "contribute.onboarding.title": {
+    "text": "Kagi Newsに貢献する",
+    "translationContext": "Title on the contribute onboarding info page"
+  },
+  "contribute.onboarding.whatToDo.existing.description": {
+    "text": "カテゴリを閲覧し、不足していると思われるRSSフィードを追加してください。多様な情報源は、より良いカバレッジとより多くのストーリーの出現を意味します。",
+    "translationContext": "Description of adding feeds to existing categories"
+  },
+  "contribute.onboarding.whatToDo.existing.title": {
+    "text": "既存のカテゴリにフィードを追加する",
+    "translationContext": "Title for existing category contribution option"
+  },
+  "contribute.onboarding.whatToDo.new.description": {
+    "text": "ローカルニュース、地域報道、ニッチなトピック。新しいカテゴリがKagi Newsで公開されるには、少なくとも25のフィードが必要です。これにより、クラスタリングが実際のストーリーを生成するのに十分な重複が確保されます。",
+    "translationContext": "Description of proposing new categories"
+  },
+  "contribute.onboarding.whatToDo.new.title": {
+    "text": "新しいカテゴリを提案する",
+    "translationContext": "Title for new category contribution option"
+  },
+  "contribute.onboarding.whatToDo.title": {
+    "text": "貢献できること",
+    "translationContext": "Section title for contribution options"
+  },
+  "contribute.pageTitle": {
+    "text": "フィードの提供 - Kagi News",
+    "translationContext": "Browser tab title for the contribute page"
+  },
+  "contribute.pendingFeedCount": {
+    "text": "{{count}}件のフィードが提案されています",
+    "translationContext": "Number of feeds proposed in a pending pull request"
+  },
+  "contribute.pendingFeedsAdded": {
+    "text": "+{{count}}件のフィードが保留中",
+    "translationContext": "Indicator showing additional feeds pending for an existing category"
+  },
+  "contribute.pendingPr": {
+    "text": "保留中のPR",
+    "translationContext": "Badge label for categories from unmerged pull requests"
+  },
+  "contribute.pendingPrLink": {
+    "text": "PR #{{number}} を表示",
+    "translationContext": "Link text to view the related pending pull request"
+  },
+  "contribute.pendingPrNote": {
+    "text": "このカテゴリは他の貢献者によって提案され、レビュー待ちです。",
+    "translationContext": "Info note shown when a pending PR category is selected"
+  },
+  "contribute.removeErrored": {
+    "text": "エラーの{{count}}件を削除",
+    "translationContext": "Button to remove all feeds that failed validation"
+  },
+  "contribute.removeFeed": {
+    "text": "フィードを削除",
+    "translationContext": "Aria label for the button to remove a single feed"
+  },
+  "contribute.retry": {
+    "text": "再試行",
+    "translationContext": "Button to retry loading categories after an error"
+  },
+  "contribute.reviewNote": {
+    "text": "私たちのチームが提出内容を確認し、問題がなければマージします。",
+    "translationContext": "Note explaining what happens after submission"
+  },
+  "contribute.searchCategories": {
+    "text": "カテゴリを検索...",
+    "translationContext": "Placeholder for the category search dropdown"
+  },
+  "contribute.showFeeds": {
+    "text": "フィードを表示",
+    "translationContext": "Button to expand the list of existing feeds"
+  },
+  "contribute.step1": {
+    "text": "1. カテゴリを選択",
+    "translationContext": "Step 1 heading in the contribute form"
+  },
+  "contribute.step2": {
+    "text": "2. フィードを追加",
+    "translationContext": "Step 2 heading in the contribute form"
+  },
+  "contribute.step3": {
+    "text": "3. 提出",
+    "translationContext": "Step 3 heading in the contribute form"
+  },
+  "contribute.submitAnother": {
+    "text": "別の貢献を提出する",
+    "translationContext": "Link to reset the form and submit another contribution"
+  },
+  "contribute.subtitle": {
+    "text": "既存のカテゴリにRSSフィードを追加するか、新しいカテゴリを提案する",
+    "translationContext": "Subtitle below the heading on the contribute page"
+  },
+  "contribute.successMessage": {
+    "text": "ご協力ありがとうございます！プルリクエスト #{{prNumber}} が作成されました。",
+    "translationContext": "Success message after PR is created, with PR number"
+  },
+  "contribute.summaryExisting": {
+    "text": "「{{category}}」に{{count}}件のフィードを追加中",
+    "translationContext": "Summary text before adding feeds to an existing category"
+  },
+  "contribute.summaryNew": {
+    "text": "新しいカテゴリ「{{category}}」を{{count}}件のフィードで作成中",
+    "translationContext": "Summary text before submitting a new category"
+  },
+  "contribute.switchToIt": {
+    "text": "切り替えますか？",
+    "translationContext": "Link to switch to an existing category instead of creating new"
+  },
+  "contribute.unverifiedCount": {
+    "text": "{{count}}件未検証",
+    "translationContext": "Number of feeds with unknown validation status"
+  },
+  "contribute.validCount": {
+    "text": "{{count}}件有効",
+    "translationContext": "Number of feeds that passed validation"
+  },
+  "contribute.viewPr": {
+    "text": "プルリクエストを表示",
+    "translationContext": "Link text to view the created pull request on GitHub"
+  },
+  "contribute.waitingValidation": {
+    "text": "{{count}}件のフィードの検証完了を待っています...",
+    "translationContext": "Note shown while feeds are still being validated"
   },
   "crypto.grid.title": {
     "text": "仮想通貨価格",
@@ -2823,6 +3667,10 @@
     "text": "出典情報",
     "translationContext": "Title for source information section"
   },
+  "sources.addPreferred": {
+    "text": "トップにピン留めする",
+    "translationContext": "Tooltip for pin button to add source to preferred list"
+  },
   "sources.article": {
     "text": "{{count}}記事",
     "translationContext": "Shows singular article count from a source, {{count}} will be replaced with a number"
@@ -2838,6 +3686,10 @@
   "sources.paywallTooltip": {
     "text": "このソースのすべての記事を閲覧するには、購読が必要な場合があります",
     "translationContext": "Tooltip explaining that a news source requires a paid subscription"
+  },
+  "sources.removePreferred": {
+    "text": "トップのピン留めを解除",
+    "translationContext": "Tooltip for pin button to remove source from preferred list"
   },
   "sources.showArticlesFrom": {
     "text": "{{source}}の記事を表示する",
@@ -2863,6 +3715,38 @@
     "text": "第{{{week}}}週・{{{day}}}日目",
     "translationContext": "Shows the current week and day of the year, {{week}} and {{day}} will be replaced with numbers"
   },
+  "stories.clusteringModal.clusteringDescription": {
+    "text": "異なるフィードの記事が同じトピックを扱っている場合、それらは一つのストーリーにまとめられます。より多くのフィードが同じ話題を取り上げるほど、そのシグナルは強くなります。",
+    "translationContext": "Explains how story clustering works"
+  },
+  "stories.clusteringModal.communityFeedsDescription": {
+    "text": "このカテゴリーのRSSフィードは、Kagiチームではなく、コミュニティのメンバーによって集められています。",
+    "translationContext": "Explains that community categories have user-curated feeds"
+  },
+  "stories.clusteringModal.fullyAutomaticDescription": {
+    "text": "表示される内容を誰かが選んでいるわけではありません。フィードの取得からクラスタリング、要約の作成まで、全プロセスが自動的に実行されます。",
+    "translationContext": "Explains that the process is fully automatic with no human curation"
+  },
+  "stories.clusteringModal.helpImprove": {
+    "text": "このカテゴリーの改善にご協力ください",
+    "translationContext": "Call-to-action divider text for contributing feeds"
+  },
+  "stories.clusteringModal.helpImproveDescription": {
+    "text": "フィードを追加すると、クラスタリングがより効果的に機能します。GitHubで新しいフィードを提案できます。",
+    "translationContext": "Encourages users to contribute feeds"
+  },
+  "stories.clusteringModal.noClusterDescription": {
+    "text": "フィード間で取り上げている内容の重複が少ない場合、クラスターは形成されず、ストーリーも表示されません。これは正常なことで、ニッチなカテゴリーや地域的なカテゴリーでより頻繁に発生します。",
+    "translationContext": "Explains why community categories sometimes have no stories"
+  },
+  "stories.clusteringModal.suggestFeeds": {
+    "text": "GitHubでフィードを提案する",
+    "translationContext": "Button label for the GitHub link to suggest feeds"
+  },
+  "stories.clusteringModal.title": {
+    "text": "ストーリーが生成される仕組み",
+    "translationContext": "Title for the modal explaining the story clustering process"
+  },
   "stories.fewStories": {
     "text": "本日、他に大きなニュースはありません。また明日、ご確認ください！",
     "translationContext": "Message shown when there are only 1-3 stories in a category"
@@ -2870,6 +3754,38 @@
   "stories.noStories": {
     "text": "このカテゴリには今日の重要なニュースがありません。",
     "translationContext": "Message shown when no stories are found for a category"
+  },
+  "stories.noStoriesCommunity": {
+    "text": "本日、このコミュニティカテゴリーにニュースはありません。",
+    "translationContext": "Message shown when a community (non-core) category has no stories"
+  },
+  "stories.noStoriesCommunityDescription": {
+    "text": "フィード間で共通の話題が少なく、ストーリーが作成されませんでした。コミュニティカテゴリーでは、このようなことが時々起こります。",
+    "translationContext": "Secondary description explaining why community categories sometimes have no stories"
+  },
+  "stories.noStoriesCommunityLearnMore": {
+    "text": "仕組みを見る",
+    "translationContext": "Button label to open modal explaining the clustering process"
+  },
+  "stories.noStoriesCore": {
+    "text": "このカテゴリーのニュースはまもなく表示されます。しばらくしてから、もう一度ご確認ください。",
+    "translationContext": "Message shown when a core (Kagi-maintained) category temporarily has no stories, usually due to a pipeline issue"
+  },
+  "stories.noStoriesCoreUpdates": {
+    "text": "一時的に利用不可",
+    "translationContext": "Small label shown with a clock icon when a core category has no stories, indicating the update schedule"
+  },
+  "story.assistant.placeholder": {
+    "text": "このストーリーについて質問する...",
+    "translationContext": "Placeholder text in the assistant question input field"
+  },
+  "story.assistant.submit": {
+    "text": "質問",
+    "translationContext": "Submit button label for assistant question"
+  },
+  "story.assistant.tooltip": {
+    "text": "アシスタントに聞く",
+    "translationContext": "Tooltip for button that opens Kagi Assistant with the current story topic"
   },
   "story.flashcards.download": {
     "text": "ダウンロード",
@@ -2907,6 +3823,10 @@
     "text": "単語選択を終了",
     "translationContext": "Tooltip for flashcard button when in selection mode"
   },
+  "story.simplify.autoSimplifying": {
+    "text": "{level}に平易化中...",
+    "translationContext": "Status message while auto-simplifying. {level} is the reading level name."
+  },
   "story.simplify.loading": {
     "text": "簡略化中...",
     "translationContext": "Status message while simplifying text"
@@ -2943,6 +3863,66 @@
     "text": "再生を停止",
     "translationContext": "Tooltip for TTS button when playing"
   },
+  "sync.conflict.multiple": {
+    "text": "別のデバイスから{{{count}}}件の設定が更新されました",
+    "translationContext": "Toast notification when multiple settings were overridden during sync. {count} is the number of settings."
+  },
+  "sync.conflict.single": {
+    "text": "別のデバイスから設定が更新されました",
+    "translationContext": "Toast notification when one setting was overridden during sync"
+  },
+  "syncSetup.description": {
+    "text": "アカウントに別のデバイスからの既存の設定が見つかりました。どのように進めますか？",
+    "translationContext": "Description shown in sync setup wizard when cloud settings already exist"
+  },
+  "syncSetup.done": {
+    "text": "設定が正常に同期されました！",
+    "translationContext": "Success message after sync setup completes"
+  },
+  "syncSetup.merge.description": {
+    "text": "現在の設定を保持し、不足しているクラウドの設定を追加する",
+    "translationContext": "Description for the merge option in sync setup"
+  },
+  "syncSetup.merge.title": {
+    "text": "マージ",
+    "translationContext": "Option to merge local and cloud settings together"
+  },
+  "syncSetup.pullRemote.description": {
+    "text": "現在の設定をクラウドの設定で上書きする",
+    "translationContext": "Description for the pull remote option in sync setup"
+  },
+  "syncSetup.pullRemote.title": {
+    "text": "クラウドの設定を使用",
+    "translationContext": "Option to overwrite local settings with cloud settings"
+  },
+  "syncSetup.pushLocal.description": {
+    "text": "クラウドの設定を現在の設定で上書きする",
+    "translationContext": "Description for the push local option in sync setup"
+  },
+  "syncSetup.pushLocal.title": {
+    "text": "このデバイスを使用",
+    "translationContext": "Option to overwrite cloud settings with current device settings"
+  },
+  "syncSetup.syncing.merging": {
+    "text": "設定をマージ中...",
+    "translationContext": "Loading text while merging local and cloud settings"
+  },
+  "syncSetup.syncing.pulling": {
+    "text": "クラウドの設定をダウンロード中...",
+    "translationContext": "Loading text while pulling cloud settings to device"
+  },
+  "syncSetup.syncing.pushing": {
+    "text": "設定をアップロード中...",
+    "translationContext": "Loading text while pushing local settings to cloud"
+  },
+  "syncSetup.title": {
+    "text": "同期を設定",
+    "translationContext": "Title for the sync setup wizard modal shown when enabling sync with existing cloud settings"
+  },
+  "syncSetup.tryAgain": {
+    "text": "再試行",
+    "translationContext": "Link to retry sync setup after an error"
+  },
   "time.nextUpdate.in": {
     "text": "次回の更新まであと{{time}}",
     "translationContext": "Shown when the next update time is known, {time} will be replaced with countdown (e.g., '2h 30m')"
@@ -2950,6 +3930,34 @@
   "time.nextUpdate.soon": {
     "text": "次回の更新はまもなくです",
     "translationContext": "Shown when the next update is expected soon (after noon UTC but no update yet today)"
+  },
+  "time.relative.days": {
+    "text": "{{count}}日前",
+    "translationContext": "Relative time: multiple days ago, {count} is the number"
+  },
+  "time.relative.hours": {
+    "text": "{{count}}時間前",
+    "translationContext": "Relative time: multiple hours ago, {count} is the number"
+  },
+  "time.relative.justNow": {
+    "text": "ついさっき",
+    "translationContext": "Relative time: less than a minute ago"
+  },
+  "time.relative.minutes": {
+    "text": "{{count}}分前",
+    "translationContext": "Relative time: multiple minutes ago, {count} is the number"
+  },
+  "time.relative.oneDay": {
+    "text": "1日前",
+    "translationContext": "Relative time: exactly 1 day ago"
+  },
+  "time.relative.oneHour": {
+    "text": "1時間前",
+    "translationContext": "Relative time: exactly 1 hour ago"
+  },
+  "time.relative.oneMinute": {
+    "text": "1分前",
+    "translationContext": "Relative time: exactly 1 minute ago"
   },
   "time.updated.days": {
     "text": "{{count}}日前に更新されました",
@@ -2982,6 +3990,10 @@
   "time.updated.seconds": {
     "text": "{{count}} 秒前に更新されました",
     "translationContext": "Shown when content was updated seconds ago, {{count}} will be replaced with the number of seconds"
+  },
+  "timeTravel.description": {
+    "text": "過去の日次サマリーにアクセス\nKagi会員限定の機能です。\nベータ期間中は、すべてのユーザーが利用できます。",
+    "translationContext": "Description of Time Travel - line 1 is subtitle, line 2 is info, line 3 is italicized beta note"
   },
   "timeTravel.latest": {
     "text": "最新",
@@ -3022,6 +4034,18 @@
   "timeTravel.today": {
     "text": "今日",
     "translationContext": "Button to navigate to today"
+  },
+  "timeTravel.urlBanner.dismiss": {
+    "text": "了解",
+    "translationContext": "Button to dismiss the time travel info banner"
+  },
+  "timeTravel.urlBanner.viewing": {
+    "text": "このリンクは{{{date}}}のニュースを指しています。上の日付の隣にある✕を使えば、いつでも今日のニュースに戻れます。",
+    "translationContext": "One-time info banner shown when user arrives via a bookmarked time travel URL (no referrer). Points user to the header date pill with X button."
+  },
+  "timeTravel.urlBanner.viewingShared": {
+    "text": "{{{date}}}のニュースへのリンクが共有されました。上の日付の隣にある✕を使えば、いつでも今日のニュースに戻れます。",
+    "translationContext": "One-time info banner shown when user arrives via a shared time travel URL (has referrer). Points user to the header date pill with X button."
   },
   "turbulence.title": {
     "text": "世界乱気流メーター",
@@ -3179,6 +4203,14 @@
     "text": "世界緊張指数",
     "translationContext": "Label for the chaos index chart"
   },
+  "worldTension.consistencyText": {
+    "text": "扇情的な見出し、ドゥームスクローリング、24時間流れ続けるニュースサイクルの間で、世界が常に炎上しているかのように感じられることがあります。この指数は、地に足の着いた視点を提供することを目的としています。多くの場合、物事は私たちが感じるほど悪くはないのです。",
+    "translationContext": "Explanation of purpose: cutting through media noise"
+  },
+  "worldTension.consistencyTitle": {
+    "text": "この指数の目的",
+    "translationContext": "Section header explaining purpose of the index"
+  },
   "worldTension.cool": {
     "text": "涼しい",
     "translationContext": "Temperature description for low world tension (0-20%)"
@@ -3207,6 +4239,26 @@
     "text": "極端",
     "translationContext": "Status label for 81-100% range (deprecated, use burning)"
   },
+  "worldTension.factor.novelty": {
+    "text": "新規性 — すでに「織り込み済み」の継続的な状況よりも、新たな危機や事態の悪化がより重視されます。",
+    "translationContext": "Explanation of novelty factor"
+  },
+  "worldTension.factor.reversibility": {
+    "text": "可逆性 — 不可逆的な行動（侵略、人命の損失など）は、可逆的な行動（制裁、言説など）よりも重視されます。",
+    "translationContext": "Explanation of reversibility factor"
+  },
+  "worldTension.factor.scope": {
+    "text": "影響の範囲 — 世界的なシステミックリスク、経済的な伝染、同盟関係の発動といった要因は、局地的な出来事と比較して重み付けされます。",
+    "translationContext": "Explanation of scope factor"
+  },
+  "worldTension.factor.worstCase": {
+    "text": "最悪の事態への近接性 — 出来事が壊滅的な結果にどれだけ近いかを示し、核兵器/大量破壊兵器（WMD）に関連する状況には特に大きな重み付けがなされます。",
+    "translationContext": "Explanation of worst case factor"
+  },
+  "worldTension.factorsTitle": {
+    "text": "AIは、4つの主要な要因を考慮します。",
+    "translationContext": "Header for list of factors"
+  },
   "worldTension.high": {
     "text": "高",
     "translationContext": "Status label for 41-60% range (deprecated, use warm)"
@@ -3214,6 +4266,14 @@
   "worldTension.hot": {
     "text": "加熱",
     "translationContext": "Temperature description for moderate world tension (41-60%)"
+  },
+  "worldTension.howCalculated": {
+    "text": "算出方法",
+    "translationContext": "Section header for methodology explanation"
+  },
+  "worldTension.methodologyIntro": {
+    "text": "世界緊張指数は、最新の世界のニュースヘッドラインをAIが分析して生成されます。固定の計算式を用いるのではなく、推論によって世界の安定性を評価します。",
+    "translationContext": "Introduction explaining AI-based methodology"
   },
   "worldTension.mild": {
     "text": "穏やか",

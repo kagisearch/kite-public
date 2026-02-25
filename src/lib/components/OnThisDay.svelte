@@ -2,6 +2,7 @@
 import type { OnThisDayEvent } from '$lib/types';
 import OnThisDayEventTimeline from './onthisday/OnThisDayEventTimeline.svelte';
 import OnThisDayPeopleCarousel from './onthisday/OnThisDayPeopleCarousel.svelte';
+import OnThisDaySkeleton from './onthisday/OnThisDaySkeleton.svelte';
 import WikipediaTooltip from './WikipediaTooltip.svelte';
 
 // Props
@@ -49,12 +50,7 @@ function handleWikipediaLeave(event: Event) {
   }}
 >
   {#if stories.length === 0}
-    <!-- Loading spinner -->
-    <div class="flex items-center justify-center py-12">
-      <div
-        class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-400"
-      ></div>
-    </div>
+    <OnThisDaySkeleton />
   {:else}
     <!-- Events Section -->
     <OnThisDayEventTimeline {events} />

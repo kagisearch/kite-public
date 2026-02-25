@@ -363,6 +363,19 @@
 		white-space: nowrap;
 		border-width: 0;
 	}
+
+	/* Z-index scale utilities */
+	.z-base { z-index: var(--z-index-base); }
+	.z-dropdown { z-index: var(--z-index-dropdown); }
+	.z-sticky { z-index: var(--z-index-sticky); }
+	.z-fixed { z-index: var(--z-index-fixed); }
+	.z-drawer { z-index: var(--z-index-drawer); }
+	.z-modal-backdrop { z-index: var(--z-index-modal-backdrop); }
+	.z-modal { z-index: var(--z-index-modal); }
+	.z-popover { z-index: var(--z-index-popover); }
+	.z-tooltip { z-index: var(--z-index-tooltip); }
+	.z-notification { z-index: var(--z-index-notification); }
+	.z-max { z-index: var(--z-index-max); }
 }
 
 /* Spin animations for loading screen */

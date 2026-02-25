@@ -1,12 +1,12 @@
 import { browser } from '$app/environment';
 import { displaySettings } from '$lib/data/settings.svelte';
-import { getCategoryDisplayName } from '$lib/utils/category';
+import { navigationHandlerService } from '$lib/services/navigationHandlerService';
+import { categoryMetadataStore } from '$lib/stores/categoryMetadata.svelte';
 import { pageMetadata } from '$lib/stores/pageMetadata.svelte';
 import { ttsManager } from '$lib/stores/ttsManager.svelte';
 import type { Category } from '$lib/types';
-import { navigationHandlerService } from '$lib/services/navigationHandlerService';
-import type { StoryListInstance, HistoryManagerInstance } from '$lib/types/components';
-import { categoryMetadataStore } from '$lib/stores/categoryMetadata.svelte';
+import type { HistoryManagerInstance, StoryListInstance } from '$lib/types/components';
+import { getCategoryDisplayName } from '$lib/utils/category';
 
 interface CategoryManagerOptions {
 	categories: Category[];
@@ -74,7 +74,12 @@ export function useCategoryManager(options: () => CategoryManagerOptions) {
 		opts.loadStoriesForCategory(category);
 
 		// Update URL to reflect new category
-		if (opts.historyManager && updateUrl && !navigationHandlerService.isNavigating() && !opts.isSinglePageMode) {
+		if (
+			opts.historyManager &&
+			updateUrl &&
+			!navigationHandlerService.isNavigating() &&
+			!opts.isSinglePageMode
+		) {
 			opts.historyManager.updateUrl({ categoryId: category, storyIndex: null });
 		}
 

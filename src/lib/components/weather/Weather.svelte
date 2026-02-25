@@ -1,6 +1,6 @@
 <script lang="ts">
-import { onMount } from 'svelte';
 import { IconWind } from '@tabler/icons-svelte';
+import { onMount } from 'svelte';
 import { s } from '$lib/client/localization.svelte';
 
 interface Props {

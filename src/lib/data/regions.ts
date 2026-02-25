@@ -60,7 +60,7 @@ export const regiontoCountry: Record<Region, string[] | undefined> = {
 		'UG',
 		'EH',
 		'ZM',
-		'ZW'
+		'ZW',
 	],
 	Americas: [
 		'AI',
@@ -119,7 +119,7 @@ export const regiontoCountry: Record<Region, string[] | undefined> = {
 		'UY',
 		'VE',
 		'VG',
-		'VI'
+		'VI',
 	],
 	Asia: [
 		'AF',
@@ -172,7 +172,7 @@ export const regiontoCountry: Record<Region, string[] | undefined> = {
 		'AE',
 		'UZ',
 		'VN',
-		'YE'
+		'YE',
 	],
 	Europe: [
 		'AX',
@@ -225,7 +225,7 @@ export const regiontoCountry: Record<Region, string[] | undefined> = {
 		'SE',
 		'CH',
 		'UA',
-		'GB'
+		'GB',
 	],
 	Oceania: [
 		'AS',
@@ -256,8 +256,8 @@ export const regiontoCountry: Record<Region, string[] | undefined> = {
 		'TV',
 		'UM',
 		'VU',
-		'WF'
-	]
+		'WF',
+	],
 };
 
 export const countryToRegion: Record<string, Region> = {};
@@ -271,7 +271,7 @@ for (const continent in regiontoCountry) {
 export async function getCurrentRegion() {
 	try {
 		const response = await fetch('https://cloudflare.com/cdn-cgi/trace', {
-			signal: AbortSignal.timeout(5000) // Reduce timeout to 5 seconds
+			signal: AbortSignal.timeout(5000), // Reduce timeout to 5 seconds
 		});
 		const text = await response.text();
 		const data = Object.fromEntries(text.split('\n').map((line) => line.split('=')));

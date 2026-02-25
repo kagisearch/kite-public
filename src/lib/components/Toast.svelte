@@ -33,11 +33,11 @@ function getColorClasses(type: Toast['type']): string {
 
 <!-- Toast Container -->
 {#if toasts.length > 0}
-	<div class="fixed bottom-4 right-4 z-[9999] flex flex-col gap-2 max-w-md sm:max-w-sm max-sm:left-4 max-sm:right-4">
+	<div class="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-[calc(1rem+env(safe-area-inset-right))] z-notification flex flex-col gap-2 max-w-md sm:max-w-sm max-sm:left-[calc(1rem+env(safe-area-inset-left))] max-sm:right-[calc(1rem+env(safe-area-inset-right))]">
 		{#each toasts as toast (toast.id)}
 			{@const Icon = getIcon(toast.type)}
 			<div
-				class="p-4 rounded-lg border shadow-lg backdrop-blur-sm animate-slide-in {getColorClasses(toast.type)}"
+				class="p-4 rounded-lg border shadow-lg animate-slide-in {getColorClasses(toast.type)}"
 				role="alert"
 			>
 				<div class="flex items-center gap-3">
@@ -86,6 +86,6 @@ function getColorClasses(type: Toast['type']): string {
 }
 
 .animate-slide-in {
-	animation: slide-in 0.3s ease-out;
+	animation: slide-in 0.2s ease-out;
 }
 </style>

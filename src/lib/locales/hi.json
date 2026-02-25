@@ -27,6 +27,14 @@
     "text": "समाचार पाठकों के लिए",
     "translationContext": "Footer text suffix for copyright"
   },
+  "settings.about.keyboardDescription": {
+    "text": "vim-शैली के कीबोर्ड शॉर्टकट का उपयोग करके कहानियों और श्रेणियों में नेविगेट करें",
+    "translationContext": "Description of keyboard navigation feature"
+  },
+  "settings.about.keyboardShortcuts": {
+    "text": "कीबोर्ड शॉर्टकट",
+    "translationContext": "Section header for keyboard shortcuts in settings"
+  },
   "settings.about.learnMore": {
     "text": "और जानें",
     "translationContext": "Link text to open full about page"
@@ -47,6 +55,10 @@
     "text": "API दस्तावेज़ देखें",
     "translationContext": "Button text to view API documentation"
   },
+  "settings.about.viewShortcuts": {
+    "text": "कीबोर्ड शॉर्टकट देखें",
+    "translationContext": "Button text to open keyboard shortcuts help overlay"
+  },
   "settings.aboutKite.button": {
     "text": "काइट के बारे में",
     "translationContext": "Text for the About Kagi News button"
@@ -62,6 +74,78 @@
   "settings.categories.contribute": {
     "text": "+ श्रेणियाँ योगदान करें",
     "translationContext": "Link text for contributing categories"
+  },
+  "settings.categories.contribute.intro": {
+    "text": "नई श्रेणियां सुझाकर कागी न्यूज़ कवरेज का विस्तार करने में मदद करें। सामुदायिक योगदान ही कागी न्यूज़ को विविध और व्यापक बनाते हैं।",
+    "translationContext": "Introduction text in the contribute category modal"
+  },
+  "settings.categories.contribute.learnMore": {
+    "text": "देखें",
+    "translationContext": "Start of sentence linking to source inclusion rationale"
+  },
+  "settings.categories.contribute.learnMoreLink": {
+    "text": "यह चर्चा",
+    "translationContext": "Link text for the source inclusion rationale discussion"
+  },
+  "settings.categories.contribute.learnMoreSuffix": {
+    "text": "स्रोत शामिल करने के हमारे पूरे तर्क के लिए।",
+    "translationContext": "End of sentence after the discussion link"
+  },
+  "settings.categories.contribute.openIssue": {
+    "text": "GitHub पर एक इश्यू खोलें",
+    "translationContext": "Link text to open a GitHub issue for category suggestions"
+  },
+  "settings.categories.contribute.or": {
+    "text": "या",
+    "translationContext": "Divider text between options in contribute modal"
+  },
+  "settings.categories.contribute.prHint": {
+    "text": "GitHub से परिचित डेवलपर्स के लिए",
+    "translationContext": "Hint text below the pull request link"
+  },
+  "settings.categories.contribute.prLink": {
+    "text": "सीधे एक पुल रिक्वेस्ट सबमिट करें",
+    "translationContext": "Link text for developers to submit a PR"
+  },
+  "settings.categories.contribute.req1Desc": {
+    "text": "— जितनी अधिक उच्च-गुणवत्ता वाली फ़ीड्स, उतना बेहतर कवरेज",
+    "translationContext": "Description explaining more feeds = better"
+  },
+  "settings.categories.contribute.req1Title": {
+    "text": "25+ RSS फ़ीड्स (जितनी ज़्यादा हों, उतना अच्छा)",
+    "translationContext": "Title for the feeds requirement emphasizing more is better"
+  },
+  "settings.categories.contribute.req2Desc": {
+    "text": "— एक वामपंथी स्रोत के लिए दक्षिणपंथी समकक्ष की आवश्यकता नहीं है। सरकारी मीडिया, पक्षपातपूर्ण आउटलेट, सब ठीक हैं। हमारा सिस्टम कई स्रोतों से तथ्यों की पुष्टि करता है, इसलिए बाहरी स्रोत आउटपुट को विकृत नहीं कर सकते। यही कारण है कि अधिक स्रोत = बेहतर",
+    "translationContext": "Detailed explanation of why biased sources are OK and why more sources help"
+  },
+  "settings.categories.contribute.req2Title": {
+    "text": "\"संतुलन\" की कोई आवश्यकता नहीं",
+    "translationContext": "Title clarifying sources don't need to be balanced"
+  },
+  "settings.categories.contribute.req3Desc": {
+    "text": "— कोई मनगढ़ंत दावे, घटनाओं का खंडन, या धोखाधड़ी वाली सामग्री नहीं",
+    "translationContext": "Description for the no conspiracy content requirement"
+  },
+  "settings.categories.contribute.req3Title": {
+    "text": "कोई षड्यंत्रकारी सामग्री नहीं",
+    "translationContext": "Title for the no conspiracy content requirement"
+  },
+  "settings.categories.contribute.requirements": {
+    "text": "दिशानिर्देश:",
+    "translationContext": "Header for the guidelines section in contribute modal"
+  },
+  "settings.categories.contribute.suggestButton": {
+    "text": "एक श्रेणी सुझाएं",
+    "translationContext": "Primary button text to open GitHub issue form"
+  },
+  "settings.categories.contribute.suggestHint": {
+    "text": "एक GitHub इश्यू फ़ॉर्म खोलता है — कोडिंग की आवश्यकता नहीं",
+    "translationContext": "Hint text below the suggest button"
+  },
+  "settings.categories.contribute.title": {
+    "text": "एक श्रेणी का योगदान करें",
+    "translationContext": "Title of the contribute category modal"
   },
   "settings.categories.coreTooltip": {
     "text": "कागी टीम द्वारा अनुरक्षित। उच्च गुणवत्ता, विविध दृष्टिकोण।",
@@ -87,6 +171,10 @@
     "text": "प्रकार के अनुसार फ़िल्टर करें...",
     "translationContext": "Placeholder text for category type filter dropdown"
   },
+  "settings.categories.filterPlaceholder": {
+    "text": "सभी",
+    "translationContext": "Placeholder text for the category type filter dropdown"
+  },
   "settings.categories.instructions": {
     "text": "पुनः क्रमित करने के लिए खींचें, या सक्षम/अक्षम करने के लिए क्लिक करें। श्रेणियों को ले जाने के लिए अनुभागों के बीच खींचें।",
     "translationContext": "Instructions for managing categories"
@@ -106,6 +194,18 @@
   "settings.categories.noFiltered": {
     "text": "इस प्रकार की कोई श्रेणी अक्षम नहीं है",
     "translationContext": "Message shown when no categories of the selected filter type are in the disabled section"
+  },
+  "settings.categories.noLetterResults": {
+    "text": "इस अक्षर से शुरू होने वाली कोई श्रेणी नहीं है",
+    "translationContext": "Message shown when no categories match the selected letter filter"
+  },
+  "settings.categories.noSearchResults": {
+    "text": "आपकी खोज से कोई श्रेणी मेल नहीं खाती",
+    "translationContext": "Message shown when no categories match the search query"
+  },
+  "settings.categories.searchPlaceholder": {
+    "text": "श्रेणियां खोजें...",
+    "translationContext": "Placeholder text for the category search input"
   },
   "settings.categories.singlePageMode.description": {
     "text": "कहानियों को प्रदर्शित करने का तरीका चुनें: टैब में (डिफ़ॉल्ट), या अलग-अलग क्रम विकल्पों के साथ एक ही पेज पर।",
@@ -615,6 +715,118 @@
     "text": "ओपनस्ट्रीटमैप",
     "translationContext": "Option to use OpenStreetMap"
   },
+  "settings.preferredSources.clearAll": {
+    "text": "सभी पिन किए गए स्रोत साफ़ करें",
+    "translationContext": "Button text to clear all pinned sources"
+  },
+  "settings.preferredSources.cleared": {
+    "text": "साफ़ हो गया!",
+    "translationContext": "Confirmation message after clearing pinned sources"
+  },
+  "settings.preferredSources.description": {
+    "text": "पिन किए गए स्रोत हर कहानी की स्रोत सूची में सबसे पहले दिखाई देते हैं। इसे यहाँ जोड़ने के लिए किसी भी स्रोत पर पिन आइकन पर क्लिक करें।",
+    "translationContext": "Description explaining the pinned sources feature"
+  },
+  "settings.preferredSources.empty": {
+    "text": "अभी तक कोई पिन किया गया स्रोत नहीं है। एक कहानी खोलें, किसी स्रोत पर क्लिक करें, और उसे यहाँ जोड़ने के लिए पिन आइकन का उपयोग करें।",
+    "translationContext": "Message shown when no preferred sources have been selected"
+  },
+  "settings.preferredSources.remove": {
+    "text": "हटाएँ",
+    "translationContext": "Aria label for button to remove a source from pinned list"
+  },
+  "settings.preferredSources.title": {
+    "text": "पिन किए गए स्रोत",
+    "translationContext": "Title for preferred sources section in settings"
+  },
+  "settings.readingLevel.categories.description": {
+    "text": "खास श्रेणियों के लिए डिफ़ॉल्ट स्तर बदलें। जिन श्रेणियों को \"ग्लोबल\" पर सेट किया गया है, वे आपकी ऊपर दी गई डिफ़ॉल्ट सेटिंग का इस्तेमाल करेंगी।",
+    "translationContext": "Description explaining how category-specific overrides work"
+  },
+  "settings.readingLevel.categories.label": {
+    "text": "कैटेगरी ओवरराइड्स",
+    "translationContext": "Label for the category-specific reading level overrides section"
+  },
+  "settings.readingLevel.clearOverrides": {
+    "text": "ओवरराइड हटाएं",
+    "translationContext": "Button to clear all category-specific reading level overrides"
+  },
+  "settings.readingLevel.fromGlobal": {
+    "text": "ग्लोबल",
+    "translationContext": "Indicator that a category is using the global reading level setting"
+  },
+  "settings.readingLevel.global.description": {
+    "text": "यह सभी श्रेणियों पर लागू होगा, जब तक कि आप नीचे कोई खास स्तर सेट न करें।",
+    "translationContext": "Description for the global reading level setting"
+  },
+  "settings.readingLevel.global.label": {
+    "text": "डिफ़ॉल्ट पढ़ने का स्तर",
+    "translationContext": "Label for the global reading level setting"
+  },
+  "settings.readingLevel.info.howItWorks": {
+    "text": "जब आप कोई कहानी खोलेंगे, तो उसकी सामग्री आपके चुने हुए पढ़ने के स्तर के अनुसार अपने-आप आसान हो जाएगी। आप फिर भी किसी भी कहानी के लिए स्तर को खुद बदल सकते हैं।",
+    "translationContext": "Explanation of how automatic reading level simplification works"
+  },
+  "settings.readingLevel.info.simpleDescription": {
+    "text": "मध्यम स्तर (B1) की साफ़ भाषा। आम पाठकों के लिए अच्छी है।",
+    "translationContext": "Description of the Simple reading level"
+  },
+  "settings.readingLevel.info.verySimpleDescription": {
+    "text": "बुनियादी शब्दावली और छोटे वाक्य (A2)। भाषा सीखने वालों के लिए आदर्श।",
+    "translationContext": "Description of the Very Simple reading level"
+  },
+  "settings.readingLevel.levels.default": {
+    "text": "सामान्य",
+    "translationContext": "Default/normal reading level option"
+  },
+  "settings.readingLevel.levels.simple": {
+    "text": "सरल",
+    "translationContext": "Simple reading level option"
+  },
+  "settings.readingLevel.levels.useGlobal": {
+    "text": "ग्लोबल",
+    "translationContext": "Option to use the global reading level (no override)"
+  },
+  "settings.readingLevel.levels.verySimple": {
+    "text": "बहुत सरल",
+    "translationContext": "Very simple reading level option"
+  },
+  "settings.readingLevel.noCategories": {
+    "text": "कोई भी श्रेणी चालू नहीं है। 'श्रेणियाँ' टैब में जाकर श्रेणियाँ चालू करें।",
+    "translationContext": "Message shown when no categories are enabled"
+  },
+  "settings.readingLevel.resetAll": {
+    "text": "सभी रीसेट करें",
+    "translationContext": "Button to reset both global level and all category overrides"
+  },
+  "settings.readingLevel.subscriberOnly": {
+    "text": "कागी ग्राहकों के लिए पठन स्तर सरलीकरण उपलब्ध है। लेखों को अपने पसंदीदा पठन स्तर पर स्वचालित रूप से सरल बनाने के लिए अपग्रेड करें।",
+    "translationContext": "Message shown to non-subscribers about reading level feature"
+  },
+  "settings.readingLevel.subscriberOnly.description": {
+    "text": "टेक्स्ट को अपने-आप आसान बनाने की सुविधा Kagi सब्सक्राइबर्स के लिए उपलब्ध है। इस सुविधा का इस्तेमाल करने के लिए अपग्रेड करें।",
+    "translationContext": "Description explaining this is a subscriber-only feature"
+  },
+  "settings.readingLevel.subscriberOnly.title": {
+    "text": "सब्सक्राइबर सुविधा",
+    "translationContext": "Title for subscriber-only feature notice"
+  },
+  "settings.readingLevel.subscriberOnly.upgrade": {
+    "text": "Kagi पर अपग्रेड करें",
+    "translationContext": "Link text to upgrade to Kagi subscription"
+  },
+  "settings.readingLevel.tab.description": {
+    "text": "सभी कहानियों के लिए पढ़ने का एक डिफ़ॉल्ट स्तर सेट करें। आप चाहें तो खास श्रेणियों के लिए स्तर को बदल भी सकते हैं।",
+    "translationContext": "Description shown at the top of the reading level settings tab"
+  },
+  "settings.readingLevel.title": {
+    "text": "पठन स्तर",
+    "translationContext": "Title for reading level section"
+  },
+  "settings.readingLevel.upgrade": {
+    "text": "कागी में अपग्रेड करें",
+    "translationContext": "Link text to upgrade to Kagi subscription"
+  },
   "settings.sections.instructions": {
     "text": "अनुभागों को फिर से व्यवस्थित करने के लिए खींचें। सक्षम/अक्षम करने के लिए स्विच का उपयोग करें।",
     "translationContext": "Instructions for managing article sections"
@@ -699,6 +911,10 @@
     "text": "प्रकटन",
     "translationContext": "Subsection heading for appearance-related settings"
   },
+  "settings.subsections.display": {
+    "text": "डिस्प्ले",
+    "translationContext": "Subsection heading for display settings"
+  },
   "settings.subsections.localization": {
     "text": "भाषा और क्षेत्र",
     "translationContext": "Subsection heading for language and localization settings"
@@ -710,6 +926,14 @@
   "settings.subsections.readingExperience": {
     "text": "पठन अनुभव",
     "translationContext": "Subsection heading for story display and reading settings"
+  },
+  "settings.subsections.storyDisplay": {
+    "text": "कहानी डिस्प्ले",
+    "translationContext": "Subsection heading for story display settings"
+  },
+  "settings.subsections.visualEnhancements": {
+    "text": "विज़ुअल सुधार",
+    "translationContext": "Subsection heading for visual enhancement toggles"
   },
   "settings.sync.clear.button": {
     "text": "सभी सिंक किए गए डेटा को साफ़ करें",
@@ -775,6 +999,14 @@
     "text": "निर्यात हो रहा है...",
     "translationContext": "Text shown while exporting data"
   },
+  "settings.sync.import.button": {
+    "text": "सेटिंग्स आयात करें",
+    "translationContext": "Button label to import settings from a backup JSON file"
+  },
+  "settings.sync.import.importing": {
+    "text": "आयात हो रहा है...",
+    "translationContext": "Loading text shown while importing settings from a backup file"
+  },
   "settings.sync.info.description": {
     "text": "Kagi News आपकी सेटिंग्स और पढ़े गए इतिहास को आपके सभी डिवाइसों पर सिंक कर सकता है। यह डेटा Kagi सर्वर पर सुरक्षित रूप से संग्रहीत होता है और आपके Kagi Search खाते से जुड़ा होता है।\n\nआपका सिंक किया गया डेटा किसी अन्य उद्देश्य के लिए उपयोग नहीं किया जाता है, किसी के साथ साझा नहीं किया जाता है, और केवल आपको सिंक सेवा प्रदान करने के लिए संग्रहीत किया जाता है। आपका इस पर पूरा नियंत्रण है कि क्या सिंक किया जाए और आप किसी भी समय अपना डेटा हटा सकते हैं।",
     "translationContext": "Description of sync and privacy features"
@@ -831,6 +1063,14 @@
     "text": "बारे में",
     "translationContext": "Title for the about settings tab"
   },
+  "settings.tabs.account": {
+    "text": "खाता",
+    "translationContext": "Title for the account settings tab"
+  },
+  "settings.tabs.appearance": {
+    "text": "दिखावट",
+    "translationContext": "Title for the appearance settings tab"
+  },
   "settings.tabs.categories": {
     "text": "श्रेणियाँ",
     "translationContext": "Title for the categories settings tab"
@@ -843,13 +1083,33 @@
     "text": "प्रायोगिक",
     "translationContext": "Title for the experimental settings tab"
   },
+  "settings.tabs.filters": {
+    "text": "फ़िल्टर",
+    "translationContext": "Title for the filters settings tab"
+  },
   "settings.tabs.general": {
     "text": "सामान्य",
     "translationContext": "Title for the general settings tab"
   },
+  "settings.tabs.language": {
+    "text": "भाषा",
+    "translationContext": "Title for the language settings tab"
+  },
+  "settings.tabs.preferredSources": {
+    "text": "पिन किए गए स्रोत",
+    "translationContext": "Tab name for preferred/pinned sources settings"
+  },
+  "settings.tabs.readingLevel": {
+    "text": "पढ़ने का स्तर",
+    "translationContext": "Tab name for per-category reading level settings"
+  },
   "settings.tabs.sections": {
     "text": "अनुभाग",
     "translationContext": "Title for the sections settings tab"
+  },
+  "settings.tabs.stories": {
+    "text": "कहानियाँ",
+    "translationContext": "Title for the stories settings tab"
   },
   "settings.tabs.syncPrivacy": {
     "text": "सिंकिंग",
@@ -907,9 +1167,17 @@
     "text": "बंद करें",
     "translationContext": "Close button text"
   },
+  "common.no_results": {
+    "text": "कोई परिणाम नहीं मिला",
+    "translationContext": "Shown in search/select dropdowns when no matches are found"
+  },
   "common.reset": {
     "text": "रीसेट करें",
     "translationContext": "Reset button text"
+  },
+  "common.search": {
+    "text": "खोजें",
+    "translationContext": "Generic search input placeholder"
   },
   "about.approach.description1": {
     "text": "दुनिया इको चैंबर में नहीं रहती। वास्तविकता विभिन्न दृष्टिकोणों और विचारों के टकराव से उत्पन्न होती है - इसी तरह हम शोर से संकेत को अलग करते हैं।",
@@ -986,6 +1254,42 @@
   "about.why.title": {
     "text": "क्यों काइट? क्योंकि खबरें टूटी-फूटी हैं।",
     "translationContext": "Title of the Why Kagi News section"
+  },
+  "app_navigation.assistant": {
+    "text": "सहायक",
+    "translationContext": "Label for Kagi Assistant in the app navigation menu"
+  },
+  "app_navigation.fastgpt": {
+    "text": "FastGPT",
+    "translationContext": "Label for Kagi FastGPT in the app navigation menu, should not be translated"
+  },
+  "app_navigation.news": {
+    "text": "समाचार",
+    "translationContext": "Label for Kagi News in the app navigation menu"
+  },
+  "app_navigation.open_navigation": {
+    "text": "ऐप नेविगेशन खोलें",
+    "translationContext": "Accessibility label for opening the app navigation menu"
+  },
+  "app_navigation.search": {
+    "text": "खोज",
+    "translationContext": "Label for Kagi Search in the app navigation menu"
+  },
+  "app_navigation.small_web": {
+    "text": "स्मॉल वेब",
+    "translationContext": "Label for Kagi Small Web in the app navigation menu"
+  },
+  "app_navigation.tooltip": {
+    "text": "कागी ऐप्स",
+    "translationContext": "Tooltip for the app navigation button"
+  },
+  "app_navigation.translate": {
+    "text": "अनुवाद",
+    "translationContext": "Label for Kagi Translate in the app navigation menu"
+  },
+  "app_navigation.universal_summarizer": {
+    "text": "यूनिवर्सल समराइज़र",
+    "translationContext": "Label for Kagi Universal Summarizer in the app navigation menu"
   },
   "app.beta": {
     "text": "बीटा",
@@ -1714,6 +2018,546 @@
   "contentFilter.storyHidden": {
     "text": "{{count}} कहानी छिपी हुई",
     "translationContext": "Message showing 1 story is hidden"
+  },
+  "contribute.addFeeds": {
+    "text": "फ़ीड्स जोड़ें",
+    "translationContext": "Button to add pasted feed URLs to the list"
+  },
+  "contribute.allDuplicates": {
+    "text": "सभी {{count}} URL इस श्रेणी में पहले से मौजूद हैं",
+    "translationContext": "Error when all pasted URLs are duplicates"
+  },
+  "contribute.allFeedsFailed": {
+    "text": "सभी फ़ीड्स सत्यापन में विफल रहे। कृपया URL जांचें और पुनः प्रयास करें, या त्रुटिपूर्ण फ़ीड्स हटाकर काम करने वाले फ़ीड्स जोड़ें।",
+    "translationContext": "Error message when every feed fails validation"
+  },
+  "contribute.cannotSubmit": {
+    "text": "सबमिट नहीं कर सकते। सभी फ़ीड्स सत्यापन में विफल रहे। त्रुटिपूर्ण फ़ीड्स हटाएँ और काम करने वाले फ़ीड्स जोड़ें।",
+    "translationContext": "Error explaining why submission is blocked"
+  },
+  "contribute.categoryExists": {
+    "text": "यह श्रेणी पहले से मौजूद है।",
+    "translationContext": "Warning when the entered category name already exists"
+  },
+  "contribute.categoryName": {
+    "text": "श्रेणी का नाम",
+    "translationContext": "Label for the new category name input field"
+  },
+  "contribute.categoryNamePlaceholder": {
+    "text": "उदा., विमानन, दक्षिण कोरिया, जलवायु...",
+    "translationContext": "Placeholder text for the category name input"
+  },
+  "contribute.checkingCount": {
+    "text": "{{count}} जाँच हो रही है...",
+    "translationContext": "Number of feeds currently being validated"
+  },
+  "contribute.coreCategory": {
+    "text": "कोर",
+    "translationContext": "Badge label for core categories maintained by the Kagi team"
+  },
+  "contribute.coreCategoryNote": {
+    "text": "यह एक कोर काइट श्रेणी है। आपके फ़ीड्स मौजूदा क्यूरेटेड स्रोतों के साथ जोड़े जाएँगे।",
+    "translationContext": "Info note shown when a core category is selected in the contribute dropdown"
+  },
+  "contribute.createPr": {
+    "text": "पुल रिक्वेस्ट बनाएँ",
+    "translationContext": "Button text to submit and create a GitHub pull request"
+  },
+  "contribute.creatingPr": {
+    "text": "PR बना रहे हैं...",
+    "translationContext": "Button text while the pull request is being created"
+  },
+  "contribute.duplicatesSkipped": {
+    "text": "{{count}} डुप्लिकेट फ़ीड छोड़ दिए गए (इस श्रेणी में पहले से मौजूद हैं)",
+    "translationContext": "Warning showing how many duplicate feeds were skipped"
+  },
+  "contribute.errorCount": {
+    "text": "{{count}} त्रुटि(याँ)",
+    "translationContext": "Number of feeds that failed validation"
+  },
+  "contribute.excludedNote": {
+    "text": "({{count}} त्रुटिपूर्ण फ़ीड शामिल नहीं किए जाएँगे)",
+    "translationContext": "Note about errored feeds being excluded from submission"
+  },
+  "contribute.existingCategory": {
+    "text": "मौजूदा श्रेणी",
+    "translationContext": "Toggle button to add feeds to an existing category"
+  },
+  "contribute.failedPr": {
+    "text": "पुल रिक्वेस्ट बनाने में विफल",
+    "translationContext": "Fallback error message when PR creation fails"
+  },
+  "contribute.feedCount": {
+    "text": "{{count}} फ़ीड्स",
+    "translationContext": "Number of feeds in a category, e.g. '42 feeds'"
+  },
+  "contribute.feedInputPlaceholder": {
+    "text": "फ़ीड URL यहाँ पेस्ट करें (प्रति पंक्ति एक या कॉमा से अलग करके)",
+    "translationContext": "Placeholder for the feed URL textarea input"
+  },
+  "contribute.feedLanguage": {
+    "text": "फ़ीड की भाषा",
+    "translationContext": "Label for the feed language selector"
+  },
+  "contribute.feedLanguageTooltip": {
+    "text": "इसे उस भाषा पर सेट करें जिसमें अधिकांश फ़ीड लिखे गए हैं (बहुमत या बहुलता)। यह उपलब्धता को सीमित नहीं करता है - सभी श्रेणियों का अनुवाद हमारे द्वारा समर्थित हर भाषा में किया जाता है।",
+    "translationContext": "Tooltip explaining the feed language setting"
+  },
+  "contribute.feedsAdded": {
+    "text": "{{count}} फ़ीड जोड़े गए",
+    "translationContext": "Summary showing total number of feeds added"
+  },
+  "contribute.guidelineBalance": {
+    "text": "\"संतुलन\" की कोई ज़रूरत नहीं",
+    "translationContext": "Guideline title: sources don't need political balance"
+  },
+  "contribute.guidelineBalanceDesc": {
+    "text": "एक वामपंथी स्रोत को दक्षिणपंथी समकक्ष की आवश्यकता नहीं है। सरकारी मीडिया, पक्षपातपूर्ण आउटलेट, सब ठीक हैं। हमारा सिस्टम कई स्रोतों से तथ्यों की पुष्टि करता है।",
+    "translationContext": "Guideline description explaining why biased sources are acceptable"
+  },
+  "contribute.guidelineConspiracy": {
+    "text": "कोई षड्यंत्रकारी सामग्री नहीं",
+    "translationContext": "Guideline title: no conspiracy theories allowed"
+  },
+  "contribute.guidelineConspiracyDesc": {
+    "text": "कोई मनगढ़ंत दावे, घटना से इनकार, या धोखाधड़ी वाली सामग्री नहीं",
+    "translationContext": "Guideline description for the no conspiracy requirement"
+  },
+  "contribute.guidelineFeeds": {
+    "text": "25+ RSS फ़ीड्स (जितना ज़्यादा, उतना अच्छा)",
+    "translationContext": "Guideline title: minimum number of feeds required"
+  },
+  "contribute.guidelineFeedsDesc": {
+    "text": "जितने ज़्यादा उच्च-गुणवत्ता वाले फ़ीड्स होंगे, कवरेज उतना ही बेहतर होगा",
+    "translationContext": "Guideline description explaining more feeds = better coverage"
+  },
+  "contribute.guidelineLanguage": {
+    "text": "भाषा के आधार पर श्रेणियों को विभाजित न करें",
+    "translationContext": "Guideline title: keep one category per topic regardless of language"
+  },
+  "contribute.guidelineLanguageDesc": {
+    "text": "\"स्विट्जरलैंड\" एक ही श्रेणी होनी चाहिए, न कि \"स्विट्जरलैंड (EN)\" और \"स्विट्जरलैंड (IT)\"। सभी श्रेणियों का अनुवाद हमारे द्वारा समर्थित हर भाषा में किया जाता है।",
+    "translationContext": "Guideline description explaining not to split by language"
+  },
+  "contribute.guidelines": {
+    "text": "दिशानिर्देश",
+    "translationContext": "Collapsible section header for contribution guidelines"
+  },
+  "contribute.heading": {
+    "text": "फ़ीड्स का योगदान करें",
+    "translationContext": "Main heading on the contribute page"
+  },
+  "contribute.hideFeeds": {
+    "text": "फ़ीड्स छिपाएँ",
+    "translationContext": "Button to collapse the list of existing feeds"
+  },
+  "contribute.history.declineReason": {
+    "text": "कारण",
+    "translationContext": "Label before the decline reason text when a contribution PR was closed"
+  },
+  "contribute.history.existingCategory": {
+    "text": "मौजूदा में जोड़ा गया",
+    "translationContext": "Badge indicating feeds were added to an existing category"
+  },
+  "contribute.history.feedsAdded": {
+    "text": "{{count}} फ़ीड जोड़े गए",
+    "translationContext": "Shows how many feeds were added in a contribution"
+  },
+  "contribute.history.legend": {
+    "text": "योगदानों की मैन्युअल रूप से समीक्षा की जाती है। एक बार मर्ज हो जाने पर, फ़ीड्स अगले दैनिक बैच के साथ लाइव हो जाते हैं।",
+    "translationContext": "Legend text below the contributions list explaining the process"
+  },
+  "contribute.history.newCategory": {
+    "text": "नई श्रेणी",
+    "translationContext": "Badge indicating the contribution created a new category"
+  },
+  "contribute.history.pr": {
+    "text": "PR #{{number}}",
+    "translationContext": "Link text showing the GitHub pull request number"
+  },
+  "contribute.history.showLess": {
+    "text": "कम दिखाएँ",
+    "translationContext": "Button to collapse the contributions list back to the preview"
+  },
+  "contribute.history.status.declined": {
+    "text": "अस्वीकृत",
+    "translationContext": "Pipeline step label: PR was closed without merging"
+  },
+  "contribute.history.status.declined.tooltip": {
+    "text": "यह पुल रिक्वेस्ट बिना मर्ज किए बंद कर दी गई थी।",
+    "translationContext": "Tooltip for the Declined pipeline step"
+  },
+  "contribute.history.status.live": {
+    "text": "लाइव",
+    "translationContext": "Pipeline step label: feeds are active on Kagi News"
+  },
+  "contribute.history.status.live.tooltip": {
+    "text": "आपके फ़ीड्स कागी न्यूज़ पर सक्रिय हैं। यदि कोई श्रेणी कोई कहानी नहीं दिखाती है, तो इसका मतलब है कि लेख क्लस्टर नहीं हुए - यह सामान्य है।",
+    "translationContext": "Tooltip for the Live pipeline step"
+  },
+  "contribute.history.status.merged": {
+    "text": "मर्ज किया गया",
+    "translationContext": "Pipeline step label: PR has been merged"
+  },
+  "contribute.history.status.merged.tooltip": {
+    "text": "आपकी पुल रिक्वेस्ट मर्ज कर दी गई है। परिवर्तन अगले कागी न्यूज़ बैच के साथ लाइव हो जाएँगे।",
+    "translationContext": "Tooltip for the Merged pipeline step"
+  },
+  "contribute.history.status.submitted": {
+    "text": "सबमिट किया गया",
+    "translationContext": "Pipeline step label: PR has been created"
+  },
+  "contribute.history.status.submitted.tooltip": {
+    "text": "आपकी पुल रिक्वेस्ट बना दी गई है और समीक्षा की प्रतीक्षा कर रही है।",
+    "translationContext": "Tooltip for the Submitted pipeline step"
+  },
+  "contribute.history.title": {
+    "text": "मेरे योगदान",
+    "translationContext": "Heading for the section showing the user's past feed contributions"
+  },
+  "contribute.history.titleWithCount": {
+    "text": "मेरे योगदान ({{count}})",
+    "translationContext": "Heading for contributions section showing total count, e.g. 'My Contributions (4)'"
+  },
+  "contribute.history.typeExisting": {
+    "text": "मौजूदा श्रेणी",
+    "translationContext": "Inline text in expanded contribution detail indicating feeds were added to an existing category"
+  },
+  "contribute.history.typeNew": {
+    "text": "नई श्रेणी",
+    "translationContext": "Inline text in expanded contribution detail indicating this created a new category"
+  },
+  "contribute.history.viewAll": {
+    "text": "{{count}} और देखें",
+    "translationContext": "Button to expand and show remaining hidden contributions, e.g. 'See 3 more'"
+  },
+  "contribute.howItWorks": {
+    "text": "यह कैसे काम करता है",
+    "translationContext": "Small link in the contribute form header to re-show the onboarding"
+  },
+  "contribute.inThisCategory": {
+    "text": "इस श्रेणी में",
+    "translationContext": "Text after feed count, e.g. '42 feeds in this category'"
+  },
+  "contribute.languageInNameWarning": {
+    "text": "श्रेणी के नाम में भाषा कोड शामिल न करें। केवल मूल नाम का उपयोग करें (उदा., \"स्विट्जरलैंड (IT)\" के बजाय \"स्विट्जरलैंड\") और नीचे प्राथमिक फ़ीड भाषा सेट करें। सभी श्रेणियों का अनुवाद हमारे द्वारा समर्थित हर भाषा में किया जाता है।",
+    "translationContext": "Warning shown when a language code like (IT) is detected in the category name"
+  },
+  "contribute.loadingCategories": {
+    "text": "श्रेणियाँ लोड हो रही हैं...",
+    "translationContext": "Loading state while fetching category list"
+  },
+  "contribute.manual.addTo": {
+    "text": "{{fileName}} में जोड़ें:",
+    "translationContext": "Label above the copyable code snippet (snippet mode)"
+  },
+  "contribute.manual.copied": {
+    "text": "कॉपी हो गया!",
+    "translationContext": "Confirmation after copying to clipboard"
+  },
+  "contribute.manual.copy": {
+    "text": "कॉपी करें",
+    "translationContext": "Copy to clipboard button"
+  },
+  "contribute.manual.editOnGithub": {
+    "text": "GitHub पर {{fileName}} संपादित करें",
+    "translationContext": "Button to open the file editor on GitHub"
+  },
+  "contribute.manual.fullFile": {
+    "text": "पूर्ण {{fileName}}:",
+    "translationContext": "Label above the copyable code block (full file mode)"
+  },
+  "contribute.manual.instructions": {
+    "text": "इन परिवर्तनों के साथ GitHub पर एक पुल रिक्वेस्ट बनाएँ:",
+    "translationContext": "Header for manual PR creation instructions"
+  },
+  "contribute.manual.step1": {
+    "text": "नीचे दिए गए स्निपेट को कॉपी करें",
+    "translationContext": "Step 1 of manual PR instructions (snippet mode for core_feeds.py)"
+  },
+  "contribute.manual.step1Full": {
+    "text": "नीचे दी गई पूरी फ़ाइल सामग्री को कॉपी करें",
+    "translationContext": "Step 1 of manual PR instructions (full file mode for kite_feeds.json)"
+  },
+  "contribute.manual.step2Existing": {
+    "text": "GitHub पर {{fileName}} संपादित करने के लिए बटन पर क्लिक करें। \"{{category}}\" अनुभाग खोजें और इसकी फ़ीड सूची में फ़ीड URL जोड़ें",
+    "translationContext": "Step 2 for adding feeds to an existing category manually (snippet mode for core_feeds.py)"
+  },
+  "contribute.manual.step2Full": {
+    "text": "GitHub पर {{fileName}} संपादित करने के लिए बटन पर क्लिक करें, सभी का चयन करें और कॉपी की गई सामग्री से बदलें",
+    "translationContext": "Step 2 for full file replacement mode (kite_feeds.json)"
+  },
+  "contribute.manual.step2New": {
+    "text": "GitHub पर {{fileName}} संपादित करने के लिए बटन पर क्लिक करें। मौजूदा श्रेणियों के बीच स्निपेट को वर्णानुक्रम में जोड़ें",
+    "translationContext": "Step 2 for adding a new category manually (snippet mode fallback)"
+  },
+  "contribute.manual.step3": {
+    "text": "परिवर्तन को कमिट करें और एक पुल रिक्वेस्ट खोलें। GitHub इसमें आपका मार्गदर्शन करेगा",
+    "translationContext": "Step 3 of manual PR instructions"
+  },
+  "contribute.manual.submit": {
+    "text": "PR निर्देश प्राप्त करें",
+    "translationContext": "Button text for manual mode where user creates PR themselves"
+  },
+  "contribute.networkError": {
+    "text": "नेटवर्क त्रुटि। कृपया पुनः प्रयास करें।",
+    "translationContext": "Error message for network failures during submission"
+  },
+  "contribute.newCategory": {
+    "text": "नई श्रेणी",
+    "translationContext": "Toggle button to create a new category"
+  },
+  "contribute.noValidUrls": {
+    "text": "कोई वैध URL नहीं मिला। URL http:// या https:// से शुरू होने चाहिए",
+    "translationContext": "Error when pasted text contains no valid URLs"
+  },
+  "contribute.onboarding.community.description": {
+    "text": "कागी का कोई भी कर्मचारी यह तय नहीं करता कि कौन सी श्रेणियाँ मौजूद हैं या कौन सी कहानियाँ दिखाई देती हैं। यह सब फ़ीड्स से आता है, और फ़ीड्स समुदाय से आते हैं।",
+    "translationContext": "Main explanation of community-driven categories"
+  },
+  "contribute.onboarding.community.networkLabelStories": {
+    "text": "कहानियाँ",
+    "translationContext": "Label on the story cluster nodes in the feed flow animation"
+  },
+  "contribute.onboarding.community.networkLabelYou": {
+    "text": "+ आप",
+    "translationContext": "Label on the contributor node in the feed network animation"
+  },
+  "contribute.onboarding.community.networkNote": {
+    "text": "बाईं ओर के फ़ीड्स दाईं ओर की कहानियों में प्रवाहित होते हैं। अधिक फ़ीड्स का मतलब है अधिक कहानियाँ और बेहतर कवरेज।",
+    "translationContext": "Caption under the feed-to-story flow animation"
+  },
+  "contribute.onboarding.community.noStories": {
+    "text": "कभी-कभी एक श्रेणी कोई कहानी नहीं बनाती है। इसका आमतौर पर मतलब है कि समूहीकरण के लिए पर्याप्त ओवरलैपिंग कवरेज वाले फ़ीड्स नहीं हैं। अधिक फ़ीड्स का मतलब है अधिक ओवरलैप, जिसका मतलब है अधिक कहानियाँ।",
+    "translationContext": "Explaining why some categories don't generate stories"
+  },
+  "contribute.onboarding.community.title": {
+    "text": "सब कुछ समुदाय-संचालित है",
+    "translationContext": "Section title for explaining community-driven nature of categories"
+  },
+  "contribute.onboarding.community.whyXnotY": {
+    "text": "यदि आप सोच रहे हैं कि X के लिए एक श्रेणी है लेकिन Y के लिए नहीं, तो ऐसा इसलिए है क्योंकि X की परवाह करने वाले किसी व्यक्ति ने इसके लिए फ़ीड्स जोड़ने का समय निकाला। यदि आपकी रुचि का कोई विषय गायब है, तो आप इसे शुरू करने वाले हो सकते हैं।",
+    "translationContext": "Explaining why certain categories exist and others don't"
+  },
+  "contribute.onboarding.cta": {
+    "text": "फ़ीड्स जोड़ना शुरू करें",
+    "translationContext": "CTA button on the onboarding page to proceed to the contribute form"
+  },
+  "contribute.onboarding.feedTypes.community.description": {
+    "text": "kite_feeds.json में आप जैसे योगदानकर्ताओं द्वारा क्यूरेट किया गया। क्षेत्रीय समाचारों से लेकर विशिष्ट विषयों तक सब कुछ कवर करते हैं। आपका योगदान यहीं जाता है।",
+    "translationContext": "Description of community feeds that contributors add to"
+  },
+  "contribute.onboarding.feedTypes.community.title": {
+    "text": "सामुदायिक फ़ीड्स",
+    "translationContext": "Title for the community feeds card"
+  },
+  "contribute.onboarding.feedTypes.core.description": {
+    "text": "विश्व समाचार, व्यापार, प्रौद्योगिकी, विज्ञान, खेल और संस्कृति जैसी आवश्यक श्रेणियों को कवर करते हैं। वे GitHub पर पूरी तरह से ओपन सोर्स हैं, इसलिए आप भी उनमें योगदान कर सकते हैं।",
+    "translationContext": "Description of core feeds, emphasizing they are open source and open to contributions"
+  },
+  "contribute.onboarding.feedTypes.core.title": {
+    "text": "कोर फ़ीड्स",
+    "translationContext": "Title for the core feeds card"
+  },
+  "contribute.onboarding.feedTypes.title": {
+    "text": "दो तरह के फ़ीड्स कागी न्यूज़ को शक्ति देते हैं",
+    "translationContext": "Section title for core vs community feeds comparison"
+  },
+  "contribute.onboarding.guidelines.anyLanguage": {
+    "text": "किसी भी भाषा का स्वागत है। कागी न्यूज़ सब कुछ स्वचालित रूप से अनुवाद करता है, इसलिए एक श्रेणी में भाषाएँ मिश्रित हो सकती हैं और होनी चाहिए।",
+    "translationContext": "Guideline: feeds in any language are accepted"
+  },
+  "contribute.onboarding.guidelines.minimum": {
+    "text": "कागी न्यूज़ में प्रदर्शित होने के लिए नई श्रेणियों को कम से कम 25 फ़ीड्स की आवश्यकता होती है। यह सुनिश्चित करता है कि क्लस्टरिंग के काम करने के लिए पर्याप्त ओवरलैप हो।",
+    "translationContext": "Guideline: minimum feed count for new categories"
+  },
+  "contribute.onboarding.guidelines.noLanguageSplit": {
+    "text": "भाषा के अनुसार अलग-अलग श्रेणियाँ न बनाएँ। \"स्विट्जरलैंड\" का उपयोग करें, न कि \"स्विट्जरलैंड (DE)\" और \"स्विट्जरलैंड (FR)\"।",
+    "translationContext": "Guideline: don't split categories by language"
+  },
+  "contribute.onboarding.guidelines.quality": {
+    "text": "स्थापित समाचार स्रोतों, ब्लॉगों, या आउटलेट्स को प्राथमिकता दें। आम तौर पर अधिक फ़ीड्स बेहतर होते हैं - बाकी काम क्लस्टरिंग संभाल लेता है।",
+    "translationContext": "Guideline: source quality preference"
+  },
+  "contribute.onboarding.guidelines.rssOnly": {
+    "text": "केवल RSS या Atom फ़ीड्स। कागी न्यूज़ वेबसाइटों को स्क्रैप नहीं करता है, यह केवल सार्वजनिक रूप से उपलब्ध फ़ीड डेटा का उपयोग करता है।",
+    "translationContext": "Guideline: only RSS/Atom feeds are accepted"
+  },
+  "contribute.onboarding.guidelines.title": {
+    "text": "फ़ीड दिशानिर्देश",
+    "translationContext": "Section title for feed submission guidelines"
+  },
+  "contribute.onboarding.guidelines.topicSpecific": {
+    "text": "फ़ीड्स को विशेष रूप से श्रेणी के विषय को कवर करना चाहिए। \"यूके\" श्रेणी में द गार्जियन जैसे सामान्य समाचार पत्र को जोड़ने से ज्यादातर विश्व समाचार क्लस्टर बनेंगे, न कि यूके-विशिष्ट। विषय-फ़िल्टर्ड फ़ीड्स की तलाश करें, या एक व्यापक फ़ीड को सीमित करने के लिए RSS फ़िल्टरिंग टूल का उपयोग करें।",
+    "translationContext": "Guideline: feeds should be topic-specific, not general outlets, with example"
+  },
+  "contribute.onboarding.guidelines.working": {
+    "text": "फ़ीड्स काम करने चाहिए और उनमें हाल की (आदर्श रूप से दैनिक) सामग्री होनी चाहिए।",
+    "translationContext": "Guideline: feeds should be active"
+  },
+  "contribute.onboarding.pipeline.note": {
+    "text": "पूरी प्रक्रिया ऑटोपायलट पर चलती है। कागी में कोई भी यह नहीं चुनता कि कौन सी कहानियाँ दिखाई देंगी या कौन सी श्रेणियाँ बनाई जाएँगी।",
+    "translationContext": "Note below the pipeline emphasizing the automated nature"
+  },
+  "contribute.onboarding.pipeline.step1.description": {
+    "text": "हर श्रेणी के पीछे RSS फ़ीड्स की एक सूची होती है। सिस्टम उन सभी से नए लेख खींचता है। कुछ श्रेणियों में सैकड़ों फ़ीड्स होते हैं, जबकि अन्य अभी शुरू हो रही हैं।",
+    "translationContext": "Pipeline step 1 description"
+  },
+  "contribute.onboarding.pipeline.step1.title": {
+    "text": "फ़ीड्स की जाँच की जाती है",
+    "translationContext": "Pipeline step 1 title"
+  },
+  "contribute.onboarding.pipeline.step2.description": {
+    "text": "सिस्टम यह पता लगाता है कि कौन से लेख एक ही चीज़ के बारे में हैं और उन्हें एक साथ समूहित करता है। प्रत्येक समूह एक \"कहानी\" बन जाता है। यदि कोई लेख किसी और चीज़ से मेल नहीं खाता है, तो उसे छोड़ दिया जाता है।",
+    "translationContext": "Pipeline step 2 description"
+  },
+  "contribute.onboarding.pipeline.step2.title": {
+    "text": "संबंधित लेखों को समूहीकृत किया जाता है",
+    "translationContext": "Pipeline step 2 title"
+  },
+  "contribute.onboarding.pipeline.step3.description": {
+    "text": "AI एक समूह के सभी लेखों को पढ़ता है और प्रत्येक स्रोत से विभिन्न दृष्टिकोणों को शामिल करते हुए एक एकल सारांश लिखता है।",
+    "translationContext": "Pipeline step 3 description"
+  },
+  "contribute.onboarding.pipeline.step3.title": {
+    "text": "एक सारांश लिखा जाता है",
+    "translationContext": "Pipeline step 3 title"
+  },
+  "contribute.onboarding.pipeline.title": {
+    "text": "कहानियाँ कैसे बनती हैं",
+    "translationContext": "Section title for the pipeline explanation"
+  },
+  "contribute.onboarding.skip": {
+    "text": "छोड़ें",
+    "translationContext": "Link to skip the onboarding and go straight to the contribute form"
+  },
+  "contribute.onboarding.subtitle": {
+    "text": "समुदाय-द्वारा क्यूरेट की गई श्रेणियों में RSS फ़ीड्स जोड़कर एक बेहतर समाचार अनुभव बनाने में मदद करें।",
+    "translationContext": "Subtitle on the contribute onboarding info page"
+  },
+  "contribute.onboarding.title": {
+    "text": "कागी न्यूज़ में योगदान करें",
+    "translationContext": "Title on the contribute onboarding info page"
+  },
+  "contribute.onboarding.whatToDo.existing.description": {
+    "text": "श्रेणियों को ब्राउज़ करें और उन RSS फ़ीड्स को जोड़ें जो आपको लगता है कि गायब हैं। अधिक विविध स्रोतों का मतलब है बेहतर कवरेज और अधिक कहानियों का सामने आना।",
+    "translationContext": "Description of adding feeds to existing categories"
+  },
+  "contribute.onboarding.whatToDo.existing.title": {
+    "text": "मौजूदा श्रेणियों में फ़ीड्स जोड़ें",
+    "translationContext": "Title for existing category contribution option"
+  },
+  "contribute.onboarding.whatToDo.new.description": {
+    "text": "स्थानीय समाचार, क्षेत्रीय कवरेज, विशिष्ट विषय। कागी न्यूज़ में लाइव होने के लिए नई श्रेणियों को कम से कम 25 फ़ीड्स की आवश्यकता होती है। यह सुनिश्चित करता है कि क्लस्टरिंग के लिए वास्तविक कहानियाँ बनाने के लिए पर्याप्त ओवरलैप हो।",
+    "translationContext": "Description of proposing new categories"
+  },
+  "contribute.onboarding.whatToDo.new.title": {
+    "text": "एक नई श्रेणी का प्रस्ताव करें",
+    "translationContext": "Title for new category contribution option"
+  },
+  "contribute.onboarding.whatToDo.title": {
+    "text": "आप क्या योगदान कर सकते हैं",
+    "translationContext": "Section title for contribution options"
+  },
+  "contribute.pageTitle": {
+    "text": "फ़ीड्स का योगदान करें - कागी न्यूज़",
+    "translationContext": "Browser tab title for the contribute page"
+  },
+  "contribute.pendingFeedCount": {
+    "text": "{{count}} फ़ीड्स प्रस्तावित",
+    "translationContext": "Number of feeds proposed in a pending pull request"
+  },
+  "contribute.pendingFeedsAdded": {
+    "text": "+{{count}} फ़ीड्स लंबित",
+    "translationContext": "Indicator showing additional feeds pending for an existing category"
+  },
+  "contribute.pendingPr": {
+    "text": "लंबित PR",
+    "translationContext": "Badge label for categories from unmerged pull requests"
+  },
+  "contribute.pendingPrLink": {
+    "text": "PR #{{number}} देखें",
+    "translationContext": "Link text to view the related pending pull request"
+  },
+  "contribute.pendingPrNote": {
+    "text": "यह श्रेणी किसी अन्य योगदानकर्ता द्वारा प्रस्तावित की गई थी और समीक्षा की प्रतीक्षा कर रही है।",
+    "translationContext": "Info note shown when a pending PR category is selected"
+  },
+  "contribute.removeErrored": {
+    "text": "{{count}} त्रुटिपूर्ण फ़ीड्स हटाएँ",
+    "translationContext": "Button to remove all feeds that failed validation"
+  },
+  "contribute.removeFeed": {
+    "text": "फ़ीड हटाएँ",
+    "translationContext": "Aria label for the button to remove a single feed"
+  },
+  "contribute.retry": {
+    "text": "पुनः प्रयास करें",
+    "translationContext": "Button to retry loading categories after an error"
+  },
+  "contribute.reviewNote": {
+    "text": "हमारी टीम आपके सबमिशन की समीक्षा करेगी और सब कुछ ठीक लगने पर इसे मर्ज कर देगी।",
+    "translationContext": "Note explaining what happens after submission"
+  },
+  "contribute.searchCategories": {
+    "text": "श्रेणियाँ खोजें...",
+    "translationContext": "Placeholder for the category search dropdown"
+  },
+  "contribute.showFeeds": {
+    "text": "फ़ीड्स दिखाएँ",
+    "translationContext": "Button to expand the list of existing feeds"
+  },
+  "contribute.step1": {
+    "text": "1. एक श्रेणी चुनें",
+    "translationContext": "Step 1 heading in the contribute form"
+  },
+  "contribute.step2": {
+    "text": "2. फ़ीड्स जोड़ें",
+    "translationContext": "Step 2 heading in the contribute form"
+  },
+  "contribute.step3": {
+    "text": "3. सबमिट करें",
+    "translationContext": "Step 3 heading in the contribute form"
+  },
+  "contribute.submitAnother": {
+    "text": "एक और योगदान सबमिट करें",
+    "translationContext": "Link to reset the form and submit another contribution"
+  },
+  "contribute.subtitle": {
+    "text": "मौजूदा श्रेणियों में RSS फ़ीड्स जोड़ें या नई श्रेणियों का सुझाव दें",
+    "translationContext": "Subtitle below the heading on the contribute page"
+  },
+  "contribute.successMessage": {
+    "text": "आपके योगदान के लिए धन्यवाद! पुल रिक्वेस्ट #{{prNumber}} बना दी गई है।",
+    "translationContext": "Success message after PR is created, with PR number"
+  },
+  "contribute.summaryExisting": {
+    "text": "{{category}} में {{count}} फ़ीड जोड़ रहे हैं",
+    "translationContext": "Summary text before adding feeds to an existing category"
+  },
+  "contribute.summaryNew": {
+    "text": "नई श्रेणी {{category}} बना रहे हैं जिसमें {{count}} फ़ीड हैं",
+    "translationContext": "Summary text before submitting a new category"
+  },
+  "contribute.switchToIt": {
+    "text": "इस पर स्विच करें?",
+    "translationContext": "Link to switch to an existing category instead of creating new"
+  },
+  "contribute.unverifiedCount": {
+    "text": "{{count}} असत्यापित",
+    "translationContext": "Number of feeds with unknown validation status"
+  },
+  "contribute.validCount": {
+    "text": "{{count}} वैध",
+    "translationContext": "Number of feeds that passed validation"
+  },
+  "contribute.viewPr": {
+    "text": "पुल रिक्वेस्ट देखें",
+    "translationContext": "Link text to view the created pull request on GitHub"
+  },
+  "contribute.waitingValidation": {
+    "text": "{{count}} फ़ीड के सत्यापन के पूरा होने की प्रतीक्षा है...",
+    "translationContext": "Note shown while feeds are still being validated"
   },
   "crypto.grid.title": {
     "text": "क्रिप्टोकरेंसी की कीमतें",
@@ -2823,6 +3667,10 @@
     "text": "स्रोत जानकारी",
     "translationContext": "Title for source information section"
   },
+  "sources.addPreferred": {
+    "text": "स्रोतों में सबसे ऊपर पिन करें",
+    "translationContext": "Tooltip for pin button to add source to preferred list"
+  },
   "sources.article": {
     "text": "{{count}} लेख",
     "translationContext": "Shows singular article count from a source, {{count}} will be replaced with a number"
@@ -2838,6 +3686,10 @@
   "sources.paywallTooltip": {
     "text": "इस स्रोत पर पूरे लेख पढ़ने के लिए सदस्यता की आवश्यकता हो सकती है",
     "translationContext": "Tooltip explaining that a news source requires a paid subscription"
+  },
+  "sources.removePreferred": {
+    "text": "स्रोतों के ऊपर से अनपिन करें",
+    "translationContext": "Tooltip for pin button to remove source from preferred list"
   },
   "sources.showArticlesFrom": {
     "text": "{{source}} से लेख दिखाएँ",
@@ -2863,6 +3715,38 @@
     "text": "सप्ताह {{{week}}}, दिन {{{day}}}",
     "translationContext": "Shows the current week and day of the year, {{week}} and {{day}} will be replaced with numbers"
   },
+  "stories.clusteringModal.clusteringDescription": {
+    "text": "जब अलग-अलग फ़ीड्स के लेख एक ही विषय पर होते हैं, तो उन्हें एक ख़बर में समूहित कर दिया जाता है। जितने ज़्यादा फ़ीड्स किसी विषय को कवर करते हैं, सिग्नल उतना ही मज़बूत होता है।",
+    "translationContext": "Explains how story clustering works"
+  },
+  "stories.clusteringModal.communityFeedsDescription": {
+    "text": "इस श्रेणी के लिए RSS फ़ीड समुदाय के सदस्यों द्वारा इकट्ठे किए जाते हैं, कागी टीम द्वारा नहीं।",
+    "translationContext": "Explains that community categories have user-curated feeds"
+  },
+  "stories.clusteringModal.fullyAutomaticDescription": {
+    "text": "क्या दिखेगा, यह कोई चुनता नहीं है। फ़ीड्स लाने से लेकर, उन्हें समूहित करने और सारांश लिखने तक, पूरी प्रक्रिया स्वचालित रूप से चलती है।",
+    "translationContext": "Explains that the process is fully automatic with no human curation"
+  },
+  "stories.clusteringModal.helpImprove": {
+    "text": "इस श्रेणी को बेहतर बनाने में मदद करें",
+    "translationContext": "Call-to-action divider text for contributing feeds"
+  },
+  "stories.clusteringModal.helpImproveDescription": {
+    "text": "और फ़ीड्स जोड़ने से समूहीकरण बेहतर काम करता है। आप GitHub पर नए फ़ीड्स का सुझाव दे सकते हैं।",
+    "translationContext": "Encourages users to contribute feeds"
+  },
+  "stories.clusteringModal.noClusterDescription": {
+    "text": "यदि फ़ीड्स द्वारा कवर किए जा रहे विषयों में पर्याप्त समानता नहीं होती है, तो कोई समूह नहीं बनता और कोई ख़बर नहीं दिखाई देती। यह सामान्य है और विशेष या क्षेत्रीय श्रेणियों में ऐसा ज़्यादा होता है।",
+    "translationContext": "Explains why community categories sometimes have no stories"
+  },
+  "stories.clusteringModal.suggestFeeds": {
+    "text": "GitHub पर फ़ीड्स का सुझाव दें",
+    "translationContext": "Button label for the GitHub link to suggest feeds"
+  },
+  "stories.clusteringModal.title": {
+    "text": "ख़बरें कैसे बनती हैं",
+    "translationContext": "Title for the modal explaining the story clustering process"
+  },
   "stories.fewStories": {
     "text": "आज और कोई ख़ास ख़बर नहीं थी, कल फिर आइए!",
     "translationContext": "Message shown when there are only 1-3 stories in a category"
@@ -2870,6 +3754,38 @@
   "stories.noStories": {
     "text": "आज इस श्रेणी में कोई महत्वपूर्ण समाचार नहीं है।",
     "translationContext": "Message shown when no stories are found for a category"
+  },
+  "stories.noStoriesCommunity": {
+    "text": "आज इस सामुदायिक श्रेणी के लिए कोई ख़बर नहीं है।",
+    "translationContext": "Message shown when a community (non-core) category has no stories"
+  },
+  "stories.noStoriesCommunityDescription": {
+    "text": "ख़बरें बनाने के लिए विभिन्न फ़ीड्स में पर्याप्त समान विषय नहीं मिले। सामुदायिक श्रेणियों में ऐसा कभी-कभी होता है।",
+    "translationContext": "Secondary description explaining why community categories sometimes have no stories"
+  },
+  "stories.noStoriesCommunityLearnMore": {
+    "text": "जानें कि यह कैसे काम करता है",
+    "translationContext": "Button label to open modal explaining the clustering process"
+  },
+  "stories.noStoriesCore": {
+    "text": "इस श्रेणी की ख़बरें जल्द ही उपलब्ध होंगी। थोड़ी देर में वापस देखें।",
+    "translationContext": "Message shown when a core (Kagi-maintained) category temporarily has no stories, usually due to a pipeline issue"
+  },
+  "stories.noStoriesCoreUpdates": {
+    "text": "अस्थायी रूप से अनुपलब्ध",
+    "translationContext": "Small label shown with a clock icon when a core category has no stories, indicating the update schedule"
+  },
+  "story.assistant.placeholder": {
+    "text": "इस कहानी के बारे में पूछें...",
+    "translationContext": "Placeholder text in the assistant question input field"
+  },
+  "story.assistant.submit": {
+    "text": "पूछें",
+    "translationContext": "Submit button label for assistant question"
+  },
+  "story.assistant.tooltip": {
+    "text": "असिस्टेंट से पूछें",
+    "translationContext": "Tooltip for button that opens Kagi Assistant with the current story topic"
   },
   "story.flashcards.download": {
     "text": "डाउनलोड करें",
@@ -2907,6 +3823,10 @@
     "text": "शब्द चयन से बाहर निकलें",
     "translationContext": "Tooltip for flashcard button when in selection mode"
   },
+  "story.simplify.autoSimplifying": {
+    "text": "{level} स्तर पर सरल किया जा रहा है...",
+    "translationContext": "Status message while auto-simplifying. {level} is the reading level name."
+  },
   "story.simplify.loading": {
     "text": "सरल किया जा रहा है...",
     "translationContext": "Status message while simplifying text"
@@ -2943,6 +3863,66 @@
     "text": "प्लेबैक रोकें",
     "translationContext": "Tooltip for TTS button when playing"
   },
+  "sync.conflict.multiple": {
+    "text": "{{{count}}} सेटिंग्स किसी अन्य डिवाइस से अपडेट की गई थीं",
+    "translationContext": "Toast notification when multiple settings were overridden during sync. {count} is the number of settings."
+  },
+  "sync.conflict.single": {
+    "text": "एक सेटिंग किसी अन्य डिवाइस से अपडेट की गई थी",
+    "translationContext": "Toast notification when one setting was overridden during sync"
+  },
+  "syncSetup.description": {
+    "text": "हमें आपके खाते पर किसी अन्य डिवाइस से मौजूदा सेटिंग्स मिली हैं। आप कैसे आगे बढ़ना चाहेंगे?",
+    "translationContext": "Description shown in sync setup wizard when cloud settings already exist"
+  },
+  "syncSetup.done": {
+    "text": "सेटिंग्स सफलतापूर्वक सिंक हो गईं!",
+    "translationContext": "Success message after sync setup completes"
+  },
+  "syncSetup.merge.description": {
+    "text": "अपनी सेटिंग्स रखें और कोई भी छूटी हुई क्लाउड सेटिंग्स जोड़ें",
+    "translationContext": "Description for the merge option in sync setup"
+  },
+  "syncSetup.merge.title": {
+    "text": "मर्ज करें",
+    "translationContext": "Option to merge local and cloud settings together"
+  },
+  "syncSetup.pullRemote.description": {
+    "text": "अपनी वर्तमान सेटिंग्स को क्लाउड सेटिंग्स से बदलें",
+    "translationContext": "Description for the pull remote option in sync setup"
+  },
+  "syncSetup.pullRemote.title": {
+    "text": "क्लाउड सेटिंग्स का उपयोग करें",
+    "translationContext": "Option to overwrite local settings with cloud settings"
+  },
+  "syncSetup.pushLocal.description": {
+    "text": "क्लाउड सेटिंग्स को अपनी वर्तमान सेटिंग्स से बदलें",
+    "translationContext": "Description for the push local option in sync setup"
+  },
+  "syncSetup.pushLocal.title": {
+    "text": "इस डिवाइस का उपयोग करें",
+    "translationContext": "Option to overwrite cloud settings with current device settings"
+  },
+  "syncSetup.syncing.merging": {
+    "text": "सेटिंग्स मर्ज हो रही हैं...",
+    "translationContext": "Loading text while merging local and cloud settings"
+  },
+  "syncSetup.syncing.pulling": {
+    "text": "क्लाउड सेटिंग्स डाउनलोड हो रही हैं...",
+    "translationContext": "Loading text while pulling cloud settings to device"
+  },
+  "syncSetup.syncing.pushing": {
+    "text": "आपकी सेटिंग्स अपलोड हो रही हैं...",
+    "translationContext": "Loading text while pushing local settings to cloud"
+  },
+  "syncSetup.title": {
+    "text": "सिंक सेट अप करें",
+    "translationContext": "Title for the sync setup wizard modal shown when enabling sync with existing cloud settings"
+  },
+  "syncSetup.tryAgain": {
+    "text": "पुनः प्रयास करें",
+    "translationContext": "Link to retry sync setup after an error"
+  },
   "time.nextUpdate.in": {
     "text": "अगला अपडेट {{time}} में",
     "translationContext": "Shown when the next update time is known, {time} will be replaced with countdown (e.g., '2h 30m')"
@@ -2950,6 +3930,34 @@
   "time.nextUpdate.soon": {
     "text": "अगला अपडेट जल्द ही",
     "translationContext": "Shown when the next update is expected soon (after noon UTC but no update yet today)"
+  },
+  "time.relative.days": {
+    "text": "{{count}} दिन पहले",
+    "translationContext": "Relative time: multiple days ago, {count} is the number"
+  },
+  "time.relative.hours": {
+    "text": "{{count}} घंटे पहले",
+    "translationContext": "Relative time: multiple hours ago, {count} is the number"
+  },
+  "time.relative.justNow": {
+    "text": "अभी-अभी",
+    "translationContext": "Relative time: less than a minute ago"
+  },
+  "time.relative.minutes": {
+    "text": "{{count}} मिनट पहले",
+    "translationContext": "Relative time: multiple minutes ago, {count} is the number"
+  },
+  "time.relative.oneDay": {
+    "text": "1 दिन पहले",
+    "translationContext": "Relative time: exactly 1 day ago"
+  },
+  "time.relative.oneHour": {
+    "text": "1 घंटा पहले",
+    "translationContext": "Relative time: exactly 1 hour ago"
+  },
+  "time.relative.oneMinute": {
+    "text": "1 मिनट पहले",
+    "translationContext": "Relative time: exactly 1 minute ago"
   },
   "time.updated.days": {
     "text": "{{count}} दिन पहले अपडेट किया गया",
@@ -2982,6 +3990,10 @@
   "time.updated.seconds": {
     "text": "{{count}} सेकंड पहले अपडेट किया गया",
     "translationContext": "Shown when content was updated seconds ago, {{count}} will be replaced with the number of seconds"
+  },
+  "timeTravel.description": {
+    "text": "ऐतिहासिक दैनिक सारांश तक पहुँचें।\nकागी सब्सक्राइबर्स के लिए आरक्षित।\nबीटा के दौरान सभी यूज़र्स के लिए उपलब्ध।",
+    "translationContext": "Description of Time Travel - line 1 is subtitle, line 2 is info, line 3 is italicized beta note"
   },
   "timeTravel.latest": {
     "text": "नवीनतम",
@@ -3022,6 +4034,18 @@
   "timeTravel.today": {
     "text": "आज",
     "translationContext": "Button to navigate to today"
+  },
+  "timeTravel.urlBanner.dismiss": {
+    "text": "समझ गया",
+    "translationContext": "Button to dismiss the time travel info banner"
+  },
+  "timeTravel.urlBanner.viewing": {
+    "text": "यह लिंक {{{date}}} की खबरों को इंगित करता है। आप ऊपर दी गई तारीख के आगे ✕ का उपयोग करके किसी भी समय आज की खबरों पर लौट सकते हैं।",
+    "translationContext": "One-time info banner shown when user arrives via a bookmarked time travel URL (no referrer). Points user to the header date pill with X button."
+  },
+  "timeTravel.urlBanner.viewingShared": {
+    "text": "किसी ने आपके साथ {{{date}}} की खबरों का एक लिंक साझा किया है। आप ऊपर दी गई तारीख के आगे ✕ का उपयोग करके किसी भी समय आज की खबरों पर लौट सकते हैं।",
+    "translationContext": "One-time info banner shown when user arrives via a shared time travel URL (has referrer). Points user to the header date pill with X button."
   },
   "turbulence.title": {
     "text": "विश्व अशांति मीटर",
@@ -3179,6 +4203,14 @@
     "text": "अराजकता सूचकांक",
     "translationContext": "Label for the chaos index chart"
   },
+  "worldTension.consistencyText": {
+    "text": "चौंकाने वाली सुर्खियों, डूमस्क्रॉलिंग, और 24/7 समाचार चक्रों के बीच, ऐसा महसूस हो सकता है कि दुनिया लगातार संकट में है। इस सूचकांक का उद्देश्य एक यथार्थवादी दृष्टिकोण प्रदान करना है। अक्सर, चीजें उतनी बुरी नहीं होतीं जितनी वे महसूस होती हैं।",
+    "translationContext": "Explanation of purpose: cutting through media noise"
+  },
+  "worldTension.consistencyTitle": {
+    "text": "यह क्यों मौजूद है",
+    "translationContext": "Section header explaining purpose of the index"
+  },
   "worldTension.cool": {
     "text": "शांत",
     "translationContext": "Temperature description for low world tension (0-20%)"
@@ -3207,6 +4239,26 @@
     "text": "अत्यंत",
     "translationContext": "Status label for 81-100% range (deprecated, use burning)"
   },
+  "worldTension.factor.novelty": {
+    "text": "नवीनता — नए संकटों या तनाव में वृद्धि को उन मौजूदा स्थितियों की तुलना में अधिक महत्व दिया जाता है जो पहले से ही \"प्राइस्ड इन\" हैं।",
+    "translationContext": "Explanation of novelty factor"
+  },
+  "worldTension.factor.reversibility": {
+    "text": "उत्क्रमणीयता — अपरिवर्तनीय कार्रवाइयों (आक्रमण, जीवन की हानि) को परिवर्तनीय कार्रवाइयों (प्रतिबंध, बयानबाजी) की तुलना में अधिक महत्व दिया जाता है।",
+    "translationContext": "Explanation of reversibility factor"
+  },
+  "worldTension.factor.scope": {
+    "text": "प्रभाव का दायरा — वैश्विक प्रणालीगत जोखिमों, आर्थिक संक्रमण, और गठबंधन को सक्रिय करने वाले कारकों की तुलना स्थानीय घटनाओं से की जाती है।",
+    "translationContext": "Explanation of scope factor"
+  },
+  "worldTension.factor.worstCase": {
+    "text": "सबसे खराब स्थिति से निकटता — घटनाएँ विनाशकारी परिणामों के कितने करीब हैं, जिसमें परमाणु/WMD स्थितियों को अत्यधिक महत्व दिया जाता है।",
+    "translationContext": "Explanation of worst case factor"
+  },
+  "worldTension.factorsTitle": {
+    "text": "AI चार प्रमुख कारकों पर विचार करता है:",
+    "translationContext": "Header for list of factors"
+  },
   "worldTension.high": {
     "text": "उच्च",
     "translationContext": "Status label for 41-60% range (deprecated, use warm)"
@@ -3214,6 +4266,14 @@
   "worldTension.hot": {
     "text": "गर्म",
     "translationContext": "Temperature description for moderate world tension (41-60%)"
+  },
+  "worldTension.howCalculated": {
+    "text": "इसकी गणना कैसे की जाती है",
+    "translationContext": "Section header for methodology explanation"
+  },
+  "worldTension.methodologyIntro": {
+    "text": "विश्व तनाव सूचकांक (World Tension index) वर्तमान विश्व समाचारों की सुर्खियों के AI विश्लेषण द्वारा उत्पन्न होता है। यह एक निश्चित सूत्र के बजाय, वैश्विक स्थिरता का मूल्यांकन करने के लिए तर्क का उपयोग करता है।",
+    "translationContext": "Introduction explaining AI-based methodology"
   },
   "worldTension.mild": {
     "text": "हल्का",

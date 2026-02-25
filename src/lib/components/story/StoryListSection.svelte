@@ -20,7 +20,19 @@ interface Props {
 	section?: string; // Section identifier for context
 }
 
-let { title, items = [], showAsList = true, articles = [], citationMapping, flashcardMode = false, selectedWords = new Set(), selectedPhrases = new Map(), shouldJiggle = false, onWordClick, section }: Props = $props();
+let {
+	title,
+	items = [],
+	showAsList = true,
+	articles = [],
+	citationMapping,
+	flashcardMode = false,
+	selectedWords = new Set(),
+	selectedPhrases = new Map(),
+	shouldJiggle = false,
+	onWordClick,
+	section,
+}: Props = $props();
 
 // Convert citations to numbered format if mapping is available
 const displayItems = $derived.by(() => {

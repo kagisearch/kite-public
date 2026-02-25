@@ -293,7 +293,7 @@ function getSnippetWithHighlight(text: string, query: string, maxLength: number 
           <div
             class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
           >
-            <IconLoader2 class="w-4 h-4 text-blue-500 animate-spin" />
+            <IconLoader2 class="size-4 text-blue-500 animate-spin" />
             {s("search.searching") || "Searching..."}
           </div>
         {:else if results.length > 0}
@@ -331,7 +331,7 @@ function getSnippetWithHighlight(text: string, query: string, maxLength: number 
           <div
             class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400"
           >
-            <IconLoader2 class="w-3 h-3 text-yellow-500 animate-spin" />
+            <IconLoader2 class="size-3 text-yellow-500 animate-spin" />
             {s("search.searching_historical") || "Searching historical..."}
           </div>
         {:else if historicalCount > 0}
@@ -362,7 +362,7 @@ function getSnippetWithHighlight(text: string, query: string, maxLength: number 
             <img
               src="/doggo_default.svg"
               alt="Search mascot"
-              class="w-40 h-40 mx-auto mb-4 transition-all duration-300"
+              class="size-40 mx-auto mb-4 transition-all duration-200"
             />
             <h3
               class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2"
@@ -404,7 +404,7 @@ function getSnippetWithHighlight(text: string, query: string, maxLength: number 
                 {#each filterTips as tip, index}
                   {@const Icon = tip.icon}
                   <div
-                    class="absolute inset-0 flex items-start gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50 transition-all duration-500 {index ===
+                    class="absolute inset-0 flex items-start gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50 transition-all duration-200 {index ===
                     currentFilterTip
                       ? 'opacity-100 translate-y-0'
                       : 'opacity-0 translate-y-4'}"
@@ -435,7 +435,7 @@ function getSnippetWithHighlight(text: string, query: string, maxLength: number 
               <div class="flex justify-center gap-1.5 mt-3">
                 {#each filterTips as _, index}
                   <button
-                    class="relative rounded-full bg-gray-300 dark:bg-gray-600 overflow-hidden transition-all duration-300 {index ===
+                    class="relative rounded-full bg-gray-300 dark:bg-gray-600 overflow-hidden transition-all duration-200 {index ===
                     currentFilterTip
                       ? 'w-8 h-1.5'
                       : 'w-1.5 h-1.5'}"
@@ -547,7 +547,7 @@ function getSnippetWithHighlight(text: string, query: string, maxLength: number 
             <div
               class="flex items-center justify-center gap-2 text-sm text-gray-600 dark:text-gray-400"
             >
-              <IconLoader2 class="w-4 h-4 text-blue-500 animate-spin" />
+              <IconLoader2 class="size-4 text-blue-500 animate-spin" />
               {s("search.loading_more") || "Loading more results..."}
             </div>
           {:else}
@@ -571,7 +571,7 @@ function getSnippetWithHighlight(text: string, query: string, maxLength: number 
       <div class="flex items-center justify-center min-h-full p-8">
         <div class="text-center">
           <div
-            class="mx-auto w-12 h-12 text-gray-400 dark:text-gray-500 mb-4 flex items-center justify-center"
+            class="mx-auto size-12 text-gray-400 dark:text-gray-500 mb-4 flex items-center justify-center"
           >
             <IconSearch size={48} stroke={1.5} />
           </div>

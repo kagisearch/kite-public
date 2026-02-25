@@ -9,10 +9,22 @@ class BatchService {
 
 	/**
 	 * Set a specific batch ID for time travel
+	 * @param batchId - The batch UUID to view
+	 * @param batchCreatedAt - Batch creation timestamp
+	 * @param batchDateSlug - Batch date slug (YYYY-MM-DD.N)
+	 * @param isHistorical - True if this is a historical batch (time travel), false for latest
 	 */
-	setTimeTravelBatch(batchId: string | null, batchCreatedAt?: string | null, batchDateSlug?: string | null) {
-		timeTravelBatch.set(batchId, batchCreatedAt, batchDateSlug);
-		console.log(`⏰ Time travel mode ${batchId ? 'enabled' : 'disabled'}, batch: ${batchId}`);
+	setTimeTravelBatch(
+		batchId: string | null,
+		batchCreatedAt?: string | null,
+		batchDateSlug?: string | null,
+		isHistorical: boolean = false,
+		entrySource?: 'url' | 'modal' | null,
+	) {
+		timeTravelBatch.set(batchId, batchCreatedAt, batchDateSlug, isHistorical, entrySource);
+		console.log(
+			`⏰ Time travel mode ${isHistorical ? 'enabled' : 'disabled'}, batch: ${batchId}, dateSlug: ${batchDateSlug}`,
+		);
 	}
 
 	/**

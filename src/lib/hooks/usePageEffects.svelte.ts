@@ -1,11 +1,12 @@
-import { categorySwipeHandler } from '$lib/utils/categorySwipeHandler';
 import type { Category } from '$lib/types';
+import { categorySwipeHandler } from '$lib/utils/categorySwipeHandler';
 
 interface PageEffectsOptions {
 	dataLoaded: boolean;
 	orderedCategories: Category[];
 	currentCategory: string;
 	temporaryCategory: string | null;
+	lastLoadedCategory: string;
 	loadStoriesForCategory: (categoryId: string) => Promise<void>;
 	handleCategoryChange: (category: string, updateUrl: boolean) => void;
 	setCurrentCategory: (category: string) => void;
@@ -39,8 +40,13 @@ export function usePageEffects(options: () => PageEffectsOptions) {
 			);
 		}
 
-		// Load stories if category is valid
-		if (opts.currentCategory && opts.orderedCategories.find((cat) => cat.id === opts.currentCategory)) {
+		// Load stories if category is valid and not already loaded
+		// Skip if lastLoadedCategory matches - this prevents redundant loads after initial data load
+		if (
+			opts.currentCategory &&
+			opts.currentCategory !== opts.lastLoadedCategory &&
+			opts.orderedCategories.find((cat) => cat.id === opts.currentCategory)
+		) {
 			opts.loadStoriesForCategory(opts.currentCategory);
 		}
 	});

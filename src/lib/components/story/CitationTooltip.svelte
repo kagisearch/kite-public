@@ -60,7 +60,7 @@ const floating = useFloating({
 let showTooltip = $state(false);
 let currentTooltipId = $state('');
 let isMobile = $state(false);
-let highlightedNumber = $state<number | undefined>(undefined);
+let highlightedNumbers = $state<number[]>([]); // Support multiple highlighted numbers for grouped citations
 let hideTimeout: number | null = null;
 let isClickToggled = $state(false); // Track if tooltip was toggled by click on desktop
 let pendingFocusTimeout: number | null = null; // Delay focus events to avoid conflicts with clicks
@@ -92,7 +92,7 @@ export function recordTouch() {
 export async function handleCitationInteraction(
 	event: Event,
 	domains: string[],
-	highlightNumber?: number,
+	highlightNumber?: number | number[], // Support single number or array for grouped citations
 ) {
 	const target = event.target as HTMLElement;
 
@@ -130,6 +130,13 @@ export async function handleCitationInteraction(
 			isClickToggled = true;
 		}
 
+		// Normalize highlightNumber to array
+		const highlightArray = highlightNumber
+			? Array.isArray(highlightNumber)
+				? highlightNumber
+				: [highlightNumber]
+			: [];
+
 		// For desktop hovers, only proceed if not click-toggled or it's a different tooltip
 		if (!isMobile && event.type === 'mouseover') {
 			// Ignore mouseover if it comes within 500ms of a touch (touch triggers mouseover)
@@ -139,11 +146,14 @@ export async function handleCitationInteraction(
 
 			// Don't interfere with click-toggled tooltips unless it's a different citation
 			if (isClickToggled && showTooltip && currentTooltipId === tooltipId) {
-				// Just update highlighted number if needed
-				if (highlightNumber && highlightedNumber !== highlightNumber) {
-					highlightedNumber = highlightNumber;
+				// Just update highlighted numbers if needed
+				if (
+					highlightArray.length > 0 &&
+					JSON.stringify(highlightedNumbers) !== JSON.stringify(highlightArray)
+				) {
+					highlightedNumbers = highlightArray;
 					setTimeout(() => {
-						scrollToHighlightedCitation(highlightNumber);
+						scrollToHighlightedCitation(Math.min(...highlightArray));
 					}, 50);
 				}
 				return;
@@ -159,11 +169,14 @@ export async function handleCitationInteraction(
 					hideTimeout = null;
 				}
 
-				// Update highlighted number and scroll if needed
-				if (highlightNumber && highlightedNumber !== highlightNumber) {
-					highlightedNumber = highlightNumber;
+				// Update highlighted numbers and scroll if needed
+				if (
+					highlightArray.length > 0 &&
+					JSON.stringify(highlightedNumbers) !== JSON.stringify(highlightArray)
+				) {
+					highlightedNumbers = highlightArray;
 					setTimeout(() => {
-						scrollToHighlightedCitation(highlightNumber);
+						scrollToHighlightedCitation(Math.min(...highlightArray));
 					}, 50);
 				}
 				return;
@@ -184,17 +197,17 @@ export async function handleCitationInteraction(
 		// Set reference element for floating UI
 		floating.elements.reference = citationWrapper;
 
-		// Set highlighted number
-		highlightedNumber = highlightNumber;
+		// Set highlighted numbers (array)
+		highlightedNumbers = highlightArray;
 
 		// Set initial state
 		currentTooltipId = tooltipId;
 		showTooltip = true;
 
-		// Auto-scroll to highlighted citation after tooltip is rendered
-		if (highlightNumber) {
+		// Auto-scroll to first (lowest) highlighted citation after tooltip is rendered
+		if (highlightArray.length > 0) {
 			setTimeout(() => {
-				scrollToHighlightedCitation(highlightNumber);
+				scrollToHighlightedCitation(Math.min(...highlightArray));
 			}, 50);
 		}
 	}
@@ -264,7 +277,7 @@ function handleTooltipEnter() {
 function hideTooltip() {
 	showTooltip = false;
 	currentTooltipId = '';
-	highlightedNumber = undefined;
+	highlightedNumbers = [];
 	isClickToggled = false;
 }
 
@@ -301,8 +314,7 @@ function closeMobileModal() {
 $effect(() => {
 	if (isMobile && showTooltip) {
 		scrollLock.lock();
-	} else {
-		scrollLock.unlock();
+		return () => scrollLock.unlock();
 	}
 });
 
@@ -355,10 +367,6 @@ onDestroy(() => {
 			capture: true,
 		});
 	}
-	// Make sure scroll is unlocked
-	if (showTooltip) {
-		scrollLock.unlock();
-	}
 });
 </script>
 
@@ -368,7 +376,7 @@ onDestroy(() => {
     <Portal>
       <div
         bind:this={floating.elements.floating}
-        class="absolute top-0 left-0 z-[2000] w-80 max-w-[min(320px,calc(100vw-16px))] rounded-lg border border-gray-300 bg-white shadow-lg transition-opacity duration-200 dark:border-gray-600 dark:bg-gray-700 {floating.isPositioned
+        class="absolute top-0 left-0 z-tooltip w-80 max-w-[min(320px,calc(100vw-16px))] rounded-lg border border-gray-300 bg-white shadow-lg transition-opacity duration-200 dark:border-gray-600 dark:bg-gray-700 {floating.isPositioned
           ? 'opacity-100'
           : 'opacity-0 invisible'}"
         style={floating.floatingStyles}
@@ -424,7 +432,7 @@ onDestroy(() => {
                   return unique;
                 })()}
                 {#each uniqueItems as item}
-                  <CitationItem {item} {highlightedNumber} {storyLocalizer} />
+                  <CitationItem {item} {highlightedNumbers} {storyLocalizer} />
                 {/each}
               {/if}
             </div>
@@ -436,7 +444,7 @@ onDestroy(() => {
     <!-- Mobile Modal -->
     <Portal>
       <div
-        class="fixed inset-0 z-[2000] flex items-center justify-center bg-black/60 dark:bg-black/80"
+        class="fixed inset-0 z-tooltip flex items-center justify-center bg-black/60 dark:bg-black/80"
         onclick={closeMobileModal}
         onkeydown={(e) => e.key === "Escape" && closeMobileModal()}
         role="dialog"
@@ -529,7 +537,7 @@ onDestroy(() => {
                     return unique;
                   })()}
                   {#each uniqueItems as item}
-                    <CitationItem {item} {highlightedNumber} isMobile={true} {storyLocalizer} />
+                    <CitationItem {item} {highlightedNumbers} isMobile={true} {storyLocalizer} />
                   {/each}
                 {/if}
               </div>

@@ -4,32 +4,61 @@ import { mediaService } from './mediaService';
 import { onThisDayService } from './onThisDayService';
 import { storiesService } from './storiesService';
 
-// Global reload event handlers
-const reloadCallbacks: (() => Promise<void>)[] = [];
-const beforeReloadCallbacks: (() => void)[] = [];
+// Global reload event handlers - use Sets to prevent duplicate registrations
+const reloadCallbacks = new Set<() => Promise<void>>();
+const beforeReloadCallbacks = new Set<() => void>();
+
+// Flag to prevent recursive reloads
+let isReloading = false;
 
 export const dataReloadService = {
 	// Register a callback to be called on reload
-	onReload(callback: () => Promise<void>) {
-		reloadCallbacks.push(callback);
-		console.log('🔧 Reload callback registered');
+	// Returns an unsubscribe function for cleanup
+	onReload(callback: () => Promise<void>): () => void {
+		reloadCallbacks.add(callback);
+		console.log('🔧 Reload callback registered, total:', reloadCallbacks.size);
+		// Return unsubscribe function
+		return () => {
+			reloadCallbacks.delete(callback);
+			console.log('🔧 Reload callback unregistered, total:', reloadCallbacks.size);
+		};
 	},
 
 	// Register a callback to be called before reload starts
-	beforeReload(callback: () => void) {
-		beforeReloadCallbacks.push(callback);
+	// Returns an unsubscribe function for cleanup
+	beforeReload(callback: () => void): () => void {
+		beforeReloadCallbacks.add(callback);
 		console.log('🔧 Before-reload callback registered');
+		return () => {
+			beforeReloadCallbacks.delete(callback);
+		};
+	},
+
+	// Check if a reload is currently in progress
+	isReloading(): boolean {
+		return isReloading;
 	},
 
 	// Trigger all reload callbacks
 	async reloadData() {
+		// Prevent recursive/duplicate reloads
+		if (isReloading) {
+			console.log('🔄 Reload already in progress, skipping...');
+			return;
+		}
+
+		isReloading = true;
 		console.log('🔄 Reloading data...');
-		// Call before-reload callbacks first (synchronously)
-		beforeReloadCallbacks.forEach((cb) => {
-			cb();
-		});
-		// Then call all registered reload callbacks
-		await Promise.all(reloadCallbacks.map((cb) => cb()));
+		try {
+			// Call before-reload callbacks first (synchronously)
+			beforeReloadCallbacks.forEach((cb) => {
+				cb();
+			});
+			// Then call all registered reload callbacks
+			await Promise.all([...reloadCallbacks].map((cb) => cb()));
+		} finally {
+			isReloading = false;
+		}
 	},
 };
 
@@ -40,9 +69,25 @@ export const dataReloadService = {
 class DataService {
 	/**
 	 * Batch & Time Travel functionality
+	 * @param batchId - The batch UUID to view
+	 * @param batchCreatedAt - Batch creation timestamp
+	 * @param batchDateSlug - Batch date slug (YYYY-MM-DD.N)
+	 * @param isHistorical - True if this is a historical batch (time travel), false for latest
 	 */
-	setTimeTravelBatch(batchId: string | null, batchCreatedAt?: string | null) {
-		return batchService.setTimeTravelBatch(batchId, batchCreatedAt);
+	setTimeTravelBatch(
+		batchId: string | null,
+		batchCreatedAt?: string | null,
+		batchDateSlug?: string | null,
+		isHistorical: boolean = false,
+		entrySource?: 'url' | 'modal' | null,
+	) {
+		return batchService.setTimeTravelBatch(
+			batchId,
+			batchCreatedAt,
+			batchDateSlug,
+			isHistorical,
+			entrySource,
+		);
 	}
 
 	isTimeTravelMode(): boolean {

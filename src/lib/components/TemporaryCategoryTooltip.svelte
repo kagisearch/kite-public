@@ -82,7 +82,7 @@ $effect(() => {
   <Portal>
     <div
       bind:this={floating.elements.floating}
-      class="absolute top-0 left-0 z-[70] pointer-events-none {floating.isPositioned
+      class="absolute top-0 left-0 z-popover pointer-events-none {floating.isPositioned
         ? 'opacity-100'
         : 'opacity-0 invisible'}"
       style={floating.floatingStyles}

@@ -22,7 +22,17 @@ interface Props {
 	onWordClick?: (word: string, section?: string) => void;
 }
 
-let { qna, articles = [], citationMapping, storyLocalizer = s, flashcardMode = false, selectedWords = new Set(), selectedPhrases = new Map(), shouldJiggle = false, onWordClick }: Props = $props();
+let {
+	qna,
+	articles = [],
+	citationMapping,
+	storyLocalizer = s,
+	flashcardMode = false,
+	selectedWords = new Set(),
+	selectedPhrases = new Map(),
+	shouldJiggle = false,
+	onWordClick,
+}: Props = $props();
 
 // Convert citations in Q&A if mapping is available
 const displayQna = $derived.by(() => {

@@ -21,7 +21,11 @@ let {
 
 // Log whenever selectedPhrases changes
 $effect(() => {
-	console.log('[SelectableText] Props updated - selectedPhrases:', selectedPhrases.size, Array.from(selectedPhrases.keys()));
+	console.log(
+		'[SelectableText] Props updated - selectedPhrases:',
+		selectedPhrases.size,
+		Array.from(selectedPhrases.keys()),
+	);
 });
 
 // Drag selection state
@@ -64,7 +68,16 @@ function getSelectedPhraseRange(checkIndex: number): { start: number; end: numbe
 			// If we matched all words and the check index is in this range
 			// Include everything from first word to last word (including spaces/punctuation between)
 			if (wordIdx === phraseWords.length && checkIndex >= firstWordIdx && checkIndex < currentIdx) {
-				console.log('[SelectableText] Found phrase match:', phraseText, 'at indices', firstWordIdx, '-', currentIdx - 1, 'checking index', checkIndex);
+				console.log(
+					'[SelectableText] Found phrase match:',
+					phraseText,
+					'at indices',
+					firstWordIdx,
+					'-',
+					currentIdx - 1,
+					'checking index',
+					checkIndex,
+				);
 				return { start: firstWordIdx, end: currentIdx - 1 };
 			}
 		}
@@ -81,8 +94,8 @@ function parseText(text: string): Array<{ type: 'word' | 'other'; content: strin
 	// \p{L} matches any Unicode letter (including accented characters)
 	const regex = /([\p{L}]+(?:[-'][\p{L}]+)*)|([^\p{L}]+)/gu;
 
-	let match;
-	while ((match = regex.exec(text)) !== null) {
+	let match: RegExpExecArray | null = regex.exec(text);
+	while (match !== null) {
 		if (match[1]) {
 			// It's a word (possibly with hyphens)
 			parts.push({ type: 'word', content: match[1] });
@@ -90,6 +103,7 @@ function parseText(text: string): Array<{ type: 'word' | 'other'; content: strin
 			// It's punctuation/whitespace
 			parts.push({ type: 'other', content: match[2] });
 		}
+		match = regex.exec(text);
 	}
 
 	return parts;
@@ -102,7 +116,7 @@ const cleanedText = $derived(
 		.replace(/\[[^\]]+\]/g, '') // Remove citation markers
 		.replace(/\s+/g, ' ') // Normalize multiple spaces to single space
 		.replace(/\s+([.,;:!?)])/g, '$1') // Remove space before punctuation
-		.trim()
+		.trim(),
 );
 const parts = $derived(parseText(cleanedText));
 
@@ -117,7 +131,10 @@ function handleMouseDown(wordIndex: number, event: MouseEvent) {
 	if (phraseRange) {
 		// Clicking on an already-selected phrase - get the phrase text and toggle it
 		const phraseWords = parts
-			.filter((part, index) => part.type === 'word' && index >= phraseRange.start && index <= phraseRange.end)
+			.filter(
+				(part, index) =>
+					part.type === 'word' && index >= phraseRange.start && index <= phraseRange.end,
+			)
 			.map((part) => part.content)
 			.join(' ');
 		onWordClick(phraseWords.toLowerCase(), section);

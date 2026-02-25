@@ -1,9 +1,18 @@
 <script lang="ts">
-import { IconBuilding, IconLock, IconMapPin, IconTag, IconUser } from '@tabler/icons-svelte';
+import {
+	IconBuilding,
+	IconLock,
+	IconMapPin,
+	IconPin,
+	IconPinFilled,
+	IconTag,
+	IconUser,
+} from '@tabler/icons-svelte';
 import { useOverlayScrollbars } from 'overlayscrollbars-svelte';
 import { s } from '$lib/client/localization.svelte';
 import FaviconImage from '$lib/components/common/FaviconImage.svelte';
 import Tooltip from '$lib/components/Tooltip.svelte';
+import { preferredSources } from '$lib/stores/preferredSources.svelte.js';
 import { getTimeAgo } from '$lib/utils/getTimeAgo';
 import { scrollLock } from '$lib/utils/scrollLock.js';
 import 'overlayscrollbars/overlayscrollbars.css';
@@ -29,6 +38,9 @@ let {
 
 // State for showing source info
 let showSourceInfo = $state(false);
+
+// Track which article images have failed to load
+let failedImages = $state(new Set<string>());
 
 // Focus management
 let dialogElement: HTMLElement | undefined = $state(undefined);
@@ -113,43 +125,36 @@ function updateFocusableElements() {
 
 // Handle visibility changes for scroll lock and focus management
 $effect(() => {
-	if (typeof document !== 'undefined') {
-		if (isOpen) {
-			// Store the previously active element
-			previousActiveElement = document.activeElement;
+	if (typeof document === 'undefined') return;
 
-			// Lock background scroll
-			scrollLock.lock();
+	if (isOpen) {
+		// Store the previously active element
+		previousActiveElement = document.activeElement;
 
-			// Set up keyboard listeners
-			document.addEventListener('keydown', handleKeydown);
-			document.addEventListener('keydown', handleFocusTrap);
+		// Lock background scroll
+		scrollLock.lock();
 
-			// Set initial focus after DOM updates
-			setTimeout(() => {
-				updateFocusableElements();
-				if (firstFocusableElement) {
-					firstFocusableElement.focus();
-				}
-			}, 0);
-		} else {
-			// Clean up listeners
+		// Set up keyboard listeners
+		document.addEventListener('keydown', handleKeydown);
+		document.addEventListener('keydown', handleFocusTrap);
+
+		// Set initial focus after DOM updates
+		setTimeout(() => {
+			updateFocusableElements();
+			if (firstFocusableElement) {
+				firstFocusableElement.focus();
+			}
+		}, 0);
+
+		return () => {
 			document.removeEventListener('keydown', handleKeydown);
 			document.removeEventListener('keydown', handleFocusTrap);
-
-			// Unlock background scroll
 			scrollLock.unlock();
 
 			// Return focus to the previously active element without scrolling
 			if (previousActiveElement && 'focus' in previousActiveElement) {
 				(previousActiveElement as HTMLElement).focus({ preventScroll: true });
 			}
-		}
-
-		return () => {
-			document.removeEventListener('keydown', handleKeydown);
-			document.removeEventListener('keydown', handleFocusTrap);
-			scrollLock.unlock();
 		};
 	}
 });
@@ -169,7 +174,7 @@ function handleBackdropClick(event: MouseEvent) {
 
 {#if isOpen}
   <div
-    class="fixed inset-0 z-[70] flex items-center justify-center bg-black/50 p-4 dark:bg-black/70"
+    class="fixed inset-0 z-popover flex items-center justify-center bg-black/50 p-4 dark:bg-black/70"
     onclick={handleBackdropClick}
     onkeydown={(e) => {
       if (e.key === "Escape") {
@@ -198,7 +203,7 @@ function handleBackdropClick(event: MouseEvent) {
               alt={currentSource?.name
                 ? `${currentSource.name} favicon`
                 : "Generic favicon"}
-              class="h-6 w-6 rounded-full"
+              class="h-6 w-6 rounded-sm"
             />
             <h3
               id="source-overlay-title"
@@ -221,26 +226,50 @@ function handleBackdropClick(event: MouseEvent) {
               </Tooltip>
             {/if}
           </div>
-          <button
-            onclick={handleClose}
-            class="text-gray-500 hover:text-gray-700 focus-visible-ring rounded dark:text-gray-400 dark:hover:text-gray-200"
-            aria-label="Close source overlay"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+          <div class="flex items-center gap-2">
+            <!-- Pin toggle button -->
+            <button
+              onclick={() => {
+                if (currentSource?.name) preferredSources.togglePreferred(currentSource.name);
+              }}
+              class="group p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors focus-visible-ring"
+              class:text-blue-500={preferredSources.isPreferred(currentSource?.name)}
+              class:text-gray-400={!preferredSources.isPreferred(currentSource?.name)}
+              aria-label={preferredSources.isPreferred(currentSource?.name)
+                ? s('sources.removePreferred') || 'Unpin from top of sources'
+                : s('sources.addPreferred') || 'Pin to top of sources'}
+              title={preferredSources.isPreferred(currentSource?.name)
+                ? s('sources.removePreferred') || 'Unpin from top of sources'
+                : s('sources.addPreferred') || 'Pin to top of sources'}
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+              {#if preferredSources.isPreferred(currentSource?.name)}
+                <IconPinFilled class="h-5 w-5" />
+              {:else}
+                <IconPin class="h-5 w-5 group-hover:text-blue-500" />
+              {/if}
+            </button>
+            <!-- Close button -->
+            <button
+              onclick={handleClose}
+              class="text-gray-500 hover:text-gray-700 focus-visible-ring rounded dark:text-gray-400 dark:hover:text-gray-200"
+              aria-label="Close source overlay"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
         </header>
 
         <p class="mb-4 text-gray-600 dark:text-gray-400">
@@ -256,12 +285,37 @@ function handleBackdropClick(event: MouseEvent) {
         <div class="space-y-4">
           {#each sourceArticles as article}
             <article class="flex space-x-4">
-              <img
-                src={article.image || "/svg/placeholder.svg"}
-                alt="Article"
-                class="h-24 w-24 rounded object-cover"
-              />
-              <div>
+              {#if article.image}
+                <div class="relative h-24 w-24 shrink-0 rounded bg-gray-100 dark:bg-gray-700">
+                  <!-- Skeleton with favicon while image loads (hidden when placeholder is shown) -->
+                  {#if !failedImages.has(article.link)}
+                    <div class="absolute inset-0 flex items-center justify-center">
+                      <FaviconImage
+                        domain={currentSource?.name || ""}
+                        alt=""
+                        class="h-8 w-8 rounded-sm opacity-40"
+                        loading="eager"
+                      />
+                    </div>
+                  {/if}
+                  <img
+                    src={article.image}
+                    alt="Article"
+                    class="absolute inset-0 h-24 w-24 rounded object-cover transition-opacity duration-200"
+                    class:opacity-0={!failedImages.has(article.link)}
+                    onload={(e) => {
+                      (e.currentTarget as HTMLImageElement).style.opacity = '1';
+                    }}
+                    onerror={(e) => {
+                      const target = e.currentTarget as HTMLImageElement;
+                      target.style.opacity = '1';
+                      target.src = "/svg/placeholder.svg";
+                      failedImages = new Set([...failedImages, article.link]);
+                    }}
+                  />
+                </div>
+              {/if}
+              <div class="min-w-0">
                 <a
                   href={article.link}
                   target="_blank"
@@ -269,7 +323,7 @@ function handleBackdropClick(event: MouseEvent) {
                   class="hover:underline"
                   onclick={(e) => e.stopPropagation()}
                 >
-                  <h4 class="dark:text-dark-text font-semibold" dir="auto">
+                  <h4 class="dark:text-dark-text line-clamp-2 font-semibold" dir="auto">
                     {article.title}
                   </h4>
                 </a>
@@ -325,7 +379,7 @@ function handleBackdropClick(event: MouseEvent) {
                   <div class="grid gap-4 sm:grid-cols-2">
                     <!-- Country -->
                     <div class="flex items-start gap-3">
-                      <div class="flex-shrink-0 mt-0.5">
+                      <div class="shrink-0 mt-0.5">
                         <IconMapPin class="h-5 w-5 text-gray-500" />
                       </div>
                       <div class="min-w-0 flex-1">
@@ -335,7 +389,7 @@ function handleBackdropClick(event: MouseEvent) {
                           {s("source.info.country") || "Country"}
                         </div>
                         <div
-                          class="text-gray-600 dark:text-gray-400 break-words"
+                          class="text-gray-600 dark:text-gray-400 wrap-break-word"
                           dir="auto"
                         >
                           {mediaInfo?.country}
@@ -463,3 +517,4 @@ function handleBackdropClick(event: MouseEvent) {
     </div>
   </div>
 {/if}
+

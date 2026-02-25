@@ -1,8 +1,8 @@
 import { s } from '$lib/client/localization.svelte';
+import type { CategoryMetadata } from '$lib/services/categoryMetadataService';
 import { language } from '$lib/stores/language.svelte';
 import type { Category } from '$lib/types';
 import { categoryNameToCamelCase } from './categoryIdTransform';
-import type { CategoryMetadata } from '$lib/services/categoryMetadataService';
 
 /**
  * Get the display name for a category in the current language.

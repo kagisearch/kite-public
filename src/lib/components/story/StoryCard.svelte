@@ -2,11 +2,13 @@
 import { browser } from '$app/environment';
 import { s } from '$lib/client/localization.svelte';
 import { createStoryLocalizer } from '$lib/client/storyLocalization.svelte';
+import { readingLevelSettings } from '$lib/data/settings.svelte';
 import { useHoverPreloading, useViewportPreloading } from '$lib/hooks/useImagePreloading.svelte';
-import { useStorySimplification } from '$lib/hooks/useStorySimplification.svelte';
 import { useStoryFlashcards } from '$lib/hooks/useStoryFlashcards.svelte';
+import { useStorySimplification } from '$lib/hooks/useStorySimplification.svelte';
 import { useStoryTTS } from '$lib/hooks/useStoryTTS.svelte';
 import StoryActions from './StoryActions.svelte';
+import StoryContentSkeleton from './StoryContentSkeleton.svelte';
 import StoryHeader from './StoryHeader.svelte';
 import StorySectionManager from './StorySectionManager.svelte';
 
@@ -60,17 +62,19 @@ let {
 }: Props = $props();
 
 // Story element reference
-let storyElement: HTMLElement;
+let storyElement: HTMLElement = undefined!; // Assigned via bind:this
 
 // Blur state - re-check filtering in real-time
-let isBlurred = $state(isFiltered);
+// Track if blurred state should be synced with isFiltered prop
+const isFilteredProp = $derived(isFiltered);
+let isBlurred = $state(false);
 // Track if we're actively revealing (for transition)
 let isRevealing = $state(false);
 
-// Re-check if story should still be blurred when filter changes
+// Sync blur state with filter prop when it changes
 $effect(() => {
 	// Reset blur state to match current filter state
-	isBlurred = isFiltered;
+	isBlurred = isFilteredProp;
 	// Reset revealing state when filter changes
 	isRevealing = false;
 });
@@ -78,9 +82,17 @@ $effect(() => {
 // Determine language code from story
 const storyLanguageCode = $derived(story.sourceLanguage || 'en');
 
+// Get the default reading level for this category
+const categoryDefaultLevel = $derived(
+	categoryId ? readingLevelSettings.getForCategory(categoryId) : undefined,
+);
+
 // Feature composables - each handles its own state and logic
 // svelte-ignore state_referenced_locally - storyLanguageCode is intentionally captured at initialization
-const simplification = useStorySimplification(story, storyLanguageCode);
+const simplification = useStorySimplification(story, storyLanguageCode, {
+	defaultLevel: categoryDefaultLevel,
+	autoSimplify: !!categoryDefaultLevel && categoryDefaultLevel !== 'normal',
+});
 // svelte-ignore state_referenced_locally - storyLanguageCode is intentionally captured at initialization
 const flashcards = useStoryFlashcards(story, storyLanguageCode);
 const tts = useStoryTTS(() => simplification.current);
@@ -92,16 +104,24 @@ const displayStory = $derived(simplification.current);
 // Pass the story's actual source language when available
 const ss = $derived(createStoryLocalizer(isExpanded, story.sourceLanguage));
 
-
 // Use hooks for preloading
+// svelte-ignore state_referenced_locally - story prop is stable per component instance
 const viewportPreloader = useViewportPreloading(() => storyElement, story, {
 	priority,
 });
 
+// svelte-ignore state_referenced_locally - story prop is stable per component instance
 const hoverPreloader = useHoverPreloading(story, { priority });
 
 // Track if images are preloaded
 const imagesPreloaded = $derived(viewportPreloader.isPreloaded || hoverPreloader.isPreloaded);
+
+// Trigger auto-simplification when story expands
+$effect(() => {
+	if (isExpanded && !isSharedView) {
+		simplification.triggerAutoSimplify();
+	}
+});
 
 // Handle story click
 function handleStoryClick() {
@@ -204,7 +224,7 @@ $effect(() => {
   tabindex={isBlurred ? 0 : undefined}
 >
   <!-- Blurrable Content -->
-  <div class:transition-all={isRevealing} class:duration-300={isRevealing} class:blur-lg={isBlurred} class:pointer-events-none={isBlurred}>
+  <div class:transition-all={isRevealing} class:duration-200={isRevealing} class:blur-lg={isBlurred} class:pointer-events-none={isBlurred}>
     <!-- Story Header -->
     <StoryHeader
       story={displayStory}
@@ -231,26 +251,31 @@ $effect(() => {
     <!-- Expanded Content -->
     {#if isExpanded}
       <div
-        class="dark:bg-dark-bg flex flex-col bg-white py-4"
+        class="dark:bg-dark-bg flex flex-col bg-white py-4 [&>section:first-of-type]:mt-0"
         role="region"
         aria-label="Story content"
       >
-        <!-- Dynamic Sections based on user settings -->
-        <StorySectionManager
-          story={displayStory}
-          {imagesPreloaded}
-          bind:showSourceOverlay
-          bind:currentSource
-          bind:sourceArticles
-          bind:currentMediaInfo
-          bind:isLoadingMediaInfo
-          storyLocalizer={ss}
-          flashcardMode={flashcards.enabled && !flashcards.isExporting}
-          selectedWords={flashcards.selectedWords}
-          selectedPhrases={flashcards.selectedPhrases}
-          shouldJiggle={flashcards.shouldJiggle}
-          onWordClick={flashcards.selectWord}
-        />
+        <!-- Show skeleton while auto-simplifying -->
+        {#if simplification.isLoading && simplification.isAutoSimplified}
+          <StoryContentSkeleton readingLevel={simplification.defaultLevel} />
+        {:else}
+          <!-- Dynamic Sections based on user settings -->
+          <StorySectionManager
+            story={displayStory}
+            {imagesPreloaded}
+            bind:showSourceOverlay
+            bind:currentSource
+            bind:sourceArticles
+            bind:currentMediaInfo
+            bind:isLoadingMediaInfo
+            storyLocalizer={ss}
+            flashcardMode={flashcards.enabled && !flashcards.isExporting}
+            selectedWords={flashcards.selectedWords}
+            selectedPhrases={flashcards.selectedPhrases}
+            shouldJiggle={flashcards.shouldJiggle}
+            onWordClick={flashcards.selectWord}
+          />
+        {/if}
 
         <!-- Action Buttons -->
         <StoryActions
@@ -270,7 +295,7 @@ $effect(() => {
   <!-- Blur Warning Overlay -->
   {#if isBlurred && filterKeywords && filterKeywords.length > 0}
     <div
-      class="absolute left-0 top-4 z-10 flex items-center gap-3 px-4"
+      class="absolute left-0 top-4 z-dropdown flex items-center gap-3 px-4"
       role="alert"
       aria-live="polite"
     >

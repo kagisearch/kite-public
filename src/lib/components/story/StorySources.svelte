@@ -5,6 +5,7 @@ import FaviconImage from '$lib/components/common/FaviconImage.svelte';
 import Tooltip from '$lib/components/Tooltip.svelte';
 import { languageSettings } from '$lib/data/settings.svelte.js';
 import { dataService } from '$lib/services/dataService';
+import { preferredSources } from '$lib/stores/preferredSources.svelte.js';
 import type { LocalizerFunction, MediaInfo } from '$lib/types';
 import { getMostRecentArticleDate, getTimeAgo } from '$lib/utils/getTimeAgo';
 
@@ -31,20 +32,25 @@ let {
 	storyLocalizer = s,
 }: Props = $props();
 
-// Sort domains to ensure Reddit always appears last
+// Sort domains: preferred first, then regular, then Reddit at end
 let sortedDomains = $derived.by(() => {
 	if (!domains || domains.length === 0) return [];
 
-	// Separate Reddit domains from others
-	const redditDomains = domains.filter((d) => d?.name?.toLowerCase().includes('reddit.com'));
-	const nonRedditDomains = domains.filter((d) => !d?.name?.toLowerCase().includes('reddit.com'));
+	// Separate into: preferred (non-reddit), regular (non-reddit), reddit
+	const preferred = domains.filter(
+		(d) => preferredSources.isPreferred(d?.name) && !d?.name?.toLowerCase().includes('reddit.com'),
+	);
+	const regular = domains.filter(
+		(d) => !preferredSources.isPreferred(d?.name) && !d?.name?.toLowerCase().includes('reddit.com'),
+	);
+	const reddit = domains.filter((d) => d?.name?.toLowerCase().includes('reddit.com'));
 
-	// Concatenate with Reddit at the end
-	return [...nonRedditDomains, ...redditDomains];
+	// Concatenate: preferred first, then regular, then Reddit at the end
+	return [...preferred, ...regular, ...reddit];
 });
 
 // State
-let showAllSources = $state(false);
+let showAllSources = $state(true);
 let visibleSources = $state(typeof window !== 'undefined' && window.innerWidth <= 768 ? 4 : 8);
 
 // Handle window resize
@@ -58,8 +64,28 @@ if (typeof window !== 'undefined') {
 let publisherCount = $derived(sortedDomains.length);
 let totalArticleCount = $derived(articles?.length || 0);
 
-// Handle source click
-async function handleSourceClick(domain: any) {
+// Get the most recent article URL for a domain
+function getMostRecentArticleUrl(domain: any): string | undefined {
+	const domainArticles = articles?.filter((a) => a.domain === domain?.name) || [];
+	if (domainArticles.length === 0) return undefined;
+
+	// Sort by date descending and get the first one
+	const sorted = [...domainArticles].sort(
+		(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+	);
+	return sorted[0]?.link;
+}
+
+// Handle source click - opens overlay on regular click
+async function handleSourceClick(event: MouseEvent, domain: any) {
+	// Allow middle-click, ctrl-click, cmd-click to work naturally as links
+	if (event.button === 1 || event.ctrlKey || event.metaKey) {
+		return; // Let the default anchor behavior handle it
+	}
+
+	// For regular left-click, prevent navigation and open overlay
+	event.preventDefault();
+
 	currentSource = domain;
 	sourceArticles = articles.filter((a) => a.domain === domain?.name) || [];
 	currentMediaInfo = null;
@@ -127,9 +153,12 @@ async function handleSourceClick(domain: any) {
   >
     {#each sortedDomains as domain, index}
       {#if index < visibleSources || showAllSources}
-        <button
+        <a
+          href={getMostRecentArticleUrl(domain) || '#'}
+          target="_blank"
+          rel="noopener noreferrer"
           class="flex w-full flex-col items-start space-y-1 rounded-lg py-2 ps-2 text-start transition-colors hover:bg-gray-100 focus-visible-ring dark:hover:bg-gray-700"
-          onclick={() => handleSourceClick(domain)}
+          onclick={(e) => handleSourceClick(e, domain)}
           aria-label={(() => {
             const count = articles?.filter((a) => a.domain === domain?.name).length || 0;
             return count > 0
@@ -141,7 +170,7 @@ async function handleSourceClick(domain: any) {
             <FaviconImage
               domain={domain?.name || ""}
               alt={domain?.name ? `${domain.name} Favicon` : "Default Favicon"}
-              class="h-5 w-5 rounded-full"
+              class="h-5 w-5 rounded-sm"
               loading="lazy"
             />
             <span class="truncate text-sm font-semibold" dir="auto">
@@ -183,7 +212,7 @@ async function handleSourceClick(domain: any) {
               {storyLocalizer("sources.articles", { count: "0" })}
             {/if}
           </span>
-        </button>
+        </a>
       {/if}
     {/each}
   </div>

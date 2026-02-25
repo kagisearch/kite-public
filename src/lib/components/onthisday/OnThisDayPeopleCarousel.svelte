@@ -77,7 +77,7 @@ async function preloadPeopleImages() {
 // Get cached image for a person (reactive to imagesLoaded)
 function getPersonImage(person: OnThisDayEvent): string {
 	// Reference imagesLoaded to trigger reactivity when images load
-	imagesLoaded;
+	void imagesLoaded;
 	const cacheKey = person.year + person.content;
 	const cached = peopleImagesCache.get(cacheKey);
 	console.log(`Getting image for ${person.year}:`, cached ? 'FOUND' : 'NOT FOUND', cached);
@@ -161,7 +161,7 @@ $effect(() => {
     <!-- Slides Wrapper -->
     <div class="overflow-hidden" onwheel={handleWheel}>
       <div
-        class="flex transition-transform duration-300 ease-out"
+        class="flex transition-transform duration-200 ease-out"
         style="transform: {carouselTransform}"
       >
         {#each chunkedPeople as slide}

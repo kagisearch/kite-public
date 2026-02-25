@@ -1,6 +1,7 @@
 import { categorySettings, displaySettings } from '$lib/data/settings.svelte';
-import { orderStoriesForSinglePage } from '$lib/utils/storyOrdering';
+import { categoryMetadataStore } from '$lib/stores/categoryMetadata.svelte';
 import type { Category, Story } from '$lib/types';
+import { orderStoriesForSinglePage } from '$lib/utils/storyOrdering';
 
 interface DerivedStateOptions {
 	categories: Category[];
@@ -22,7 +23,10 @@ export function usePageDerived(options: () => DerivedStateOptions) {
 	// Create ordered categories based on settings
 	const orderedCategories = $derived.by(() => {
 		const opts = options();
-		console.log('[Page] Computing orderedCategories, enabled:', $state.snapshot(categorySettings.enabled));
+		console.log(
+			'[Page] Computing orderedCategories, enabled:',
+			$state.snapshot(categorySettings.enabled),
+		);
 
 		if (opts.categories.length === 0) {
 			return opts.categories;
@@ -35,10 +39,18 @@ export function usePageDerived(options: () => DerivedStateOptions) {
 		const orderedList: Category[] = [];
 
 		// Add categories in the exact order they appear in enabled
+		// Include categories not in current batch so they still show in nav with "no stories" message
 		for (const categoryId of categorySettings.enabled) {
 			const category = opts.categories.find((cat) => cat.id === categoryId);
 			if (category) {
 				orderedList.push(category);
+			} else {
+				// Category is enabled but not in current batch — create a placeholder
+				const metadata = categoryMetadataStore.findById(categoryId);
+				orderedList.push({
+					id: categoryId,
+					name: metadata?.displayName ?? categoryId,
+				});
 			}
 		}
 
@@ -79,10 +91,10 @@ export function usePageDerived(options: () => DerivedStateOptions) {
 		if (singlePageMode === 'random') {
 			// Create a stable key based on the actual story data
 			const storyIds = orderedCategories
-				.flatMap(cat => opts.allCategoryStories[cat.id] || [])
-				.map(s => s.id || s.title)
+				.flatMap((cat) => opts.allCategoryStories[cat.id] || [])
+				.map((s) => s.id || s.title)
 				.join(',');
-			const cacheKey = `${storyIds}-${perCategoryLimit}-${orderedCategories.map(c => c.id).join(',')}`;
+			const cacheKey = `${storyIds}-${perCategoryLimit}-${orderedCategories.map((c) => c.id).join(',')}`;
 
 			// Only re-shuffle if the underlying data changed
 			if (cachedRandomKey !== cacheKey) {
@@ -111,7 +123,9 @@ export function usePageDerived(options: () => DerivedStateOptions) {
 	// Must be after singlePageStories is defined
 	$effect(() => {
 		const opts = options();
-		const expandedStoryId = Object.keys(opts.expandedStories).find((id) => opts.expandedStories[id]);
+		const expandedStoryId = Object.keys(opts.expandedStories).find(
+			(id) => opts.expandedStories[id],
+		);
 
 		if (!expandedStoryId) {
 			currentStoryIndex = null;
@@ -122,7 +136,10 @@ export function usePageDerived(options: () => DerivedStateOptions) {
 		const searchStories = isSinglePageMode ? singlePageStories : opts.stories;
 
 		const story = searchStories.find(
-			(s) => s.id === expandedStoryId || s.cluster_number?.toString() === expandedStoryId || s.title === expandedStoryId,
+			(s) =>
+				s.id === expandedStoryId ||
+				s.cluster_number?.toString() === expandedStoryId ||
+				s.title === expandedStoryId,
 		);
 
 		if (!story) {
@@ -132,7 +149,7 @@ export function usePageDerived(options: () => DerivedStateOptions) {
 				isSinglePageMode,
 				firstStoryId: searchStories[0]?.id,
 				firstStoryCluster: searchStories[0]?.cluster_number,
-				allStoryIds: searchStories.slice(0, 3).map(s => s.id)
+				allStoryIds: searchStories.slice(0, 3).map((s) => s.id),
 			});
 			currentStoryIndex = null;
 		} else {
@@ -142,7 +159,7 @@ export function usePageDerived(options: () => DerivedStateOptions) {
 				storyId: story?.id,
 				expandedStoryId,
 				isSinglePageMode,
-				storiesCount: searchStories.length
+				storiesCount: searchStories.length,
 			});
 			currentStoryIndex = index;
 		}

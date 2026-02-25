@@ -80,13 +80,10 @@ $effect(() => {
 
 // Handle scroll lock
 $effect(() => {
-	if (browser) {
-		if (visible) {
-			scrollLock.lock();
-		} else {
-			scrollLock.unlock();
-		}
+	if (!browser) return;
 
+	if (visible) {
+		scrollLock.lock();
 		return () => scrollLock.unlock();
 	}
 });
@@ -451,7 +448,7 @@ $effect(() => {
 
 {#if visible}
   <div
-    class="fixed inset-0 z-[100] flex items-start justify-center pt-20 px-4"
+    class="fixed inset-0 z-modal flex items-start justify-center pt-20 px-4"
     ontouchmove={(e) => e.preventDefault()}
     style="touch-action: none;"
   >
@@ -483,7 +480,7 @@ $effect(() => {
           class="absolute inset-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm z-50 flex items-center justify-center"
         >
           <div class="text-center">
-            <IconLoader2 class="w-8 h-8 text-blue-500 animate-spin mx-auto mb-4" />
+            <IconLoader2 class="size-8 text-blue-500 animate-spin mx-auto mb-4" />
             <p class="text-sm text-gray-600 dark:text-gray-400">
               {s("search.loading_historical_data") ||
                 "Loading historical data..."}

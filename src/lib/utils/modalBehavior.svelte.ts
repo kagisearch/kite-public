@@ -36,13 +36,11 @@ export function createModalBehavior() {
 	}
 
 	// Apply scroll lock when modal is open
-	// This should be called inside a component's $effect
-	function applyScrollLock(isOpen: boolean) {
-		if (isOpen) {
-			scrollLock.lock();
-		} else {
-			scrollLock.unlock();
-		}
+	// Returns a cleanup function - should be called inside a component's $effect
+	// Usage: if (isOpen) { return modal.applyScrollLock(); }
+	function applyScrollLock() {
+		scrollLock.lock();
+		return () => scrollLock.unlock();
 	}
 
 	// Get transition duration based on device type

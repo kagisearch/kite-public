@@ -1,6 +1,6 @@
 <script lang="ts">
 import { s } from '$lib/client/localization.svelte';
-import SettingsSections from '../settings/SettingsSections.svelte';
+import SectionsList from '$lib/components/settings/snippets/SectionsList.svelte';
 </script>
 
 <div class="space-y-6">
@@ -14,6 +14,6 @@ import SettingsSections from '../settings/SettingsSections.svelte';
     </p>
   </div>
 
-  <!-- Reuse the existing SettingsSections component -->
-  <SettingsSections />
+  <!-- Reuse the shared SectionsList component -->
+  <SectionsList showHeader={false} showResetButton={false} />
 </div>

@@ -5,7 +5,6 @@ import { normalizeForUrl } from '$lib/utils/categoryIdTransform';
 import {
 	buildArticleUrl,
 	buildCategoryUrl,
-	encodeBatchId,
 	parseUrl as parseEncodedUrl,
 } from '$lib/utils/urlEncoder';
 
@@ -120,7 +119,8 @@ export class UrlNavigationService {
 		useLatestPrefix: boolean = false,
 		batchCreatedAt?: string | null,
 	): string {
-		const { batchId, categoryId, storyIndex, clusterId, storyTitle, batchDateSlug, isShared } = params;
+		const { batchId, categoryId, storyIndex, clusterId, storyTitle, batchDateSlug, isShared } =
+			params;
 
 		// Get batch metadata from store if not provided
 		const batchData = timeTravelBatch.getBatchData();
@@ -156,10 +156,12 @@ export class UrlNavigationService {
 			return isShared ? `${url}?shared=1` : url;
 		}
 
-		// For historical batches with no category and no story (single page mode), use just batch code
+		// For historical batches with no category and no story (single page mode), use dateSlug directly
+		// Note: We use the raw dateSlug (YYYY-MM-DD.N) instead of encoding it because
+		// the encoded format (YYYYMMDDN) is only supported in routes WITH a category prefix
 		if (!categoryId && effectiveDateSlug && !clusterId && !useLatestPrefix) {
-			// Single page mode historical: /batch-code
-			const url = `/${encodeBatchId(effectiveDateSlug)}`;
+			// Single page mode historical: /YYYY-MM-DD.N
+			const url = `/${effectiveDateSlug}`;
 			return isShared ? `${url}?shared=1` : url;
 		}
 

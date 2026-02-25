@@ -14,9 +14,17 @@ export interface TranslateResponse {
 	error?: string;
 }
 
+// A simplified story has the same structure as a regular story
+export interface SimplifiedStory {
+	headline: string;
+	summary: string;
+	tldr: string;
+	[key: string]: unknown;
+}
+
 export interface SimplifyStoryResponse {
 	success: boolean;
-	simplifiedStory?: any;
+	simplifiedStory?: SimplifiedStory;
 	error?: string;
 }
 
@@ -37,12 +45,25 @@ const BLACKLIST = [
 ];
 
 // Nested fields that contain URLs or metadata (exclude from simplification)
-const NESTED_BLACKLIST = ['url', 'link', 'domain', 'favicon', 'sources', 'date', 'image', 'image_caption', 'credit'];
+const NESTED_BLACKLIST = [
+	'url',
+	'link',
+	'domain',
+	'favicon',
+	'sources',
+	'date',
+	'image',
+	'image_caption',
+	'credit',
+];
+
+// Type for JSON-like values used in simplification
+type JsonValue = string | number | boolean | null | JsonValue[] | { [key: string]: JsonValue };
 
 /**
  * Recursively filter out blacklisted fields, keeping only user-facing text content
  */
-function filterForSimplification(obj: any, path: string = ''): any {
+function filterForSimplification(obj: JsonValue, path: string = ''): JsonValue {
 	if (typeof obj === 'string') {
 		return obj;
 	}
@@ -52,7 +73,7 @@ function filterForSimplification(obj: any, path: string = ''): any {
 	}
 
 	if (obj && typeof obj === 'object') {
-		const filtered: any = {};
+		const filtered: Record<string, JsonValue> = {};
 		for (const [key, value] of Object.entries(obj)) {
 			// Skip blacklisted top-level fields
 			if (path === '' && BLACKLIST.includes(key)) {
@@ -73,22 +94,24 @@ function filterForSimplification(obj: any, path: string = ''): any {
 /**
  * Recursively merge simplified content back into original structure
  */
-function mergeSimplified(original: any, simplified: any): any {
+function mergeSimplified(original: JsonValue, simplified: JsonValue): JsonValue {
 	if (typeof simplified === 'string') {
 		return simplified;
 	}
 
 	if (Array.isArray(original) && Array.isArray(simplified)) {
 		return original.map((item, idx) =>
-			simplified[idx] !== undefined ? mergeSimplified(item, simplified[idx]) : item
+			simplified[idx] !== undefined ? mergeSimplified(item, simplified[idx]) : item,
 		);
 	}
 
 	if (original && typeof original === 'object' && simplified && typeof simplified === 'object') {
-		const result = { ...original };
-		for (const key of Object.keys(simplified)) {
-			if (key in original) {
-				result[key] = mergeSimplified(original[key], simplified[key]);
+		const origObj = original as Record<string, JsonValue>;
+		const simpObj = simplified as Record<string, JsonValue>;
+		const result = { ...origObj };
+		for (const key of Object.keys(simpObj)) {
+			if (key in origObj) {
+				result[key] = mergeSimplified(origObj[key], simpObj[key]);
 			}
 		}
 		return result;
@@ -102,16 +125,16 @@ function mergeSimplified(original: any, simplified: any): any {
  * Browser automatically sends session cookies with the request
  */
 export async function simplifyStory(
-	story: any,
+	story: Record<string, unknown>,
 	languageCode: string,
-	readingLevel: ReadingLevel
+	readingLevel: ReadingLevel,
 ): Promise<SimplifyStoryResponse> {
 	try {
 		// Map user-friendly reading level to CEFR complexity
 		const complexity = mapReadingLevel(readingLevel);
 
 		// Filter out blacklisted fields (URLs, metadata, etc.)
-		const filtered = filterForSimplification(story);
+		const filtered = filterForSimplification(story as unknown as JsonValue);
 		const textJson = JSON.stringify(filtered);
 
 		// Use our proxy endpoint to avoid CORS issues
@@ -129,7 +152,8 @@ export async function simplifyStory(
 				stream: false,
 				translation_style: 'natural',
 				formality: 'default',
-				context: 'Simplify the text for this story, keeping citations as is, they will be displayed separately. Return everything in a JSON format without ```json or markdown formatting, preserving all fields. Sacrificing information can be OK to reach the requested reading level.'
+				context:
+					'Simplify the text for this story, keeping citations as is, they will be displayed separately. Return everything in a JSON format without ```json or markdown formatting, preserving all fields. Sacrificing information can be OK to reach the requested reading level.',
 			}),
 		});
 
@@ -147,7 +171,10 @@ export async function simplifyStory(
 		const simplified = JSON.parse(translatedText);
 
 		// Merge simplified text back into original story structure
-		const simplifiedStory = mergeSimplified(story, simplified);
+		const simplifiedStory = mergeSimplified(
+			story as unknown as JsonValue,
+			simplified as JsonValue,
+		) as SimplifiedStory;
 
 		return {
 			success: true,

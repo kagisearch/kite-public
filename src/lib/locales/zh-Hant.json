@@ -27,6 +27,14 @@
     "text": "為新聞讀者",
     "translationContext": "Footer text suffix for copyright"
   },
+  "settings.about.keyboardDescription": {
+    "text": "使用 vim 風格的鍵盤快捷鍵來瀏覽報導和類別",
+    "translationContext": "Description of keyboard navigation feature"
+  },
+  "settings.about.keyboardShortcuts": {
+    "text": "鍵盤快捷鍵",
+    "translationContext": "Section header for keyboard shortcuts in settings"
+  },
   "settings.about.learnMore": {
     "text": "了解更多",
     "translationContext": "Link text to open full about page"
@@ -47,6 +55,10 @@
     "text": "查看 API 文件",
     "translationContext": "Button text to view API documentation"
   },
+  "settings.about.viewShortcuts": {
+    "text": "查看鍵盤快捷鍵",
+    "translationContext": "Button text to open keyboard shortcuts help overlay"
+  },
   "settings.aboutKite.button": {
     "text": "關於 Kagi News",
     "translationContext": "Text for the About Kagi News button"
@@ -62,6 +74,78 @@
   "settings.categories.contribute": {
     "text": "+ 貢獻分類",
     "translationContext": "Link text for contributing categories"
+  },
+  "settings.categories.contribute.intro": {
+    "text": "建議新類別，幫助我們擴展 Kagi 新聞的報導範圍。社群的貢獻是 Kagi 新聞多元與全面的基石。",
+    "translationContext": "Introduction text in the contribute category modal"
+  },
+  "settings.categories.contribute.learnMore": {
+    "text": "請參閱",
+    "translationContext": "Start of sentence linking to source inclusion rationale"
+  },
+  "settings.categories.contribute.learnMoreLink": {
+    "text": "此討論",
+    "translationContext": "Link text for the source inclusion rationale discussion"
+  },
+  "settings.categories.contribute.learnMoreSuffix": {
+    "text": "以了解我們納入來源的完整理由。",
+    "translationContext": "End of sentence after the discussion link"
+  },
+  "settings.categories.contribute.openIssue": {
+    "text": "在 GitHub 上開啟議題",
+    "translationContext": "Link text to open a GitHub issue for category suggestions"
+  },
+  "settings.categories.contribute.or": {
+    "text": "或",
+    "translationContext": "Divider text between options in contribute modal"
+  },
+  "settings.categories.contribute.prHint": {
+    "text": "適合熟悉 GitHub 的開發者",
+    "translationContext": "Hint text below the pull request link"
+  },
+  "settings.categories.contribute.prLink": {
+    "text": "直接提交 Pull Request",
+    "translationContext": "Link text for developers to submit a PR"
+  },
+  "settings.categories.contribute.req1Desc": {
+    "text": "— 高品質的 RSS feed 越多，報導範圍就越廣",
+    "translationContext": "Description explaining more feeds = better"
+  },
+  "settings.categories.contribute.req1Title": {
+    "text": "25 個以上的 RSS feed (越多越好)",
+    "translationContext": "Title for the feeds requirement emphasizing more is better"
+  },
+  "settings.categories.contribute.req2Desc": {
+    "text": "— 左翼來源不需要右翼來源來平衡。國營媒體、黨派媒體都可以。我們的系統會交叉比對多個來源的事實，因此異常值無法扭曲結果。這也是為什麼來源越多越好。",
+    "translationContext": "Detailed explanation of why biased sources are OK and why more sources help"
+  },
+  "settings.categories.contribute.req2Title": {
+    "text": "無需「平衡」",
+    "translationContext": "Title clarifying sources don't need to be balanced"
+  },
+  "settings.categories.contribute.req3Desc": {
+    "text": "— 不得包含捏造的說法、否認事件或惡作劇內容",
+    "translationContext": "Description for the no conspiracy content requirement"
+  },
+  "settings.categories.contribute.req3Title": {
+    "text": "不得包含陰謀論內容",
+    "translationContext": "Title for the no conspiracy content requirement"
+  },
+  "settings.categories.contribute.requirements": {
+    "text": "準則：",
+    "translationContext": "Header for the guidelines section in contribute modal"
+  },
+  "settings.categories.contribute.suggestButton": {
+    "text": "建議一個類別",
+    "translationContext": "Primary button text to open GitHub issue form"
+  },
+  "settings.categories.contribute.suggestHint": {
+    "text": "將開啟 GitHub issue 表單 — 無需編寫程式碼",
+    "translationContext": "Hint text below the suggest button"
+  },
+  "settings.categories.contribute.title": {
+    "text": "貢獻一個類別",
+    "translationContext": "Title of the contribute category modal"
   },
   "settings.categories.coreTooltip": {
     "text": "由 Kagi 團隊維護。高品質、多元視角。",
@@ -87,6 +171,10 @@
     "text": "按類型篩選...",
     "translationContext": "Placeholder text for category type filter dropdown"
   },
+  "settings.categories.filterPlaceholder": {
+    "text": "全部",
+    "translationContext": "Placeholder text for the category type filter dropdown"
+  },
   "settings.categories.instructions": {
     "text": "拖曳以重新排序，或點選以啟用/停用。在區段之間拖曳以移動分類。",
     "translationContext": "Instructions for managing categories"
@@ -106,6 +194,18 @@
   "settings.categories.noFiltered": {
     "text": "沒有此類型的已停用分類",
     "translationContext": "Message shown when no categories of the selected filter type are in the disabled section"
+  },
+  "settings.categories.noLetterResults": {
+    "text": "沒有以此字母開頭的類別",
+    "translationContext": "Message shown when no categories match the selected letter filter"
+  },
+  "settings.categories.noSearchResults": {
+    "text": "沒有符合您搜尋的類別",
+    "translationContext": "Message shown when no categories match the search query"
+  },
+  "settings.categories.searchPlaceholder": {
+    "text": "搜尋類別...",
+    "translationContext": "Placeholder text for the category search input"
   },
   "settings.categories.singlePageMode.description": {
     "text": "選擇故事的顯示方式：分頁（預設），或在單一頁面中以不同順序顯示所有故事。",
@@ -615,6 +715,118 @@
     "text": "OpenStreetMap",
     "translationContext": "Option to use OpenStreetMap"
   },
+  "settings.preferredSources.clearAll": {
+    "text": "清除所有釘選來源",
+    "translationContext": "Button text to clear all pinned sources"
+  },
+  "settings.preferredSources.cleared": {
+    "text": "已清除！",
+    "translationContext": "Confirmation message after clearing pinned sources"
+  },
+  "settings.preferredSources.description": {
+    "text": "釘選的來源會優先顯示在每則報導的來源清單中。點擊任何來源上的釘選圖示，即可將其新增至此處。",
+    "translationContext": "Description explaining the pinned sources feature"
+  },
+  "settings.preferredSources.empty": {
+    "text": "尚無釘選來源。請開啟一則報導，點擊來源並使用釘選圖示將其新增至此處。",
+    "translationContext": "Message shown when no preferred sources have been selected"
+  },
+  "settings.preferredSources.remove": {
+    "text": "移除",
+    "translationContext": "Aria label for button to remove a source from pinned list"
+  },
+  "settings.preferredSources.title": {
+    "text": "釘選來源",
+    "translationContext": "Title for preferred sources section in settings"
+  },
+  "settings.readingLevel.categories.description": {
+    "text": "為特定類別覆寫預設等級。設定為「全域」的類別將使用您上方的預設設定。",
+    "translationContext": "Description explaining how category-specific overrides work"
+  },
+  "settings.readingLevel.categories.label": {
+    "text": "類別覆寫",
+    "translationContext": "Label for the category-specific reading level overrides section"
+  },
+  "settings.readingLevel.clearOverrides": {
+    "text": "清除覆寫設定",
+    "translationContext": "Button to clear all category-specific reading level overrides"
+  },
+  "settings.readingLevel.fromGlobal": {
+    "text": "全域",
+    "translationContext": "Indicator that a category is using the global reading level setting"
+  },
+  "settings.readingLevel.global.description": {
+    "text": "此設定將套用至所有類別，除非您在下方設定了特定等級。",
+    "translationContext": "Description for the global reading level setting"
+  },
+  "settings.readingLevel.global.label": {
+    "text": "預設閱讀等級",
+    "translationContext": "Label for the global reading level setting"
+  },
+  "settings.readingLevel.info.howItWorks": {
+    "text": "當您開啟一篇文章時，內容將會自動簡化至您選擇的閱讀等級。您仍然可以手動變更任何文章的等級。",
+    "translationContext": "Explanation of how automatic reading level simplification works"
+  },
+  "settings.readingLevel.info.simpleDescription": {
+    "text": "中級（B1）程度的清晰語言。適合一般讀者。",
+    "translationContext": "Description of the Simple reading level"
+  },
+  "settings.readingLevel.info.verySimpleDescription": {
+    "text": "基礎詞彙和簡短句子（A2）。適合語言學習者。",
+    "translationContext": "Description of the Very Simple reading level"
+  },
+  "settings.readingLevel.levels.default": {
+    "text": "一般",
+    "translationContext": "Default/normal reading level option"
+  },
+  "settings.readingLevel.levels.simple": {
+    "text": "簡單",
+    "translationContext": "Simple reading level option"
+  },
+  "settings.readingLevel.levels.useGlobal": {
+    "text": "全域",
+    "translationContext": "Option to use the global reading level (no override)"
+  },
+  "settings.readingLevel.levels.verySimple": {
+    "text": "非常簡單",
+    "translationContext": "Very simple reading level option"
+  },
+  "settings.readingLevel.noCategories": {
+    "text": "未啟用任何類別。請在「類別」分頁中啟用類別。",
+    "translationContext": "Message shown when no categories are enabled"
+  },
+  "settings.readingLevel.resetAll": {
+    "text": "全部重設",
+    "translationContext": "Button to reset both global level and all category overrides"
+  },
+  "settings.readingLevel.subscriberOnly": {
+    "text": "Kagi 訂閱者可使用閱讀程度簡化功能。升級後即可自動將文章簡化至您偏好的閱讀程度。",
+    "translationContext": "Message shown to non-subscribers about reading level feature"
+  },
+  "settings.readingLevel.subscriberOnly.description": {
+    "text": "自動文字簡化功能僅供 Kagi 訂閱者使用。升級以使用此功能。",
+    "translationContext": "Description explaining this is a subscriber-only feature"
+  },
+  "settings.readingLevel.subscriberOnly.title": {
+    "text": "訂閱者功能",
+    "translationContext": "Title for subscriber-only feature notice"
+  },
+  "settings.readingLevel.subscriberOnly.upgrade": {
+    "text": "升級至 Kagi",
+    "translationContext": "Link text to upgrade to Kagi subscription"
+  },
+  "settings.readingLevel.tab.description": {
+    "text": "為所有文章設定預設的閱讀等級。您也可以為特定類別自訂等級。",
+    "translationContext": "Description shown at the top of the reading level settings tab"
+  },
+  "settings.readingLevel.title": {
+    "text": "閱讀程度",
+    "translationContext": "Title for reading level section"
+  },
+  "settings.readingLevel.upgrade": {
+    "text": "升級至 Kagi",
+    "translationContext": "Link text to upgrade to Kagi subscription"
+  },
   "settings.sections.instructions": {
     "text": "拖曳以重新排序區段。使用切換開關來啟用/停用。",
     "translationContext": "Instructions for managing article sections"
@@ -699,6 +911,10 @@
     "text": "外觀",
     "translationContext": "Subsection heading for appearance-related settings"
   },
+  "settings.subsections.display": {
+    "text": "顯示",
+    "translationContext": "Subsection heading for display settings"
+  },
   "settings.subsections.localization": {
     "text": "語言與地區",
     "translationContext": "Subsection heading for language and localization settings"
@@ -710,6 +926,14 @@
   "settings.subsections.readingExperience": {
     "text": "閱讀體驗",
     "translationContext": "Subsection heading for story display and reading settings"
+  },
+  "settings.subsections.storyDisplay": {
+    "text": "報導顯示",
+    "translationContext": "Subsection heading for story display settings"
+  },
+  "settings.subsections.visualEnhancements": {
+    "text": "視覺強化",
+    "translationContext": "Subsection heading for visual enhancement toggles"
   },
   "settings.sync.clear.button": {
     "text": "清除所有同步資料",
@@ -775,6 +999,14 @@
     "text": "匯出中...",
     "translationContext": "Text shown while exporting data"
   },
+  "settings.sync.import.button": {
+    "text": "匯入設定",
+    "translationContext": "Button label to import settings from a backup JSON file"
+  },
+  "settings.sync.import.importing": {
+    "text": "正在匯入...",
+    "translationContext": "Loading text shown while importing settings from a backup file"
+  },
   "settings.sync.info.description": {
     "text": "Kagi News 可以在您所有裝置間同步設定和閱讀紀錄。這些資料會安全地儲存在 Kagi 的伺服器上，並與您的 Kagi Search 帳戶關聯。\n\n您同步的資料不會用於任何其他目的，不會與任何人分享，且僅為提供同步服務給您而儲存。您對同步的內容擁有完全的控制權，並可以隨時刪除您的資料。",
     "translationContext": "Description of sync and privacy features"
@@ -831,6 +1063,14 @@
     "text": "關於",
     "translationContext": "Title for the about settings tab"
   },
+  "settings.tabs.account": {
+    "text": "帳戶",
+    "translationContext": "Title for the account settings tab"
+  },
+  "settings.tabs.appearance": {
+    "text": "外觀",
+    "translationContext": "Title for the appearance settings tab"
+  },
   "settings.tabs.categories": {
     "text": "分類",
     "translationContext": "Title for the categories settings tab"
@@ -843,13 +1083,33 @@
     "text": "實驗性功能",
     "translationContext": "Title for the experimental settings tab"
   },
+  "settings.tabs.filters": {
+    "text": "篩選器",
+    "translationContext": "Title for the filters settings tab"
+  },
   "settings.tabs.general": {
     "text": "一般",
     "translationContext": "Title for the general settings tab"
   },
+  "settings.tabs.language": {
+    "text": "語言",
+    "translationContext": "Title for the language settings tab"
+  },
+  "settings.tabs.preferredSources": {
+    "text": "釘選來源",
+    "translationContext": "Tab name for preferred/pinned sources settings"
+  },
+  "settings.tabs.readingLevel": {
+    "text": "閱讀等級",
+    "translationContext": "Tab name for per-category reading level settings"
+  },
   "settings.tabs.sections": {
     "text": "區段",
     "translationContext": "Title for the sections settings tab"
+  },
+  "settings.tabs.stories": {
+    "text": "報導",
+    "translationContext": "Title for the stories settings tab"
   },
   "settings.tabs.syncPrivacy": {
     "text": "同步",
@@ -907,9 +1167,17 @@
     "text": "關閉",
     "translationContext": "Close button text"
   },
+  "common.no_results": {
+    "text": "找不到結果",
+    "translationContext": "Shown in search/select dropdowns when no matches are found"
+  },
   "common.reset": {
     "text": "重設",
     "translationContext": "Reset button text"
+  },
+  "common.search": {
+    "text": "搜尋",
+    "translationContext": "Generic search input placeholder"
   },
   "about.approach.description1": {
     "text": "世界並非由同溫層構成。現實來自不同觀點和看法的碰撞——這就是我們從雜訊中篩選出信號的方式。",
@@ -986,6 +1254,42 @@
   "about.why.title": {
     "text": "為何選擇 Kagi News？因為現今的新聞媒體生態早已崩壞。",
     "translationContext": "Title of the Why Kagi News section"
+  },
+  "app_navigation.assistant": {
+    "text": "助理",
+    "translationContext": "Label for Kagi Assistant in the app navigation menu"
+  },
+  "app_navigation.fastgpt": {
+    "text": "FastGPT",
+    "translationContext": "Label for Kagi FastGPT in the app navigation menu, should not be translated"
+  },
+  "app_navigation.news": {
+    "text": "新聞",
+    "translationContext": "Label for Kagi News in the app navigation menu"
+  },
+  "app_navigation.open_navigation": {
+    "text": "開啟應用程式導覽",
+    "translationContext": "Accessibility label for opening the app navigation menu"
+  },
+  "app_navigation.search": {
+    "text": "搜尋",
+    "translationContext": "Label for Kagi Search in the app navigation menu"
+  },
+  "app_navigation.small_web": {
+    "text": "小型網路",
+    "translationContext": "Label for Kagi Small Web in the app navigation menu"
+  },
+  "app_navigation.tooltip": {
+    "text": "Kagi 應用程式",
+    "translationContext": "Tooltip for the app navigation button"
+  },
+  "app_navigation.translate": {
+    "text": "翻譯",
+    "translationContext": "Label for Kagi Translate in the app navigation menu"
+  },
+  "app_navigation.universal_summarizer": {
+    "text": "通用摘要器",
+    "translationContext": "Label for Kagi Universal Summarizer in the app navigation menu"
   },
   "app.beta": {
     "text": "BETA",
@@ -1710,6 +2014,546 @@
   "contentFilter.storyHidden": {
     "text": "已隱藏 {{count}} 則報導",
     "translationContext": "Message showing 1 story is hidden"
+  },
+  "contribute.addFeeds": {
+    "text": "新增 Feed",
+    "translationContext": "Button to add pasted feed URLs to the list"
+  },
+  "contribute.allDuplicates": {
+    "text": "所有 {{count}} 個網址都已在此類別中",
+    "translationContext": "Error when all pasted URLs are duplicates"
+  },
+  "contribute.allFeedsFailed": {
+    "text": "所有 Feed 驗證失敗。請檢查網址並重試，或移除錯誤的 Feed 並新增可用的 Feed。",
+    "translationContext": "Error message when every feed fails validation"
+  },
+  "contribute.cannotSubmit": {
+    "text": "無法提交。所有 Feed 驗證失敗。請移除錯誤的 Feed 並新增可用的 Feed。",
+    "translationContext": "Error explaining why submission is blocked"
+  },
+  "contribute.categoryExists": {
+    "text": "此類別已存在。",
+    "translationContext": "Warning when the entered category name already exists"
+  },
+  "contribute.categoryName": {
+    "text": "類別名稱",
+    "translationContext": "Label for the new category name input field"
+  },
+  "contribute.categoryNamePlaceholder": {
+    "text": "例如：航空、南韓、氣候...",
+    "translationContext": "Placeholder text for the category name input"
+  },
+  "contribute.checkingCount": {
+    "text": "正在檢查 {{count}} 個...",
+    "translationContext": "Number of feeds currently being validated"
+  },
+  "contribute.coreCategory": {
+    "text": "核心",
+    "translationContext": "Badge label for core categories maintained by the Kagi team"
+  },
+  "contribute.coreCategoryNote": {
+    "text": "這是一個核心的 Kite 類別。您的 Feed 將與現有的策劃來源一起新增。",
+    "translationContext": "Info note shown when a core category is selected in the contribute dropdown"
+  },
+  "contribute.createPr": {
+    "text": "建立拉取請求",
+    "translationContext": "Button text to submit and create a GitHub pull request"
+  },
+  "contribute.creatingPr": {
+    "text": "正在建立 PR...",
+    "translationContext": "Button text while the pull request is being created"
+  },
+  "contribute.duplicatesSkipped": {
+    "text": "已跳過 {{count}} 個重複的 Feed（已在此類別中）",
+    "translationContext": "Warning showing how many duplicate feeds were skipped"
+  },
+  "contribute.errorCount": {
+    "text": "{{count}} 個錯誤",
+    "translationContext": "Number of feeds that failed validation"
+  },
+  "contribute.excludedNote": {
+    "text": "（將排除 {{count}} 個錯誤的 Feed）",
+    "translationContext": "Note about errored feeds being excluded from submission"
+  },
+  "contribute.existingCategory": {
+    "text": "現有類別",
+    "translationContext": "Toggle button to add feeds to an existing category"
+  },
+  "contribute.failedPr": {
+    "text": "建立拉取請求失敗",
+    "translationContext": "Fallback error message when PR creation fails"
+  },
+  "contribute.feedCount": {
+    "text": "{{count}} 個 Feed",
+    "translationContext": "Number of feeds in a category, e.g. '42 feeds'"
+  },
+  "contribute.feedInputPlaceholder": {
+    "text": "在此處貼上 Feed 網址（每行一個或以逗號分隔）",
+    "translationContext": "Placeholder for the feed URL textarea input"
+  },
+  "contribute.feedLanguage": {
+    "text": "Feed 語言",
+    "translationContext": "Label for the feed language selector"
+  },
+  "contribute.feedLanguageTooltip": {
+    "text": "請將此設定為大多數 Feed 所使用的語言（多數或相對多數）。這不會限制可用性——所有類別都會被翻譯成我們支援的每種語言。",
+    "translationContext": "Tooltip explaining the feed language setting"
+  },
+  "contribute.feedsAdded": {
+    "text": "已新增 {{count}} 個 Feed",
+    "translationContext": "Summary showing total number of feeds added"
+  },
+  "contribute.guidelineBalance": {
+    "text": "無需「平衡」",
+    "translationContext": "Guideline title: sources don't need political balance"
+  },
+  "contribute.guidelineBalanceDesc": {
+    "text": "左翼來源不需要右翼對應。國營媒體、黨派媒體，都可以。我們的系統會交叉驗證多個來源的事實。",
+    "translationContext": "Guideline description explaining why biased sources are acceptable"
+  },
+  "contribute.guidelineConspiracy": {
+    "text": "禁止陰謀論內容",
+    "translationContext": "Guideline title: no conspiracy theories allowed"
+  },
+  "contribute.guidelineConspiracyDesc": {
+    "text": "禁止捏造的說法、否認事件或惡作劇內容",
+    "translationContext": "Guideline description for the no conspiracy requirement"
+  },
+  "contribute.guidelineFeeds": {
+    "text": "25 個以上的 RSS Feed（越多越好）",
+    "translationContext": "Guideline title: minimum number of feeds required"
+  },
+  "contribute.guidelineFeedsDesc": {
+    "text": "高品質的 Feed 越多，涵蓋範圍就越廣",
+    "translationContext": "Guideline description explaining more feeds = better coverage"
+  },
+  "contribute.guidelineLanguage": {
+    "text": "不要按語言劃分類別",
+    "translationContext": "Guideline title: keep one category per topic regardless of language"
+  },
+  "contribute.guidelineLanguageDesc": {
+    "text": "「瑞士」應該是一個類別，而不是「瑞士 (EN)」和「瑞士 (IT)」。所有類別都會被翻譯成我們支援的每種語言。",
+    "translationContext": "Guideline description explaining not to split by language"
+  },
+  "contribute.guidelines": {
+    "text": "指南",
+    "translationContext": "Collapsible section header for contribution guidelines"
+  },
+  "contribute.heading": {
+    "text": "貢獻 Feed",
+    "translationContext": "Main heading on the contribute page"
+  },
+  "contribute.hideFeeds": {
+    "text": "隱藏 Feed",
+    "translationContext": "Button to collapse the list of existing feeds"
+  },
+  "contribute.history.declineReason": {
+    "text": "原因",
+    "translationContext": "Label before the decline reason text when a contribution PR was closed"
+  },
+  "contribute.history.existingCategory": {
+    "text": "新增至現有",
+    "translationContext": "Badge indicating feeds were added to an existing category"
+  },
+  "contribute.history.feedsAdded": {
+    "text": "已新增 {{count}} 個 Feed",
+    "translationContext": "Shows how many feeds were added in a contribution"
+  },
+  "contribute.history.legend": {
+    "text": "貢獻會經過手動審核。一旦合併，Feed 將在下一個每日批次中上線。",
+    "translationContext": "Legend text below the contributions list explaining the process"
+  },
+  "contribute.history.newCategory": {
+    "text": "新類別",
+    "translationContext": "Badge indicating the contribution created a new category"
+  },
+  "contribute.history.pr": {
+    "text": "PR #{{number}}",
+    "translationContext": "Link text showing the GitHub pull request number"
+  },
+  "contribute.history.showLess": {
+    "text": "顯示較少",
+    "translationContext": "Button to collapse the contributions list back to the preview"
+  },
+  "contribute.history.status.declined": {
+    "text": "已拒絕",
+    "translationContext": "Pipeline step label: PR was closed without merging"
+  },
+  "contribute.history.status.declined.tooltip": {
+    "text": "此拉取請求已關閉且未合併。",
+    "translationContext": "Tooltip for the Declined pipeline step"
+  },
+  "contribute.history.status.live": {
+    "text": "已上線",
+    "translationContext": "Pipeline step label: feeds are active on Kagi News"
+  },
+  "contribute.history.status.live.tooltip": {
+    "text": "您的 Feed 已在 Kagi 新聞上啟用。如果某個類別沒有顯示新聞報導，這表示文章沒有叢集——這是正常現象。",
+    "translationContext": "Tooltip for the Live pipeline step"
+  },
+  "contribute.history.status.merged": {
+    "text": "已合併",
+    "translationContext": "Pipeline step label: PR has been merged"
+  },
+  "contribute.history.status.merged.tooltip": {
+    "text": "您的拉取請求已合併。變更將在下一批 Kagi 新聞中生效。",
+    "translationContext": "Tooltip for the Merged pipeline step"
+  },
+  "contribute.history.status.submitted": {
+    "text": "已提交",
+    "translationContext": "Pipeline step label: PR has been created"
+  },
+  "contribute.history.status.submitted.tooltip": {
+    "text": "您的拉取請求已建立，正在等待審核。",
+    "translationContext": "Tooltip for the Submitted pipeline step"
+  },
+  "contribute.history.title": {
+    "text": "我的貢獻",
+    "translationContext": "Heading for the section showing the user's past feed contributions"
+  },
+  "contribute.history.titleWithCount": {
+    "text": "我的貢獻 ({{count}})",
+    "translationContext": "Heading for contributions section showing total count, e.g. 'My Contributions (4)'"
+  },
+  "contribute.history.typeExisting": {
+    "text": "現有類別",
+    "translationContext": "Inline text in expanded contribution detail indicating feeds were added to an existing category"
+  },
+  "contribute.history.typeNew": {
+    "text": "新類別",
+    "translationContext": "Inline text in expanded contribution detail indicating this created a new category"
+  },
+  "contribute.history.viewAll": {
+    "text": "查看另外 {{count}} 個",
+    "translationContext": "Button to expand and show remaining hidden contributions, e.g. 'See 3 more'"
+  },
+  "contribute.howItWorks": {
+    "text": "運作方式",
+    "translationContext": "Small link in the contribute form header to re-show the onboarding"
+  },
+  "contribute.inThisCategory": {
+    "text": "在此類別中",
+    "translationContext": "Text after feed count, e.g. '42 feeds in this category'"
+  },
+  "contribute.languageInNameWarning": {
+    "text": "類別名稱中請勿包含語言代碼。請僅使用基本名稱（例如，使用「瑞士」而非「瑞士 (IT)」），並在下方設定主要的 Feed 語言。所有類別都會被翻譯成我們支援的每種語言。",
+    "translationContext": "Warning shown when a language code like (IT) is detected in the category name"
+  },
+  "contribute.loadingCategories": {
+    "text": "正在載入類別...",
+    "translationContext": "Loading state while fetching category list"
+  },
+  "contribute.manual.addTo": {
+    "text": "新增至 {{fileName}}：",
+    "translationContext": "Label above the copyable code snippet (snippet mode)"
+  },
+  "contribute.manual.copied": {
+    "text": "已複製！",
+    "translationContext": "Confirmation after copying to clipboard"
+  },
+  "contribute.manual.copy": {
+    "text": "複製",
+    "translationContext": "Copy to clipboard button"
+  },
+  "contribute.manual.editOnGithub": {
+    "text": "在 GitHub 上編輯 {{fileName}}",
+    "translationContext": "Button to open the file editor on GitHub"
+  },
+  "contribute.manual.fullFile": {
+    "text": "完整的 {{fileName}}：",
+    "translationContext": "Label above the copyable code block (full file mode)"
+  },
+  "contribute.manual.instructions": {
+    "text": "在 GitHub 上使用這些變更建立一個拉取請求：",
+    "translationContext": "Header for manual PR creation instructions"
+  },
+  "contribute.manual.step1": {
+    "text": "複製下方的程式碼片段",
+    "translationContext": "Step 1 of manual PR instructions (snippet mode for core_feeds.py)"
+  },
+  "contribute.manual.step1Full": {
+    "text": "複製下方的完整檔案內容",
+    "translationContext": "Step 1 of manual PR instructions (full file mode for kite_feeds.json)"
+  },
+  "contribute.manual.step2Existing": {
+    "text": "點擊按鈕在 GitHub 上編輯 {{fileName}}。找到「{{category}}」部分，並將 Feed 網址新增到其 Feed 列表中",
+    "translationContext": "Step 2 for adding feeds to an existing category manually (snippet mode for core_feeds.py)"
+  },
+  "contribute.manual.step2Full": {
+    "text": "點擊按鈕在 GitHub 上編輯 {{fileName}}，全選並用複製的內容取代",
+    "translationContext": "Step 2 for full file replacement mode (kite_feeds.json)"
+  },
+  "contribute.manual.step2New": {
+    "text": "點擊按鈕在 GitHub 上編輯 {{fileName}}。將程式碼片段按字母順序新增到現有類別中",
+    "translationContext": "Step 2 for adding a new category manually (snippet mode fallback)"
+  },
+  "contribute.manual.step3": {
+    "text": "提交變更並開啟一個拉取請求。GitHub 將引導您完成此過程",
+    "translationContext": "Step 3 of manual PR instructions"
+  },
+  "contribute.manual.submit": {
+    "text": "取得 PR 指示",
+    "translationContext": "Button text for manual mode where user creates PR themselves"
+  },
+  "contribute.networkError": {
+    "text": "網路錯誤。請再試一次。",
+    "translationContext": "Error message for network failures during submission"
+  },
+  "contribute.newCategory": {
+    "text": "新類別",
+    "translationContext": "Toggle button to create a new category"
+  },
+  "contribute.noValidUrls": {
+    "text": "找不到有效的網址。網址必須以 http:// 或 https:// 開頭",
+    "translationContext": "Error when pasted text contains no valid URLs"
+  },
+  "contribute.onboarding.community.description": {
+    "text": "沒有 Kagi 員工決定存在哪些類別或顯示哪些新聞報導。所有這些都來自 Feed，而 Feed 來自社群。",
+    "translationContext": "Main explanation of community-driven categories"
+  },
+  "contribute.onboarding.community.networkLabelStories": {
+    "text": "新聞報導",
+    "translationContext": "Label on the story cluster nodes in the feed flow animation"
+  },
+  "contribute.onboarding.community.networkLabelYou": {
+    "text": "+ 您",
+    "translationContext": "Label on the contributor node in the feed network animation"
+  },
+  "contribute.onboarding.community.networkNote": {
+    "text": "左側的 Feed 流向右側的新聞報導。更多的 Feed 意味著更多的新聞報導和更廣的涵蓋範圍。",
+    "translationContext": "Caption under the feed-to-story flow animation"
+  },
+  "contribute.onboarding.community.noStories": {
+    "text": "有時一個類別不會產生任何新聞報導。這通常意味著沒有足夠的 Feed 具有重疊的報導範圍，無法觸發分組。更多的 Feed 意味著更多的重疊，也意味著更多的新聞報導。",
+    "translationContext": "Explaining why some categories don't generate stories"
+  },
+  "contribute.onboarding.community.title": {
+    "text": "一切皆由社群驅動",
+    "translationContext": "Section title for explaining community-driven nature of categories"
+  },
+  "contribute.onboarding.community.whyXnotY": {
+    "text": "如果您想知道為什麼有 X 類別而沒有 Y 類別，那是因為關心 X 的人花時間為它新增了 Feed。如果您關心的主題缺失，您可以成為發起人。",
+    "translationContext": "Explaining why certain categories exist and others don't"
+  },
+  "contribute.onboarding.cta": {
+    "text": "開始新增 Feed",
+    "translationContext": "CTA button on the onboarding page to proceed to the contribute form"
+  },
+  "contribute.onboarding.feedTypes.community.description": {
+    "text": "由像您一樣的貢獻者在 kite_feeds.json 中策劃。涵蓋從地區新聞到小眾主題的所有內容。您的貢獻將會在這裡。",
+    "translationContext": "Description of community feeds that contributors add to"
+  },
+  "contribute.onboarding.feedTypes.community.title": {
+    "text": "社群 Feed",
+    "translationContext": "Title for the community feeds card"
+  },
+  "contribute.onboarding.feedTypes.core.description": {
+    "text": "涵蓋世界新聞、商業、科技、科學、體育和文化等基本類別。它們在 GitHub 上完全開源，所以您也可以為它們做出貢獻。",
+    "translationContext": "Description of core feeds, emphasizing they are open source and open to contributions"
+  },
+  "contribute.onboarding.feedTypes.core.title": {
+    "text": "核心 Feed",
+    "translationContext": "Title for the core feeds card"
+  },
+  "contribute.onboarding.feedTypes.title": {
+    "text": "兩種 Feed 為 Kagi 新聞提供動力",
+    "translationContext": "Section title for core vs community feeds comparison"
+  },
+  "contribute.onboarding.guidelines.anyLanguage": {
+    "text": "歡迎任何語言。Kagi 新聞會自動翻譯所有內容，因此一個類別可以也應該混合多種語言。",
+    "translationContext": "Guideline: feeds in any language are accepted"
+  },
+  "contribute.onboarding.guidelines.minimum": {
+    "text": "新類別需要至少 25 個 Feed 才能在 Kagi 新聞中顯示。這確保了足夠的重疊以供叢集運作。",
+    "translationContext": "Guideline: minimum feed count for new categories"
+  },
+  "contribute.onboarding.guidelines.noLanguageSplit": {
+    "text": "不要按語言建立單獨的類別。使用「瑞士」，而不是「瑞士 (DE)」和「瑞士 (FR)」。",
+    "translationContext": "Guideline: don't split categories by language"
+  },
+  "contribute.onboarding.guidelines.quality": {
+    "text": "偏好已建立的新聞來源、部落格或媒體。通常 Feed 越多越好——叢集會處理其餘部分。",
+    "translationContext": "Guideline: source quality preference"
+  },
+  "contribute.onboarding.guidelines.rssOnly": {
+    "text": "僅限 RSS 或 Atom Feed。Kagi 新聞不抓取網站，僅使用公開可用的 Feed 資料。",
+    "translationContext": "Guideline: only RSS/Atom feeds are accepted"
+  },
+  "contribute.onboarding.guidelines.title": {
+    "text": "Feed 指南",
+    "translationContext": "Section title for feed submission guidelines"
+  },
+  "contribute.onboarding.guidelines.topicSpecific": {
+    "text": "Feed 應專門涵蓋該類別的主題。將像《衛報》這樣的一般性報紙新增到「英國」類別，主要會產生世界新聞的叢集，而不是英國特定的新聞。請尋找按主題過濾的 Feed，或使用 RSS 過濾工具來縮小廣泛 Feed 的範圍。",
+    "translationContext": "Guideline: feeds should be topic-specific, not general outlets, with example"
+  },
+  "contribute.onboarding.guidelines.working": {
+    "text": "Feed 必須正常運作並有近期（最好是每日）的內容。",
+    "translationContext": "Guideline: feeds should be active"
+  },
+  "contribute.onboarding.pipeline.note": {
+    "text": "整個過程是自動運作的。Kagi 沒有人為挑選出現哪些新聞報導或建立哪些類別。",
+    "translationContext": "Note below the pipeline emphasizing the automated nature"
+  },
+  "contribute.onboarding.pipeline.step1.description": {
+    "text": "每個類別背後都有一份 RSS Feed 列表。系統會從所有 Feed 中提取新文章。有些類別有數百個 Feed，有些則剛起步。",
+    "translationContext": "Pipeline step 1 description"
+  },
+  "contribute.onboarding.pipeline.step1.title": {
+    "text": "檢查 Feed",
+    "translationContext": "Pipeline step 1 title"
+  },
+  "contribute.onboarding.pipeline.step2.description": {
+    "text": "系統會找出關於同一主題的文章並將它們分組。每個群組都成為一則「新聞報導」。如果一篇文章與其他文章不匹配，則會被跳過。",
+    "translationContext": "Pipeline step 2 description"
+  },
+  "contribute.onboarding.pipeline.step2.title": {
+    "text": "相關文章被分組",
+    "translationContext": "Pipeline step 2 title"
+  },
+  "contribute.onboarding.pipeline.step3.description": {
+    "text": "AI 會閱讀群組中的所有文章，並撰寫一份單一的摘要，綜合各個來源的不同觀點。",
+    "translationContext": "Pipeline step 3 description"
+  },
+  "contribute.onboarding.pipeline.step3.title": {
+    "text": "撰寫摘要",
+    "translationContext": "Pipeline step 3 title"
+  },
+  "contribute.onboarding.pipeline.title": {
+    "text": "新聞報導是如何產生的",
+    "translationContext": "Section title for the pipeline explanation"
+  },
+  "contribute.onboarding.skip": {
+    "text": "跳過",
+    "translationContext": "Link to skip the onboarding and go straight to the contribute form"
+  },
+  "contribute.onboarding.subtitle": {
+    "text": "透過將 RSS Feed 新增至社群策劃的類別，協助打造更好的新聞體驗。",
+    "translationContext": "Subtitle on the contribute onboarding info page"
+  },
+  "contribute.onboarding.title": {
+    "text": "為 Kagi 新聞做出貢獻",
+    "translationContext": "Title on the contribute onboarding info page"
+  },
+  "contribute.onboarding.whatToDo.existing.description": {
+    "text": "瀏覽類別並新增您認為缺少的 RSS Feed。更多樣化的來源意味著更好的涵蓋範圍和更多浮現的新聞報導。",
+    "translationContext": "Description of adding feeds to existing categories"
+  },
+  "contribute.onboarding.whatToDo.existing.title": {
+    "text": "將 Feed 新增至現有類別",
+    "translationContext": "Title for existing category contribution option"
+  },
+  "contribute.onboarding.whatToDo.new.description": {
+    "text": "本地新聞、地區報導、小眾主題。新類別需要至少 25 個 Feed 才能在 Kagi 新聞上線。這確保了足夠的重疊，以便叢集產生真實的新聞報導。",
+    "translationContext": "Description of proposing new categories"
+  },
+  "contribute.onboarding.whatToDo.new.title": {
+    "text": "提議新類別",
+    "translationContext": "Title for new category contribution option"
+  },
+  "contribute.onboarding.whatToDo.title": {
+    "text": "您可以貢獻什麼",
+    "translationContext": "Section title for contribution options"
+  },
+  "contribute.pageTitle": {
+    "text": "貢獻 Feed - Kagi 新聞",
+    "translationContext": "Browser tab title for the contribute page"
+  },
+  "contribute.pendingFeedCount": {
+    "text": "已提議 {{count}} 個 Feed",
+    "translationContext": "Number of feeds proposed in a pending pull request"
+  },
+  "contribute.pendingFeedsAdded": {
+    "text": "+{{count}} 個待處理的 Feed",
+    "translationContext": "Indicator showing additional feeds pending for an existing category"
+  },
+  "contribute.pendingPr": {
+    "text": "待處理的 PR",
+    "translationContext": "Badge label for categories from unmerged pull requests"
+  },
+  "contribute.pendingPrLink": {
+    "text": "檢視 PR #{{number}}",
+    "translationContext": "Link text to view the related pending pull request"
+  },
+  "contribute.pendingPrNote": {
+    "text": "此類別由另一位貢獻者提議，正在等待審核。",
+    "translationContext": "Info note shown when a pending PR category is selected"
+  },
+  "contribute.removeErrored": {
+    "text": "移除 {{count}} 個錯誤的 Feed",
+    "translationContext": "Button to remove all feeds that failed validation"
+  },
+  "contribute.removeFeed": {
+    "text": "移除 Feed",
+    "translationContext": "Aria label for the button to remove a single feed"
+  },
+  "contribute.retry": {
+    "text": "重試",
+    "translationContext": "Button to retry loading categories after an error"
+  },
+  "contribute.reviewNote": {
+    "text": "我們的團隊將審核您的提交，如果一切順利，將會合併。",
+    "translationContext": "Note explaining what happens after submission"
+  },
+  "contribute.searchCategories": {
+    "text": "搜尋類別...",
+    "translationContext": "Placeholder for the category search dropdown"
+  },
+  "contribute.showFeeds": {
+    "text": "顯示 Feed",
+    "translationContext": "Button to expand the list of existing feeds"
+  },
+  "contribute.step1": {
+    "text": "1. 選擇一個類別",
+    "translationContext": "Step 1 heading in the contribute form"
+  },
+  "contribute.step2": {
+    "text": "2. 新增 Feed",
+    "translationContext": "Step 2 heading in the contribute form"
+  },
+  "contribute.step3": {
+    "text": "3. 提交",
+    "translationContext": "Step 3 heading in the contribute form"
+  },
+  "contribute.submitAnother": {
+    "text": "提交另一項貢獻",
+    "translationContext": "Link to reset the form and submit another contribution"
+  },
+  "contribute.subtitle": {
+    "text": "將 RSS Feed 新增至現有類別或建議新類別",
+    "translationContext": "Subtitle below the heading on the contribute page"
+  },
+  "contribute.successMessage": {
+    "text": "感謝您的貢獻！已建立拉取請求 #{{prNumber}}。",
+    "translationContext": "Success message after PR is created, with PR number"
+  },
+  "contribute.summaryExisting": {
+    "text": "正在將 {{count}} 個 Feed 新增至 {{category}}",
+    "translationContext": "Summary text before adding feeds to an existing category"
+  },
+  "contribute.summaryNew": {
+    "text": "正在建立新類別 {{category}}，包含 {{count}} 個 Feed",
+    "translationContext": "Summary text before submitting a new category"
+  },
+  "contribute.switchToIt": {
+    "text": "切換過去？",
+    "translationContext": "Link to switch to an existing category instead of creating new"
+  },
+  "contribute.unverifiedCount": {
+    "text": "{{count}} 個未驗證",
+    "translationContext": "Number of feeds with unknown validation status"
+  },
+  "contribute.validCount": {
+    "text": "{{count}} 個有效",
+    "translationContext": "Number of feeds that passed validation"
+  },
+  "contribute.viewPr": {
+    "text": "檢視拉取請求",
+    "translationContext": "Link text to view the created pull request on GitHub"
+  },
+  "contribute.waitingValidation": {
+    "text": "正在等待 {{count}} 個 Feed 完成驗證...",
+    "translationContext": "Note shown while feeds are still being validated"
   },
   "crypto.grid.title": {
     "text": "加密貨幣價格",
@@ -2779,6 +3623,10 @@
     "text": "來源資訊",
     "translationContext": "Title for source information section"
   },
+  "sources.addPreferred": {
+    "text": "釘選至來源頂部",
+    "translationContext": "Tooltip for pin button to add source to preferred list"
+  },
   "sources.article": {
     "text": "{{count}} 篇文章",
     "translationContext": "Shows singular article count from a source, {{count}} will be replaced with a number"
@@ -2794,6 +3642,10 @@
   "sources.paywallTooltip": {
     "text": "此來源可能需要訂閱才能閱讀完整文章",
     "translationContext": "Tooltip explaining that a news source requires a paid subscription"
+  },
+  "sources.removePreferred": {
+    "text": "取消釘選",
+    "translationContext": "Tooltip for pin button to remove source from preferred list"
   },
   "sources.showArticlesFrom": {
     "text": "顯示來自 {source} 的文章",
@@ -2819,6 +3671,38 @@
     "text": "第 {{week}} 週，第 {{day}} 天",
     "translationContext": "Shows the current week and day of the year, {week} and {day} will be replaced with numbers"
   },
+  "stories.clusteringModal.clusteringDescription": {
+    "text": "當來自不同資訊來源的文章報導相同主題時，它們會被分組到一個故事中。報導某個主題的資訊來源越多，訊號就越強。",
+    "translationContext": "Explains how story clustering works"
+  },
+  "stories.clusteringModal.communityFeedsDescription": {
+    "text": "此類別的 RSS 資訊來源是由社群成員整理，而非 Kagi 團隊。",
+    "translationContext": "Explains that community categories have user-curated feeds"
+  },
+  "stories.clusteringModal.fullyAutomaticDescription": {
+    "text": "沒有人挑選或選擇顯示的內容。整個過程，從擷取資訊來源、進行叢集分析到撰寫摘要，都是自動運行的。",
+    "translationContext": "Explains that the process is fully automatic with no human curation"
+  },
+  "stories.clusteringModal.helpImprove": {
+    "text": "協助改善此類別",
+    "translationContext": "Call-to-action divider text for contributing feeds"
+  },
+  "stories.clusteringModal.helpImproveDescription": {
+    "text": "新增更多資訊來源可以讓叢集分析運作得更好。您可以在 GitHub 上建議新的資訊來源。",
+    "translationContext": "Encourages users to contribute feeds"
+  },
+  "stories.clusteringModal.noClusterDescription": {
+    "text": "如果資訊來源報導的內容沒有足夠的重疊，就不會形成叢集，也不會顯示任何故事。這是正常現象，在小眾或地區性類別中更常發生。",
+    "translationContext": "Explains why community categories sometimes have no stories"
+  },
+  "stories.clusteringModal.suggestFeeds": {
+    "text": "在 GitHub 上建議資訊來源",
+    "translationContext": "Button label for the GitHub link to suggest feeds"
+  },
+  "stories.clusteringModal.title": {
+    "text": "故事是如何產生的",
+    "translationContext": "Title for the modal explaining the story clustering process"
+  },
   "stories.fewStories": {
     "text": "今天沒有其他重要新聞，明天再來看看吧！",
     "translationContext": "Message shown when there are only 1-3 stories in a category"
@@ -2826,6 +3710,38 @@
   "stories.noStories": {
     "text": "今天此分類中沒有重大新聞。",
     "translationContext": "Message shown when no stories are found for a category"
+  },
+  "stories.noStoriesCommunity": {
+    "text": "今天此社群類別沒有故事。",
+    "translationContext": "Message shown when a community (non-core) category has no stories"
+  },
+  "stories.noStoriesCommunityDescription": {
+    "text": "各個資訊來源之間沒有足夠的共同新聞來形成故事。這種情況有時會發生在社群類別中。",
+    "translationContext": "Secondary description explaining why community categories sometimes have no stories"
+  },
+  "stories.noStoriesCommunityLearnMore": {
+    "text": "了解運作方式",
+    "translationContext": "Button label to open modal explaining the clustering process"
+  },
+  "stories.noStoriesCore": {
+    "text": "此類別的故事應很快就會提供。請稍後再回來查看。",
+    "translationContext": "Message shown when a core (Kagi-maintained) category temporarily has no stories, usually due to a pipeline issue"
+  },
+  "stories.noStoriesCoreUpdates": {
+    "text": "暫時無法提供",
+    "translationContext": "Small label shown with a clock icon when a core category has no stories, indicating the update schedule"
+  },
+  "story.assistant.placeholder": {
+    "text": "對此報導提問...",
+    "translationContext": "Placeholder text in the assistant question input field"
+  },
+  "story.assistant.submit": {
+    "text": "提問",
+    "translationContext": "Submit button label for assistant question"
+  },
+  "story.assistant.tooltip": {
+    "text": "詢問助理",
+    "translationContext": "Tooltip for button that opens Kagi Assistant with the current story topic"
   },
   "story.flashcards.download": {
     "text": "下載",
@@ -2863,6 +3779,10 @@
     "text": "結束選取單字",
     "translationContext": "Tooltip for flashcard button when in selection mode"
   },
+  "story.simplify.autoSimplifying": {
+    "text": "正在簡化至 {level} 等級...",
+    "translationContext": "Status message while auto-simplifying. {level} is the reading level name."
+  },
   "story.simplify.loading": {
     "text": "簡化中…",
     "translationContext": "Status message while simplifying text"
@@ -2899,6 +3819,66 @@
     "text": "停止播放",
     "translationContext": "Tooltip for TTS button when playing"
   },
+  "sync.conflict.multiple": {
+    "text": "有 {{{count}}} 項設定已從另一台裝置更新",
+    "translationContext": "Toast notification when multiple settings were overridden during sync. {count} is the number of settings."
+  },
+  "sync.conflict.single": {
+    "text": "有一項設定已從另一台裝置更新",
+    "translationContext": "Toast notification when one setting was overridden during sync"
+  },
+  "syncSetup.description": {
+    "text": "我們在您的帳戶中發現了來自另一台裝置的現有設定。您希望如何處理？",
+    "translationContext": "Description shown in sync setup wizard when cloud settings already exist"
+  },
+  "syncSetup.done": {
+    "text": "設定同步成功！",
+    "translationContext": "Success message after sync setup completes"
+  },
+  "syncSetup.merge.description": {
+    "text": "保留您的設定並新增任何缺少的雲端設定",
+    "translationContext": "Description for the merge option in sync setup"
+  },
+  "syncSetup.merge.title": {
+    "text": "合併",
+    "translationContext": "Option to merge local and cloud settings together"
+  },
+  "syncSetup.pullRemote.description": {
+    "text": "用雲端設定取代您目前的設定",
+    "translationContext": "Description for the pull remote option in sync setup"
+  },
+  "syncSetup.pullRemote.title": {
+    "text": "使用雲端設定",
+    "translationContext": "Option to overwrite local settings with cloud settings"
+  },
+  "syncSetup.pushLocal.description": {
+    "text": "用您目前的設定取代雲端設定",
+    "translationContext": "Description for the push local option in sync setup"
+  },
+  "syncSetup.pushLocal.title": {
+    "text": "使用此裝置",
+    "translationContext": "Option to overwrite cloud settings with current device settings"
+  },
+  "syncSetup.syncing.merging": {
+    "text": "正在合併設定...",
+    "translationContext": "Loading text while merging local and cloud settings"
+  },
+  "syncSetup.syncing.pulling": {
+    "text": "正在下載雲端設定...",
+    "translationContext": "Loading text while pulling cloud settings to device"
+  },
+  "syncSetup.syncing.pushing": {
+    "text": "正在上傳您的設定...",
+    "translationContext": "Loading text while pushing local settings to cloud"
+  },
+  "syncSetup.title": {
+    "text": "設定同步",
+    "translationContext": "Title for the sync setup wizard modal shown when enabling sync with existing cloud settings"
+  },
+  "syncSetup.tryAgain": {
+    "text": "再試一次",
+    "translationContext": "Link to retry sync setup after an error"
+  },
   "time.nextUpdate.in": {
     "text": "{{time}} 後更新",
     "translationContext": "Shown when the next update time is known, {time} will be replaced with countdown (e.g., '2h 30m')"
@@ -2906,6 +3886,34 @@
   "time.nextUpdate.soon": {
     "text": "即將更新",
     "translationContext": "Shown when the next update is expected soon (after noon UTC but no update yet today)"
+  },
+  "time.relative.days": {
+    "text": "{{count}} 天前",
+    "translationContext": "Relative time: multiple days ago, {count} is the number"
+  },
+  "time.relative.hours": {
+    "text": "{{count}} 小時前",
+    "translationContext": "Relative time: multiple hours ago, {count} is the number"
+  },
+  "time.relative.justNow": {
+    "text": "剛才",
+    "translationContext": "Relative time: less than a minute ago"
+  },
+  "time.relative.minutes": {
+    "text": "{{count}} 分鐘前",
+    "translationContext": "Relative time: multiple minutes ago, {count} is the number"
+  },
+  "time.relative.oneDay": {
+    "text": "1 天前",
+    "translationContext": "Relative time: exactly 1 day ago"
+  },
+  "time.relative.oneHour": {
+    "text": "1 小時前",
+    "translationContext": "Relative time: exactly 1 hour ago"
+  },
+  "time.relative.oneMinute": {
+    "text": "1 分鐘前",
+    "translationContext": "Relative time: exactly 1 minute ago"
   },
   "time.updated.days": {
     "text": "{{count}} 天前更新",
@@ -2938,6 +3946,10 @@
   "time.updated.seconds": {
     "text": "{{count}} 秒前更新",
     "translationContext": "Shown when content was updated seconds ago, {count} will be replaced with the number of seconds"
+  },
+  "timeTravel.description": {
+    "text": "查看每日歷史摘要。\nKagi 訂閱者專屬。\n公開測試期間，所有使用者皆可使用。",
+    "translationContext": "Description of Time Travel - line 1 is subtitle, line 2 is info, line 3 is italicized beta note"
   },
   "timeTravel.latest": {
     "text": "最新",
@@ -2978,6 +3990,18 @@
   "timeTravel.today": {
     "text": "今天",
     "translationContext": "Button to navigate to today"
+  },
+  "timeTravel.urlBanner.dismiss": {
+    "text": "知道了",
+    "translationContext": "Button to dismiss the time travel info banner"
+  },
+  "timeTravel.urlBanner.viewing": {
+    "text": "此連結指向來自 {{{date}}} 的新聞。您可以隨時使用上方日期旁邊的 ✕ 返回今日新聞。",
+    "translationContext": "One-time info banner shown when user arrives via a bookmarked time travel URL (no referrer). Points user to the header date pill with X button."
+  },
+  "timeTravel.urlBanner.viewingShared": {
+    "text": "有人與您分享了來自 {{{date}}} 的新聞連結。您可以隨時使用上方日期旁邊的 ✕ 返回今日新聞。",
+    "translationContext": "One-time info banner shown when user arrives via a shared time travel URL (has referrer). Points user to the header date pill with X button."
   },
   "turbulence.title": {
     "text": "世界動盪指數儀錶板",
@@ -3135,6 +4159,14 @@
     "text": "混亂指數",
     "translationContext": "Label for the chaos index chart"
   },
+  "worldTension.consistencyText": {
+    "text": "在聳動的頭條、末日刷屏和 24/7 全天候的新聞轟炸之間，我們很容易感覺世界似乎隨時都處於水深火熱之中。本指數旨在提供一個更務實的觀點。很多時候，事情並沒有感覺上那麼糟糕。",
+    "translationContext": "Explanation of purpose: cutting through media noise"
+  },
+  "worldTension.consistencyTitle": {
+    "text": "設立宗旨",
+    "translationContext": "Section header explaining purpose of the index"
+  },
   "worldTension.cool": {
     "text": "冷卻",
     "translationContext": "Temperature description for low world tension (0-20%)"
@@ -3163,6 +4195,26 @@
     "text": "極端",
     "translationContext": "Status label for 81-100% range (deprecated, use burning)"
   },
+  "worldTension.factor.novelty": {
+    "text": "新穎性 — 新的危機或情勢升級，其權重會高於那些已充分反映在當前局勢中的持續性狀況。",
+    "translationContext": "Explanation of novelty factor"
+  },
+  "worldTension.factor.reversibility": {
+    "text": "可逆性 — 不可逆的行動（如入侵、生命損失）權重高於可逆的行動（如制裁、言辭交鋒）。",
+    "translationContext": "Explanation of reversibility factor"
+  },
+  "worldTension.factor.scope": {
+    "text": "影響範圍 — 評估時會權衡全球系統性風險、經濟傳染效應及觸發聯盟反應的事件，與局部事件的相對影響。",
+    "translationContext": "Explanation of scope factor"
+  },
+  "worldTension.factor.worstCase": {
+    "text": "接近最壞情況的程度 — 事件距離災難性後果有多近，其中涉及核武／大規模殺傷性武器（WMD）的情況會被賦予極高的權重。",
+    "translationContext": "Explanation of worst case factor"
+  },
+  "worldTension.factorsTitle": {
+    "text": "AI 會考量四個關鍵因素：",
+    "translationContext": "Header for list of factors"
+  },
   "worldTension.high": {
     "text": "高",
     "translationContext": "Status label for 41-60% range (deprecated, use warm)"
@@ -3170,6 +4222,14 @@
   "worldTension.hot": {
     "text": "熱",
     "translationContext": "Temperature description for serious world tension (61-80%)"
+  },
+  "worldTension.howCalculated": {
+    "text": "計算方式",
+    "translationContext": "Section header for methodology explanation"
+  },
+  "worldTension.methodologyIntro": {
+    "text": "世界緊張局勢指數是透過 AI 分析當前世界新聞頭條所產生。它並非使用固定公式，而是運用推理來評估全球的穩定性。",
+    "translationContext": "Introduction explaining AI-based methodology"
   },
   "worldTension.mild": {
     "text": "溫和",

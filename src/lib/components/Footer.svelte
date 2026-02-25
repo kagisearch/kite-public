@@ -78,9 +78,7 @@ function getRSSFeedUrl(): string {
       title={s("footer.about") || "About Kagi News"}
     >
       <img
-        src={themeSettings.isDark
-          ? "/svg/kagi_news_icon_dark.svg"
-          : "/svg/kagi_news_icon.svg"}
+        src={"/favicon.svg"}
         alt={s("app.logo.iconAlt") || "Kagi News"}
         class="h-5 w-5"
       />

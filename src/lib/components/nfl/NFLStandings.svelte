@@ -1,6 +1,15 @@
 <script lang="ts">
+import {
+	IconChevronDown,
+	IconChevronUp,
+	IconLoader2,
+	IconMedal,
+	IconMinus,
+	IconRefresh,
+	IconTrendingDown,
+	IconTrendingUp,
+} from '@tabler/icons-svelte';
 import { onMount } from 'svelte';
-import { IconChevronDown, IconChevronUp, IconLoader2, IconRefresh, IconTrendingUp, IconTrendingDown, IconMinus, IconMedal } from '@tabler/icons-svelte';
 import { s } from '$lib/client/localization.svelte';
 
 interface Team {
@@ -83,8 +92,9 @@ function getStreakColor(streak: string): string {
 const summaryText = $derived.by(() => {
 	if (!data?.conferences || data.conferences.length === 0) return s('nfl.standings.loading');
 	const totalDivisions = data.conferences.reduce((acc, conf) => acc + conf.divisions.length, 0);
-	const totalTeams = data.conferences.reduce((acc, conf) =>
-		acc + conf.divisions.reduce((divAcc, div) => divAcc + div.teams.length, 0), 0
+	const totalTeams = data.conferences.reduce(
+		(acc, conf) => acc + conf.divisions.reduce((divAcc, div) => divAcc + div.teams.length, 0),
+		0,
 	);
 	return `${data.conferences.length} ${s('nfl.standings.conferences')} • ${totalDivisions} ${s('nfl.standings.divisions')} • ${totalTeams} ${s('nfl.standings.teams')}`;
 });
@@ -92,12 +102,8 @@ const summaryText = $derived.by(() => {
 // Get top 3 teams across all divisions for preview
 const topTeams: Team[] = $derived.by(() => {
 	if (!data?.conferences) return [];
-	const allTeams = data.conferences.flatMap(conf =>
-		conf.divisions.flatMap(div => div.teams)
-	);
-	return allTeams
-		.sort((a, b) => b.winPercent - a.winPercent)
-		.slice(0, 3);
+	const allTeams = data.conferences.flatMap((conf) => conf.divisions.flatMap((div) => div.teams));
+	return allTeams.sort((a, b) => b.winPercent - a.winPercent).slice(0, 3);
 });
 
 onMount(() => {
@@ -114,8 +120,10 @@ onMount(() => {
 		<button
 			onclick={() => expanded = !expanded}
 			class="flex flex-1 items-center gap-2 text-left transition-colors hover:opacity-80"
+			aria-expanded={expanded}
+			aria-label={expanded ? s('nfl.standings.collapse') || 'Collapse NFL standings' : s('nfl.standings.expand') || 'Expand NFL standings'}
 		>
-			<IconMedal class="h-4 w-4 text-gray-600 dark:text-gray-400" />
+			<IconMedal class="size-4 text-gray-600 dark:text-gray-400" />
 			<span class="text-sm font-medium text-gray-900 dark:text-gray-100">{s('nfl.standings.title')}</span>
 			<span class="text-xs text-gray-600 dark:text-gray-400">{summaryText}</span>
 			{#if expanded}

@@ -12,6 +12,7 @@ class PCMProcessor extends AudioWorkletProcessor {
 		this.hasSignaledPlaying = false;
 		this.hasSignaledComplete = false;
 		this.emptyFrameCount = 0;
+		this.streamEnded = false; // Track whether the HTTP stream has fully arrived
 
 		// Listen for incoming samples
 		this.port.onmessage = (event) => {
@@ -24,6 +25,7 @@ class PCMProcessor extends AudioWorkletProcessor {
 				this.hasSignaledPlaying = false;
 				this.hasSignaledComplete = false;
 				this.emptyFrameCount = 0;
+				this.streamEnded = false;
 				console.log('[PCM Processor] Cleared queue');
 				return;
 			}
@@ -41,6 +43,13 @@ class PCMProcessor extends AudioWorkletProcessor {
 					this.port.postMessage({ command: 'playing' });
 					this.hasSignaledPlaying = true;
 				}
+				return;
+			}
+
+			// Stream has fully arrived - now we can allow completion when queue empties
+			if (command === 'stream_ended') {
+				console.log('[PCM Processor] Stream ended signal received');
+				this.streamEnded = true;
 				return;
 			}
 
@@ -66,7 +75,7 @@ class PCMProcessor extends AudioWorkletProcessor {
 		console.log('[PCM Processor] Initialized');
 	}
 
-	process(inputs, outputs, parameters) {
+	process(_inputs, outputs, _parameters) {
 		const output = outputs[0];
 		const channelData = output[0];
 
@@ -88,15 +97,26 @@ class PCMProcessor extends AudioWorkletProcessor {
 						channelData[i++] = 0;
 					}
 
-					// If we've signaled playing, have no more data, and haven't signaled completion,
-					// wait a few frames to make sure we're really done before signaling
-					if (this.hasSignaledPlaying && !this.hasSignaledComplete && this.queue.length === 0) {
+					// Only signal completion when:
+					// 1. We've started playing
+					// 2. The HTTP stream has fully ended (explicit signal received)
+					// 3. The audio queue is empty
+					// 4. We haven't already signaled completion
+					// This prevents premature completion during network delays
+					if (
+						this.hasSignaledPlaying &&
+						this.streamEnded &&
+						!this.hasSignaledComplete &&
+						this.queue.length === 0
+					) {
 						this.emptyFrameCount++;
 
-						// After 20 empty frames (about 400ms at standard buffer size),
-						// we're confident playback is complete
-						if (this.emptyFrameCount > 20) {
-							console.log('[PCM Processor] Playback complete, signaling');
+						// After 5 empty frames (~100ms), signal completion
+						// We can use a shorter wait now since we KNOW the stream has ended
+						if (this.emptyFrameCount > 5) {
+							console.log(
+								'[PCM Processor] Playback complete (stream ended + queue empty), signaling',
+							);
 							this.port.postMessage({ command: 'complete' });
 							this.hasSignaledComplete = true;
 							this.emptyFrameCount = 0;

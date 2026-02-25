@@ -1,6 +1,6 @@
-import pcmProcessorString from './pcm-processor.ts?raw';
 import { writable } from 'svelte/store';
 import { browser } from '$app/environment';
+import pcmProcessorString from './pcm-processor.ts?raw';
 
 // Voice options for the dropdown
 export const voiceOptions = [
@@ -11,7 +11,7 @@ export const voiceOptions = [
 	{ value: 'echo', label: 'Echo', gender: 'M' },
 	{ value: 'sage', label: 'Sage', gender: 'F' },
 	{ value: 'shimmer', label: 'Shimmer', gender: 'F' },
-	{ value: 'verse', label: 'Verse', gender: 'M' }
+	{ value: 'verse', label: 'Verse', gender: 'M' },
 ];
 
 // Create a persistent store for the selected voice
@@ -40,7 +40,7 @@ function createSelectedVoiceStore() {
 				set(value);
 			}
 		},
-		update
+		update,
 	};
 }
 
@@ -59,7 +59,7 @@ export async function playSpeech(
 	language: string,
 	voice: string,
 	state: SpeechState,
-	updateState: (updates: Partial<SpeechState>) => void
+	updateState: (updates: Partial<SpeechState>) => void,
 ): Promise<void> {
 	console.log('[Speech] Starting playback process');
 	updateState({ status: 'loading' });
@@ -80,13 +80,13 @@ export async function playSpeech(
 	// Fix for iOS silent switch issue - set audio session to "playback" type
 	// This ensures audio plays even when the iPhone's ringer is off
 	try {
-		// @ts-ignore - navigator.audioSession is only available in newer iOS versions
+		// @ts-expect-error - navigator.audioSession is only available in newer iOS versions
 		if (typeof navigator !== 'undefined' && navigator.audioSession) {
-			// @ts-ignore
+			// @ts-expect-error
 			navigator.audioSession.type = 'playback';
 			console.log('[Speech] Set audio session type to playback for iOS');
 		}
-	} catch (e) {
+	} catch {
 		console.log('[Speech] Audio session API not available, using fallback for iOS silent switch');
 	}
 	console.log('[Speech] Created new AudioContext, state:', audioInputContext.state);
@@ -102,7 +102,7 @@ export async function playSpeech(
 			// If resume fails, clean up and return
 			updateState({
 				status: 'idle',
-				currentAudioInputContext: null
+				currentAudioInputContext: null,
 			});
 			return;
 		}
@@ -124,7 +124,7 @@ export async function playSpeech(
 		}
 		updateState({
 			status: 'idle',
-			currentAudioInputContext: null
+			currentAudioInputContext: null,
 		});
 		return;
 	} finally {
@@ -226,7 +226,8 @@ export async function playSpeech(
 	console.log('[Speech] Fetching fresh audio (caching disabled)');
 	let bufferResolve: (buffer: Float32Array) => void;
 	let bufferReject: (error: Error) => void;
-	const bufferPromise = new Promise<Float32Array>((resolve, reject) => {
+	// Promise is used to resolve/reject buffer from streaming callback
+	new Promise<Float32Array>((resolve, reject) => {
 		bufferResolve = resolve;
 		bufferReject = reject;
 	});
@@ -245,15 +246,15 @@ export async function playSpeech(
 	const res = await fetch(url.href, {
 		method: 'POST',
 		headers: {
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
 		},
 		body: JSON.stringify({
 			text,
 			language,
 			voice,
 			raw: true,
-			debug: DEBUG_TTS
-		})
+			debug: DEBUG_TTS,
+		}),
 	});
 	console.log('[Speech] Fetch response received');
 
@@ -296,7 +297,7 @@ export async function playSpeech(
 				// Directly set status to idle - IMPORTANT: This must be executed
 				updateState({
 					status: 'idle',
-					currentAudioInputContext: null
+					currentAudioInputContext: null,
 				});
 
 				console.log('[Speech] Status should now be IDLE');
@@ -334,7 +335,7 @@ export async function playSpeech(
 				console.log(
 					'[Speech] First audio chunk received (chunk size:',
 					value?.byteLength || 0,
-					'bytes)'
+					'bytes)',
 				);
 				// Log first bytes to detect UTF-8 corruption
 				console.log('[Speech] First 40 raw bytes from stream:', Array.from(value.slice(0, 40)));
@@ -346,11 +347,11 @@ export async function playSpeech(
 				console.log(
 					`[Speech] Processing chunk #${chunkCount}, size:`,
 					value?.byteLength || 0,
-					'bytes'
+					'bytes',
 				);
 			}
 
-			let buffer;
+			let buffer: Uint8Array;
 
 			if (leftoverByte !== null) {
 				// Prepend the leftover byte to the current chunk
@@ -397,9 +398,14 @@ export async function playSpeech(
 
 			// Log if chunk looks corrupted (lots of clipping early on)
 			if (hasClipping && chunkCount <= 5) {
-				console.error(`[Speech] Chunk #${chunkCount} appears corrupted - ${clipCount} clipped samples`);
+				console.error(
+					`[Speech] Chunk #${chunkCount} appears corrupted - ${clipCount} clipped samples`,
+				);
 				console.log('[Speech] Raw bytes (first 40):', Array.from(buffer.slice(0, 40)));
-				console.log('[Speech] Converted samples (first 20):', Array.from(floatSamples.slice(0, 20)));
+				console.log(
+					'[Speech] Converted samples (first 20):',
+					Array.from(floatSamples.slice(0, 20)),
+				);
 			}
 
 			// Collect chunks efficiently
@@ -412,7 +418,7 @@ export async function playSpeech(
 			// Start playing immediately after first chunk with substantial data
 			if (!hasStartedPlayback && floatSamples.length > 1000) {
 				console.log(
-					`[Speech] Starting streaming playback on chunk #${chunkCount} with ${floatSamples.length} samples`
+					`[Speech] Starting streaming playback on chunk #${chunkCount} with ${floatSamples.length} samples`,
 				);
 				updateState({ status: 'playing' });
 				hasStartedPlayback = true;
@@ -422,7 +428,7 @@ export async function playSpeech(
 			if (chunkCount % 20 === 0) {
 				console.log(
 					`[Speech] Streaming progress: chunk #${chunkCount}, total samples:`,
-					totalLength
+					totalLength,
 				);
 			}
 		}
@@ -440,12 +446,18 @@ export async function playSpeech(
 			offset += chunk.length;
 		}
 
-		// @ts-ignore - bufferResolve is guaranteed to be defined at this point
+		// @ts-expect-error - bufferResolve is guaranteed to be defined at this point
 		bufferResolve(totalBuffer);
 		console.log('[Speech] All chunks processed. Total samples:', totalBuffer.length);
 
 		const duration = length / 24000 / 2;
 		console.log('[Speech] Calculated audio duration:', duration.toFixed(2), 'seconds');
+
+		// Signal to the worklet that the stream has fully arrived
+		// This allows the worklet to complete only after ALL audio has been received
+		// preventing premature completion during network delays
+		console.log('[Speech] Signaling stream end to worklet');
+		workletNode.port.postMessage({ command: 'stream_ended' });
 
 		console.log('[Speech] Audio streaming completed');
 
@@ -454,7 +466,7 @@ export async function playSpeech(
 		console.error('[Speech] Error during playback:', e);
 
 		// Reject the buffer promise if it exists
-		// @ts-ignore - bufferReject is guaranteed to be defined if we're in streaming mode
+		// @ts-expect-error - bufferReject is guaranteed to be defined if we're in streaming mode
 		if (bufferReject) {
 			bufferReject(e instanceof Error ? e : new Error(String(e)));
 		}
@@ -477,7 +489,7 @@ export async function playSpeech(
 		updateState({
 			bufferPromise: null,
 			status: 'idle',
-			currentAudioInputContext: null
+			currentAudioInputContext: null,
 		});
 	}
 }
@@ -486,8 +498,8 @@ export async function downloadAudio(
 	text: string,
 	language: string,
 	voice: string,
-	state: SpeechState,
-	updateState: (updates: Partial<SpeechState>) => void
+	_state: SpeechState,
+	updateState: (updates: Partial<SpeechState>) => void,
 ): Promise<void> {
 	updateState({ downloadLoading: true });
 
@@ -513,14 +525,14 @@ export async function downloadAudio(
 		const res = await fetch(url.href, {
 			method: 'POST',
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
 				text,
 				language,
 				voice,
-				raw: true
-			})
+				raw: true,
+			}),
 		});
 
 		if (!res.ok) {
@@ -545,7 +557,7 @@ export async function downloadAudio(
 				continue;
 			}
 
-			let buffer;
+			let buffer: Uint8Array;
 
 			if (leftoverByte !== null) {
 				buffer = new Uint8Array(value.byteLength + 1);
@@ -580,7 +592,9 @@ export async function downloadAudio(
 
 		// Handle leftover byte at end of stream
 		if (leftoverByte !== null) {
-			console.warn('[Download] Stream ended with leftover byte, audio may be truncated by 1 sample');
+			console.warn(
+				'[Download] Stream ended with leftover byte, audio may be truncated by 1 sample',
+			);
 		}
 
 		// Efficiently concatenate all chunks
@@ -608,7 +622,7 @@ export async function downloadAudio(
 export async function triggerDownload(
 	buffer: Float32Array,
 	language: string,
-	voice: string
+	voice: string,
 ): Promise<void> {
 	const audioContext = new AudioContext({ sampleRate: 24000 });
 
@@ -659,9 +673,9 @@ function bufferToWav(audioBuffer: AudioBuffer): ArrayBuffer {
 	const length = audioBuffer.length * numOfChan * 2;
 	const buffer = new ArrayBuffer(44 + length);
 	const view = new DataView(buffer);
-	const channels = [];
-	let sample,
-		pos = 0;
+	const channels: Float32Array[] = [];
+	let sample: number;
+	let pos = 0;
 
 	// Write WAV header
 	writeString(view, 0, 'RIFF');

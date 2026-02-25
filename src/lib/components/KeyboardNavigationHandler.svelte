@@ -42,7 +42,9 @@ function scrollToSelectedStory() {
 
 	// Use setTimeout to ensure DOM has updated
 	setTimeout(() => {
-		const storyElement = document.querySelector(`[data-story-index="${keyboardNavigation.selectedIndex}"]`);
+		const storyElement = document.querySelector(
+			`[data-story-index="${keyboardNavigation.selectedIndex}"]`,
+		);
 		if (storyElement) {
 			storyElement.scrollIntoView({
 				behavior: 'smooth',
@@ -55,7 +57,8 @@ function scrollToSelectedStory() {
 function handleGlobalKeyDown(event: KeyboardEvent) {
 	// Don't handle shortcuts if user is typing in an input/textarea or if modals are open (except help)
 	const target = event.target as HTMLElement;
-	const isInputFocused = target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable;
+	const isInputFocused =
+		target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable;
 
 	// Allow Escape and ? even when inputs are focused
 	const allowWhenInputFocused = event.key === 'Escape' || event.key === '?';
@@ -102,9 +105,17 @@ function handleGlobalKeyDown(event: KeyboardEvent) {
 	}
 
 	// h - Previous category (don't trigger if modifier keys are pressed)
-	if (event.key === 'h' && !event.ctrlKey && !event.metaKey && !event.altKey && !event.shiftKey && onCategoryChange && categories.length > 0) {
+	if (
+		event.key === 'h' &&
+		!event.ctrlKey &&
+		!event.metaKey &&
+		!event.altKey &&
+		!event.shiftKey &&
+		onCategoryChange &&
+		categories.length > 0
+	) {
 		event.preventDefault();
-		const currentIndex = categories.findIndex(cat => cat.id === currentCategory);
+		const currentIndex = categories.findIndex((cat) => cat.id === currentCategory);
 		if (currentIndex > 0) {
 			onCategoryChange(categories[currentIndex - 1].id);
 		} else if (currentIndex === 0) {
@@ -115,9 +126,17 @@ function handleGlobalKeyDown(event: KeyboardEvent) {
 	}
 
 	// l - Next category (don't trigger if modifier keys are pressed)
-	if (event.key === 'l' && !event.ctrlKey && !event.metaKey && !event.altKey && !event.shiftKey && onCategoryChange && categories.length > 0) {
+	if (
+		event.key === 'l' &&
+		!event.ctrlKey &&
+		!event.metaKey &&
+		!event.altKey &&
+		!event.shiftKey &&
+		onCategoryChange &&
+		categories.length > 0
+	) {
 		event.preventDefault();
-		const currentIndex = categories.findIndex(cat => cat.id === currentCategory);
+		const currentIndex = categories.findIndex((cat) => cat.id === currentCategory);
 		if (currentIndex >= 0 && currentIndex < categories.length - 1) {
 			onCategoryChange(categories[currentIndex + 1].id);
 		} else if (currentIndex === categories.length - 1) {

@@ -1,13 +1,15 @@
 <script lang="ts">
-import { onMount, untrack, tick } from 'svelte';
+import { onMount, tick, untrack } from 'svelte';
+import { flip } from 'svelte/animate';
 import { fade } from 'svelte/transition';
+import { dndzone, TRIGGERS } from 'svelte-dnd-action';
 import { browser } from '$app/environment';
 import { s } from '$lib/client/localization.svelte';
-import { displaySettings } from '$lib/data/settings.svelte.js';
+import { categorySettings, displaySettings } from '$lib/data/settings.svelte.js';
+import { categoryMetadataStore } from '$lib/stores/categoryMetadata.svelte';
 import type { Category } from '$lib/types';
 import { getCategoryDisplayName } from '$lib/utils/category';
 import { toCamelCase } from '$lib/utils/string.js';
-import { categoryMetadataStore } from '$lib/stores/categoryMetadata.svelte';
 
 // Props
 interface Props {
@@ -36,9 +38,19 @@ let {
 
 // Overflow detection state
 let hasOverflow = $state(false);
-let tabsElement: HTMLElement;
+let tabsElement: HTMLElement = undefined!; // Assigned via bind:this
 let temporaryCategoryElement = $state<HTMLElement | null>(null);
 let categoryElements = $state<Record<string, HTMLElement>>({});
+
+// Touch device detection - true if device has a fine pointer (mouse) with hover capability
+let hasFinePointer = $state(false);
+
+// Drag and drop state
+let isDragging = $state(false);
+let draggedItemId = $state<string | null>(null);
+let hoveredCategory = $state<string | null>(null);
+let items = $state<Array<{ id: string; category: Category }>>([]);
+const flipDurationMs = 150;
 
 // Helper to get display name with metadata lookup from global store
 function getDisplayName(category: Category): string {
@@ -60,6 +72,32 @@ function handleCategoryClick(categoryId: string) {
 	if (onCategoryChange) {
 		onCategoryChange(categoryId);
 	}
+}
+
+// Sync items with categories prop
+$effect(() => {
+	if (!isDragging) {
+		items = categories.map((cat) => ({ id: cat.id, category: cat }));
+	}
+});
+
+// Drag handlers
+function handleConsider(e: CustomEvent) {
+	const { trigger, id } = e.detail.info;
+	if (trigger === TRIGGERS.DRAG_STARTED) {
+		isDragging = true;
+		draggedItemId = id;
+		hoveredCategory = null; // Hide X buttons during drag
+	}
+	items = e.detail.items;
+}
+
+function handleFinalize(e: CustomEvent) {
+	isDragging = false;
+	draggedItemId = null;
+	const newEnabled = e.detail.items.map((item: { id: string }) => item.id);
+	categorySettings.setEnabled(newEnabled);
+	items = e.detail.items;
 }
 
 // Handle category key events
@@ -142,9 +180,19 @@ function scrollRight() {
 	}
 }
 
-// Set up overflow detection
+// Set up overflow detection and pointer type detection
 onMount(() => {
 	if (browser) {
+		// Check if device has a fine pointer (mouse) with hover capability
+		const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+		hasFinePointer = mediaQuery.matches;
+
+		// Listen for changes (e.g., user connects/disconnects mouse)
+		const handlePointerChange = (e: MediaQueryListEvent) => {
+			hasFinePointer = e.matches;
+		};
+		mediaQuery.addEventListener('change', handlePointerChange);
+
 		// Initial check
 		setTimeout(() => checkOverflow(), 0);
 
@@ -176,21 +224,46 @@ onMount(() => {
 		return () => {
 			observer.disconnect();
 			window.removeEventListener('resize', handleResize);
+			mediaQuery.removeEventListener('change', handlePointerChange);
 		};
 	}
 });
 
 // Watch for categories changes
 $effect(() => {
-	categories;
+	void categories; // Track changes
 	setTimeout(() => checkOverflow(), 0);
 });
 
 // Watch for font size changes
 $effect(() => {
-	displaySettings.fontSize; // React to font size changes
+	void displaySettings.fontSize; // React to font size changes
 	// Use a longer delay to ensure CSS changes have taken effect
 	setTimeout(() => checkOverflow(), 100);
+});
+
+// On initial load, scroll active category to the start of the nav bar
+let initialScrollDone = false;
+$effect(() => {
+	if (currentCategory && browser && tabsElement && !initialScrollDone) {
+		initialScrollDone = true;
+		tick().then(() => {
+			const el = categoryElements[currentCategory];
+			if (el && tabsElement) {
+				const containerRect = tabsElement.getBoundingClientRect();
+				const elRect = el.getBoundingClientRect();
+				const scrollLeft = elRect.left - containerRect.left + tabsElement.scrollLeft;
+				// Jump most of the way instantly, then smooth the last bit for a fast reveal
+				const target = Math.max(0, scrollLeft);
+				const jumpTo = Math.max(0, target - 150);
+				tabsElement.scrollLeft = jumpTo;
+				tabsElement.scrollTo({
+					left: target,
+					behavior: 'smooth',
+				});
+			}
+		});
+	}
 });
 
 // Scroll to temporary category when it's added (not when removed)
@@ -212,7 +285,7 @@ $effect(() => {
 
 					tabsElement.scrollTo({
 						left: maxScroll,
-						behavior: 'smooth'
+						behavior: 'smooth',
 					});
 
 					// Show tooltip after scroll completes (smooth scroll takes ~300-500ms)
@@ -230,10 +303,10 @@ $effect(() => {
 
 <div
   class="category-slider-container dark:bg-dark-bg
-	md:relative md:bg-transparent md:dark:bg-transparent md:px-0 md:py-2 md:shadow-none md:start-auto md:end-auto md:top-auto md:bottom-auto
+	md:relative md:bg-transparent md:dark:bg-transparent md:px-0 md:pb-2 md:shadow-none md:start-auto md:end-auto md:top-auto md:bottom-auto
 	{mobilePosition === 'integrated'
     ? 'relative bg-white dark:bg-gray-900 px-6 pb-2'
-    : 'fixed z-[60] bg-white px-6 start-0 end-0'}
+    : 'fixed z-modal bg-white px-6 start-0 end-0'}
 	{mobilePosition === 'top'
     ? 'top-[88px] pt-1 pb-0.5 shadow-[0_4px_8px_rgba(0,0,0,0.1)]'
     : ''}
@@ -270,35 +343,53 @@ $effect(() => {
       <!-- Category tabs -->
       <div
         bind:this={tabsElement}
-        class="category-tabs scrollbar-hide flex-1 overflow-x-auto"
+        class="category-tabs scrollbar-hide flex-1 overflow-x-auto flex"
         role="tablist"
         aria-label="News categories"
         onscroll={checkOverflow}
+        use:dndzone={{
+          items,
+          flipDurationMs,
+          type: "nav-category",
+          dropTargetStyle: {},
+          dropTargetClasses: [],
+          morphDisabled: true,
+          dragDisabled: items.length <= 1 || !hasFinePointer,
+          transformDraggedElement: (el) => {
+            if (el) {
+              el.style.outline = 'none';
+              el.style.boxShadow = 'none';
+              el.style.border = 'none';
+            }
+          },
+        }}
+        onconsider={handleConsider}
+        onfinalize={handleFinalize}
       >
-        {#each categories as category (category.id)}
-          <button
+        {#each items as item (item.id)}
+          {@const category = item.category}
+          <div
             bind:this={categoryElements[category.id]}
+            animate:flip={{ duration: flipDurationMs }}
+            class="category-tab-wrapper {draggedItemId === item.id ? 'opacity-50' : ''}"
+            class:dragging={isDragging}
             role="tab"
             tabindex={currentCategory === category.id ? 0 : -1}
             aria-selected={currentCategory === category.id}
             aria-controls="category-{category.id}"
-            class="category-tab whitespace-nowrap cursor-pointer px-4 py-2 md:py-3 text-base font-medium transition-colors focus-visible-ring relative"
-            class:active={currentCategory === category.id}
-            class:text-blue-600={currentCategory === category.id}
-            class:border-b-2={currentCategory === category.id}
-            class:border-blue-600={currentCategory === category.id}
-            class:text-gray-600={currentCategory !== category.id}
-            class:hover:text-gray-800={currentCategory !== category.id}
-            class:dark:text-gray-400={currentCategory !== category.id}
-            class:dark:hover:text-gray-200={currentCategory !== category.id}
             onclick={() => handleCategoryClick(category.id)}
             onkeydown={(e) => handleCategoryKeydown(e, category.id)}
             ondblclick={() =>
               displaySettings.storyExpandMode !== "never" &&
               onCategoryDoubleClick?.(category.id)}
           >
-            {getDisplayName(category)}
-          </button>
+            <span
+              class="category-tab whitespace-nowrap ps-4 pe-1 py-2 md:py-3 text-base font-medium transition-colors focus-visible-ring
+                {currentCategory === category.id ? 'active text-blue-600 border-b-2 border-blue-600' : 'text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200'}"
+            >
+              {getDisplayName(category)}
+            </span>
+          </div>
         {/each}
       </div>
 
@@ -325,6 +416,7 @@ $effect(() => {
         </svg>
       </button>
     </div>
+
   </div>
 </div>
 
@@ -370,5 +462,54 @@ $effect(() => {
 
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  /* Drag and drop wrapper */
+  .category-tab-wrapper {
+    position: relative;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    cursor: grab;
+    border-radius: 0.25rem;
+  }
+
+  .category-tab-wrapper:active {
+    cursor: grabbing;
+  }
+
+  /* Override svelte-dnd-action default styling - must use :global for library-added classes */
+  :global([data-is-dnd-shadow-item-hint]),
+  :global(.svelte-dnd-action-dragged-el),
+  :global([data-is-dnd-shadow-item]),
+  .category-tab-wrapper:global([data-is-dnd-shadow-item-hint]),
+  .category-tab-wrapper:global(.svelte-dnd-action-dragged-el) {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  .category-tabs {
+    outline: none !important;
+    transition: background-color 0.15s ease;
+  }
+
+  /* Remove any focus outline during drag */
+  .category-tabs:focus,
+  .category-tabs:focus-visible,
+  .category-tab-wrapper:focus,
+  .category-tab-wrapper:focus-visible {
+    outline: none !important;
+  }
+
+  /* Subtle background change during drag instead of outline */
+  .category-tabs:global(.svelte-dnd-action-dragged-item-parent) {
+    background-color: rgba(59, 130, 246, 0.05);
+    border-radius: 0.375rem;
+    outline: none !important;
+  }
+
+  :global(.dark) .category-tabs:global(.svelte-dnd-action-dragged-item-parent) {
+    background-color: rgba(59, 130, 246, 0.1);
   }
 </style>

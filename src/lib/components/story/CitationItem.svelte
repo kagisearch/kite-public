@@ -6,15 +6,15 @@ import { getTimeAgo } from '$lib/utils/getTimeAgo';
 
 interface Props {
 	item: { article: Article | null; number: number; isCommon?: boolean };
-	highlightedNumber?: number;
+	highlightedNumbers?: number[]; // Array of highlighted citation numbers
 	isMobile?: boolean;
 	storyLocalizer?: LocalizerFunction; // Story-specific localization function
 }
 
-let { item, highlightedNumber, isMobile = false, storyLocalizer = s }: Props = $props();
+let { item, highlightedNumbers = [], isMobile = false, storyLocalizer = s }: Props = $props();
 
 const isHighlighted = $derived(
-	item.isCommon ? highlightedNumber === -1 : highlightedNumber === item.number,
+	item.isCommon ? highlightedNumbers.includes(-1) : highlightedNumbers.includes(item.number),
 );
 
 const badgeClasses = $derived(
@@ -32,7 +32,7 @@ const containerClasses = $derived(
 const paddingClasses = $derived(isMobile ? 'px-2 py-1' : 'px-1.5 py-0.5');
 const spacingClasses = $derived(isMobile ? 'space-x-3' : 'space-x-2');
 const textSizeClasses = $derived(isMobile ? '' : 'text-xs');
-const iconSizeClasses = $derived(isMobile ? 'w-4 h-4' : 'w-3 h-3');
+const iconSizeClasses = $derived(isMobile ? 'size-4' : 'size-3');
 const marginClasses = $derived(isMobile ? 'ms-12 mb-4' : 'ms-8 mb-2');
 const linkClasses = $derived(isMobile ? 'font-medium' : 'line-clamp-2 text-xs');
 const dateClasses = $derived(isMobile ? 'mt-1' : 'mt-0.5 text-xs');
@@ -82,7 +82,7 @@ const dateClasses = $derived(isMobile ? 'mt-1' : 'mt-0.5 text-xs');
       <FaviconImage
         domain={item.article.domain}
         alt="{item.article.domain} favicon"
-        class="{iconSizeClasses} rounded-full flex-shrink-0"
+        class="{iconSizeClasses} rounded-sm flex-shrink-0"
         loading="lazy"
       />
       <span
