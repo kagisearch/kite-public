@@ -1475,6 +1475,10 @@
     "text": "ארה\"ב | הוואי",
     "translationContext": "Display name for the USA Hawaii news category"
   },
+  "category.usaLosAngeles": {
+    "text": "ארה\"ב | לוס אנג'לס",
+    "translationContext": "Display name for the USA Los Angeles news category"
+  },
   "category.usaIdaho": {
     "text": "ארה\"ב | איידהו",
     "translationContext": "Display name for the USA Idaho news category"
