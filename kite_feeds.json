@@ -9874,5 +9874,55 @@
       "https://www.watchpro.com/feed/",
       "https://www.watchtime.com/feed/rss"
     ]
+  },
+  "Madeira Island": {
+    "category_type": "region",
+    "source_language": "pt",
+    "display_names": {
+      "en": "Madeira Island",
+      "ar": "جزيرة ماديرا",
+      "ca": "Illa de Madeira",
+      "de": "Madeira",
+      "es": "Isla de Madeira",
+      "et": "Madeira",
+      "fr": "Île de Madère",
+      "he": "האי מדיירה",
+      "hi": "मदीरा द्वीप",
+      "it": "Isola di Madera",
+      "ja": "マデイラ島",
+      "nl": "Madeira",
+      "pt": "Ilha da Madeira",
+      "ru": "Мадейра",
+      "uk": "Мадейра",
+      "zh-Hans": "马德拉岛",
+      "zh-Hant": "馬德拉島"
+    },
+    "feeds": [
+      "https://www.dnoticias.pt/rss/home.xml",
+      "https://www.dnoticias.pt/rss/madeira.xml",
+      "https://www.dnoticias.pt/rss/desporto.xml",
+      "https://www.dnoticias.pt/rss/pais.xml",
+      "https://www.rtp.pt/madeira/rss",
+      "https://www.tribunadamadeira.pt/feed/",
+      "https://funchalnoticias.net/feed/",
+      "https://www.funchal.pt/feed/",
+      "https://www.lusa.pt/rss?t=regiao&v=madeira",
+      "https://observador.pt/rss/madeira",
+      "https://www.madeiraislandnews.com/feed",
+      "https://madeira-weekly.com/feed/",
+      "https://www.madeiraislanddirect.com/blog/feed/",
+      "https://www.timesofmadeira.com/feed",
+      "https://bestofmadeira.wordpress.com/feed/",
+      "http://madeira-island-news.blogspot.com/feeds/posts/default?alt=rss",
+      "https://www.marvellousmadeira.com/feed/",
+      "https://www.aroundmadeira.org/feeds/posts/default?alt=rss",
+      "https://madeirarural.com/feed/",
+      "https://www.ocean-retreat.com/feed/",
+      "https://portosantonews.com/feed/",
+      "https://ground.news/interest/madeira-portugal/feed",
+      "https://news.google.com/rss/search?q=Madeira+Portugal&hl=pt-PT&gl=PT&ceid=PT:pt",
+      "https://news.google.com/rss/search?q=Madeira+island+Portugal&hl=en-US&gl=US&ceid=US:en",
+      "https://news.google.com/rss/search?q=Funchal+Madeira&hl=pt-PT&gl=PT&ceid=PT:pt"
+    ]
   }
 }
