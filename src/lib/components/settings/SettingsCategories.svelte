@@ -329,13 +329,13 @@ function handleEnabledConsider(e: CustomEvent) {
 
 function handleEnabledFinalize(e: CustomEvent) {
 	const { trigger } = e.detail.info;
-  const isDroppedTrigger = trigger === TRIGGERS.DROPPED_INTO_ZONE || trigger === TRIGGERS.DROPPED_INTO_ANOTHER;
+	const isDroppedTrigger = trigger === TRIGGERS.DROPPED_INTO_ZONE || trigger === TRIGGERS.DROPPED_INTO_ANOTHER;
 
-  // Return early if not a dropped trigger (e.g. a click event when disabling a category)
-  // This ensures stale data is not used in the other events.
-  if (!isDroppedTrigger) {
-    return;
-  }
+	// Return early if not a dropped trigger (e.g. a click event when disabling a category)
+	// This ensures stale data is not used in the other events.
+	if (!isDroppedTrigger) {
+		return;
+	}
 
 	isDragging = false;
 	draggedItemId = null;
@@ -386,11 +386,11 @@ function handleDisabledFinalize(e: CustomEvent) {
 	const { trigger } = e.detail.info;
 	const isDroppedTrigger = trigger === TRIGGERS.DROPPED_INTO_ZONE || trigger === TRIGGERS.DROPPED_INTO_ANOTHER;
 
-  // Return early if not a dropped trigger (e.g. a click event when disabling a category)
-  // This ensures stale data is not used in the other events.
-  if (!isDroppedTrigger) {
-    return;
-  }
+	// Return early if not a dropped trigger (e.g. a click event when disabling a category)
+	// This ensures stale data is not used in the other events.
+	if (!isDroppedTrigger) {
+		return;
+	}
 
 	isDragging = false;
 	draggedItemId = null;
