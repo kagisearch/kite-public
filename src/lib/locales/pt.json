@@ -1287,9 +1287,9 @@
     "text": "Traduzir",
     "translationContext": "Label for Kagi Translate in the app navigation menu"
   },
-  "app_navigation.universal_summarizer": {
-    "text": "Sumarizador Universal",
-    "translationContext": "Label for Kagi Universal Summarizer in the app navigation menu"
+  "app_navigation.summarize": {
+    "text": "Resumir",
+    "translationContext": "Label for Kagi Summarize in the app navigation menu"
   },
   "app.beta": {
     "text": "BETA",

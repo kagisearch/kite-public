@@ -1287,9 +1287,9 @@
     "text": "अनुवाद",
     "translationContext": "Label for Kagi Translate in the app navigation menu"
   },
-  "app_navigation.universal_summarizer": {
-    "text": "यूनिवर्सल समराइज़र",
-    "translationContext": "Label for Kagi Universal Summarizer in the app navigation menu"
+  "app_navigation.summarize": {
+    "text": "सारांशित करें",
+    "translationContext": "Label for Kagi Summarize in the app navigation menu"
   },
   "app.beta": {
     "text": "बीटा",

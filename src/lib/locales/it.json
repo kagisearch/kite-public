@@ -1287,9 +1287,9 @@
     "text": "Traduci",
     "translationContext": "Label for Kagi Translate in the app navigation menu"
   },
-  "app_navigation.universal_summarizer": {
-    "text": "Riepilogatore Universale",
-    "translationContext": "Label for Kagi Universal Summarizer in the app navigation menu"
+  "app_navigation.summarize": {
+    "text": "Riepiloga",
+    "translationContext": "Label for Kagi Summarize in the app navigation menu"
   },
   "app.beta": {
     "text": "BETA",

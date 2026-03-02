@@ -20,7 +20,7 @@ const menuItems = [
 	{
 		id: 'summarize',
 		href: 'https://kagi.com/summarizer/index.html',
-		labelKey: 'app_navigation.universal_summarizer',
+		labelKey: 'app_navigation.summarize',
 	},
 	{ id: 'smallweb', href: 'https://kagi.com/smallweb', labelKey: 'app_navigation.small_web' },
 	{ id: 'fastgpt', href: 'https://kagi.com/fastgpt', labelKey: 'app_navigation.fastgpt' },
