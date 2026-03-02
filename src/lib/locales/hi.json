@@ -1279,6 +1279,10 @@
     "text": "स्मॉल वेब",
     "translationContext": "Label for Kagi Small Web in the app navigation menu"
   },
+  "app_navigation.summarize": {
+    "text": "सारांशित करें",
+    "translationContext": "Label for Kagi Summarize in the app navigation menu"
+  },
   "app_navigation.tooltip": {
     "text": "कागी ऐप्स",
     "translationContext": "Tooltip for the app navigation button"
@@ -1286,10 +1290,6 @@
   "app_navigation.translate": {
     "text": "अनुवाद",
     "translationContext": "Label for Kagi Translate in the app navigation menu"
-  },
-  "app_navigation.summarize": {
-    "text": "सारांशित करें",
-    "translationContext": "Label for Kagi Summarize in the app navigation menu"
   },
   "app.beta": {
     "text": "बीटा",

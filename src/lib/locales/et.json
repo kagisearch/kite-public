@@ -1279,6 +1279,10 @@
     "text": "Väike veeb",
     "translationContext": "Label for Kagi Small Web in the app navigation menu"
   },
+  "app_navigation.summarize": {
+    "text": "Võta kokku",
+    "translationContext": "Label for Kagi Summarize in the app navigation menu"
+  },
   "app_navigation.tooltip": {
     "text": "Kagi rakendused",
     "translationContext": "Tooltip for the app navigation button"
@@ -1286,10 +1290,6 @@
   "app_navigation.translate": {
     "text": "Tõlgi",
     "translationContext": "Label for Kagi Translate in the app navigation menu"
-  },
-  "app_navigation.summarize": {
-    "text": "Võta kokku",
-    "translationContext": "Label for Kagi Summarize in the app navigation menu"
   },
   "app.beta": {
     "text": "BEETA",
