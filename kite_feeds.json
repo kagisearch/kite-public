@@ -1792,6 +1792,41 @@
       "https://xueqiu.com/hots/topic/rss"
     ]
   },
+  "Christian": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {
+      "en": "Christian"
+    },
+    "feeds": [
+      "http://feeds.sojo.net/sojourners/blog",
+      "http://www.biblegateway.com/votd/get/?format=atom",
+      "http://www.cruxnow.com/tag/catholic-church/feed",
+      "https://answersingenesis.org/dailycontent.xml",
+      "https://churchleaders.com/search/singles/feed/rss2/",
+      "https://episcopalnewsservice.org/feed/?cat=-6%2C-8",
+      "https://feeds.feedburner.com/CatholicWorldNewsFeatureStories",
+      "https://leadership.lifeway.com/feed",
+      "https://ncregister.com/feeds/general-news.xml",
+      "https://relevantmagazine.com/feed/",
+      "https://religionnews.com/feed/",
+      "https://reporter.lcms.org/feed/",
+      "https://theaquilareport.com/feed/",
+      "https://wels.net/dev-daily/feed/pt-dev-daily/?redirect=no",
+      "https://www.assemblyofbishops.org/news/rss",
+      "https://www.catholic.org/xml/rss_news.php",
+      "https://www.catholicnewsagency.com/rss/news.xml",
+      "https://www.christiancentury.org/taxonomy/term/44163/feed",
+      "https://www.christiannewswire.com/feed/",
+      "https://www.christianpost.com/rss",
+      "https://www.christiantoday.com/rss.xml",
+      "https://www.crosswalk.com/culture/music/rss.xml",
+      "https://www.oca.org/news/feed",
+      "https://www.thegospelcoalition.org/blogs/justin-taylor/rss-2/",
+      "https://www.usccb.org/news/rss/index.cfm",
+      "https://www1.cbn.com/rss-cbn-articles-cbnnews.xml"
+    ]
+  },
   "Climate Change": {
     "category_type": "topic",
     "source_language": "en",
