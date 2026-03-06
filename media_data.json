@@ -3105,7 +3105,8 @@
     "organization": "Google",
     "domains": [
       "google.com",
-      "youtube.com"
+      "youtube.com",
+      "feedburner.com"
     ],
     "description": "Google News is a news aggregation service developed and operated by Google and launched in 2002. It presents a continuous flow of articles organized from thousands of publishers and magazines worldwide. Youtube is Google's video sharing platform where users can upload, view, and share videos.",
     "owner": "Alphabet Inc.",
@@ -4477,7 +4478,8 @@
     "organization": "BBC News",
     "domains": [
       "bbc.co.uk",
-      "bbc.com"
+      "bbc.com",
+      "bbci.co.uk"
     ],
     "description": "BBC News is the news division of the British Broadcasting Corporation (BBC), providing news coverage across various categories including politics, business, sports, and international affairs.",
     "owner": "British Broadcasting Corporation (BBC)",
@@ -4673,5 +4675,16 @@
     "description": "UrduPoint is a pioneering and highly trafficked Urdu-language web portal delivering comprehensive content that spans daily news, digital entertainment, poetry, and sports.",
     "owner": "UrduPoint Network",
     "typology": "Private Enterprise"
-  }
+  },
+  {
+  "country": "Pakistan",
+  "organization": "Daily Jang",
+  "domains": [
+    "jang.com.pk"
+  ],
+  "description": "Daily Jang is Pakistan's oldest and most widely read Urdu-language newspaper, offering extensive national, political, and international news coverage.",
+  "owner": "Independent Newspaper Corporation (Jang Media Group)",
+  "typology": "Private Enterprise"
+}
+
 ]
