@@ -4512,5 +4512,166 @@
     "description": "Voice of America is an international multimedia broadcaster funded by the U.S. government, providing news, information, and cultural programming.",
     "owner": "U.S. Agency for Global Media",
     "typology": "State Funded Media"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Associated Press of Pakistan (APP)",
+    "domains": [
+      "app.com.pk"
+    ],
+    "description": "The Associated Press of Pakistan is the state-run national news agency, responsible for supplying official government news and updates to domestic and international media.",
+    "owner": "Government of Pakistan",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Business Recorder Group",
+    "domains": [
+      "aaj.tv",
+      "brecorder.com"
+    ],
+    "description": "The Business Recorder Group operates the influential financial daily Business Recorder and the Aaj TV news network, specializing in business, financial, and political journalism.",
+    "owner": "Business Recorder Group",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Daily Khabrain",
+    "domains": [
+      "dailykhabrain.com.pk"
+    ],
+    "description": "Daily Khabrain is a widely read Urdu-language daily newspaper in Pakistan, providing a broad spectrum of national, regional, and global news coverage.",
+    "owner": "Khabrain Group of Newspapers",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Daily Lead Pakistan",
+    "domains": [
+      "leadpakistan.com.pk"
+    ],
+    "description": "Daily Lead Pakistan is a national English-language daily newspaper that regularly covers domestic politics, business developments, and international affairs.",
+    "owner": "Lead Media Group",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Daily Pakistan",
+    "domains": [
+      "dailypakistan.com.pk"
+    ],
+    "description": "Daily Pakistan is a major bilingual daily newspaper and online platform delivering continuous updates on Pakistani politics, lifestyle, and global news events.",
+    "owner": "Daily Pakistan Group",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Daily Qudrat",
+    "domains": [
+      "dailyqudrat.pk"
+    ],
+    "description": "Daily Qudrat is a leading Urdu-language newspaper based in Quetta, primarily known for its detailed coverage of Balochistan alongside national affairs.",
+    "owner": "Qudrat Group",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Daily Ummat",
+    "domains": [
+      "ummat.net"
+    ],
+    "description": "Daily Ummat is a Karachi-based Urdu-language newspaper known for its conservative editorial stance and extensive coverage of domestic and regional Islamic world news.",
+    "owner": "Ummat Group of Publications",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "GNN (Gourmet News Network)",
+    "domains": [
+      "gnnhd.tv"
+    ],
+    "description": "GNN is a leading 24-hour news and current affairs television channel in Pakistan, focusing on rapid political updates, talk shows, and national events.",
+    "owner": "Gourmet Foods",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Hum News",
+    "domains": [
+      "humenglish.com"
+    ],
+    "description": "Hum News is a 24/7 Pakistani television channel and digital news service offering comprehensive reporting on national politics, international relations, and business.",
+    "owner": "Hum Network Limited",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Independent News Pakistan (INP)",
+    "domains": [
+      "inp.net.pk"
+    ],
+    "description": "Independent News Pakistan is a premier national wire service that continuously distributes breaking news and reports to domestic print, electronic, and digital media.",
+    "owner": "INP News Agency",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Saudi Arabia",
+    "organization": "Independent Urdu",
+    "domains": [
+      "independenturdu.com"
+    ],
+    "description": "Independent Urdu is a premium digital news platform launched in partnership with the UK's The Independent, offering high-quality analytical journalism in the Urdu language.",
+    "owner": "Saudi Research and Media Group (SRMG)",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Pakistan & Gulf Economist",
+    "domains": [
+      "pakistangulfeconomist.com"
+    ],
+    "description": "Pakistan & Gulf Economist is a highly regarded financial magazine that delivers in-depth analysis on economic trends, industry updates, and financial markets across the region.",
+    "owner": "Economist Publications",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Pakistan Observer",
+    "domains": [
+      "pakobserver.net"
+    ],
+    "description": "Pakistan Observer is a widespread English-language daily newspaper emphasizing national politics, strategic regional diplomacy, and socio-economic affairs.",
+    "owner": "Observer Media Group",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "ProPakistani",
+    "domains": [
+      "propakistani.pk"
+    ],
+    "description": "ProPakistani is the largest independent technology and business news publisher in Pakistan, tracking the latest in telecommunications, startups, and economic shifts.",
+    "owner": "ProPakistani Media",
+    "typology": "Independent Media"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Times of Islamabad",
+    "domains": [
+      "timesofislamabad.com"
+    ],
+    "description": "Times of Islamabad is a digital news portal specializing in Pakistan's national defense, foreign policy developments, and continuous geopolitical updates.",
+    "owner": "Times of Islamabad",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "UrduPoint",
+    "domains": [
+      "urdupoint.com"
+    ],
+    "description": "UrduPoint is a pioneering and highly trafficked Urdu-language web portal delivering comprehensive content that spans daily news, digital entertainment, poetry, and sports.",
+    "owner": "UrduPoint Network",
+    "typology": "Private Enterprise"
   }
 ]
