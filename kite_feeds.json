@@ -8159,7 +8159,9 @@
       "https://www.twse.com.tw/rwd/zh/news/feed?type=rss",
       "https://www.voh.com.tw/tw/Home/ugC_RSS.aspx",
       "https://www.worldjournal.com/wj/rssfeed/121098",
-      "https://www.ydn.com.tw/tw/Home/RSS.aspx?TID=4"
+      "https://www.ydn.com.tw/tw/Home/RSS.aspx?TID=4",
+      "https://api.taiwantoday.tw/en/rss.php?unit=2,6,10,15,18",
+      "https://api.taiwantoday.tw/en/rss.php?unit=4,8,12,17,20"
     ]
   },
   "Thailand": {
