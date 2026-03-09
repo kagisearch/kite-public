@@ -4677,14 +4677,64 @@
     "typology": "Private Enterprise"
   },
   {
-  "country": "Pakistan",
-  "organization": "Daily Jang",
-  "domains": [
-    "jang.com.pk"
-  ],
-  "description": "Daily Jang is Pakistan's oldest and most widely read Urdu-language newspaper, offering extensive national, political, and international news coverage.",
-  "owner": "Independent Newspaper Corporation (Jang Media Group)",
-  "typology": "Private Enterprise"
-}
+    "country": "Pakistan",
+    "organization": "Daily Jang",
+    "domains": [
+      "jang.com.pk"
+    ],
+    "description": "Daily Jang is Pakistan's oldest and most widely read Urdu-language newspaper, offering extensive national, political, and international news coverage.",
+    "owner": "Independent Newspaper Corporation (Jang Media Group)",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Khyber News",
+    "domains": [
+      "khybernews.tv"
+    ],
+    "description": "Khyber News is a Pakistani Pashto-language news and current affairs television channel. It provides news specifically focused on Khyber Pakhtunkhwa, Balochistan, the tribal districts, and Afghanistan, along with national and international updates.",
+    "owner": "Kamran Hamid Raja (AVT Channels)",
+    "typology": "Private Media"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Nawa-i-Waqt",
+    "domains": [
+      "nawaiwaqt.com.pk"
+    ],
+    "description": "Nawa-i-Waqt is one of Pakistan's oldest and most influential Urdu-language daily newspapers. Founded in 1940, it is known for its conservative and nationalist editorial stance, offering comprehensive coverage of national, regional, and international news.",
+    "owner": "Rameeza Majid Nizami (Nawa-i-Waqt Group of Publications)",
+    "typology": "Print Media"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Daily Ausaf",
+    "domains": [
+      "dailyausaf.com"
+    ],
+    "description": "Established in 1997, Daily Ausaf is a major international Urdu newspaper in Pakistan. It is published from multiple key cities across the country and has international editions, providing extensive news coverage on national affairs, business, and global events.",
+    "owner": "Mehtab Khan (Ausaf Group of Publications)",
+    "typology": "Print Media"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "The Friday Times",
+    "domains": [
+      "thefridaytimes.com"
+    ],
+    "description": "The Friday Times is Pakistan's first independent English-language weekly newspaper, founded in 1989. It is widely renowned for its liberal editorial stance, in-depth investigative reporting, and critical political analysis.",
+    "owner": "Najam Sethi and Jugnu Mohsin",
+    "typology": "Print Media"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Minute Mirror",
+    "domains": [
+      "minutemirror.com.pk"
+    ],
+    "description": "Minute Mirror is an independent English-language daily newspaper and digital news platform launched in 2021. Based in Lahore, it focuses on fast, fact-based journalism and insightful coverage of public interest topics and contemporary events.",
+    "owner": "Ali Sajjad (Oneness Media Group)",
+    "typology": "Print Media"
+  }
 
 ]
