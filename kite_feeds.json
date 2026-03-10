@@ -8162,7 +8162,14 @@
       "https://www.ydn.com.tw/tw/Home/RSS.aspx?TID=4",
       "https://api.taiwantoday.tw/en/rss.php?unit=2,6,10,15,18",
       "https://api.taiwantoday.tw/en/rss.php?unit=4,8,12,17,20",
-      "https://topics.amcham.com.tw/zh/feed/"
+      "https://topics.amcham.com.tw/zh/feed/",
+      "https://taiwannews.jp/feed/",
+      "https://www.gov.taipei/OpenData.aspx?SN=7DEC7150E6BAD606",
+      "https://www.ntpc.gov.tw/LatestNews",
+      "https://www.tycg.gov.tw/OpenData.aspx?SN=50C7BB8497F3C8C2", 
+      "https://www.taichung.gov.tw/10179/564770/rss?nodeId=9962",
+      "https://www.tainan.gov.tw/OpenData.aspx?SN=24474215983F6554",
+      "https://www.kcg.gov.tw/OpenData.aspx?SN=D33B55D537402BAA"
     ]
   },
   "Thailand": {
