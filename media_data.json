@@ -4735,6 +4735,16 @@
     "description": "Minute Mirror is an independent English-language daily newspaper and digital news platform launched in 2021. Based in Lahore, it focuses on fast, fact-based journalism and insightful coverage of public interest topics and contemporary events.",
     "owner": "Ali Sajjad (Oneness Media Group)",
     "typology": "Print Media"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Pakistan TV Digital",
+    "domains": [
+      "pakistantv.com"
+    ],
+    "description": "Pakistan TV Digital is the official English-language global news and current affairs digital platform of Pakistan Television (PTV). It delivers breaking news, international updates, and balanced reporting on Pakistani affairs for a global audience.",
+    "owner": "Pakistan Television Corporation (State-owned)",
+    "typology": "State Media / Digital"
   }
 
 ]
