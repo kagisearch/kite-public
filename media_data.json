@@ -3105,7 +3105,8 @@
     "organization": "Google",
     "domains": [
       "google.com",
-      "youtube.com"
+      "youtube.com",
+      "feedburner.com"
     ],
     "description": "Google News is a news aggregation service developed and operated by Google and launched in 2002. It presents a continuous flow of articles organized from thousands of publishers and magazines worldwide. Youtube is Google's video sharing platform where users can upload, view, and share videos.",
     "owner": "Alphabet Inc.",
@@ -4477,7 +4478,8 @@
     "organization": "BBC News",
     "domains": [
       "bbc.co.uk",
-      "bbc.com"
+      "bbc.com",
+      "bbci.co.uk"
     ],
     "description": "BBC News is the news division of the British Broadcasting Corporation (BBC), providing news coverage across various categories including politics, business, sports, and international affairs.",
     "owner": "British Broadcasting Corporation (BBC)",
@@ -4512,5 +4514,237 @@
     "description": "Voice of America is an international multimedia broadcaster funded by the U.S. government, providing news, information, and cultural programming.",
     "owner": "U.S. Agency for Global Media",
     "typology": "State Funded Media"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Associated Press of Pakistan (APP)",
+    "domains": [
+      "app.com.pk"
+    ],
+    "description": "The Associated Press of Pakistan is the state-run national news agency, responsible for supplying official government news and updates to domestic and international media.",
+    "owner": "Government of Pakistan",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Business Recorder Group",
+    "domains": [
+      "aaj.tv",
+      "brecorder.com"
+    ],
+    "description": "The Business Recorder Group operates the influential financial daily Business Recorder and the Aaj TV news network, specializing in business, financial, and political journalism.",
+    "owner": "Business Recorder Group",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Daily Khabrain",
+    "domains": [
+      "dailykhabrain.com.pk"
+    ],
+    "description": "Daily Khabrain is a widely read Urdu-language daily newspaper in Pakistan, providing a broad spectrum of national, regional, and global news coverage.",
+    "owner": "Khabrain Group of Newspapers",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Daily Lead Pakistan",
+    "domains": [
+      "leadpakistan.com.pk"
+    ],
+    "description": "Daily Lead Pakistan is a national English-language daily newspaper that regularly covers domestic politics, business developments, and international affairs.",
+    "owner": "Lead Media Group",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Daily Pakistan",
+    "domains": [
+      "dailypakistan.com.pk"
+    ],
+    "description": "Daily Pakistan is a major bilingual daily newspaper and online platform delivering continuous updates on Pakistani politics, lifestyle, and global news events.",
+    "owner": "Daily Pakistan Group",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Daily Qudrat",
+    "domains": [
+      "dailyqudrat.pk"
+    ],
+    "description": "Daily Qudrat is a leading Urdu-language newspaper based in Quetta, primarily known for its detailed coverage of Balochistan alongside national affairs.",
+    "owner": "Qudrat Group",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Daily Ummat",
+    "domains": [
+      "ummat.net"
+    ],
+    "description": "Daily Ummat is a Karachi-based Urdu-language newspaper known for its conservative editorial stance and extensive coverage of domestic and regional Islamic world news.",
+    "owner": "Ummat Group of Publications",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "GNN (Gourmet News Network)",
+    "domains": [
+      "gnnhd.tv"
+    ],
+    "description": "GNN is a leading 24-hour news and current affairs television channel in Pakistan, focusing on rapid political updates, talk shows, and national events.",
+    "owner": "Gourmet Foods",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Hum News",
+    "domains": [
+      "humenglish.com"
+    ],
+    "description": "Hum News is a 24/7 Pakistani television channel and digital news service offering comprehensive reporting on national politics, international relations, and business.",
+    "owner": "Hum Network Limited",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Independent News Pakistan (INP)",
+    "domains": [
+      "inp.net.pk"
+    ],
+    "description": "Independent News Pakistan is a premier national wire service that continuously distributes breaking news and reports to domestic print, electronic, and digital media.",
+    "owner": "INP News Agency",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Saudi Arabia",
+    "organization": "Independent Urdu",
+    "domains": [
+      "independenturdu.com"
+    ],
+    "description": "Independent Urdu is a premium digital news platform launched in partnership with the UK's The Independent, offering high-quality analytical journalism in the Urdu language.",
+    "owner": "Saudi Research and Media Group (SRMG)",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Pakistan & Gulf Economist",
+    "domains": [
+      "pakistangulfeconomist.com"
+    ],
+    "description": "Pakistan & Gulf Economist is a highly regarded financial magazine that delivers in-depth analysis on economic trends, industry updates, and financial markets across the region.",
+    "owner": "Economist Publications",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Pakistan Observer",
+    "domains": [
+      "pakobserver.net"
+    ],
+    "description": "Pakistan Observer is a widespread English-language daily newspaper emphasizing national politics, strategic regional diplomacy, and socio-economic affairs.",
+    "owner": "Observer Media Group",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "ProPakistani",
+    "domains": [
+      "propakistani.pk"
+    ],
+    "description": "ProPakistani is the largest independent technology and business news publisher in Pakistan, tracking the latest in telecommunications, startups, and economic shifts.",
+    "owner": "ProPakistani Media",
+    "typology": "Independent Media"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Times of Islamabad",
+    "domains": [
+      "timesofislamabad.com"
+    ],
+    "description": "Times of Islamabad is a digital news portal specializing in Pakistan's national defense, foreign policy developments, and continuous geopolitical updates.",
+    "owner": "Times of Islamabad",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "UrduPoint",
+    "domains": [
+      "urdupoint.com"
+    ],
+    "description": "UrduPoint is a pioneering and highly trafficked Urdu-language web portal delivering comprehensive content that spans daily news, digital entertainment, poetry, and sports.",
+    "owner": "UrduPoint Network",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Daily Jang",
+    "domains": [
+      "jang.com.pk"
+    ],
+    "description": "Daily Jang is Pakistan's oldest and most widely read Urdu-language newspaper, offering extensive national, political, and international news coverage.",
+    "owner": "Independent Newspaper Corporation (Jang Media Group)",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Khyber News",
+    "domains": [
+      "khybernews.tv"
+    ],
+    "description": "Khyber News is a Pakistani Pashto-language news and current affairs television channel. It provides news specifically focused on Khyber Pakhtunkhwa, Balochistan, the tribal districts, and Afghanistan, along with national and international updates.",
+    "owner": "Kamran Hamid Raja (AVT Channels)",
+    "typology": "Private Media"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Nawa-i-Waqt",
+    "domains": [
+      "nawaiwaqt.com.pk"
+    ],
+    "description": "Nawa-i-Waqt is one of Pakistan's oldest and most influential Urdu-language daily newspapers. Founded in 1940, it is known for its conservative and nationalist editorial stance, offering comprehensive coverage of national, regional, and international news.",
+    "owner": "Rameeza Majid Nizami (Nawa-i-Waqt Group of Publications)",
+    "typology": "Print Media"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Daily Ausaf",
+    "domains": [
+      "dailyausaf.com"
+    ],
+    "description": "Established in 1997, Daily Ausaf is a major international Urdu newspaper in Pakistan. It is published from multiple key cities across the country and has international editions, providing extensive news coverage on national affairs, business, and global events.",
+    "owner": "Mehtab Khan (Ausaf Group of Publications)",
+    "typology": "Print Media"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "The Friday Times",
+    "domains": [
+      "thefridaytimes.com"
+    ],
+    "description": "The Friday Times is Pakistan's first independent English-language weekly newspaper, founded in 1989. It is widely renowned for its liberal editorial stance, in-depth investigative reporting, and critical political analysis.",
+    "owner": "Najam Sethi and Jugnu Mohsin",
+    "typology": "Print Media"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Minute Mirror",
+    "domains": [
+      "minutemirror.com.pk"
+    ],
+    "description": "Minute Mirror is an independent English-language daily newspaper and digital news platform launched in 2021. Based in Lahore, it focuses on fast, fact-based journalism and insightful coverage of public interest topics and contemporary events.",
+    "owner": "Ali Sajjad (Oneness Media Group)",
+    "typology": "Print Media"
+  },
+  {
+    "country": "Pakistan",
+    "organization": "Pakistan TV Digital",
+    "domains": [
+      "pakistantv.com"
+    ],
+    "description": "Pakistan TV Digital is the official English-language global news and current affairs digital platform of Pakistan Television (PTV). It delivers breaking news, international updates, and balanced reporting on Pakistani affairs for a global audience.",
+    "owner": "Pakistan Television Corporation (State-owned)",
+    "typology": "State Media / Digital"
   }
+
 ]
