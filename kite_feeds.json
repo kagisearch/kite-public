@@ -4086,7 +4086,23 @@
     "source_language": "de",
     "display_names": {
       "en": "Germany | Franconia",
-      "de": "Deutschland | Franken"
+      "ar": "ألمانيا | فرانكونيا",
+      "ca": "Alemanya | Francònia",
+      "de": "Deutschland | Franken",
+      "es": "Alemania | Franconia",
+      "et": "Saksamaa | Frankenimaa",
+      "fr": "Allemagne | Franconie",
+      "he": "גרמניה | פרנקוניה",
+      "hi": "जर्मनी | फ़्रैंकोनिया",
+      "it": "Germania | Franconia",
+      "ja": "ドイツ | フランケン",
+      "ko": "독일 | 프랑코니아",
+      "nl": "Duitsland | Franken",
+      "pt": "Alemanha | Francónia",
+      "ru": "Германия | Франкония",
+      "uk": "Німеччина | Франконія",
+      "zh-Hans": "德国 | 弗兰肯",
+      "zh-Hant": "德國 | 弗蘭肯"
     },
     "feeds": [
       "https://www.br.de/franken/franken100~rss.xml",
