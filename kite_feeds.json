@@ -11328,6 +11328,38 @@
       "https://www.wctrib.com/index.rss"
     ]
   },
+  "USA | Nebraska": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {
+      "en": "USA | Nebraska",
+      "ar": "الولايات المتحدة | نبراسكا",
+      "ca": "EUA | Nebraska",
+      "de": "USA | Nebraska",
+      "es": "EE. UU. | Nebraska",
+      "et": "USA | Nebraska",
+      "fr": "États-Unis | Nebraska",
+      "he": "ארה״ب | נברסקה",
+      "hi": "अमेरिका | नेब्रास्का",
+      "it": "USA | Nebraska",
+      "ja": "アメリカ | ネブラスカ",
+      "ko": "미국 | 네브래스카",
+      "nl": "VS | Nebraska",
+      "pt": "EUA | Nebraska",
+      "ru": "США | Небраска",
+      "uk": "США | Небраска",
+      "zh-Hans": "美国 | 内布拉斯加",
+      "zh-Hant": "美國 | 內布拉斯加"
+    },
+    "feeds": [
+      "https://flatwaterfreepress.org/feed/",
+      "https://journalstar.com/search/?f=rss&t=article&l=25&s=start_time&sd=desc",
+      "https://kfornow.com/feed/",
+      "https://nebraskaexaminer.com/feed/",
+      "https://www.ketv.com/topstories-rss",
+      "https://www.klkntv.com/feed/"
+    ]
+  },
   "USA | Nevada": {
     "category_type": "topic",
     "source_language": "en",
