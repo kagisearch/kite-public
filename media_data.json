@@ -4745,6 +4745,711 @@
     "description": "Pakistan TV Digital is the official English-language global news and current affairs digital platform of Pakistan Television (PTV). It delivers breaking news, international updates, and balanced reporting on Pakistani affairs for a global audience.",
     "owner": "Pakistan Television Corporation (State-owned)",
     "typology": "State Media / Digital"
+  },
+  {
+    "country": "Saudi Arabia",
+    "organization": "Asharq Al-Awsat",
+    "domains": [
+      "aawsat.com",
+      "english.aawsat.com"
+    ],
+    "description": "Asharq Al-Awsat is a prominent Arab international newspaper headquartered in London, providing extensive coverage of Middle Eastern and global affairs.",
+    "owner": "Saudi Research and Media Group (SRMG)",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "United Arab Emirates",
+    "organization": "Al Ain News",
+    "domains": [
+      "al-ain.com"
+    ],
+    "description": "Al Ain News is an Arabic news portal based in Abu Dhabi, offering comprehensive news coverage on regional and international developments.",
+    "owner": "Global Media Investments (GMI)",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Jordan",
+    "organization": "Al Bawaba",
+    "domains": [
+      "albawaba.com"
+    ],
+    "description": "Al Bawaba is a major independent news and media network in the Middle East, offering news, entertainment, and business information.",
+    "owner": "Al Bawaba Middle East Limited",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "United Arab Emirates",
+    "organization": "Al Ittihad",
+    "domains": [
+      "aletihad.ae"
+    ],
+    "description": "Al Ittihad is an Arabic-language newspaper published daily in the UAE, serving as a primary source of national and regional news.",
+    "owner": "Abu Dhabi Media",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Saudi Arabia",
+    "organization": "Al Arabiya / Al Hadath",
+    "domains": [
+      "alhadath.net",
+      "english.alarabiya.net"
+    ],
+    "description": "Al Arabiya and its sister channel Al Hadath are leading Saudi-owned pan-Arab television news channels broadcasting from Riyadh.",
+    "owner": "MBC Group",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "United Arab Emirates",
+    "organization": "Al Khaleej",
+    "domains": [
+      "alkhaleej.ae"
+    ],
+    "description": "Al Khaleej is a daily Arabic newspaper published in Sharjah, known as one of the oldest newspapers in the UAE.",
+    "owner": "Dar Al Khaleej for Press, Printing and Publishing",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Egypt",
+    "organization": "Al-Masry Al-Youm",
+    "domains": [
+      "almasryalyoum.com",
+      "egyptindependent.com"
+    ],
+    "description": "Al-Masry Al-Youm is an independent Egyptian daily newspaper, with Egypt Independent serving as its English-language publication.",
+    "owner": "Al-Masry Corporation",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Lebanon",
+    "organization": "Al Mayadeen",
+    "domains": [
+      "almayadeen.net"
+    ],
+    "description": "Al Mayadeen is a pan-Arab news television channel based in Beirut, often seen as aligned with the Resistance Axis.",
+    "owner": "Al Mayadeen Media Network",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Jordan",
+    "organization": "Al Rai",
+    "domains": [
+      "alrai.com"
+    ],
+    "description": "Al Rai is a leading Arabic daily newspaper in Jordan, largely owned by the state-run Social Security Investment Fund.",
+    "owner": "Jordan Press Foundation",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "United Kingdom",
+    "organization": "Amwaj.media",
+    "domains": [
+      "amwaj.media"
+    ],
+    "description": "Amwaj.media is an independent news platform offering deep analysis and coverage of political and social developments in the Middle East.",
+    "owner": "Amwaj.media",
+    "typology": "Independent Media"
+  },
+  {
+    "country": "Lebanon",
+    "organization": "An-Nahar",
+    "domains": [
+      "annahar.com"
+    ],
+    "description": "An-Nahar is a prominent Lebanese Arabic-language daily newspaper, recognized for its independent journalism and political coverage.",
+    "owner": "Dar An-Nahar",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Saudi Arabia",
+    "organization": "Arab News",
+    "domains": [
+      "arabnews.com"
+    ],
+    "description": "Arab News is an English-language daily newspaper published in Saudi Arabia, catering to expatriates and English-speaking audiences.",
+    "owner": "Saudi Research and Media Group (SRMG)",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Kuwait",
+    "organization": "Arab Times",
+    "domains": [
+      "arabtimesonline.com"
+    ],
+    "description": "Arab Times is an English-language newspaper based in Kuwait, providing local and international news to the expat community.",
+    "owner": "Dar Al-Seyassah",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Bahrain",
+    "organization": "Bahrain News Agency (BNA)",
+    "domains": [
+      "bna.bh"
+    ],
+    "description": "Bahrain News Agency is the official state news agency of Bahrain, responsible for distributing government news and official statements.",
+    "owner": "Ministry of Information Affairs (Bahrain)",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Egypt",
+    "organization": "Daily News Egypt",
+    "domains": [
+      "dailynewsegypt.com"
+    ],
+    "description": "Daily News Egypt is an independent English-language daily newspaper covering business, politics, and culture in Egypt.",
+    "owner": "Business News for Press, Publishing and Distribution",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Turkey",
+    "organization": "Daily Sabah",
+    "domains": [
+      "dailysabah.com"
+    ],
+    "description": "Daily Sabah is a Turkish pro-government English-language daily published in Istanbul, offering national and international news.",
+    "owner": "Turkuvaz Media Group",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Qatar",
+    "organization": "Doha News",
+    "domains": [
+      "dohanews.co"
+    ],
+    "description": "Doha News is an independent English-language news blog and website covering daily events and news in Qatar.",
+    "owner": "Doha News",
+    "typology": "Independent Media"
+  },
+  {
+    "country": "Egypt",
+    "organization": "Sada El Balad",
+    "domains": [
+      "elbalad.news"
+    ],
+    "description": "Sada El Balad is a major Egyptian news portal and television channel, covering domestic politics, sports, and entertainment.",
+    "owner": "Cleopatra Media Group (Mohamed Abou El Enein)",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Iran",
+    "organization": "Islamic Republic News Agency (IRNA)",
+    "domains": [
+      "en.irna.ir"
+    ],
+    "description": "IRNA is the official news agency of the Islamic Republic of Iran, disseminating news aligned with government policies.",
+    "owner": "Ministry of Culture and Islamic Guidance (Iran)",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Jordan",
+    "organization": "Roya News",
+    "domains": [
+      "en.royanews.tv"
+    ],
+    "description": "Roya News is a prominent independent news channel and digital platform in Jordan, offering contemporary news coverage.",
+    "owner": "Sayegh Group",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Egypt",
+    "organization": "Al-Ahram",
+    "domains": [
+      "english.ahram.org.eg"
+    ],
+    "description": "Ahram Online is the English-language news web site published by Egypt's flagship state-owned daily Al-Ahram.",
+    "owner": "Al-Ahram Establishment (Egyptian Government)",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Syria",
+    "organization": "Enab Baladi",
+    "domains": [
+      "english.enabbaladi.net"
+    ],
+    "description": "Enab Baladi is an independent Syrian media organization founded by citizen journalists, focusing on events related to the Syrian conflict.",
+    "owner": "Enab Baladi",
+    "typology": "Independent Media"
+  },
+  {
+    "country": "Palestine",
+    "organization": "WAFA",
+    "domains": [
+      "english.wafa.ps"
+    ],
+    "description": "WAFA is the official state news agency of the Palestinian National Authority, providing news updates from the Palestinian territories.",
+    "owner": "Palestinian National Authority",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "United States",
+    "organization": "Fair Observer",
+    "domains": [
+      "fairobserver.com"
+    ],
+    "description": "Fair Observer is an independent, non-profit media organization providing diverse perspectives on global issues.",
+    "owner": "Fair Observer",
+    "typology": "Non-Profit"
+  },
+  {
+    "country": "United States",
+    "organization": "NPR",
+    "domains": [
+      "feeds.npr.org"
+    ],
+    "description": "NPR is an independent, non-profit media organization that produces high-quality news, talk, and entertainment programming.",
+    "owner": "National Public Radio",
+    "typology": "Public Broadcaster"
+  },
+  {
+    "country": "United States",
+    "organization": "The Washington Post",
+    "domains": [
+      "feeds.washingtonpost.com"
+    ],
+    "description": "The Washington Post is a leading American daily newspaper, known for its political reporting and national journalism.",
+    "owner": "Nash Holdings (Jeff Bezos)",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Qatar",
+    "organization": "Gulf Times",
+    "domains": [
+      "gulf-times.com"
+    ],
+    "description": "Gulf Times is an English-language newspaper in Qatar, publishing local and international news.",
+    "owner": "Gulf Publishing and Printing Company",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Israel",
+    "organization": "Haaretz",
+    "domains": [
+      "haaretz.com"
+    ],
+    "description": "Haaretz is an Israeli daily newspaper recognized for its liberal editorial stance and comprehensive coverage of Middle East affairs.",
+    "owner": "Haaretz Group",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Turkey",
+    "organization": "Hürriyet Daily News",
+    "domains": [
+      "hurriyetdailynews.com"
+    ],
+    "description": "Hürriyet Daily News is the oldest current English-language daily in Turkey, covering domestic and international news.",
+    "owner": "Demirören Group",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Iraq",
+    "organization": "Iraqi News Agency (INA)",
+    "domains": [
+      "ina.iq"
+    ],
+    "description": "INA is the official state news agency of Iraq, providing authorized news and government updates.",
+    "owner": "Government of Iraq",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "United Kingdom",
+    "organization": "i (newspaper)",
+    "domains": [
+      "inews.co.uk"
+    ],
+    "description": "The i is a British national newspaper and news website, aimed at providing concise and accessible news.",
+    "owner": "Daily Mail and General Trust (DMGT)",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Iraq",
+    "organization": "Iraqi News",
+    "domains": [
+      "iraqinews.com"
+    ],
+    "description": "Iraqi News is an English-language digital news outlet covering business, politics, and security in Iraq.",
+    "owner": "Iraqi News",
+    "typology": "Independent Media"
+  },
+  {
+    "country": "Jordan",
+    "organization": "The Jordan Times",
+    "domains": [
+      "jordantimes.com"
+    ],
+    "description": "The Jordan Times is an English-language daily newspaper published in Amman, aligned with the Jordan Press Foundation.",
+    "owner": "Jordan Press Foundation",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "United Arab Emirates",
+    "organization": "Khaleej Times",
+    "domains": [
+      "khaleejtimes.com"
+    ],
+    "description": "Khaleej Times is a daily English-language newspaper in the UAE, covering regional business and general news.",
+    "owner": "Galadari Brothers",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Kuwait",
+    "organization": "Kuwait News Agency (KUNA)",
+    "domains": [
+      "kuna.net.kw"
+    ],
+    "description": "KUNA is the state news agency of Kuwait, providing official news and information on government activities.",
+    "owner": "Government of Kuwait",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Iraq",
+    "organization": "Kurdistan 24",
+    "domains": [
+      "kurdistan24.net"
+    ],
+    "description": "Kurdistan 24 is a Kurdish news station based in Erbil, Kurdistan Region of Iraq, broadcasting regional and global news.",
+    "owner": "Kurdistan 24 Media Network",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Egypt",
+    "organization": "Mada Masr",
+    "domains": [
+      "madamasr.com"
+    ],
+    "description": "Mada Masr is an independent Egyptian news website known for its investigative journalism and critical reporting.",
+    "owner": "Mada Masr",
+    "typology": "Independent Media"
+  },
+  {
+    "country": "Egypt",
+    "organization": "Masrawy",
+    "domains": [
+      "masrawy.com"
+    ],
+    "description": "Masrawy is one of the oldest and largest Egyptian news portals, offering news, entertainment, and lifestyle content.",
+    "owner": "ONA Media Group",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "United Kingdom",
+    "organization": "MEED",
+    "domains": [
+      "meed.com"
+    ],
+    "description": "Middle East Economic Digest (MEED) is a prominent business intelligence tool providing news, data, and analysis on the MENA region.",
+    "owner": "GlobalData",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "United Kingdom",
+    "organization": "Middle East Eye",
+    "domains": [
+      "middleeasteye.net"
+    ],
+    "description": "Middle East Eye is an independently funded digital news organization covering events in the Middle East and North Africa.",
+    "owner": "M.E.E. Limited",
+    "typology": "Independent Media"
+  },
+  {
+    "country": "United Kingdom",
+    "organization": "Middle East Monitor (MEMO)",
+    "domains": [
+      "middleeastmnt.disqus.com",
+      "middleeastmonitor.com"
+    ],
+    "description": "Middle East Monitor is a non-profit press monitoring organization that focuses on the Israeli-Palestinian conflict and regional politics.",
+    "owner": "Ardi Associates Ltd",
+    "typology": "Non-Profit"
+  },
+  {
+    "country": "Lebanon",
+    "organization": "Naharnet",
+    "domains": [
+      "naharnet.com"
+    ],
+    "description": "Naharnet is an independent Lebanese news destination covering politics, business, and entertainment.",
+    "owner": "Naharnet",
+    "typology": "Independent Media"
+  },
+  {
+    "country": "United States",
+    "organization": "New Lines Magazine",
+    "domains": [
+      "newlinesmag.com"
+    ],
+    "description": "New Lines Magazine publishes long-form journalism and essays on the Middle East, Africa, and beyond.",
+    "owner": "New Lines Institute",
+    "typology": "Non-Profit"
+  },
+  {
+    "country": "United States",
+    "organization": "UN News",
+    "domains": [
+      "news.un.org"
+    ],
+    "description": "UN News is the official news service of the United Nations, providing global updates on UN activities and international crises.",
+    "owner": "United Nations",
+    "typology": "Non-Profit"
+  },
+  {
+    "country": "Lebanon",
+    "organization": "National News Agency (NNA)",
+    "domains": [
+      "nna-leb.gov.lb"
+    ],
+    "description": "The National News Agency is the official state news agency of the Lebanese government.",
+    "owner": "Ministry of Information (Lebanon)",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Saudi Arabia",
+    "organization": "Okaz",
+    "domains": [
+      "okaz.com.sa"
+    ],
+    "description": "Okaz is a leading daily Arabic newspaper in Saudi Arabia, providing news, business, and cultural updates.",
+    "owner": "Okaz Organization for Press and Publication",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Oman",
+    "organization": "Oman News Agency (ONA)",
+    "domains": [
+      "omannews.gov.om"
+    ],
+    "description": "Oman News Agency is the official news agency of the Sultanate of Oman, circulating official government news.",
+    "owner": "Ministry of Information (Oman)",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Jordan",
+    "organization": "Jordan News Agency (Petra)",
+    "domains": [
+      "petra.gov.jo"
+    ],
+    "description": "Petra is the official national news agency of Jordan, operating under government supervision to distribute state news.",
+    "owner": "Government of Jordan",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Qatar",
+    "organization": "Qatar News Agency (QNA)",
+    "domains": [
+      "qna.org.qa"
+    ],
+    "description": "Qatar News Agency is the official state news agency of Qatar, providing news on government affairs and regional events.",
+    "owner": "Government of Qatar",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "United States",
+    "organization": "Rest of World",
+    "domains": [
+      "restofworld.org"
+    ],
+    "description": "Rest of World is a non-profit journalism organization focused on the impact of technology in non-Western markets.",
+    "owner": "Rest of World",
+    "typology": "Non-Profit"
+  },
+  {
+    "country": "United States",
+    "organization": "Radio Free Europe/Radio Liberty",
+    "domains": [
+      "rferl.org"
+    ],
+    "description": "RFE/RL is a US government-funded broadcaster providing news to countries where a free press is restricted.",
+    "owner": "U.S. Agency for Global Media",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Iraq",
+    "organization": "Rudaw",
+    "domains": [
+      "rudaw.net"
+    ],
+    "description": "Rudaw is a Kurdish media network based in Erbil, Kurdistan Region, providing news coverage in multiple languages.",
+    "owner": "Rudaw Media Network",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Yemen",
+    "organization": "Saba News Agency (Sana'a)",
+    "domains": [
+      "saba.ye"
+    ],
+    "description": "Saba is the state news agency of Yemen, currently operated by the Houthi movement (Ansar Allah) from the capital, Sana'a.",
+    "owner": "Supreme Political Council (Houthi-aligned)",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Yemen",
+    "organization": "Yemen News Agency Saba (Aden)",
+    "domains": [
+      "sabanew.net"
+    ],
+    "description": "The Yemen News Agency (Saba) is the official state news agency representing the internationally recognized government of Yemen, operating primarily from Aden.",
+    "owner": "Government of Yemen (Internationally Recognized)",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Saudi Arabia",
+    "organization": "Sabq",
+    "domains": [
+      "sabq.org"
+    ],
+    "description": "Sabq is a prominent Saudi electronic newspaper covering local, regional, and international news.",
+    "owner": "Sabq Electronic Press",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Syria",
+    "organization": "Syrian Arab News Agency (SANA)",
+    "domains": [
+      "sana.sy"
+    ],
+    "description": "SANA is the official state news agency of Syria, disseminating government news and perspectives.",
+    "owner": "Ministry of Information (Syria)",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Saudi Arabia",
+    "organization": "Saudi Gazette",
+    "domains": [
+      "saudigazette.com.sa"
+    ],
+    "description": "Saudi Gazette is a leading English-language daily newspaper in Saudi Arabia, covering domestic and international events.",
+    "owner": "Okaz Organization for Press and Publication",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Egypt",
+    "organization": "State Information Service (SIS)",
+    "domains": [
+      "sis.gov.eg"
+    ],
+    "description": "SIS is the official government public relations and information agency of Egypt.",
+    "owner": "Government of Egypt",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "United Arab Emirates",
+    "organization": "Sky News Arabia",
+    "domains": [
+      "skynewsarabia.com"
+    ],
+    "description": "Sky News Arabia is an Arabic-language news channel broadcast from Abu Dhabi, a joint venture between IMI and Sky.",
+    "owner": "International Media Investments & Sky Group",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Saudi Arabia",
+    "organization": "Saudi Press Agency (SPA)",
+    "domains": [
+      "spa.gov.sa"
+    ],
+    "description": "SPA is the official national news agency of Saudi Arabia, providing news from the government and royal court.",
+    "owner": "Ministry of Media (Saudi Arabia)",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "United Kingdom",
+    "organization": "The Syrian Observer",
+    "domains": [
+      "syrianobserver.com"
+    ],
+    "description": "The Syrian Observer is a news portal translating Syrian news into English to inform the international community.",
+    "owner": "The Syrian Observer",
+    "typology": "Independent Media"
+  },
+  {
+    "country": "United Arab Emirates",
+    "organization": "The National",
+    "domains": [
+      "thenationalnews.com"
+    ],
+    "description": "The National is an English-language daily news publication based in Abu Dhabi, covering Middle Eastern and global news.",
+    "owner": "International Media Investments (IMI)",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Qatar",
+    "organization": "The Peninsula",
+    "domains": [
+      "thepeninsulaqatar.com"
+    ],
+    "description": "The Peninsula is a leading English-language daily newspaper in Qatar, offering local and international news.",
+    "owner": "Dar Al Sharq",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Kuwait",
+    "organization": "The Times Kuwait",
+    "domains": [
+      "timeskuwait.com"
+    ],
+    "description": "The Times Kuwait is an English-language news weekly catering to the expatriate community in Kuwait.",
+    "owner": "The Times Kuwait",
+    "typology": "Independent Media"
+  },
+  {
+    "country": "Oman",
+    "organization": "Times of Oman",
+    "domains": [
+      "timesofoman.com"
+    ],
+    "description": "Times of Oman is an English-language daily newspaper in Oman, providing news, business, and sports coverage.",
+    "owner": "Muscat Media Group",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Lebanon",
+    "organization": "L'Orient Today",
+    "domains": [
+      "today.lorientlejour.com"
+    ],
+    "description": "L'Orient Today is an independent English-language news platform from the publishers of Lebanon's L'Orient-Le Jour.",
+    "owner": "L'Orient-Le Jour",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "Turkey",
+    "organization": "TRT World / Anadolu",
+    "domains": [
+      "trtworld.com",
+      "aa.com.tr"
+    ],
+    "description": "TRT World and Anadolu Agency are Turkey's primary state-funded international news platforms.",
+    "owner": "Turkish Radio and Television Corporation (TRT) / Turkish Government",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "United Arab Emirates",
+    "organization": "Emirates News Agency (WAM)",
+    "domains": [
+      "wam.ae"
+    ],
+    "description": "WAM is the official state news agency of the United Arab Emirates.",
+    "owner": "Government of the United Arab Emirates",
+    "typology": "State Funded Media"
+  },
+  {
+    "country": "Egypt",
+    "organization": "Youm7",
+    "domains": [
+      "youm7.com"
+    ],
+    "description": "Youm7 is an Egyptian daily newspaper and highly trafficked news website, owned by the state-linked United Media Services.",
+    "owner": "Egyptian Media Group (United Media Services)",
+    "typology": "Private Enterprise"
+  },
+  {
+    "country": "United Arab Emirates",
+    "organization": "Zawya",
+    "domains": [
+      "zawya.com"
+    ],
+    "description": "Zawya is a leading source of Middle East and North Africa business intelligence and financial news.",
+    "owner": "London Stock Exchange Group (LSEG)",
+    "typology": "Private Enterprise"
   }
 
 ]
