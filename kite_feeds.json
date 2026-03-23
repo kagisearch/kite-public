@@ -1752,6 +1752,8 @@
     },
     "feeds": [
       "https://www.abc.net.au/news/feed/5470430/rss.xml",
+      "https://theconversation.com/topics/victoria-2403/articles.atom",
+      "https://theconversation.com/topics/melbourne-1372/articles.atom",
       "https://www.theage.com.au/rss/national/victoria.xml",
       "https://www.heraldsun.com.au/rss",
       "https://www.theguardian.com/australia-news/melbourne/rss",
