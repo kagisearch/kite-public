@@ -10147,6 +10147,7 @@
       "https://paperpaper.io/feed/",
       "https://rss.dw.com/rdf/rss-ru-all",
       "https://rtvi.com/rss",
+      "https://russian.rt.com/rss/",
       "https://secretmag.ru/exports/rss.xml",
       "https://semnasem.org/rss/default.xml",
       "https://sota.vision/feed/",
@@ -10159,8 +10160,7 @@
       "https://www.sibreal.org/api/",
       "https://www.sova-center.ru/search/?rss=1&lg=1",
       "https://www.svoboda.org/api/z-pqpil-vomx-tper-ipp",
-      "https://zona.media/rss",
-      "https://russian.rt.com/rss/"
+      "https://zona.media/rss"
     ]
   },
   "Rwanda": {
