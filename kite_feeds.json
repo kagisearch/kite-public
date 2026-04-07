@@ -9670,7 +9670,7 @@
       "https://www.yardbarker.com/rss/sport_merged/11"
     ]
   },
-  "South Africa" : {
+  "South Africa": {
     "category_type": "topic",
     "source_language": "en",
     "display_names": {
@@ -9708,7 +9708,7 @@
       "https://feeds.news24.com/articles/news24/SouthAfrica/rss",
       "https://www.sowetan.co.za/arc/outboundfeeds/rss/category/news",
       "https://www.sabcnews.com/sabcnews/south-africa/feed",
-      "https://www.africaninsider.com/countries/south-africa/feed/,
+      "https://www.africaninsider.com/countries/south-africa/feed/",
       "https://www.sagoodnews.co.za/feed",
       "https://moneyweb.co.za/feed",
       "https://www.theguardian.com/world/southafrica/rss",
