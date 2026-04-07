@@ -246,7 +246,7 @@
       "ru": "Мадейра",
       "uk": "Мадейра",
       "zh-Hans": "马德拉岛",
-      "zh-Hant": "馬德拉島"
+      "zh-Hant": "馬德拉群島"
     },
     "feeds": [
       "http://madeira-island-news.blogspot.com/feeds/posts/default?alt=rss",
@@ -1952,7 +1952,7 @@
       "ru": "Бангладеш",
       "uk": "Бангладеш",
       "zh-Hans": "孟加拉国",
-      "zh-Hant": "孟加拉國"
+      "zh-Hant": "孟加拉"
     },
     "feeds": [
       "https://bangla.bdnews24.com/?widgetName=rssfeed&getXmlFeed=true",
@@ -5532,7 +5532,7 @@
       "ru": "Германия | Франкония",
       "uk": "Німеччина | Франконія",
       "zh-Hans": "德国 | 弗兰肯",
-      "zh-Hant": "德國 | 弗蘭肯"
+      "zh-Hant": "德國 | 法蘭克尼亞"
     },
     "feeds": [
       "https://fuerthaktuell.de/feed",
@@ -5892,7 +5892,7 @@
       "ru": "Германия | Шлезвиг-Гольштейн",
       "uk": "Німеччина | Шлезвіг-Гольштейн",
       "zh-Hans": "德国 | 石勒苏益格-荷尔斯泰因",
-      "zh-Hant": "德國 | 石勒蘇益格-荷爾斯泰因"
+      "zh-Hant": "德國 | 什列斯威-霍爾斯坦"
     },
     "feeds": [
       "https://husum-online.de/rss",
@@ -6129,7 +6129,7 @@
       "ru": "Здравоохранение | Германия",
       "uk": "Охорона здоров'я | Німеччина",
       "zh-Hans": "医疗卫生 | 德国",
-      "zh-Hant": "醫療衛生 | 德國"
+      "zh-Hant": "德國醫療"
     },
     "feeds": [
       "https://deutscher-pflegerat.de/feed/",
