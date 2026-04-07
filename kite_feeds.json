@@ -184,7 +184,7 @@
       "ru": "Мадейра",
       "uk": "Мадейра",
       "zh-Hans": "马德拉岛",
-      "zh-Hant": "馬德拉島"
+      "zh-Hant": "馬德拉群島"
     },
     "feeds": [
       "http://madeira-island-news.blogspot.com/feeds/posts/default?alt=rss",
@@ -1870,7 +1870,7 @@
       "ru": "Босния и Герцеговина",
       "uk": "Боснія і Герцеговина",
       "zh-Hans": "波斯尼亚和黑塞哥维那",
-      "zh-Hant": "波士尼亞和赫塞哥維納"
+      "zh-Hant": "波士尼亞與赫塞哥維納"
     },
     "feeds": [
       "https://24sata.info/feed/",
@@ -3959,7 +3959,7 @@
       "ru": "Эфиопия",
       "uk": "Ефіопія",
       "zh-Hans": "埃塞俄比亚",
-      "zh-Hant": "埃塞俄比亞"
+      "zh-Hant": "衣索比亞"
     },
     "feeds": [
       "https://addisfortune.news/feed",
@@ -4701,7 +4701,7 @@
       "ru": "Грузия",
       "uk": "Грузія",
       "zh-Hans": "格鲁吉亚",
-      "zh-Hant": "格魯吉亞"
+      "zh-Hant": "喬治亞"
     },
     "feeds": [
       "https://batumelebi.ge/feed/",
@@ -11069,6 +11069,28 @@
       "https://newtalk.tw/rss/category/5",
       "https://newtalk.tw/rss/category/6",
       "https://newtalk.tw/rss/category/9",
+      "https://nitter.net/AcadSinica/rss",
+      "https://nitter.net/ChingteLai/rss",
+      "https://nitter.net/CulturalTaiwan/rss",
+      "https://nitter.net/DPPonline/rss",
+      "https://nitter.net/Focus_Taiwan/rss",
+      "https://nitter.net/MOFA_Taiwan/rss",
+      "https://nitter.net/MOHW_Taiwan/rss",
+      "https://nitter.net/MoNDefense/rss",
+      "https://nitter.net/TAIWANmoda/rss",
+      "https://nitter.net/TDSI_TW/rss",
+      "https://nitter.net/TECRO_USA/rss",
+      "https://nitter.net/TaiwanMonitor/rss",
+      "https://nitter.net/Taiwan_Today/rss",
+      "https://nitter.net/Yaita_Akio/rss",
+      "https://nitter.net/audreyt/rss",
+      "https://nitter.net/bikhim/rss",
+      "https://nitter.net/iingwen/rss",
+      "https://nitter.net/josephwutw/rss",
+      "https://nitter.net/joyuwang/rss",
+      "https://nitter.net/kuomintang/rss",
+      "https://nitter.net/ltntw/rss",
+      "https://nitter.net/taiwanplusnews/rss",
       "https://penghudaily.blogspot.com/feeds/posts/default?alt=rss",
       "https://public.twreporter.org/rss/twreporter-rss.xml",
       "https://taiwandaily.net/category/%E5%8D%B3%E6%99%82%E6%96%B0%E8%81%9E/%E5%8F%B0%E7%81%A3%E6%96%B0%E8%81%9E/rss",
