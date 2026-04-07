@@ -10495,29 +10495,22 @@
     "feeds": [
       "https://allafrica.com/tools/headlines/rdf/tanzania/headlines.rdf",
       "https://dailynews.co.tz/feed/",
-      "https://doingbusiness.co.tz/rss/latest-posts",
       "https://eturbonews.com/region/tanzania/feed/",
       "https://habarileo.co.tz/feed/",
+      "https://michuzijr.blogspot.com/feeds/posts/default",
       "https://mwanaharakatimzalendo.co.tz/feed/",
       "https://taifatanzania.co.tz/feed/",
       "https://tanzanialeo.co.tz/feed/",
       "https://tanzaniasports.com/feed/",
       "https://thechanzo.com/feed/",
-      "https://udakuspecially.com/feed/",
-      "https://www.arushanews.co.tz/feed/",
-      "https://www.congoplanet.com/topic/rss/tanzania",
+      "https://www.bbc.com/swahili/index.xml",
       "https://www.itv.co.tz/rss.xml",
-      "https://www.kandanda.co.tz/feed/",
       "https://www.michuzi.co.tz/feeds/posts/default",
       "https://www.mwananchi.co.tz/rss.xml",
-      "https://www.mwanaspoti.co.tz/ms/rss.xml",
-      "https://www.nao.go.tz/home/rss",
       "https://www.reddit.com/r/tanzania/.rss",
-      "https://www.tanzaniainvest.com/feed",
-      "https://www.thecitizen.co.tz/tanzania/rss.xml",
+      "https://www.theguardian.com/world/tanzania/rss",
       "https://www.therespondents.co.tz/feeds/posts/default",
-      "https://www.tzaffairs.org/feed",
-      "https://zanzibarleo.co.tz/feed"
+      "https://www.tzaffairs.org/feed"
     ]
   },
   "Thailand": {
