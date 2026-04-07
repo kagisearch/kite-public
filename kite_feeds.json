@@ -3673,11 +3673,28 @@
       "https://www.une.cd/rss/latest-posts"
     ]
   },
-  "Ecology (France)": {
+  "Ecology | France": {
     "category_type": "topic",
     "source_language": "fr",
     "display_names": {
-      "en": "Ecology (France)"
+      "en": "Ecology | France",
+      "ar": "البيئة | فرنسا",
+      "ca": "Ecologia | França",
+      "de": "Ökologie | Frankreich",
+      "es": "Ecología | Francia",
+      "et": "Ökoloogia | Prantsusmaa",
+      "fr": "Écologie | France",
+      "he": "אקולוגיה | צרפת",
+      "hi": "पारिस्थितिकी | फ़्रांस",
+      "it": "Ecologia | Francia",
+      "ja": "エコロジー | フランス",
+      "ko": "생태학 | 프랑스",
+      "nl": "Ecologie | Frankrijk",
+      "pt": "Ecologia | França",
+      "ru": "Экология | Франция",
+      "uk": "Екологія | Франція",
+      "zh-Hans": "生态 | 法国",
+      "zh-Hant": "生態 | 法國"
     },
     "feeds": [
       "http://vert.eco/feed",
@@ -3686,17 +3703,13 @@
       "https://bonpote.com/feed/",
       "https://radiofrance.fr/rss/environnement",
       "https://reporterre.net/spip.php?page=backend-simple",
-      "https://www.acrimed.org/spip.php?page=backend",
       "https://www.actu-environnement.com/rss/",
       "https://www.alternatives-economiques.fr/rss.xml",
       "https://www.humanite.fr/sections/environnement/rss",
       "https://www.lemonde.fr/afrique-climat-et-environnement/rss_full.xml",
       "https://www.lemonde.fr/agriculture/rss_full.xml",
-      "https://www.lemonde.fr/biologie/rss_full.xml",
       "https://www.lemonde.fr/climat/rss_full.xml",
-      "https://www.lemonde.fr/planete/rss_full.xml",
-      "https://www.lemonde.fr/sante/rss_full.xml",
-      "https://www.mediapart.fr/journal/podcasts/rss"
+      "https://www.lemonde.fr/planete/rss_full.xml"
     ]
   },
   "Economy": {
