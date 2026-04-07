@@ -6691,6 +6691,50 @@
       "https://zeenews.india.com/rss/india-national-news.xml"
     ]
   },
+  "India | Kerala": {
+    "category_type": "region",
+    "source_language": "en",
+    "display_names": {
+      "en": "India | Kerala",
+      "ar": "الهند | كيرالا",
+      "ca": "Índia | Kerala",
+      "de": "Indien | Kerala",
+      "es": "India | Kerala",
+      "et": "India | Kerala",
+      "fr": "Inde | Kerala",
+      "he": "הודו | קראלה",
+      "hi": "भारत | केरल",
+      "it": "India | Kerala",
+      "ja": "インド | ケーララ",
+      "ko": "인도 | 케랄라",
+      "ml": "ഇന്ത്യ | കേരളം",
+      "nl": "India | Kerala",
+      "pt": "Índia | Kerala",
+      "ru": "Индия | Керала",
+      "uk": "Індія | Керала",
+      "zh-Hans": "印度 | 喀拉拉邦",
+      "zh-Hant": "印度 | 喀拉拉邦"
+    },
+    "feeds": [
+      "https://janmabhumi.in/feed/",
+      "https://news.google.com/rss/search?q=Kerala+Pinarayi&hl=en-IN&gl=IN&ceid=IN:en",
+      "https://news.google.com/rss/search?q=Kerala+Thiruvananthapuram&hl=en-IN&gl=IN&ceid=IN:en",
+      "https://news.google.com/rss/search?q=Kerala+news&hl=ml-IN&gl=IN&ceid=IN:ml",
+      "https://news.google.com/rss/search?q=Kerala&hl=en-IN&gl=IN&ceid=IN:en",
+      "https://news.google.com/rss/search?q=Kochi+Kerala&hl=en-IN&gl=IN&ceid=IN:en",
+      "https://www.azhimukham.com/feed",
+      "https://www.indiavision.com/feed",
+      "https://www.newindianexpress.com/cities/kochi/rssfeed",
+      "https://www.newindianexpress.com/cities/thiruvananthapuram/rssfeed",
+      "https://www.newindianexpress.com/states/kerala/rssfeed",
+      "https://www.onmanorama.com/kerala.feeds.onmrss.xml",
+      "https://www.reddit.com/r/Kerala/.rss",
+      "https://www.suprabhaatham.com/feed",
+      "https://www.thehindu.com/news/cities/Kochi/feeder/default.rss",
+      "https://www.thehindu.com/news/cities/Thiruvananthapuram/feeder/default.rss",
+      "https://www.thehindu.com/news/national/kerala/feeder/default.rss"
+    ]
+  },
   "India | Tamil Nadu": {
     "category_type": "topic",
     "source_language": "ta",
