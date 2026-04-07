@@ -1741,17 +1741,19 @@
       "he": "אוסטרליה | ויקטוריה",
       "hi": "ऑस्ट्रेलिया | विक्टोरिया",
       "it": "Australia | Victoria",
-      "ja": "オーストラリア｜ビクトリア",
-      "ko": "호주 | 빅토리아",
+      "ja": "オーストラリア | ビクトリア",
+      "ko": "오스트레일리아 | 빅토리아",
       "nl": "Australië | Victoria",
       "pt": "Austrália | Victoria",
       "ru": "Австралия | Виктория",
       "uk": "Австралія | Вікторія",
-      "zh-Hans": "澳大利亚 | 维多利亚",
-      "zh-Hant": "澳洲 | 維多利亞"
+      "zh-Hans": "澳大利亚 | 维多利亚州",
+      "zh-Hant": "澳大利亞 | 維多利亞州"
     },
     "feeds": [
       "https://www.abc.net.au/news/feed/5470430/rss.xml",
+      "https://www.crikey.com.au/feed/",
+      "https://www.theage.com.au/rss/feed.xml",
       "https://theconversation.com/topics/victoria-2403/articles.atom",
       "https://theconversation.com/topics/melbourne-1372/articles.atom",
       "https://www.theage.com.au/rss/national/victoria.xml",
