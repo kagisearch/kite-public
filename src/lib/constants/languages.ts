@@ -22,6 +22,7 @@ export const SUPPORTED_LANGUAGES: SupportedLanguage[] = [
 	{ code: 'uk', name: 'Українська (Ukrainian)' },
 	{ code: 'ar', name: 'العربية (Arabic)' },
 	{ code: 'he', name: 'עברית (Hebrew)' },
+	{ code: 'el', name: 'Ελληνικά (Greek)' },
 	{ code: 'ca', name: 'Català (Catalan)' },
 	{ code: 'fi', name: 'Suomi (Finnish)' },
 	{ code: 'ko', name: '한국어 (Korean)' },
