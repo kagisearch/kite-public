@@ -288,6 +288,198 @@
 	--color-assistant-hover-state: var(--color-primary-25);
 }
 
+/* ── Catppuccin Latte (light) ──────────────────────────────────────── */
+.ctp-latte {
+	/* Primary scale: base (lightest) → text (darkest) */
+	--color-primary: #4c4f69;      /* text */
+	--color-primary-25: #eff1f5;   /* base */
+	--color-primary-50: #e6e9ef;   /* mantle */
+	--color-primary-70: #dce0e8;   /* crust */
+	--color-primary-100: #ccd0da;  /* surface0 */
+	--color-primary-200: #bcc0cc;  /* surface1 */
+	--color-primary-300: #acb0be;  /* surface2 */
+	--color-primary-400: #9ca0b0;  /* overlay0 */
+	--color-primary-600: #7c7f93;  /* overlay2 */
+	--color-primary-700: #6c6f85;  /* subtext0 */
+	--color-primary-800: #5c5f77;  /* subtext1 */
+	--color-primary-850: #4c4f69;  /* text */
+	--color-primary-900: #4c4f69;
+	--color-primary-950: #4c4f69;
+
+	/* Backgrounds */
+	--color-app-bg: #eff1f5;
+	--color-modal-bg: #e6e9ef;     /* mantle */
+	--color-input-bg: #ccd0da;     /* surface0 */
+	--color-dark-bg: #dce0e8;      /* crust */
+	--color-tooltip-bg: #4c4f69;   /* text */
+
+	/* Accents (Mauve) */
+	--color-accent-links: #8839ef;
+	--color-on-accent: #eff1f5;
+
+	/* Hovers and overlays */
+	--color-overlay: rgba(76, 79, 105, 0.4);
+	--color-general-hover-states: rgba(156, 160, 176, 0.2);
+	--color-assistant-hover-state: #eff1f5;
+
+	/* Focus ring */
+	--color-focus-ring: #1e66f5;   /* blue */
+	--color-ring-focus-ring: var(--color-focus-ring);
+
+	/* Highlight / selection (Mauve with opacity) */
+	--highlight-color: rgba(136, 57, 239, 0.2);
+	--selection-color: rgba(136, 57, 239, 0.2);
+
+	/* Skeleton loading */
+	--skeleton-start: #ccd0da;
+	--skeleton-middle: #bcc0cc;
+	--skeleton-end: #dce0e8;
+}
+
+/* ── Catppuccin Frappé (dark) ───────────────────────────────────────── */
+.ctp-frappe {
+	/* Primary scale: base (darkest) → text (lightest) */
+	--color-primary: #c6d0f5;      /* text */
+	--color-primary-25: #303446;   /* base */
+	--color-primary-50: #292c3c;   /* mantle */
+	--color-primary-70: #232634;   /* crust */
+	--color-primary-100: #414559;  /* surface0 */
+	--color-primary-200: #51576d;  /* surface1 */
+	--color-primary-300: #626880;  /* surface2 */
+	--color-primary-400: #737994;  /* overlay0 */
+	--color-primary-600: #949cbb;  /* overlay2 */
+	--color-primary-700: #a5adce;  /* subtext0 */
+	--color-primary-800: #b5bfe2;  /* subtext1 */
+	--color-primary-850: #c6d0f5;  /* text */
+	--color-primary-900: #c6d0f5;
+	--color-primary-950: #c6d0f5;
+
+	/* Backgrounds */
+	--color-app-bg: #303446;
+	--color-modal-bg: #414559;     /* surface0 */
+	--color-input-bg: #51576d;     /* surface1 */
+	--color-dark-bg: #232634;      /* crust */
+	--color-tooltip-bg: #626880;   /* surface2 */
+
+	/* Accents (Mauve) */
+	--color-accent-links: #ca9ee6;
+	--color-on-accent: #303446;
+
+	/* Hovers and overlays */
+	--color-overlay: rgba(48, 52, 70, 0.7);
+	--color-general-hover-states: rgba(115, 121, 148, 0.2);
+	--color-assistant-hover-state: #414559;
+
+	/* Focus ring */
+	--color-focus-ring: #8caaee;   /* blue */
+	--color-ring-focus-ring: var(--color-focus-ring);
+
+	/* Highlight / selection (Mauve with opacity) */
+	--highlight-color: rgba(202, 158, 230, 0.3);
+	--selection-color: rgba(202, 158, 230, 0.3);
+
+	/* Skeleton loading */
+	--skeleton-start: #414559;
+	--skeleton-middle: #51576d;
+	--skeleton-end: #626880;
+}
+
+/* ── Catppuccin Macchiato (dark) ────────────────────────────────────── */
+.ctp-macchiato {
+	/* Primary scale: base (darkest) → text (lightest) */
+	--color-primary: #cad3f5;      /* text */
+	--color-primary-25: #24273a;   /* base */
+	--color-primary-50: #1e2030;   /* mantle */
+	--color-primary-70: #181926;   /* crust */
+	--color-primary-100: #363a4f;  /* surface0 */
+	--color-primary-200: #494d64;  /* surface1 */
+	--color-primary-300: #5b6078;  /* surface2 */
+	--color-primary-400: #6e738d;  /* overlay0 */
+	--color-primary-600: #939ab7;  /* overlay2 */
+	--color-primary-700: #a5adcb;  /* subtext0 */
+	--color-primary-800: #b8c0e0;  /* subtext1 */
+	--color-primary-850: #cad3f5;  /* text */
+	--color-primary-900: #cad3f5;
+	--color-primary-950: #cad3f5;
+
+	/* Backgrounds */
+	--color-app-bg: #24273a;
+	--color-modal-bg: #363a4f;     /* surface0 */
+	--color-input-bg: #494d64;     /* surface1 */
+	--color-dark-bg: #181926;      /* crust */
+	--color-tooltip-bg: #5b6078;   /* surface2 */
+
+	/* Accents (Mauve) */
+	--color-accent-links: #c6a0f6;
+	--color-on-accent: #24273a;
+
+	/* Hovers and overlays */
+	--color-overlay: rgba(36, 39, 58, 0.7);
+	--color-general-hover-states: rgba(110, 115, 141, 0.2);
+	--color-assistant-hover-state: #363a4f;
+
+	/* Focus ring */
+	--color-focus-ring: #8aadf4;   /* blue */
+	--color-ring-focus-ring: var(--color-focus-ring);
+
+	/* Highlight / selection (Mauve with opacity) */
+	--highlight-color: rgba(198, 160, 246, 0.3);
+	--selection-color: rgba(198, 160, 246, 0.3);
+
+	/* Skeleton loading */
+	--skeleton-start: #363a4f;
+	--skeleton-middle: #494d64;
+	--skeleton-end: #5b6078;
+}
+
+/* ── Catppuccin Mocha (dark) ────────────────────────────────────────── */
+.ctp-mocha {
+	/* Primary scale: base (darkest) → text (lightest) */
+	--color-primary: #cdd6f4;      /* text */
+	--color-primary-25: #1e1e2e;   /* base */
+	--color-primary-50: #181825;   /* mantle */
+	--color-primary-70: #11111b;   /* crust */
+	--color-primary-100: #313244;  /* surface0 */
+	--color-primary-200: #45475a;  /* surface1 */
+	--color-primary-300: #585b70;  /* surface2 */
+	--color-primary-400: #6c7086;  /* overlay0 */
+	--color-primary-600: #9399b2;  /* overlay2 */
+	--color-primary-700: #a6adc8;  /* subtext0 */
+	--color-primary-800: #bac2de;  /* subtext1 */
+	--color-primary-850: #cdd6f4;  /* text */
+	--color-primary-900: #cdd6f4;
+	--color-primary-950: #cdd6f4;
+
+	/* Backgrounds */
+	--color-app-bg: #1e1e2e;
+	--color-modal-bg: #313244;     /* surface0 */
+	--color-input-bg: #45475a;     /* surface1 */
+	--color-dark-bg: #11111b;      /* crust */
+	--color-tooltip-bg: #585b70;   /* surface2 */
+
+	/* Accents (Mauve) */
+	--color-accent-links: #cba6f7;
+	--color-on-accent: #1e1e2e;
+
+	/* Hovers and overlays */
+	--color-overlay: rgba(30, 30, 46, 0.7);
+	--color-general-hover-states: rgba(108, 112, 134, 0.2);
+	--color-assistant-hover-state: #313244;
+
+	/* Focus ring */
+	--color-focus-ring: #89b4fa;   /* blue */
+	--color-ring-focus-ring: var(--color-focus-ring);
+
+	/* Highlight / selection (Mauve with opacity) */
+	--highlight-color: rgba(203, 166, 247, 0.3);
+	--selection-color: rgba(203, 166, 247, 0.3);
+
+	/* Skeleton loading */
+	--skeleton-start: #313244;
+	--skeleton-middle: #45475a;
+	--skeleton-end: #585b70;
+}
+
 /* Global selection style */
 ::selection {
 	background-color: var(--selection-color) !important;

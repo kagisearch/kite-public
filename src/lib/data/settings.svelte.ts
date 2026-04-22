@@ -35,7 +35,7 @@ export type SupportedLanguage =
 	| 'et';
 
 // Type definitions for settings
-export type Theme = 'system' | 'light' | 'dark';
+export type Theme = 'system' | 'light' | 'dark' | 'ctp-latte' | 'ctp-frappe' | 'ctp-macchiato' | 'ctp-mocha';
 export type FontSize = 'xs' | 'small' | 'normal' | 'large' | 'xl';
 export type StoryExpandMode = 'always' | 'doubleClick' | 'never';
 export type StoryOpenMode = 'multiple' | 'single';
@@ -190,20 +190,40 @@ export const settings = {
 /**
  * Apply theme to DOM
  */
+const CTP_FLAVORS = ['ctp-latte', 'ctp-frappe', 'ctp-macchiato', 'ctp-mocha'] as const;
+const CTP_DARK_FLAVORS: Theme[] = ['ctp-frappe', 'ctp-macchiato', 'ctp-mocha'];
+const CTP_META_COLORS: Partial<Record<Theme, string>> = {
+	'ctp-latte': '#eff1f5',
+	'ctp-frappe': '#303446',
+	'ctp-macchiato': '#24273a',
+	'ctp-mocha': '#1e1e2e',
+};
+
 function applyTheme(theme: Theme) {
 	if (!browser) return;
 
 	const root = document.documentElement;
+
+	// Remove all Catppuccin flavor classes
+	root.classList.remove(...CTP_FLAVORS);
+
 	const isDark =
 		theme === 'dark' ||
+		CTP_DARK_FLAVORS.includes(theme) ||
 		(theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
 
 	root.classList.toggle('dark', isDark);
 
+	// Apply Catppuccin flavor class if applicable
+	if ((CTP_FLAVORS as readonly string[]).includes(theme)) {
+		root.classList.add(theme);
+	}
+
 	// Update theme-color meta tag
 	const metaThemeColor = document.querySelector('meta[name="theme-color"]');
 	if (metaThemeColor) {
-		metaThemeColor.setAttribute('content', isDark ? '#1f2937' : '#ffffff');
+		const color = CTP_META_COLORS[theme] ?? (isDark ? '#1f2937' : '#ffffff');
+		metaThemeColor.setAttribute('content', color);
 	}
 }
 

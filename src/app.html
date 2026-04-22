@@ -19,41 +19,50 @@
     <script>
       (() => {
         try {
-          // Check if we're in a browser environment
           if (typeof window === "undefined") return;
 
-          // Try to get theme from localStorage with error handling
           let storedTheme = null;
           try {
             storedTheme = localStorage.getItem("theme");
           } catch (storageError) {
-            // localStorage might be blocked in private mode or by security settings
             console.warn("localStorage not accessible:", storageError);
           }
 
-          let darkModePreferred = false;
+          const CTP_DARK = ["ctp-frappe", "ctp-macchiato", "ctp-mocha"];
+          const CTP_META = {
+            "ctp-latte": "#eff1f5",
+            "ctp-frappe": "#303446",
+            "ctp-macchiato": "#24273a",
+            "ctp-mocha": "#1e1e2e",
+          };
 
-          if (storedTheme === "dark") {
+          let darkModePreferred = false;
+          let ctpFlavor = null;
+
+          if (storedTheme && storedTheme.startsWith("ctp-")) {
+            ctpFlavor = storedTheme;
+            darkModePreferred = CTP_DARK.includes(storedTheme);
+          } else if (storedTheme === "dark") {
             darkModePreferred = true;
           } else if (storedTheme === "system" || !storedTheme) {
-            // Check system preference for 'system' theme or when no theme is stored
-            const darkMediaQuery = window.matchMedia(
-              "(prefers-color-scheme: dark)",
-            );
-            darkModePreferred = darkMediaQuery.matches;
+            darkModePreferred = window.matchMedia(
+              "(prefers-color-scheme: dark)"
+            ).matches;
           }
-          // If storedTheme === 'light', darkModePreferred remains false
 
-          // Apply dark mode class if needed
           if (darkModePreferred) {
             document.documentElement.classList.add("dark");
           }
+          if (ctpFlavor) {
+            document.documentElement.classList.add(ctpFlavor);
+          }
 
-          // Update theme-color meta tag immediately
           const themeColorMeta = document.getElementById("theme-color");
           if (themeColorMeta) {
-            const newColor = darkModePreferred ? "#1f2937" : "#ffffff";
-            themeColorMeta.setAttribute("content", newColor);
+            const color =
+              CTP_META[ctpFlavor] ??
+              (darkModePreferred ? "#1f2937" : "#ffffff");
+            themeColorMeta.setAttribute("content", color);
           }
         } catch (e) {
           console.error("Theme detection error:", e);
