@@ -704,6 +704,7 @@ feeds = {
         "http://www.sammobile.com/feed/",
         "http://www.smbc-comics.com/rss.php",
         "http://www.techcentral.ie/feed/",
+        "https://www.technologyreview.com//feed",
         "http://www.techradar.com/rss",
         "http://www.theregister.co.uk/headlines.atom",
         "http://www.theverge.com/rss/full.xml",
