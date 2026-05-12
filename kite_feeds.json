@@ -12322,7 +12322,13 @@
       "https://www.tycg.gov.tw/OpenData.aspx?SN=50C7BB8497F3C8C2",
       "https://www.voh.com.tw/tw/Home/ugC_RSS.aspx",
       "https://www.worldjournal.com/wj/rssfeed/121098",
-      "https://www.ydn.com.tw/tw/Home/RSS.aspx?TID=4"
+      "https://www.ydn.com.tw/tw/Home/RSS.aspx?TID=4",
+      "https://www.inside.com.tw/feed/rss",
+      "https://www.businessinsider.tw/rss",
+      "https://siteapi.sports.gov.tw/1/News/309?handler=OpenDataRSS",
+      "https://www.telltaiwan.org/feed",
+      "https://www.ithome.com.tw/rss.xml",
+      "https://mashdigi.com/feed/"
     ]
   },
   "Tanzania": {
