@@ -14804,7 +14804,6 @@
       "https://hburgcitizen.com/feed/",
       "https://mountainmedianews.com/category/local/va-state-news/feed/",
       "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=site%3Anewsleader.com",
-      "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=site%3Avpm.org",
       "https://northernvirginiamag.com/feed/",
       "https://potomaclocal.com/feed/",
       "https://roanoke.com/search/?f=rss&t=article&c=news",
@@ -14822,7 +14821,8 @@
       "https://www.wsls.com/arc/outboundfeeds/rss/category/news/local/?outputType=xml&size=20",
       "https://www.wtkr.com/news/in-the-community.rss",
       "https://www.wuvanews.com/feed/",
-      "https://wydaily.com/feed"
+      "https://wydaily.com/feed",
+      "https://www.vpm.org/news.rss"
     ]
   },
   "USA | Washington": {
