@@ -312,6 +312,51 @@
       "https://www.thehindu.com/news/national/kerala/feeder/default.rss"
     ]
   },
+  "India | Maharashtra": {
+    "category_type": "region",
+    "source_language": "mr",
+    "display_names": {
+      "en": "India | Maharashtra",
+      "hi": "भारत | महाराष्ट्र",
+      "mr": "भारत | महाराष्ट्र",
+      "ar": "الهند | ماهاراشترا",
+      "de": "Indien | Maharashtra",
+      "es": "India | Maharashtra",
+      "fr": "Inde | Maharashtra",
+      "ja": "インド | マハーラーシュトラ",
+      "ko": "인도 | 마하라슈트라",
+      "pt": "Índia | Maharashtra",
+      "ru": "Индия | Махараштра",
+      "zh-Hans": "印度 | 马哈拉施特拉邦",
+      "zh-Hant": "印度 | 馬哈拉施特拉邦"
+    },
+    "feeds": [
+      "https://feeds.bbci.co.uk/marathi/rss.xml",
+      "https://indianexpress.com/section/cities/mumbai/feed/",
+      "https://indianexpress.com/section/cities/nagpur/feed/",
+      "https://indianexpress.com/section/cities/navi-mumbai/feed/",
+      "https://indianexpress.com/section/cities/pune/feed/",
+      "https://indianexpress.com/section/cities/thane/feed/",
+      "https://indianexpress.com/section/cities/nashik/feed/",
+      "https://www.loksatta.com/maharashtra/feed/",
+      "https://www.esakal.com/stories.rss",
+      "https://maharashtratimes.com/rssfeedsdefault.cms",
+      "https://www.thehindu.com/news/national/maharashtra/feeder/default.rss",
+      "https://eprabuddhbharat.com/feed/",
+      "https://divyamarathi.bhaskar.com/rss-v1--category-5492.xml",
+      "https://www.tv9marathi.com/feed",
+      "http://timesofindia.indiatimes.com/rssfeeds/-2128838597.cms",
+      "http://timesofindia.indiatimes.com/rssfeeds/-2128821991.cms",
+      "http://timesofindia.indiatimes.com/rssfeeds/442002.cms",
+      "https://www.hindustantimes.com/feeds/rss/cities/mumbai-news/rssfeed.xml",
+      "https://www.hindustantimes.com/feeds/rss/cities/pune-news/rssfeed.xml",
+      "https://navbharattimes.indiatimes.com/rssfeedsdefault.cms",
+      "https://www.navarashtra.com/feed",
+      "https://news18marathi.com/commonfeeds/v1/mar/rss/maharashtra.xml",
+      "https://marathi.abplive.com/news/maharashtra/feed",
+      "https://theprint.in/feed/"
+    ]
+  },
   "Madeira Island": {
     "category_type": "region",
     "source_language": "pt",
