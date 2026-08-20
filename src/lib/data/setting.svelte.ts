@@ -95,8 +95,6 @@ export class Setting<T = unknown> {
 			let valueToStore: string;
 			if (typeof this.currentValue === 'string') {
 				valueToStore = this.currentValue;
-			} else if (typeof this.currentValue === 'boolean' || typeof this.currentValue === 'number') {
-				valueToStore = String(this.currentValue);
 			} else {
 				valueToStore = JSON.stringify(this.currentValue);
 			}
