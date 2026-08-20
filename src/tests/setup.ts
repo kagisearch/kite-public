@@ -36,14 +36,21 @@ Object.defineProperty(window, 'matchMedia', {
 // Mock fetch
 global.fetch = vi.fn();
 
-// Mock localStorage
-const localStorageMock = {
-  getItem: vi.fn(),
-  setItem: vi.fn(),
-  removeItem: vi.fn(),
-  clear: vi.fn(),
-};
-global.localStorage = localStorageMock as any;
+// Replace Node's built-in localStorage: in vitest workers it initializes
+// with an invalid --localstorage-file path and shadows jsdom's working
+// storage with a dead object (localStorage.getItem === undefined).
+// Stateful; fresh per test file via setup re-run.
+const localStorageStore = new Map<string, string>();
+global.localStorage = {
+  getItem: (key: string) => localStorageStore.get(key) ?? null,
+  setItem: (key: string, value: string) => void localStorageStore.set(key, String(value)),
+  removeItem: (key: string) => void localStorageStore.delete(key),
+  clear: () => localStorageStore.clear(),
+  key: (index: number) => Array.from(localStorageStore.keys())[index] ?? null,
+  get length() {
+    return localStorageStore.size;
+  },
+}
 
 // Mock OverlayScrollbars
 vi.mock('overlayscrollbars', () => ({
