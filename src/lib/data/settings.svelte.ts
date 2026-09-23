@@ -438,6 +438,12 @@ function syncKnPrefsCookieFromSettings(): void {
 	import('./knPrefsCookie').then(({ syncKnPrefsCookie }) => syncKnPrefsCookie());
 }
 
+// Stories per category: a whole number in the slider's 3-12 range
+function clampStoryCount(value: number): number {
+	if (!Number.isFinite(value)) return settings.storyCount.defaultValue;
+	return Math.max(3, Math.min(12, Math.round(value)));
+}
+
 export const displaySettings = $state({
 	get fontSize(): FontSize {
 		return settings.fontSize.currentValue;
@@ -455,10 +461,11 @@ export const displaySettings = $state({
 		applyFontFamily(value);
 	},
 	get storyCount(): number {
-		return settings.storyCount.currentValue;
+		// Values loaded from storage or sync skip the setter, so clamp here too
+		return clampStoryCount(settings.storyCount.currentValue);
 	},
 	set storyCount(value: number) {
-		settings.storyCount.currentValue = Math.max(3, Math.min(12, value));
+		settings.storyCount.currentValue = clampStoryCount(value);
 		syncKnPrefsCookieFromSettings();
 	},
 	get categoryHeaderPosition(): CategoryHeaderPosition {

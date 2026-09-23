@@ -1,6 +1,6 @@
-import path from 'node:path';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { svelteTesting } from '@testing-library/svelte/vite';
+import path from 'node:path';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
@@ -22,8 +22,5 @@ export default defineConfig({
 			'$app/environment': path.resolve('./src/app.ts'),
 		},
 		conditions: ['browser'],
-	},
-	ssr: {
-		noExternal: true,
 	},
 });
