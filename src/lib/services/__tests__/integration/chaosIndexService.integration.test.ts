@@ -55,11 +55,11 @@ describe('ChaosIndexService Integration Tests', () => {
 					expect(typeof entry.summary).toBe('string');
 				});
 
-				// Verify entries are sorted by date (most recent first)
+				// /api/chaos/history returns entries oldest first
 				for (let i = 1; i < result.length; i++) {
 					const prevDate = new Date(result[i - 1].date);
 					const currDate = new Date(result[i].date);
-					expect(prevDate.getTime()).toBeGreaterThanOrEqual(currDate.getTime());
+					expect(prevDate.getTime()).toBeLessThanOrEqual(currDate.getTime());
 				}
 			}
 		});
