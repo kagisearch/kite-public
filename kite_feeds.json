@@ -12458,6 +12458,7 @@
       "zh-Hant": "瑞士 (法語)"
     },
     "feeds": [
+      "https://www.blick.ch/fr/rss.xml",
       "https://bluewin.ch/fr/feed.xml",
       "https://cdn.prod.swi-services.ch/rss/fre/rssxml/top-news/rss",
       "https://d-nsbc-p.admin.ch/NSBSubscriber/feeds/rss?lang=fr&org-nr=201",
@@ -12467,6 +12468,7 @@
       "https://d-nsbc-p.admin.ch/NSBSubscriber/feeds/rss?lang=fr&org-nr=601",
       "https://d-nsbc-p.admin.ch/NSBSubscriber/feeds/rss?lang=fr&org-nr=701",
       "https://d-nsbc-p.admin.ch/NSBSubscriber/feeds/rss?lang=fr&org-nr=801",
+      "https://lecourrier.ch/feed",
       "https://partner-feeds.20min.ch/rss/20minutes",
       "https://partner-feeds.20min.ch/rss/20minutes/economie",
       "https://partner-feeds.20min.ch/rss/20minutes/entertainment",
@@ -12502,7 +12504,8 @@
       "https://www.rts.ch/info/culture/?format=rss/news",
       "https://www.rts.ch/info/toute-info/?format=rss/news",
       "https://www.rts.ch/sport/?format=rss/news",
-      "https://www.swissinfo.ch/fre/latest/~rss"
+      "https://www.swissinfo.ch/fre/latest/~rss",
+      "https://www.watson.ch/fr/api/2.0/rss/index.xml?tag=Front"
     ]
   },
   "Switzerland (IT)": {
