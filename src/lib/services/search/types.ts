@@ -58,4 +58,4 @@ export interface SearchOptions {
 }
 
 // Search constants
-export const DEFAULT_SEARCH_LIMIT = 100;
+export const DEFAULT_SEARCH_LIMIT = 20;

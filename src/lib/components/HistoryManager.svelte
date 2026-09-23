@@ -1,6 +1,6 @@
 <script lang="ts">
 import { browser } from '$app/environment';
-import { goto, replaceState } from '$app/navigation';
+import { afterNavigate, goto, replaceState } from '$app/navigation';
 import { page } from '$app/state';
 import { categorySettings, displaySettings, languageSettings } from '$lib/data/settings.svelte.js';
 import { dataService } from '$lib/services/dataService';
@@ -104,6 +104,19 @@ function preserveOverlayParams(newUrl: string): string {
 export function updateUrl(params?: Partial<NavigationParams>) {
 	if (!browser) return;
 
+	// Bail out before SvelteKit's router has finished init. updateUrl is
+	// called from external hooks (useSinglePageMode, useStoryToggle) that
+	// can't easily wait for routerReady themselves; if any of those calls
+	// fires during hydration and replaceState throws, the throw propagates
+	// out of _hydrate() and SvelteKit NEVER sets started=true. Every
+	// subsequent updateUrl call (including click handlers) then fails
+	// forever with "Cannot call replaceState before router is initialized".
+	// HistoryManager's own URL-sync $effect re-runs when routerReady flips
+	// true and re-emits the correct URL state, so dropping this early call
+	// is harmless — the URL converges to the right value once the router is
+	// ready.
+	if (!routerReady) return;
+
 	// Update isSharedView immediately if provided in params
 	if (params?.isShared !== undefined) {
 		isSharedView = params.isShared;
@@ -112,9 +125,9 @@ export function updateUrl(params?: Partial<NavigationParams>) {
 	const newUrl = preserveOverlayParams(buildUrl(params));
 	const currentUrl = UrlNavigationService.getFullUrl(page.url);
 
-	// Only update if URL actually changed
+	// Only update if URL actually changed.
+	// (DON'T update lastProcessedUrl here — let the effect handle it.)
 	if (newUrl !== currentUrl) {
-		// DON'T update lastProcessedUrl here - let the effect handle it
 		replaceState(newUrl, {});
 	}
 }
@@ -132,12 +145,21 @@ export function navigateTo(params: Partial<NavigationParams>) {
 	}
 }
 
-// Track if initial load has been processed
-let initialLoadProcessed = $state(false);
+// Track when SvelteKit's router has settled its first navigation. Calls to
+// $app/navigation's replaceState/goto throw "Cannot call ... before router
+// is initialized" if they fire during initial hydration before the router's
+// internal `started` flag is set. onMount fires too early — the router init
+// completes in a follow-up microtask. afterNavigate fires *after* the first
+// navigation (including the initial page load) settles, which is exactly
+// when replaceState becomes safe to call.
+let routerReady = $state(false);
+afterNavigate(() => {
+	routerReady = true;
+});
 
 // Handle initial page load and browser navigation
 $effect(() => {
-	if (!browser) return;
+	if (!browser || !routerReady) return;
 
 	const urlString = UrlNavigationService.getFullUrl(page.url);
 
@@ -175,11 +197,6 @@ $effect(() => {
 		isSharedView = false;
 	}
 
-	// Handle initial load
-	if (!initialLoadProcessed) {
-		initialLoadProcessed = true;
-	}
-
 	// Notify parent component about navigation
 	const hasParams =
 		params.batchId !== undefined ||
@@ -205,7 +222,7 @@ let previousStoriesCount = $state(0);
 
 // Update URL when props change (but only call updateUrl, which is idempotent)
 $effect(() => {
-	if (!browser || !initialLoadProcessed) return;
+	if (!browser || !routerReady) return;
 
 	// Only update URL if props actually changed
 	const batchChanged = batchId !== previousBatchId;

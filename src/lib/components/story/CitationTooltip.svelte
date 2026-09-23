@@ -1,13 +1,13 @@
 <script lang="ts">
-import { flip, offset, shift, size, useFloating } from '@skeletonlabs/floating-ui-svelte';
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-svelte';
-import { onDestroy, onMount } from 'svelte';
-import Portal from 'svelte-portal';
 import { browser } from '$app/environment';
 import { s } from '$lib/client/localization.svelte';
 import type { Article, LocalizerFunction } from '$lib/types';
 import { scrollLock } from '$lib/utils/scrollLock';
 import CitationItem from './CitationItem.svelte';
+import { flip, offset, shift, size, useFloating } from '@skeletonlabs/floating-ui-svelte';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-svelte';
+import { onDestroy, onMount } from 'svelte';
+import Portal from 'svelte-portal';
 
 interface Props {
 	articles: Article[];
@@ -371,180 +371,164 @@ onDestroy(() => {
 </script>
 
 {#if showTooltip}
-  {#if !isMobile}
-    <!-- Desktop Tooltip -->
-    <Portal>
-      <div
-        bind:this={floating.elements.floating}
-        class="absolute top-0 left-0 z-tooltip w-80 max-w-[min(320px,calc(100vw-16px))] rounded-lg border border-gray-300 bg-white shadow-lg transition-opacity duration-200 dark:border-gray-600 dark:bg-gray-700 {floating.isPositioned
-          ? 'opacity-100'
-          : 'opacity-0 invisible'}"
-        style={floating.floatingStyles}
-        onmouseenter={handleTooltipEnter}
-        onmouseleave={handleTooltipLeave}
-        role="tooltip"
-      >
-        <!-- Content -->
-        <OverlayScrollbarsComponent
-          bind:this={tooltipScrollbars}
-          class="w-full overflow-hidden transition-[max-height] duration-200"
-          style="max-height: {tooltipMaxHeight}px"
-          defer
-          options={{
-            overflow: {
-              x: "hidden",
-              y: "scroll",
-            },
-            scrollbars: {
-              autoHide: "leave",
-              autoHideDelay: 300,
-            },
-          }}
-        >
-          <div class="p-3">
-            <h4 class="mb-3 font-semibold text-gray-800 dark:text-gray-200">
-              Citations
-            </h4>
+	{#if !isMobile}
+		<!-- Desktop Tooltip -->
+		<Portal>
+			<div
+				bind:this={floating.elements.floating}
+				class="absolute top-0 left-0 z-tooltip w-80 max-w-[min(320px,calc(100vw-16px))] rounded-lg border border-primary-200 bg-modal-bg shadow-lg transition-opacity duration-200 {floating.isPositioned
+					? 'opacity-100'
+					: 'opacity-0 invisible'}"
+				style={floating.floatingStyles}
+				onmouseenter={handleTooltipEnter}
+				onmouseleave={handleTooltipLeave}
+				role="tooltip"
+			>
+				<!-- Content -->
+				<OverlayScrollbarsComponent
+					bind:this={tooltipScrollbars}
+					class="w-full overflow-hidden transition-[max-height] duration-200"
+					style="max-height: {tooltipMaxHeight}px"
+					defer
+					options={{
+						overflow: {
+							x: 'hidden',
+							y: 'scroll',
+						},
+						scrollbars: {
+							autoHide: 'leave',
+							autoHideDelay: 300,
+						},
+					}}
+				>
+					<div class="p-3">
+						<h4 class="mb-3 font-semibold text-primary">Citations</h4>
 
-            <div class="space-y-2">
-              {#if citedItems.length > 0}
-                {@const uniqueItems = (() => {
-                  const seen = new Set();
-                  const unique = [];
+						<div class="space-y-2">
+							{#if citedItems.length > 0}
+								{@const uniqueItems = (() => {
+									const seen = new Set();
+									const unique = [];
 
-                  for (const item of citedItems) {
-                    if (item.isCommon) {
-                      // Only add common knowledge once
-                      if (!seen.has("common")) {
-                        seen.add("common");
-                        unique.push(item);
-                      }
-                    } else if (item.article) {
-                      // Only add each unique article once (by link as unique identifier)
-                      const articleKey = item.article.link;
-                      if (!seen.has(articleKey)) {
-                        seen.add(articleKey);
-                        unique.push(item);
-                      }
-                    }
-                  }
+									for (const item of citedItems) {
+										if (item.isCommon) {
+											// Only add common knowledge once
+											if (!seen.has('common')) {
+												seen.add('common');
+												unique.push(item);
+											}
+										} else if (item.article) {
+											// Only add each unique article once (by link as unique identifier)
+											const articleKey = item.article.link;
+											if (!seen.has(articleKey)) {
+												seen.add(articleKey);
+												unique.push(item);
+											}
+										}
+									}
 
-                  return unique;
-                })()}
-                {#each uniqueItems as item}
-                  <CitationItem {item} {highlightedNumbers} {storyLocalizer} />
-                {/each}
-              {/if}
-            </div>
-          </div>
-        </OverlayScrollbarsComponent>
-      </div>
-    </Portal>
-  {:else}
-    <!-- Mobile Modal -->
-    <Portal>
-      <div
-        class="fixed inset-0 z-tooltip flex items-center justify-center bg-black/60 dark:bg-black/80"
-        onclick={closeMobileModal}
-        onkeydown={(e) => e.key === "Escape" && closeMobileModal()}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="citations-modal-title"
-        tabindex="-1"
-      >
-        <div
-          class="flex h-full w-full flex-col bg-white shadow-xl dark:bg-gray-800"
-          onclick={(e) => e.stopPropagation()}
-          onkeydown={(e) => e.stopPropagation()}
-          role="presentation"
-        >
-          <!-- Header -->
-          <div
-            class="flex items-center border-b border-gray-200 p-4 dark:border-gray-700"
-          >
-            <button
-              class="mr-3 rounded-full p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-100"
-              onclick={closeMobileModal}
-              aria-label={storyLocalizer("common.back")}
-            >
-              <svg
-                class="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                />
-              </svg>
-            </button>
-            <h3
-              id="citations-modal-title"
-              class="flex-1 text-lg font-semibold text-gray-900 dark:text-gray-100"
-            >
-              Source Articles
-            </h3>
-          </div>
+									return unique;
+								})()}
+								{#each uniqueItems as item}
+									<CitationItem {item} {highlightedNumbers} {storyLocalizer} />
+								{/each}
+							{/if}
+						</div>
+					</div>
+				</OverlayScrollbarsComponent>
+			</div>
+		</Portal>
+	{:else}
+		<!-- Mobile Modal -->
+		<Portal>
+			<div
+				class="fixed inset-0 z-tooltip flex items-center justify-center bg-black/60 dark:bg-black/80"
+				onclick={closeMobileModal}
+				onkeydown={(e) => e.key === 'Escape' && closeMobileModal()}
+				role="dialog"
+				aria-modal="true"
+				aria-labelledby="citations-modal-title"
+				tabindex="-1"
+			>
+				<div
+					class="flex h-full w-full flex-col bg-modal-bg shadow-xl"
+					onclick={(e) => e.stopPropagation()}
+					onkeydown={(e) => e.stopPropagation()}
+					role="presentation"
+				>
+					<!-- Header -->
+					<div class="flex items-center border-b border-primary-100 p-4">
+						<button
+							class="mr-3 rounded-full p-2 text-primary-600 hover:bg-primary-50 hover:text-primary"
+							onclick={closeMobileModal}
+							aria-label={storyLocalizer('common.back')}
+						>
+							<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M10 19l-7-7m0 0l7-7m-7 7h18"
+								/>
+							</svg>
+						</button>
+						<h3 id="citations-modal-title" class="flex-1 text-lg font-semibold text-primary">
+							Source Articles
+						</h3>
+					</div>
 
-          <!-- Content -->
-          <OverlayScrollbarsComponent
-            class="flex-1 overflow-hidden"
-            defer
-            options={{
-              overflow: {
-                x: "hidden",
-                y: "scroll",
-              },
-              scrollbars: {
-                autoHide: "leave",
-                autoHideDelay: 300,
-              },
-            }}
-          >
-            <div class="p-4">
-              <h4
-                class="mb-4 text-lg font-semibold text-gray-800 dark:text-gray-200"
-              >
-                Citations
-              </h4>
+					<!-- Content -->
+					<OverlayScrollbarsComponent
+						class="flex-1 overflow-hidden"
+						defer
+						options={{
+							overflow: {
+								x: 'hidden',
+								y: 'scroll',
+							},
+							scrollbars: {
+								autoHide: 'leave',
+								autoHideDelay: 300,
+							},
+						}}
+					>
+						<div class="p-4">
+							<h4 class="mb-4 text-lg font-semibold text-primary">Citations</h4>
 
-              <div class="space-y-3">
-                {#if citedItems.length > 0}
-                  {@const uniqueItems = (() => {
-                    const seen = new Set();
-                    const unique = [];
+							<div class="space-y-3">
+								{#if citedItems.length > 0}
+									{@const uniqueItems = (() => {
+										const seen = new Set();
+										const unique = [];
 
-                    for (const item of citedItems) {
-                      if (item.isCommon) {
-                        // Only add common knowledge once
-                        if (!seen.has("common")) {
-                          seen.add("common");
-                          unique.push(item);
-                        }
-                      } else if (item.article) {
-                        // Only add each unique article once (by link as unique identifier)
-                        const articleKey = item.article.link;
-                        if (!seen.has(articleKey)) {
-                          seen.add(articleKey);
-                          unique.push(item);
-                        }
-                      }
-                    }
+										for (const item of citedItems) {
+											if (item.isCommon) {
+												// Only add common knowledge once
+												if (!seen.has('common')) {
+													seen.add('common');
+													unique.push(item);
+												}
+											} else if (item.article) {
+												// Only add each unique article once (by link as unique identifier)
+												const articleKey = item.article.link;
+												if (!seen.has(articleKey)) {
+													seen.add(articleKey);
+													unique.push(item);
+												}
+											}
+										}
 
-                    return unique;
-                  })()}
-                  {#each uniqueItems as item}
-                    <CitationItem {item} {highlightedNumbers} isMobile={true} {storyLocalizer} />
-                  {/each}
-                {/if}
-              </div>
-            </div>
-          </OverlayScrollbarsComponent>
-        </div>
-      </div>
-    </Portal>
-  {/if}
+										return unique;
+									})()}
+									{#each uniqueItems as item}
+										<CitationItem {item} {highlightedNumbers} isMobile={true} {storyLocalizer} />
+									{/each}
+								{/if}
+							</div>
+						</div>
+					</OverlayScrollbarsComponent>
+				</div>
+			</div>
+		</Portal>
+	{/if}
 {/if}

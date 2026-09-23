@@ -15,7 +15,7 @@ interface CategoryManagerOptions {
 	historyManager: HistoryManagerInstance | undefined;
 	isSinglePageMode: boolean;
 	storyList: StoryListInstance | undefined;
-	loadStoriesForCategory: (categoryId: string) => Promise<void>;
+	loadStoriesForCategory: (categoryId: string, opts?: { prefetch?: boolean }) => Promise<void>;
 	updatePageTitle: (categoryId: string) => void;
 	setCurrentCategory: (categoryId: string) => void;
 	clearExpandedStories: () => void;

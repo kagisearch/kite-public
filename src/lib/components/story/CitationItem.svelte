@@ -21,8 +21,8 @@ const badgeClasses = $derived(
 	isHighlighted
 		? 'bg-yellow-200 dark:bg-yellow-700 text-yellow-900 dark:text-yellow-100'
 		: item.isCommon
-			? 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
-			: 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200',
+			? 'bg-primary-50 text-primary-700'
+			: 'bg-purple-100 dark:bg-purple-900 text-accent-links',
 );
 
 const containerClasses = $derived(
@@ -39,83 +39,73 @@ const dateClasses = $derived(isMobile ? 'mt-1' : 'mt-0.5 text-xs');
 </script>
 
 {#if item.isCommon}
-  <!-- Common knowledge citation -->
-  <div
-    class="flex items-start {spacingClasses} {textSizeClasses} {containerClasses}"
-    data-citation-number="-1"
-  >
-    <span
-      class="citation-number-badge rounded {paddingClasses} font-medium flex-shrink-0 leading-none {badgeClasses}"
-    >
-      [*]
-    </span>
-    <div class="flex-1">
-      <div
-        class="font-medium text-gray-700 dark:text-gray-300 {isMobile
-          ? 'mb-2'
-          : 'mb-1'}"
-      >
-        {storyLocalizer("citation.commonKnowledge.title") || "Common Knowledge"}
-      </div>
-      <div
-        class="text-gray-600 dark:text-gray-400 {isMobile
-          ? 'leading-relaxed'
-          : 'text-xs leading-relaxed'}"
-      >
-        {storyLocalizer("citation.commonKnowledge.description") ||
-          "This information is common knowledge not pulled from a specific news source, but is included for context and completeness of the story."}
-      </div>
-    </div>
-  </div>
+	<!-- Common knowledge citation -->
+	<div
+		class="flex items-start {spacingClasses} {textSizeClasses} {containerClasses}"
+		data-citation-number="-1"
+	>
+		<span
+			class="citation-number-badge rounded {paddingClasses} font-medium flex-shrink-0 leading-none {badgeClasses}"
+		>
+			[*]
+		</span>
+		<div class="flex-1">
+			<div class="font-medium text-primary-700 {isMobile ? 'mb-2' : 'mb-1'}">
+				{storyLocalizer('citation.commonKnowledge.title') || 'Common Knowledge'}
+			</div>
+			<div class="text-primary-600 {isMobile ? 'leading-relaxed' : 'text-xs leading-relaxed'}">
+				{storyLocalizer('citation.commonKnowledge.description') ||
+					'This information is common knowledge not pulled from a specific news source, but is included for context and completeness of the story.'}
+			</div>
+		</div>
+	</div>
 {:else if item.article}
-  <!-- Regular article citation -->
-  <div
-    class="flex items-center {spacingClasses} {textSizeClasses} {containerClasses}"
-    data-citation-number={item.number}
-  >
-    <span
-      class="citation-number-badge rounded {paddingClasses} font-medium flex-shrink-0 leading-none {badgeClasses}"
-    >
-      [{item.number}]
-    </span>
-    <div class="flex items-center {spacingClasses} flex-1 min-w-0">
-      <FaviconImage
-        domain={item.article.domain}
-        alt="{item.article.domain} favicon"
-        class="{iconSizeClasses} rounded-sm flex-shrink-0"
-        loading="lazy"
-      />
-      <span
-        class="font-medium text-gray-700 dark:text-gray-300 truncate leading-none"
-      >
-        {item.article.domain}
-      </span>
-    </div>
-  </div>
-  <div class={marginClasses}>
-    <a
-      href={item.article.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="text-gray-600 dark:text-gray-400 hover:underline {linkClasses} block"
-      title={item.article.title}
-    >
-      {item.article.title}
-    </a>
-    {#if item.article.date}
-      <div class="text-gray-500 dark:text-gray-400 {dateClasses}">
-        {getTimeAgo(item.article.date)}
-      </div>
-    {/if}
-  </div>
+	<!-- Regular article citation -->
+	<div
+		class="flex items-center {spacingClasses} {textSizeClasses} {containerClasses}"
+		data-citation-number={item.number}
+	>
+		<span
+			class="citation-number-badge rounded {paddingClasses} font-medium flex-shrink-0 leading-none {badgeClasses}"
+		>
+			[{item.number}]
+		</span>
+		<div class="flex items-center {spacingClasses} flex-1 min-w-0">
+			<FaviconImage
+				domain={item.article.domain}
+				alt="{item.article.domain} favicon"
+				class="{iconSizeClasses} rounded-sm flex-shrink-0"
+				loading="lazy"
+			/>
+			<span class="font-medium text-primary-700 truncate leading-none">
+				{item.article.domain}
+			</span>
+		</div>
+	</div>
+	<div class={marginClasses}>
+		<a
+			href={item.article.link}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="text-primary-600 hover:underline {linkClasses} block"
+			title={item.article.title}
+		>
+			{item.article.title}
+		</a>
+		{#if item.article.date}
+			<div class="text-primary-600 {dateClasses}">
+				{getTimeAgo(item.article.date)}
+			</div>
+		{/if}
+	</div>
 {/if}
 
 <style>
-  .line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
+.line-clamp-2 {
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
 </style>

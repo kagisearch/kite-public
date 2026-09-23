@@ -27,7 +27,9 @@ export function createProxy(endpoint: string): RequestHandler {
         headers: request.headers,
         body: request.method !== 'GET' && request.method !== 'HEAD' 
           ? await request.blob() 
-          : undefined
+          : undefined,
+        // Stop the upstream request when the client goes away (SSE streams)
+        signal: request.signal
       });
       
       // Remove host header to avoid conflicts
@@ -36,22 +38,24 @@ export function createProxy(endpoint: string): RequestHandler {
       // Make the request to kite.kagi.com
       const response = await fetch(proxyRequest);
       
-      // Create a new headers object and remove problematic encoding headers
+      // fetch() already decoded the body, so these headers no longer describe it
       const headers = new Headers(response.headers);
       headers.delete('content-encoding');
+      headers.delete('content-length');
       headers.delete('transfer-encoding');
       
-      // Read the response body as a buffer to ensure proper handling
-      const body = await response.arrayBuffer();
-      
-      // Return the response with the same status and modified headers
-      return new Response(body, {
+      // Stream the body through, so server-sent events (/api/sse/*) work
+      return new Response(response.body, {
         status: response.status,
         statusText: response.statusText,
         headers: headers
       });
       
     } catch (error) {
+      // The client went away (e.g. closed an SSE stream), so there is nothing to report
+      if (request.signal.aborted) {
+        return new Response(null, { status: 499 });
+      }
       console.error('Proxy error:', error);
       return new Response(JSON.stringify({ error: 'Proxy request failed' }), {
         status: 500,

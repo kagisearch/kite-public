@@ -2,7 +2,6 @@
  * Service for real-time batch notifications via Server-Sent Events (SSE)
  * Connects to /api/sse/batches to receive notifications when new batches are available
  */
-
 import { browser } from '$app/environment';
 
 export type BatchNotification = {

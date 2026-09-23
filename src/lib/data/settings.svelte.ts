@@ -1,4 +1,5 @@
 import { browser } from '$app/environment';
+import type { KnPrefs } from './knPrefs';
 import { runMigrations } from './migrations';
 import { Setting } from './setting.svelte';
 
@@ -47,6 +48,7 @@ export type MapsProvider = 'auto' | 'kagi' | 'google' | 'openstreetmap' | 'apple
 export type SinglePageMode = 'disabled' | 'sequential' | 'mixed' | 'random';
 export type SinglePageMixOrder = 'sequential' | 'mixed' | 'random';
 export type LayoutWidth = 'normal' | 'wide' | 'full';
+export type FontFamily = 'default' | 'atkinson' | 'opendyslexic' | 'fast';
 export type ReadingLevel = 'very-simple' | 'simple' | 'normal';
 
 /**
@@ -75,6 +77,7 @@ export const settings = {
 
 	// Display Settings
 	fontSize: new Setting<FontSize>('fontSize', 'normal', 'when_not_default', 'display'),
+	fontFamily: new Setting<FontFamily>('fontFamily', 'default', 'when_not_default', 'display'),
 	storyCount: new Setting<number>('storyCount', 12, 'when_not_default', 'display'),
 	categoryHeaderPosition: new Setting<CategoryHeaderPosition>(
 		'categoryHeaderPosition',
@@ -180,6 +183,25 @@ export const settings = {
 		false,
 		'when_true',
 		'ui_state',
+	),
+
+	// Settings Lock (local-only, stores hashed PIN)
+	settingsLockPin: new Setting<string>('settingsLockPin', '', 'when_not_default', 'lock'),
+
+	// Managed mode options (local-only, caregiver-configurable when PIN is set)
+	managedMode: new Setting<Record<string, boolean>>(
+		'managedMode',
+		{
+			hideFontSize: true,
+			hideTimeTravel: true,
+			hideSearch: false,
+			hideChaosIndex: true,
+			hideShareButton: false,
+			hideReportButton: true,
+			disableKeyboardShortcuts: true,
+		},
+		'when_not_default',
+		'lock',
 	),
 
 	// Sync Settings (local-only, not synced) - enabled by default
@@ -289,6 +311,23 @@ function applyFontSize(size: FontSize) {
 }
 
 /**
+ * Apply font family to DOM
+ */
+function applyFontFamily(family: FontFamily) {
+	if (!browser) return;
+
+	const root = document.documentElement;
+
+	// Remove old font family classes
+	root.classList.remove('font-family-atkinson', 'font-family-opendyslexic', 'font-family-fast');
+
+	// Add new font family class (default needs no class)
+	if (family !== 'default') {
+		root.classList.add(`font-family-${family}`);
+	}
+}
+
+/**
  * Reactive state objects for easier access
  * These provide getters/setters that work with the Setting class
  */
@@ -358,6 +397,7 @@ export const languageSettings = $state({
 	set contentLanguages(value: SupportedLanguage[]) {
 		settings.contentLanguages.currentValue = value;
 		settings.contentLanguages.save();
+		syncKnPrefsCookieFromSettings();
 	},
 	/**
 	 * Get the language value to send to the API
@@ -391,6 +431,13 @@ export const languageSettings = $state({
 	},
 });
 
+function syncKnPrefsCookieFromSettings(): void {
+	if (!browser) return;
+	// Lazy import avoids a runtime cycle: knPrefsCookie reads these settings
+	// when it serializes the current first-render preferences.
+	import('./knPrefsCookie').then(({ syncKnPrefsCookie }) => syncKnPrefsCookie());
+}
+
 export const displaySettings = $state({
 	get fontSize(): FontSize {
 		return settings.fontSize.currentValue;
@@ -398,18 +445,28 @@ export const displaySettings = $state({
 	set fontSize(value: FontSize) {
 		settings.fontSize.currentValue = value;
 		applyFontSize(value);
+		syncKnPrefsCookieFromSettings();
+	},
+	get fontFamily(): FontFamily {
+		return settings.fontFamily.currentValue;
+	},
+	set fontFamily(value: FontFamily) {
+		settings.fontFamily.currentValue = value;
+		applyFontFamily(value);
 	},
 	get storyCount(): number {
 		return settings.storyCount.currentValue;
 	},
 	set storyCount(value: number) {
 		settings.storyCount.currentValue = Math.max(3, Math.min(12, value));
+		syncKnPrefsCookieFromSettings();
 	},
 	get categoryHeaderPosition(): CategoryHeaderPosition {
 		return settings.categoryHeaderPosition.currentValue;
 	},
 	set categoryHeaderPosition(value: CategoryHeaderPosition) {
 		settings.categoryHeaderPosition.currentValue = value;
+		syncKnPrefsCookieFromSettings();
 	},
 	get storyExpandMode(): StoryExpandMode {
 		return settings.storyExpandMode.currentValue;
@@ -440,291 +497,19 @@ export const displaySettings = $state({
 	},
 	set layoutWidth(value: LayoutWidth) {
 		settings.layoutWidth.currentValue = value;
+		syncKnPrefsCookieFromSettings();
 	},
 	get showIntro(): boolean {
 		return !settings.introShown.currentValue;
 	},
 	set showIntro(value: boolean) {
 		settings.introShown.currentValue = !value;
+		syncKnPrefsCookieFromSettings();
 	},
 });
 
-// Categories need special handling due to complex logic
-export interface Category {
-	id: string;
-	name: string;
-}
-
-const categoriesState = $state({
-	allCategories: [] as Category[],
-	temporaryCategory: null as string | null,
-	// Direct state for category settings
-	order: settings.categoryOrder.currentValue,
-	enabled: settings.enabledCategories.currentValue,
-	disabled: settings.disabledCategories.currentValue,
-	singlePageMode: settings.singlePageMode.currentValue || ('disabled' as SinglePageMode),
-});
-
-// Make categorySettings reactive by wrapping in $state
-export const categorySettings = $state({
-	// Direct access to state properties
-	get order() {
-		return categoriesState.order;
-	},
-	get enabled() {
-		return categoriesState.enabled;
-	},
-	get disabled() {
-		return categoriesState.disabled;
-	},
-	get allCategories() {
-		return categoriesState.allCategories;
-	},
-	get all() {
-		return categoriesState.allCategories;
-	}, // Alias
-	get temporaryCategory() {
-		return categoriesState.temporaryCategory;
-	},
-	get singlePageMode() {
-		return categoriesState.singlePageMode;
-	},
-	set singlePageMode(value: SinglePageMode) {
-		categoriesState.singlePageMode = value;
-		settings.singlePageMode.currentValue = value;
-		settings.singlePageMode.save();
-	},
-
-	setAllCategories(newCategories: Category[]) {
-		console.log('[CategorySettings] setAllCategories called with:', $state.snapshot(newCategories));
-		categoriesState.allCategories = newCategories;
-
-		// Always check for new categories that aren't in enabled or disabled
-		const allCategoryIds = newCategories.map((cat) => cat.id);
-		const categorizedIds = new Set([...this.enabled, ...this.disabled]);
-		const newCategoryIds = allCategoryIds.filter((cat) => !categorizedIds.has(cat));
-
-		console.log('[CategorySettings] Current enabled:', $state.snapshot(this.enabled));
-		console.log('[CategorySettings] Current disabled:', $state.snapshot(this.disabled));
-		console.log('[CategorySettings] All category IDs:', $state.snapshot(allCategoryIds));
-		console.log('[CategorySettings] Categorized IDs:', $state.snapshot(Array.from(categorizedIds)));
-		console.log('[CategorySettings] New category IDs found:', $state.snapshot(newCategoryIds));
-
-		if (newCategoryIds.length > 0) {
-			// Add new categories to disabled list by default
-			const updatedDisabled = [...this.disabled, ...newCategoryIds];
-			settings.disabledCategories.currentValue = updatedDisabled;
-			categoriesState.disabled = updatedDisabled;
-			settings.disabledCategories.save();
-
-			console.log('[CategorySettings] Added to disabled:', $state.snapshot(newCategoryIds));
-			console.log('[CategorySettings] Updated disabled list:', $state.snapshot(updatedDisabled));
-
-			// Also add to order if needed
-			const newForOrder = allCategoryIds.filter((cat) => !this.order.includes(cat));
-			if (newForOrder.length > 0) {
-				const updatedOrder = [...this.order, ...newForOrder];
-				settings.categoryOrder.currentValue = updatedOrder;
-				categoriesState.order = updatedOrder;
-				settings.categoryOrder.save();
-				console.log('[CategorySettings] Added to order:', $state.snapshot(newForOrder));
-			}
-		}
-	},
-	setOrder(newOrder: string[]) {
-		categoriesState.order = newOrder;
-		settings.categoryOrder.currentValue = newOrder;
-		settings.categoryOrder.save();
-		settings.enabledCategories.save();
-	},
-	setEnabled(newEnabled: string[]) {
-		console.log('[CategorySettings] setEnabled called with:', $state.snapshot(newEnabled));
-		categoriesState.enabled = newEnabled;
-		settings.enabledCategories.currentValue = newEnabled;
-		// Update disabled to be all categories not in enabled
-		const allCategoryIds = categoriesState.allCategories.map((cat) => cat.id);
-		categoriesState.disabled = allCategoryIds.filter((cat) => !newEnabled.includes(cat));
-		settings.disabledCategories.currentValue = categoriesState.disabled;
-		settings.enabledCategories.save();
-		settings.disabledCategories.save();
-		console.log(
-			'[CategorySettings] After setEnabled, categoriesState.enabled:',
-			$state.snapshot(categoriesState.enabled),
-		);
-	},
-	setDisabled(newDisabled: string[]) {
-		// Remove disabled categories from enabled
-		categoriesState.enabled = categoriesState.enabled.filter((cat) => !newDisabled.includes(cat));
-		// Disable all categories not found in enabled
-		const allCategoryIds = categoriesState.allCategories.map((cat) => cat.id);
-		categoriesState.disabled = allCategoryIds.filter(
-			(cat) => !categoriesState.enabled.includes(cat),
-		);
-
-		settings.enabledCategories.currentValue = categoriesState.enabled;
-		settings.disabledCategories.currentValue = categoriesState.disabled;
-		settings.enabledCategories.save();
-		settings.disabledCategories.save();
-	},
-	cleanupDisabled(validDisabledCategories: string[]) {
-		// Only update disabled list, don't touch enabled
-		// Used to clean up categories that no longer exist in the batch
-		categoriesState.disabled = validDisabledCategories;
-		settings.disabledCategories.currentValue = validDisabledCategories;
-		settings.disabledCategories.save();
-	},
-	enableCategory(category: string) {
-		// Special case: if this is the temporary category, make it permanent
-		if (category === categoriesState.temporaryCategory) {
-			this.clearTemporaryFlag();
-			// It's already in enabled list, just save it now
-			const newEnabled = [...this.enabled];
-			this.setEnabled(newEnabled);
-			return;
-		}
-
-		// Normal case: add to enabled list if not already there
-		if (!this.enabled.includes(category)) {
-			const newEnabled = [...this.enabled, category];
-			this.setEnabled(newEnabled);
-		}
-	},
-	disableCategory(category: string) {
-		if (!this.disabled.includes(category)) {
-			const newDisabled = [...this.disabled, category];
-			this.setDisabled(newDisabled);
-		}
-	},
-	isEnabled(category: string): boolean {
-		return this.enabled.includes(category);
-	},
-	isDisabled(category: string): boolean {
-		return this.disabled.includes(category);
-	},
-	addTemporary(categoryId: string) {
-		categoriesState.temporaryCategory = categoryId;
-		if (!this.enabled.includes(categoryId)) {
-			// Only update the reactive state, NOT the Setting.currentValue
-			// This prevents the sync watcher from detecting it as a change
-			categoriesState.enabled = [...categoriesState.enabled, categoryId];
-			// Don't modify settings.enabledCategories.currentValue or save
-		}
-	},
-	removeTemporary() {
-		if (categoriesState.temporaryCategory) {
-			// Only update the reactive state, NOT the Setting.currentValue
-			categoriesState.enabled = categoriesState.enabled.filter(
-				(cat) => cat !== categoriesState.temporaryCategory,
-			);
-			categoriesState.temporaryCategory = null;
-			// Don't modify settings.enabledCategories.currentValue or save - just restore to original state
-		}
-	},
-	clearTemporaryFlag() {
-		// Just clear the temporary flag without modifying enabled/disabled lists
-		// Use this when the temporary category is being permanently enabled
-		categoriesState.temporaryCategory = null;
-	},
-	// Load from localStorage and update reactive state
-	init() {
-		if (!browser) return;
-		settings.categoryOrder.load();
-		settings.enabledCategories.load();
-		settings.disabledCategories.load();
-		settings.singlePageMode.load();
-
-		// Deduplicate arrays (keeps first occurrence) - duplicates can sneak in via sync
-		const dedupe = (arr: string[]) => [...new Set(arr)];
-		const order = dedupe(settings.categoryOrder.currentValue);
-		const enabled = dedupe(settings.enabledCategories.currentValue);
-		const disabled = dedupe(settings.disabledCategories.currentValue);
-
-		// If we found duplicates, save the clean versions back
-		if (order.length !== settings.categoryOrder.currentValue.length) {
-			settings.categoryOrder.currentValue = order;
-			settings.categoryOrder.save();
-		}
-		if (enabled.length !== settings.enabledCategories.currentValue.length) {
-			settings.enabledCategories.currentValue = enabled;
-			settings.enabledCategories.save();
-		}
-		if (disabled.length !== settings.disabledCategories.currentValue.length) {
-			settings.disabledCategories.currentValue = disabled;
-			settings.disabledCategories.save();
-		}
-
-		// Update the reactive state after loading
-		categoriesState.order = order;
-		categoriesState.enabled = enabled;
-		categoriesState.disabled = disabled;
-		categoriesState.singlePageMode = settings.singlePageMode.currentValue;
-	},
-	// Reload from localStorage (called after sync updates)
-	reload() {
-		// Just call init - it does the same thing
-		this.init();
-	},
-	initWithDefaults() {
-		if (!browser || categoriesState.allCategories.length === 0) return;
-
-		const allCategoryIds = categoriesState.allCategories.map((cat) => cat.id);
-
-		// Default enabled categories for first-time setup
-		const defaultEnabledCategories = [
-			'world',
-			'usa',
-			'business',
-			'tech',
-			'science',
-			'sports',
-			'gaming',
-			'onthisday',
-		];
-
-		// If no enabled categories, set defaults
-		if (this.enabled.length === 0) {
-			// Set enabled categories to defaults (that exist in current batch)
-			const enabledDefaults = defaultEnabledCategories.filter((categoryId) =>
-				allCategoryIds.includes(categoryId),
-			);
-			settings.enabledCategories.currentValue = enabledDefaults;
-			categoriesState.enabled = enabledDefaults; // Update the reactive state too!
-
-			// Set disabled categories to all others
-			const disabledDefaults = allCategoryIds.filter(
-				(categoryId) => !defaultEnabledCategories.includes(categoryId),
-			);
-			settings.disabledCategories.currentValue = disabledDefaults;
-			categoriesState.disabled = disabledDefaults; // Update the reactive state too!
-		}
-
-		// If no order, set default order
-		if (this.order.length === 0) {
-			const orderedCategories = defaultEnabledCategories.filter((categoryId) =>
-				allCategoryIds.includes(categoryId),
-			);
-			const remainingCategories = allCategoryIds.filter(
-				(categoryId) => !defaultEnabledCategories.includes(categoryId),
-			);
-			const defaultOrder = [...orderedCategories, ...remainingCategories];
-			settings.categoryOrder.currentValue = defaultOrder;
-			categoriesState.order = defaultOrder; // Update the reactive state too!
-		} else {
-			// Add new categories to order
-			const newCategories = allCategoryIds.filter((cat) => !this.order.includes(cat));
-			if (newCategories.length > 0) {
-				const newOrder = [...this.order, ...newCategories];
-				settings.categoryOrder.currentValue = newOrder;
-				categoriesState.order = newOrder; // Update the reactive state too!
-			}
-		}
-
-		// Save all category settings
-		settings.categoryOrder.save();
-		settings.enabledCategories.save();
-		settings.disabledCategories.save();
-	},
-});
+// Category settings are in their own module — re-export for backward compatibility
+export { categorySettings } from './category-settings.svelte';
 
 export const contentFilterSettings = $state({
 	get current(): ContentFilter {
@@ -913,6 +698,66 @@ export const syncSettings = $state({
 	},
 });
 
+// Settings lock state
+export const settingsLock = $state({
+	get isLocked(): boolean {
+		return settings.settingsLockPin.currentValue !== '';
+	},
+	get hasPin(): boolean {
+		return settings.settingsLockPin.currentValue !== '';
+	},
+	/** Hash a PIN using SHA-256 */
+	async hashPin(pin: string): Promise<string> {
+		const encoder = new TextEncoder();
+		const data = encoder.encode(pin);
+		const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+		const hashArray = Array.from(new Uint8Array(hashBuffer));
+		return hashArray.map((b) => b.toString(16).padStart(2, '0')).join('');
+	},
+	/** Verify a PIN against the stored hash */
+	async verifyPin(pin: string): Promise<boolean> {
+		const hash = await this.hashPin(pin);
+		return hash === settings.settingsLockPin.currentValue;
+	},
+	/** Set a new PIN (stores the hash) */
+	async setPin(pin: string) {
+		const hash = await this.hashPin(pin);
+		settings.settingsLockPin.currentValue = hash;
+		settings.settingsLockPin.save();
+	},
+	/** Remove the PIN lock */
+	removePin() {
+		settings.settingsLockPin.currentValue = '';
+		settings.settingsLockPin.save();
+	},
+	/** Managed mode helpers — only effective when PIN is set */
+	get managed(): Record<string, boolean> {
+		return settings.managedMode.currentValue;
+	},
+	/**
+	 * Returns whether a managed-mode option is active. Only has effect when a
+	 * PIN is set. `defaultValue` lets a specific option opt into "hidden by
+	 * default once a PIN is set" semantics (pass `true`) — useful for
+	 * features that should disappear from a simplified reading view unless
+	 * the guardian explicitly re-enables them.
+	 */
+	getManagedOption(key: string, defaultValue: boolean = false): boolean {
+		return this.hasPin && (settings.managedMode.currentValue[key] ?? defaultValue);
+	},
+	setManagedOption(key: string, value: boolean) {
+		settings.managedMode.currentValue = {
+			...settings.managedMode.currentValue,
+			[key]: value,
+		};
+		settings.managedMode.save();
+	},
+	init() {
+		if (!browser) return;
+		settings.settingsLockPin.load();
+		settings.managedMode.load();
+	},
+});
+
 // Settings modal state (UI only, not persisted)
 export const settingsModalState = $state({
 	isOpen: false,
@@ -934,9 +779,13 @@ export function loadAllSettings(context?: { isLoggedIn?: boolean }) {
 	// Run any pending migrations after settings are loaded
 	runMigrations();
 
-	// Apply theme and font size after loading
+	// Apply theme, font size, and font family after loading
 	applyTheme(settings.theme.currentValue);
 	applyFontSize(settings.fontSize.currentValue);
+	applyFontFamily(settings.fontFamily.currentValue);
+
+	// Initialize settings lock
+	settingsLock.init();
 
 	// Listen for system theme changes
 	const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
@@ -946,6 +795,25 @@ export function loadAllSettings(context?: { isLoggedIn?: boolean }) {
 			applyTheme('system');
 		}
 	});
+}
+
+/**
+ * Seed structural settings from SSR cookie data before the first render.
+ * These settings change the rendered DOM, so they must match on the server
+ * and on the client's initial hydration pass. `loadAllSettings()` remains the
+ * browser-side source of truth and will reconcile from localStorage on mount.
+ */
+export function seedSettingsFromSsrPrefs(prefs: KnPrefs | null | undefined): void {
+	const display = prefs?.display;
+
+	settings.fontSize.currentValue = display?.fontSize ?? settings.fontSize.defaultValue;
+	settings.storyCount.currentValue = display?.storyCount ?? settings.storyCount.defaultValue;
+	settings.layoutWidth.currentValue = display?.layoutWidth ?? settings.layoutWidth.defaultValue;
+	settings.categoryHeaderPosition.currentValue =
+		display?.categoryHeaderPosition ?? settings.categoryHeaderPosition.defaultValue;
+	settings.introShown.currentValue = display?.introShown ?? settings.introShown.defaultValue;
+	settings.singlePageMode.currentValue =
+		display?.singlePageMode ?? settings.singlePageMode.defaultValue;
 }
 
 // Save all settings to localStorage

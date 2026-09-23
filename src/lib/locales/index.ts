@@ -14,6 +14,7 @@ import ru from './ru.json';
 import uk from './uk.json';
 import zhHans from './zh-Hans.json';
 import zhHant from './zh-Hant.json';
+
 export default {
 	ar,
 	de,

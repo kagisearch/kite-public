@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest';
 import { mediaService } from '../../mediaService';
+import { describe, expect, it } from 'vitest';
 
 describe('MediaService Integration Tests', () => {
 	describe('loadMediaData with real API', () => {

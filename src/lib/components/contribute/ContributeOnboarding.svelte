@@ -1,4 +1,5 @@
 <script lang="ts">
+import { s } from '$lib/client/localization.svelte';
 import {
 	IconBrandGithub,
 	IconCheck,
@@ -9,7 +10,6 @@ import {
 	IconUsers,
 	IconX,
 } from '@tabler/icons-svelte';
-import { s } from '$lib/client/localization.svelte';
 
 interface Props {
 	onComplete: () => void;
@@ -170,9 +170,7 @@ const networkCSS = buildNetworkCSS();
 	<!-- Header -->
 	<header class="pt-16 pb-10 px-5 text-center hero-fade">
 		<img src="/favicon.svg" alt="" class="w-14 h-14 mx-auto mb-5" />
-		<h1
-			class="text-3xl md:text-4xl font-bold text-primary"
-		>
+		<h1 class="text-3xl md:text-4xl font-bold text-primary">
 			{s('contribute.onboarding.title')}
 		</h1>
 		<p class="mt-2 text-base text-primary-600 max-w-lg mx-auto">
@@ -183,9 +181,7 @@ const networkCSS = buildNetworkCSS();
 	<div class="max-w-2xl mx-auto px-5 pb-20 space-y-12">
 		<!-- How stories get made -->
 		<section use:reveal class="reveal-section">
-			<h2
-				class="text-lg font-semibold text-primary mb-5"
-			>
+			<h2 class="text-lg font-semibold text-primary mb-5">
 				{s('contribute.onboarding.pipeline.title')}
 			</h2>
 
@@ -193,19 +189,15 @@ const networkCSS = buildNetworkCSS();
 				<!-- Step 1 -->
 				<div class="flex items-start gap-3">
 					<div
-						class="w-7 h-7 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center font-semibold text-xs shrink-0 mt-0.5"
+						class="w-7 h-7 rounded-full bg-purple-100 dark:bg-purple-900/40 text-accent-links flex items-center justify-center font-semibold text-xs shrink-0 mt-0.5"
 					>
 						1
 					</div>
 					<div>
-						<h3
-							class="text-sm font-semibold text-primary"
-						>
+						<h3 class="text-sm font-semibold text-primary">
 							{s('contribute.onboarding.pipeline.step1.title')}
 						</h3>
-						<p
-							class="text-sm text-primary-600 leading-relaxed"
-						>
+						<p class="text-sm text-primary-600 leading-relaxed">
 							{s('contribute.onboarding.pipeline.step1.description')}
 						</p>
 					</div>
@@ -219,14 +211,10 @@ const networkCSS = buildNetworkCSS();
 						2
 					</div>
 					<div>
-						<h3
-							class="text-sm font-semibold text-primary"
-						>
+						<h3 class="text-sm font-semibold text-primary">
 							{s('contribute.onboarding.pipeline.step2.title')}
 						</h3>
-						<p
-							class="text-sm text-primary-600 leading-relaxed"
-						>
+						<p class="text-sm text-primary-600 leading-relaxed">
 							{s('contribute.onboarding.pipeline.step2.description')}
 						</p>
 					</div>
@@ -235,19 +223,15 @@ const networkCSS = buildNetworkCSS();
 				<!-- Step 3 -->
 				<div class="flex items-start gap-3">
 					<div
-						class="w-7 h-7 rounded-full bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400 flex items-center justify-center font-semibold text-xs shrink-0 mt-0.5"
+						class="w-7 h-7 rounded-full bg-purple-100 dark:bg-purple-900/40 text-accent-links flex items-center justify-center font-semibold text-xs shrink-0 mt-0.5"
 					>
 						3
 					</div>
 					<div>
-						<h3
-							class="text-sm font-semibold text-primary"
-						>
+						<h3 class="text-sm font-semibold text-primary">
 							{s('contribute.onboarding.pipeline.step3.title')}
 						</h3>
-						<p
-							class="text-sm text-primary-600 leading-relaxed"
-						>
+						<p class="text-sm text-primary-600 leading-relaxed">
 							{s('contribute.onboarding.pipeline.step3.description')}
 						</p>
 					</div>
@@ -255,16 +239,8 @@ const networkCSS = buildNetworkCSS();
 			</div>
 
 			<!-- Clustering animation -->
-			<div
-				class="mt-6 flex justify-center bg-primary-50 rounded-lg py-6"
-				aria-hidden="true"
-			>
-				<svg
-					class="clustering-illustration"
-					viewBox="0 0 280 120"
-					width="300"
-					height="129"
-				>
+			<div class="mt-6 flex justify-center bg-primary-50 rounded-lg py-6" aria-hidden="true">
+				<svg class="clustering-illustration" viewBox="0 0 280 120" width="300" height="129">
 					<circle class="dot dot-a1" cx="30" cy="20" r="6" fill="#3b82f6" opacity="0.7" />
 					<circle class="dot dot-a2" cx="80" cy="90" r="6" fill="#6366f1" opacity="0.7" />
 					<circle class="dot dot-a3" cx="50" cy="55" r="6" fill="#8b5cf6" opacity="0.7" />
@@ -277,16 +253,48 @@ const networkCSS = buildNetworkCSS();
 					<circle class="dot dot-l1" cx="140" cy="30" r="5" fill="#f59e0b" opacity="0.7" />
 					<circle class="dot dot-l2" cx="150" cy="100" r="5" fill="#ef4444" opacity="0.7" />
 					<circle class="dot dot-l3" cx="125" cy="70" r="4" fill="#f97316" opacity="0.6" />
-					<circle class="cluster-ring ring-a" cx="55" cy="55" r="26" fill="none" stroke="#6366f1" stroke-width="1.5" opacity="0" />
-					<circle class="cluster-ring ring-b" cx="228" cy="52" r="24" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0" />
-					<text class="cluster-label label-a" x="55" y="92" text-anchor="middle" font-size="9" fill="#6366f1" opacity="0">story</text>
-					<text class="cluster-label label-b" x="228" y="87" text-anchor="middle" font-size="9" fill="#10b981" opacity="0">story</text>
+					<circle
+						class="cluster-ring ring-a"
+						cx="55"
+						cy="55"
+						r="26"
+						fill="none"
+						stroke="#6366f1"
+						stroke-width="1.5"
+						opacity="0"
+					/>
+					<circle
+						class="cluster-ring ring-b"
+						cx="228"
+						cy="52"
+						r="24"
+						fill="none"
+						stroke="#10b981"
+						stroke-width="1.5"
+						opacity="0"
+					/>
+					<text
+						class="cluster-label label-a"
+						x="55"
+						y="92"
+						text-anchor="middle"
+						font-size="9"
+						fill="#6366f1"
+						opacity="0">story</text
+					>
+					<text
+						class="cluster-label label-b"
+						x="228"
+						y="87"
+						text-anchor="middle"
+						font-size="9"
+						fill="#10b981"
+						opacity="0">story</text
+					>
 				</svg>
 			</div>
 
-			<p
-				class="mt-4 text-xs text-primary-400 italic text-center"
-			>
+			<p class="mt-4 text-xs text-primary-400 italic text-center">
 				{s('contribute.onboarding.pipeline.note')}
 			</p>
 		</section>
@@ -295,9 +303,7 @@ const networkCSS = buildNetworkCSS();
 
 		<!-- Community-driven nature -->
 		<section use:reveal class="reveal-section">
-			<h2
-				class="text-lg font-semibold text-primary mb-3"
-			>
+			<h2 class="text-lg font-semibold text-primary mb-3">
 				{s('contribute.onboarding.community.title')}
 			</h2>
 			<div class="space-y-3 text-sm text-primary-600 leading-relaxed">
@@ -310,11 +316,13 @@ const networkCSS = buildNetworkCSS();
 			<!-- svelte-ignore a11y_no_static_element_interactions -->
 			<!-- eslint-disable svelte/no-at-html-tags -->
 			{@html `<style>${networkCSS}</style>`}
-			<div
-				class="mt-5 bg-primary-50 rounded-lg py-5 px-2"
-				aria-hidden="true"
-			>
-				<svg class="network-illustration" viewBox="0 0 460 135" width="100%" preserveAspectRatio="xMidYMid meet">
+			<div class="mt-5 bg-primary-50 rounded-lg py-5 px-2" aria-hidden="true">
+				<svg
+					class="network-illustration"
+					viewBox="0 0 460 135"
+					width="100%"
+					preserveAspectRatio="xMidYMid meet"
+				>
 					<!-- Feed → story connection lines (drawn left-to-right) -->
 					{#each BIP_LINES as line}
 						<line
@@ -345,26 +353,61 @@ const networkCSS = buildNetworkCSS();
 
 					<!-- Story cluster nodes (right side) -->
 					{#each BIP_STORIES as story, i}
-						<circle class="bstory bstory-{i}" cx={story.x} cy={story.y} r={story.r} fill={story.color} opacity="0" />
+						<circle
+							class="bstory bstory-{i}"
+							cx={story.x}
+							cy={story.y}
+							r={story.r}
+							fill={story.color}
+							opacity="0"
+						/>
 					{/each}
 
 					<!-- Feed nodes (left side) -->
 					{#each BIP_FEEDS as feed, i}
-						<circle class="bfeed bfeed-{i}" cx={feed.x} cy={feed.y} r={feed.r} fill={feed.color} opacity="0" />
+						<circle
+							class="bfeed bfeed-{i}"
+							cx={feed.x}
+							cy={feed.y}
+							r={feed.r}
+							fill={feed.color}
+							opacity="0"
+						/>
 					{/each}
 
 					<!-- "You" node -->
-					<circle class="bfeed bfeed-you" cx={BIP_YOU.x} cy={BIP_YOU.y} r={BIP_YOU.r} fill={BIP_YOU.color} opacity="0" />
+					<circle
+						class="bfeed bfeed-you"
+						cx={BIP_YOU.x}
+						cy={BIP_YOU.y}
+						r={BIP_YOU.r}
+						fill={BIP_YOU.color}
+						opacity="0"
+					/>
 
 					<!-- Labels -->
-					<text class="blabel blabel-stories" x="420" y="60" text-anchor="start" font-size="8" fill="#6b7280" opacity="0">{s('contribute.onboarding.community.networkLabelStories')}</text>
-					<text class="blabel blabel-you" x={BIP_YOU.x + 12} y={BIP_YOU.y + 3} text-anchor="start" font-size="8" fill={BIP_YOU.color} opacity="0">{s('contribute.onboarding.community.networkLabelYou')}</text>
+					<text
+						class="blabel blabel-stories"
+						x="420"
+						y="60"
+						text-anchor="start"
+						font-size="8"
+						fill="#6b7280"
+						opacity="0">{s('contribute.onboarding.community.networkLabelStories')}</text
+					>
+					<text
+						class="blabel blabel-you"
+						x={BIP_YOU.x + 12}
+						y={BIP_YOU.y + 3}
+						text-anchor="start"
+						font-size="8"
+						fill={BIP_YOU.color}
+						opacity="0">{s('contribute.onboarding.community.networkLabelYou')}</text
+					>
 				</svg>
 			</div>
 
-			<p
-				class="mt-3 text-xs text-primary-400 italic text-center"
-			>
+			<p class="mt-3 text-xs text-primary-400 italic text-center">
 				{s('contribute.onboarding.community.networkNote')}
 			</p>
 		</section>
@@ -373,49 +416,29 @@ const networkCSS = buildNetworkCSS();
 
 		<!-- Two kinds of feeds -->
 		<section use:reveal class="reveal-section">
-			<h2
-				class="text-lg font-semibold text-primary mb-4"
-			>
+			<h2 class="text-lg font-semibold text-primary mb-4">
 				{s('contribute.onboarding.feedTypes.title')}
 			</h2>
 			<div class="grid sm:grid-cols-2 gap-4">
-				<div
-					class="border border-primary-200 rounded-lg p-4"
-				>
+				<div class="border border-primary-200 rounded-lg p-4">
 					<div class="flex items-center gap-2 mb-2">
-						<IconServer
-							size={16}
-							class="text-blue-500"
-						/>
-						<h3
-							class="text-sm font-semibold text-primary"
-						>
+						<IconServer size={16} class="text-accent-links" />
+						<h3 class="text-sm font-semibold text-primary">
 							{s('contribute.onboarding.feedTypes.core.title')}
 						</h3>
 					</div>
-					<p
-						class="text-xs text-primary-600 leading-relaxed"
-					>
+					<p class="text-xs text-primary-600 leading-relaxed">
 						{s('contribute.onboarding.feedTypes.core.description')}
 					</p>
 				</div>
-				<div
-					class="border border-blue-200 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-900/10 rounded-lg p-4"
-				>
+				<div class="border border-primary-100 bg-primary-25 rounded-lg p-4">
 					<div class="flex items-center gap-2 mb-2">
-						<IconUsers
-							size={16}
-							class="text-blue-600 dark:text-blue-400"
-						/>
-						<h3
-							class="text-sm font-semibold text-primary"
-						>
+						<IconUsers size={16} class="text-accent-links" />
+						<h3 class="text-sm font-semibold text-primary">
 							{s('contribute.onboarding.feedTypes.community.title')}
 						</h3>
 					</div>
-					<p
-						class="text-xs text-primary-600 leading-relaxed"
-					>
+					<p class="text-xs text-primary-600 leading-relaxed">
 						{s('contribute.onboarding.feedTypes.community.description')}
 					</p>
 				</div>
@@ -426,33 +449,23 @@ const networkCSS = buildNetworkCSS();
 
 		<!-- What you can contribute -->
 		<section use:reveal class="reveal-section">
-			<h2
-				class="text-lg font-semibold text-primary mb-4"
-			>
+			<h2 class="text-lg font-semibold text-primary mb-4">
 				{s('contribute.onboarding.whatToDo.title')}
 			</h2>
 			<div class="space-y-4">
 				<div>
-					<h3
-						class="text-sm font-semibold text-primary mb-1"
-					>
+					<h3 class="text-sm font-semibold text-primary mb-1">
 						{s('contribute.onboarding.whatToDo.existing.title')}
 					</h3>
-					<p
-						class="text-sm text-primary-600 leading-relaxed"
-					>
+					<p class="text-sm text-primary-600 leading-relaxed">
 						{s('contribute.onboarding.whatToDo.existing.description')}
 					</p>
 				</div>
 				<div>
-					<h3
-						class="text-sm font-semibold text-primary mb-1"
-					>
+					<h3 class="text-sm font-semibold text-primary mb-1">
 						{s('contribute.onboarding.whatToDo.new.title')}
 					</h3>
-					<p
-						class="text-sm text-primary-600 leading-relaxed"
-					>
+					<p class="text-sm text-primary-600 leading-relaxed">
 						{s('contribute.onboarding.whatToDo.new.description')}
 					</p>
 				</div>
@@ -463,14 +476,12 @@ const networkCSS = buildNetworkCSS();
 
 		<!-- Feed guidelines -->
 		<section use:reveal class="reveal-section">
-			<h2
-				class="text-lg font-semibold text-primary mb-4"
-			>
+			<h2 class="text-lg font-semibold text-primary mb-4">
 				{s('contribute.onboarding.guidelines.title')}
 			</h2>
 			<ul class="space-y-3">
 				<li class="flex items-start gap-2.5 text-sm text-primary-600">
-					<IconRss size={15} class="shrink-0 mt-0.5 text-blue-500" />
+					<IconRss size={15} class="shrink-0 mt-0.5 text-accent-links" />
 					<span>{s('contribute.onboarding.guidelines.rssOnly')}</span>
 				</li>
 				<li class="flex items-start gap-2.5 text-sm text-primary-600">
@@ -494,7 +505,7 @@ const networkCSS = buildNetworkCSS();
 					<span>{s('contribute.onboarding.guidelines.noLanguageSplit')}</span>
 				</li>
 				<li class="flex items-start gap-2.5 text-sm text-primary-600">
-					<IconRss size={15} class="shrink-0 mt-0.5 text-blue-500" />
+					<IconRss size={15} class="shrink-0 mt-0.5 text-accent-links" />
 					<span>{s('contribute.onboarding.guidelines.minimum')}</span>
 				</li>
 			</ul>
@@ -504,7 +515,7 @@ const networkCSS = buildNetworkCSS();
 		<section use:reveal class="reveal-section text-center pt-4">
 			<button
 				onclick={onComplete}
-				class="inline-flex items-center gap-2 px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors text-base"
+				class="inline-flex items-center gap-2 px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg transition-colors text-base"
 			>
 				{s('contribute.onboarding.cta')}
 				<span class="text-lg">&rarr;</span>
@@ -528,171 +539,444 @@ const networkCSS = buildNetworkCSS();
 </div>
 
 <style>
-	/* Hero entrance animation */
-	.hero-fade {
-		opacity: 0;
-		transform: translateY(16px);
-		animation: hero-enter 0.6s ease-out forwards;
-	}
+/* Hero entrance animation */
+.hero-fade {
+	opacity: 0;
+	transform: translateY(16px);
+	animation: hero-enter 0.6s ease-out forwards;
+}
 
-	@keyframes hero-enter {
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
-	/* Scroll-reveal sections */
-	.reveal-section {
-		opacity: 0;
-		transform: translateY(24px);
-		transition:
-			opacity 0.5s ease-out,
-			transform 0.5s ease-out;
-	}
-	.reveal-section:global(.revealed) {
+@keyframes hero-enter {
+	to {
 		opacity: 1;
 		transform: translateY(0);
 	}
+}
 
-	/* === Clustering SVG animation === */
-	@keyframes cluster-a1 {
-		0%, 15% { transform: translate(0, 0); opacity: 0.7; }
-		50%, 75% { transform: translate(25px, 35px); opacity: 1; }
-		90%, 100% { transform: translate(0, 0); opacity: 0.7; }
-	}
-	@keyframes cluster-a2 {
-		0%, 15% { transform: translate(0, 0); opacity: 0.7; }
-		50%, 75% { transform: translate(-25px, -35px); opacity: 1; }
-		90%, 100% { transform: translate(0, 0); opacity: 0.7; }
-	}
-	@keyframes cluster-a3 {
-		0%, 15% { transform: translate(0, 0); opacity: 0.7; }
-		50%, 75% { transform: translate(5px, 0); opacity: 1; }
-		90%, 100% { transform: translate(0, 0); opacity: 0.7; }
-	}
-	@keyframes cluster-a4 {
-		0%, 15% { transform: translate(0, 0); opacity: 0.6; }
-		50%, 75% { transform: translate(40px, -15px); opacity: 0.9; }
-		90%, 100% { transform: translate(0, 0); opacity: 0.6; }
-	}
-	@keyframes cluster-a5 {
-		0%, 15% { transform: translate(0, 0); opacity: 0.6; }
-		50%, 75% { transform: translate(-20px, 25px); opacity: 0.9; }
-		90%, 100% { transform: translate(0, 0); opacity: 0.6; }
-	}
-	@keyframes cluster-b1 {
-		0%, 15% { transform: translate(0, 0); opacity: 0.7; }
-		50%, 75% { transform: translate(28px, 27px); opacity: 1; }
-		90%, 100% { transform: translate(0, 0); opacity: 0.7; }
-	}
-	@keyframes cluster-b2 {
-		0%, 15% { transform: translate(0, 0); opacity: 0.7; }
-		50%, 75% { transform: translate(-22px, -28px); opacity: 1; }
-		90%, 100% { transform: translate(0, 0); opacity: 0.7; }
-	}
-	@keyframes cluster-b3 {
-		0%, 15% { transform: translate(0, 0); opacity: 0.7; }
-		50%, 75% { transform: translate(8px, -13px); opacity: 1; }
-		90%, 100% { transform: translate(0, 0); opacity: 0.7; }
-	}
-	@keyframes cluster-b4 {
-		0%, 15% { transform: translate(0, 0); opacity: 0.6; }
-		50%, 75% { transform: translate(-37px, 17px); opacity: 0.9; }
-		90%, 100% { transform: translate(0, 0); opacity: 0.6; }
-	}
-	@keyframes lone-l1 {
-		0%, 15% { opacity: 0.7; transform: translate(0, 0); }
-		50%, 75% { opacity: 0.35; transform: translate(4px, -6px); }
-		90%, 100% { opacity: 0.7; transform: translate(0, 0); }
-	}
-	@keyframes lone-l2 {
-		0%, 15% { opacity: 0.7; transform: translate(0, 0); }
-		50%, 75% { opacity: 0.35; transform: translate(-5px, 4px); }
-		90%, 100% { opacity: 0.7; transform: translate(0, 0); }
-	}
-	@keyframes lone-l3 {
-		0%, 20% { opacity: 0.6; transform: translate(0, 0); }
-		55%, 75% { opacity: 0.3; transform: translate(6px, 5px); }
-		90%, 100% { opacity: 0.6; transform: translate(0, 0); }
-	}
-	@keyframes ring-appear {
-		0%, 30% { opacity: 0; transform: scale(0.5); }
-		50%, 75% { opacity: 0.5; transform: scale(1); }
-		90%, 100% { opacity: 0; transform: scale(0.5); }
-	}
-	@keyframes label-appear {
-		0%, 35% { opacity: 0; }
-		55%, 75% { opacity: 0.8; }
-		90%, 100% { opacity: 0; }
-	}
+/* Scroll-reveal sections */
+.reveal-section {
+	opacity: 0;
+	transform: translateY(24px);
+	transition:
+		opacity 0.5s ease-out,
+		transform 0.5s ease-out;
+}
+.reveal-section:global(.revealed) {
+	opacity: 1;
+	transform: translateY(0);
+}
 
-	.dot-a1 { animation: cluster-a1 7s ease-in-out infinite; }
-	.dot-a2 { animation: cluster-a2 7s ease-in-out infinite; }
-	.dot-a3 { animation: cluster-a3 7s ease-in-out infinite; }
-	.dot-a4 { animation: cluster-a4 7s ease-in-out infinite; }
-	.dot-a5 { animation: cluster-a5 7s ease-in-out infinite; }
-	.dot-b1 { animation: cluster-b1 7s ease-in-out infinite; }
-	.dot-b2 { animation: cluster-b2 7s ease-in-out infinite; }
-	.dot-b3 { animation: cluster-b3 7s ease-in-out infinite; }
-	.dot-b4 { animation: cluster-b4 7s ease-in-out infinite; }
-	.dot-l1 { animation: lone-l1 7s ease-in-out infinite; }
-	.dot-l2 { animation: lone-l2 7s 0.3s ease-in-out infinite; }
-	.dot-l3 { animation: lone-l3 7s 0.5s ease-in-out infinite; }
-	.ring-a, .ring-b { animation: ring-appear 7s ease-in-out infinite; transform-origin: center; }
-	.label-a, .label-b { animation: label-appear 7s ease-in-out infinite; }
+/* === Clustering SVG animation === */
+@keyframes cluster-a1 {
+	0%,
+	15% {
+		transform: translate(0, 0);
+		opacity: 0.7;
+	}
+	50%,
+	75% {
+		transform: translate(25px, 35px);
+		opacity: 1;
+	}
+	90%,
+	100% {
+		transform: translate(0, 0);
+		opacity: 0.7;
+	}
+}
+@keyframes cluster-a2 {
+	0%,
+	15% {
+		transform: translate(0, 0);
+		opacity: 0.7;
+	}
+	50%,
+	75% {
+		transform: translate(-25px, -35px);
+		opacity: 1;
+	}
+	90%,
+	100% {
+		transform: translate(0, 0);
+		opacity: 0.7;
+	}
+}
+@keyframes cluster-a3 {
+	0%,
+	15% {
+		transform: translate(0, 0);
+		opacity: 0.7;
+	}
+	50%,
+	75% {
+		transform: translate(5px, 0);
+		opacity: 1;
+	}
+	90%,
+	100% {
+		transform: translate(0, 0);
+		opacity: 0.7;
+	}
+}
+@keyframes cluster-a4 {
+	0%,
+	15% {
+		transform: translate(0, 0);
+		opacity: 0.6;
+	}
+	50%,
+	75% {
+		transform: translate(40px, -15px);
+		opacity: 0.9;
+	}
+	90%,
+	100% {
+		transform: translate(0, 0);
+		opacity: 0.6;
+	}
+}
+@keyframes cluster-a5 {
+	0%,
+	15% {
+		transform: translate(0, 0);
+		opacity: 0.6;
+	}
+	50%,
+	75% {
+		transform: translate(-20px, 25px);
+		opacity: 0.9;
+	}
+	90%,
+	100% {
+		transform: translate(0, 0);
+		opacity: 0.6;
+	}
+}
+@keyframes cluster-b1 {
+	0%,
+	15% {
+		transform: translate(0, 0);
+		opacity: 0.7;
+	}
+	50%,
+	75% {
+		transform: translate(28px, 27px);
+		opacity: 1;
+	}
+	90%,
+	100% {
+		transform: translate(0, 0);
+		opacity: 0.7;
+	}
+}
+@keyframes cluster-b2 {
+	0%,
+	15% {
+		transform: translate(0, 0);
+		opacity: 0.7;
+	}
+	50%,
+	75% {
+		transform: translate(-22px, -28px);
+		opacity: 1;
+	}
+	90%,
+	100% {
+		transform: translate(0, 0);
+		opacity: 0.7;
+	}
+}
+@keyframes cluster-b3 {
+	0%,
+	15% {
+		transform: translate(0, 0);
+		opacity: 0.7;
+	}
+	50%,
+	75% {
+		transform: translate(8px, -13px);
+		opacity: 1;
+	}
+	90%,
+	100% {
+		transform: translate(0, 0);
+		opacity: 0.7;
+	}
+}
+@keyframes cluster-b4 {
+	0%,
+	15% {
+		transform: translate(0, 0);
+		opacity: 0.6;
+	}
+	50%,
+	75% {
+		transform: translate(-37px, 17px);
+		opacity: 0.9;
+	}
+	90%,
+	100% {
+		transform: translate(0, 0);
+		opacity: 0.6;
+	}
+}
+@keyframes lone-l1 {
+	0%,
+	15% {
+		opacity: 0.7;
+		transform: translate(0, 0);
+	}
+	50%,
+	75% {
+		opacity: 0.35;
+		transform: translate(4px, -6px);
+	}
+	90%,
+	100% {
+		opacity: 0.7;
+		transform: translate(0, 0);
+	}
+}
+@keyframes lone-l2 {
+	0%,
+	15% {
+		opacity: 0.7;
+		transform: translate(0, 0);
+	}
+	50%,
+	75% {
+		opacity: 0.35;
+		transform: translate(-5px, 4px);
+	}
+	90%,
+	100% {
+		opacity: 0.7;
+		transform: translate(0, 0);
+	}
+}
+@keyframes lone-l3 {
+	0%,
+	20% {
+		opacity: 0.6;
+		transform: translate(0, 0);
+	}
+	55%,
+	75% {
+		opacity: 0.3;
+		transform: translate(6px, 5px);
+	}
+	90%,
+	100% {
+		opacity: 0.6;
+		transform: translate(0, 0);
+	}
+}
+@keyframes ring-appear {
+	0%,
+	30% {
+		opacity: 0;
+		transform: scale(0.5);
+	}
+	50%,
+	75% {
+		opacity: 0.5;
+		transform: scale(1);
+	}
+	90%,
+	100% {
+		opacity: 0;
+		transform: scale(0.5);
+	}
+}
+@keyframes label-appear {
+	0%,
+	35% {
+		opacity: 0;
+	}
+	55%,
+	75% {
+		opacity: 0.8;
+	}
+	90%,
+	100% {
+		opacity: 0;
+	}
+}
 
-	/* === Bipartite flow animation (feeds → stories) === */
-	.bfeed, .bstory {
-		transform-box: fill-box;
-		transform-origin: center;
-	}
+.dot-a1 {
+	animation: cluster-a1 7s ease-in-out infinite;
+}
+.dot-a2 {
+	animation: cluster-a2 7s ease-in-out infinite;
+}
+.dot-a3 {
+	animation: cluster-a3 7s ease-in-out infinite;
+}
+.dot-a4 {
+	animation: cluster-a4 7s ease-in-out infinite;
+}
+.dot-a5 {
+	animation: cluster-a5 7s ease-in-out infinite;
+}
+.dot-b1 {
+	animation: cluster-b1 7s ease-in-out infinite;
+}
+.dot-b2 {
+	animation: cluster-b2 7s ease-in-out infinite;
+}
+.dot-b3 {
+	animation: cluster-b3 7s ease-in-out infinite;
+}
+.dot-b4 {
+	animation: cluster-b4 7s ease-in-out infinite;
+}
+.dot-l1 {
+	animation: lone-l1 7s ease-in-out infinite;
+}
+.dot-l2 {
+	animation: lone-l2 7s 0.3s ease-in-out infinite;
+}
+.dot-l3 {
+	animation: lone-l3 7s 0.5s ease-in-out infinite;
+}
+.ring-a,
+.ring-b {
+	animation: ring-appear 7s ease-in-out infinite;
+	transform-origin: center;
+}
+.label-a,
+.label-b {
+	animation: label-appear 7s ease-in-out infinite;
+}
 
-	/* Pause animations until their section scrolls into view */
-	.reveal-section .dot,
-	.reveal-section .cluster-ring,
-	.reveal-section .cluster-label,
-	.reveal-section .bfeed,
-	.reveal-section .bline,
-	.reveal-section .bstory,
-	.reveal-section .blabel {
-		animation-play-state: paused;
-	}
-	.reveal-section:global(.revealed) .dot,
-	.reveal-section:global(.revealed) .cluster-ring,
-	.reveal-section:global(.revealed) .cluster-label,
-	.reveal-section:global(.revealed) .bfeed,
-	.reveal-section:global(.revealed) .bline,
-	.reveal-section:global(.revealed) .bstory,
-	.reveal-section:global(.revealed) .blabel {
-		animation-play-state: running;
-	}
+/* === Bipartite flow animation (feeds → stories) === */
+.bfeed,
+.bstory {
+	transform-box: fill-box;
+	transform-origin: center;
+}
 
-	@media (prefers-reduced-motion: reduce) {
-		.hero-fade { opacity: 1; transform: none; animation: none; }
-		.reveal-section { opacity: 1; transform: none; transition: none; }
-		.dot, .cluster-ring, .cluster-label { animation: none !important; }
-		.dot-a1 { transform: translate(25px, 35px); opacity: 1; }
-		.dot-a2 { transform: translate(-25px, -35px); opacity: 1; }
-		.dot-a3 { transform: translate(5px, 0); opacity: 1; }
-		.dot-a4 { transform: translate(40px, -15px); opacity: 0.9; }
-		.dot-a5 { transform: translate(-20px, 25px); opacity: 0.9; }
-		.dot-b1 { transform: translate(28px, 27px); opacity: 1; }
-		.dot-b2 { transform: translate(-22px, -28px); opacity: 1; }
-		.dot-b3 { transform: translate(8px, -13px); opacity: 1; }
-		.dot-b4 { transform: translate(-37px, 17px); opacity: 0.9; }
-		.dot-l1 { opacity: 0.35; transform: translate(4px, -6px); }
-		.dot-l2 { opacity: 0.35; transform: translate(-5px, 4px); }
-		.dot-l3 { opacity: 0.3; transform: translate(6px, 5px); }
-		.ring-a, .ring-b { opacity: 0.5; transform: scale(1); }
-		.label-a, .label-b { opacity: 0.8; }
-		/* Bipartite flow: show fully connected state */
-		.bfeed, .bline, .bstory, .blabel { animation: none !important; }
-		.bfeed { opacity: 0.7; transform: scale(1); }
-		.bfeed-you { opacity: 0.9; transform: scale(1); }
-		.bline { opacity: 0.25; stroke-dashoffset: 0; }
-		.bline-you { opacity: 0.35; }
-		.bstory { opacity: 0.6; transform: scale(1); }
-		.blabel { opacity: 0.6; }
+/* Pause animations until their section scrolls into view */
+.reveal-section .dot,
+.reveal-section .cluster-ring,
+.reveal-section .cluster-label,
+.reveal-section .bfeed,
+.reveal-section .bline,
+.reveal-section .bstory,
+.reveal-section .blabel {
+	animation-play-state: paused;
+}
+.reveal-section:global(.revealed) .dot,
+.reveal-section:global(.revealed) .cluster-ring,
+.reveal-section:global(.revealed) .cluster-label,
+.reveal-section:global(.revealed) .bfeed,
+.reveal-section:global(.revealed) .bline,
+.reveal-section:global(.revealed) .bstory,
+.reveal-section:global(.revealed) .blabel {
+	animation-play-state: running;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.hero-fade {
+		opacity: 1;
+		transform: none;
+		animation: none;
 	}
+	.reveal-section {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+	.dot,
+	.cluster-ring,
+	.cluster-label {
+		animation: none !important;
+	}
+	.dot-a1 {
+		transform: translate(25px, 35px);
+		opacity: 1;
+	}
+	.dot-a2 {
+		transform: translate(-25px, -35px);
+		opacity: 1;
+	}
+	.dot-a3 {
+		transform: translate(5px, 0);
+		opacity: 1;
+	}
+	.dot-a4 {
+		transform: translate(40px, -15px);
+		opacity: 0.9;
+	}
+	.dot-a5 {
+		transform: translate(-20px, 25px);
+		opacity: 0.9;
+	}
+	.dot-b1 {
+		transform: translate(28px, 27px);
+		opacity: 1;
+	}
+	.dot-b2 {
+		transform: translate(-22px, -28px);
+		opacity: 1;
+	}
+	.dot-b3 {
+		transform: translate(8px, -13px);
+		opacity: 1;
+	}
+	.dot-b4 {
+		transform: translate(-37px, 17px);
+		opacity: 0.9;
+	}
+	.dot-l1 {
+		opacity: 0.35;
+		transform: translate(4px, -6px);
+	}
+	.dot-l2 {
+		opacity: 0.35;
+		transform: translate(-5px, 4px);
+	}
+	.dot-l3 {
+		opacity: 0.3;
+		transform: translate(6px, 5px);
+	}
+	.ring-a,
+	.ring-b {
+		opacity: 0.5;
+		transform: scale(1);
+	}
+	.label-a,
+	.label-b {
+		opacity: 0.8;
+	}
+	/* Bipartite flow: show fully connected state */
+	.bfeed,
+	.bline,
+	.bstory,
+	.blabel {
+		animation: none !important;
+	}
+	.bfeed {
+		opacity: 0.7;
+		transform: scale(1);
+	}
+	.bfeed-you {
+		opacity: 0.9;
+		transform: scale(1);
+	}
+	.bline {
+		opacity: 0.25;
+		stroke-dashoffset: 0;
+	}
+	.bline-you {
+		opacity: 0.35;
+	}
+	.bstory {
+		opacity: 0.6;
+		transform: scale(1);
+	}
+	.blabel {
+		opacity: 0.6;
+	}
+}
 </style>

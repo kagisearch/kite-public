@@ -72,71 +72,74 @@ const displayQuote = $derived.by(() => {
 });
 </script>
 
-<section class="my-8 rounded-lg bg-[#F3F6FE] p-4 dark:bg-gray-700">
-  <!-- Quote text on first line -->
-  <blockquote class="text-base text-black dark:text-white mb-2 first-letter-capitalize">
-    <span class="italic" aria-hidden="true">"</span>{#if sourceUrl}<a
-        href={sourceUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`Read full quote${author ? ` from ${author}` : ''}${attribution ? ` - ${attribution}` : ''} at ${sourceDomain || 'source'}`}
-        class="underline text-black dark:text-white hover:text-[#183FDC] dark:hover:text-[#5B89FF] transition-colors focus-visible-ring rounded"
-        >{#if flashcardMode}<SelectableText
-          text={displayQuote}
-          {flashcardMode}
-          {selectedWords}
-          {selectedPhrases}
-          {shouldJiggle}
-          {onWordClick}
-          section="quote"
-        />{:else}<CitationText
-          text={displayQuote}
-          showFavicons={true}
-          showNumbers={false}
-          {articles}
-          {citationMapping}
-        />{/if}</a
-      >{:else}<span class="underline"
-        >{#if flashcardMode}<SelectableText
-          text={displayQuote}
-          {flashcardMode}
-          {selectedWords}
-          {selectedPhrases}
-          {shouldJiggle}
-          {onWordClick}
-          section="quote"
-        />{:else}<CitationText
-          text={displayQuote}
-          showFavicons={true}
-          showNumbers={false}
-          {articles}
-          {citationMapping}
-        />{/if}</span
-      >{/if}<span class="italic" aria-hidden="true">"</span>
-  </blockquote>
+<section class="my-8 rounded-lg bg-[#F3F6FE] p-4 dark:bg-graphite-800">
+	<!-- dir-auto-ok: quote text is reproduced verbatim and is routinely in a different language from
+	     the story around it, so the blockquote resolves its own direction from its first strong
+	     character rather than inheriting the story's. Inheriting rtl left a quote's closing
+	     punctuation stranded at the start of the line (KNEWS-453). -->
+	<blockquote dir="auto" class="text-base text-black dark:text-white mb-2 first-letter-capitalize">
+		<span class="italic" aria-hidden="true">"</span>{#if sourceUrl}<a
+				href={sourceUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				aria-label={`Read full quote${author ? ` from ${author}` : ''}${attribution ? ` - ${attribution}` : ''} at ${sourceDomain || 'source'}`}
+				class="underline text-black dark:text-white hover:text-[#183FDC] dark:hover:text-[#5B89FF] transition-colors focus-visible-ring rounded"
+				>{#if flashcardMode}<SelectableText
+						text={displayQuote}
+						{flashcardMode}
+						{selectedWords}
+						{selectedPhrases}
+						{shouldJiggle}
+						{onWordClick}
+						section="quote"
+					/>{:else}<CitationText
+						text={displayQuote}
+						showFavicons={true}
+						showNumbers={false}
+						{articles}
+						{citationMapping}
+					/>{/if}</a
+			>{:else}<span class="underline"
+				>{#if flashcardMode}<SelectableText
+						text={displayQuote}
+						{flashcardMode}
+						{selectedWords}
+						{selectedPhrases}
+						{shouldJiggle}
+						{onWordClick}
+						section="quote"
+					/>{:else}<CitationText
+						text={displayQuote}
+						showFavicons={true}
+						showNumbers={false}
+						{articles}
+						{citationMapping}
+					/>{/if}</span
+			>{/if}<span class="italic" aria-hidden="true">"</span>
+	</blockquote>
 
-  <!-- Attribution information on second line -->
-  {#if author || attribution}
-    <p class="text-black dark:text-white text-sm">
-      {#if author && attribution}
-        <span>{author} - {attribution}</span>
-      {:else if attribution}
-        <span>{attribution}</span>
-      {:else if author}
-        <span>{author}</span>
-      {/if}
-    </p>
-  {/if}
+	<!-- Attribution information on second line -->
+	{#if author || attribution}
+		<p class="text-black dark:text-white text-sm">
+			{#if author && attribution}
+				<span>{author} - {attribution}</span>
+			{:else if attribution}
+				<span>{attribution}</span>
+			{:else if author}
+				<span>{author}</span>
+			{/if}
+		</p>
+	{/if}
 
-  {#if sourceDomain && !sourceUrl}
-    <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-      (via {sourceDomain})
-    </p>
-  {/if}
+	{#if sourceDomain && !sourceUrl}
+		<p class="mt-2 text-sm text-primary-600">
+			(via {sourceDomain})
+		</p>
+	{/if}
 </section>
 
 <style>
-  :global(.first-letter-capitalize::first-letter) {
-    text-transform: uppercase;
-  }
+:global(.first-letter-capitalize::first-letter) {
+	text-transform: uppercase;
+}
 </style>

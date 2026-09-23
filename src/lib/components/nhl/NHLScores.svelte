@@ -1,4 +1,7 @@
 <script lang="ts">
+import { s } from '$lib/client/localization.svelte';
+import Tooltip from '$lib/components/Tooltip.svelte';
+import { language } from '$lib/stores/language.svelte.js';
 import {
 	IconChevronDown,
 	IconChevronUp,
@@ -7,9 +10,6 @@ import {
 	IconTrophy,
 } from '@tabler/icons-svelte';
 import { onMount } from 'svelte';
-import { s } from '$lib/client/localization.svelte';
-import Tooltip from '$lib/components/Tooltip.svelte';
-import { language } from '$lib/stores/language.svelte.js';
 
 interface Team {
 	id: number;
@@ -157,11 +157,11 @@ function formatOdds(odds: number): string {
 // Format currency for tooltips
 function formatCurrency(amount: number): string {
 	if (amount >= 1000000) {
-		return `$${(amount / 1000000).toFixed(1)}M`;
+		return `${(amount / 1000000).toFixed(1)}M`;
 	} else if (amount >= 1000) {
-		return `$${(amount / 1000).toFixed(0)}K`;
+		return `${(amount / 1000).toFixed(0)}K`;
 	}
-	return `$${amount.toFixed(0)}`;
+	return `${amount.toFixed(0)}`;
 }
 
 // Generate tooltip text for odds
@@ -291,29 +291,31 @@ onMount(() => {
 });
 </script>
 
-<div class="mb-4 rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-800/50">
+<div class="mb-4 rounded-lg border border-primary-100 bg-primary-25 dark:bg-graphite-800/50">
 	<!-- Header - Always visible -->
 	<div class="flex w-full items-center justify-between px-4 py-3">
 		<button
-			onclick={() => expanded = !expanded}
+			onclick={() => (expanded = !expanded)}
 			class="flex flex-1 items-center gap-2 text-left transition-colors hover:opacity-80"
 			aria-expanded={expanded}
-			aria-label={expanded ? s('nhl.collapse') || 'Collapse NHL scores' : s('nhl.expand') || 'Expand NHL scores'}
+			aria-label={expanded
+				? s('nhl.collapse') || 'Collapse NHL scores'
+				: s('nhl.expand') || 'Expand NHL scores'}
 		>
-			<IconTrophy class="size-4 text-gray-600 dark:text-gray-400" />
-			<span class="text-sm font-medium text-gray-900 dark:text-gray-100">{s('nhl.title')}</span>
-			<span class="text-xs text-gray-600 dark:text-gray-400">{summaryText}</span>
+			<IconTrophy class="size-4 text-primary-600" />
+			<span class="text-sm font-medium text-primary">{s('nhl.title')}</span>
+			<span class="text-xs text-primary-600">{summaryText}</span>
 			{#if expanded}
-				<IconChevronUp class="ml-auto h-5 w-5 text-gray-600 dark:text-gray-400" />
+				<IconChevronUp class="ml-auto h-5 w-5 text-primary-600" />
 			{:else}
-				<IconChevronDown class="ml-auto h-5 w-5 text-gray-600 dark:text-gray-400" />
+				<IconChevronDown class="ml-auto h-5 w-5 text-primary-600" />
 			{/if}
 		</button>
 		{#if !loading}
 			<button
 				onclick={handleRefresh}
 				disabled={refreshing}
-				class="rounded p-1 text-gray-600 transition-colors hover:bg-gray-100 disabled:opacity-50 dark:text-gray-400 dark:hover:bg-gray-700"
+				class="rounded p-1 text-primary-600 transition-colors hover:bg-primary-50 disabled:opacity-50 dark:hover:bg-graphite-700"
 				aria-label={s('nhl.refresh')}
 			>
 				<IconRefresh class="h-4 w-4 {refreshing ? 'animate-spin' : ''}" />
@@ -323,45 +325,61 @@ onMount(() => {
 
 	<!-- Collapsed Preview -->
 	{#if !expanded && data?.games && data.games.length > 0}
-		<div class="border-t border-gray-200 px-4 py-2 dark:border-gray-700">
+		<div class="border-t border-primary-100 px-4 py-2">
 			<div class="flex gap-3 overflow-x-auto">
 				{#each collapsedGames as game (game.id)}
 					{#key `${game.id}-${oddsData?.lastUpdated || 'no-odds'}`}
 						{@const live = isLive(game)}
 						{@const odds = getOddsForGame(game, oddsData)}
-						<div class="flex min-w-[140px] flex-col gap-1 rounded border border-gray-200 bg-white p-2 text-xs dark:border-gray-600 dark:bg-gray-800">
+						<div
+							class="flex min-w-[140px] flex-col gap-1 rounded border border-primary-100 bg-white p-2 text-xs dark:border-graphite-600 dark:bg-graphite-800"
+						>
 							<div class="flex items-center justify-between gap-1">
 								<div class="flex items-center gap-1">
 									{#if game.awayTeam.logo}
-										<img src={game.awayTeam.logo} alt={game.awayTeam.abbrev} class="h-4 w-4 object-contain" />
+										<img
+											src={game.awayTeam.logo}
+											alt={game.awayTeam.abbrev}
+											class="h-4 w-4 object-contain"
+										/>
 									{/if}
-									<span class="font-medium text-gray-900 dark:text-gray-100">{game.awayTeam.abbrev}</span>
+									<span class="font-medium text-primary">{game.awayTeam.abbrev}</span>
 								</div>
 								{#if odds?.moneyline}
 									<Tooltip text={getOddsTooltip(odds)} position="top">
-										<span class="text-[10px] text-gray-600 dark:text-gray-400">{formatOdds(odds.moneyline.away)}</span>
+										<span class="text-[10px] text-primary-600"
+											>{formatOdds(odds.moneyline.away)}</span
+										>
 									</Tooltip>
 								{:else}
-									<span class="text-gray-900 dark:text-gray-100">{game.awayTeam.score ?? '-'}</span>
+									<span class="text-primary">{game.awayTeam.score ?? '-'}</span>
 								{/if}
 							</div>
 							<div class="flex items-center justify-between gap-1">
 								<div class="flex items-center gap-1">
 									{#if game.homeTeam.logo}
-										<img src={game.homeTeam.logo} alt={game.homeTeam.abbrev} class="h-4 w-4 object-contain" />
+										<img
+											src={game.homeTeam.logo}
+											alt={game.homeTeam.abbrev}
+											class="h-4 w-4 object-contain"
+										/>
 									{/if}
-									<span class="font-medium text-gray-900 dark:text-gray-100">{game.homeTeam.abbrev}</span>
+									<span class="font-medium text-primary">{game.homeTeam.abbrev}</span>
 								</div>
 								{#if odds?.moneyline}
 									<Tooltip text={getOddsTooltip(odds)} position="top">
-										<span class="text-[10px] text-gray-600 dark:text-gray-400">{formatOdds(odds.moneyline.home)}</span>
+										<span class="text-[10px] text-primary-600"
+											>{formatOdds(odds.moneyline.home)}</span
+										>
 									</Tooltip>
 								{:else}
-									<span class="text-gray-900 dark:text-gray-100">{game.homeTeam.score ?? '-'}</span>
+									<span class="text-primary">{game.homeTeam.score ?? '-'}</span>
 								{/if}
 							</div>
-							<div class="border-t border-gray-200 pt-1 text-center dark:border-gray-600">
-								<span class="{live ? 'font-medium text-red-600 dark:text-red-400' : 'text-gray-600 dark:text-gray-400'}">
+							<div class="border-t border-primary-100 pt-1 text-center dark:border-graphite-600">
+								<span
+									class={live ? 'font-medium text-red-600 dark:text-red-400' : 'text-primary-600'}
+								>
 									{getGameStatus(game)}
 								</span>
 							</div>
@@ -375,7 +393,7 @@ onMount(() => {
 						href="https://polymarket.com/sports/nhl"
 						target="_blank"
 						rel="noopener noreferrer"
-						class="text-[10px] text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-300"
+						class="text-[10px] text-primary-600 hover:text-primary-700"
 					>
 						{s('nhl.oddsFrom')}
 					</a>
@@ -386,21 +404,21 @@ onMount(() => {
 
 	<!-- Expanded Content -->
 	{#if expanded}
-		<div class="border-t border-gray-200 dark:border-gray-700">
+		<div class="border-t border-primary-100">
 			{#if loading}
 				<div class="flex items-center justify-center py-8">
-					<IconLoader2 class="h-6 w-6 animate-spin text-gray-600 dark:text-gray-400" />
+					<IconLoader2 class="h-6 w-6 animate-spin text-primary-600" />
 				</div>
 			{:else if data?.error}
-				<div class="p-4 text-center text-sm text-gray-600 dark:text-gray-400">
+				<div class="p-4 text-center text-sm text-primary-600">
 					<p>Unable to load scores. Please try again later.</p>
 				</div>
 			{:else if !data?.games || data.games.length === 0}
-				<div class="p-4 text-center text-sm text-gray-600 dark:text-gray-400">
+				<div class="p-4 text-center text-sm text-primary-600">
 					<p>No games scheduled for today.</p>
 				</div>
 			{:else}
-				<div class="divide-y divide-gray-200 dark:divide-gray-700">
+				<div class="divide-y divide-primary-100">
 					{#each data.games as game (game.id)}
 						{#key `${game.id}-${oddsData?.lastUpdated || 'no-odds'}`}
 							{@const live = isLive(game)}
@@ -410,90 +428,96 @@ onMount(() => {
 								<div class="mb-2 flex items-center justify-between">
 									<div class="flex items-center gap-2">
 										{#if game.awayTeam.logo}
-										<img
-											src={game.awayTeam.logo}
-											alt="{game.awayTeam.abbrev} logo"
-											class="h-6 w-6 object-contain"
-										/>
-									{/if}
-									<span class="text-sm font-medium text-gray-900 dark:text-gray-100">
-										{game.awayTeam.abbrev}
-									</span>
-									{#if odds?.moneyline}
-										<span class="ml-auto text-xs text-gray-600 dark:text-gray-400">
-											{formatOdds(odds.moneyline.away)}
+											<img
+												src={game.awayTeam.logo}
+												alt="{game.awayTeam.abbrev} logo"
+												class="h-6 w-6 object-contain"
+											/>
+										{/if}
+										<span class="text-sm font-medium text-primary">
+											{game.awayTeam.abbrev}
+										</span>
+										{#if odds?.moneyline}
+											<span class="ml-auto text-xs text-primary-600">
+												{formatOdds(odds.moneyline.away)}
+											</span>
+										{/if}
+									</div>
+									{#if game.awayTeam.score !== undefined}
+										<span class="text-lg font-bold text-primary">
+											{game.awayTeam.score}
 										</span>
 									{/if}
 								</div>
-								{#if game.awayTeam.score !== undefined}
-									<span class="text-lg font-bold text-gray-900 dark:text-gray-100">
-										{game.awayTeam.score}
-									</span>
-								{/if}
-							</div>
 
-							<!-- Home Team -->
-							<div class="mb-2 flex items-center justify-between">
-								<div class="flex items-center gap-2">
-									{#if game.homeTeam.logo}
-										<img
-											src={game.homeTeam.logo}
-											alt="{game.homeTeam.abbrev} logo"
-											class="h-6 w-6 object-contain"
-										/>
-									{/if}
-									<span class="text-sm font-medium text-gray-900 dark:text-gray-100">
-										{game.homeTeam.abbrev}
-									</span>
-									{#if odds?.moneyline}
-										<span class="ml-auto text-xs text-gray-600 dark:text-gray-400">
-											{formatOdds(odds.moneyline.home)}
+								<!-- Home Team -->
+								<div class="mb-2 flex items-center justify-between">
+									<div class="flex items-center gap-2">
+										{#if game.homeTeam.logo}
+											<img
+												src={game.homeTeam.logo}
+												alt="{game.homeTeam.abbrev} logo"
+												class="h-6 w-6 object-contain"
+											/>
+										{/if}
+										<span class="text-sm font-medium text-primary">
+											{game.homeTeam.abbrev}
+										</span>
+										{#if odds?.moneyline}
+											<span class="ml-auto text-xs text-primary-600">
+												{formatOdds(odds.moneyline.home)}
+											</span>
+										{/if}
+									</div>
+									{#if game.homeTeam.score !== undefined}
+										<span class="text-lg font-bold text-primary">
+											{game.homeTeam.score}
 										</span>
 									{/if}
 								</div>
-								{#if game.homeTeam.score !== undefined}
-									<span class="text-lg font-bold text-gray-900 dark:text-gray-100">
-										{game.homeTeam.score}
+
+								<!-- Game Status and Over/Under -->
+								<div class="flex items-center justify-between text-center">
+									<span
+										class="text-xs {live
+											? 'font-medium text-red-600 dark:text-red-400'
+											: 'text-primary-600'}"
+									>
+										{getGameStatus(game)}
+										{#if live && game.clock}
+											<span class="ml-1">{game.clock}</span>
+										{/if}
 									</span>
-								{/if}
-							</div>
-
-							<!-- Game Status and Over/Under -->
-							<div class="flex items-center justify-between text-center">
-								<span class="text-xs {live ? 'font-medium text-red-600 dark:text-red-400' : 'text-gray-600 dark:text-gray-400'}">
-									{getGameStatus(game)}
-									{#if live && game.clock}
-										<span class="ml-1">{game.clock}</span>
-									{/if}
-								</span>
-								<div class="flex flex-col items-end gap-0.5">
-									{#if odds?.overUnder && !live}
-										<span class="text-xs text-gray-600 dark:text-gray-400">
-											{s('nhl.overUnder')} {odds.overUnder.line}: {formatOdds(odds.overUnder.over)} / {formatOdds(odds.overUnder.under)}
-										</span>
-									{/if}
-									{#if odds?.moneyline?.volume}
-										<span class="text-[10px] text-gray-500 dark:text-gray-500">
-											{s('nhl.volume')}: {formatCurrency(odds.moneyline.volume)}
-											{#if odds.moneyline.liquidity}
-												• {s('nhl.liquidity')}: {formatCurrency(odds.moneyline.liquidity)}
-											{/if}
-										</span>
-									{/if}
+									<div class="flex flex-col items-end gap-0.5">
+										{#if odds?.overUnder && !live}
+											<span class="text-xs text-primary-600">
+												{s('nhl.overUnder')}
+												{odds.overUnder.line}: {formatOdds(odds.overUnder.over)} / {formatOdds(
+													odds.overUnder.under,
+												)}
+											</span>
+										{/if}
+										{#if odds?.moneyline?.volume}
+											<span class="text-[10px] text-primary-600">
+												{s('nhl.volume')}: {formatCurrency(odds.moneyline.volume)}
+												{#if odds.moneyline.liquidity}
+													• {s('nhl.liquidity')}: {formatCurrency(odds.moneyline.liquidity)}
+												{/if}
+											</span>
+										{/if}
+									</div>
 								</div>
-							</div>
-
 							</div>
 						{/key}
 					{/each}
 				</div>
 				{#if oddsData?.odds && oddsData.odds.length > 0}
-					<div class="border-t border-gray-200 px-4 py-2 text-center dark:border-gray-700">
+					<div class="border-t border-primary-100 px-4 py-2 text-center">
 						<a
 							href="https://polymarket.com/sports/nhl"
 							target="_blank"
 							rel="noopener noreferrer"
-							class="text-xs text-gray-500 hover:text-gray-700 dark:text-gray-500 dark:hover:text-gray-300"
+							class="text-xs text-primary-600 hover:text-primary-700"
 						>
 							{s('nhl.oddsFrom')}
 						</a>

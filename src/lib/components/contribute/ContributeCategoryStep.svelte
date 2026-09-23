@@ -1,4 +1,8 @@
 <script lang="ts">
+import { s } from '$lib/client/localization.svelte';
+import Select from '$lib/components/Select.svelte';
+import Tooltip from '$lib/components/Tooltip.svelte';
+import type { KiteFeedsData, PendingPrCategory } from '$lib/utils/feedContribution';
 import {
 	IconAlertTriangle,
 	IconChevronDown,
@@ -8,10 +12,6 @@ import {
 	IconLoader2,
 } from '@tabler/icons-svelte';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-svelte';
-import { s } from '$lib/client/localization.svelte';
-import Select from '$lib/components/Select.svelte';
-import Tooltip from '$lib/components/Tooltip.svelte';
-import type { KiteFeedsData, PendingPrCategory } from '$lib/utils/feedContribution';
 
 interface Props {
 	mode: 'existing' | 'new';
@@ -130,7 +130,7 @@ const LANGUAGES = [
 			onclick={() => onModeChange('existing')}
 			aria-pressed={mode === 'existing'}
 			class="px-3 py-1.5 text-sm rounded-md transition-colors {mode === 'existing'
-				? 'bg-blue-600 text-white'
+				? 'bg-purple-600 text-white'
 				: 'bg-primary-100 text-primary-700 hover:bg-primary-200'}"
 		>
 			{s('contribute.existingCategory')}
@@ -139,7 +139,7 @@ const LANGUAGES = [
 			onclick={() => onModeChange('new')}
 			aria-pressed={mode === 'new'}
 			class="px-3 py-1.5 text-sm rounded-md transition-colors {mode === 'new'
-				? 'bg-blue-600 text-white'
+				? 'bg-purple-600 text-white'
 				: 'bg-primary-100 text-primary-700 hover:bg-primary-200'}"
 		>
 			{s('contribute.newCategory')}
@@ -156,10 +156,7 @@ const LANGUAGES = [
 			<div class="text-sm text-red-600 dark:text-red-400 flex items-center gap-2">
 				<IconCircleX size={16} />
 				{loadError}
-				<button
-					onclick={onLoadRetry}
-					class="text-accent-links hover:underline"
-				>
+				<button onclick={onLoadRetry} class="text-accent-links hover:underline">
 					{s('contribute.retry')}
 				</button>
 			</div>
@@ -215,7 +212,7 @@ const LANGUAGES = [
 					{/if}
 					{#if currentCategoryData.feeds.length > 0}
 						<button
-							onclick={() => showExistingFeeds = !showExistingFeeds}
+							onclick={() => (showExistingFeeds = !showExistingFeeds)}
 							aria-expanded={showExistingFeeds}
 							class="ml-2 text-accent-links hover:underline inline-flex items-center gap-0.5"
 						>
@@ -282,7 +279,11 @@ const LANGUAGES = [
 					<p class="mt-1 text-xs text-amber-600 dark:text-amber-400">
 						{s('contribute.categoryExists')}
 						<button
-							onclick={() => { mode = 'existing'; selectedCategory = newCategoryName.trim(); newCategoryName = ''; }}
+							onclick={() => {
+								mode = 'existing';
+								selectedCategory = newCategoryName.trim();
+								newCategoryName = '';
+							}}
 							class="text-accent-links hover:underline"
 						>
 							{s('contribute.switchToIt')}
@@ -310,7 +311,7 @@ const LANGUAGES = [
 				<Select
 					value={newCategoryLanguage}
 					options={LANGUAGES}
-					onChange={(v: string) => newCategoryLanguage = v}
+					onChange={(v: string) => (newCategoryLanguage = v)}
 					id="new-category-lang"
 					label={s('contribute.feedLanguage')}
 					hideLabel={true}
