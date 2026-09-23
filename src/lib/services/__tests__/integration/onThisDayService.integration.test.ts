@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest';
 import { batchService } from '../../batchService';
 import { onThisDayService } from '../../onThisDayService';
+import { describe, expect, it } from 'vitest';
 
 describe('OnThisDayService Integration Tests', () => {
 	describe('loadOnThisDayEvents with real API', () => {
@@ -36,9 +36,7 @@ describe('OnThisDayService Integration Tests', () => {
 
 				// Events should be sorted by sort_year
 				for (let i = 1; i < result.events.length; i++) {
-					expect(result.events[i].sort_year).toBeGreaterThanOrEqual(
-						result.events[i - 1].sort_year,
-					);
+					expect(result.events[i].sort_year).toBeGreaterThanOrEqual(result.events[i - 1].sort_year);
 				}
 			}
 		});

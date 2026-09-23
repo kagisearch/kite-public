@@ -362,329 +362,331 @@ const citedArticles = $derived.by(() => {
 </script>
 
 <div class="citation-wrapper">
-  <!-- Main content -->
-  <div class="citation-content {inline ? 'inline' : 'block'} {inline ? 'text-base' : ''}">
-    {#if inline}
-      <!-- Inline rendering for list items -->
-      {#each groupedSegments.formattedSegments as segment}
-        {#if segment.type === "text"}
-          {segment.content}
-        {:else if segment.type === "citation"}
-          {#if showNumbers}
-            <span
-              class="citation-number text-gray-600 dark:text-gray-400 text-xs align-super cursor-help"
-              title="Source: {segment.citation?.domain}"
-            >
-              {segment.content}
-            </span>
-          {:else}
-            <!-- Show as clean numbered citation -->
-            <!-- svelte-ignore a11y_mouse_events_have_key_events -->
-            <button
-              type="button"
-              class="citation-number text-gray-600 dark:text-gray-400 text-xs align-super cursor-help font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded px-0.5 transition-colors border-0 bg-transparent p-0"
-              title={segment.citation?.domain === "common"
-                ? "Common knowledge"
-                : `Source ${segment.citation?.number}: ${segment.citation?.domain}`}
-              onmouseover={(e) =>
-                tooltipReference?.handleCitationInteraction(
-                  e,
-                  uniqueDomains,
-                  segment.citation?.number,
-                )}
-              onmouseleave={(e) => tooltipReference?.handleCitationLeave(e)}
-              onclick={(e) =>
-                tooltipReference?.handleCitationInteraction(
-                  e,
-                  uniqueDomains,
-                  segment.citation?.number,
-                )}
-              onkeydown={(e) =>
-                (e.key === "Enter" || e.key === " ") &&
-                tooltipReference?.handleCitationInteraction(
-                  e,
-                  uniqueDomains,
-                  segment.citation?.number,
-                )}
-              ontouchstart={(e) => {
-                e.stopPropagation();
-                // Record touch time to ignore subsequent mouseover
-                if (tooltipReference && "recordTouch" in tooltipReference) {
-                  (tooltipReference as any).recordTouch();
-                }
-              }}
-            ><span class="sr-only">{segment.citation?.domain === "common"
-                ? "Common knowledge citation"
-                : `Citation ${segment.citation?.number} from ${segment.citation?.domain}`}</span><span aria-hidden="true">{segment.content}</span></button>
-          {/if}
-        {:else if segment.type === "citation-group"}
-          <!-- Collapsed citation group -->
-          <!-- svelte-ignore a11y_mouse_events_have_key_events -->
-          <button
-            type="button"
-            class="citation-number citation-group-badge text-gray-600 dark:text-gray-400 text-xs align-super cursor-help font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded px-0.5 transition-colors border-0 bg-transparent p-0"
-            title={`${segment.group.numbers.length} sources: ${segment.group.numbers.join(', ')}`}
-            onmouseover={(e) =>
-              tooltipReference?.handleCitationInteraction(
-                e,
-                uniqueDomains,
-                segment.group.numbers,
-              )}
-            onmouseleave={(e) => tooltipReference?.handleCitationLeave(e)}
-            onclick={(e) =>
-              tooltipReference?.handleCitationInteraction(
-                e,
-                uniqueDomains,
-                segment.group.numbers,
-              )}
-            onkeydown={(e) =>
-              (e.key === "Enter" || e.key === " ") &&
-              tooltipReference?.handleCitationInteraction(
-                e,
-                uniqueDomains,
-                segment.group.numbers,
-              )}
-            ontouchstart={(e) => {
-              e.stopPropagation();
-              if (tooltipReference && "recordTouch" in tooltipReference) {
-                (tooltipReference as any).recordTouch();
-              }
-            }}
-          ><span class="sr-only">{segment.group.numbers.length} citations from multiple sources</span><span aria-hidden="true">{segment.group.displayText}</span></button>
-        {/if}
-      {/each}
-    {:else}
-      <!-- Block rendering for paragraphs -->
-      {#each groupedSegments.paragraphs as paragraph, paragraphIndex}
-        <p class="text-base {paragraphIndex < groupedSegments.paragraphs.length - 1 ? 'mb-4' : 'mb-2'}" dir="auto">
-          {#each paragraph.segments as segment}
-            {#if segment.type === "text"}
-              {segment.content}
-            {:else if segment.type === "citation"}
-              {#if showNumbers}
-                <span
-                  class="citation-number text-gray-600 dark:text-gray-400 text-xs align-super cursor-help"
-                  title="Source: {segment.citation?.domain}"
-                >
-                  {segment.content}
-                </span>
-              {:else}
-                <!-- Show as clean numbered citation -->
-                <!-- svelte-ignore a11y_mouse_events_have_key_events -->
-                <button
-                  type="button"
-                  class="citation-number text-gray-600 dark:text-gray-400 text-xs align-super cursor-help font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded px-0.5 transition-colors border-0 bg-transparent p-0"
-                  title={segment.citation?.domain === "common"
-                    ? "Common knowledge"
-                    : `Source ${segment.citation?.number}: ${segment.citation?.domain}`}
-                  onmouseover={(e) =>
-                    tooltipReference?.handleCitationInteraction(
-                      e,
-                      uniqueDomains,
-                      segment.citation?.number,
-                    )}
-                  onmouseleave={(e) => tooltipReference?.handleCitationLeave(e)}
-                  onclick={(e) =>
-                    tooltipReference?.handleCitationInteraction(
-                      e,
-                      uniqueDomains,
-                      segment.citation?.number,
-                    )}
-                  onkeydown={(e) =>
-                    (e.key === "Enter" || e.key === " ") &&
-                    tooltipReference?.handleCitationInteraction(
-                      e,
-                      uniqueDomains,
-                      segment.citation?.number,
-                    )}
-                  ontouchstart={(e) => {
-                    e.stopPropagation();
-                    // Record touch time to ignore subsequent mouseover
-                    if (tooltipReference && "recordTouch" in tooltipReference) {
-                      (tooltipReference as any).recordTouch();
-                    }
-                  }}
-                ><span class="sr-only">{segment.citation?.domain === "common"
-                    ? "Common knowledge citation"
-                    : `Citation ${segment.citation?.number} from ${segment.citation?.domain}`}</span><span aria-hidden="true">{segment.content}</span></button>
-              {/if}
-            {:else if segment.type === "citation-group"}
-              <!-- Collapsed citation group -->
-              <!-- svelte-ignore a11y_mouse_events_have_key_events -->
-              <button
-                type="button"
-                class="citation-number citation-group-badge text-gray-600 dark:text-gray-400 text-xs align-super cursor-help font-medium hover:bg-gray-100 dark:hover:bg-gray-800 rounded px-0.5 transition-colors border-0 bg-transparent p-0"
-                title={`${segment.group.numbers.length} sources: ${segment.group.numbers.join(', ')}`}
-                onmouseover={(e) =>
-                  tooltipReference?.handleCitationInteraction(
-                    e,
-                    uniqueDomains,
-                    segment.group.numbers,
-                  )}
-                onmouseleave={(e) => tooltipReference?.handleCitationLeave(e)}
-                onclick={(e) =>
-                  tooltipReference?.handleCitationInteraction(
-                    e,
-                    uniqueDomains,
-                    segment.group.numbers,
-                  )}
-                onkeydown={(e) =>
-                  (e.key === "Enter" || e.key === " ") &&
-                  tooltipReference?.handleCitationInteraction(
-                    e,
-                    uniqueDomains,
-                    segment.group.numbers,
-                  )}
-                ontouchstart={(e) => {
-                  e.stopPropagation();
-                  if (tooltipReference && "recordTouch" in tooltipReference) {
-                    (tooltipReference as any).recordTouch();
-                  }
-                }}
-              ><span class="sr-only">{segment.group.numbers.length} citations from multiple sources</span><span aria-hidden="true">{segment.group.displayText}</span></button>
-            {/if}
-          {/each}
-        </p>
-      {/each}
-    {/if}
-  </div>
+	<!-- Main content -->
+	<div class="citation-content {inline ? 'inline' : 'block'} {inline ? 'text-base' : ''}">
+		{#if inline}
+			<!-- Inline rendering for list items -->
+			{#each groupedSegments.formattedSegments as segment}
+				{#if segment.type === 'text'}
+					{segment.content}
+				{:else if segment.type === 'citation'}
+					{#if showNumbers}
+						<span
+							class="citation-number text-primary-600 text-xs align-super cursor-help"
+							title="Source: {segment.citation?.domain}"
+						>
+							{segment.content}
+						</span>
+					{:else}
+						<!-- Show as clean numbered citation -->
+						<!-- svelte-ignore a11y_mouse_events_have_key_events -->
+						<button
+							type="button"
+							class="citation-number text-primary-600 text-xs align-super cursor-help font-medium hover:bg-primary-50 rounded px-0.5 transition-colors border-0 bg-transparent p-0"
+							title={segment.citation?.domain === 'common'
+								? 'Common knowledge'
+								: `Source ${segment.citation?.number}: ${segment.citation?.domain}`}
+							onmouseover={(e) =>
+								tooltipReference?.handleCitationInteraction(
+									e,
+									uniqueDomains,
+									segment.citation?.number,
+								)}
+							onmouseleave={(e) => tooltipReference?.handleCitationLeave(e)}
+							onclick={(e) =>
+								tooltipReference?.handleCitationInteraction(
+									e,
+									uniqueDomains,
+									segment.citation?.number,
+								)}
+							onkeydown={(e) =>
+								(e.key === 'Enter' || e.key === ' ') &&
+								tooltipReference?.handleCitationInteraction(
+									e,
+									uniqueDomains,
+									segment.citation?.number,
+								)}
+							ontouchstart={(e) => {
+								e.stopPropagation();
+								// Record touch time to ignore subsequent mouseover
+								if (tooltipReference && 'recordTouch' in tooltipReference) {
+									(tooltipReference as any).recordTouch();
+								}
+							}}
+							><span class="sr-only"
+								>{segment.citation?.domain === 'common'
+									? 'Common knowledge citation'
+									: `Citation ${segment.citation?.number} from ${segment.citation?.domain}`}</span
+							><span aria-hidden="true">{segment.content}</span></button
+						>
+					{/if}
+				{:else if segment.type === 'citation-group'}
+					<!-- Collapsed citation group -->
+					<!-- svelte-ignore a11y_mouse_events_have_key_events -->
+					<button
+						type="button"
+						class="citation-number citation-group-badge text-primary-600 text-xs align-super cursor-help font-medium hover:bg-primary-50 rounded px-0.5 transition-colors border-0 bg-transparent p-0"
+						title={`${segment.group.numbers.length} sources: ${segment.group.numbers.join(', ')}`}
+						onmouseover={(e) =>
+							tooltipReference?.handleCitationInteraction(e, uniqueDomains, segment.group.numbers)}
+						onmouseleave={(e) => tooltipReference?.handleCitationLeave(e)}
+						onclick={(e) =>
+							tooltipReference?.handleCitationInteraction(e, uniqueDomains, segment.group.numbers)}
+						onkeydown={(e) =>
+							(e.key === 'Enter' || e.key === ' ') &&
+							tooltipReference?.handleCitationInteraction(e, uniqueDomains, segment.group.numbers)}
+						ontouchstart={(e) => {
+							e.stopPropagation();
+							if (tooltipReference && 'recordTouch' in tooltipReference) {
+								(tooltipReference as any).recordTouch();
+							}
+						}}
+						><span class="sr-only"
+							>{segment.group.numbers.length} citations from multiple sources</span
+						><span aria-hidden="true">{segment.group.displayText}</span></button
+					>
+				{/if}
+			{/each}
+		{:else}
+			<!-- Block rendering for paragraphs -->
+			{#each groupedSegments.paragraphs as paragraph, paragraphIndex}
+				<p
+					class="text-base {paragraphIndex < groupedSegments.paragraphs.length - 1
+						? 'mb-4'
+						: 'mb-2'}"
+				>
+					{#each paragraph.segments as segment}
+						{#if segment.type === 'text'}
+							{segment.content}
+						{:else if segment.type === 'citation'}
+							{#if showNumbers}
+								<span
+									class="citation-number text-primary-600 text-xs align-super cursor-help"
+									title="Source: {segment.citation?.domain}"
+								>
+									{segment.content}
+								</span>
+							{:else}
+								<!-- Show as clean numbered citation -->
+								<!-- svelte-ignore a11y_mouse_events_have_key_events -->
+								<button
+									type="button"
+									class="citation-number text-primary-600 text-xs align-super cursor-help font-medium hover:bg-primary-50 rounded px-0.5 transition-colors border-0 bg-transparent p-0"
+									title={segment.citation?.domain === 'common'
+										? 'Common knowledge'
+										: `Source ${segment.citation?.number}: ${segment.citation?.domain}`}
+									onmouseover={(e) =>
+										tooltipReference?.handleCitationInteraction(
+											e,
+											uniqueDomains,
+											segment.citation?.number,
+										)}
+									onmouseleave={(e) => tooltipReference?.handleCitationLeave(e)}
+									onclick={(e) =>
+										tooltipReference?.handleCitationInteraction(
+											e,
+											uniqueDomains,
+											segment.citation?.number,
+										)}
+									onkeydown={(e) =>
+										(e.key === 'Enter' || e.key === ' ') &&
+										tooltipReference?.handleCitationInteraction(
+											e,
+											uniqueDomains,
+											segment.citation?.number,
+										)}
+									ontouchstart={(e) => {
+										e.stopPropagation();
+										// Record touch time to ignore subsequent mouseover
+										if (tooltipReference && 'recordTouch' in tooltipReference) {
+											(tooltipReference as any).recordTouch();
+										}
+									}}
+									><span class="sr-only"
+										>{segment.citation?.domain === 'common'
+											? 'Common knowledge citation'
+											: `Citation ${segment.citation?.number} from ${segment.citation?.domain}`}</span
+									><span aria-hidden="true">{segment.content}</span></button
+								>
+							{/if}
+						{:else if segment.type === 'citation-group'}
+							<!-- Collapsed citation group -->
+							<!-- svelte-ignore a11y_mouse_events_have_key_events -->
+							<button
+								type="button"
+								class="citation-number citation-group-badge text-primary-600 text-xs align-super cursor-help font-medium hover:bg-primary-50 rounded px-0.5 transition-colors border-0 bg-transparent p-0"
+								title={`${segment.group.numbers.length} sources: ${segment.group.numbers.join(', ')}`}
+								onmouseover={(e) =>
+									tooltipReference?.handleCitationInteraction(
+										e,
+										uniqueDomains,
+										segment.group.numbers,
+									)}
+								onmouseleave={(e) => tooltipReference?.handleCitationLeave(e)}
+								onclick={(e) =>
+									tooltipReference?.handleCitationInteraction(
+										e,
+										uniqueDomains,
+										segment.group.numbers,
+									)}
+								onkeydown={(e) =>
+									(e.key === 'Enter' || e.key === ' ') &&
+									tooltipReference?.handleCitationInteraction(
+										e,
+										uniqueDomains,
+										segment.group.numbers,
+									)}
+								ontouchstart={(e) => {
+									e.stopPropagation();
+									if (tooltipReference && 'recordTouch' in tooltipReference) {
+										(tooltipReference as any).recordTouch();
+									}
+								}}
+								><span class="sr-only"
+									>{segment.group.numbers.length} citations from multiple sources</span
+								><span aria-hidden="true">{segment.group.displayText}</span></button
+							>
+						{/if}
+					{/each}
+				</p>
+			{/each}
+		{/if}
+	</div>
 
-  <!-- Citation sources with favicons (appears on next line for both inline and block) -->
-  {#if showFavicons && uniqueDomains.length > 0}
-    <!-- svelte-ignore a11y_mouse_events_have_key_events -->
-    <div
-      class="citation-sources flex items-center cursor-pointer"
-      onmouseover={(e) =>
-        tooltipReference?.handleCitationInteraction(e, uniqueDomains)}
-      onmouseleave={(e) => tooltipReference?.handleCitationLeave(e)}
-      onfocus={() => {}}
-      onblur={() => {}}
-      onclick={(e) =>
-        tooltipReference?.handleCitationInteraction(e, uniqueDomains)}
-      onkeydown={(e) =>
-        (e.key === "Enter" || e.key === " ") &&
-        tooltipReference?.handleCitationInteraction(e, uniqueDomains)}
-      ontouchstart={(e) => {
-        e.stopPropagation();
-        // Record touch time to ignore subsequent mouseover
-        if (tooltipReference && "recordTouch" in tooltipReference) {
-          (tooltipReference as any).recordTouch();
-        }
-      }}
-      role="button"
-      tabindex="0"
-      aria-label="View sources: {uniqueDomains.join(', ')}"
-    >
-      <span class="text-xs text-gray-500 dark:text-gray-400 me-2">
-        {storyLocalizer(uniqueDomains.length === 1 ? "citation.source" : "citation.sources")}
-      </span>
-      <div class="flex items-center -space-x-3">
-        {#each uniqueDomains.slice(0, 5) as domain, index}
-          <div
-            class="favicon-wrapper relative size-6 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 flex items-center justify-center hover:z-10 transition-all hover:scale-110"
-            style="z-index: {5 - index}"
-            title={domain}
-          >
-            <FaviconImage
-              {domain}
-              alt="{domain} favicon"
-              class="size-5 rounded-sm"
-              loading="lazy"
-            />
-          </div>
-        {/each}
-        {#if uniqueDomains.length > 5}
-          <div class="ms-3 text-xs text-gray-500 dark:text-gray-400">
-            +{uniqueDomains.length - 5} more
-          </div>
-        {/if}
-      </div>
-    </div>
-  {/if}
+	<!-- Citation sources with favicons (appears on next line for both inline and block) -->
+	{#if showFavicons && uniqueDomains.length > 0}
+		<!-- svelte-ignore a11y_mouse_events_have_key_events -->
+		<div
+			class="citation-sources flex items-center cursor-pointer"
+			onmouseover={(e) => tooltipReference?.handleCitationInteraction(e, uniqueDomains)}
+			onmouseleave={(e) => tooltipReference?.handleCitationLeave(e)}
+			onfocus={() => {}}
+			onblur={() => {}}
+			onclick={(e) => tooltipReference?.handleCitationInteraction(e, uniqueDomains)}
+			onkeydown={(e) =>
+				(e.key === 'Enter' || e.key === ' ') &&
+				tooltipReference?.handleCitationInteraction(e, uniqueDomains)}
+			ontouchstart={(e) => {
+				e.stopPropagation();
+				// Record touch time to ignore subsequent mouseover
+				if (tooltipReference && 'recordTouch' in tooltipReference) {
+					(tooltipReference as any).recordTouch();
+				}
+			}}
+			role="button"
+			tabindex="0"
+			aria-label="View sources: {uniqueDomains.join(', ')}"
+		>
+			<span class="text-xs text-primary-600 me-2">
+				{storyLocalizer(uniqueDomains.length === 1 ? 'citation.source' : 'citation.sources')}
+			</span>
+			<div class="flex items-center -space-x-3">
+				{#each uniqueDomains.slice(0, 5) as domain, index}
+					<div
+						class="favicon-wrapper relative size-6 rounded-full bg-modal-bg border border-primary-100 flex items-center justify-center hover:z-10 transition-all hover:scale-110"
+						style="z-index: {5 - index}"
+						title={domain}
+					>
+						<FaviconImage
+							{domain}
+							alt="{domain} favicon"
+							class="size-5 rounded-sm"
+							loading="lazy"
+						/>
+					</div>
+				{/each}
+				{#if uniqueDomains.length > 5}
+					<div class="ms-3 text-xs text-primary-600">
+						+{uniqueDomains.length - 5} more
+					</div>
+				{/if}
+			</div>
+		</div>
+	{/if}
 
-  <!-- Numbered citations list (if using numbered format) -->
-  {#if showNumbers && parsedData.citations.length > 0 && !inline}
-    <button
-      class="mt-2 text-xs text-gray-600 dark:text-gray-400 hover:underline"
-      onclick={() => (showSources = !showSources)}
-    >
-      {showSources ? "Hide" : "Show"} sources
-    </button>
+	<!-- Numbered citations list (if using numbered format) -->
+	{#if showNumbers && parsedData.citations.length > 0 && !inline}
+		<button
+			class="mt-2 text-xs text-primary-600 hover:underline"
+			onclick={() => (showSources = !showSources)}
+		>
+			{showSources ? 'Hide' : 'Show'} sources
+		</button>
 
-    {#if showSources}
-      <div class="citation-list mt-2 text-sm text-gray-600 dark:text-gray-400">
-        {#each parsedData.citations as citation, index}
-          <div class="citation-item" dir="auto">
-            [{index + 1}] {citation.domain}
-            {#if citation.domain !== "common"}
-              <FaviconImage
-                domain={citation.domain}
-                alt="{citation.domain} favicon"
-                class="inline-block size-3 ms-1 rounded-sm"
-                loading="lazy"
-              />
-            {/if}
-          </div>
-        {/each}
-      </div>
-    {/if}
-  {/if}
+		{#if showSources}
+			<div class="citation-list mt-2 text-sm text-primary-600">
+				{#each parsedData.citations as citation, index}
+					<div class="citation-item">
+						[{index + 1}] {citation.domain}
+						{#if citation.domain !== 'common'}
+							<FaviconImage
+								domain={citation.domain}
+								alt="{citation.domain} favicon"
+								class="inline-block size-3 ms-1 rounded-sm"
+								loading="lazy"
+							/>
+						{/if}
+					</div>
+				{/each}
+			</div>
+		{/if}
+	{/if}
 </div>
 
 <!-- Citation Tooltip (only if no external tooltip provided) -->
 {#if !externalTooltip}
-  <CitationTooltip
-    bind:this={citationTooltip}
-    articles={citedArticles}
-    citationNumbers={citedArticlesWithNumbers.map((item) => item.number)}
-    {hasCommonKnowledge}
-    citedItems={citedArticlesWithNumbers}
-    {storyLocalizer}
-  />
+	<CitationTooltip
+		bind:this={citationTooltip}
+		articles={citedArticles}
+		citationNumbers={citedArticlesWithNumbers.map((item) => item.number)}
+		{hasCommonKnowledge}
+		citedItems={citedArticlesWithNumbers}
+		{storyLocalizer}
+	/>
 {/if}
 
 <style>
-  .citation-wrapper {
-    display: block;
-  }
+.citation-wrapper {
+	display: block;
+}
 
-  .citation-wrapper:has(.citation-content.inline) {
-    display: inline;
-  }
+.citation-wrapper:has(.citation-content.inline) {
+	display: inline;
+}
 
-  .citation-content {
-    display: block;
-  }
+.citation-content {
+	display: block;
+}
 
-  .citation-content.inline {
-    display: inline;
-  }
+.citation-content.inline {
+	display: inline;
+}
 
-  .citation-sources {
-    margin-top: 0.25rem;
-  }
+.citation-sources {
+	margin-top: 0.25rem;
+}
 
-  .citation-number {
-    font-weight: 500;
-    margin: 0;
-    margin-right: -2px;
-  }
+.citation-number {
+	font-weight: 500;
+	margin: 0;
+	margin-right: -2px;
+}
 
-  .favicon-wrapper {
-    transition:
-      transform 0.2s,
-      z-index 0.2s;
-  }
+.favicon-wrapper {
+	transition:
+		transform 0.2s,
+		z-index 0.2s;
+}
 
-  .citation-list {
-    border-left: 2px solid;
-    padding-left: 0.75rem;
-    margin-top: 0.5rem;
-  }
+.citation-list {
+	border-left: 2px solid;
+	padding-left: 0.75rem;
+	margin-top: 0.5rem;
+}
 
-  .citation-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 0.25rem;
-  }
+.citation-item {
+	display: flex;
+	align-items: center;
+	margin-bottom: 0.25rem;
+}
 </style>

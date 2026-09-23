@@ -1,7 +1,7 @@
 <script lang="ts">
+import { s } from '$lib/client/localization.svelte';
 import { IconRefresh, IconTrendingDown, IconTrendingUp } from '@tabler/icons-svelte';
 import { onMount } from 'svelte';
-import { s } from '$lib/client/localization.svelte';
 
 interface Props {
 	cryptoId?: string;
@@ -62,13 +62,13 @@ function formatPrice(price: number): string {
 // Format large numbers (market cap, volume)
 function formatLargeNumber(num: number): string {
 	if (num >= 1e12) {
-		return `$${(num / 1e12).toFixed(2)}T`;
+		return `${(num / 1e12).toFixed(2)}T`;
 	} else if (num >= 1e9) {
-		return `$${(num / 1e9).toFixed(2)}B`;
+		return `${(num / 1e9).toFixed(2)}B`;
 	} else if (num >= 1e6) {
-		return `$${(num / 1e6).toFixed(2)}M`;
+		return `${(num / 1e6).toFixed(2)}M`;
 	}
-	return `$${num.toFixed(0)}`;
+	return `${num.toFixed(0)}`;
 }
 
 // Generate SVG path for sparkline
@@ -93,19 +93,19 @@ function generateSparklinePath(prices: number[]): string {
 // Crypto color schemes
 const cryptoColors: Record<string, { bg: string; border: string; icon: string }> = {
 	bitcoin: {
-		bg: 'from-orange-50 to-yellow-50 dark:from-gray-800 dark:to-gray-900',
-		border: 'border-orange-200 dark:border-gray-700',
+		bg: 'from-orange-50 to-yellow-50 dark:from-graphite-800 dark:to-graphite-900',
+		border: 'border-orange-200 dark:border-graphite-700',
 		icon: 'bg-orange-500',
 	},
 	ethereum: {
-		bg: 'from-purple-50 to-blue-50 dark:from-gray-800 dark:to-gray-900',
-		border: 'border-purple-200 dark:border-gray-700',
+		bg: 'from-purple-50 to-blue-50 dark:from-graphite-800 dark:to-graphite-900',
+		border: 'border-primary-100',
 		icon: 'bg-purple-500',
 	},
 	default: {
-		bg: 'from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900',
-		border: 'border-gray-200 dark:border-gray-700',
-		icon: 'bg-blue-500',
+		bg: 'from-primary-25 to-primary-50 dark:from-graphite-800 dark:to-graphite-900',
+		border: 'border-primary-100',
+		icon: 'bg-purple-600',
 	},
 };
 
@@ -155,7 +155,8 @@ onMount(() => {
 					class="h-full w-full"
 					onerror={(e) => {
 						const img = e.currentTarget as HTMLImageElement;
-						img.src = 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/btc.svg';
+						img.src =
+							'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/btc.svg';
 					}}
 				/>
 			</div>
@@ -164,13 +165,17 @@ onMount(() => {
 			<div class="flex flex-col">
 				<div class="flex items-baseline gap-2">
 					{#if !loading && data}
-						<span class="text-xs font-medium text-gray-600 dark:text-gray-400">{data.symbol}</span>
+						<span class="text-xs font-medium text-primary-600">{data.symbol}</span>
 					{/if}
-					<span class="text-2xl font-bold text-gray-900 dark:text-gray-100">
+					<span class="text-2xl font-bold text-primary">
 						{loading ? '...' : formatPrice(data?.price ?? 0)}
 					</span>
 					{#if !loading && data}
-						<div class="flex items-center gap-1 text-sm font-medium {isPositive ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}">
+						<div
+							class="flex items-center gap-1 text-sm font-medium {isPositive
+								? 'text-green-600 dark:text-green-400'
+								: 'text-red-600 dark:text-red-400'}"
+						>
 							{#if isPositive}
 								<IconTrendingUp class="h-4 w-4" />
 							{:else}
@@ -180,7 +185,7 @@ onMount(() => {
 						</div>
 					{/if}
 				</div>
-				<div class="flex gap-3 text-xs text-gray-600 dark:text-gray-400">
+				<div class="flex gap-3 text-xs text-primary-600">
 					{#if !loading && data}
 						<span>24h: {formatPrice(data.low24h)} - {formatPrice(data.high24h)}</span>
 					{/if}
@@ -204,7 +209,7 @@ onMount(() => {
 			<button
 				onclick={handleRefresh}
 				disabled={refreshing}
-				class="rounded p-1.5 text-gray-600 transition-colors hover:bg-white/50 disabled:opacity-50 dark:text-gray-400 dark:hover:bg-gray-700/50"
+				class="rounded p-1.5 text-primary-600 transition-colors hover:bg-white/50 disabled:opacity-50 dark:hover:bg-graphite-700/50"
 				aria-label="Refresh price"
 			>
 				<IconRefresh class="h-4 w-4 {refreshing ? 'animate-spin' : ''}" />

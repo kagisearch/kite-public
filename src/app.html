@@ -1,72 +1,462 @@
 <!doctype html>
-<html lang="en" class="%sveltekit.theme%">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
-    <meta name="theme-color" content="#ffffff" id="theme-color" />
-    <title>Kagi News</title>
-    <link rel="manifest" href="%sveltekit.assets%/manifest.json" />
-    <link rel="icon" type="image/svg+xml" href="%sveltekit.assets%/favicon.svg" />
-    <link
-      rel="apple-touch-icon"
-      href="%sveltekit.assets%/apple-touch-icon.png"
-    />
+<html lang="en" dir="ltr" class="%sveltekit.theme%" data-overlayscrollbars-initialize>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+		<meta name="theme-color" content="#ffffff" id="theme-color" />
+		<title>Kagi News</title>
+		<link rel="manifest" href="%sveltekit.assets%/manifest.json" />
+		<link rel="icon" type="image/svg+xml" href="%sveltekit.assets%/favicon.svg" />
+		<link rel="apple-touch-icon" href="%sveltekit.assets%/apple-touch-icon.png" />
 
-    <!-- Prevent flash of wrong theme - minimal script that only handles dark mode detection -->
-    <script>
-      (() => {
-        try {
-          // Check if we're in a browser environment
-          if (typeof window === "undefined") return;
+		<!-- Preload the two lufga weights actually used on the SSR shell so the
+		     font request fires in parallel with HTML parsing and is in cache by
+		     the time CSSOM resolves font-family: lufga. Without these, WebKit
+		     (Orion / Safari) paints the system-ui fallback first and swaps in
+		     lufga a frame or two later — visible as a size/weight flicker in
+		     the per-story category-label and title. -->
+		<link
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			href="%sveltekit.assets%/fonts/lufga/lufga-regular-webfont.woff2"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			href="%sveltekit.assets%/fonts/lufga/lufga-semibold-webfont.woff2"
+			crossorigin="anonymous"
+		/>
 
-          // Try to get theme from localStorage with error handling
-          let storedTheme = null;
-          try {
-            storedTheme = localStorage.getItem("theme");
-          } catch (storageError) {
-            // localStorage might be blocked in private mode or by security settings
-            console.warn("localStorage not accessible:", storageError);
-          }
+		<!-- Prevent flash of wrong direction. Tailwind's ltr:/rtl: variants
+		     compile to [dir="ltr"]/[dir="rtl"] selectors, so the html element
+		     must carry an explicit dir before the first paint or absolutely-
+		     positioned elements with ltr:-translate-x-1/2 (e.g. the centered
+		     header stats section) render uncentered until +layout.svelte sets
+		     it. Keep RTL_LOCALES in sync with $lib/client/rtl-detection. -->
+		<script>
+			(() => {
+				try {
+					const RTL_LOCALES = ['ar', 'he', 'fa', 'ur', 'yi', 'ji', 'iw', 'ku', 'arc', 'az', 'dv'];
+					const stored = localStorage.getItem('kiteLanguage');
+					const locale = stored && stored !== 'default' ? stored : navigator.language || 'en';
+					const baseLang = locale.split('-')[0].toLowerCase();
+					if (RTL_LOCALES.includes(baseLang)) {
+						document.documentElement.dir = 'rtl';
+						document.documentElement.classList.add('rtl');
+					}
+				} catch (_e) {
+					// Storage blocked / parse error — keep default dir="ltr".
+				}
+			})();
+		</script>
 
-          let darkModePreferred = false;
+		<!-- Prevent flash of wrong theme - minimal script that only handles dark mode detection -->
+		<script>
+			(() => {
+				try {
+					// Check if we're in a browser environment
+					if (typeof window === 'undefined') return;
 
-          if (storedTheme === "dark") {
-            darkModePreferred = true;
-          } else if (storedTheme === "system" || !storedTheme) {
-            // Check system preference for 'system' theme or when no theme is stored
-            const darkMediaQuery = window.matchMedia(
-              "(prefers-color-scheme: dark)",
-            );
-            darkModePreferred = darkMediaQuery.matches;
-          }
-          // If storedTheme === 'light', darkModePreferred remains false
+					// Try to get theme from localStorage with error handling
+					let storedTheme = null;
+					try {
+						storedTheme = localStorage.getItem('theme');
+					} catch (storageError) {
+						// localStorage might be blocked in private mode or by security settings
+						console.warn('localStorage not accessible:', storageError);
+					}
 
-          // Apply dark mode class if needed
-          if (darkModePreferred) {
-            document.documentElement.classList.add("dark");
-          }
+					let darkModePreferred = false;
 
-          // Update theme-color meta tag immediately
-          const themeColorMeta = document.getElementById("theme-color");
-          if (themeColorMeta) {
-            const newColor = darkModePreferred ? "#1f2937" : "#ffffff";
-            themeColorMeta.setAttribute("content", newColor);
-          }
-        } catch (e) {
-          console.error("Theme detection error:", e);
-        }
-      })();
-    </script>
+					if (storedTheme === 'dark') {
+						darkModePreferred = true;
+					} else if (storedTheme === 'system' || !storedTheme) {
+						// Check system preference for 'system' theme or when no theme is stored
+						const darkMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+						darkModePreferred = darkMediaQuery.matches;
+					}
+					// If storedTheme === 'light', darkModePreferred remains false
 
-    %sveltekit.head%
-  </head>
-  <body
-    data-sveltekit-preload-data="hover"
-    class="dark:bg-dark-bg dark:text-dark-text min-h-dvh bg-white text-black"
-  >
-    <div style="display: contents">%sveltekit.body%</div>
-  </body>
+					// Apply dark mode class if needed
+					if (darkModePreferred) {
+						document.documentElement.classList.add('dark');
+					}
+
+					// Update theme-color meta tag immediately
+					const themeColorMeta = document.getElementById('theme-color');
+					if (themeColorMeta) {
+						const newColor = darkModePreferred ? '#232325' : '#ffffff';
+						themeColorMeta.setAttribute('content', newColor);
+					}
+				} catch (e) {
+					console.error('Theme detection error:', e);
+				}
+			})();
+		</script>
+
+		<!-- Prevent flash of wrong reader font size before Svelte loads settings. -->
+		<script>
+			(() => {
+				try {
+					const size = localStorage.getItem('fontSize');
+					const fontSizes = {
+						xs: {
+							'--text-xs': '0.625rem',
+							'--text-sm': '0.75rem',
+							'--text-base': '0.75rem',
+							'--text-lg': '0.875rem',
+							'--text-xl': '1rem',
+							'--text-2xl': '1.125rem',
+							'--text-3xl': '1.25rem',
+							'--text-4xl': '1.5rem',
+						},
+						small: {
+							'--text-xs': '0.6875rem',
+							'--text-sm': '0.8125rem',
+							'--text-base': '0.875rem',
+							'--text-lg': '1rem',
+							'--text-xl': '1.125rem',
+							'--text-2xl': '1.375rem',
+							'--text-3xl': '1.625rem',
+							'--text-4xl': '2rem',
+						},
+						normal: {
+							'--text-xs': '0.75rem',
+							'--text-sm': '0.875rem',
+							'--text-base': '1rem',
+							'--text-lg': '1.125rem',
+							'--text-xl': '1.25rem',
+							'--text-2xl': '1.5rem',
+							'--text-3xl': '1.875rem',
+							'--text-4xl': '2.25rem',
+						},
+						large: {
+							'--text-xs': '0.8125rem',
+							'--text-sm': '0.9375rem',
+							'--text-base': '1.125rem',
+							'--text-lg': '1.25rem',
+							'--text-xl': '1.5rem',
+							'--text-2xl': '1.875rem',
+							'--text-3xl': '2.25rem',
+							'--text-4xl': '2.75rem',
+						},
+						xl: {
+							'--text-xs': '0.875rem',
+							'--text-sm': '1rem',
+							'--text-base': '1.25rem',
+							'--text-lg': '1.5rem',
+							'--text-xl': '1.75rem',
+							'--text-2xl': '2.125rem',
+							'--text-3xl': '2.625rem',
+							'--text-4xl': '3.25rem',
+						},
+					};
+					const values = fontSizes[size];
+					if (!values) return;
+					const root = document.documentElement;
+					root.classList.remove(
+						'font-size-xs',
+						'font-size-small',
+						'font-size-normal',
+						'font-size-large',
+						'font-size-xl',
+					);
+					root.classList.add(`font-size-${size}`);
+					Object.entries(values).forEach(([key, value]) => {
+						root.style.setProperty(key, value);
+					});
+				} catch (_e) {
+					// Storage blocked / parse error — fall through to default font size.
+				}
+			})();
+		</script>
+
+		<!-- Viewport-aware label size for the footer items (Contribute / About /
+		     RSS). They sit inside <a>/<button>, whose UA defaults (~16px body
+		     inherit, ~11px WebKit -webkit-small-control) flash before Tailwind's
+		     preflight + utility classes apply. The labels are responsive
+		     (text-xs → sm:text-sm), so a plain inline font-size on each <span>
+		     would beat the sm: utility on specificity. Instead, declare a
+		     viewport-aware --footer-label-size here (in an in-document <style>
+		     parsed before any external CSS) and reference it via inline style
+		     on each label. References --text-xs/--text-sm so the localStorage
+		     fontSize override script above stays authoritative; rem fallbacks
+		     keep the var resolvable before Tailwind's theme layer loads. -->
+		<style>
+			:root {
+				--footer-label-size: var(--text-xs, 0.75rem);
+			}
+			@media (min-width: 640px) {
+				:root {
+					--footer-label-size: var(--text-sm, 0.875rem);
+				}
+			}
+		</style>
+
+		%sveltekit.head%
+
+		<!-- Inlined by transformPageChunk in hooks.server.ts: shared
+	     compactContentFilter helpers from $lib/data/contentFilterCompact. -->
+		<script>/*__KN_COMPACT_HELPERS__*/</script>
+
+		<!-- Mirror localStorage prefs into cookies so SSR can render the same
+	     structural shell. Reloads only after a successful cookie write.
+	     Calls into window.__knFilterCompact for the content-filter shape so
+	     this stays in lockstep with the canonical compactContentFilterPrefs. -->
+		<script>
+				(() => {
+					try {
+						const secure = location.protocol === 'https:' ? '; secure' : '';
+						const cookieValue = (name) => {
+							const row = document.cookie.split('; ').find((row) => row.startsWith(`${name}=`));
+							return row ? row.slice(name.length + 1) : null;
+						};
+
+						let shouldReload = false;
+						const reloadIfNeeded = () => {
+							if (shouldReload) location.replace(location.href);
+						};
+
+						const storedUiLanguage = localStorage.getItem('kiteLanguage') || 'en';
+						const currentLocale = cookieValue('locale');
+						if (storedUiLanguage === 'default') {
+							if (currentLocale !== null) {
+								document.cookie = `locale=; path=/; max-age=0; samesite=lax${secure}`;
+								shouldReload = cookieValue('locale') === null;
+							}
+						} else {
+							const nextLocale = encodeURIComponent(storedUiLanguage);
+							if (currentLocale !== nextLocale) {
+								document.cookie = `locale=${nextLocale}; path=/; max-age=31536000; samesite=lax${secure}`;
+								shouldReload = cookieValue('locale') === nextLocale;
+							}
+						}
+
+						const prefsCookie = cookieValue('kn_prefs');
+						let prefs = null;
+						if (prefsCookie) {
+							try {
+								const parsed = JSON.parse(decodeURIComponent(prefsCookie));
+								if (
+									parsed &&
+									typeof parsed === 'object' &&
+									Array.isArray(parsed.enabled) &&
+									typeof parsed.dataLang === 'string'
+								) {
+									prefs = parsed;
+								}
+							} catch (_e) {
+								prefs = null;
+							}
+						}
+
+						const readLocalFirstRenderPrefs = () => {
+							const rawEnabled = localStorage.getItem('enabledCategories');
+							if (!rawEnabled) return null;
+
+							let rawEnabledArr = [];
+							try {
+								rawEnabledArr = JSON.parse(rawEnabled);
+							} catch (_e) {
+								return null;
+							}
+							if (!Array.isArray(rawEnabledArr) || rawEnabledArr.length === 0) return null;
+
+							// enabledCategories is a CRDT set with non-meaningful array order —
+							// project it into categoryOrder so enabled[0] matches the first tab
+							// the user sees in the nav. Mirrors syncKnPrefsCookie's logic.
+							const enabledSet = new Set(rawEnabledArr);
+							let orderArr = [];
+							try {
+								const parsedOrder = JSON.parse(localStorage.getItem('categoryOrder') || '[]');
+								if (Array.isArray(parsedOrder)) orderArr = parsedOrder;
+							} catch (_e) {}
+
+							const orderedEnabled = orderArr.filter((id) => enabledSet.has(id));
+							const orderedSet = new Set(orderedEnabled);
+							const missing = rawEnabledArr.filter((id) => !orderedSet.has(id));
+							const enabled = orderedEnabled.concat(missing);
+							if (enabled.length === 0) return null;
+
+							let dataLang = localStorage.getItem('dataLanguage') || 'default';
+							if (dataLang === 'custom') {
+								try {
+									const contentLanguagePrefs = JSON.parse(
+										localStorage.getItem('contentLanguages') || '[]',
+									);
+									const valid = Array.isArray(contentLanguagePrefs)
+										? contentLanguagePrefs.filter(
+												(l) => l !== 'default' && l !== 'source' && l !== 'custom',
+											)
+										: [];
+									dataLang = valid.length > 0 ? valid.join(',') : 'default';
+								} catch (_e) {
+									dataLang = 'default';
+								}
+							}
+
+							return { enabled, dataLang };
+						};
+
+						let changed = !prefs;
+						const localPrefs = readLocalFirstRenderPrefs();
+						if (!prefs) {
+							if (!localPrefs) {
+								reloadIfNeeded();
+								return;
+							}
+							prefs = localPrefs;
+						} else if (localPrefs) {
+							if (JSON.stringify(prefs.enabled) !== JSON.stringify(localPrefs.enabled)) {
+								prefs.enabled = localPrefs.enabled;
+								changed = true;
+							}
+							if (prefs.dataLang !== localPrefs.dataLang) {
+								prefs.dataLang = localPrefs.dataLang;
+								changed = true;
+							}
+						}
+
+						const display =
+							prefs.display && typeof prefs.display === 'object' && !Array.isArray(prefs.display)
+								? prefs.display
+								: {};
+						const readContentFilter = (existingContentFilter) => {
+							try {
+								const raw = localStorage.getItem('kite-content-filter');
+								if (!raw) return null;
+								const parsed = JSON.parse(raw);
+								if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) {
+									return null;
+								}
+								// Inline preload runs without the 38KB preset JSON, so omit
+								// presetKeywords — customKeywords falls back to whatever the
+								// client persisted to localStorage (or carry over from the
+								// existing cookie) until the next saveSettings() rewrites it.
+								const carryoverCustom =
+									!parsed.customKeywords && existingContentFilter?.customKeywords
+										? { ...parsed, customKeywords: existingContentFilter.customKeywords }
+										: parsed;
+								return window.__knFilterCompact.compactContentFilter(carryoverCustom, {
+									presetLanguage:
+										localStorage.getItem('dataLanguage') || prefs.dataLang || 'default',
+								});
+							} catch (_e) {
+								return null;
+							}
+						};
+						const setDisplay = (key, value) => {
+							if (value === undefined || display[key] === value) return;
+							display[key] = value;
+							changed = true;
+						};
+
+						const fontSize = localStorage.getItem('fontSize');
+						if (['xs', 'small', 'normal', 'large', 'xl'].includes(fontSize)) {
+							setDisplay('fontSize', fontSize);
+						}
+						const rawStoryCount = localStorage.getItem('storyCount');
+						if (rawStoryCount !== null) {
+							const storyCount = Number(rawStoryCount);
+							if (Number.isInteger(storyCount)) {
+								setDisplay('storyCount', Math.max(3, Math.min(12, storyCount)));
+							}
+						}
+						const layoutWidth = localStorage.getItem('layoutWidth');
+						if (['normal', 'wide', 'full'].includes(layoutWidth)) {
+							setDisplay('layoutWidth', layoutWidth);
+						}
+						const categoryHeaderPosition = localStorage.getItem('categoryHeaderPosition');
+						if (['top', 'bottom'].includes(categoryHeaderPosition)) {
+							setDisplay('categoryHeaderPosition', categoryHeaderPosition);
+						}
+						const rawIntroShown = localStorage.getItem('introShown');
+						if (rawIntroShown !== null) {
+							setDisplay('introShown', rawIntroShown === 'true');
+						}
+						const singlePageMode = localStorage.getItem('singlePageMode');
+						if (['disabled', 'sequential', 'mixed', 'random'].includes(singlePageMode)) {
+							setDisplay('singlePageMode', singlePageMode);
+						}
+
+						const contentFilter = readContentFilter(prefs.contentFilter);
+						if (contentFilter) {
+							if (JSON.stringify(prefs.contentFilter || null) !== JSON.stringify(contentFilter)) {
+								prefs.contentFilter = contentFilter;
+								changed = true;
+							}
+						} else if (prefs.contentFilter !== undefined) {
+							delete prefs.contentFilter;
+							changed = true;
+						}
+
+						// Mirror experimental flags whose value affects the SSR shell.
+						let experimental = null;
+						try {
+							const rawExperimental = localStorage.getItem('kite-experimental-features');
+							if (rawExperimental) {
+								const parsedExperimental = JSON.parse(rawExperimental);
+								if (parsedExperimental && typeof parsedExperimental === 'object') {
+									const exp = {};
+									if (typeof parsedExperimental.showChaosIndex === 'boolean') {
+										exp.showChaosIndex = parsedExperimental.showChaosIndex;
+									}
+									if (Object.keys(exp).length > 0) experimental = exp;
+								}
+							}
+						} catch (_e) {
+							experimental = null;
+						}
+						if (experimental) {
+							if (JSON.stringify(prefs.experimental || null) !== JSON.stringify(experimental)) {
+								prefs.experimental = experimental;
+								changed = true;
+							}
+						} else if (prefs.experimental !== undefined) {
+							delete prefs.experimental;
+							changed = true;
+						}
+
+						if (changed) {
+							prefs.display = display;
+							const tryWrite = (payload) => {
+								const value = encodeURIComponent(JSON.stringify(payload));
+								document.cookie = `kn_prefs=${value}; path=/; max-age=31536000; samesite=lax${secure}`;
+								// Browsers silently drop oversized writes (~4096 byte cap).
+								// Verify before signalling success so we don't reload into the
+								// same stale SSR state.
+								return cookieValue('kn_prefs') === value;
+							};
+							let written = tryWrite(prefs);
+							if (!written && prefs.contentFilter) {
+								// Same trim-and-retry as syncKnPrefsCookie: dropping the SSR
+								// content-filter prepaint is acceptable; keeping the enabled
+								// list and dataLang in sync matters more for the first paint.
+								const trimmed = Object.assign({}, prefs);
+								delete trimmed.contentFilter;
+								written = tryWrite(trimmed);
+							}
+							if (written) {
+								shouldReload = true;
+							}
+						}
+
+						reloadIfNeeded();
+					} catch (_e) {
+						// Storage blocked / parse error — fall through to default SSR.
+					}
+				})();
+		</script>
+
+	</head>
+	<body
+		data-overlayscrollbars-initialize
+		data-sveltekit-preload-data="hover"
+		class="dark:bg-dark-bg dark:text-dark-text text-graphite-800 min-h-dvh bg-white"
+	>
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
 </html>

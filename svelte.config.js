@@ -12,6 +12,9 @@ const config = {
 		csrf: {
 			trustedOrigins: ['*'],
 		},
+		version: {
+			pollInterval: 300000,
+		},
 	},
 };
 

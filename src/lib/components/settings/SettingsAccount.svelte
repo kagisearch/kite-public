@@ -1,4 +1,10 @@
 <script lang="ts">
+import { s } from '$lib/client/localization.svelte';
+import { downloadSettingsBackup, handleSettingsImport } from '$lib/client/settings-backup';
+import { syncManager } from '$lib/client/sync-manager';
+import { safeGetItem, safeSetItem } from '$lib/client/utils/safe-storage';
+import { settingsLock } from '$lib/data/settings.svelte.js';
+import SyncSetupModal from './SyncSetupModal.svelte';
 import {
 	IconArrowLeft,
 	IconDownload,
@@ -6,12 +12,8 @@ import {
 	IconTrash,
 	IconUpload,
 } from '@tabler/icons-svelte';
+import { IconLock, IconLockOpen } from '@tabler/icons-svelte';
 import { getContext } from 'svelte';
-import { s } from '$lib/client/localization.svelte';
-import { downloadSettingsBackup, handleSettingsImport } from '$lib/client/settings-backup';
-import { syncManager } from '$lib/client/sync-manager';
-import { safeGetItem, safeSetItem } from '$lib/client/utils/safe-storage';
-import SyncSetupModal from './SyncSetupModal.svelte';
 
 // Get session from context
 const session = getContext<Session>('session');
@@ -35,6 +37,32 @@ let exportError = $state<string | null>(null);
 // Import data states
 let isImporting = $state(false);
 let importResult = $state<{ success: boolean; message: string } | null>(null);
+
+// Settings lock state
+let showSetPin = $state(false);
+let newPin = $state('');
+let confirmPin = $state('');
+let pinSetError = $state('');
+
+async function handleSetPin() {
+	if (newPin.length < 4) {
+		pinSetError = s('settings.lock.tooShort') || 'PIN must be at least 4 digits.';
+		return;
+	}
+	if (newPin !== confirmPin) {
+		pinSetError = s('settings.lock.mismatch') || 'PINs do not match.';
+		return;
+	}
+	await settingsLock.setPin(newPin);
+	newPin = '';
+	confirmPin = '';
+	pinSetError = '';
+	showSetPin = false;
+}
+
+function handleRemovePin() {
+	settingsLock.removePin();
+}
 
 // Sync setup wizard state
 let showSyncSetup = $state(false);
@@ -239,277 +267,484 @@ async function exportData() {
 </script>
 
 <div class="space-y-6">
-  <!-- Tab Description -->
-  <div class="text-sm text-gray-600 dark:text-gray-400 whitespace-pre-line">
-    {s("settings.sync.info.description") || 
-    "Kagi News can sync your settings and read history across all your devices. This data is stored securely on Kagi servers and associated with your account.\n\nYour synced data is not used for any other purpose, not shared with anyone, and is solely stored to provide the sync service to you. You have full control over what gets synced and can delete your data at any time."}
-  </div>
+	<!-- Settings Lock Section -->
+	<div class="space-y-4">
+		<h3 class="text-lg font-medium text-primary">
+			{s('settings.lock.sectionTitle') || 'Settings Lock'}
+		</h3>
+		<p class="text-sm text-primary-600 whitespace-pre-line">
+			{s('settings.lock.sectionDescription') ||
+				"Protect settings with a PIN so they can't be changed accidentally. Once set, a PIN is required to open settings. Ideal for setting up Kagi News on a shared or managed device."}
+		</p>
 
-  {#if session?.loggedIn && session?.id}
-    <!-- Sync Toggles -->
-    <div>
-      <h3 class="mb-4 text-lg font-medium text-gray-900 dark:text-gray-100">
-        {s("settings.sync.toggles.title") || "Sync Preferences"}
-      </h3>
-      
-      <div class="space-y-4">
-        <!-- Settings Sync -->
-        <div>
-          <label class="flex items-center justify-between">
-            <div class="flex-1">
-              <div class="flex items-center gap-2">
-                <span id="label-sync-settings" class="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  {s("settings.sync.settings.label") || "Sync Settings"}
-                </span>
-                {#if isSyncingSettings}
-                  <IconLoader2 class="h-4 w-4 animate-spin text-yellow-600" />
-                {/if}
-              </div>
-              <div class="text-xs text-gray-500 dark:text-gray-400">
-                {s("settings.sync.settings.description") ||
-                "Font size, story count, and other preferences"}
-              </div>
-            </div>
-            <button
-            type="button"
-            class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors {syncSettings ? 'bg-blue-600' : 'bg-gray-200 dark:bg-gray-700'} {isSyncingSettings ? 'opacity-50' : ''}"
-            role="switch"
-            aria-checked={syncSettings}
-            aria-labelledby="label-sync-settings"
-            onclick={toggleSyncSettings}
-            disabled={isSyncingSettings}
-            title={!syncSettings ? (s("settings.sync.settings.enableInfo") || "When enabled, your current settings will be uploaded and shared across all your devices") : ""}
-          >
-            <span
-              class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform {syncSettings ? 'ltr:translate-x-6 rtl:-translate-x-6' : 'ltr:translate-x-1 rtl:-translate-x-1'}"
-            ></span>
-          </button>
-        </label>
-      </div>
+		{#if settingsLock.hasPin}
+			<div
+				class="flex items-center justify-between rounded-lg border border-primary-100 bg-white p-4 dark:bg-graphite-850/50"
+			>
+				<div class="flex items-center gap-3">
+					<IconLock size={20} class="text-green-600 dark:text-green-400" />
+					<div>
+						<p class="text-sm font-medium text-primary">
+							{s('settings.lock.enabled') || 'Settings lock is enabled'}
+						</p>
+						<p class="text-xs text-primary-600">
+							{s('settings.lock.enabledDescription') || 'A PIN is required to open settings.'}
+						</p>
+					</div>
+				</div>
+				<button
+					onclick={handleRemovePin}
+					class="rounded-md px-3 py-1.5 text-sm text-red-600 hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-900/20 transition-colors"
+				>
+					{s('settings.lock.remove') || 'Remove PIN'}
+				</button>
+			</div>
 
-        <!-- Read History Sync -->
-        <div>
-          <label class="flex items-center justify-between">
-            <div class="flex-1">
-              <div class="flex items-center gap-2">
-                <span id="label-sync-history" class="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  {s("settings.sync.readHistory.label") || "Sync Read History"}
-                </span>
-                {#if isSyncingHistory}
-                  <IconLoader2 class="h-4 w-4 animate-spin text-yellow-600" />
-                {/if}
-              </div>
-              <div class="text-xs text-gray-500 dark:text-gray-400">
-                {s("settings.sync.readHistory.description") ||
-                "Stories you've read across all categories"}
-              </div>
-            </div>
-            <button
-            type="button"
-            class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors {syncReadHistory ? 'bg-blue-600' : 'bg-gray-200 dark:bg-gray-700'} {isSyncingHistory ? 'opacity-50' : ''}"
-            role="switch"
-            aria-checked={syncReadHistory}
-            aria-labelledby="label-sync-history"
-            onclick={toggleSyncReadHistory}
-            disabled={isSyncingHistory}
-            title={!syncReadHistory ? (s("settings.sync.readHistory.enableInfo") || "When enabled, your read history will be uploaded and synced across all your devices") : ""}
-          >
-            <span
-              class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform {syncReadHistory ? 'ltr:translate-x-6 rtl:-translate-x-6' : 'ltr:translate-x-1 rtl:-translate-x-1'}"
-            ></span>
-          </button>
-        </label>
-      </div>
-      </div>
+			<!-- Managed mode options -->
+			<div class="space-y-3">
+				<h4 class="text-sm font-medium text-primary-700">
+					{s('settings.lock.managedOptions') || 'Simplify Interface'}
+				</h4>
+				<p class="text-xs text-primary-600">
+					{s('settings.lock.managedOptionsDescription') ||
+						'Optionally hide buttons and features to create a cleaner reading experience. For example, when setting up Kagi News for a child or an older relative who just wants to read the news without distractions.'}
+				</p>
 
-      <!-- Mobile App Note -->
-      <div class="mt-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 p-4 border border-blue-200 dark:border-blue-800">
-        <p class="text-sm text-blue-800 dark:text-blue-300">
-          <strong>{s("settings.sync.mobileApp.title") || "Note:"}</strong>
-          {" "}
-          {s("settings.sync.mobileApp.description") ||
-            "Native iOS and Android apps currently do not support syncing. Sync works on web browsers (including PWA). We'll be adding native app support soon."}
-        </p>
-      </div>
-    </div>
+				{#each [{ key: 'hideFontSize', labelKey: 'settings.lock.hideFontSize', fallback: 'Hide Font Size shortcut' }, { key: 'hideTimeTravel', labelKey: 'settings.lock.hideTimeTravel', fallback: 'Hide Time Travel' }, { key: 'hideSearch', labelKey: 'settings.lock.hideSearch', fallback: 'Hide Search' }, { key: 'hideChaosIndex', labelKey: 'settings.lock.hideChaosIndex', fallback: 'Hide Chaos Index' }, { key: 'hideShareButton', labelKey: 'settings.lock.hideShareButton', fallback: 'Hide Share button' }, { key: 'hideReportButton', labelKey: 'settings.lock.hideReportButton', fallback: 'Hide Report button' }, { key: 'hideCorrections', labelKey: 'settings.lock.hideCorrections', fallback: 'Hide correction history', defaultValue: true }, { key: 'disableKeyboardShortcuts', labelKey: 'settings.lock.disableKeyboardShortcuts', fallback: 'Disable keyboard shortcuts' }] as option}
+					{@const active =
+						settingsLock.managed[option.key] ?? ('defaultValue' in option ? option.defaultValue : false)}
+					<label class="flex items-center justify-between">
+						<span class="text-sm text-primary-700">
+							{s(option.labelKey) || option.fallback}
+						</span>
+						<button
+							type="button"
+							class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors {active
+								? 'bg-gradient-to-r from-[#7A6AF4] to-[#6C5EDC]'
+								: 'border border-chrome-500 bg-transparent'}"
+							role="switch"
+							aria-checked={active}
+							onclick={() => settingsLock.setManagedOption(option.key, !active)}
+						>
+							<span
+								class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform {active
+									? 'ltr:translate-x-6 rtl:-translate-x-6'
+									: 'ltr:translate-x-1 rtl:-translate-x-1'}"
+							></span>
+						</button>
+					</label>
+				{/each}
+			</div>
+		{:else if showSetPin}
+			<div
+				class="rounded-lg border border-primary-100 bg-white p-4 dark:bg-graphite-850/50 space-y-3"
+			>
+				<form
+					onsubmit={(e) => {
+						e.preventDefault();
+						handleSetPin();
+					}}
+					class="space-y-3"
+				>
+					<div>
+						<label for="new-pin" class="block text-sm font-medium text-primary-700 mb-1">
+							{s('settings.lock.newPin') || 'New PIN (4-6 digits)'}
+						</label>
+						<input
+							id="new-pin"
+							type="password"
+							inputmode="numeric"
+							pattern="[0-9]*"
+							maxlength="6"
+							bind:value={newPin}
+							class="w-full rounded-md border border-primary-200 bg-white px-3 py-2 text-sm focus:border-purple-600 focus:outline-none focus:ring-1 focus:ring-focus-ring dark:bg-graphite-800"
+							autofocus
+						/>
+					</div>
+					<div>
+						<label for="confirm-pin" class="block text-sm font-medium text-primary-700 mb-1">
+							{s('settings.lock.confirmPin') || 'Confirm PIN'}
+						</label>
+						<input
+							id="confirm-pin"
+							type="password"
+							inputmode="numeric"
+							pattern="[0-9]*"
+							maxlength="6"
+							bind:value={confirmPin}
+							class="w-full rounded-md border border-primary-200 bg-white px-3 py-2 text-sm focus:border-purple-600 focus:outline-none focus:ring-1 focus:ring-focus-ring dark:bg-graphite-800"
+						/>
+					</div>
+					{#if pinSetError}
+						<p class="text-sm text-red-600 dark:text-red-400">{pinSetError}</p>
+					{/if}
+					<div class="flex gap-2">
+						<button
+							type="button"
+							onclick={() => {
+								showSetPin = false;
+								newPin = '';
+								confirmPin = '';
+								pinSetError = '';
+							}}
+							class="rounded-md px-3 py-1.5 text-sm bg-primary-100 hover:bg-primary-100 text-primary-700 transition-colors"
+						>
+							{s('ui.cancel') || 'Cancel'}
+						</button>
+						<button
+							type="submit"
+							class="rounded-md px-3 py-1.5 text-sm bg-purple-600 text-white hover:bg-purple-700 transition-colors"
+						>
+							{s('settings.lock.setPin') || 'Set PIN'}
+						</button>
+					</div>
+				</form>
+			</div>
+		{:else}
+			<button
+				onclick={() => {
+					showSetPin = true;
+				}}
+				class="inline-flex items-center gap-2 rounded-lg border border-primary-100 bg-white px-4 py-2.5 text-sm font-medium text-primary-700 hover:bg-primary-50 dark:bg-graphite-850/50 transition-colors"
+			>
+				<IconLockOpen size={18} />
+				{s('settings.lock.enable') || 'Set a PIN Lock'}
+			</button>
+		{/if}
+	</div>
 
-    <!-- Clear Data Section -->
-    <div class="border-t pt-6 dark:border-gray-700">
-      <h3 class="mb-4 text-lg font-medium text-gray-900 dark:text-gray-100">
-        {s("settings.sync.clear.title") || "Data Management"}
-      </h3>
-      
-      <div class="rounded-lg bg-gray-50 p-4 dark:bg-gray-900/50">
-        {#if isClearing}
-          <!-- Loading state -->
-          <div class="flex items-center justify-center py-8">
-            <div class="flex flex-col items-center gap-3">
-              <svg class="animate-spin h-8 w-8 text-gray-600 dark:text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              <p class="text-sm text-gray-600 dark:text-gray-400">
-                {s("settings.sync.clear.deleting") || "Deleting your data..."}
-              </p>
-            </div>
-          </div>
-        {:else if showClearConfirm}
-          <!-- Confirmation view -->
-          <div class="space-y-3">
-            <p class="text-sm font-medium text-gray-900 dark:text-gray-100">
-              {s("settings.sync.clear.confirmTitle") || "Delete All Synced Data?"}
-            </p>
-            <p class="text-sm text-gray-700 dark:text-gray-300">
-              {s("settings.sync.clear.confirmMessage") ||
-                "This will permanently delete all your synced settings and read history from Kagi servers. Your local data will remain intact."}
-            </p>
-            <p class="text-xs text-red-600 dark:text-red-400">
-              {s("settings.sync.clear.confirmWarning") || "This action cannot be undone."}
-            </p>
-            <div class="flex gap-2">
-              <button
-                onclick={() => (showClearConfirm = false)}
-                class="px-3 py-1.5 text-sm bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 rounded-md text-gray-700 dark:text-gray-300 transition-colors"
-              >
-                {s("ui.cancel") || "Cancel"}
-              </button>
-              <button
-                onclick={clearAllData}
-                class="inline-flex items-center gap-1 px-3 py-1.5 text-sm bg-red-600 hover:bg-red-700 text-white rounded-md transition-colors"
-              >
-                <IconTrash size={14} />
-                {s("settings.sync.clear.confirmButton") || "Delete"}
-              </button>
-            </div>
-          </div>
-        {:else if clearSuccess}
-          <!-- Success message -->
-          <div class="space-y-3">
-            <div class="flex items-center gap-2 text-green-600 dark:text-green-400">
-              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
-              <p class="text-sm">
-                {s("settings.sync.clear.success") || "All synced data has been deleted successfully."}
-              </p>
-            </div>
-            <button
-              onclick={resetView}
-              class="inline-flex items-center gap-1 px-3 py-1.5 text-sm bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 rounded-md text-gray-700 dark:text-gray-300 transition-colors"
-            >
-              <IconArrowLeft size={14} />
-              {s("ui.back") || "Back"}
-            </button>
-          </div>
-        {:else if clearError}
-          <!-- Error message -->
-          <div class="space-y-3">
-            <div class="flex items-start gap-2">
-              <svg class="h-5 w-5 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-              </svg>
-              <p class="text-sm text-red-600 dark:text-red-400">
-                {clearError}
-              </p>
-            </div>
-            <button
-              onclick={resetView}
-              class="inline-flex items-center gap-1 px-3 py-1.5 text-sm bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 rounded-md text-gray-700 dark:text-gray-300 transition-colors"
-            >
-              <IconArrowLeft size={14} />
-              {s("ui.back") || "Back"}
-            </button>
-          </div>
-        {:else}
-          <!-- Default view -->
-          <p class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-            {s("settings.sync.clear.description") || 
-            "You are in control of your data. Export or delete your cloud data at any time. Deletion does not affect local data."}
-          </p>
-          
-          <div class="flex flex-wrap gap-2">
-            <button
-              type="button"
-              onclick={exportData}
-              disabled={isExporting}
-              class="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {#if isExporting}
-                <IconLoader2 size={16} class="animate-spin" />
-                {s("settings.sync.export.exporting") || "Exporting..."}
-              {:else}
-                <IconDownload size={16} />
-                {s("settings.sync.export.button") || "Export Data"}
-              {/if}
-            </button>
+	<div class="border-t"></div>
 
-            <button
-              type="button"
-              onclick={importSettings}
-              disabled={isImporting}
-              class="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-gray-600 text-white rounded-md hover:bg-gray-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {#if isImporting}
-                <IconLoader2 size={16} class="animate-spin" />
-                {s("settings.sync.import.importing") || "Importing..."}
-              {:else}
-                <IconUpload size={16} />
-                {s("settings.sync.import.button") || "Import Settings"}
-              {/if}
-            </button>
+	<!-- Tab Description -->
+	<div class="text-sm text-primary-600 whitespace-pre-line">
+		{s('settings.sync.info.description') ||
+			'Kagi News can sync your settings and read history across all your devices. This data is stored securely on Kagi servers and associated with your account.\n\nYour synced data is not used for any other purpose, not shared with anyone, and is solely stored to provide the sync service to you. You have full control over what gets synced and can delete your data at any time.'}
+	</div>
 
-            <button
-              type="button"
-              onclick={() => (showClearConfirm = true)}
-              class="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
-            >
-              <IconTrash size={16} />
-              {s("settings.sync.clear.button") || "Clear All Synced Data"}
-            </button>
-          </div>
+	{#if session?.loggedIn && session?.id}
+		<!-- Sync Toggles -->
+		<div>
+			<h3 class="mb-4 text-lg font-medium text-primary">
+				{s('settings.sync.toggles.title') || 'Sync Preferences'}
+			</h3>
 
-          {#if exportError}
-            <div class="mt-3 text-sm text-red-600 dark:text-red-400">
-              {exportError}
-            </div>
-          {/if}
+			<div class="space-y-4">
+				<!-- Settings Sync -->
+				<div>
+					<label class="flex items-center justify-between">
+						<div class="flex-1">
+							<div class="flex items-center gap-2">
+								<span id="label-sync-settings" class="text-sm font-medium text-primary-700">
+									{s('settings.sync.settings.label') || 'Sync Settings'}
+								</span>
+								{#if isSyncingSettings}
+									<IconLoader2 class="h-4 w-4 animate-spin text-yellow-600" />
+								{/if}
+							</div>
+							<div class="text-xs text-primary-600">
+								{s('settings.sync.settings.description') ||
+									'Font size, story count, and other preferences'}
+							</div>
+						</div>
+						<button
+							type="button"
+							class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors {syncSettings
+								? 'bg-gradient-to-r from-[#7A6AF4] to-[#6C5EDC]'
+								: 'border border-chrome-500 bg-transparent'} {isSyncingSettings
+								? 'opacity-50'
+								: ''}"
+							role="switch"
+							aria-checked={syncSettings}
+							aria-labelledby="label-sync-settings"
+							onclick={toggleSyncSettings}
+							disabled={isSyncingSettings}
+							title={!syncSettings
+								? s('settings.sync.settings.enableInfo') ||
+									'When enabled, your current settings will be uploaded and shared across all your devices'
+								: ''}
+						>
+							<span
+								class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform {syncSettings
+									? 'ltr:translate-x-6 rtl:-translate-x-6'
+									: 'ltr:translate-x-1 rtl:-translate-x-1'}"
+							></span>
+						</button>
+					</label>
+				</div>
 
-          {#if importResult}
-            <div class="mt-3 text-sm {importResult.success ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}">
-              {importResult.message}
-            </div>
-          {/if}
-        {/if}
-      </div>
-    </div>
-  {:else}
-    <!-- Not Logged In Message -->
-    <div class="rounded-lg bg-gray-50 p-6 text-center dark:bg-gray-900/50">
-      <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-      </svg>
-      <h3 class="mt-2 text-sm font-medium text-gray-900 dark:text-gray-100">
-        {s("settings.sync.notLoggedIn.title") || "Sign In Required"}
-      </h3>
-      <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
-        {s("settings.sync.notLoggedIn.description") || 
-        "Sign in to your Kagi account to sync your settings and read history across devices."}
-      </p>
-      <div class="mt-4">
-        <a
-          href="https://kagi.com/signin"
-          class="inline-flex items-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
-        >
-          {s("settings.sync.notLoggedIn.signIn") || "Sign In"}
-        </a>
-      </div>
-    </div>
-  {/if}
+				<!-- Read History Sync -->
+				<div>
+					<label class="flex items-center justify-between">
+						<div class="flex-1">
+							<div class="flex items-center gap-2">
+								<span id="label-sync-history" class="text-sm font-medium text-primary-700">
+									{s('settings.sync.readHistory.label') || 'Sync Read History'}
+								</span>
+								{#if isSyncingHistory}
+									<IconLoader2 class="h-4 w-4 animate-spin text-yellow-600" />
+								{/if}
+							</div>
+							<div class="text-xs text-primary-600">
+								{s('settings.sync.readHistory.description') ||
+									"Stories you've read across all categories"}
+							</div>
+						</div>
+						<button
+							type="button"
+							class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors {syncReadHistory
+								? 'bg-gradient-to-r from-[#7A6AF4] to-[#6C5EDC]'
+								: 'border border-chrome-500 bg-transparent'} {isSyncingHistory ? 'opacity-50' : ''}"
+							role="switch"
+							aria-checked={syncReadHistory}
+							aria-labelledby="label-sync-history"
+							onclick={toggleSyncReadHistory}
+							disabled={isSyncingHistory}
+							title={!syncReadHistory
+								? s('settings.sync.readHistory.enableInfo') ||
+									'When enabled, your read history will be uploaded and synced across all your devices'
+								: ''}
+						>
+							<span
+								class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform {syncReadHistory
+									? 'ltr:translate-x-6 rtl:-translate-x-6'
+									: 'ltr:translate-x-1 rtl:-translate-x-1'}"
+							></span>
+						</button>
+					</label>
+				</div>
+			</div>
+
+			<!-- Mobile App Note -->
+			<div class="mt-4 rounded-lg bg-primary-50 p-4 border border-primary-100">
+				<p class="text-sm text-primary-600">
+					<strong>{s('settings.sync.mobileApp.title') || 'Note:'}</strong>
+					{' '}
+					{s('settings.sync.mobileApp.description') ||
+						"Native iOS and Android apps currently do not support syncing. Sync works on web browsers (including PWA). We'll be adding native app support soon."}
+				</p>
+			</div>
+		</div>
+
+		<!-- Clear Data Section -->
+		<div class="border-t pt-6">
+			<h3 class="mb-4 text-lg font-medium text-primary">
+				{s('settings.sync.clear.title') || 'Data Management'}
+			</h3>
+
+			<div class="rounded-lg bg-primary-50 p-4">
+				{#if isClearing}
+					<!-- Loading state -->
+					<div class="flex items-center justify-center py-8">
+						<div class="flex flex-col items-center gap-3">
+							<svg
+								class="animate-spin h-8 w-8 text-primary-600"
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+							>
+								<circle
+									class="opacity-25"
+									cx="12"
+									cy="12"
+									r="10"
+									stroke="currentColor"
+									stroke-width="4"
+								></circle>
+								<path
+									class="opacity-75"
+									fill="currentColor"
+									d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+								></path>
+							</svg>
+							<p class="text-sm text-primary-600">
+								{s('settings.sync.clear.deleting') || 'Deleting your data...'}
+							</p>
+						</div>
+					</div>
+				{:else if showClearConfirm}
+					<!-- Confirmation view -->
+					<div class="space-y-3">
+						<p class="text-sm font-medium text-primary">
+							{s('settings.sync.clear.confirmTitle') || 'Delete All Synced Data?'}
+						</p>
+						<p class="text-sm text-primary-700">
+							{s('settings.sync.clear.confirmMessage') ||
+								'This will permanently delete all your synced settings and read history from Kagi servers. Your local data will remain intact.'}
+						</p>
+						<p class="text-xs text-red-600 dark:text-red-400">
+							{s('settings.sync.clear.confirmWarning') || 'This action cannot be undone.'}
+						</p>
+						<div class="flex gap-2">
+							<button
+								onclick={() => (showClearConfirm = false)}
+								class="px-3 py-1.5 text-sm bg-primary-100 hover:bg-primary-100 rounded-md text-primary-700 transition-colors"
+							>
+								{s('ui.cancel') || 'Cancel'}
+							</button>
+							<button
+								onclick={clearAllData}
+								class="inline-flex items-center gap-1 px-3 py-1.5 text-sm bg-red-600 hover:bg-red-700 text-white rounded-md transition-colors"
+							>
+								<IconTrash size={14} />
+								{s('settings.sync.clear.confirmButton') || 'Delete'}
+							</button>
+						</div>
+					</div>
+				{:else if clearSuccess}
+					<!-- Success message -->
+					<div class="space-y-3">
+						<div class="flex items-center gap-2 text-green-600 dark:text-green-400">
+							<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+								<path
+									fill-rule="evenodd"
+									d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+									clip-rule="evenodd"
+								/>
+							</svg>
+							<p class="text-sm">
+								{s('settings.sync.clear.success') ||
+									'All synced data has been deleted successfully.'}
+							</p>
+						</div>
+						<button
+							onclick={resetView}
+							class="inline-flex items-center gap-1 px-3 py-1.5 text-sm bg-primary-100 hover:bg-primary-100 rounded-md text-primary-700 transition-colors"
+						>
+							<IconArrowLeft size={14} />
+							{s('ui.back') || 'Back'}
+						</button>
+					</div>
+				{:else if clearError}
+					<!-- Error message -->
+					<div class="space-y-3">
+						<div class="flex items-start gap-2">
+							<svg
+								class="h-5 w-5 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5"
+								fill="currentColor"
+								viewBox="0 0 20 20"
+							>
+								<path
+									fill-rule="evenodd"
+									d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+									clip-rule="evenodd"
+								/>
+							</svg>
+							<p class="text-sm text-red-600 dark:text-red-400">
+								{clearError}
+							</p>
+						</div>
+						<button
+							onclick={resetView}
+							class="inline-flex items-center gap-1 px-3 py-1.5 text-sm bg-primary-100 hover:bg-primary-100 rounded-md text-primary-700 transition-colors"
+						>
+							<IconArrowLeft size={14} />
+							{s('ui.back') || 'Back'}
+						</button>
+					</div>
+				{:else}
+					<!-- Default view -->
+					<p class="mb-4 text-sm text-primary-600">
+						{s('settings.sync.clear.description') ||
+							'You are in control of your data. Export or delete your cloud data at any time. Deletion does not affect local data.'}
+					</p>
+
+					<div class="flex flex-wrap gap-2">
+						<button
+							type="button"
+							onclick={exportData}
+							disabled={isExporting}
+							class="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+						>
+							{#if isExporting}
+								<IconLoader2 size={16} class="animate-spin" />
+								{s('settings.sync.export.exporting') || 'Exporting...'}
+							{:else}
+								<IconDownload size={16} />
+								{s('settings.sync.export.button') || 'Export Data'}
+							{/if}
+						</button>
+
+						<button
+							type="button"
+							onclick={importSettings}
+							disabled={isImporting}
+							class="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-primary-600 text-white rounded-md hover:bg-primary-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+						>
+							{#if isImporting}
+								<IconLoader2 size={16} class="animate-spin" />
+								{s('settings.sync.import.importing') || 'Importing...'}
+							{:else}
+								<IconUpload size={16} />
+								{s('settings.sync.import.button') || 'Import Settings'}
+							{/if}
+						</button>
+
+						<button
+							type="button"
+							onclick={() => (showClearConfirm = true)}
+							class="inline-flex items-center gap-2 px-3 py-1.5 text-sm bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+						>
+							<IconTrash size={16} />
+							{s('settings.sync.clear.button') || 'Clear All Synced Data'}
+						</button>
+					</div>
+
+					{#if exportError}
+						<div class="mt-3 text-sm text-red-600 dark:text-red-400">
+							{exportError}
+						</div>
+					{/if}
+
+					{#if importResult}
+						<div
+							class="mt-3 text-sm {importResult.success
+								? 'text-green-600 dark:text-green-400'
+								: 'text-red-600 dark:text-red-400'}"
+						>
+							{importResult.message}
+						</div>
+					{/if}
+				{/if}
+			</div>
+		</div>
+	{:else}
+		<!-- Not Logged In Message -->
+		<div class="rounded-lg bg-primary-50 p-6 text-center">
+			<svg
+				class="mx-auto h-12 w-12 text-primary-400"
+				fill="none"
+				viewBox="0 0 24 24"
+				stroke="currentColor"
+			>
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+				/>
+			</svg>
+			<h3 class="mt-2 text-sm font-medium text-primary">
+				{s('settings.sync.notLoggedIn.title') || 'Sign In Required'}
+			</h3>
+			<p class="mt-1 text-sm text-primary-600">
+				{s('settings.sync.notLoggedIn.description') ||
+					'Sign in to your Kagi account to sync your settings and read history across devices.'}
+			</p>
+			<div class="mt-4">
+				<a
+					href="https://kagi.com/signin"
+					class="inline-flex items-center rounded-md bg-purple-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-purple-700 transition-colors"
+				>
+					{s('settings.sync.notLoggedIn.signIn') || 'Sign In'}
+				</a>
+			</div>
+		</div>
+	{/if}
 </div>
 
 <SyncSetupModal
-  isOpen={showSyncSetup}
-  onClose={onSyncSetupClose}
-  onComplete={onSyncSetupComplete}
-  remoteSettings={remoteSettingsForWizard}
+	isOpen={showSyncSetup}
+	onClose={onSyncSetupClose}
+	onComplete={onSyncSetupComplete}
+	remoteSettings={remoteSettingsForWizard}
 />

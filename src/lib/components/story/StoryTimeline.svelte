@@ -68,146 +68,138 @@ const displayEvents = $derived.by(() => {
 </script>
 
 <section class="mt-6">
-  <h3 class="mb-2 text-xl font-semibold text-gray-800 dark:text-gray-200">
-    {storyLocalizer("section.timeline") || "Timeline"}
-  </h3>
-  <ol
-    class="timeline"
-    role="list"
-    aria-label="Chronological timeline of events"
-  >
-    {#each displayEvents as event, index}
-      {@const eventCitations = getCitedArticlesForText(
-        event.content,
-        citationMapping,
-        articles,
-      )}
-      <li
-        class="timeline-item"
-        role="listitem"
-        aria-label="Event {index + 1} of {displayEvents.length}"
-      >
-        <div class="timeline-marker" aria-hidden="true">
-          <div class="timeline-dot">
-            {index + 1}
-          </div>
-        </div>
-        <div class="timeline-content">
-          {#if event.date}
-            <div class="timeline-date" dir="auto">
-              {event.date}
-            </div>
-          {/if}
-          <div class="timeline-description" dir="auto">
-            {#if flashcardMode}
-              <SelectableText
-                text={event.content}
-                {flashcardMode}
-                {selectedWords}
-                {shouldJiggle}
-                {onWordClick}
-                section="timeline"
-              />
-            {:else}
-              <CitationText
-                text={event.content}
-                showFavicons={false}
-                showNumbers={false}
-                inline={true}
-                articles={eventCitations.citedArticles}
-                {citationMapping}
-                {storyLocalizer}
-              />
-            {/if}
-          </div>
-        </div>
-      </li>
-    {/each}
-  </ol>
+	<h3 class="mb-2 text-xl font-semibold text-primary-800">
+		{storyLocalizer('section.timeline') || 'Timeline'}
+	</h3>
+	<ol class="timeline" role="list" aria-label="Chronological timeline of events">
+		{#each displayEvents as event, index}
+			{@const eventCitations = getCitedArticlesForText(event.content, citationMapping, articles)}
+			<li
+				class="timeline-item"
+				role="listitem"
+				aria-label="Event {index + 1} of {displayEvents.length}"
+			>
+				<div class="timeline-marker" aria-hidden="true">
+					<div class="timeline-dot">
+						{index + 1}
+					</div>
+				</div>
+				<div class="timeline-content">
+					{#if event.date}
+						<div class="timeline-date">
+							{event.date}
+						</div>
+					{/if}
+					<div class="timeline-description">
+						{#if flashcardMode}
+							<SelectableText
+								text={event.content}
+								{flashcardMode}
+								{selectedWords}
+								{shouldJiggle}
+								{onWordClick}
+								section="timeline"
+							/>
+						{:else}
+							<CitationText
+								text={event.content}
+								showFavicons={false}
+								showNumbers={false}
+								inline={true}
+								articles={eventCitations.citedArticles}
+								{citationMapping}
+								{storyLocalizer}
+							/>
+						{/if}
+					</div>
+				</div>
+			</li>
+		{/each}
+	</ol>
 </section>
 
 <style>
-  .timeline {
-    position: relative;
-    padding-left: 0;
-  }
+.timeline {
+	position: relative;
+	padding-left: 0;
+}
 
-  .timeline-item {
-    position: relative;
-    display: flex;
-    padding-bottom: 24px;
-  }
+.timeline-item {
+	position: relative;
+	display: flex;
+	padding-bottom: 24px;
+}
 
-  .timeline-item:last-child {
-    padding-bottom: 0;
-  }
+.timeline-item:last-child {
+	padding-bottom: 0;
+}
 
-  .timeline-marker {
-    position: relative;
-    flex-shrink: 0;
-    width: 32px;
-    /* Remove fixed height to let it grow with content */
-    margin-right: 16px;
-    /* Stretch to match content height */
-    align-self: stretch;
-  }
+.timeline-marker {
+	position: relative;
+	flex-shrink: 0;
+	width: 32px;
+	/* Remove fixed height to let it grow with content */
+	margin-right: 16px;
+	/* Stretch to match content height */
+	align-self: stretch;
+}
 
-  .timeline-dot {
-    width: 24px;
-    height: 24px;
-    background-color: var(--color-header);
-    border-radius: 50%;
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 600;
-    color: white;
-    /* Ensure dot stays on top of the line */
-    z-index: 1;
-  }
+.timeline-dot {
+	width: 24px;
+	height: 24px;
+	background-color: var(--color-header);
+	border-radius: 50%;
+	position: absolute;
+	top: 4px;
+	left: 4px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 12px;
+	font-weight: 600;
+	color: white;
+	/* Ensure dot stays on top of the line */
+	z-index: 1;
+}
 
-  .timeline-marker::after {
-    content: "";
-    position: absolute;
-    width: 2px;
-    /* Use 100% height to fill the entire marker container */
-    height: calc(100% + 24px);
-    background-color: var(--color-header);
-    left: 15px;
-    top: 28px;
-  }
+.timeline-marker::after {
+	content: '';
+	position: absolute;
+	width: 2px;
+	/* Use 100% height to fill the entire marker container */
+	height: calc(100% + 24px);
+	background-color: var(--color-header);
+	left: 15px;
+	top: 28px;
+}
 
-  .timeline-item:last-child .timeline-marker::after {
-    display: none;
-  }
+.timeline-item:last-child .timeline-marker::after {
+	display: none;
+}
 
-  .timeline-content {
-    flex: 1;
-    padding-top: 2px;
-    min-height: 32px; /* Reduced min-height since we're handling height dynamically */
-  }
+.timeline-content {
+	flex: 1;
+	padding-top: 2px;
+	min-height: 32px; /* Reduced min-height since we're handling height dynamically */
+}
 
-  .timeline-date {
-    font-weight: 600;
-    margin-bottom: 4px;
-    color: var(--color-header);
-  }
+.timeline-date {
+	font-weight: 600;
+	margin-bottom: 4px;
+	color: var(--color-header);
+}
 
-  .timeline-description {
-    color: var(--color-text-secondary);
-    line-height: 1.5;
-  }
+.timeline-description {
+	color: var(--color-text-secondary);
+	line-height: 1.5;
+}
 
-  /* Dark mode styles */
-  :global(.dark) .timeline-date {
-    color: #e5e7eb;
-  }
+/* Dark mode styles */
+:global(.dark) .timeline-date {
+	color: #e5e7eb;
+}
 
-  :global(.dark) .timeline-description {
-    color: #d1d5db;
-  }
+:global(.dark) .timeline-description {
+	color: #d1d5db;
+}
 </style>

@@ -38,27 +38,27 @@ const displayContent = $derived.by(() => {
 </script>
 
 <section class="mt-6 rounded-lg bg-[#CED8FB] p-4 dark:bg-[#2A3B5E]">
-  <h3 class="mb-2 text-xl font-semibold text-gray-800 dark:text-gray-100">
-    {storyLocalizer("section.didYouKnow") || "Did You Know?"}
-  </h3>
-  <p class="text-base text-gray-700 dark:text-gray-200">
-    {#if flashcardMode}
-      <SelectableText
-        text={displayContent}
-        {flashcardMode}
-        {selectedWords}
-        {shouldJiggle}
-        {onWordClick}
-        section="did_you_know"
-      />
-    {:else}
-      <CitationText
-        text={displayContent}
-        inline={false}
-        {articles}
-        {citationMapping}
-        {storyLocalizer}
-      />
-    {/if}
-  </p>
+	<h3 class="mb-2 text-xl font-semibold text-primary-800">
+		{storyLocalizer('section.didYouKnow') || 'Did You Know?'}
+	</h3>
+	<p class="text-base text-primary-700">
+		{#if flashcardMode}
+			<SelectableText
+				text={displayContent}
+				{flashcardMode}
+				{selectedWords}
+				{shouldJiggle}
+				{onWordClick}
+				section="did_you_know"
+			/>
+		{:else}
+			<CitationText
+				text={displayContent}
+				inline={false}
+				{articles}
+				{citationMapping}
+				{storyLocalizer}
+			/>
+		{/if}
+	</p>
 </section>

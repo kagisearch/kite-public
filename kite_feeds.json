@@ -14,7 +14,7 @@
       "hi": "ऑस्ट्रेलिया | विक्टोरिया",
       "it": "Australia | Victoria",
       "ja": "オーストラリア | ビクトリア",
-      "ko": "오스트레일리아 | 빅토리아",
+      "ko": "오스트레일리아 | 빅토리아주",
       "nl": "Australië | Victoria",
       "pt": "Austrália | Victoria",
       "ru": "Австралия | Виктория",
@@ -98,7 +98,7 @@
       "hi": "कनाडा | क्यूबेक",
       "it": "Canada | Québec",
       "ja": "カナダ｜ケベック",
-      "ko": "캐나다 | 퀘벡",
+      "ko": "캐나다 | 퀘벡주",
       "nl": "Canada | Québec",
       "pt": "Canadá | Quebec",
       "ru": "Канада | Квебек",
@@ -262,7 +262,7 @@
       "hi": "भारत | केरल",
       "it": "India | Kerala",
       "ja": "インド | ケーララ",
-      "ko": "인도 | 케랄라",
+      "ko": "인도 | 케랄라주",
       "ml": "ഇന്ത്യ | കേരളം",
       "nl": "India | Kerala",
       "pt": "Índia | Kerala",
@@ -3015,7 +3015,8 @@
     "category_type": "topic",
     "source_language": "en",
     "display_names": {
-      "en": "Christian"
+      "en": "Christian",
+      "ko": "기독교"
     },
     "feeds": [
       "http://feeds.sojo.net/sojourners/blog",
@@ -5784,7 +5785,7 @@
       "hi": "जर्मनी | बावेरिया",
       "it": "Germania | Baviera",
       "ja": "ドイツ | バイエルン",
-      "ko": "독일 | 바이에른",
+      "ko": "독일 | 바이에른주",
       "nl": "Duitsland | Beieren",
       "pt": "Alemanha | Baviera",
       "ru": "Германия | Бавария",
@@ -6259,7 +6260,7 @@
       "hi": "जर्मनी | श्लेस्विग-होल्स्टाइन",
       "it": "Germania | Schleswig-Holstein",
       "ja": "ドイツ | シュレースヴィヒ＝ホルシュタイン",
-      "ko": "독일 | 슐레스비히홀슈타인",
+      "ko": "독일 | 슐레스비히홀슈타인주",
       "nl": "Duitsland | Sleeswijk-Holstein",
       "pt": "Alemanha | Schleswig-Holstein",
       "ru": "Германия | Шлезвиг-Гольштейн",
@@ -7093,7 +7094,7 @@
     "display_names": {
       "en": "Tamil Nadu",
       "ta": "தமிழ்நாடு",
-      "ko": "인도 | 타밀나두"
+      "ko": "인도 | 타밀나두주"
     },
     "feeds": [
       "http://www.dinamalar.com/rssfeed.asp",
@@ -7564,6 +7565,7 @@
       "https://rss.prod.skmediatool.com/sankei.xml",
       "https://sakeindustrynews.substack.com/feed",
       "https://soranews24.com/feed/",
+      "https://tokyobrief.com/rss/articles.xml",
       "https://unseenjapan.com/feed/",
       "https://www.asahi.com/rss/asahi/business.rdf",
       "https://www.asahi.com/rss/asahi/culture.rdf",
@@ -8688,6 +8690,7 @@
       "https://api.foxsports.com/v2/content/optimized-rss?partnerKey=MB0Wehpmuj2lUhuRhQaafhBjAJqaPU244mlTDK1i&size=30&tags=fs/mlb",
       "https://athlonsports.com/.rss/feed/cb770d34-eea7-4072-b37d-2ea2c36d7db2.xml",
       "https://baseball.realgm.com/rss/realgm_mlb_wiretap.xml",
+      "https://blogs.fangraphs.com/feed/",
       "https://calltothepen.com/feed",
       "https://clutchpoints.com/mlb/feed",
       "https://defector.com/category/mlb/feed",
@@ -8702,6 +8705,7 @@
       "https://www.athleticsnation.com/rss/index.xml",
       "https://www.azsnakepit.com/rss/index.xml",
       "https://www.batterypower.com/rss/index.xml",
+      "https://www.bleachernation.com/mlb/feed/",
       "https://www.bleedcubbieblue.com/rss/index.xml",
       "https://www.blessyouboys.com/rss/index.xml",
       "https://www.bluebirdbanter.com/rss/index.xml",
@@ -9161,6 +9165,7 @@
       "https://sonicscoop.com/feed/",
       "https://synthanatomy.com/feed",
       "https://varietyofsound.wordpress.com/feed/",
+      "https://www.amazona.de/feed/",
       "https://www.audiotechnology.com/category/news/feed",
       "https://www.decodedmagazine.com/category/tech/feed/",
       "https://www.digitalmusicnews.com/feed/",
@@ -9761,7 +9766,8 @@
     "category_type": "topic",
     "source_language": "en",
     "display_names": {
-      "en": "North Carolina"
+      "en": "North Carolina",
+      "ko": "미국 | 노스캐롤라이나주"
     },
     "feeds": [
       "http://feeds.feedburner.com/ContributingInstitutions",
@@ -10798,7 +10804,8 @@
     "category_type": "topic",
     "source_language": "en",
     "display_names": {
-      "en": "Psychology"
+      "en": "Psychology",
+      "ko": "심리학"
     },
     "feeds": [
       "https://beckinstitute.org/feed/",
@@ -10837,7 +10844,8 @@
     "category_type": "topic",
     "source_language": "en",
     "display_names": {
-      "en": "Quantum Physics"
+      "en": "Quantum Physics",
+      "ko": "양자물리학"
     },
     "feeds": [
       "https://aws.amazon.com/blogs/quantum-computing/feed",
@@ -12463,6 +12471,7 @@
       "https://d-nsbc-p.admin.ch/NSBSubscriber/feeds/rss?lang=fr&org-nr=601",
       "https://d-nsbc-p.admin.ch/NSBSubscriber/feeds/rss?lang=fr&org-nr=701",
       "https://d-nsbc-p.admin.ch/NSBSubscriber/feeds/rss?lang=fr&org-nr=801",
+      "https://lecourrier.ch/feed",
       "https://partner-feeds.20min.ch/rss/20minutes",
       "https://partner-feeds.20min.ch/rss/20minutes/economie",
       "https://partner-feeds.20min.ch/rss/20minutes/entertainment",
@@ -12484,6 +12493,7 @@
       "https://partner-feeds.publishing.tamedia.ch/rss/tdg/front",
       "https://partner-feeds.publishing.tamedia.ch/rss/tdg/sport",
       "https://partner-feeds.publishing.tamedia.ch/rss/tdg/suisse",
+      "https://www.blick.ch/fr/rss.xml",
       "https://www.heidi.news/articles.rss",
       "https://www.letemps.ch/articles.rss",
       "https://www.letemps.ch/economie.rss",
@@ -12498,7 +12508,8 @@
       "https://www.rts.ch/info/culture/?format=rss/news",
       "https://www.rts.ch/info/toute-info/?format=rss/news",
       "https://www.rts.ch/sport/?format=rss/news",
-      "https://www.swissinfo.ch/fre/latest/~rss"
+      "https://www.swissinfo.ch/fre/latest/~rss",
+      "https://www.watson.ch/fr/api/2.0/rss/index.xml?tag=Front"
     ]
   },
   "Switzerland (IT)": {
@@ -12740,6 +12751,7 @@
       "https://nitter.net/TDSI_TW/rss",
       "https://nitter.net/TECRO_USA/rss",
       "https://nitter.net/Yaita_Akio/rss",
+      "https://pansci.asia/feed/",
       "https://penghudaily.blogspot.com/feeds/posts/default?alt=rss",
       "https://public.twreporter.org/rss/twreporter-rss.xml",
       "https://siteapi.sports.gov.tw/1/News/309?handler=OpenDataRSS",
@@ -12767,6 +12779,7 @@
       "https://www.civilmedia.tw/feed",
       "https://www.cmmedia.com.tw/rss/yahoo/article",
       "https://www.euronews.com/rss?format=mrss&level=tag&name=taiwan",
+      "https://www.eventsinfocus.org/feed",
       "https://www.ey.gov.tw/RSS_Content.aspx?ModuleType=2",
       "https://www.faz.net/rss/aktuell/reise/thema/taiwan",
       "https://www.france24.com/en/tag/taiwan/rss",
@@ -14304,7 +14317,7 @@
       "hi": "अमेरिका | नेब्रास्का",
       "it": "USA | Nebraska",
       "ja": "アメリカ | ネブラスカ",
-      "ko": "미국 | 네브래스카",
+      "ko": "미국 | 네브래스카주",
       "nl": "VS | Nebraska",
       "pt": "EUA | Nebraska",
       "ru": "США | Небраска",
@@ -14874,7 +14887,7 @@
     "source_language": "en",
     "display_names": {
       "en": "USA | Wyoming",
-      "ko": "미국 | 와이오밍"
+      "ko": "미국 | 와이오밍주"
     },
     "feeds": [
       "https://buckrail.com/category/news/feed",

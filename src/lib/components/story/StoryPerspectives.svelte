@@ -1,5 +1,4 @@
 <script lang="ts">
-import { fade } from 'svelte/transition';
 import { s } from '$lib/client/localization.svelte';
 import type { Article, LocalizerFunction } from '$lib/types';
 import { getCitedArticlesForText } from '$lib/utils/citationAggregator';
@@ -7,6 +6,7 @@ import { type CitationMapping, replaceWithNumberedCitations } from '$lib/utils/c
 import { parseStructuredText } from '$lib/utils/textParsing';
 import CitationText from './CitationText.svelte';
 import SelectableText from './SelectableText.svelte';
+import { fade } from 'svelte/transition';
 
 // Props
 interface Props {
@@ -34,6 +34,7 @@ let {
 	storyLocalizer = s,
 	flashcardMode = false,
 	selectedWords = new Set(),
+	selectedPhrases = new Map(),
 	shouldJiggle = false,
 	onWordClick,
 }: Props = $props();
@@ -108,171 +109,178 @@ $effect(() => {
 </script>
 
 <section class="mt-6">
-  <h3 class="mb-4 text-xl font-semibold text-gray-800 dark:text-gray-200">
-    {storyLocalizer("section.perspectives") || "Perspectives"}
-  </h3>
-  <div class="relative overflow-x-hidden">
-    <div
-      bind:this={scrollContainer}
-      class="horizontal-scroll-container flex flex-row gap-3 overflow-x-scroll pb-4"
-      role="region"
-      aria-label={storyLocalizer("section.perspectives.carousel") || "Perspectives carousel - use arrow keys or swipe to navigate"}
-      ontouchstart={handleTouchStart}
-      ontouchend={handleTouchEnd}
-      onscroll={checkScrollability}
-    >
-    {#each displayPerspectives as perspective}
-      {@const parsed = parseStructuredText(perspective.text)}
-      <div
-        class="w-52 shrink-0 rounded-lg bg-gray-100 p-4 dark:bg-gray-700"
-      >
-        {#if parsed.hasTitle}
-          {@const titleCitations = getCitedArticlesForText(
-            parsed.title!,
-            citationMapping,
-            articles,
-          )}
-          {@const contentCitations = getCitedArticlesForText(
-            parsed.content,
-            citationMapping,
-            articles,
-          )}
-          <p class="mb-2 text-base font-bold text-gray-800 dark:text-gray-200 break-words" dir="auto">
-            {#if flashcardMode}
-              <SelectableText
-                text={parsed.title!}
-                {flashcardMode}
-                {selectedWords}
-                {shouldJiggle}
-                {onWordClick}
-                section="perspectives"
-              />
-            {:else}
-              <CitationText
-                text={parsed.title!}
-                showFavicons={false}
-                showNumbers={false}
-                inline={true}
-                articles={titleCitations.citedArticles}
-                {citationMapping}
-                {storyLocalizer}
-              />
-            {/if}
-          </p>
-          <p class="mb-2 text-base text-gray-700 dark:text-gray-300" dir="auto">
-            {#if flashcardMode}
-              <SelectableText
-                text={parsed.content}
-                {flashcardMode}
-                {selectedWords}
-                {shouldJiggle}
-                {onWordClick}
-                section="perspectives"
-              />
-            {:else}
-              <CitationText
-                text={parsed.content}
-                showFavicons={false}
-                showNumbers={false}
-                inline={true}
-                articles={contentCitations.citedArticles}
-                {citationMapping}
-                {storyLocalizer}
-              />
-            {/if}
-          </p>
-        {:else}
-          {@const contentCitations = getCitedArticlesForText(
-            parsed.content,
-            citationMapping,
-            articles,
-          )}
-          <p class="mb-2 text-base text-gray-700 dark:text-gray-300" dir="auto">
-            {#if flashcardMode}
-              <SelectableText
-                text={parsed.content}
-                {flashcardMode}
-                {selectedWords}
-                {shouldJiggle}
-                {onWordClick}
-                section="perspectives"
-              />
-            {:else}
-              <CitationText
-                text={parsed.content}
-                showFavicons={false}
-                showNumbers={false}
-                inline={true}
-                articles={contentCitations.citedArticles}
-                {citationMapping}
-                {storyLocalizer}
-              />
-            {/if}
-          </p>
-        {/if}
+	<h3 class="mb-4 text-xl font-semibold text-primary-800">
+		{storyLocalizer('section.perspectives') || 'Perspectives'}
+	</h3>
+	<div class="relative overflow-x-hidden">
+		<div
+			bind:this={scrollContainer}
+			class="horizontal-scroll-container flex flex-row gap-3 overflow-x-scroll pb-4 hide-scrollbar"
+			role="region"
+			aria-label={storyLocalizer('section.perspectives.carousel') ||
+				'Perspectives carousel - use arrow keys or swipe to navigate'}
+			ontouchstart={handleTouchStart}
+			ontouchend={handleTouchEnd}
+			onscroll={checkScrollability}
+		>
+			{#each displayPerspectives as perspective}
+				{@const parsed = parseStructuredText(perspective.text)}
+				<div class="w-52 shrink-0 rounded-lg bg-primary-50 p-4">
+					{#if parsed.hasTitle}
+						{@const titleCitations = getCitedArticlesForText(
+							parsed.title!,
+							citationMapping,
+							articles,
+						)}
+						{@const contentCitations = getCitedArticlesForText(
+							parsed.content,
+							citationMapping,
+							articles,
+						)}
+						<p class="mb-2 text-base font-bold text-primary-800 break-words">
+							{#if flashcardMode}
+								<SelectableText
+									text={parsed.title!}
+									{flashcardMode}
+									{selectedWords}
+									{shouldJiggle}
+									{onWordClick}
+									section="perspectives"
+								/>
+							{:else}
+								<CitationText
+									text={parsed.title!}
+									showFavicons={false}
+									showNumbers={false}
+									inline={true}
+									articles={titleCitations.citedArticles}
+									{citationMapping}
+									{storyLocalizer}
+								/>
+							{/if}
+						</p>
+						<p class="mb-2 text-base text-primary-700">
+							{#if flashcardMode}
+								<SelectableText
+									text={parsed.content}
+									{flashcardMode}
+									{selectedWords}
+									{shouldJiggle}
+									{onWordClick}
+									section="perspectives"
+								/>
+							{:else}
+								<CitationText
+									text={parsed.content}
+									showFavicons={false}
+									showNumbers={false}
+									inline={true}
+									articles={contentCitations.citedArticles}
+									{citationMapping}
+									{storyLocalizer}
+								/>
+							{/if}
+						</p>
+					{:else}
+						{@const contentCitations = getCitedArticlesForText(
+							parsed.content,
+							citationMapping,
+							articles,
+						)}
+						<p class="mb-2 text-base text-primary-700">
+							{#if flashcardMode}
+								<SelectableText
+									text={parsed.content}
+									{flashcardMode}
+									{selectedWords}
+									{shouldJiggle}
+									{onWordClick}
+									section="perspectives"
+								/>
+							{:else}
+								<CitationText
+									text={parsed.content}
+									showFavicons={false}
+									showNumbers={false}
+									inline={true}
+									articles={contentCitations.citedArticles}
+									{citationMapping}
+									{storyLocalizer}
+								/>
+							{/if}
+						</p>
+					{/if}
 
-        {#if perspective.sources && perspective.sources.length > 0 && !hasCitations(perspective.text)}
-          <div class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-            {#each perspective.sources as source, idx}
-              <a
-                href={source.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-[#183FDC] hover:underline dark:text-[#5B89FF]"
-                dir="auto"
-              >
-                {source.name}
-              </a>
-              {#if idx < perspective.sources.length - 1}
-                <span> • </span>
-              {/if}
-            {/each}
-          </div>
-        {/if}
-      </div>
-    {/each}
-    </div>
-    <!-- Scroll indicator fade (mobile) -->
-    {#if canScrollLeft}
-      <div
-        transition:fade={{ duration: scrollFadeDuration }}
-        class="pointer-events-none absolute left-0 top-0 h-full w-8 bg-linear-to-r from-white to-transparent dark:from-gray-900 md:hidden"
-        aria-hidden="true"
-      ></div>
-    {/if}
-    <!-- Left scroll button -->
-    {#if canScrollLeft}
-      <button
-        transition:fade={{ duration: scrollFadeDuration }}
-        onclick={() => scrollBy('left')}
-        class="absolute left-0 top-1/2 -translate-y-1/2 hidden md:flex h-8 w-8 items-center justify-center rounded-full bg-white/90 shadow-md hover:bg-white dark:bg-gray-800/90 dark:hover:bg-gray-800 transition-opacity"
-        aria-label="Scroll left"
-      >
-        <svg class="h-4 w-4 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-    {/if}
-    <!-- Right scroll button -->
-    {#if canScrollRight}
-      <button
-        transition:fade={{ duration: scrollFadeDuration }}
-        onclick={() => scrollBy('right')}
-        class="absolute right-0 top-1/2 -translate-y-1/2 hidden md:flex h-8 w-8 items-center justify-center rounded-full bg-white/90 shadow-md hover:bg-white dark:bg-gray-800/90 dark:hover:bg-gray-800 transition-opacity"
-        aria-label="Scroll right"
-      >
-        <svg class="h-4 w-4 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
-    {/if}
-    <!-- Scroll indicator fade (mobile) -->
-    {#if canScrollRight}
-      <div
-        transition:fade={{ duration: scrollFadeDuration }}
-        class="pointer-events-none absolute right-0 top-0 h-full w-8 bg-linear-to-l from-white to-transparent dark:from-gray-900 md:hidden"
-        aria-hidden="true"
-      ></div>
-    {/if}
-  </div>
+					{#if perspective.sources && perspective.sources.length > 0 && !hasCitations(perspective.text)}
+						<div class="mt-2 text-sm text-primary-600">
+							{#each perspective.sources as source, idx}
+								<!-- dir-auto-ok: publisher names are never translated ('name' is
+								     in TRANSLATION_BLACKLIST), so they stay in whatever script the
+								     publisher uses regardless of the story's language. -->
+								<a
+									href={source.url}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="text-[#183FDC] hover:underline dark:text-[#5B89FF]"
+									dir="auto"
+								>
+									{source.name}
+								</a>
+								{#if idx < perspective.sources.length - 1}
+									<span> • </span>
+								{/if}
+							{/each}
+						</div>
+					{/if}
+				</div>
+			{/each}
+		</div>
+		<!-- Scroll indicator fade (mobile) -->
+		{#if canScrollLeft}
+			<div
+				transition:fade={{ duration: scrollFadeDuration }}
+				class="pointer-events-none absolute left-0 top-0 h-full w-8 bg-linear-to-r from-white to-transparent dark:from-graphite-950 md:hidden"
+				aria-hidden="true"
+			></div>
+		{/if}
+		<!-- Left scroll button -->
+		{#if canScrollLeft}
+			<button
+				transition:fade={{ duration: scrollFadeDuration }}
+				onclick={() => scrollBy('left')}
+				class="absolute left-0 top-1/2 -translate-y-1/2 hidden md:flex h-8 w-8 items-center justify-center rounded-full bg-white/90 shadow-md hover:bg-white dark:bg-graphite-800/90 dark:hover:bg-graphite-800 transition-opacity"
+				aria-label="Scroll left"
+			>
+				<svg class="h-4 w-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M15 19l-7-7 7-7"
+					/>
+				</svg>
+			</button>
+		{/if}
+		<!-- Right scroll button -->
+		{#if canScrollRight}
+			<button
+				transition:fade={{ duration: scrollFadeDuration }}
+				onclick={() => scrollBy('right')}
+				class="absolute right-0 top-1/2 -translate-y-1/2 hidden md:flex h-8 w-8 items-center justify-center rounded-full bg-white/90 shadow-md hover:bg-white dark:bg-graphite-800/90 dark:hover:bg-graphite-800 transition-opacity"
+				aria-label="Scroll right"
+			>
+				<svg class="h-4 w-4 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+				</svg>
+			</button>
+		{/if}
+		<!-- Scroll indicator fade (mobile) -->
+		{#if canScrollRight}
+			<div
+				transition:fade={{ duration: scrollFadeDuration }}
+				class="pointer-events-none absolute right-0 top-0 h-full w-8 bg-linear-to-l from-white to-transparent dark:from-graphite-950 md:hidden"
+				aria-hidden="true"
+			></div>
+		{/if}
+	</div>
 </section>

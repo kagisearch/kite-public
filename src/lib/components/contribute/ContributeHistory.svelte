@@ -1,4 +1,7 @@
 <script lang="ts">
+import { s } from '$lib/client/localization.svelte';
+import Tooltip from '$lib/components/Tooltip.svelte';
+import type { ContributionItem } from '$lib/types';
 import {
 	IconChevronDown,
 	IconChevronUp,
@@ -8,9 +11,6 @@ import {
 	IconExternalLink,
 	IconGitMerge,
 } from '@tabler/icons-svelte';
-import { s } from '$lib/client/localization.svelte';
-import Tooltip from '$lib/components/Tooltip.svelte';
-import type { ContributionItem } from '$lib/types';
 
 interface Props {
 	contributions: ContributionItem[];
@@ -31,7 +31,7 @@ const hiddenCount = $derived(contributions.length - PREVIEW_COUNT);
 const STEPS = ['submitted', 'merged', 'live'] as const;
 
 const STATUS_CONFIG = {
-	submitted: { color: 'bg-blue-500', icon: IconClock },
+	submitted: { color: 'bg-purple-500', icon: IconClock },
 	merged: { color: 'bg-purple-500', icon: IconGitMerge },
 	live: { color: 'bg-green-500', icon: IconCircleCheck },
 	declined: { color: 'bg-red-500', icon: IconCircleX },
@@ -90,9 +90,7 @@ function formatRelativeDate(date: Date): string {
 					class="w-full flex items-center gap-2.5 py-2 px-2.5 text-sm text-left hover:bg-primary-100 transition-colors"
 				>
 					<!-- Status dot -->
-					<div
-						class="w-2 h-2 rounded-full {config.color} shrink-0"
-					></div>
+					<div class="w-2 h-2 rounded-full {config.color} shrink-0"></div>
 
 					<!-- Category -->
 					<span class="font-medium text-primary truncate min-w-0">
@@ -100,7 +98,11 @@ function formatRelativeDate(date: Date): string {
 					</span>
 
 					<!-- Status label -->
-					<span class="shrink-0 text-xs {contribution.pipelineStatus === 'declined' ? 'text-red-500' : 'text-primary-500'}">
+					<span
+						class="shrink-0 text-xs {contribution.pipelineStatus === 'declined'
+							? 'text-red-500'
+							: 'text-primary-500'}"
+					>
 						{s(`contribute.history.status.${contribution.pipelineStatus}`)}
 					</span>
 
@@ -148,7 +150,9 @@ function formatRelativeDate(date: Date): string {
 
 						<!-- Decline reason -->
 						{#if contribution.pipelineStatus === 'declined' && contribution.declineReason}
-							<div class="mb-3 p-2.5 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md">
+							<div
+								class="mb-3 p-2.5 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md"
+							>
 								<p class="text-xs text-red-700 dark:text-red-300">
 									<span class="font-medium">{s('contribute.history.declineReason')}:</span>
 									{contribution.declineReason}
@@ -159,38 +163,55 @@ function formatRelativeDate(date: Date): string {
 						<!-- Pipeline stepper -->
 						<div class="flex items-start">
 							{#each STEPS as step, i}
-								{@const state = contribution.pipelineStatus === 'declined'
-									? (step === 'submitted' ? 'declined' : 'pending')
-									: getStepState(step, contribution.pipelineStatus)}
+								{@const state =
+									contribution.pipelineStatus === 'declined'
+										? step === 'submitted'
+											? 'declined'
+											: 'pending'
+										: getStepState(step, contribution.pipelineStatus)}
 								<!-- Connector -->
 								{#if i > 0}
-									<div class="flex-1 h-0.5 mt-3 {state === 'pending'
-										? 'bg-primary-200'
-										: contribution.pipelineStatus === 'declined'
+									<div
+										class="flex-1 h-0.5 mt-3 {state === 'pending'
 											? 'bg-primary-200'
-											: 'bg-green-400 dark:bg-green-600'}"></div>
+											: contribution.pipelineStatus === 'declined'
+												? 'bg-primary-200'
+												: 'bg-green-400 dark:bg-green-600'}"
+									></div>
 								{/if}
 								<!-- Step: circle + label stacked -->
 								<div class="flex flex-col items-center" style="min-width: 3rem;">
-									<Tooltip text={s(`contribute.history.status.${contribution.pipelineStatus === 'declined' && step === 'submitted' ? 'declined' : step}.tooltip`) || ''}>
+									<Tooltip
+										text={s(
+											`contribute.history.status.${contribution.pipelineStatus === 'declined' && step === 'submitted' ? 'declined' : step}.tooltip`,
+										) || ''}
+									>
 										{#if state === 'declined'}
 											<div class="w-6 h-6 rounded-full bg-red-500 flex items-center justify-center">
 												<IconCircleX size={13} class="text-white" />
 											</div>
 										{:else if state === 'completed'}
-											<div class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
+											<div
+												class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center"
+											>
 												<IconCircleCheck size={13} class="text-white" />
 											</div>
 										{:else if state === 'current' && step === 'submitted'}
-											<div class="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center">
+											<div
+												class="w-6 h-6 rounded-full bg-purple-500 flex items-center justify-center"
+											>
 												<IconClock size={13} class="text-white" />
 											</div>
 										{:else if state === 'current' && step === 'merged'}
-											<div class="w-6 h-6 rounded-full bg-purple-500 flex items-center justify-center">
+											<div
+												class="w-6 h-6 rounded-full bg-purple-500 flex items-center justify-center"
+											>
 												<IconGitMerge size={13} class="text-white" />
 											</div>
 										{:else if state === 'current' && step === 'live'}
-											<div class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
+											<div
+												class="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center"
+											>
 												<IconCircleCheck size={13} class="text-white" />
 											</div>
 										{:else}
@@ -224,7 +245,7 @@ function formatRelativeDate(date: Date): string {
 
 	{#if hasMore}
 		<button
-			onclick={() => showAll = !showAll}
+			onclick={() => (showAll = !showAll)}
 			class="mt-2.5 text-xs text-accent-links hover:underline inline-flex items-center gap-1"
 		>
 			{#if showAll}

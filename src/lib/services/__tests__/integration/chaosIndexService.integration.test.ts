@@ -1,6 +1,6 @@
-import { describe, expect, it } from 'vitest';
 import { batchService } from '../../batchService';
 import { chaosIndexService } from '../../chaosIndexService';
+import { describe, expect, it } from 'vitest';
 
 describe('ChaosIndexService Integration Tests', () => {
 	describe('loadChaosIndex with real API', () => {

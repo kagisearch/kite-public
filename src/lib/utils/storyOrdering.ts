@@ -14,12 +14,23 @@ export function orderStoriesForSinglePage(
 	orderedCategories: Category[],
 	mode: SinglePageMode,
 	storyCountOverride: number | null = null,
+	/**
+	 * How to take `limit` stories out of a category. Defaults to the plain head of
+	 * the list; the caller passes a content-filter-aware picker so hidden stories
+	 * are backfilled from further down instead of leaving the category short
+	 * (KNEWS-441). Kept as a callback so this module stays independent of the
+	 * filter store.
+	 */
+	selectStories: (stories: Story[], limit: number) => Story[] = (stories, limit) =>
+		stories.slice(0, limit),
 ): StoryWithCategory[] {
 	if (mode === 'disabled') {
 		return [];
 	}
 
 	const result: StoryWithCategory[] = [];
+	const take = (stories: Story[]) =>
+		storyCountOverride ? selectStories(stories, storyCountOverride) : stories;
 
 	// Filter to only enabled categories and respect story count
 	const enabledCategories = orderedCategories.filter(
@@ -35,9 +46,7 @@ export function orderStoriesForSinglePage(
 			// All stories from first category, then all from second, etc.
 			for (const category of enabledCategories) {
 				const categoryStories = allCategoryStories[category.id] || [];
-				const storiesToAdd = storyCountOverride
-					? categoryStories.slice(0, storyCountOverride)
-					: categoryStories;
+				const storiesToAdd = take(categoryStories);
 
 				for (const story of storiesToAdd) {
 					result.push({
@@ -54,17 +63,14 @@ export function orderStoriesForSinglePage(
 			// Interleave stories: 1st from each category, then 2nd from each, etc.
 			const maxStories = Math.max(
 				...enabledCategories.map((cat) => {
-					const stories = allCategoryStories[cat.id] || [];
-					return storyCountOverride ? Math.min(stories.length, storyCountOverride) : stories.length;
+					return take(allCategoryStories[cat.id] || []).length;
 				}),
 			);
 
 			for (let i = 0; i < maxStories; i++) {
 				for (const category of enabledCategories) {
 					const categoryStories = allCategoryStories[category.id] || [];
-					const effectiveStories = storyCountOverride
-						? categoryStories.slice(0, storyCountOverride)
-						: categoryStories;
+					const effectiveStories = take(categoryStories);
 
 					if (i < effectiveStories.length) {
 						result.push({
@@ -83,9 +89,7 @@ export function orderStoriesForSinglePage(
 			const allStories: StoryWithCategory[] = [];
 			for (const category of enabledCategories) {
 				const categoryStories = allCategoryStories[category.id] || [];
-				const storiesToAdd = storyCountOverride
-					? categoryStories.slice(0, storyCountOverride)
-					: categoryStories;
+				const storiesToAdd = take(categoryStories);
 
 				for (const story of storiesToAdd) {
 					allStories.push({

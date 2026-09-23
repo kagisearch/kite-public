@@ -1,9 +1,9 @@
-import { readFile } from 'node:fs/promises';
-import { join } from 'node:path';
 import { BACKEND_PROD_PATH } from '$lib/config';
 import type { KiteData } from '$lib/types';
 import { filenameToCategoryId } from '$lib/utils/categoryIdTransform';
 import { logDebug, logError } from '$lib/utils/logger';
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
 
 // These functions are now imported from the centralized utility
 

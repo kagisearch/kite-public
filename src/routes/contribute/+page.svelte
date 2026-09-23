@@ -1,10 +1,4 @@
 <script lang="ts">
-import {
-	IconArrowLeft,
-	IconBrandGithub,
-	IconExternalLink,
-	IconInfoCircle,
-} from '@tabler/icons-svelte';
 import { browser } from '$app/environment';
 import { s } from '$lib/client/localization.svelte';
 import ContributeCategoryStep from '$lib/components/contribute/ContributeCategoryStep.svelte';
@@ -21,6 +15,12 @@ import {
 	parseCoreFeedsPy,
 	parseFeedUrls,
 } from '$lib/utils/feedContribution';
+import {
+	IconArrowLeft,
+	IconBrandGithub,
+	IconExternalLink,
+	IconInfoCircle,
+} from '@tabler/icons-svelte';
 
 const FEEDS_URL = 'https://raw.githubusercontent.com/kagisearch/kite-public/main/kite_feeds.json';
 const CORE_FEEDS_URL =
@@ -396,7 +396,10 @@ function resetForm() {
 						</p>
 					</div>
 					<button
-						onclick={() => { window.scrollTo({ top: 0, behavior: 'instant' }); showOnboarding = true; }}
+						onclick={() => {
+							window.scrollTo({ top: 0, behavior: 'instant' });
+							showOnboarding = true;
+						}}
 						class="text-xs text-primary-400 hover:text-primary-600 transition-colors inline-flex items-center gap-1"
 					>
 						<IconInfoCircle size={14} />
@@ -443,20 +446,20 @@ function resetForm() {
 			{/if}
 
 			{#if addedFeeds.length > 0}
-			<ContributeSubmitStep
-				{submitResult}
-				{isSubmitting}
-				{canSubmit}
-				{allErrored}
-				{mode}
-				githubMode={data.githubMode ?? 'manual'}
-				{activeCategoryName}
-				{submittableFeeds}
-				{errorFeeds}
-				{pendingFeeds}
-				onSubmit={handleSubmit}
-				onReset={resetForm}
-			/>
+				<ContributeSubmitStep
+					{submitResult}
+					{isSubmitting}
+					{canSubmit}
+					{allErrored}
+					{mode}
+					githubMode={data.githubMode ?? 'manual'}
+					{activeCategoryName}
+					{submittableFeeds}
+					{errorFeeds}
+					{pendingFeeds}
+					onSubmit={handleSubmit}
+					onReset={resetForm}
+				/>
 			{/if}
 
 			<!-- Footer link -->

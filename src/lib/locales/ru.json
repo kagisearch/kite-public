@@ -23,6 +23,14 @@
     "text": "Скачать для iOS",
     "translationContext": "Button text to download iOS app"
   },
+  "settings.about.feedback": {
+    "text": "Обратная связь",
+    "translationContext": "Section header for the feedback link in about settings"
+  },
+  "settings.about.feedbackDescription": {
+    "text": "Делитесь идеями, сообщайте о проблемах и голосуйте за то, что мы будем создавать дальше",
+    "translationContext": "Description of the Kagi Feedback forum link"
+  },
   "settings.about.forNews": {
     "text": "для читателей новостей",
     "translationContext": "Footer text suffix for copyright"
@@ -50,6 +58,10 @@
   "settings.about.mobileDescription": {
     "text": "Установите Kagi News на свое мобильное устройство",
     "translationContext": "Description for mobile apps"
+  },
+  "settings.about.openFeedback": {
+    "text": "Открыть обратную связь Kagi",
+    "translationContext": "Button text linking to the Kagi Feedback forum"
   },
   "settings.about.viewApiDocs": {
     "text": "Посмотреть документацию API",
@@ -527,6 +539,10 @@
     "text": "Настройте свою ленту новостей, отфильтровав темы, которые вы не хотите видеть. Используйте готовые наборы для распространенных фильтров или создавайте пользовательские ключевые слова.",
     "translationContext": "Description shown at the top of content filter settings tab"
   },
+  "settings.dataLanguage.englishOnlyNotice": {
+    "text": "С 10 июня 2026 года мы больше не переводим все категории на все языки. Каждая история доступна на языке оригинала, а также в переводе на английский, если язык оригинала — не английский.",
+    "translationContext": "Notice in language settings explaining that batch translation into all languages stopped on June 10, 2026; stories now ship in their native language plus English. Keep the date as-is."
+  },
   "settings.dataLanguage.label": {
     "text": "Язык содержания",
     "translationContext": "Label for the data/content language setting"
@@ -578,6 +594,30 @@
   "settings.experimental.warning": {
     "text": "Это экспериментальные функции, которые могут быть изменены или удалены в любое время.",
     "translationContext": "Warning text for experimental features"
+  },
+  "settings.fontFamily.atkinson": {
+    "text": "Atkinson Hyperlegible Next",
+    "translationContext": "Option for Atkinson Hyperlegible font, designed for low-vision readability"
+  },
+  "settings.fontFamily.default": {
+    "text": "Системный (по умолчанию)",
+    "translationContext": "Option for the default system font"
+  },
+  "settings.fontFamily.description": {
+    "text": "Atkinson Hyperlegible Next оптимизирован для слабовидящих читателей. OpenDyslexic разработан для читателей с дислексией. Fast Sans выделяет жирным начало каждого слова, чтобы направлять взгляд по тексту.",
+    "translationContext": "Description for the font family setting explaining accessibility benefits"
+  },
+  "settings.fontFamily.fast": {
+    "text": "Fast Sans (для ускоренного чтения)",
+    "translationContext": "Option for the Fast Sans font, which bolds the start of each word as a reading aid"
+  },
+  "settings.fontFamily.label": {
+    "text": "Шрифт",
+    "translationContext": "Label for the font family setting"
+  },
+  "settings.fontFamily.opendyslexic": {
+    "text": "OpenDyslexic",
+    "translationContext": "Option for OpenDyslexic font, designed for readers with dyslexia"
   },
   "settings.fontSize.label": {
     "text": "Размер шрифта",
@@ -686,6 +726,138 @@
   "settings.layoutWidth.wide": {
     "text": "Широкая (1024px)",
     "translationContext": "Option for wide layout width"
+  },
+  "settings.lock.backToPin": {
+    "text": "Назад к вводу PIN-кода",
+    "translationContext": "Link to go back from math challenge to PIN entry"
+  },
+  "settings.lock.confirmPin": {
+    "text": "Подтвердите PIN-код",
+    "translationContext": "Label for confirming the new PIN"
+  },
+  "settings.lock.description": {
+    "text": "Введите PIN-код для доступа к настройкам.",
+    "translationContext": "Description on the PIN lock screen"
+  },
+  "settings.lock.disableKeyboardShortcuts": {
+    "text": "Отключить сочетания клавиш",
+    "translationContext": "Toggle to disable all keyboard shortcuts for managed users"
+  },
+  "settings.lock.enable": {
+    "text": "Установить PIN-код",
+    "translationContext": "Button to enable PIN lock"
+  },
+  "settings.lock.enabled": {
+    "text": "Блокировка настроек включена",
+    "translationContext": "Status text when PIN lock is active"
+  },
+  "settings.lock.enabledDescription": {
+    "text": "Для открытия настроек требуется PIN-код.",
+    "translationContext": "Description when PIN lock is active"
+  },
+  "settings.lock.forgot": {
+    "text": "Забыли PIN-код?",
+    "translationContext": "Link to start the forgot PIN flow"
+  },
+  "settings.lock.forgotTitle": {
+    "text": "Сброс PIN-кода",
+    "translationContext": "Title shown on the math challenge screen for forgotten PIN"
+  },
+  "settings.lock.hideChaosIndex": {
+    "text": "Скрыть индекс хаоса",
+    "translationContext": "Toggle to hide the chaos index indicator"
+  },
+  "settings.lock.hideCorrections": {
+    "text": "Скрыть историю исправлений",
+    "translationContext": "Managed-mode toggle that hides the 'Corrected' indicator and correction history under story headers. Defaults to ON when a PIN is set, so the simplified reading view stays uncluttered."
+  },
+  "settings.lock.hideFontSize": {
+    "text": "Скрыть кнопку размера шрифта",
+    "translationContext": "Toggle to hide the font size button in the header"
+  },
+  "settings.lock.hideReportButton": {
+    "text": "Скрыть кнопку «Пожаловаться»",
+    "translationContext": "Toggle to hide the report button on story cards"
+  },
+  "settings.lock.hideSearch": {
+    "text": "Скрыть поиск",
+    "translationContext": "Toggle to hide the search button in the header"
+  },
+  "settings.lock.hideShareButton": {
+    "text": "Скрыть кнопку «Поделиться»",
+    "translationContext": "Toggle to hide the share button on story cards"
+  },
+  "settings.lock.hideTimeTravel": {
+    "text": "Скрыть «Машину времени»",
+    "translationContext": "Toggle to hide the time travel button in the header"
+  },
+  "settings.lock.managedOptions": {
+    "text": "Упрощение интерфейса",
+    "translationContext": "Heading for managed mode toggles when PIN is set"
+  },
+  "settings.lock.managedOptionsDescription": {
+    "text": "При желании можно скрыть кнопки и функции, чтобы сделать чтение более комфортным. Например, при настройке Kagi News для ребёнка или пожилого родственника, который просто хочет читать новости, не отвлекаясь.",
+    "translationContext": "Description for managed mode options section, explains why hiding features can be helpful"
+  },
+  "settings.lock.mathDescription": {
+    "text": "Решите эту задачу, чтобы сбросить PIN-код:",
+    "translationContext": "Description asking user to solve a math problem to reset PIN"
+  },
+  "settings.lock.mathPlaceholder": {
+    "text": "Ваш ответ",
+    "translationContext": "Placeholder for the math answer input"
+  },
+  "settings.lock.mathSubmit": {
+    "text": "Отправить",
+    "translationContext": "Button to submit the math challenge answer"
+  },
+  "settings.lock.mathWrong": {
+    "text": "Неверный ответ. Попробуйте снова.",
+    "translationContext": "Error when math challenge answer is wrong"
+  },
+  "settings.lock.mismatch": {
+    "text": "PIN-коды не совпадают.",
+    "translationContext": "Error when PIN confirmation doesn't match"
+  },
+  "settings.lock.newPin": {
+    "text": "Новый PIN-код (4-6 цифр)",
+    "translationContext": "Label for the new PIN input"
+  },
+  "settings.lock.placeholder": {
+    "text": "Введите PIN-код",
+    "translationContext": "Placeholder text for the PIN input field"
+  },
+  "settings.lock.remove": {
+    "text": "Удалить PIN-код",
+    "translationContext": "Button to remove the PIN lock"
+  },
+  "settings.lock.sectionDescription": {
+    "text": "Заблокируйте настройки с помощью PIN-кода, чтобы предотвратить случайные изменения. Полезно для управляемых устройств или родительского контроля.\n\nКогда блокировка включена, сочетание клавиш для изменения размера шрифта и баннер для загрузки приложения скрыты, а для открытия настроек требуется PIN-код.",
+    "translationContext": "Description of the settings lock feature, explaining what changes in managed mode"
+  },
+  "settings.lock.sectionTitle": {
+    "text": "Блокировка настроек",
+    "translationContext": "Title of the settings lock section in account settings"
+  },
+  "settings.lock.setPin": {
+    "text": "Установить PIN-код",
+    "translationContext": "Button to save the new PIN"
+  },
+  "settings.lock.title": {
+    "text": "Настройки заблокированы",
+    "translationContext": "Title shown on the PIN lock screen"
+  },
+  "settings.lock.tooShort": {
+    "text": "PIN-код должен состоять как минимум из 4 цифр.",
+    "translationContext": "Error when PIN is too short"
+  },
+  "settings.lock.unlock": {
+    "text": "Разблокировать",
+    "translationContext": "Button text to unlock settings with PIN"
+  },
+  "settings.lock.wrongPin": {
+    "text": "Неверный PIN-код. Попробуйте снова.",
+    "translationContext": "Error message when wrong PIN is entered"
   },
   "settings.mapsProvider.apple": {
     "text": "Apple Карты",
@@ -2575,6 +2747,18 @@
     "text": "{{weekday}}, {{month}} {{day}}",
     "translationContext": "Format for displaying dates. {{weekday}} will be replaced with the day of the week, {{month}} with the month name, and {{day}} with the day number."
   },
+  "downloadApp.pageTitle": {
+    "text": "Скачать Kagi News",
+    "translationContext": "HTML page title for the download app landing page"
+  },
+  "downloadApp.subtitle": {
+    "text": "Похоже, вы открыли эту страницу на компьютере. Выберите магазин ниже и откройте ссылку на своём телефоне!",
+    "translationContext": "Subtitle for the download app landing page shown to desktop users"
+  },
+  "downloadApp.title": {
+    "text": "Новости всегда под рукой",
+    "translationContext": "Heading for the download app landing page"
+  },
   "f1.completed": {
     "text": "Завершено",
     "translationContext": "Status label for completed races"
@@ -2683,6 +2867,10 @@
     "text": "Внести вклад",
     "translationContext": "Link text for contributing to the project"
   },
+  "footer.feedback": {
+    "text": "Обратная связь",
+    "translationContext": "Link text for the Kagi Feedback forum"
+  },
   "footer.rssFeed": {
     "text": "RSS-лента",
     "translationContext": "Link text for RSS feed"
@@ -2722,6 +2910,10 @@
   "keyboard.action.jumpLast": {
     "text": "Перейти к последней новости",
     "translationContext": "Description for G key - jumping to last story"
+  },
+  "keyboard.action.markAllRead": {
+    "text": "Отметить все новости как прочитанные",
+    "translationContext": "Description for Shift+M key - marking all stories in the current category as read"
   },
   "keyboard.action.moveNext": {
     "text": "Перейти к следующей новости",
@@ -2834,6 +3026,30 @@
   "meta.news": {
     "text": "Новости",
     "translationContext": "The word 'News' used in titles"
+  },
+  "nativeAppBanner.appStoreLabel": {
+    "text": "Загрузите в App Store",
+    "translationContext": "Accessibility label for the App Store download badge"
+  },
+  "nativeAppBanner.dismissLabel": {
+    "text": "Закрыть баннер приложения",
+    "translationContext": "Accessibility label for the close button on the native app banner"
+  },
+  "nativeAppBanner.googlePlayLabel": {
+    "text": "Доступно в Google Play",
+    "translationContext": "Accessibility label for the Google Play download badge"
+  },
+  "nativeAppBanner.qrCodeAlt": {
+    "text": "QR-код для загрузки Kagi News",
+    "translationContext": "Alt text for the QR code image in the native app banner"
+  },
+  "nativeAppBanner.subtitle": {
+    "text": "Попробуйте наше мобильное приложение на телефоне.",
+    "translationContext": "Subtitle for the desktop native app promotional banner"
+  },
+  "nativeAppBanner.title": {
+    "text": "Ежедневная сводка новостей",
+    "translationContext": "Title for the desktop native app promotional banner"
   },
   "navigation.backToTop": {
     "text": "Наверх",
@@ -3226,6 +3442,18 @@
   "nhl.volume": {
     "text": "Об.",
     "translationContext": "Abbreviation for trading volume"
+  },
+  "notification.appUpdate.description": {
+    "text": "Мы работали над улучшениями и исправлениями ошибок. Перезагрузите страницу, чтобы получить последнюю версию.",
+    "translationContext": "Description shown in a banner when a new version of the app has been deployed, prompting the user to reload"
+  },
+  "notification.appUpdate.reload": {
+    "text": "Перезагрузить",
+    "translationContext": "Button label to reload the page and get the latest version of the app"
+  },
+  "notification.appUpdate.title": {
+    "text": "Доступна новая версия Kagi News",
+    "translationContext": "Title shown in a banner when a new version of the app has been deployed"
   },
   "notification.newBatch.action": {
     "text": "Посмотреть",
@@ -3743,6 +3971,10 @@
     "text": "Временно недоступно",
     "translationContext": "Small label shown with a clock icon when a core category has no stories, indicating the update schedule"
   },
+  "stories.noStoriesHistorical": {
+    "text": "На эту дату в данной категории новостей нет.",
+    "translationContext": "Message shown when viewing a historical batch and the selected category has no stories for that date"
+  },
   "story.assistant.placeholder": {
     "text": "Спросите об этой истории...",
     "translationContext": "Placeholder text in the assistant question input field"
@@ -3754,6 +3986,34 @@
   "story.assistant.tooltip": {
     "text": "Спросить Ассистента",
     "translationContext": "Tooltip for button that opens Kagi Assistant with the current story topic"
+  },
+  "story.corrections.changed": {
+    "text": "Изменено",
+    "translationContext": "Label introducing the list of fields that a correction modified (e.g. 'Changed: Headline, Summary')."
+  },
+  "story.corrections.explainer": {
+    "text": "Статьи могут быть исправлены после публикации. Поводом для этого обычно служит сообщение от читателя или наша собственная проверка фактов. Исправление создаётся той же системой ИИ, которая пишет статьи, и публикуется здесь для обеспечения прозрачности.",
+    "translationContext": "Neutral footnote shown under the expanded correction history list, explaining how corrections work (triggered by a reader report or follow-up fact-checking, generated by AI, not by a human editor)."
+  },
+  "story.corrections.many": {
+    "text": "{count} исправлений",
+    "translationContext": "Label shown when a story has received multiple fact-check corrections. {count} is replaced with the number (2 or more)."
+  },
+  "story.corrections.manyAfterRead": {
+    "text": "{count} исправлений после прочтения",
+    "translationContext": "Plural variant shown when multiple corrections were applied after the user read the story. {count} is replaced with the number (2 or more)."
+  },
+  "story.corrections.one": {
+    "text": "Исправлено",
+    "translationContext": "Label on a subtle indicator shown when a story has received one fact-check correction after publication. Clicking reveals a timestamped note about what was changed."
+  },
+  "story.corrections.oneAfterRead": {
+    "text": "Исправлено после прочтения",
+    "translationContext": "Variant of the 'Corrected' label shown when the correction was applied after the reader had already read the story — highlighted so they know the text they remember may have changed."
+  },
+  "story.corrections.toggle": {
+    "text": "Показать историю исправлений",
+    "translationContext": "Accessibility label for the button that expands the correction history list."
   },
   "story.flashcards.download": {
     "text": "Скачать",
@@ -4014,6 +4274,46 @@
   "timeTravel.urlBanner.viewingShared": {
     "text": "Кто-то поделился с вами ссылкой на новости от {{{date}}}. Вы можете вернуться к сегодняшним новостям в любое время, нажав ✕ рядом с датой выше.",
     "translationContext": "One-time info banner shown when user arrives via a shared time travel URL (has referrer). Points user to the header date pill with X button."
+  },
+  "translation.explainer.networkEffect": {
+    "text": "Переводы кэшируются для будущих читателей. По мере роста аудитории языка он попадает в группу языков с предварительным переводом.",
+    "translationContext": "Fourth paragraph of the on-demand translation explainer modal"
+  },
+  "translation.explainer.onDemand": {
+    "text": "Языки с меньшей аудиторией используют перевод по запросу. Заголовки по-прежнему переводятся заранее, чтобы список можно было просматривать. Полный текст переводится, когда читатель открывает статью.",
+    "translationContext": "Third paragraph fallback when the language name is unknown"
+  },
+  "translation.explainer.onDemandLang": {
+    "text": "Языки с меньшей аудиторией, такие как {{lang}}, используют перевод по запросу. Заголовки по-прежнему переводятся заранее, чтобы список можно было просматривать. Полный текст переводится, когда читатель открывает статью.",
+    "translationContext": "Third paragraph of the on-demand translation explainer modal (with the language name placeholder)"
+  },
+  "translation.explainer.pretranslated": {
+    "text": "Для языков с большой читательской аудиторией (английский, итальянский, французский, немецкий, испанский, китайский, японский и другие) все статьи предварительно переводятся во время пакетной обработки.",
+    "translationContext": "Second paragraph of the on-demand translation explainer modal"
+  },
+  "translation.explainer.title": {
+    "text": "Перевод по запросу",
+    "translationContext": "Heading of the modal that explains on-demand translation"
+  },
+  "translation.learnMore": {
+    "text": "Как это работает",
+    "translationContext": "Button on the on-demand translation progress indicator that opens the explainer modal"
+  },
+  "translation.section": {
+    "text": "раздел",
+    "translationContext": "Singular \"section\" used in the on-demand translation progress counter"
+  },
+  "translation.sections": {
+    "text": "разделов",
+    "translationContext": "Plural \"sections\" used in the on-demand translation progress counter"
+  },
+  "translation.translating": {
+    "text": "Перевод...",
+    "translationContext": "Status label shown next to the spinner while on-demand translation streams in"
+  },
+  "translation.translatingDetail": {
+    "text": "Переводим с {{source}} с помощью Kagi Translate. Язык «{{target}}» не входит в число предварительно переведённых, поэтому мы переводим материалы по запросу.",
+    "translationContext": "Secondary line under the on-demand translation spinner. {{source}} and {{target}} are language names like 'English' and 'Estonian'."
   },
   "turbulence.title": {
     "text": "Мировой измеритель турбулентности",

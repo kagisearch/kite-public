@@ -1,5 +1,5 @@
+import { displaySettings, settings } from './settings.svelte';
 import { describe, expect, it } from 'vitest';
-import { settings } from './settings.svelte';
 
 describe('Setting persistence', () => {
 	describe('save', () => {
@@ -47,6 +47,19 @@ describe('Setting persistence', () => {
 			settings.storyCount.load();
 
 			expect(settings.storyCount.currentValue).toBe(12);
+		});
+
+		it.each([
+			['0', 3],
+			['-1', 3],
+			['99', 12],
+			['5.5', 6],
+		])('clamps a stored storyCount of %s to %i stories', (stored, expected) => {
+			localStorage.setItem('storyCount', stored);
+
+			settings.storyCount.load();
+
+			expect(displaySettings.storyCount).toBe(expected);
 		});
 
 		it('keeps numeric-looking strings as strings', () => {

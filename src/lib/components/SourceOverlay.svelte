@@ -1,4 +1,10 @@
 <script lang="ts">
+import { s } from '$lib/client/localization.svelte';
+import Tooltip from '$lib/components/Tooltip.svelte';
+import FaviconImage from '$lib/components/common/FaviconImage.svelte';
+import { preferredSources } from '$lib/stores/preferredSources.svelte.js';
+import { getTimeAgo } from '$lib/utils/getTimeAgo';
+import { scrollLock } from '$lib/utils/scrollLock.js';
 import {
 	IconBuilding,
 	IconLock,
@@ -9,13 +15,6 @@ import {
 	IconUser,
 } from '@tabler/icons-svelte';
 import { useOverlayScrollbars } from 'overlayscrollbars-svelte';
-import { s } from '$lib/client/localization.svelte';
-import FaviconImage from '$lib/components/common/FaviconImage.svelte';
-import Tooltip from '$lib/components/Tooltip.svelte';
-import { preferredSources } from '$lib/stores/preferredSources.svelte.js';
-import { getTimeAgo } from '$lib/utils/getTimeAgo';
-import { scrollLock } from '$lib/utils/scrollLock.js';
-import 'overlayscrollbars/overlayscrollbars.css';
 
 // Props
 interface Props {
@@ -173,348 +172,311 @@ function handleBackdropClick(event: MouseEvent) {
 </script>
 
 {#if isOpen}
-  <div
-    class="fixed inset-0 z-popover flex items-center justify-center bg-black/50 p-4 dark:bg-black/70"
-    onclick={handleBackdropClick}
-    onkeydown={(e) => {
-      if (e.key === "Escape") {
-        handleClose();
-      }
-    }}
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="source-overlay-title"
-    tabindex="-1"
-  >
-    <div
-      bind:this={dialogElement}
-      class="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-lg bg-white p-6 dark:bg-gray-800"
-      role="document"
-    >
-      <div
-        bind:this={scrollableElement}
-        class="max-h-[80vh] overflow-y-auto"
-        data-overlayscrollbars-initialize
-      >
-        <header class="mb-4 flex items-center justify-between">
-          <div class="flex items-center space-x-2">
-            <FaviconImage
-              domain={currentSource?.name || ""}
-              alt={currentSource?.name
-                ? `${currentSource.name} favicon`
-                : "Generic favicon"}
-              class="h-6 w-6 rounded-sm"
-            />
-            <h3
-              id="source-overlay-title"
-              class="dark:text-dark-text text-xl font-bold"
-              dir="auto"
-            >
-              {currentSource?.name || "Unknown Source"}
-            </h3>
-            {#if currentSource?.isPaywalled}
-              <Tooltip
-                text={s("sources.paywallTooltip") || "This source may require a subscription to access full articles"}
-                position="bottom"
-              >
-                <span
-                  class="flex items-center gap-1 rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600 dark:bg-gray-700 dark:text-gray-400 cursor-help"
-                >
-                  <IconLock class="h-3 w-3" />
-                  {s("sources.paywall") || "Paywall"}
-                </span>
-              </Tooltip>
-            {/if}
-          </div>
-          <div class="flex items-center gap-2">
-            <!-- Pin toggle button -->
-            <button
-              onclick={() => {
-                if (currentSource?.name) preferredSources.togglePreferred(currentSource.name);
-              }}
-              class="group p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors focus-visible-ring"
-              class:text-blue-500={preferredSources.isPreferred(currentSource?.name)}
-              class:text-gray-400={!preferredSources.isPreferred(currentSource?.name)}
-              aria-label={preferredSources.isPreferred(currentSource?.name)
-                ? s('sources.removePreferred') || 'Unpin from top of sources'
-                : s('sources.addPreferred') || 'Pin to top of sources'}
-              title={preferredSources.isPreferred(currentSource?.name)
-                ? s('sources.removePreferred') || 'Unpin from top of sources'
-                : s('sources.addPreferred') || 'Pin to top of sources'}
-            >
-              {#if preferredSources.isPreferred(currentSource?.name)}
-                <IconPinFilled class="h-5 w-5" />
-              {:else}
-                <IconPin class="h-5 w-5 group-hover:text-blue-500" />
-              {/if}
-            </button>
-            <!-- Close button -->
-            <button
-              onclick={handleClose}
-              class="text-gray-500 hover:text-gray-700 focus-visible-ring rounded dark:text-gray-400 dark:hover:text-gray-200"
-              aria-label="Close source overlay"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
-        </header>
+	<div
+		class="fixed inset-0 z-popover flex items-center justify-center bg-black/50 p-4 dark:bg-black/70"
+		onclick={handleBackdropClick}
+		onkeydown={(e) => {
+			if (e.key === 'Escape') {
+				handleClose();
+			}
+		}}
+		role="dialog"
+		aria-modal="true"
+		aria-labelledby="source-overlay-title"
+		tabindex="-1"
+	>
+		<div
+			bind:this={dialogElement}
+			class="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-lg bg-modal-bg p-6"
+			role="document"
+		>
+			<div
+				bind:this={scrollableElement}
+				class="max-h-[80vh] overflow-y-auto"
+				data-overlayscrollbars-initialize
+			>
+				<header class="mb-4 flex items-center justify-between">
+					<div class="flex items-center space-x-2">
+						<FaviconImage
+							domain={currentSource?.name || ''}
+							alt={currentSource?.name ? `${currentSource.name} favicon` : 'Generic favicon'}
+							class="h-6 w-6 rounded-sm"
+						/>
+						<h3 id="source-overlay-title" class="dark:text-dark-text text-xl font-bold" dir="auto">
+							{currentSource?.name || 'Unknown Source'}
+						</h3>
+						{#if currentSource?.isPaywalled}
+							<Tooltip
+								text={s('sources.paywallTooltip') ||
+									'This source may require a subscription to access full articles'}
+								position="bottom"
+							>
+								<span
+									class="flex items-center gap-1 rounded-full bg-primary-50 px-2 py-0.5 text-xs text-primary-600 dark:bg-graphite-800 cursor-help"
+								>
+									<IconLock class="h-3 w-3" />
+									{s('sources.paywall') || 'Paywall'}
+								</span>
+							</Tooltip>
+						{/if}
+					</div>
+					<div class="flex items-center gap-2">
+						<!-- Pin toggle button -->
+						<button
+							onclick={() => {
+								if (currentSource?.name) preferredSources.togglePreferred(currentSource.name);
+							}}
+							class="group p-1.5 rounded-full hover:bg-primary-50 transition-colors focus-visible-ring"
+							class:text-accent-links={preferredSources.isPreferred(currentSource?.name)}
+							class:text-primary-400={!preferredSources.isPreferred(currentSource?.name)}
+							aria-label={preferredSources.isPreferred(currentSource?.name)
+								? s('sources.removePreferred') || 'Unpin from top of sources'
+								: s('sources.addPreferred') || 'Pin to top of sources'}
+							title={preferredSources.isPreferred(currentSource?.name)
+								? s('sources.removePreferred') || 'Unpin from top of sources'
+								: s('sources.addPreferred') || 'Pin to top of sources'}
+						>
+							{#if preferredSources.isPreferred(currentSource?.name)}
+								<IconPinFilled class="h-5 w-5" />
+							{:else}
+								<IconPin class="h-5 w-5 group-hover:text-accent-links" />
+							{/if}
+						</button>
+						<!-- Close button -->
+						<button
+							onclick={handleClose}
+							class="text-primary-600 hover:text-primary-700 focus-visible-ring rounded"
+							aria-label="Close source overlay"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="h-6 w-6"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M6 18L18 6M6 6l12 12"
+								/>
+							</svg>
+						</button>
+					</div>
+				</header>
 
-        <p class="mb-4 text-gray-600 dark:text-gray-400">
-          {sourceArticles.length === 1
-            ? s("sources.article", {
-                count: sourceArticles.length.toString(),
-              }) || `${sourceArticles.length} article`
-            : s("sources.articles", {
-                count: sourceArticles.length.toString(),
-              }) || `${sourceArticles.length} articles`}
-        </p>
+				<p class="mb-4 text-primary-600">
+					{sourceArticles.length === 1
+						? s('sources.article', {
+								count: sourceArticles.length.toString(),
+							}) || `${sourceArticles.length} article`
+						: s('sources.articles', {
+								count: sourceArticles.length.toString(),
+							}) || `${sourceArticles.length} articles`}
+				</p>
 
-        <div class="space-y-4">
-          {#each sourceArticles as article}
-            <article class="flex space-x-4">
-              {#if article.image}
-                <div class="relative h-24 w-24 shrink-0 rounded bg-gray-100 dark:bg-gray-700">
-                  <!-- Skeleton with favicon while image loads (hidden when placeholder is shown) -->
-                  {#if !failedImages.has(article.link)}
-                    <div class="absolute inset-0 flex items-center justify-center">
-                      <FaviconImage
-                        domain={currentSource?.name || ""}
-                        alt=""
-                        class="h-8 w-8 rounded-sm opacity-40"
-                        loading="eager"
-                      />
-                    </div>
-                  {/if}
-                  <img
-                    src={article.image}
-                    alt="Article"
-                    class="absolute inset-0 h-24 w-24 rounded object-cover transition-opacity duration-200"
-                    class:opacity-0={!failedImages.has(article.link)}
-                    onload={(e) => {
-                      (e.currentTarget as HTMLImageElement).style.opacity = '1';
-                    }}
-                    onerror={(e) => {
-                      const target = e.currentTarget as HTMLImageElement;
-                      target.style.opacity = '1';
-                      target.src = "/svg/placeholder.svg";
-                      failedImages = new Set([...failedImages, article.link]);
-                    }}
-                  />
-                </div>
-              {/if}
-              <div class="min-w-0">
-                <a
-                  href={article.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="hover:underline"
-                  onclick={(e) => e.stopPropagation()}
-                >
-                  <h4 class="dark:text-dark-text line-clamp-2 font-semibold" dir="auto">
-                    {article.title}
-                  </h4>
-                </a>
-                <p class="text-sm text-gray-500 dark:text-gray-400">
-                  {getTimeAgo(article.date)} · {new Date(
-                    article.date,
-                  ).toLocaleDateString()}
-                </p>
-              </div>
-            </article>
-          {/each}
-        </div>
+				<div class="space-y-4">
+					{#each sourceArticles as article}
+						<article class="flex space-x-4">
+							{#if article.image}
+								<div class="relative h-24 w-24 shrink-0 rounded bg-primary-50 dark:bg-graphite-800">
+									<!-- Skeleton with favicon while image loads (hidden when placeholder is shown) -->
+									{#if !failedImages.has(article.link)}
+										<div class="absolute inset-0 flex items-center justify-center">
+											<FaviconImage
+												domain={currentSource?.name || ''}
+												alt=""
+												class="h-8 w-8 rounded-sm opacity-40"
+												loading="eager"
+											/>
+										</div>
+									{/if}
+									<img
+										src={article.image}
+										alt="Article"
+										class="absolute inset-0 h-24 w-24 rounded object-cover transition-opacity duration-200"
+										class:opacity-0={!failedImages.has(article.link)}
+										onload={(e) => {
+											(e.currentTarget as HTMLImageElement).style.opacity = '1';
+										}}
+										onerror={(e) => {
+											const target = e.currentTarget as HTMLImageElement;
+											target.style.opacity = '1';
+											target.src = '/svg/placeholder.svg';
+											failedImages = new Set([...failedImages, article.link]);
+										}}
+									/>
+								</div>
+							{/if}
+							<div class="min-w-0">
+								<a
+									href={article.link}
+									target="_blank"
+									rel="noopener noreferrer"
+									class="hover:underline"
+									onclick={(e) => e.stopPropagation()}
+								>
+									<h4 class="dark:text-dark-text line-clamp-2 font-semibold" dir="auto">
+										{article.title}
+									</h4>
+								</a>
+								<p class="text-sm text-primary-600">
+									{getTimeAgo(article.date)} · {new Date(article.date).toLocaleDateString()}
+								</p>
+								{#if article.author}
+									<p class="text-sm text-primary-600" dir="auto">
+										{article.author}
+									</p>
+								{/if}
+							</div>
+						</article>
+					{/each}
+				</div>
 
-        <!-- Source Information -->
-        <div class="mt-8 border-t border-gray-200 pt-4 dark:border-gray-700">
-          <button
-            onclick={() => (showSourceInfo = !showSourceInfo)}
-            class="flex w-full items-center justify-between rounded-lg p-2 text-left text-gray-800 hover:bg-gray-50 focus-visible-ring dark:text-gray-200 dark:hover:bg-gray-700"
-          >
-            <span class="font-semibold">
-              {s("source.info.title") || "Source Information"}
-            </span>
-            <svg
-              class="h-5 w-5 transform transition-transform"
-              class:rotate-180={showSourceInfo}
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-              />
-            </svg>
-          </button>
+				<!-- Source Information -->
+				<div class="mt-8 border-t border-primary-100 pt-4">
+					<button
+						onclick={() => (showSourceInfo = !showSourceInfo)}
+						class="flex w-full items-center justify-between rounded-lg p-2 text-left text-primary-800 hover:bg-primary-25 focus-visible-ring"
+					>
+						<span class="font-semibold">
+							{s('source.info.title') || 'Source Information'}
+						</span>
+						<svg
+							class="h-5 w-5 transform transition-transform"
+							class:rotate-180={showSourceInfo}
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 20 20"
+							fill="currentColor"
+						>
+							<path
+								fill-rule="evenodd"
+								d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+								clip-rule="evenodd"
+							/>
+						</svg>
+					</button>
 
-          {#if showSourceInfo}
-            <div class="mt-4">
-              {#if isLoadingMediaInfo}
-                <div class="py-6 text-center">
-                  <div
-                    class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-400 mx-auto mb-4"
-                  ></div>
-                  <p class="text-gray-600 dark:text-gray-400">
-                    {s("source.info.loading") ||
-                      "Loading source information..."}
-                  </p>
-                </div>
-              {:else if mediaInfo}
-                <div class="space-y-6">
-                  <!-- Info Grid -->
-                  <div class="grid gap-4 sm:grid-cols-2">
-                    <!-- Country -->
-                    <div class="flex items-start gap-3">
-                      <div class="shrink-0 mt-0.5">
-                        <IconMapPin class="h-5 w-5 text-gray-500" />
-                      </div>
-                      <div class="min-w-0 flex-1">
-                        <div
-                          class="font-medium text-gray-700 dark:text-gray-300 text-sm"
-                        >
-                          {s("source.info.country") || "Country"}
-                        </div>
-                        <div
-                          class="text-gray-600 dark:text-gray-400 wrap-break-word"
-                          dir="auto"
-                        >
-                          {mediaInfo?.country}
-                        </div>
-                      </div>
-                    </div>
+					{#if showSourceInfo}
+						<div class="mt-4">
+							{#if isLoadingMediaInfo}
+								<div class="py-6 text-center">
+									<div
+										class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-400 mx-auto mb-4"
+									></div>
+									<p class="text-primary-600">
+										{s('source.info.loading') || 'Loading source information...'}
+									</p>
+								</div>
+							{:else if mediaInfo}
+								<div class="space-y-6">
+									<!-- Info Grid -->
+									<div class="grid gap-4 sm:grid-cols-2">
+										<!-- Country -->
+										<div class="flex items-start gap-3">
+											<div class="shrink-0 mt-0.5">
+												<IconMapPin class="h-5 w-5 text-primary-600" />
+											</div>
+											<div class="min-w-0 flex-1">
+												<div class="font-medium text-primary-700 text-sm">
+													{s('source.info.country') || 'Country'}
+												</div>
+												<div class="text-primary-600 wrap-break-word" dir="auto">
+													{mediaInfo?.country}
+												</div>
+											</div>
+										</div>
 
-                    <!-- Owner -->
-                    <div class="flex items-start gap-3">
-                      <div class="flex-shrink-0 mt-0.5">
-                        <IconUser class="h-5 w-5 text-gray-500" />
-                      </div>
-                      <div class="min-w-0 flex-1">
-                        <div
-                          class="font-medium text-gray-700 dark:text-gray-300 text-sm"
-                        >
-                          {s("source.info.owner") || "Owner"}
-                        </div>
-                        <div
-                          class="text-gray-600 dark:text-gray-400 break-words"
-                          dir="auto"
-                        >
-                          {mediaInfo?.owner ||
-                            s("source.info.notSpecified") ||
-                            "Not specified"}
-                        </div>
-                      </div>
-                    </div>
+										<!-- Owner -->
+										<div class="flex items-start gap-3">
+											<div class="flex-shrink-0 mt-0.5">
+												<IconUser class="h-5 w-5 text-primary-600" />
+											</div>
+											<div class="min-w-0 flex-1">
+												<div class="font-medium text-primary-700 text-sm">
+													{s('source.info.owner') || 'Owner'}
+												</div>
+												<div class="text-primary-600 break-words" dir="auto">
+													{mediaInfo?.owner || s('source.info.notSpecified') || 'Not specified'}
+												</div>
+											</div>
+										</div>
 
-                    <!-- Organization -->
-                    <div class="flex items-start gap-3">
-                      <div class="flex-shrink-0 mt-0.5">
-                        <IconBuilding class="h-5 w-5 text-gray-500" />
-                      </div>
-                      <div class="min-w-0 flex-1">
-                        <div
-                          class="font-medium text-gray-700 dark:text-gray-300 text-sm"
-                        >
-                          {s("source.info.organization") || "Organization"}
-                        </div>
-                        <div
-                          class="text-gray-600 dark:text-gray-400 break-words"
-                          dir="auto"
-                        >
-                          {mediaInfo?.organization}
-                        </div>
-                      </div>
-                    </div>
+										<!-- Organization -->
+										<div class="flex items-start gap-3">
+											<div class="flex-shrink-0 mt-0.5">
+												<IconBuilding class="h-5 w-5 text-primary-600" />
+											</div>
+											<div class="min-w-0 flex-1">
+												<div class="font-medium text-primary-700 text-sm">
+													{s('source.info.organization') || 'Organization'}
+												</div>
+												<div class="text-primary-600 break-words" dir="auto">
+													{mediaInfo?.organization}
+												</div>
+											</div>
+										</div>
 
-                    <!-- Media Classification -->
-                    <div class="flex items-start gap-3">
-                      <div class="flex-shrink-0 mt-0.5">
-                        <IconTag class="h-5 w-5 text-gray-500" />
-                      </div>
-                      <div class="min-w-0 flex-1">
-                        <div
-                          class="font-medium text-gray-700 dark:text-gray-300 text-sm"
-                        >
-                          {s("source.info.mediaClassification") ||
-                            "Media Classification"}
-                        </div>
-                        <div
-                          class="text-gray-600 dark:text-gray-400 break-words"
-                          dir="auto"
-                        >
-                          {mediaInfo?.typology}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+										<!-- Media Classification -->
+										<div class="flex items-start gap-3">
+											<div class="flex-shrink-0 mt-0.5">
+												<IconTag class="h-5 w-5 text-primary-600" />
+											</div>
+											<div class="min-w-0 flex-1">
+												<div class="font-medium text-primary-700 text-sm">
+													{s('source.info.mediaClassification') || 'Media Classification'}
+												</div>
+												<div class="text-primary-600 break-words" dir="auto">
+													{mediaInfo?.typology}
+												</div>
+											</div>
+										</div>
+									</div>
 
-                  <!-- Description -->
-                  {#if mediaInfo?.description}
-                    <div
-                      class="mt-6 border-t border-gray-200 pt-6 dark:border-gray-700"
-                    >
-                      <h4
-                        class="mb-3 font-medium text-gray-700 dark:text-gray-300"
-                      >
-                        {s("source.info.description") || "Description"}
-                      </h4>
-                      <p
-                        class="text-gray-600 dark:text-gray-400 leading-relaxed"
-                        dir="auto"
-                      >
-                        {mediaInfo?.description}
-                      </p>
-                    </div>
-                  {/if}
-                </div>
-              {:else}
-                <div class="py-6 text-center">
-                  <h4
-                    class="mb-2 text-lg font-semibold text-gray-800 dark:text-gray-200"
-                  >
-                    {s("source.contribute.title") ||
-                      "Help Us Improve Source Information"}
-                  </h4>
-                  <p class="mb-4 text-gray-600 dark:text-gray-400">
-                    {s("source.contribute.description") ||
-                      "We need your help to provide detailed information about news sources."}
-                  </p>
-                  <a
-                    href="https://github.com/kagisearch/kite-public"
-                    class="inline-flex items-center rounded-lg bg-blue-500 px-4 py-2 text-white transition-colors duration-200 hover:bg-blue-600"
-                  >
-                    <svg
-                      class="mr-2 h-5 w-5"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path
-                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                      />
-                    </svg>
-                    {s("source.contribute.button") || "Contribute on GitHub"}
-                  </a>
-                </div>
-              {/if}
-            </div>
-          {/if}
-        </div>
-      </div>
-    </div>
-  </div>
+									<!-- Description -->
+									{#if mediaInfo?.description}
+										<div class="mt-6 border-t border-primary-100 pt-6">
+											<h4 class="mb-3 font-medium text-primary-700">
+												{s('source.info.description') || 'Description'}
+											</h4>
+											<p class="text-primary-600 leading-relaxed" dir="auto">
+												{mediaInfo?.description}
+											</p>
+										</div>
+									{/if}
+								</div>
+							{:else}
+								<div class="py-6 text-center">
+									<h4 class="mb-2 text-lg font-semibold text-primary-800">
+										{s('source.contribute.title') || 'Help Us Improve Source Information'}
+									</h4>
+									<p class="mb-4 text-primary-600">
+										{s('source.contribute.description') ||
+											'We need your help to provide detailed information about news sources.'}
+									</p>
+									<a
+										href="https://github.com/kagisearch/kite-public"
+										class="inline-flex items-center rounded-lg bg-purple-600 px-4 py-2 text-white transition-colors duration-200 hover:bg-purple-700"
+									>
+										<svg
+											class="mr-2 h-5 w-5"
+											xmlns="http://www.w3.org/2000/svg"
+											viewBox="0 0 24 24"
+											fill="currentColor"
+										>
+											<path
+												d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+											/>
+										</svg>
+										{s('source.contribute.button') || 'Contribute on GitHub'}
+									</a>
+								</div>
+							{/if}
+						</div>
+					{/if}
+				</div>
+			</div>
+		</div>
+	</div>
 {/if}
-

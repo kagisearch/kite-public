@@ -1,7 +1,5 @@
-import { dev } from '$app/environment';
-import { prefetchFavicons } from '$lib/services/faviconService';
+import { STORIES_PER_CATEGORY } from '$lib/constants/categories';
 import type { Story } from '$lib/types';
-import { extractDomainFromUrl } from '$lib/utils/domainUtils';
 
 /**
  * Service for loading story data
@@ -15,7 +13,7 @@ class StoriesService {
 	async loadStories(
 		batchId: string,
 		categoryUuid: string,
-		limit: number = 12, // Max 12 stories per category from UI
+		limit: number = STORIES_PER_CATEGORY,
 		lang: string = 'default',
 	): Promise<{ stories: Story[]; readCount: number; timestamp: number }> {
 		try {
@@ -28,8 +26,9 @@ class StoriesService {
 			}
 			const data = await response.json();
 
-			// Prefetch favicons for all story sources in the background
-			this.prefetchStoryFavicons(data.stories);
+			// Note: favicons + images for individual stories are preloaded by
+			// useHoverPreloading on story hover/focus — not in bulk on category
+			// load, which used to flood the network and block tab switches.
 
 			return {
 				stories: data.stories,
@@ -39,48 +38,6 @@ class StoriesService {
 		} catch (error) {
 			console.error('Error loading stories:', error);
 			throw error;
-		}
-	}
-
-	/**
-	 * Prefetch favicons for all sources in stories
-	 * Runs in background without blocking the main flow
-	 */
-	private prefetchStoryFavicons(stories: Story[]) {
-		// Skip favicon preloading in dev mode
-		if (dev) {
-			return;
-		}
-
-		try {
-			// Extract unique domains from all story sources
-			const domains = new Set<string>();
-
-			for (const story of stories) {
-				// Extract domains from articles instead of sources
-				if (story.articles && Array.isArray(story.articles)) {
-					for (const article of story.articles) {
-						if (article.link) {
-							const domain = extractDomainFromUrl(article.link);
-							if (domain) {
-								domains.add(domain);
-							}
-						}
-					}
-				}
-			}
-
-			// Prefetch favicons in the background
-			if (domains.size > 0) {
-				const domainArray = Array.from(domains);
-				console.debug(`Prefetching favicons for ${domainArray.length} domains`);
-				prefetchFavicons(domainArray).catch((error) => {
-					console.debug('Favicon prefetch failed:', error);
-				});
-			}
-		} catch (error) {
-			// Don't let prefetch errors affect the main flow
-			console.debug('Error during favicon prefetch:', error);
 		}
 	}
 }

@@ -1,4 +1,6 @@
 <script lang="ts">
+import { s } from '$lib/client/localization.svelte';
+import type { FeedCheckResult } from '$lib/utils/feedContribution';
 import {
 	IconAlertTriangle,
 	IconChevronDown,
@@ -12,8 +14,6 @@ import {
 	IconX,
 } from '@tabler/icons-svelte';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-svelte';
-import { s } from '$lib/client/localization.svelte';
-import type { FeedCheckResult } from '$lib/utils/feedContribution';
 
 interface Props {
 	addedFeeds: FeedCheckResult[];
@@ -95,7 +95,7 @@ function handleAdd() {
 			onclick={handleAdd}
 			disabled={!feedUrlsInput.trim()}
 			class="inline-flex items-center gap-1.5 px-4 py-2 text-sm font-medium rounded-lg transition-colors
-				bg-blue-600 hover:bg-blue-700 disabled:bg-primary-200 disabled:dark:bg-primary-700 text-white disabled:text-primary-500 disabled:dark:text-primary-400 disabled:cursor-not-allowed"
+				bg-purple-600 hover:bg-purple-700 disabled:bg-primary-200 disabled:dark:bg-graphite-700 text-white disabled:text-primary-500 disabled:dark:text-primary-400 disabled:cursor-not-allowed"
 		>
 			<IconPlus size={16} />
 			{s('contribute.addFeeds')}
@@ -105,7 +105,7 @@ function handleAdd() {
 		{#if duplicateFeeds.length > 0}
 			<div class="text-xs text-amber-600 dark:text-amber-400">
 				<button
-					onclick={() => showDuplicates = !showDuplicates}
+					onclick={() => (showDuplicates = !showDuplicates)}
 					aria-expanded={showDuplicates}
 					class="flex items-center gap-1.5 hover:underline"
 				>
@@ -118,7 +118,9 @@ function handleAdd() {
 					{/if}
 				</button>
 				{#if showDuplicates}
-					<div class="mt-1.5 ml-5 space-y-0.5 text-[11px] font-mono text-amber-500 dark:text-amber-500">
+					<div
+						class="mt-1.5 ml-5 space-y-0.5 text-[11px] font-mono text-amber-500 dark:text-amber-500"
+					>
 						{#each duplicateFeeds as url}
 							<div class="truncate" title={url}>{url}</div>
 						{/each}
@@ -136,16 +138,24 @@ function handleAdd() {
 				<div class="text-xs text-primary-600" aria-live="polite">
 					{s('contribute.feedsAdded', { count: String(addedFeeds.length) })}
 					{#if validFeeds.length > 0}
-						&mdash; <span class="text-green-600 dark:text-green-400">{s('contribute.validCount', { count: String(validFeeds.length) })}</span>
+						&mdash; <span class="text-green-600 dark:text-green-400"
+							>{s('contribute.validCount', { count: String(validFeeds.length) })}</span
+						>
 					{/if}
 					{#if unknownFeeds.length > 0}
-						&mdash; <span class="text-amber-600 dark:text-amber-400">{s('contribute.unverifiedCount', { count: String(unknownFeeds.length) })}</span>
+						&mdash; <span class="text-amber-600 dark:text-amber-400"
+							>{s('contribute.unverifiedCount', { count: String(unknownFeeds.length) })}</span
+						>
 					{/if}
 					{#if errorFeeds.length > 0}
-						&mdash; <span class="text-red-600 dark:text-red-400">{s('contribute.errorCount', { count: String(errorFeeds.length) })}</span>
+						&mdash; <span class="text-red-600 dark:text-red-400"
+							>{s('contribute.errorCount', { count: String(errorFeeds.length) })}</span
+						>
 					{/if}
 					{#if pendingFeeds.length > 0}
-						&mdash; <span class="text-gray-500">{s('contribute.checkingCount', { count: String(pendingFeeds.length) })}</span>
+						&mdash; <span class="text-primary-600"
+							>{s('contribute.checkingCount', { count: String(pendingFeeds.length) })}</span
+						>
 					{/if}
 				</div>
 
@@ -166,12 +176,18 @@ function handleAdd() {
 				>
 					<div class="space-y-1" style="max-height: 18rem;">
 						{#each addedFeeds as feed (feed.url)}
-							<div class="flex items-center gap-2 py-1.5 px-2 rounded-md group
-								{feed.status === 'error' ? 'bg-red-50 dark:bg-red-900/10' : 'bg-primary-50'}">
+							<div
+								class="flex items-center gap-2 py-1.5 px-2 rounded-md group
+								{feed.status === 'error' ? 'bg-red-50 dark:bg-red-900/10' : 'bg-primary-50'}"
+							>
 								<!-- Status icon -->
-								<span class="shrink-0" aria-label={feed.error || feed.status} title={feed.error || feed.status}>
+								<span
+									class="shrink-0"
+									aria-label={feed.error || feed.status}
+									title={feed.error || feed.status}
+								>
 									{#if feed.status === 'checking'}
-										<IconLoader2 size={16} class="animate-spin text-gray-400" />
+										<IconLoader2 size={16} class="animate-spin text-primary-400" />
 									{:else if feed.status === 'valid'}
 										<IconCircleCheck size={16} class="text-green-500" />
 									{:else if feed.status === 'error'}
@@ -184,7 +200,8 @@ function handleAdd() {
 								</span>
 
 								<!-- URL -->
-								<span class="flex-1 text-xs font-mono truncate
+								<span
+									class="flex-1 text-xs font-mono truncate
 									{feed.status === 'error' ? 'text-red-600 dark:text-red-400 line-through' : 'text-primary-700'}"
 									title={feed.url}
 								>
@@ -193,7 +210,10 @@ function handleAdd() {
 
 								<!-- Error details -->
 								{#if feed.error && feed.status !== 'valid'}
-									<span class="text-[10px] text-primary-400 hidden sm:inline truncate max-w-40" title={feed.error}>
+									<span
+										class="text-[10px] text-primary-400 hidden sm:inline truncate max-w-40"
+										title={feed.error}
+									>
 										{feed.error}
 									</span>
 								{/if}
@@ -214,7 +234,9 @@ function handleAdd() {
 
 			<!-- All-errored warning -->
 			{#if allErrored}
-				<div class="mt-3 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md">
+				<div
+					class="mt-3 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md"
+				>
 					<div class="flex items-start gap-2">
 						<IconCircleX size={16} class="shrink-0 mt-0.5 text-red-500" />
 						<p class="text-xs text-red-700 dark:text-red-300">

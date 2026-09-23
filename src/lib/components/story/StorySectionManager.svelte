@@ -3,21 +3,16 @@ import { s } from '$lib/client/localization.svelte';
 import { sections } from '$lib/stores/sections.svelte.js';
 import type { LocalizerFunction } from '$lib/types';
 import { aggregateCitationsFromTexts } from '$lib/utils/citationAggregator';
-
-// Helper to extract domain from a URL for image attribution fallback
-function extractDomain(url: string | undefined | null): string {
-	if (!url) return '';
-	try {
-		return new URL(url).hostname;
-	} catch {
-		return '';
-	}
-}
 import {
 	buildCitationMapping,
 	type CitationMapping,
 	replaceWithNumberedCitations,
 } from '$lib/utils/citationContext';
+import {
+	camelToSnake,
+	SECTIONS_WITHOUT_TEXT,
+	SPECIAL_FIELD_MAP,
+} from '$lib/utils/storyTextExtractor';
 import CitationText from './CitationText.svelte';
 import CitationTooltip from './CitationTooltip.svelte';
 import StoryActionItems from './StoryActionItems.svelte';
@@ -34,6 +29,16 @@ import StorySummary from './StorySummary.svelte';
 import StoryTextSection from './StoryTextSection.svelte';
 import StoryTimeline from './StoryTimeline.svelte';
 
+// Helper to extract domain from a URL for image attribution fallback
+function extractDomain(url: string | undefined | null): string {
+	if (!url) return '';
+	try {
+		return new URL(url).hostname;
+	} catch {
+		return '';
+	}
+}
+
 // Props
 interface Props {
 	story: any;
@@ -49,6 +54,10 @@ interface Props {
 	selectedPhrases?: Map<string, { phrase: string; sections: Set<string> }>;
 	shouldJiggle?: boolean;
 	onWordClick?: (word: string, section?: string) => void;
+	/** Returns true while a section's translation field hasn't streamed in yet. */
+	isFieldPending?: (field: string) => boolean;
+	/** Direction for a given SSE field's text; see StoryCard's fieldDirection. */
+	fieldDirection?: (field: string | string[]) => 'ltr' | 'rtl';
 }
 
 let {
@@ -65,7 +74,67 @@ let {
 	selectedPhrases = new Map(),
 	shouldJiggle = false,
 	onWordClick,
+	isFieldPending = () => false,
+	fieldDirection = () => 'ltr' as const,
 }: Props = $props();
+
+/* Section ID → primary SSE field name. Sections in SECTIONS_WITHOUT_TEXT
+   (images, sources) carry no translatable text. Everything else either has an
+   entry in SPECIAL_FIELD_MAP (shared with TTS text extraction) or follows the
+   camelCase → snake_case convention. businessAngle and quotes diverge from the
+   section.id because the cluster_translations row splits each into multiple
+   columns; we shimmer based on the primary text column. */
+const LOCAL_FIELD_OVERRIDES: Record<string, string> = {
+	businessAngle: 'business_angle_text',
+	quotes: 'quote',
+};
+
+/* The columns each section renders, for sections whose row splits into more
+   than one. The shimmer keys off the primary column above, but direction has
+   to consider all of them: the columns arrive independently, so deriving from
+   the primary alone would lay a sibling out in a language it isn't in yet. */
+const SECTION_FIELD_GROUPS: Record<string, string[]> = {
+	businessAngle: ['business_angle_text', 'business_angle_points'],
+	quotes: ['quote', 'quote_author', 'quote_attribution'],
+	// SECTIONS_WITHOUT_TEXT exists for TTS, which skips images — but the
+	// translator does emit primary_image/secondary_image with translated
+	// captions, and StoryImage renders them.
+	primaryImage: ['primary_image'],
+	secondaryImage: ['secondary_image'],
+};
+
+function sectionFieldName(sectionId: string): string | null {
+	if (SECTIONS_WITHOUT_TEXT.has(sectionId)) return null;
+	return (
+		LOCAL_FIELD_OVERRIDES[sectionId] ?? SPECIAL_FIELD_MAP[sectionId] ?? camelToSnake(sectionId)
+	);
+}
+
+function sectionFields(sectionId: string): string[] {
+	const group = SECTION_FIELD_GROUPS[sectionId];
+	if (group) return group;
+	const field = sectionFieldName(sectionId);
+	return field ? [field] : [];
+}
+
+function isSectionPending(sectionId: string): boolean {
+	const field = sectionFieldName(sectionId);
+	return field !== null && isFieldPending(field);
+}
+
+/* Each section carries the direction of its own text: translation delivers
+   fields independently, so one section can already be in the target language
+   while the next is still in the source. A section spanning several columns
+   counts as translated only once every one has arrived, so no part of it is
+   laid out in a language it isn't in yet. Sections without text (images,
+   sources) follow the story's title. */
+function sectionDirection(sectionId: string): 'ltr' | 'rtl' {
+	// Sections with no translatable field of their own (images, sources) pass an
+	// empty group, which resolves to the source language — right for image
+	// captions, which the translator never touches. Following the title would
+	// give them the target direction while their text is still in the source.
+	return fieldDirection(sectionFields(sectionId));
+}
 
 // Get enabled sections in the correct order
 const enabledSections = $derived(
@@ -114,7 +183,7 @@ function hasContent(sectionId: string): boolean {
 		case 'gameplayMechanics':
 			return !!story.gameplay_mechanics?.length;
 		case 'industryImpact':
-			return !!story.gaming_industry_impact?.length;
+			return !!story.industry_impact?.length;
 		case 'technicalSpecifications':
 			return !!story.technical_specifications;
 		case 'timeline':
@@ -165,384 +234,427 @@ const businessAngleCitedArticles = $derived.by(() => {
 });
 </script>
 
-{#each sectionsToRender as section}
-  {#if section.id === "summary"}
-    <StorySummary {story} {citationMapping} {storyLocalizer} {flashcardMode} {selectedWords} {selectedPhrases} {shouldJiggle} {onWordClick} />
-  {:else if section.id === "primaryImage"}
-    {#if story.primary_image}
-      <!-- New data with primary_image field -->
-      {@const sourceArticle = story.articles?.find(
-        (a: any) => a.image === story.primary_image.url,
-      )}
-      <StoryImage
-        article={{
-          image: story.primary_image.url,
-          image_caption: story.primary_image.caption,
-          link: sourceArticle?.link || story.primary_image.link,
-          domain: story.primary_image.credit || sourceArticle?.domain || extractDomain(story.primary_image.link),
-        }}
-        {imagesPreloaded}
-        showCaption={true}
-        {flashcardMode}
-        {selectedWords}
-        {shouldJiggle}
-        {onWordClick}
-      />
-    {:else}
-      <!-- Fallback for old data -->
-      {@const imageArticle = story.articles?.find((a: any) => a.image)}
-      {#if imageArticle}
-        <StoryImage article={imageArticle} {imagesPreloaded} {flashcardMode} {selectedWords} {selectedPhrases} {shouldJiggle} {onWordClick} />
-      {/if}
-    {/if}
-  {:else if section.id === "highlights"}
-    <StoryHighlights
-      points={story.talking_points}
-      articles={story.articles}
-      {citationMapping}
-      {storyLocalizer}
-      {flashcardMode}
-      {selectedWords}
-      {selectedPhrases}
-      {shouldJiggle}
-      {onWordClick}
-    />
-  {:else if section.id === "quotes"}
-    <StoryQuote
-      quote={story.quote}
-      author={story.quote_author}
-      attribution={story.quote_attribution}
-      sourceUrl={story.quote_source_url}
-      sourceDomain={story.quote_source_domain}
-      articles={story.articles}
-      {citationMapping}
-      {flashcardMode}
-      {selectedWords}
-      {selectedPhrases}
-      {shouldJiggle}
-      {onWordClick}
-    />
-  {:else if section.id === "secondaryImage"}
-    {#if story.secondary_image}
-      <!-- New data with secondary_image field -->
-      {@const sourceArticle = story.articles?.find(
-        (a: any) => a.image === story.secondary_image.url,
-      )}
-      <StoryImage
-        article={{
-          image: story.secondary_image.url,
-          image_caption: story.secondary_image.caption,
-          link: sourceArticle?.link || story.secondary_image.link,
-          domain: story.secondary_image.credit || sourceArticle?.domain || extractDomain(story.secondary_image.link),
-        }}
-        {imagesPreloaded}
-        showCaption={true}
-        {flashcardMode}
-        {selectedWords}
-        {shouldJiggle}
-        {onWordClick}
-      />
-    {:else}
-      <!-- Fallback for old data -->
-      {@const secondaryImage = story.articles?.filter((a: any) => a.image)[1]}
-      {#if secondaryImage}
-        <StoryImage article={secondaryImage} {imagesPreloaded} {flashcardMode} {selectedWords} {selectedPhrases} {shouldJiggle} {onWordClick} />
-      {/if}
-    {/if}
-  {:else if section.id === "perspectives"}
-    <StoryPerspectives
-      perspectives={story.perspectives}
-      articles={story.articles}
-      {citationMapping}
-      {storyLocalizer}
-      {flashcardMode}
-      {selectedWords}
-      {selectedPhrases}
-      {shouldJiggle}
-      {onWordClick}
-    />
-  {:else if section.id === "historicalBackground"}
-    <StoryTextSection
-      title={storyLocalizer("section.historicalBackground") || "Historical Background"}
-      content={story.historical_background}
-      articles={story.articles}
-      {citationMapping}
-      {flashcardMode}
-      {selectedWords}
-      {selectedPhrases}
-      {shouldJiggle}
-      {onWordClick}
-      section="historical_background"
-    />
-  {:else if section.id === "humanitarianImpact"}
-    <StoryTextSection
-      title={storyLocalizer("section.humanitarianImpact") || "Humanitarian Impact"}
-      content={story.humanitarian_impact}
-      articles={story.articles}
-      {citationMapping}
-      {flashcardMode}
-      {selectedWords}
-      {selectedPhrases}
-      {shouldJiggle}
-      {onWordClick}
-      section="humanitarian_impact"
-    />
-  {:else if section.id === "technicalDetails"}
-    <StoryListSection
-      title={storyLocalizer("section.technicalDetails") || "Technical Details"}
-      items={story.technical_details}
-      articles={story.articles}
-      {citationMapping}
-      {flashcardMode}
-      {selectedWords}
-      {selectedPhrases}
-      {shouldJiggle}
-      {onWordClick}
-      section="technical_details"
-    />
-  {:else if section.id === "businessAngle"}
-    <section class="mt-6">
-      <h3 class="mb-2 text-xl font-semibold text-gray-800 dark:text-gray-200">
-        {storyLocalizer("section.businessAngle") || "Business Angle"}
-      </h3>
-      {#if story.business_angle_text}
-        <p class="mb-4 text-base text-gray-700 dark:text-gray-300">
-          <CitationText
-            text={citationMapping
-              ? replaceWithNumberedCitations(
-                  story.business_angle_text,
-                  citationMapping,
-                )
-              : story.business_angle_text}
-            showFavicons={false}
-            showNumbers={false}
-            inline={false}
-            articles={businessAngleCitedArticles.citedArticles}
-            {citationMapping}
-            citationTooltip={businessAngleCitationTooltip}
-            {storyLocalizer}
-          />
-        </p>
-      {/if}
-      {#if story.business_angle_points?.length > 0}
-        <ul
-          class="mb-4 list-inside list-disc space-y-2 text-gray-700 dark:text-gray-300"
-        >
-          {#each story.business_angle_points as point}
-            <li>
-              <CitationText
-                text={citationMapping
-                  ? replaceWithNumberedCitations(point, citationMapping)
-                  : point}
-                showFavicons={false}
-                showNumbers={false}
-                inline={true}
-                articles={businessAngleCitedArticles.citedArticles}
-                {citationMapping}
-                citationTooltip={businessAngleCitationTooltip}
-                {storyLocalizer}
-              />
-            </li>
-          {/each}
-        </ul>
-      {/if}
+{#each sectionsToRender as section, sectionIndex}
+	{@const sectionPending = isSectionPending(section.id)}
+	<div
+		class="kite-section-wrap"
+		class:kite-first-section-wrap={sectionIndex === 0}
+		class:kite-translating-shimmer={sectionPending}
+		dir={sectionDirection(section.id)}
+	>
+		{#if section.id === 'summary'}
+			<StorySummary
+				{story}
+				summaryDir={fieldDirection('short_summary')}
+				locationDir={fieldDirection('location')}
+				{citationMapping}
+				{storyLocalizer}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+			/>
+		{:else if section.id === 'primaryImage'}
+			{#if story.primary_image}
+				<!-- New data with primary_image field -->
+				{@const sourceArticle = story.articles?.find(
+					(a: any) => a.image === story.primary_image.url,
+				)}
+				<StoryImage
+					article={{
+						image: story.primary_image.url,
+						image_caption: story.primary_image.caption,
+						link: sourceArticle?.link || story.primary_image.link,
+						domain:
+							story.primary_image.credit ||
+							sourceArticle?.domain ||
+							extractDomain(story.primary_image.link),
+					}}
+					{imagesPreloaded}
+					showCaption={true}
+					{flashcardMode}
+					{selectedWords}
+					{shouldJiggle}
+					{onWordClick}
+				/>
+			{:else}
+				<!-- Fallback for old data -->
+				{@const imageArticle = story.articles?.find((a: any) => a.image)}
+				{#if imageArticle}
+					<StoryImage
+						article={imageArticle}
+						{imagesPreloaded}
+						{flashcardMode}
+						{selectedWords}
+						{selectedPhrases}
+						{shouldJiggle}
+						{onWordClick}
+					/>
+				{/if}
+			{/if}
+		{:else if section.id === 'highlights'}
+			<StoryHighlights
+				points={story.talking_points}
+				articles={story.articles}
+				{citationMapping}
+				{storyLocalizer}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+			/>
+		{:else if section.id === 'quotes'}
+			<StoryQuote
+				quote={story.quote}
+				author={story.quote_author}
+				attribution={story.quote_attribution}
+				sourceUrl={story.quote_source_url}
+				sourceDomain={story.quote_source_domain}
+				articles={story.articles}
+				{citationMapping}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+			/>
+		{:else if section.id === 'secondaryImage'}
+			{#if story.secondary_image}
+				<!-- New data with secondary_image field -->
+				{@const sourceArticle = story.articles?.find(
+					(a: any) => a.image === story.secondary_image.url,
+				)}
+				<StoryImage
+					article={{
+						image: story.secondary_image.url,
+						image_caption: story.secondary_image.caption,
+						link: sourceArticle?.link || story.secondary_image.link,
+						domain:
+							story.secondary_image.credit ||
+							sourceArticle?.domain ||
+							extractDomain(story.secondary_image.link),
+					}}
+					{imagesPreloaded}
+					showCaption={true}
+					{flashcardMode}
+					{selectedWords}
+					{shouldJiggle}
+					{onWordClick}
+				/>
+			{:else}
+				<!-- Fallback for old data -->
+				{@const secondaryImage = story.articles?.filter((a: any) => a.image)[1]}
+				{#if secondaryImage}
+					<StoryImage
+						article={secondaryImage}
+						{imagesPreloaded}
+						{flashcardMode}
+						{selectedWords}
+						{selectedPhrases}
+						{shouldJiggle}
+						{onWordClick}
+					/>
+				{/if}
+			{/if}
+		{:else if section.id === 'perspectives'}
+			<StoryPerspectives
+				perspectives={story.perspectives}
+				articles={story.articles}
+				{citationMapping}
+				{storyLocalizer}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+			/>
+		{:else if section.id === 'historicalBackground'}
+			<StoryTextSection
+				title={storyLocalizer('section.historicalBackground') || 'Historical Background'}
+				content={story.historical_background}
+				articles={story.articles}
+				{citationMapping}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+				section="historical_background"
+			/>
+		{:else if section.id === 'humanitarianImpact'}
+			<StoryTextSection
+				title={storyLocalizer('section.humanitarianImpact') || 'Humanitarian Impact'}
+				content={story.humanitarian_impact}
+				articles={story.articles}
+				{citationMapping}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+				section="humanitarian_impact"
+			/>
+		{:else if section.id === 'technicalDetails'}
+			<StoryListSection
+				title={storyLocalizer('section.technicalDetails') || 'Technical Details'}
+				items={story.technical_details}
+				articles={story.articles}
+				{citationMapping}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+				section="technical_details"
+			/>
+		{:else if section.id === 'businessAngle'}
+			<section class="mt-6">
+				<h3 class="mb-2 text-xl font-semibold text-primary-800">
+					{storyLocalizer('section.businessAngle') || 'Business Angle'}
+				</h3>
+				<!-- business_angle_text and business_angle_points are separate
+				     columns that the translation stream delivers independently, so
+				     each carries its own direction rather than sharing the
+				     section's (KNEWS-453). -->
+				{#if story.business_angle_text}
+					<p class="mb-4 text-base text-primary-700" dir={fieldDirection('business_angle_text')}>
+						<CitationText
+							text={citationMapping
+								? replaceWithNumberedCitations(story.business_angle_text, citationMapping)
+								: story.business_angle_text}
+							showFavicons={false}
+							showNumbers={false}
+							inline={false}
+							articles={businessAngleCitedArticles.citedArticles}
+							{citationMapping}
+							citationTooltip={businessAngleCitationTooltip}
+							{storyLocalizer}
+						/>
+					</p>
+				{/if}
+				{#if story.business_angle_points?.length > 0}
+					<ul
+						class="mb-4 list-inside list-disc space-y-2 text-primary-700"
+						dir={fieldDirection('business_angle_points')}
+					>
+						{#each story.business_angle_points as point}
+							<li>
+								<CitationText
+									text={citationMapping
+										? replaceWithNumberedCitations(point, citationMapping)
+										: point}
+									showFavicons={false}
+									showNumbers={false}
+									inline={true}
+									articles={businessAngleCitedArticles.citedArticles}
+									{citationMapping}
+									citationTooltip={businessAngleCitationTooltip}
+									{storyLocalizer}
+								/>
+							</li>
+						{/each}
+					</ul>
+				{/if}
 
-      <!-- Shared Citation Tooltip for Business Angle -->
-      <CitationTooltip
-        bind:this={businessAngleCitationTooltip}
-        articles={businessAngleCitedArticles.citedArticles}
-        citationNumbers={businessAngleCitedArticles.citedNumbers}
-        hasCommonKnowledge={businessAngleCitedArticles.hasCommonKnowledge}
-        citedItems={businessAngleCitedArticles.citedItems}
-      />
-    </section>
-  {:else if section.id === "scientificSignificance"}
-    <StoryListSection
-      title={storyLocalizer("section.scientificSignificance") || "Scientific Significance"}
-      items={story.scientific_significance}
-      articles={story.articles}
-      {citationMapping}
-      {flashcardMode}
-      {selectedWords}
-      {selectedPhrases}
-      {shouldJiggle}
-      {onWordClick}
-      section="scientific_significance"
-    />
-  {:else if section.id === "travelAdvisory"}
-    <StoryListSection
-      title={storyLocalizer("section.travelAdvisory") || "Travel Advisory"}
-      items={story.travel_advisory}
-      articles={story.articles}
-      {citationMapping}
-      {flashcardMode}
-      {selectedWords}
-      {selectedPhrases}
-      {shouldJiggle}
-      {onWordClick}
-      section="travel_advisory"
-    />
-  {:else if section.id === "performanceStatistics"}
-    <StoryListSection
-      title={storyLocalizer("section.performanceStatistics") || "Performance Statistics"}
-      items={story.performance_statistics}
-      articles={story.articles}
-      {citationMapping}
-      {flashcardMode}
-      {selectedWords}
-      {selectedPhrases}
-      {shouldJiggle}
-      {onWordClick}
-      section="performance_statistics"
-    />
-  {:else if section.id === "leagueStandings"}
-    <StoryTextSection
-      title={storyLocalizer("section.leagueStandings") || "League Standings"}
-      content={story.league_standings}
-      articles={story.articles}
-      {citationMapping}
-      {flashcardMode}
-      {selectedWords}
-      {selectedPhrases}
-      {shouldJiggle}
-      {onWordClick}
-      section="league_standings"
-    />
-  {:else if section.id === "designPrinciples"}
-    <StoryTextSection
-      title={storyLocalizer("section.designPrinciples") || "Design Principles"}
-      content={story.design_principles}
-      articles={story.articles}
-      {citationMapping}
-      {flashcardMode}
-      {selectedWords}
-      {selectedPhrases}
-      {shouldJiggle}
-      {onWordClick}
-      section="design_principles"
-    />
-  {:else if section.id === "userExperienceImpact"}
-    <StoryListSection
-      title={storyLocalizer("section.userExperienceImpact") || "User Experience Impact"}
-      items={story.user_experience_impact}
-      articles={story.articles}
-      {citationMapping}
-      {flashcardMode}
-      {selectedWords}
-      {selectedPhrases}
-      {shouldJiggle}
-      {onWordClick}
-      section="user_experience_impact"
-    />
-  {:else if section.id === "gameplayMechanics"}
-    <StoryListSection
-      title={storyLocalizer("section.gameplayMechanics") || "Gameplay Mechanics"}
-      items={story.gameplay_mechanics}
-      articles={story.articles}
-      {citationMapping}
-      {flashcardMode}
-      {selectedWords}
-      {selectedPhrases}
-      {shouldJiggle}
-      {onWordClick}
-      section="gameplay_mechanics"
-    />
-  {:else if section.id === "industryImpact"}
-    <StoryListSection
-      title={storyLocalizer("section.industryImpact") || "Industry Impact"}
-      items={story.gaming_industry_impact}
-      articles={story.articles}
-      {citationMapping}
-      {flashcardMode}
-      {selectedWords}
-      {selectedPhrases}
-      {shouldJiggle}
-      {onWordClick}
-      section="gaming_industry_impact"
-    />
-  {:else if section.id === "technicalSpecifications"}
-    <StoryTextSection
-      title={storyLocalizer("section.technicalSpecifications") || "Technical Specifications"}
-      content={story.technical_specifications}
-      articles={story.articles}
-      {citationMapping}
-      {flashcardMode}
-      {selectedWords}
-      {selectedPhrases}
-      {shouldJiggle}
-      {onWordClick}
-      section="technical_specifications"
-    />
-  {:else if section.id === "timeline"}
-    <StoryTimeline
-      timeline={story.timeline}
-      articles={story.articles}
-      {citationMapping}
-      {storyLocalizer}
-      {flashcardMode}
-      {selectedWords}
-      {selectedPhrases}
-      {shouldJiggle}
-      {onWordClick}
-    />
-  {:else if section.id === "internationalReactions"}
-    <StoryInternationalReactions
-      reactions={story.international_reactions}
-      articles={story.articles}
-      {citationMapping}
-      {storyLocalizer}
-      {flashcardMode}
-      {selectedWords}
-      {selectedPhrases}
-      {shouldJiggle}
-      {onWordClick}
-    />
-  {:else if section.id === "suggestedQnA"}
-    <StorySuggestedQnA
-      qna={story.suggested_qna}
-      articles={story.articles}
-      {citationMapping}
-      {storyLocalizer}
-      {flashcardMode}
-      {selectedWords}
-      {selectedPhrases}
-      {shouldJiggle}
-      {onWordClick}
-    />
-  {:else if section.id === "actionItems"}
-    <StoryActionItems
-      actionItems={story.user_action_items}
-      articles={story.articles}
-      {citationMapping}
-      {storyLocalizer}
-      {flashcardMode}
-      {selectedWords}
-      {selectedPhrases}
-      {shouldJiggle}
-      {onWordClick}
-    />
-  {:else if section.id === "didYouKnow"}
-    <StoryDidYouKnow
-      content={story.did_you_know}
-      articles={story.articles}
-      {citationMapping}
-      {storyLocalizer}
-      {flashcardMode}
-      {selectedWords}
-      {selectedPhrases}
-      {shouldJiggle}
-      {onWordClick}
-    />
-  {:else if section.id === "sources"}
-    <StorySources
-      domains={story.domains}
-      articles={story.articles}
-      bind:showSourceOverlay
-      bind:currentSource
-      bind:sourceArticles
-      bind:currentMediaInfo
-      bind:isLoadingMediaInfo
-      {storyLocalizer}
-    />
-  {/if}
+				<!-- Shared Citation Tooltip for Business Angle -->
+				<CitationTooltip
+					bind:this={businessAngleCitationTooltip}
+					articles={businessAngleCitedArticles.citedArticles}
+					citationNumbers={businessAngleCitedArticles.citedNumbers}
+					hasCommonKnowledge={businessAngleCitedArticles.hasCommonKnowledge}
+					citedItems={businessAngleCitedArticles.citedItems}
+				/>
+			</section>
+		{:else if section.id === 'scientificSignificance'}
+			<StoryListSection
+				title={storyLocalizer('section.scientificSignificance') || 'Scientific Significance'}
+				items={story.scientific_significance}
+				articles={story.articles}
+				{citationMapping}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+				section="scientific_significance"
+			/>
+		{:else if section.id === 'travelAdvisory'}
+			<StoryListSection
+				title={storyLocalizer('section.travelAdvisory') || 'Travel Advisory'}
+				items={story.travel_advisory}
+				articles={story.articles}
+				{citationMapping}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+				section="travel_advisory"
+			/>
+		{:else if section.id === 'performanceStatistics'}
+			<StoryListSection
+				title={storyLocalizer('section.performanceStatistics') || 'Performance Statistics'}
+				items={story.performance_statistics}
+				articles={story.articles}
+				{citationMapping}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+				section="performance_statistics"
+			/>
+		{:else if section.id === 'leagueStandings'}
+			<StoryTextSection
+				title={storyLocalizer('section.leagueStandings') || 'League Standings'}
+				content={story.league_standings}
+				articles={story.articles}
+				{citationMapping}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+				section="league_standings"
+			/>
+		{:else if section.id === 'designPrinciples'}
+			<StoryTextSection
+				title={storyLocalizer('section.designPrinciples') || 'Design Principles'}
+				content={story.design_principles}
+				articles={story.articles}
+				{citationMapping}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+				section="design_principles"
+			/>
+		{:else if section.id === 'userExperienceImpact'}
+			<StoryListSection
+				title={storyLocalizer('section.userExperienceImpact') || 'User Experience Impact'}
+				items={story.user_experience_impact}
+				articles={story.articles}
+				{citationMapping}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+				section="user_experience_impact"
+			/>
+		{:else if section.id === 'gameplayMechanics'}
+			<StoryListSection
+				title={storyLocalizer('section.gameplayMechanics') || 'Gameplay Mechanics'}
+				items={story.gameplay_mechanics}
+				articles={story.articles}
+				{citationMapping}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+				section="gameplay_mechanics"
+			/>
+		{:else if section.id === 'industryImpact'}
+			<StoryListSection
+				title={storyLocalizer('section.industryImpact') || 'Industry Impact'}
+				items={story.industry_impact}
+				articles={story.articles}
+				{citationMapping}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+				section="industry_impact"
+			/>
+		{:else if section.id === 'technicalSpecifications'}
+			<StoryTextSection
+				title={storyLocalizer('section.technicalSpecifications') || 'Technical Specifications'}
+				content={story.technical_specifications}
+				articles={story.articles}
+				{citationMapping}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+				section="technical_specifications"
+			/>
+		{:else if section.id === 'timeline'}
+			<StoryTimeline
+				timeline={story.timeline}
+				articles={story.articles}
+				{citationMapping}
+				{storyLocalizer}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+			/>
+		{:else if section.id === 'internationalReactions'}
+			<StoryInternationalReactions
+				reactions={story.international_reactions}
+				articles={story.articles}
+				{citationMapping}
+				{storyLocalizer}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+			/>
+		{:else if section.id === 'suggestedQnA'}
+			<StorySuggestedQnA
+				qna={story.suggested_qna}
+				articles={story.articles}
+				{citationMapping}
+				{storyLocalizer}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+			/>
+		{:else if section.id === 'actionItems'}
+			<StoryActionItems
+				actionItems={story.user_action_items}
+				articles={story.articles}
+				{citationMapping}
+				{storyLocalizer}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+			/>
+		{:else if section.id === 'didYouKnow'}
+			<StoryDidYouKnow
+				content={story.did_you_know}
+				articles={story.articles}
+				{citationMapping}
+				{storyLocalizer}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+			/>
+		{:else if section.id === 'sources'}
+			<StorySources
+				domains={story.domains}
+				articles={story.articles}
+				bind:showSourceOverlay
+				bind:currentSource
+				bind:sourceArticles
+				bind:currentMediaInfo
+				bind:isLoadingMediaInfo
+				{storyLocalizer}
+			/>
+		{/if}
+	</div>
 {/each}

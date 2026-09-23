@@ -27,7 +27,6 @@
  *
  * @see https://github.com/kagisearch/kite/pull/XXX
  */
-
 import type { SupportedLanguage } from '../settings.svelte';
 import { settings } from '../settings.svelte';
 import type { Migration } from './types';

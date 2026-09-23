@@ -23,6 +23,14 @@
     "text": "下載 iOS 版",
     "translationContext": "Button text to download iOS app"
   },
+  "settings.about.feedback": {
+    "text": "意見回饋",
+    "translationContext": "Section header for the feedback link in about settings"
+  },
+  "settings.about.feedbackDescription": {
+    "text": "分享點子、回報問題，並票選我們接下來要打造的功能",
+    "translationContext": "Description of the Kagi Feedback forum link"
+  },
   "settings.about.forNews": {
     "text": "為新聞讀者",
     "translationContext": "Footer text suffix for copyright"
@@ -50,6 +58,10 @@
   "settings.about.mobileDescription": {
     "text": "在您的行動裝置上取得 Kagi News",
     "translationContext": "Description for mobile apps"
+  },
+  "settings.about.openFeedback": {
+    "text": "開啟 Kagi 意見回饋",
+    "translationContext": "Button text linking to the Kagi Feedback forum"
   },
   "settings.about.viewApiDocs": {
     "text": "查看 API 文件",
@@ -527,6 +539,10 @@
     "text": "過濾您不想看到的主題，打造個人化的新聞動態。可以使用預設篩選條件快速隱藏常見主題，也可以自訂關鍵字建立專屬的篩選規則。",
     "translationContext": "Description shown at the top of content filter settings tab"
   },
+  "settings.dataLanguage.englishOnlyNotice": {
+    "text": "自 2026 年 6 月 10 日起，我們不再將所有類別翻譯成所有語言。每個故事均以其原文語言提供，若原文非英文，則會附上英文譯本。",
+    "translationContext": "Notice in language settings explaining that batch translation into all languages stopped on June 10, 2026; stories now ship in their native language plus English. Keep the date as-is."
+  },
   "settings.dataLanguage.label": {
     "text": "內容語言",
     "translationContext": "Label for the data/content language setting"
@@ -578,6 +594,30 @@
   "settings.experimental.warning": {
     "text": "這些是實驗性功能，可能隨時變更或移除。",
     "translationContext": "Warning text for experimental features"
+  },
+  "settings.fontFamily.atkinson": {
+    "text": "Atkinson Hyperlegible Next",
+    "translationContext": "Option for Atkinson Hyperlegible font, designed for low-vision readability"
+  },
+  "settings.fontFamily.default": {
+    "text": "系統（預設）",
+    "translationContext": "Option for the default system font"
+  },
+  "settings.fontFamily.description": {
+    "text": "Atkinson Hyperlegible Next 針對低視力讀者進行了優化。OpenDyslexic 是專為閱讀障礙者設計的。Fast Sans 會加粗每個單詞的開頭，以引導視線閱讀文本。",
+    "translationContext": "Description for the font family setting explaining accessibility benefits"
+  },
+  "settings.fontFamily.fast": {
+    "text": "Fast Sans (加速閱讀)",
+    "translationContext": "Option for the Fast Sans font, which bolds the start of each word as a reading aid"
+  },
+  "settings.fontFamily.label": {
+    "text": "字型",
+    "translationContext": "Label for the font family setting"
+  },
+  "settings.fontFamily.opendyslexic": {
+    "text": "OpenDyslexic",
+    "translationContext": "Option for OpenDyslexic font, designed for readers with dyslexia"
   },
   "settings.fontSize.label": {
     "text": "字體大小",
@@ -686,6 +726,138 @@
   "settings.layoutWidth.wide": {
     "text": "寬版 (1024px)",
     "translationContext": "Option for wide layout width"
+  },
+  "settings.lock.backToPin": {
+    "text": "返回 PIN 碼輸入",
+    "translationContext": "Link to go back from math challenge to PIN entry"
+  },
+  "settings.lock.confirmPin": {
+    "text": "確認 PIN 碼",
+    "translationContext": "Label for confirming the new PIN"
+  },
+  "settings.lock.description": {
+    "text": "請輸入您的 PIN 碼以存取設定。",
+    "translationContext": "Description on the PIN lock screen"
+  },
+  "settings.lock.disableKeyboardShortcuts": {
+    "text": "停用鍵盤快捷鍵",
+    "translationContext": "Toggle to disable all keyboard shortcuts for managed users"
+  },
+  "settings.lock.enable": {
+    "text": "設定 PIN 碼鎖",
+    "translationContext": "Button to enable PIN lock"
+  },
+  "settings.lock.enabled": {
+    "text": "設定鎖已啟用",
+    "translationContext": "Status text when PIN lock is active"
+  },
+  "settings.lock.enabledDescription": {
+    "text": "需要 PIN 碼才能開啟設定。",
+    "translationContext": "Description when PIN lock is active"
+  },
+  "settings.lock.forgot": {
+    "text": "忘記 PIN 碼？",
+    "translationContext": "Link to start the forgot PIN flow"
+  },
+  "settings.lock.forgotTitle": {
+    "text": "重設 PIN 碼",
+    "translationContext": "Title shown on the math challenge screen for forgotten PIN"
+  },
+  "settings.lock.hideChaosIndex": {
+    "text": "隱藏混亂指數",
+    "translationContext": "Toggle to hide the chaos index indicator"
+  },
+  "settings.lock.hideCorrections": {
+    "text": "隱藏更正記錄",
+    "translationContext": "Managed-mode toggle that hides the 'Corrected' indicator and correction history under story headers. Defaults to ON when a PIN is set, so the simplified reading view stays uncluttered."
+  },
+  "settings.lock.hideFontSize": {
+    "text": "隱藏字體大小捷徑",
+    "translationContext": "Toggle to hide the font size button in the header"
+  },
+  "settings.lock.hideReportButton": {
+    "text": "隱藏回報按鈕",
+    "translationContext": "Toggle to hide the report button on story cards"
+  },
+  "settings.lock.hideSearch": {
+    "text": "隱藏搜尋",
+    "translationContext": "Toggle to hide the search button in the header"
+  },
+  "settings.lock.hideShareButton": {
+    "text": "隱藏分享按鈕",
+    "translationContext": "Toggle to hide the share button on story cards"
+  },
+  "settings.lock.hideTimeTravel": {
+    "text": "隱藏時光機",
+    "translationContext": "Toggle to hide the time travel button in the header"
+  },
+  "settings.lock.managedOptions": {
+    "text": "簡化介面",
+    "translationContext": "Heading for managed mode toggles when PIN is set"
+  },
+  "settings.lock.managedOptionsDescription": {
+    "text": "可選擇隱藏按鈕和功能，以創造更簡潔的閱讀體驗。例如，為只需不受干擾地閱讀新聞的孩童或年長親屬設定 Kagi News 時。",
+    "translationContext": "Description for managed mode options section, explains why hiding features can be helpful"
+  },
+  "settings.lock.mathDescription": {
+    "text": "請解決此問題以重設您的 PIN 碼：",
+    "translationContext": "Description asking user to solve a math problem to reset PIN"
+  },
+  "settings.lock.mathPlaceholder": {
+    "text": "您的答案",
+    "translationContext": "Placeholder for the math answer input"
+  },
+  "settings.lock.mathSubmit": {
+    "text": "提交",
+    "translationContext": "Button to submit the math challenge answer"
+  },
+  "settings.lock.mathWrong": {
+    "text": "答案不正確，請再試一次。",
+    "translationContext": "Error when math challenge answer is wrong"
+  },
+  "settings.lock.mismatch": {
+    "text": "PIN 碼不相符。",
+    "translationContext": "Error when PIN confirmation doesn't match"
+  },
+  "settings.lock.newPin": {
+    "text": "新 PIN 碼（4-6 位數字）",
+    "translationContext": "Label for the new PIN input"
+  },
+  "settings.lock.placeholder": {
+    "text": "輸入 PIN 碼",
+    "translationContext": "Placeholder text for the PIN input field"
+  },
+  "settings.lock.remove": {
+    "text": "移除 PIN 碼",
+    "translationContext": "Button to remove the PIN lock"
+  },
+  "settings.lock.sectionDescription": {
+    "text": "使用 PIN 碼鎖定設定，以防止意外更改。適用於受管理的裝置或家長監護功能。\n\n鎖定後，字型大小捷徑和應用程式下載橫幅將會隱藏，且需要 PIN 碼才能開啟設定。",
+    "translationContext": "Description of the settings lock feature, explaining what changes in managed mode"
+  },
+  "settings.lock.sectionTitle": {
+    "text": "設定鎖",
+    "translationContext": "Title of the settings lock section in account settings"
+  },
+  "settings.lock.setPin": {
+    "text": "設定 PIN 碼",
+    "translationContext": "Button to save the new PIN"
+  },
+  "settings.lock.title": {
+    "text": "設定已鎖定",
+    "translationContext": "Title shown on the PIN lock screen"
+  },
+  "settings.lock.tooShort": {
+    "text": "PIN 碼必須至少為 4 位數字。",
+    "translationContext": "Error when PIN is too short"
+  },
+  "settings.lock.unlock": {
+    "text": "解鎖",
+    "translationContext": "Button text to unlock settings with PIN"
+  },
+  "settings.lock.wrongPin": {
+    "text": "PIN 碼不正確，請再試一次。",
+    "translationContext": "Error message when wrong PIN is entered"
   },
   "settings.mapsProvider.apple": {
     "text": "Apple 地圖",
@@ -2563,6 +2735,18 @@
     "text": "{{month}}月{{day}}日（{{weekday}}）",
     "translationContext": "Format for displaying dates. {weekday} will be replaced with the day of the week, {month} with the month name, and {day} with the day number."
   },
+  "downloadApp.pageTitle": {
+    "text": "下載 Kagi News",
+    "translationContext": "HTML page title for the download app landing page"
+  },
+  "downloadApp.subtitle": {
+    "text": "您似乎是使用電腦瀏覽。請在下方選擇您的應用程式商店，並在手機上開啟！",
+    "translationContext": "Subtitle for the download app landing page shown to desktop users"
+  },
+  "downloadApp.title": {
+    "text": "新聞帶著走",
+    "translationContext": "Heading for the download app landing page"
+  },
   "f1.completed": {
     "text": "已結束",
     "translationContext": "Status label for completed races"
@@ -2671,6 +2855,10 @@
     "text": "貢獻",
     "translationContext": "Link text for contributing to the project"
   },
+  "footer.feedback": {
+    "text": "意見回饋",
+    "translationContext": "Link text for the Kagi Feedback forum"
+  },
   "footer.rssFeed": {
     "text": "RSS 訂閱",
     "translationContext": "Link text for RSS feed"
@@ -2710,6 +2898,10 @@
   "keyboard.action.jumpLast": {
     "text": "跳至最後一則報導",
     "translationContext": "Description for G key - jumping to last story"
+  },
+  "keyboard.action.markAllRead": {
+    "text": "將所有報導標示為已讀",
+    "translationContext": "Description for Shift+M key - marking all stories in the current category as read"
   },
   "keyboard.action.moveNext": {
     "text": "移至下一則報導",
@@ -2822,6 +3014,30 @@
   "meta.news": {
     "text": "新聞",
     "translationContext": "The word 'News' used in titles"
+  },
+  "nativeAppBanner.appStoreLabel": {
+    "text": "在 App Store 下載",
+    "translationContext": "Accessibility label for the App Store download badge"
+  },
+  "nativeAppBanner.dismissLabel": {
+    "text": "關閉 App 橫幅",
+    "translationContext": "Accessibility label for the close button on the native app banner"
+  },
+  "nativeAppBanner.googlePlayLabel": {
+    "text": "在 Google Play 上架",
+    "translationContext": "Accessibility label for the Google Play download badge"
+  },
+  "nativeAppBanner.qrCodeAlt": {
+    "text": "下載 Kagi News 的 QR Code",
+    "translationContext": "Alt text for the QR code image in the native app banner"
+  },
+  "nativeAppBanner.subtitle": {
+    "text": "在手機上試用我們的行動 App。",
+    "translationContext": "Subtitle for the desktop native app promotional banner"
+  },
+  "nativeAppBanner.title": {
+    "text": "每日新聞摘要",
+    "translationContext": "Title for the desktop native app promotional banner"
   },
   "navigation.backToTop": {
     "text": "回到頂端",
@@ -3214,6 +3430,18 @@
   "nhl.volume": {
     "text": "交易量",
     "translationContext": "Abbreviation for trading volume"
+  },
+  "notification.appUpdate.description": {
+    "text": "我們進行了改進和錯誤修復。重新載入頁面以取得最新版本。",
+    "translationContext": "Description shown in a banner when a new version of the app has been deployed, prompting the user to reload"
+  },
+  "notification.appUpdate.reload": {
+    "text": "重新載入",
+    "translationContext": "Button label to reload the page and get the latest version of the app"
+  },
+  "notification.appUpdate.title": {
+    "text": "Kagi News 新版本已發布",
+    "translationContext": "Title shown in a banner when a new version of the app has been deployed"
   },
   "notification.newBatch.action": {
     "text": "查看",
@@ -3731,6 +3959,10 @@
     "text": "暫時無法提供",
     "translationContext": "Small label shown with a clock icon when a core category has no stories, indicating the update schedule"
   },
+  "stories.noStoriesHistorical": {
+    "text": "此類別在此日期沒有新聞。",
+    "translationContext": "Message shown when viewing a historical batch and the selected category has no stories for that date"
+  },
   "story.assistant.placeholder": {
     "text": "對此報導提問...",
     "translationContext": "Placeholder text in the assistant question input field"
@@ -3742,6 +3974,34 @@
   "story.assistant.tooltip": {
     "text": "詢問助理",
     "translationContext": "Tooltip for button that opens Kagi Assistant with the current story topic"
+  },
+  "story.corrections.changed": {
+    "text": "變更項目",
+    "translationContext": "Label introducing the list of fields that a correction modified (e.g. 'Changed: Headline, Summary')."
+  },
+  "story.corrections.explainer": {
+    "text": "報導在發布後可能會被修訂。觸發原因通常是讀者回報或我們在發布後的事實查核；修訂內容由撰寫報導的同類型 AI 系統產生，並在此記錄以示透明。",
+    "translationContext": "Neutral footnote shown under the expanded correction history list, explaining how corrections work (triggered by a reader report or follow-up fact-checking, generated by AI, not by a human editor)."
+  },
+  "story.corrections.many": {
+    "text": "{count} 項更正",
+    "translationContext": "Label shown when a story has received multiple fact-check corrections. {count} is replaced with the number (2 or more)."
+  },
+  "story.corrections.manyAfterRead": {
+    "text": "您閱讀後有 {count} 項更正",
+    "translationContext": "Plural variant shown when multiple corrections were applied after the user read the story. {count} is replaced with the number (2 or more)."
+  },
+  "story.corrections.one": {
+    "text": "已更正",
+    "translationContext": "Label on a subtle indicator shown when a story has received one fact-check correction after publication. Clicking reveals a timestamped note about what was changed."
+  },
+  "story.corrections.oneAfterRead": {
+    "text": "您閱讀後已更正",
+    "translationContext": "Variant of the 'Corrected' label shown when the correction was applied after the reader had already read the story — highlighted so they know the text they remember may have changed."
+  },
+  "story.corrections.toggle": {
+    "text": "顯示更正記錄",
+    "translationContext": "Accessibility label for the button that expands the correction history list."
   },
   "story.flashcards.download": {
     "text": "下載",
@@ -4002,6 +4262,46 @@
   "timeTravel.urlBanner.viewingShared": {
     "text": "有人與您分享了來自 {{{date}}} 的新聞連結。您可以隨時使用上方日期旁邊的 ✕ 返回今日新聞。",
     "translationContext": "One-time info banner shown when user arrives via a shared time travel URL (has referrer). Points user to the header date pill with X button."
+  },
+  "translation.explainer.networkEffect": {
+    "text": "翻譯結果會被快取，供未來的讀者使用。當一種語言的讀者群增加時，它就會加入預先翻譯的行列。",
+    "translationContext": "Fourth paragraph of the on-demand translation explainer modal"
+  },
+  "translation.explainer.onDemand": {
+    "text": "讀者群較小的語言會使用即時翻譯。標題仍會預先翻譯，以便瀏覽列表。當讀者開啟報導時，才會翻譯全文內容。",
+    "translationContext": "Third paragraph fallback when the language name is unknown"
+  },
+  "translation.explainer.onDemandLang": {
+    "text": "像 {{lang}} 這樣讀者群較小的語言會使用即時翻譯。標題仍會預先翻譯，以便瀏覽列表。當讀者開啟報導時，才會翻譯全文內容。",
+    "translationContext": "Third paragraph of the on-demand translation explainer modal (with the language name placeholder)"
+  },
+  "translation.explainer.pretranslated": {
+    "text": "擁有穩定讀者群的語言（如英語、義大利語、法語、德語、西班牙語、中文、日語等），其所有報導都會在批次處理期間預先翻譯。",
+    "translationContext": "Second paragraph of the on-demand translation explainer modal"
+  },
+  "translation.explainer.title": {
+    "text": "即時翻譯",
+    "translationContext": "Heading of the modal that explains on-demand translation"
+  },
+  "translation.learnMore": {
+    "text": "運作方式",
+    "translationContext": "Button on the on-demand translation progress indicator that opens the explainer modal"
+  },
+  "translation.section": {
+    "text": "部分",
+    "translationContext": "Singular \"section\" used in the on-demand translation progress counter"
+  },
+  "translation.sections": {
+    "text": "部分",
+    "translationContext": "Plural \"sections\" used in the on-demand translation progress counter"
+  },
+  "translation.translating": {
+    "text": "翻譯中",
+    "translationContext": "Status label shown next to the spinner while on-demand translation streams in"
+  },
+  "translation.translatingDetail": {
+    "text": "正在使用 Kagi 翻譯從 {{source}} 進行翻譯。由於 {{target}} 不在預先翻譯的批次中，因此我們將即時翻譯報導。",
+    "translationContext": "Secondary line under the on-demand translation spinner. {{source}} and {{target}} are language names like 'English' and 'Estonian'."
   },
   "turbulence.title": {
     "text": "世界動盪指數儀錶板",

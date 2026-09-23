@@ -23,6 +23,14 @@
     "text": "Descarregar para iOS",
     "translationContext": "Button text to download iOS app"
   },
+  "settings.about.feedback": {
+    "text": "Feedback",
+    "translationContext": "Section header for the feedback link in about settings"
+  },
+  "settings.about.feedbackDescription": {
+    "text": "Compartilhe ideias, relate problemas e vote no que desenvolveremos a seguir",
+    "translationContext": "Description of the Kagi Feedback forum link"
+  },
   "settings.about.forNews": {
     "text": "para leitores de notícias",
     "translationContext": "Footer text suffix for copyright"
@@ -50,6 +58,10 @@
   "settings.about.mobileDescription": {
     "text": "Obtenha o Kagi News no seu dispositivo móvel",
     "translationContext": "Description for mobile apps"
+  },
+  "settings.about.openFeedback": {
+    "text": "Abrir o Kagi Feedback",
+    "translationContext": "Button text linking to the Kagi Feedback forum"
   },
   "settings.about.viewApiDocs": {
     "text": "Ver Documentação da API",
@@ -527,6 +539,10 @@
     "text": "Personalize seu feed de notícias filtrando os temas que prefere não ver. Use filtros prontos para os assuntos mais comuns ou crie suas próprias palavras-chave personalizadas.",
     "translationContext": "Description shown at the top of content filter settings tab"
   },
+  "settings.dataLanguage.englishOnlyNotice": {
+    "text": "A partir de 10 de junho de 2026, não traduzimos mais todas as categorias para todos os idiomas. Cada história está disponível em seu idioma original, além de uma tradução para o inglês quando o idioma original for outro.",
+    "translationContext": "Notice in language settings explaining that batch translation into all languages stopped on June 10, 2026; stories now ship in their native language plus English. Keep the date as-is."
+  },
   "settings.dataLanguage.label": {
     "text": "Idioma do Conteúdo",
     "translationContext": "Label for the data/content language setting"
@@ -578,6 +594,30 @@
   "settings.experimental.warning": {
     "text": "Estas são funcionalidades experimentais que podem ser alteradas ou removidas a qualquer momento.",
     "translationContext": "Warning text for experimental features"
+  },
+  "settings.fontFamily.atkinson": {
+    "text": "Atkinson Hyperlegible Next",
+    "translationContext": "Option for Atkinson Hyperlegible font, designed for low-vision readability"
+  },
+  "settings.fontFamily.default": {
+    "text": "Sistema (Padrão)",
+    "translationContext": "Option for the default system font"
+  },
+  "settings.fontFamily.description": {
+    "text": "Atkinson Hyperlegible Next é otimizada para leitores com baixa visão. OpenDyslexic é projetada para leitores com dislexia. Fast Sans destaca o início de cada palavra em negrito para guiar o olhar pelo texto.",
+    "translationContext": "Description for the font family setting explaining accessibility benefits"
+  },
+  "settings.fontFamily.fast": {
+    "text": "Fast Sans (leitura rápida)",
+    "translationContext": "Option for the Fast Sans font, which bolds the start of each word as a reading aid"
+  },
+  "settings.fontFamily.label": {
+    "text": "Fonte",
+    "translationContext": "Label for the font family setting"
+  },
+  "settings.fontFamily.opendyslexic": {
+    "text": "OpenDyslexic",
+    "translationContext": "Option for OpenDyslexic font, designed for readers with dyslexia"
   },
   "settings.fontSize.label": {
     "text": "Tamanho da fonte",
@@ -686,6 +726,138 @@
   "settings.layoutWidth.wide": {
     "text": "Largo (1024px)",
     "translationContext": "Option for wide layout width"
+  },
+  "settings.lock.backToPin": {
+    "text": "Voltar para o PIN",
+    "translationContext": "Link to go back from math challenge to PIN entry"
+  },
+  "settings.lock.confirmPin": {
+    "text": "Confirmar PIN",
+    "translationContext": "Label for confirming the new PIN"
+  },
+  "settings.lock.description": {
+    "text": "Insira seu PIN para acessar as configurações.",
+    "translationContext": "Description on the PIN lock screen"
+  },
+  "settings.lock.disableKeyboardShortcuts": {
+    "text": "Desativar atalhos de teclado",
+    "translationContext": "Toggle to disable all keyboard shortcuts for managed users"
+  },
+  "settings.lock.enable": {
+    "text": "Definir um Bloqueio por PIN",
+    "translationContext": "Button to enable PIN lock"
+  },
+  "settings.lock.enabled": {
+    "text": "O bloqueio de configurações está ativado",
+    "translationContext": "Status text when PIN lock is active"
+  },
+  "settings.lock.enabledDescription": {
+    "text": "É necessário um PIN para abrir as configurações.",
+    "translationContext": "Description when PIN lock is active"
+  },
+  "settings.lock.forgot": {
+    "text": "Esqueceu o PIN?",
+    "translationContext": "Link to start the forgot PIN flow"
+  },
+  "settings.lock.forgotTitle": {
+    "text": "Redefinir PIN",
+    "translationContext": "Title shown on the math challenge screen for forgotten PIN"
+  },
+  "settings.lock.hideChaosIndex": {
+    "text": "Ocultar Índice de Caos",
+    "translationContext": "Toggle to hide the chaos index indicator"
+  },
+  "settings.lock.hideCorrections": {
+    "text": "Ocultar histórico de correções",
+    "translationContext": "Managed-mode toggle that hides the 'Corrected' indicator and correction history under story headers. Defaults to ON when a PIN is set, so the simplified reading view stays uncluttered."
+  },
+  "settings.lock.hideFontSize": {
+    "text": "Ocultar atalho de Tamanho da Fonte",
+    "translationContext": "Toggle to hide the font size button in the header"
+  },
+  "settings.lock.hideReportButton": {
+    "text": "Ocultar botão de denunciar",
+    "translationContext": "Toggle to hide the report button on story cards"
+  },
+  "settings.lock.hideSearch": {
+    "text": "Ocultar Pesquisa",
+    "translationContext": "Toggle to hide the search button in the header"
+  },
+  "settings.lock.hideShareButton": {
+    "text": "Ocultar botão de compartilhar",
+    "translationContext": "Toggle to hide the share button on story cards"
+  },
+  "settings.lock.hideTimeTravel": {
+    "text": "Ocultar Viagem no Tempo",
+    "translationContext": "Toggle to hide the time travel button in the header"
+  },
+  "settings.lock.managedOptions": {
+    "text": "Simplificar Interface",
+    "translationContext": "Heading for managed mode toggles when PIN is set"
+  },
+  "settings.lock.managedOptionsDescription": {
+    "text": "Opcionalmente, oculte botões e funcionalidades para criar uma experiência de leitura mais limpa. Por exemplo, ao configurar o Kagi News para uma criança ou um parente mais velho que apenas quer ler as notícias sem distrações.",
+    "translationContext": "Description for managed mode options section, explains why hiding features can be helpful"
+  },
+  "settings.lock.mathDescription": {
+    "text": "Resolva isto para redefinir seu PIN:",
+    "translationContext": "Description asking user to solve a math problem to reset PIN"
+  },
+  "settings.lock.mathPlaceholder": {
+    "text": "Sua resposta",
+    "translationContext": "Placeholder for the math answer input"
+  },
+  "settings.lock.mathSubmit": {
+    "text": "Enviar",
+    "translationContext": "Button to submit the math challenge answer"
+  },
+  "settings.lock.mathWrong": {
+    "text": "Resposta incorreta. Tente novamente.",
+    "translationContext": "Error when math challenge answer is wrong"
+  },
+  "settings.lock.mismatch": {
+    "text": "Os PINs não correspondem.",
+    "translationContext": "Error when PIN confirmation doesn't match"
+  },
+  "settings.lock.newPin": {
+    "text": "Novo PIN (4-6 dígitos)",
+    "translationContext": "Label for the new PIN input"
+  },
+  "settings.lock.placeholder": {
+    "text": "Insira o PIN",
+    "translationContext": "Placeholder text for the PIN input field"
+  },
+  "settings.lock.remove": {
+    "text": "Remover PIN",
+    "translationContext": "Button to remove the PIN lock"
+  },
+  "settings.lock.sectionDescription": {
+    "text": "Bloqueie as configurações com um PIN para evitar alterações acidentais. Útil para dispositivos gerenciados ou controle parental.\n\nQuando bloqueado, o atalho de tamanho da fonte e o banner de download do aplicativo ficam ocultos, e um PIN é necessário para abrir as configurações.",
+    "translationContext": "Description of the settings lock feature, explaining what changes in managed mode"
+  },
+  "settings.lock.sectionTitle": {
+    "text": "Bloqueio de Configurações",
+    "translationContext": "Title of the settings lock section in account settings"
+  },
+  "settings.lock.setPin": {
+    "text": "Definir PIN",
+    "translationContext": "Button to save the new PIN"
+  },
+  "settings.lock.title": {
+    "text": "Configurações Bloqueadas",
+    "translationContext": "Title shown on the PIN lock screen"
+  },
+  "settings.lock.tooShort": {
+    "text": "O PIN deve ter pelo menos 4 dígitos.",
+    "translationContext": "Error when PIN is too short"
+  },
+  "settings.lock.unlock": {
+    "text": "Desbloquear",
+    "translationContext": "Button text to unlock settings with PIN"
+  },
+  "settings.lock.wrongPin": {
+    "text": "PIN incorreto. Por favor, tente novamente.",
+    "translationContext": "Error message when wrong PIN is entered"
   },
   "settings.mapsProvider.apple": {
     "text": "Apple Maps",
@@ -2567,6 +2739,18 @@
     "text": "{{weekday}}, {{day}} de {{month}}",
     "translationContext": "Format for displaying dates. {{weekday}} will be replaced with the day of the week, {{month}} with the month name, and {{day}} with the day number."
   },
+  "downloadApp.pageTitle": {
+    "text": "Baixar Kagi News",
+    "translationContext": "HTML page title for the download app landing page"
+  },
+  "downloadApp.subtitle": {
+    "text": "Parece que você abriu esta página em um computador. Escolha sua loja abaixo e abra no seu celular!",
+    "translationContext": "Subtitle for the download app landing page shown to desktop users"
+  },
+  "downloadApp.title": {
+    "text": "Notícias em qualquer lugar",
+    "translationContext": "Heading for the download app landing page"
+  },
   "f1.completed": {
     "text": "Concluída",
     "translationContext": "Status label for completed races"
@@ -2675,6 +2859,10 @@
     "text": "Contribuir",
     "translationContext": "Link text for contributing to the project"
   },
+  "footer.feedback": {
+    "text": "Feedback",
+    "translationContext": "Link text for the Kagi Feedback forum"
+  },
   "footer.rssFeed": {
     "text": "Feed RSS",
     "translationContext": "Link text for RSS feed"
@@ -2714,6 +2902,10 @@
   "keyboard.action.jumpLast": {
     "text": "Saltar para a última notícia",
     "translationContext": "Description for G key - jumping to last story"
+  },
+  "keyboard.action.markAllRead": {
+    "text": "Marcar todas as notícias como lidas",
+    "translationContext": "Description for Shift+M key - marking all stories in the current category as read"
   },
   "keyboard.action.moveNext": {
     "text": "Ir para a próxima notícia",
@@ -2826,6 +3018,30 @@
   "meta.news": {
     "text": "Notícias",
     "translationContext": "The word 'News' used in titles"
+  },
+  "nativeAppBanner.appStoreLabel": {
+    "text": "Baixar na App Store",
+    "translationContext": "Accessibility label for the App Store download badge"
+  },
+  "nativeAppBanner.dismissLabel": {
+    "text": "Fechar banner do aplicativo",
+    "translationContext": "Accessibility label for the close button on the native app banner"
+  },
+  "nativeAppBanner.googlePlayLabel": {
+    "text": "Disponível no Google Play",
+    "translationContext": "Accessibility label for the Google Play download badge"
+  },
+  "nativeAppBanner.qrCodeAlt": {
+    "text": "Código QR para baixar o Kagi News",
+    "translationContext": "Alt text for the QR code image in the native app banner"
+  },
+  "nativeAppBanner.subtitle": {
+    "text": "Experimente o nosso aplicativo no seu celular.",
+    "translationContext": "Subtitle for the desktop native app promotional banner"
+  },
+  "nativeAppBanner.title": {
+    "text": "Resumo de Notícias do Dia",
+    "translationContext": "Title for the desktop native app promotional banner"
   },
   "navigation.backToTop": {
     "text": "Voltar ao topo",
@@ -3218,6 +3434,18 @@
   "nhl.volume": {
     "text": "Vol",
     "translationContext": "Abbreviation for trading volume"
+  },
+  "notification.appUpdate.description": {
+    "text": "Estivemos trabalhando em melhorias e correções de bugs. Recarregue a página para obter a versão mais recente.",
+    "translationContext": "Description shown in a banner when a new version of the app has been deployed, prompting the user to reload"
+  },
+  "notification.appUpdate.reload": {
+    "text": "Recarregar",
+    "translationContext": "Button label to reload the page and get the latest version of the app"
+  },
+  "notification.appUpdate.title": {
+    "text": "Uma nova versão do Kagi News chegou",
+    "translationContext": "Title shown in a banner when a new version of the app has been deployed"
   },
   "notification.newBatch.action": {
     "text": "Ver",
@@ -3775,6 +4003,10 @@
     "text": "Temporariamente indisponível",
     "translationContext": "Small label shown with a clock icon when a core category has no stories, indicating the update schedule"
   },
+  "stories.noStoriesHistorical": {
+    "text": "Esta categoria não teve notícias nesta data.",
+    "translationContext": "Message shown when viewing a historical batch and the selected category has no stories for that date"
+  },
   "story.assistant.placeholder": {
     "text": "Pergunte sobre esta história...",
     "translationContext": "Placeholder text in the assistant question input field"
@@ -3786,6 +4018,34 @@
   "story.assistant.tooltip": {
     "text": "Perguntar ao Assistente",
     "translationContext": "Tooltip for button that opens Kagi Assistant with the current story topic"
+  },
+  "story.corrections.changed": {
+    "text": "Alterado",
+    "translationContext": "Label introducing the list of fields that a correction modified (e.g. 'Changed: Headline, Summary')."
+  },
+  "story.corrections.explainer": {
+    "text": "As notícias podem ser revistas após a publicação. O gatilho é geralmente uma denúncia de um leitor ou a nossa própria verificação de factos pós-publicação; a revisão é produzida pelo mesmo tipo de sistema de IA que escreve as notícias e é registada aqui para transparência.",
+    "translationContext": "Neutral footnote shown under the expanded correction history list, explaining how corrections work (triggered by a reader report or follow-up fact-checking, generated by AI, not by a human editor)."
+  },
+  "story.corrections.many": {
+    "text": "{count} correções",
+    "translationContext": "Label shown when a story has received multiple fact-check corrections. {count} is replaced with the number (2 or more)."
+  },
+  "story.corrections.manyAfterRead": {
+    "text": "{count} correções após a sua leitura",
+    "translationContext": "Plural variant shown when multiple corrections were applied after the user read the story. {count} is replaced with the number (2 or more)."
+  },
+  "story.corrections.one": {
+    "text": "Corrigido",
+    "translationContext": "Label on a subtle indicator shown when a story has received one fact-check correction after publication. Clicking reveals a timestamped note about what was changed."
+  },
+  "story.corrections.oneAfterRead": {
+    "text": "Corrigido após a sua leitura",
+    "translationContext": "Variant of the 'Corrected' label shown when the correction was applied after the reader had already read the story — highlighted so they know the text they remember may have changed."
+  },
+  "story.corrections.toggle": {
+    "text": "Mostrar histórico de correções",
+    "translationContext": "Accessibility label for the button that expands the correction history list."
   },
   "story.flashcards.download": {
     "text": "Baixar",
@@ -4046,6 +4306,46 @@
   "timeTravel.urlBanner.viewingShared": {
     "text": "Alguém partilhou consigo um link para notícias de {{{date}}}. Pode voltar às notícias de hoje a qualquer momento usando o ✕ ao lado da data acima.",
     "translationContext": "One-time info banner shown when user arrives via a shared time travel URL (has referrer). Points user to the header date pill with X button."
+  },
+  "translation.explainer.networkEffect": {
+    "text": "As traduções são armazenadas em cache para leitores futuros. À medida que um idioma ganha mais leitores, ele se junta ao conjunto pré-traduzido.",
+    "translationContext": "Fourth paragraph of the on-demand translation explainer modal"
+  },
+  "translation.explainer.onDemand": {
+    "text": "Idiomas com menos leitores usam a tradução sob demanda. Os títulos ainda são pré-traduzidos para que a lista possa ser navegada. O conteúdo completo é traduzido quando um leitor abre uma notícia.",
+    "translationContext": "Third paragraph fallback when the language name is unknown"
+  },
+  "translation.explainer.onDemandLang": {
+    "text": "Idiomas com menos leitores, como o {{lang}}, usam a tradução sob demanda. Os títulos ainda são pré-traduzidos para que a lista possa ser navegada. O conteúdo completo é traduzido quando um leitor abre uma notícia.",
+    "translationContext": "Third paragraph of the on-demand translation explainer modal (with the language name placeholder)"
+  },
+  "translation.explainer.pretranslated": {
+    "text": "Idiomas com um público leitor estabelecido (inglês, italiano, francês, alemão, espanhol, chinês, japonês e outros) têm todas as notícias pré-traduzidas durante o processamento em lote.",
+    "translationContext": "Second paragraph of the on-demand translation explainer modal"
+  },
+  "translation.explainer.title": {
+    "text": "Tradução sob demanda",
+    "translationContext": "Heading of the modal that explains on-demand translation"
+  },
+  "translation.learnMore": {
+    "text": "Como funciona",
+    "translationContext": "Button on the on-demand translation progress indicator that opens the explainer modal"
+  },
+  "translation.section": {
+    "text": "seção",
+    "translationContext": "Singular \"section\" used in the on-demand translation progress counter"
+  },
+  "translation.sections": {
+    "text": "seções",
+    "translationContext": "Plural \"sections\" used in the on-demand translation progress counter"
+  },
+  "translation.translating": {
+    "text": "Traduzindo",
+    "translationContext": "Status label shown next to the spinner while on-demand translation streams in"
+  },
+  "translation.translatingDetail": {
+    "text": "Traduzindo de {{source}} com o Kagi Translate. O {{target}} não está no lote pré-traduzido, por isso traduzimos as notícias sob demanda.",
+    "translationContext": "Secondary line under the on-demand translation spinner. {{source}} and {{target}} are language names like 'English' and 'Estonian'."
   },
   "turbulence.title": {
     "text": "Medidor de turbulência mundial",
