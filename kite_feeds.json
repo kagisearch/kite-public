@@ -2706,6 +2706,21 @@
       "https://www.winnipegfreepress.com/canada/feed"
     ]
   },
+  "Canada | Toronto": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {
+      "en": "Canada | Toronto"
+    },
+    "feeds": [
+      "https://globalnews.ca/toronto/feed/",
+      "https://stevemunro.ca/feed/",
+      "https://toronto.citynews.ca/feed/",
+      "https://torontosun.com/feed/",
+      "https://www.cbc.ca/webfeed/rss/rss-canada-toronto",
+      "https://www.thestar.com/search/?f=rss&t=article&c=news/gta*&l=50&s=start_time&sd=desc"
+    ]
+  },
   "Caribbean": {
     "category_type": "topic",
     "source_language": "en",
