@@ -3709,6 +3709,39 @@
       "https://www.velonews.com/feed/"
     ]
   },
+  "Cyprus": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {
+      "en": "Cyprus",
+      "ar": "قبرص",
+      "ca": "Xipre",
+      "de": "Zypern",
+      "el": "Κύπρος",
+      "es": "Chipre",
+      "et": "Küpros",
+      "fr": "Chypre",
+      "he": "קפריסין",
+      "hi": "साइप्रस",
+      "it": "Cipro",
+      "ja": "キプロス",
+      "ko": "키프로스",
+      "nl": "Cyprus",
+      "pt": "Chipre",
+      "ru": "Кипр",
+      "tr": "Kıbrıs",
+      "uk": "Кіпр",
+      "zh-Hans": "塞浦路斯",
+      "zh-Hant": "賽普勒斯"
+    },
+    "feeds": [
+      "https://alithia.com.cy/feed/",
+      "https://cyprus-mail.com/feed",
+      "https://geopolitico.gr/feed/",
+      "https://www.philenews.com/feed/",
+      "https://www.sigmalive.com/rss"
+    ]
+  },
   "Czech Republic": {
     "category_type": "topic",
     "source_language": "cs",
