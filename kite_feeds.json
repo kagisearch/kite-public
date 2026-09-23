@@ -9165,6 +9165,7 @@
       "https://sonicscoop.com/feed/",
       "https://synthanatomy.com/feed",
       "https://varietyofsound.wordpress.com/feed/",
+      "https://www.amazona.de/feed/",
       "https://www.audiotechnology.com/category/news/feed",
       "https://www.decodedmagazine.com/category/tech/feed/",
       "https://www.digitalmusicnews.com/feed/",
@@ -9176,8 +9177,7 @@
       "https://www.premierguitar.com/feeds/feed.rss",
       "https://www.production-expert.com/home-page?format=rss",
       "https://www.soundonsound.com/latest_news.xml",
-      "https://www.synthtopia.com/feed/",
-      "https://www.amazona.de/feed/"
+      "https://www.synthtopia.com/feed/"
     ]
   },
   "Myanmar": {
@@ -12462,7 +12462,6 @@
       "zh-Hant": "瑞士 (法語)"
     },
     "feeds": [
-      "https://www.blick.ch/fr/rss.xml",
       "https://bluewin.ch/fr/feed.xml",
       "https://cdn.prod.swi-services.ch/rss/fre/rssxml/top-news/rss",
       "https://d-nsbc-p.admin.ch/NSBSubscriber/feeds/rss?lang=fr&org-nr=201",
@@ -12494,6 +12493,7 @@
       "https://partner-feeds.publishing.tamedia.ch/rss/tdg/front",
       "https://partner-feeds.publishing.tamedia.ch/rss/tdg/sport",
       "https://partner-feeds.publishing.tamedia.ch/rss/tdg/suisse",
+      "https://www.blick.ch/fr/rss.xml",
       "https://www.heidi.news/articles.rss",
       "https://www.letemps.ch/articles.rss",
       "https://www.letemps.ch/economie.rss",
@@ -12751,6 +12751,7 @@
       "https://nitter.net/TDSI_TW/rss",
       "https://nitter.net/TECRO_USA/rss",
       "https://nitter.net/Yaita_Akio/rss",
+      "https://pansci.asia/feed/",
       "https://penghudaily.blogspot.com/feeds/posts/default?alt=rss",
       "https://public.twreporter.org/rss/twreporter-rss.xml",
       "https://siteapi.sports.gov.tw/1/News/309?handler=OpenDataRSS",
@@ -12778,6 +12779,7 @@
       "https://www.civilmedia.tw/feed",
       "https://www.cmmedia.com.tw/rss/yahoo/article",
       "https://www.euronews.com/rss?format=mrss&level=tag&name=taiwan",
+      "https://www.eventsinfocus.org/feed",
       "https://www.ey.gov.tw/RSS_Content.aspx?ModuleType=2",
       "https://www.faz.net/rss/aktuell/reise/thema/taiwan",
       "https://www.france24.com/en/tag/taiwan/rss",
@@ -12849,9 +12851,7 @@
       "https://www.tycg.gov.tw/OpenData.aspx?SN=50C7BB8497F3C8C2",
       "https://www.voh.com.tw/tw/Home/ugC_RSS.aspx",
       "https://www.worldjournal.com/wj/rssfeed/121098",
-      "https://www.ydn.com.tw/tw/Home/RSS.aspx?TID=4",
-      "https://pansci.asia/feed/",
-      "https://www.eventsinfocus.org/feed"
+      "https://www.ydn.com.tw/tw/Home/RSS.aspx?TID=4"
     ]
   },
   "Tanzania": {
