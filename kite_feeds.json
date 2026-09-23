@@ -14180,6 +14180,52 @@
       "https://www.reddit.com/r/WestSideLA/.rss"
     ]
   },
+  "USA | Wisconsin": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {
+      "en": "USA | Wisconsin",
+      "ar": "ﺎﻟﻭﻼﻳﺎﺗ ﺎﻠﻤﺘﺣﺩﺓ | ﻭﻳﺴﻜﻨﺴﻦ",
+      "ca": "EUA | Wisconsin",
+      "de": "USA | Wisconsin",
+      "es": "EE.UU. | Wisconsin",
+      "fr": "États-Unis | Wisconsin",
+      "he": "ארה\"ב | ויסקונסין",
+      "hi": "यूएसए | विस्कॉन्सिन",
+      "it": "USA | Wisconsin",
+      "ja": "アメリカ | ウィスコンシン州",
+      "ko": "미국 | 위스콘신주",
+      "nl": "VS | Wisconsin",
+      "pt": "EUA | Wisconsin",
+      "ru": "С Ш А  | В и с к о н с и н ",
+      "uk": "С Ш А  | В і с к о н с и н ",
+      "zh-Hans": "美国 | 威斯康星州",
+      "zh-Hant": "美國 | 威斯康辛州"
+    },
+    "feeds": [
+      "https://feeds.feedburner.com/BadgerHeraldNews",
+      "https://isthmus.com/api/rss/content.rss",
+      "https://madison.com/search/?f=rss&t=article&c=&q=%23wsj&l=25&s=start_time&sd=desc",
+      "https://madison.com/search/?f=rss&t=article&c=news/state_and_regional&q=%23wsj&l=25&s=start_time&sd=desc",
+      "https://onmilwaukee.com/rss",
+      "https://upnorthnewswi.com/feed/",
+      "https://urbanmilwaukee.com/feed/",
+      "https://wisconsinexaminer.com/feed/",
+      "https://wisconsinwatch.org/feed/",
+      "https://wnanews.com/feed/",
+      "https://www.centralwinews.com/centralwinews/news/feed/",
+      "https://www.channel3000.com/search/?nsa=eedition&t=&l=100&s=&sd=desc&f=rss&c%5B%5D=weather/forecast,news/top-stories,news/local-news,weather&t=article",
+      "https://www.fox6now.com/rss/category/news",
+      "https://www.milwaukeeindependent.com/feed/",
+      "https://www.milwaukeemag.com/feed/",
+      "https://www.tmj4.com/news.rss",
+      "https://www.wearegreenbay.com/feed/",
+      "https://www.wiproud.com/feed/",
+      "https://www.wisn.com/topstories-rss",
+      "https://www.wispolitics.com/feed/",
+      "https://www.wpr.org/feed"
+    ]
+  },
   "USA | Michigan": {
     "category_type": "topic",
     "source_language": "en",
