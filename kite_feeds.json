@@ -10963,8 +10963,8 @@
       "zh-Hant": "隱私與監控"
     },
     "feeds": [
-      "https://blog.privacyguides.org/feed/",
-      "https://blog.thenewoil.org/feed/",
+      "https://www.privacyguides.org/news/rss/",
+      "https://ghost.thenewoil.org/tag/blog/rss",
       "https://blog.torproject.org/rss.xml",
       "https://bytebacklaw.com/feed",
       "https://calyxos.org/feed.xml",
@@ -10973,7 +10973,6 @@
       "https://dataprotectionreport.com/feed",
       "https://delta.chat/feed.xml",
       "https://element.io/blog/rss/",
-      "https://eyeonprivacy.com/feed",
       "https://feeds.npr.org/126394606/rss.xml",
       "https://feeds.npr.org/192799564/rss.xml",
       "https://iapp.org/rss/daily-dashboard",
@@ -11048,7 +11047,14 @@
       "https://www.theguardian.com/world/surveillance/rss",
       "https://www.usnews.com/topics/subjects/privacy/rss",
       "https://www.vice.com/en/tag/mass-surveillance/feed/",
-      "https://www.vice.com/en/tag/privacy/feed/"
+      "https://www.vice.com/en/tag/privacy/feed/",
+      "https://edri.org/feed/",
+      "https://noyb.eu/en/rss.xml",
+      "https://themarkup.org/feeds/rss.xml",
+      "https://theintercept.com/feed/?rss",
+      "https://www.bellingcat.com/feed",
+      "https://freedom.press/issues/feed",
+      "https://www.404media.co/rss",
     ]
   },
   "Professional Wrestling": {
