@@ -203,47 +203,67 @@ if (typeof window !== 'undefined') {
 }
 </script>
 
-<span class="select-none" onmouseleave={handleMouseLeave} role="region" aria-label="Selectable text for flashcards">
+<span
+	class="select-none"
+	onmouseleave={handleMouseLeave}
+	role="region"
+	aria-label="Selectable text for flashcards"
+>
 	{#each parts as part, index}
 		{@const phraseRange = getSelectedPhraseRange(index)}
-		{@const isInDragRange = isDragging && dragStartIndex !== null && dragEndIndex !== null &&
+		{@const isInDragRange =
+			isDragging &&
+			dragStartIndex !== null &&
+			dragEndIndex !== null &&
 			index >= Math.min(dragStartIndex, dragEndIndex) &&
 			index <= Math.max(dragStartIndex, dragEndIndex)}
 		{@const isInSelectedPhrase = phraseRange !== null}
-		{@const isInHoveredPhrase = hoveredPhraseRange !== null && index >= hoveredPhraseRange.start && index <= hoveredPhraseRange.end}
+		{@const isInHoveredPhrase =
+			hoveredPhraseRange !== null &&
+			index >= hoveredPhraseRange.start &&
+			index <= hoveredPhraseRange.end}
 
 		{#if part.type === 'word'}
 			{@const isSelected = selectedWords.has(part.content.toLowerCase()) || isInSelectedPhrase}
 			{#if index === 0 && (selectedWords.size > 0 || selectedPhrases.size > 0)}
-				{console.log('[SelectableText] Debug - selectedWords:', Array.from(selectedWords), 'selectedPhrases:', Array.from(selectedPhrases.keys()))}
+				{console.log(
+					'[SelectableText] Debug - selectedWords:',
+					Array.from(selectedWords),
+					'selectedPhrases:',
+					Array.from(selectedPhrases.keys()),
+				)}
 			{/if}
 			<button
 				type="button"
 				class={`
 					inline p-0 m-0 bg-transparent border-0 align-baseline
-					${flashcardMode ? 'cursor-pointer border-b border-dashed border-blue-300 dark:border-blue-400/30 transition-all duration-150' : ''}
+					${flashcardMode ? 'cursor-pointer border-b border-dashed border-purple-300 dark:border-purple-400/30 transition-all duration-150' : ''}
 					${shouldJiggle ? 'animate-jiggle' : ''}
-					${!isInDragRange && isSelected ? 'bg-blue-100 border-solid border-blue-500 font-medium dark:bg-blue-900/25 dark:border-blue-400' : ''}
+					${!isInDragRange && isSelected ? 'bg-purple-100 border-solid border-purple-500 font-medium dark:bg-purple-900/25 dark:border-purple-400' : ''}
 					${isInDragRange ? '!bg-green-100 !border-solid !border-green-500 dark:!bg-green-900/25 dark:!border-green-400' : ''}
-					${!isInDragRange && !isSelected && isInHoveredPhrase ? 'bg-blue-50 border-blue-400 dark:bg-blue-900/15 dark:border-blue-400/60' : ''}
-					${!isInDragRange && !isSelected && !isInHoveredPhrase && flashcardMode ? 'hover:bg-blue-50 hover:border-blue-500 dark:hover:bg-blue-900/15 dark:hover:border-blue-400/60' : ''}
+					${!isInDragRange && !isSelected && isInHoveredPhrase ? 'bg-purple-50 border-purple-400 dark:bg-purple-900/15 dark:border-purple-400/60' : ''}
+					${!isInDragRange && !isSelected && !isInHoveredPhrase && flashcardMode ? 'hover:bg-purple-50 hover:border-purple-500 dark:hover:bg-purple-900/15 dark:hover:border-purple-400/60' : ''}
 				`}
 				onmousedown={(e) => handleMouseDown(index, e)}
 				onmouseenter={() => handleMouseEnter(index)}
 				disabled={!flashcardMode}
-				aria-label={flashcardMode ? `${isSelected ? 'Deselect' : 'Select'} word "${part.content}" for flashcard` : undefined}
+				aria-label={flashcardMode
+					? `${isSelected ? 'Deselect' : 'Select'} word "${part.content}" for flashcard`
+					: undefined}
 				aria-pressed={flashcardMode ? isSelected : undefined}
 				tabindex={flashcardMode ? 0 : -1}
 			>
 				{part.content}
 			</button>
 		{:else}
-			<span class={`
+			<span
+				class={`
 				inline
-				${isInSelectedPhrase ? 'bg-blue-100 border-solid border-blue-500 dark:bg-blue-900/25 dark:border-blue-400' : ''}
+				${isInSelectedPhrase ? 'bg-purple-100 border-solid border-purple-500 dark:bg-purple-900/25 dark:border-purple-400' : ''}
 				${isInDragRange ? '!bg-green-100 !border-solid !border-green-500 dark:!bg-green-900/25 dark:!border-green-400' : ''}
-				${!isInDragRange && !isInSelectedPhrase && isInHoveredPhrase ? 'bg-blue-50 border-blue-400 dark:bg-blue-900/15 dark:border-blue-400/60' : ''}
-			`}>
+				${!isInDragRange && !isInSelectedPhrase && isInHoveredPhrase ? 'bg-purple-50 border-purple-400 dark:bg-purple-900/15 dark:border-purple-400/60' : ''}
+			`}
+			>
 				{part.content}
 			</span>
 		{/if}
@@ -251,19 +271,27 @@ if (typeof window !== 'undefined') {
 </span>
 
 <style>
-	@keyframes jiggle {
-		0%, 100% {
-			transform: rotate(0deg);
-		}
-		10%, 30%, 50%, 70%, 90% {
-			transform: rotate(-1deg);
-		}
-		20%, 40%, 60%, 80% {
-			transform: rotate(1deg);
-		}
+@keyframes jiggle {
+	0%,
+	100% {
+		transform: rotate(0deg);
 	}
+	10%,
+	30%,
+	50%,
+	70%,
+	90% {
+		transform: rotate(-1deg);
+	}
+	20%,
+	40%,
+	60%,
+	80% {
+		transform: rotate(1deg);
+	}
+}
 
-	.animate-jiggle {
-		animation: jiggle 0.2s ease;
-	}
+.animate-jiggle {
+	animation: jiggle 0.2s ease;
+}
 </style>

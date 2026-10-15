@@ -1,12 +1,12 @@
 <script lang="ts">
-import { fade } from 'svelte/transition';
-import Portal from 'svelte-portal';
 import { s } from '$lib/client/localization.svelte';
 import { languageSettings } from '$lib/data/settings.svelte.js';
 import { timeTravelNavigationService } from '$lib/services/timeTravelNavigationService';
 import { timeTravel } from '$lib/stores/timeTravel.svelte.js';
 import { createModalBehavior } from '$lib/utils/modalBehavior.svelte';
 import BetaLabel from './BetaLabel.svelte';
+import Portal from 'svelte-portal';
+import { fade } from 'svelte/transition';
 
 interface BatchInfo {
 	id: string;
@@ -295,235 +295,290 @@ $effect(() => {
 <svelte:window onkeydown={(e) => modal.handleKeydown(e, timeTravel.isOpen, closeModal)} />
 
 {#if timeTravel.isOpen}
-  <Portal>
-    <div
-      class="fixed inset-0 z-modal flex items-end justify-center bg-black/50 md:items-center md:p-4"
-      onclick={(e) => modal.handleBackdropClick(e, closeModal)}
-      onkeydown={(e) => e.key === 'Escape' && closeModal()}
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="time-travel-title"
-      tabindex="-1"
-      transition:fade={{ duration: modal.getTransitionDuration() }}
-    >
-      <div
-        class="relative flex h-full w-full flex-col overflow-hidden bg-white shadow-xl md:h-auto md:max-h-[90vh] md:max-w-md md:rounded-lg dark:bg-gray-800"
-        transition:fade={{ duration: modal.getTransitionDuration() }}
-      >
-        <!-- Header -->
-        <div class="flex shrink-0 flex-col border-b border-gray-200 px-6 py-4 dark:border-gray-700">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <h2 id="time-travel-title" class="text-lg font-semibold text-gray-900 dark:text-white">
-                {s("timeTravel.title") || "Time Travel"}
-              </h2>
-              <BetaLabel />
-            </div>
-            <button
-              onclick={closeModal}
-              class="rounded-full p-2 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-700 dark:hover:text-gray-300 focus-visible-ring touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
-              aria-label={s("ui.close") || "Close"}
-            >
-              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-          <div class="mt-2 text-sm text-gray-500 dark:text-gray-400 space-y-1">
-            {#each (s("timeTravel.description") || "Access historical daily summaries.\nReserved for Kagi subscribers.\nAvailable to all users during Beta.").split('\n') as line}
-              <p>{line}</p>
-            {/each}
-          </div>
-        </div>
+	<Portal>
+		<div
+			class="fixed inset-0 z-modal flex items-end justify-center bg-black/50 md:items-center md:p-4"
+			onclick={(e) => modal.handleBackdropClick(e, closeModal)}
+			onkeydown={(e) => e.key === 'Escape' && closeModal()}
+			role="dialog"
+			aria-modal="true"
+			aria-labelledby="time-travel-title"
+			tabindex="-1"
+			transition:fade={{ duration: modal.getTransitionDuration() }}
+		>
+			<div
+				class="relative flex h-full w-full flex-col overflow-hidden bg-modal-bg shadow-xl md:h-auto md:max-h-[90vh] md:max-w-md md:rounded-lg"
+				transition:fade={{ duration: modal.getTransitionDuration() }}
+			>
+				<!-- Header -->
+				<div class="flex shrink-0 flex-col border-b border-primary-100 px-6 py-4">
+					<div class="flex items-center justify-between">
+						<div class="flex items-center gap-2">
+							<h2 id="time-travel-title" class="text-lg font-semibold text-primary">
+								{s('timeTravel.title') || 'Time Travel'}
+							</h2>
+							<BetaLabel />
+						</div>
+						<button
+							onclick={closeModal}
+							class="rounded-full p-2 text-primary-400 transition-colors hover:bg-primary-50 hover:text-primary-600 focus-visible-ring touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center"
+							aria-label={s('ui.close') || 'Close'}
+						>
+							<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M6 18L18 6M6 6l12 12"
+								/>
+							</svg>
+						</button>
+					</div>
+					<div class="mt-2 text-sm text-primary-600 space-y-1">
+						{#each (s('timeTravel.description') || 'Access historical daily summaries.\nReserved for Kagi subscribers.\nAvailable to all users during Beta.').split('\n') as line}
+							<p>{line}</p>
+						{/each}
+					</div>
+				</div>
 
-        <!-- Content -->
-        <div class="flex-1 overflow-y-auto p-6">
-          {#if !showBatchSelector}
-            <!-- Month Navigation -->
-            <div class="flex items-center justify-between mb-5">
-              <button
-                onclick={previousMonth}
-                disabled={!canNavigatePrevious()}
-                class="rounded-full p-2 transition-colors touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center {canNavigatePrevious()
-                  ? 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700'
-                  : 'text-gray-300 dark:text-gray-600 cursor-not-allowed'}"
-                aria-label={s("timeTravel.previousMonth") || "Previous month"}
-              >
-                <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
+				<!-- Content -->
+				<div class="flex-1 overflow-y-auto p-6">
+					{#if !showBatchSelector}
+						<!-- Month Navigation -->
+						<div class="flex items-center justify-between mb-5">
+							<button
+								onclick={previousMonth}
+								disabled={!canNavigatePrevious()}
+								class="rounded-full p-2 transition-colors touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center {canNavigatePrevious()
+									? 'text-primary-600 hover:bg-primary-50'
+									: 'text-primary-200 cursor-not-allowed'}"
+								aria-label={s('timeTravel.previousMonth') || 'Previous month'}
+							>
+								<svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M15 19l-7-7 7-7"
+									/>
+								</svg>
+							</button>
 
-              <div class="flex items-center gap-2">
-                {#if showYearPicker}
-                  <select
-                    class="text-base font-semibold text-gray-900 dark:text-white bg-transparent border border-gray-200 dark:border-gray-600 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    value={currentMonth.getFullYear()}
-                    onchange={(e) => selectYear(parseInt(e.currentTarget.value))}
-                    onblur={() => (showYearPicker = false)}
-                  >
-                    {#each availableYears as year}
-                      <option value={year}>{year}</option>
-                    {/each}
-                  </select>
-                {:else}
-                  <button
-                    onclick={() => (showYearPicker = true)}
-                    class="text-base font-semibold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                  >
-                    {monthYearDisplay}
-                  </button>
-                {/if}
-                {#if loading}
-                  <div class="h-4 w-4 animate-spin rounded-full border-2 border-gray-300 border-t-blue-500 dark:border-gray-600 dark:border-t-blue-400"></div>
-                {/if}
-              </div>
+							<div class="flex items-center gap-2">
+								{#if showYearPicker}
+									<select
+										class="text-base font-semibold text-primary bg-transparent border border-primary-100 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-focus-ring"
+										value={currentMonth.getFullYear()}
+										onchange={(e) => selectYear(parseInt(e.currentTarget.value))}
+										onblur={() => (showYearPicker = false)}
+									>
+										{#each availableYears as year}
+											<option value={year}>{year}</option>
+										{/each}
+									</select>
+								{:else}
+									<button
+										onclick={() => (showYearPicker = true)}
+										class="text-base font-semibold text-primary hover:text-accent-links transition-colors"
+									>
+										{monthYearDisplay}
+									</button>
+								{/if}
+								{#if loading}
+									<div
+										class="h-4 w-4 animate-spin rounded-full border-2 border-primary-200 border-t-purple-600"
+									></div>
+								{/if}
+							</div>
 
-              <button
-                onclick={nextMonth}
-                disabled={!canNavigateNext()}
-                class="rounded-full p-2 transition-colors touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center {canNavigateNext()
-                  ? 'text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700'
-                  : 'text-gray-300 dark:text-gray-600 cursor-not-allowed'}"
-                aria-label={s("timeTravel.nextMonth") || "Next month"}
-              >
-                <svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
+							<button
+								onclick={nextMonth}
+								disabled={!canNavigateNext()}
+								class="rounded-full p-2 transition-colors touch-manipulation min-h-[44px] min-w-[44px] flex items-center justify-center {canNavigateNext()
+									? 'text-primary-600 hover:bg-primary-50'
+									: 'text-primary-200 cursor-not-allowed'}"
+								aria-label={s('timeTravel.nextMonth') || 'Next month'}
+							>
+								<svg class="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M9 5l7 7-7 7"
+									/>
+								</svg>
+							</button>
+						</div>
 
-            <!-- Today Button -->
-            <div class="flex justify-center mb-5">
-              <button
-                onclick={goToToday}
-                class="px-4 py-2 text-sm font-medium rounded-lg text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors"
-              >
-                {s("timeTravel.today") || "Go to Today"}
-              </button>
-            </div>
+						<!-- Today Button -->
+						<div class="flex justify-center mb-5">
+							<button
+								onclick={goToToday}
+								class="px-4 py-2 text-sm font-medium rounded-lg text-accent-links hover:bg-purple-50 dark:hover:bg-purple-900/30 transition-colors"
+							>
+								{s('timeTravel.today') || 'Go to Today'}
+							</button>
+						</div>
 
-            <!-- Calendar Grid -->
-            {#if loading}
-              <div class="flex justify-center items-center h-64">
-                <div class="h-8 w-8 animate-spin rounded-full border-2 border-gray-200 border-t-blue-500 dark:border-gray-700 dark:border-t-blue-400"></div>
-              </div>
-            {:else}
-              <div class="rounded-lg bg-gray-50 dark:bg-gray-800/50 p-3">
-                <div class="grid grid-cols-7 gap-1">
-                  <!-- Weekday Headers -->
-                  {#each weekdayHeaders as day}
-                    <div class="text-center text-xs font-medium text-gray-500 dark:text-gray-400 py-2">
-                      {day}
-                    </div>
-                  {/each}
+						<!-- Calendar Grid -->
+						{#if loading}
+							<div class="flex justify-center items-center h-64">
+								<div
+									class="h-8 w-8 animate-spin rounded-full border-2 border-primary-100 border-t-purple-600"
+								></div>
+							</div>
+						{:else}
+							<div class="rounded-lg bg-primary-25 dark:bg-graphite-800/50 p-3">
+								<div class="grid grid-cols-7 gap-1">
+									<!-- Weekday Headers -->
+									{#each weekdayHeaders as day}
+										<div class="text-center text-xs font-medium text-primary-600 py-2">
+											{day}
+										</div>
+									{/each}
 
-                  <!-- Calendar Days -->
-                  {#each calendarDays as date}
-                    {@const hasBatch = hasBatches(date)}
-                    {@const batchCount = getBatchCount(date)}
-                    {@const today = isToday(date)}
-                    {@const inCurrentMonth = isCurrentMonth(date)}
-                    {@const inRange = isDateInRange(date)}
+									<!-- Calendar Days -->
+									{#each calendarDays as date}
+										{@const hasBatch = hasBatches(date)}
+										{@const batchCount = getBatchCount(date)}
+										{@const today = isToday(date)}
+										{@const inCurrentMonth = isCurrentMonth(date)}
+										{@const inRange = isDateInRange(date)}
 
-                    <button
-                      onclick={() => selectDay(date)}
-                      disabled={!hasBatch || !inRange}
-                      class="relative aspect-square flex flex-col items-center justify-center rounded-lg transition-all
-                        {hasBatch && inRange ? 'hover:bg-white dark:hover:bg-gray-700 cursor-pointer' : 'cursor-default'}
-                        {today ? 'ring-2 ring-blue-500 dark:ring-blue-400 ring-inset' : ''}
+										<button
+											onclick={() => selectDay(date)}
+											disabled={!hasBatch || !inRange}
+											class="relative aspect-square flex flex-col items-center justify-center rounded-lg transition-all
+                        {hasBatch && inRange
+												? 'hover:bg-white dark:hover:bg-graphite-700 cursor-pointer'
+												: 'cursor-default'}
+                        {today ? 'ring-2 ring-purple-600 dark:ring-purple-400 ring-inset' : ''}
                         {!inCurrentMonth || !inRange ? 'opacity-40' : ''}"
-                      aria-label="{date.getDate()} - {batchCount} batches"
-                    >
-                      <span class="text-sm {hasBatch && inRange ? 'font-medium text-gray-900 dark:text-white' : 'text-gray-400 dark:text-gray-500'}">
-                        {date.getDate()}
-                      </span>
+											aria-label="{date.getDate()} - {batchCount} batches"
+										>
+											<span
+												class="text-sm {hasBatch && inRange
+													? 'font-medium text-primary'
+													: 'text-primary-400'}"
+											>
+												{date.getDate()}
+											</span>
 
-                      {#if hasBatch && inRange}
-                        <div class="flex gap-0.5 mt-0.5">
-                          {#each Array(Math.min(batchCount, 3)) as _}
-                            <div class="size-1 rounded-full bg-blue-500 dark:bg-blue-400"></div>
-                          {/each}
-                        </div>
-                      {/if}
-                    </button>
-                  {/each}
-                </div>
-              </div>
+											{#if hasBatch && inRange}
+												<div class="flex gap-0.5 mt-0.5">
+													{#each Array(Math.min(batchCount, 3)) as _}
+														<div class="size-1 rounded-full bg-purple-600 dark:bg-purple-400"></div>
+													{/each}
+												</div>
+											{/if}
+										</button>
+									{/each}
+								</div>
+							</div>
 
-              <!-- Legend -->
-              <p class="mt-4 text-xs text-gray-500 dark:text-gray-400 text-center">
-                {s("timeTravel.selectDate") || "Select a date to view news from that day"}
-              </p>
-            {/if}
-          {:else}
-            <!-- Batch Selector -->
-            {@const selectedDate = selectedDayBatches[0] ? new Date(selectedDayBatches[0].createdAt) : new Date()}
-            {@const dateStr = new Intl.DateTimeFormat(languageSettings.ui, {
-              weekday: "long",
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            }).format(selectedDate)}
+							<!-- Legend -->
+							<p class="mt-4 text-xs text-primary-600 text-center">
+								{s('timeTravel.selectDate') || 'Select a date to view news from that day'}
+							</p>
+						{/if}
+					{:else}
+						<!-- Batch Selector -->
+						{@const selectedDate = selectedDayBatches[0]
+							? new Date(selectedDayBatches[0].createdAt)
+							: new Date()}
+						{@const dateStr = new Intl.DateTimeFormat(languageSettings.ui, {
+							weekday: 'long',
+							month: 'long',
+							day: 'numeric',
+							year: 'numeric',
+						}).format(selectedDate)}
 
-            <button
-              onclick={() => (showBatchSelector = false)}
-              class="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 mb-4 -ms-1 p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-            >
-              <svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-              </svg>
-              {s("common.back") || "Back"}
-            </button>
+						<button
+							onclick={() => (showBatchSelector = false)}
+							class="flex items-center gap-1.5 text-sm text-primary-600 hover:text-primary-700 mb-4 -ms-1 p-1 rounded-lg hover:bg-primary-50 transition-colors"
+						>
+							<svg class="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M15 19l-7-7 7-7"
+								/>
+							</svg>
+							{s('common.back') || 'Back'}
+						</button>
 
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1">
-              {dateStr}
-            </h3>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">
-              {s("timeTravel.selectBatch") || "Select a news update"}
-            </p>
+						<h3 class="text-lg font-semibold text-primary mb-1">
+							{dateStr}
+						</h3>
+						<p class="text-sm text-primary-600 mb-4">
+							{s('timeTravel.selectBatch') || 'Select a news update'}
+						</p>
 
-            <div class="space-y-2">
-              {#each selectedDayBatches as batch, index}
-                {@const batchDate = new Date(batch.createdAt)}
-                {@const timeStr = batchDate.toLocaleTimeString(languageSettings.ui, {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  hour12: true,
-                })}
-                <button
-                  onclick={() => selectBatch(batch)}
-                  class="w-full p-4 rounded-lg bg-gray-50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-start group"
-                >
-                  <div class="flex justify-between items-center">
-                    <div class="flex-1">
-                      <div class="flex items-center gap-2 mb-1">
-                        <svg class="size-4 text-blue-500 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span class="font-medium text-gray-900 dark:text-white">
-                          {timeStr}
-                        </span>
-                        {#if index === 0}
-                          <span class="text-xs font-medium bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 px-2 py-0.5 rounded-full">
-                            {s("timeTravel.latest") || "Latest"}
-                          </span>
-                        {/if}
-                      </div>
-                      <div class="text-sm text-gray-500 dark:text-gray-400">
-                        {batch.totalStories} {s("timeTravel.stories") || "stories"}
-                      </div>
-                    </div>
-                    <svg class="size-5 text-gray-400 dark:text-gray-500 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </button>
-              {/each}
-            </div>
-          {/if}
-        </div>
-      </div>
-    </div>
-  </Portal>
+						<div class="space-y-2">
+							{#each selectedDayBatches as batch, index}
+								{@const batchDate = new Date(batch.createdAt)}
+								{@const timeStr = batchDate.toLocaleTimeString(languageSettings.ui, {
+									hour: '2-digit',
+									minute: '2-digit',
+									hour12: true,
+								})}
+								<button
+									onclick={() => selectBatch(batch)}
+									class="w-full p-4 rounded-lg bg-primary-25 dark:bg-graphite-800/50 hover:bg-primary-50 dark:hover:bg-graphite-700 transition-colors text-start group"
+								>
+									<div class="flex justify-between items-center">
+										<div class="flex-1">
+											<div class="flex items-center gap-2 mb-1">
+												<svg
+													class="size-4 text-accent-links"
+													fill="none"
+													stroke="currentColor"
+													viewBox="0 0 24 24"
+												>
+													<path
+														stroke-linecap="round"
+														stroke-linejoin="round"
+														stroke-width="2"
+														d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+													/>
+												</svg>
+												<span class="font-medium text-primary">
+													{timeStr}
+												</span>
+												{#if index === 0}
+													<span
+														class="text-xs font-medium bg-purple-100 dark:bg-purple-900/50 text-accent-links px-2 py-0.5 rounded-full"
+													>
+														{s('timeTravel.latest') || 'Latest'}
+													</span>
+												{/if}
+											</div>
+											<div class="text-sm text-primary-600">
+												{batch.totalStories}
+												{s('timeTravel.stories') || 'stories'}
+											</div>
+										</div>
+										<svg
+											class="size-5 text-primary-400 group-hover:text-primary-600 transition-colors"
+											fill="none"
+											stroke="currentColor"
+											viewBox="0 0 24 24"
+										>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2"
+												d="M9 5l7 7-7 7"
+											/>
+										</svg>
+									</div>
+								</button>
+							{/each}
+						</div>
+					{/if}
+				</div>
+			</div>
+		</div>
+	</Portal>
 {/if}

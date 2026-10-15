@@ -214,31 +214,6 @@ class ImagePreloadingService {
 	}
 
 	/**
-	 * Create an intersection observer for viewport-based preloading
-	 */
-	createViewportPreloader(
-		onIntersect: (entry: IntersectionObserverEntry) => void,
-	): IntersectionObserver | null {
-		if (!browser) return null;
-
-		return new IntersectionObserver(
-			(entries) => {
-				if (!this.canPreload()) return;
-
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						onIntersect(entry);
-					}
-				});
-			},
-			{
-				rootMargin: this.config.viewportMargin,
-				threshold: 0.1,
-			},
-		);
-	}
-
-	/**
 	 * Logging utility
 	 */
 	private log(level: PreloadConfig['logLevel'], message: string) {

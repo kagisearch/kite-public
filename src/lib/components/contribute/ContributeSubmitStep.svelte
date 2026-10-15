@@ -1,4 +1,6 @@
 <script lang="ts">
+import { s } from '$lib/client/localization.svelte';
+import { copyToClipboard, type FeedCheckResult } from '$lib/utils/feedContribution';
 import {
 	IconBrandGithub,
 	IconCheck,
@@ -9,8 +11,6 @@ import {
 	IconLoader2,
 	IconSend,
 } from '@tabler/icons-svelte';
-import { s } from '$lib/client/localization.svelte';
-import { copyToClipboard, type FeedCheckResult } from '$lib/utils/feedContribution';
 
 interface Props {
 	submitResult: {
@@ -73,7 +73,10 @@ async function handleCopy(text: string) {
 
 	{#if submitResult?.type === 'success'}
 		<!-- Auto mode: PR created successfully -->
-		<div role="alert" class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 mb-4">
+		<div
+			role="alert"
+			class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 mb-4"
+		>
 			<div class="flex items-start gap-2">
 				<IconCircleCheck size={20} class="shrink-0 text-green-600 dark:text-green-400" />
 				<div>
@@ -95,25 +98,21 @@ async function handleCopy(text: string) {
 					<p class="mt-2 text-xs text-green-700/70 dark:text-green-300/70">
 						{s('contribute.reviewNote')}
 					</p>
-					<button
-						onclick={onReset}
-						class="block mt-3 text-sm text-accent-links hover:underline"
-					>
+					<button onclick={onReset} class="block mt-3 text-sm text-accent-links hover:underline">
 						{s('contribute.submitAnother')}
 					</button>
 				</div>
 			</div>
 		</div>
-
 	{:else if submitResult?.type === 'manual' && submitResult.snippet}
 		<!-- Manual mode: show instructions + snippet -->
 		{@const snippet = submitResult.snippet}
 		<div class="space-y-4">
-			<div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
-				<p class="text-sm font-medium text-blue-800 dark:text-blue-200 mb-3">
+			<div class="bg-primary-25 border border-primary-100 rounded-lg p-4">
+				<p class="text-sm font-medium text-primary mb-3">
 					{s('contribute.manual.instructions')}
 				</p>
-				<ol class="text-sm text-blue-700 dark:text-blue-300 space-y-2 list-decimal list-inside">
+				<ol class="text-sm text-accent-links space-y-2 list-decimal list-inside">
 					{#if snippet.isFullFile}
 						<li>{s('contribute.manual.step1Full')}</li>
 						<li>{s('contribute.manual.step2Full', { fileName: snippet.fileName })}</li>
@@ -122,7 +121,12 @@ async function handleCopy(text: string) {
 						{#if snippet.isNew}
 							<li>{s('contribute.manual.step2New', { fileName: snippet.fileName })}</li>
 						{:else}
-							<li>{s('contribute.manual.step2Existing', { category: activeCategoryName, fileName: snippet.fileName })}</li>
+							<li>
+								{s('contribute.manual.step2Existing', {
+									category: activeCategoryName,
+									fileName: snippet.fileName,
+								})}
+							</li>
 						{/if}
 					{/if}
 					<li>{s('contribute.manual.step3')}</li>
@@ -152,7 +156,8 @@ async function handleCopy(text: string) {
 						{/if}
 					</button>
 				</div>
-				<pre class="bg-primary-100 dark:bg-primary-800 border border-primary-200 rounded-lg p-3 text-xs text-primary font-mono overflow-x-auto overflow-y-auto whitespace-pre-wrap break-all max-h-96">{snippet.content}</pre>
+				<pre
+					class="bg-primary-100 dark:bg-graphite-800 border border-primary-200 rounded-lg p-3 text-xs text-primary font-mono overflow-x-auto overflow-y-auto whitespace-pre-wrap break-all max-h-96">{snippet.content}</pre>
 			</div>
 
 			<!-- Edit on GitHub button -->
@@ -168,16 +173,15 @@ async function handleCopy(text: string) {
 				<IconExternalLink size={14} />
 			</a>
 
-			<button
-				onclick={onReset}
-				class="block text-sm text-accent-links hover:underline"
-			>
+			<button onclick={onReset} class="block text-sm text-accent-links hover:underline">
 				{s('contribute.submitAnother')}
 			</button>
 		</div>
-
 	{:else if submitResult?.type === 'error'}
-		<div role="alert" class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-4">
+		<div
+			role="alert"
+			class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-4"
+		>
 			<div class="flex items-start gap-2">
 				<IconCircleX size={20} class="shrink-0 text-red-600 dark:text-red-400" />
 				<p class="text-sm text-red-800 dark:text-red-200">
@@ -191,9 +195,15 @@ async function handleCopy(text: string) {
 		<!-- Summary -->
 		<div class="text-sm text-primary-600 mb-4">
 			{#if mode === 'new'}
-				{s('contribute.summaryNew', { category: activeCategoryName, count: String(submittableFeeds.length) })}
+				{s('contribute.summaryNew', {
+					category: activeCategoryName,
+					count: String(submittableFeeds.length),
+				})}
 			{:else}
-				{s('contribute.summaryExisting', { count: String(submittableFeeds.length), category: activeCategoryName })}
+				{s('contribute.summaryExisting', {
+					count: String(submittableFeeds.length),
+					category: activeCategoryName,
+				})}
 			{/if}
 			{#if errorFeeds.length > 0 && submittableFeeds.length > 0}
 				<span class="text-xs text-primary-400">
@@ -207,7 +217,7 @@ async function handleCopy(text: string) {
 				onclick={onSubmit}
 				disabled={!canSubmit || isSubmitting}
 				class="inline-flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg transition-colors
-					bg-blue-600 hover:bg-blue-700 disabled:bg-primary-300 text-white disabled:text-primary-400"
+					bg-purple-600 hover:bg-purple-700 disabled:bg-primary-300 text-white disabled:text-primary-400"
 			>
 				{#if isSubmitting}
 					<IconLoader2 size={16} class="animate-spin" />

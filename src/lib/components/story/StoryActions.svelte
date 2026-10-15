@@ -1,7 +1,7 @@
 <script lang="ts">
 import { page } from '$app/state';
 import { s } from '$lib/client/localization.svelte';
-import { languageSettings } from '$lib/data/settings.svelte.js';
+import { languageSettings, settingsLock } from '$lib/data/settings.svelte.js';
 import { UrlNavigationService } from '$lib/services/urlNavigationService';
 import type { LocalizerFunction } from '$lib/types';
 import ReportButton from '../ReportButton.svelte';
@@ -53,38 +53,41 @@ const navigationParams = $derived.by(() => {
 </script>
 
 <div class="order-last mt-6 flex w-full items-center justify-center md:px-0">
-  <!-- Left side: Share and Report Buttons -->
-  <div class="flex-1 flex justify-start gap-2">
-    <ShareButton
-      title={story.title}
-      description={story.short_summary}
-      batchId={navigationParams.batchId || ''}
-      categoryId={navigationParams.categoryId || ''}
-      storyIndex={navigationParams.storyIndex}
-      clusterId={story.cluster_number}
-      languageCode={navigationParams.dataLang}
-      class="text-gray-600 transition-all duration-200 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
-    />
-    {#if story.id}
-      <ReportButton
-        clusterId={story.id}
-        title={story.title}
-        class="text-gray-600 transition-all duration-200 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800"
-      />
-    {/if}
-  </div>
+	<!-- Left side: Share and Report Buttons -->
+	<div class="flex-1 flex justify-start gap-2">
+		{#if !settingsLock.getManagedOption('hideShareButton')}
+			<ShareButton
+				title={story.title}
+				description={story.short_summary}
+				batchId={navigationParams.batchId || ''}
+				categoryId={navigationParams.categoryId || ''}
+				storyIndex={navigationParams.storyIndex}
+				clusterId={story.cluster_number}
+				languageCode={navigationParams.dataLang}
+				class="text-primary-600 transition-all duration-200 hover:bg-primary-50"
+			/>
+		{/if}
+		{#if story.id && !settingsLock.getManagedOption('hideReportButton')}
+			<ReportButton
+				clusterId={story.id}
+				title={story.title}
+				class="text-primary-600 transition-all duration-200 hover:bg-primary-50"
+			/>
+		{/if}
+	</div>
 
-  <!-- Center: Close Button -->
-  {#if !isSharedView}
-    <button
-      onclick={onClose}
-      aria-label={storyLocalizer("article.closeStory.aria") || "Close story and return to category list"}
-      class="focus:ring-opacity-75 rounded-lg bg-black px-6 py-3 font-semibold text-white transition-colors duration-200 ease-in-out hover:bg-gray-800 focus:ring-2 focus:ring-gray-400 focus:outline-none"
-    >
-      {storyLocalizer("article.closeStory") || "Close"}
-    </button>
-  {/if}
+	<!-- Center: Close Button -->
+	{#if !isSharedView}
+		<button
+			onclick={onClose}
+			aria-label={storyLocalizer('article.closeStory.aria') ||
+				'Close story and return to category list'}
+			class="focus:ring-opacity-75 rounded-lg bg-black px-6 py-3 font-semibold text-white transition-colors duration-200 ease-in-out hover:bg-zinc-800 focus:ring-2 focus:ring-focus-ring focus:outline-none"
+		>
+			{storyLocalizer('article.closeStory') || 'Close'}
+		</button>
+	{/if}
 
-  <!-- Right side: Empty for balance -->
-  <div class="flex-1"></div>
+	<!-- Right side: Empty for balance -->
+	<div class="flex-1"></div>
 </div>

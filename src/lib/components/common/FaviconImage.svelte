@@ -110,36 +110,36 @@ function analyzeBrightness(img: HTMLImageElement) {
 </script>
 
 <img
-  src={displayUrl}
-  alt={alt || `${domain} favicon`}
-  class={className}
-  class:high-quality={isBestQuality}
-  class:needs-invert={needsInvert}
-  {loading}
-  crossorigin="anonymous"
-  onload={(e) => analyzeBrightness(e.currentTarget as HTMLImageElement)}
-  onerror={(e) => {
-    // Fallback to placeholder on error
-    const target = e.currentTarget as HTMLImageElement;
-    target.src = "/svg/placeholder.svg";
-  }}
+	src={displayUrl}
+	alt={alt || `${domain} favicon`}
+	class={className}
+	class:high-quality={isBestQuality}
+	class:needs-invert={needsInvert}
+	{loading}
+	crossorigin="anonymous"
+	onload={(e) => analyzeBrightness(e.currentTarget as HTMLImageElement)}
+	onerror={(e) => {
+		// Fallback to placeholder on error
+		const target = e.currentTarget as HTMLImageElement;
+		target.src = '/svg/placeholder.svg';
+	}}
 />
 
 <style>
-  img {
-    transition: filter 0.2s ease-in-out;
-  }
+img {
+	transition: filter 0.2s ease-in-out;
+}
 
-  img.high-quality {
-    /* Subtle indication that high quality version loaded */
-    filter: contrast(1.05);
-  }
+img.high-quality {
+	/* Subtle indication that high quality version loaded */
+	filter: contrast(1.05);
+}
 
-  img.needs-invert {
-    filter: invert(1) hue-rotate(180deg);
-  }
+img.needs-invert {
+	filter: invert(1) hue-rotate(180deg);
+}
 
-  img.high-quality.needs-invert {
-    filter: invert(1) hue-rotate(180deg) contrast(1.05);
-  }
+img.high-quality.needs-invert {
+	filter: invert(1) hue-rotate(180deg) contrast(1.05);
+}
 </style>

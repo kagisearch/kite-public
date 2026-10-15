@@ -60,8 +60,4 @@ onDestroy(() => {
 });
 </script>
 
-<div
-  bind:this={container}
-  class={className}
-  style="width: {width}px; height: {height}px;"
-></div>
+<div bind:this={container} class={className} style="width: {width}px; height: {height}px;"></div>

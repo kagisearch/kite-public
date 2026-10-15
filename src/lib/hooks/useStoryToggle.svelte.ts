@@ -22,7 +22,8 @@ export function useStoryToggle(
 	setExpandedStories: (value: Record<string, boolean>) => void,
 	getReadStories: () => Record<string, boolean>,
 	setReadStories: (value: Record<string, boolean>) => void,
-	initiallyExpandedStoryIndex: number | null,
+	getInitiallyExpandedStoryIndex: () => number | null,
+	clearInitiallyExpandedStoryIndex: () => void,
 	getHistoryManager: () => HistoryManagerInstance | undefined,
 	options: () => StoryToggleOptions,
 ) {
@@ -31,8 +32,8 @@ export function useStoryToggle(
 		const historyManager = getHistoryManager();
 
 		// Clear initially expanded story flag on any manual toggle
-		if (initiallyExpandedStoryIndex !== null) {
-			initiallyExpandedStoryIndex = null;
+		if (getInitiallyExpandedStoryIndex() !== null) {
+			clearInitiallyExpandedStoryIndex();
 		}
 
 		// Get current state

@@ -1,10 +1,7 @@
 <script lang="ts">
-import { IconCheck, IconSearch, IconWorld } from '@tabler/icons-svelte';
-import { untrack } from 'svelte';
-import { flip } from 'svelte/animate';
-import { dndzone, TRIGGERS } from 'svelte-dnd-action';
 import { s } from '$lib/client/localization.svelte';
 import Select from '$lib/components/Select.svelte';
+import { syncKnPrefsCookie } from '$lib/data/knPrefsCookie';
 import {
 	type CategoryHeaderPosition,
 	categorySettings,
@@ -18,6 +15,10 @@ import { experimental } from '$lib/stores/experimental.svelte.js';
 import type { Category } from '$lib/types';
 import { getCategoryDisplayName } from '$lib/utils/category';
 import ContributeCategoryModal from './ContributeCategoryModal.svelte';
+import { IconCheck, IconSearch, IconWorld } from '@tabler/icons-svelte';
+import { untrack } from 'svelte';
+import { dndzone, TRIGGERS } from 'svelte-dnd-action';
+import { flip } from 'svelte/animate';
 
 // Contribute modal state
 let showContributeModal = $state(false);
@@ -100,6 +101,7 @@ $effect(() => {
 function handleCategoryHeaderPositionChange(position: string) {
 	displaySettings.categoryHeaderPosition = position as CategoryHeaderPosition;
 	settings.categoryHeaderPosition.save();
+	syncKnPrefsCookie();
 	currentCategoryHeaderPosition = position;
 }
 
@@ -166,12 +168,14 @@ const filterOptions = $derived([
 	},
 ]);
 
-// Initialize categories when they change
+// Sync categories from props into the store when they change
 $effect(() => {
 	if (allCategories.length > 0) {
 		untrack(() => {
 			categorySettings.setAllCategories(allCategories);
-			categorySettings.initWithDefaults();
+			// Note: initWithDefaults() is NOT called here — DataLoader already handles
+			// first-time setup. Calling it on every mount caused unnecessary saves that
+			// could trigger sync and overwrite user changes (KNEWS-219).
 			syncFromStore();
 		});
 	}
@@ -329,7 +333,8 @@ function handleEnabledConsider(e: CustomEvent) {
 
 function handleEnabledFinalize(e: CustomEvent) {
 	const { trigger } = e.detail.info;
-	const isDroppedTrigger = trigger === TRIGGERS.DROPPED_INTO_ZONE || trigger === TRIGGERS.DROPPED_INTO_ANOTHER;
+	const isDroppedTrigger =
+		trigger === TRIGGERS.DROPPED_INTO_ZONE || trigger === TRIGGERS.DROPPED_INTO_ANOTHER;
 
 	// Return early if not a dropped trigger (e.g. a click event when disabling a category)
 	// This ensures stale data is not used in the other events.
@@ -384,7 +389,8 @@ function handleDisabledConsider(e: CustomEvent) {
 
 function handleDisabledFinalize(e: CustomEvent) {
 	const { trigger } = e.detail.info;
-	const isDroppedTrigger = trigger === TRIGGERS.DROPPED_INTO_ZONE || trigger === TRIGGERS.DROPPED_INTO_ANOTHER;
+	const isDroppedTrigger =
+		trigger === TRIGGERS.DROPPED_INTO_ZONE || trigger === TRIGGERS.DROPPED_INTO_ANOTHER;
 
 	// Return early if not a dropped trigger (e.g. a click event when disabling a category)
 	// This ensures stale data is not used in the other events.
@@ -451,344 +457,345 @@ function handleSinglePageModeChange(mode: string) {
 </script>
 
 <div class="space-y-4">
-  <div class="mb-4">
-    <p class="text-sm text-gray-600 dark:text-gray-400">
-      {s("settings.categories.instructions") ||
-        "Drag to reorder categories or click to enable/disable them."}
-    </p>
-  </div>
+	<div class="mb-4">
+		<p class="text-sm text-primary-600">
+			{s('settings.categories.instructions') ||
+				'Drag to reorder categories or click to enable/disable them.'}
+		</p>
+	</div>
 
-  <!-- Single Page Mode Setting -->
-  <div class="mb-6">
-    <Select
-      bind:value={currentSinglePageMode}
-      options={singlePageModeOptions}
-      label={s("settings.categories.singlePageMode.label") ||
-        "Display Mode"}
-      onChange={handleSinglePageModeChange}
-    />
-    <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">
-      {s("settings.categories.singlePageMode.description") ||
-        "Choose how to display stories: in tabs (default), or all in a single page with different ordering options."}
-    </p>
-  </div>
+	<!-- Single Page Mode Setting -->
+	<div class="mb-6">
+		<Select
+			bind:value={currentSinglePageMode}
+			options={singlePageModeOptions}
+			label={s('settings.categories.singlePageMode.label') || 'Display Mode'}
+			onChange={handleSinglePageModeChange}
+		/>
+		<p class="mt-2 text-xs text-primary-600">
+			{s('settings.categories.singlePageMode.description') ||
+				'Choose how to display stories: in tabs (default), or all in a single page with different ordering options.'}
+		</p>
+	</div>
 
-  <!-- Navigation Settings (mobile) -->
-  <div class="mb-6 space-y-4">
-    <!-- Mobile-only category header position setting -->
-    <div class="flex flex-col space-y-2 md:hidden">
-      <Select
-        bind:value={currentCategoryHeaderPosition}
-        options={[
-          {
-            value: "bottom",
-            label: s("settings.categoryHeaderPosition.bottom") || "Bottom",
-          },
-          {
-            value: "top",
-            label: s("settings.categoryHeaderPosition.top") || "Top",
-          },
-        ]}
-        label={s("settings.categoryHeaderPosition.label") ||
-          "Category Header Position"}
-        onChange={handleCategoryHeaderPositionChange}
-      />
-      <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
-        {s("settings.categoryHeaderPosition.description") ||
-          "Choose where category tabs appear on mobile devices"}
-      </p>
-    </div>
+	<!-- Navigation Settings (mobile) -->
+	<div class="mb-6 space-y-4">
+		<!-- Mobile-only category header position setting -->
+		<div class="flex flex-col space-y-2 md:hidden">
+			<Select
+				bind:value={currentCategoryHeaderPosition}
+				options={[
+					{
+						value: 'bottom',
+						label: s('settings.categoryHeaderPosition.bottom') || 'Bottom',
+					},
+					{
+						value: 'top',
+						label: s('settings.categoryHeaderPosition.top') || 'Top',
+					},
+				]}
+				label={s('settings.categoryHeaderPosition.label') || 'Category Header Position'}
+				onChange={handleCategoryHeaderPositionChange}
+			/>
+			<p class="mt-1 text-xs text-primary-600">
+				{s('settings.categoryHeaderPosition.description') ||
+					'Choose where category tabs appear on mobile devices'}
+			</p>
+		</div>
 
-    <!-- Disable Category Swipe -->
-    <div class="flex items-center justify-between rounded-lg border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-800/50 md:hidden">
-      <div class="flex-1 pe-4">
-        <label
-          for="disable-category-swipe"
-          id="label-disable-swipe"
-          class="text-sm font-medium text-gray-700 dark:text-gray-300"
-        >
-          {s("settings.experimental.disableCategorySwipe.label") ||
-            "Disable horizontal category swiping"}
-        </label>
-        <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-          {s("settings.experimental.disableCategorySwipe.description") ||
-            "When enabled, horizontal swiping to change categories on mobile devices will be disabled."}
-        </p>
-      </div>
-      <button
-        id="disable-category-swipe"
-        onclick={toggleDisableCategorySwipe}
-        type="button"
-        class="focus-visible-ring relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition"
-        class:bg-blue-600={experimental.disableCategorySwipe}
-        class:bg-gray-200={!experimental.disableCategorySwipe}
-        class:dark:bg-gray-600={!experimental.disableCategorySwipe}
-        role="switch"
-        aria-checked={experimental.disableCategorySwipe}
-        aria-labelledby="label-disable-swipe"
-      >
-        <span
-          class="inline-block h-4 w-4 transform rounded-full bg-white transition"
-          class:ltr:translate-x-6={experimental.disableCategorySwipe}
-          class:rtl:-translate-x-6={experimental.disableCategorySwipe}
-          class:ltr:translate-x-1={!experimental.disableCategorySwipe}
-          class:rtl:-translate-x-1={!experimental.disableCategorySwipe}
-        ></span>
-      </button>
-    </div>
-  </div>
+		<!-- Disable Category Swipe -->
+		<div
+			class="flex items-center justify-between rounded-lg border border-primary-100 bg-white p-3 dark:bg-graphite-800/50 md:hidden"
+		>
+			<div class="flex-1 pe-4">
+				<label
+					for="disable-category-swipe"
+					id="label-disable-swipe"
+					class="text-sm font-medium text-primary-700"
+				>
+					{s('settings.experimental.disableCategorySwipe.label') ||
+						'Disable horizontal category swiping'}
+				</label>
+				<p class="text-xs text-primary-600 mt-0.5">
+					{s('settings.experimental.disableCategorySwipe.description') ||
+						'When enabled, horizontal swiping to change categories on mobile devices will be disabled.'}
+				</p>
+			</div>
+			<button
+				id="disable-category-swipe"
+				onclick={toggleDisableCategorySwipe}
+				type="button"
+				class="focus-visible-ring relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition {experimental.disableCategorySwipe
+					? 'bg-gradient-to-r from-[#7A6AF4] to-[#6C5EDC]'
+					: 'border border-chrome-500 bg-transparent'}"
+				role="switch"
+				aria-checked={experimental.disableCategorySwipe}
+				aria-labelledby="label-disable-swipe"
+			>
+				<span
+					class="inline-block h-4 w-4 transform rounded-full bg-white transition"
+					class:ltr:translate-x-6={experimental.disableCategorySwipe}
+					class:rtl:-translate-x-6={experimental.disableCategorySwipe}
+					class:ltr:translate-x-1={!experimental.disableCategorySwipe}
+					class:rtl:-translate-x-1={!experimental.disableCategorySwipe}
+				></span>
+			</button>
+		</div>
+	</div>
 
-  <div>
-    <h4 class="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-      {s("settings.categories.enabled") || "Enabled Categories"}
-    </h4>
-    <div
-      class="min-h-[40px] rounded-lg p-3 flex flex-wrap gap-2 border-2 border-dashed"
-      class:border-gray-300={!isDragging}
-      class:dark:border-gray-600={!isDragging}
-      class:border-transparent={isDragging}
-      use:dndzone={{
-        items: enabledItems,
-        flipDurationMs,
-        type: "category",
-        dropTargetStyle: {
-          outline: "rgba(59, 130, 246, 0.5) solid 2px",
-          outlineOffset: "-2px",
-          borderRadius: "0.5rem",
-        },
-        morphDisabled: true,
-        dragDisabled: enabledItems.length === 1,
-      }}
-      onconsider={handleEnabledConsider}
-      onfinalize={handleEnabledFinalize}
-    >
-      {#each enabledItems as category, index (`enabled-${category.id}-${index}`)}
-        {@const isCore = isCoreCategory(category.id)}
-        <div
-          animate:flip={{ duration: flipDurationMs }}
-          class="group inline-flex items-center gap-1.5 rounded-md bg-blue-100 px-3 py-2 text-sm font-medium text-blue-800 dark:bg-blue-800 dark:text-blue-200 focus-visible-ring
+	<div>
+		<h4 class="mb-2 text-sm font-medium text-primary-700">
+			{s('settings.categories.enabled') || 'Enabled Categories'}
+		</h4>
+		<div
+			class="min-h-[40px] rounded-lg p-3 flex flex-wrap gap-2 border-2 border-dashed"
+			class:border-primary-200={!isDragging}
+			class:border-transparent={isDragging}
+			use:dndzone={{
+				items: enabledItems,
+				flipDurationMs,
+				type: 'category',
+				dropTargetStyle: {
+					outline: 'rgba(59, 130, 246, 0.5) solid 2px',
+					outlineOffset: '-2px',
+					borderRadius: '0.5rem',
+				},
+				morphDisabled: true,
+				dragDisabled: enabledItems.length === 1,
+			}}
+			onconsider={handleEnabledConsider}
+			onfinalize={handleEnabledFinalize}
+		>
+			{#each enabledItems as category, index (`enabled-${category.id}-${index}`)}
+				{@const isCore = isCoreCategory(category.id)}
+				<div
+					animate:flip={{ duration: flipDurationMs }}
+					class="group inline-flex items-center gap-1.5 rounded-md bg-purple-100 px-3 py-2 text-sm font-medium text-accent-links dark:bg-purple-800 focus-visible-ring
 						{draggedItemId === category.id ? 'opacity-50' : ''}
 						{enabledItems.length === 1
-            ? 'cursor-not-allowed opacity-75'
-            : 'cursor-grab active:cursor-grabbing hover:bg-blue-200 dark:hover:bg-blue-700'}
+						? 'cursor-not-allowed opacity-75'
+						: 'cursor-grab active:cursor-grabbing hover:bg-purple-200 dark:hover:bg-purple-700'}
 						transition-colors"
-          title={enabledItems.length === 1
-            ? s("settings.categories.lastCategory") ||
-              "Cannot disable the last category"
-            : s("settings.categories.disable") ||
-              "Click to disable, drag to reorder"}
-          role="button"
-          tabindex={enabledItems.length === 1 ? -1 : 0}
-          aria-disabled={enabledItems.length === 1}
-          aria-label={enabledItems.length === 1
-            ? `${getDisplayName(category)} - last category, cannot disable`
-            : `${getDisplayName(category)} - click to disable or drag to reorder`}
-          onclick={(e) => {
-            e.stopPropagation();
-            e.preventDefault();
-            if (enabledItems.length > 1) {
-              handleEnabledClick(category.id);
-            }
-          }}
-          onkeydown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              e.stopPropagation();
-              if (enabledItems.length > 1) {
-                handleEnabledClick(category.id);
-              }
-            }
-          }}
-          onmousedown={(e) => {
-            if (enabledItems.length === 1) {
-              e.stopPropagation();
-            }
-          }}
-        >
-          <span class="select-none">
-            {getDisplayName(category)}
-          </span>
-        </div>
-      {/each}
-      {#if enabledItems.length === 0}
-        <div class="text-sm text-gray-500 dark:text-gray-400">
-          {s("settings.categories.noEnabled") || "No enabled categories"}
-        </div>
-      {/if}
-    </div>
-  </div>
+					title={enabledItems.length === 1
+						? s('settings.categories.lastCategory') || 'Cannot disable the last category'
+						: s('settings.categories.disable') || 'Click to disable, drag to reorder'}
+					role="button"
+					tabindex={enabledItems.length === 1 ? -1 : 0}
+					aria-disabled={enabledItems.length === 1}
+					aria-label={enabledItems.length === 1
+						? `${getDisplayName(category)} - last category, cannot disable`
+						: `${getDisplayName(category)} - click to disable or drag to reorder`}
+					onclick={(e) => {
+						e.stopPropagation();
+						e.preventDefault();
+						if (enabledItems.length > 1) {
+							handleEnabledClick(category.id);
+						}
+					}}
+					onkeydown={(e) => {
+						if (e.key === 'Enter' || e.key === ' ') {
+							e.preventDefault();
+							e.stopPropagation();
+							if (enabledItems.length > 1) {
+								handleEnabledClick(category.id);
+							}
+						}
+					}}
+					onmousedown={(e) => {
+						if (enabledItems.length === 1) {
+							e.stopPropagation();
+						}
+					}}
+				>
+					<span class="select-none">
+						{getDisplayName(category)}
+					</span>
+				</div>
+			{/each}
+			{#if enabledItems.length === 0}
+				<div class="text-sm text-primary-600">
+					{s('settings.categories.noEnabled') || 'No enabled categories'}
+				</div>
+			{/if}
+		</div>
+	</div>
 
-  <div>
-    <div class="mb-3 space-y-3">
-      <div class="flex items-center justify-between">
-        <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300">
-          {s("settings.categories.disabled") || "Available Categories"}
-        </h4>
-        <div class="w-48">
-          <Select
-            bind:value={categoryFilter}
-            options={filterOptionsWithCounts}
-            label={s("settings.categories.filterByType") || "Filter"}
-            placeholder={s("settings.categories.filterPlaceholder") || "All"}
-            className="text-xs"
-            height="h-8"
-            onChange={(value: string) => {
-              categoryFilter = value;
-            }}
-          />
-        </div>
-      </div>
-      <!-- Search input -->
-      <div class="relative">
-        <IconSearch size={16} class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-        <input
-          type="text"
-          bind:value={searchQuery}
-          placeholder={s("settings.categories.searchPlaceholder") || "Search categories..."}
-          class="w-full pl-9 pr-8 py-2 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 focus-visible-ring"
-        />
-        {#if searchQuery}
-          <button
-            type="button"
-            onclick={() => searchQuery = ''}
-            class="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 rounded focus-visible-ring"
-            aria-label={s("ui.clear") || "Clear search"}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        {/if}
-      </div>
+	<div>
+		<div class="mb-3 space-y-3">
+			<div class="flex items-center justify-between">
+				<h4 class="text-sm font-medium text-primary-700">
+					{s('settings.categories.disabled') || 'Available Categories'}
+				</h4>
+				<div class="w-48">
+					<Select
+						bind:value={categoryFilter}
+						options={filterOptionsWithCounts}
+						label={s('settings.categories.filterByType') || 'Filter'}
+						placeholder={s('settings.categories.filterPlaceholder') || 'All'}
+						className="text-xs"
+						height="h-8"
+						onChange={(value: string) => {
+							categoryFilter = value;
+						}}
+					/>
+				</div>
+			</div>
+			<!-- Search input -->
+			<div class="relative">
+				<IconSearch size={16} class="absolute left-3 top-1/2 -translate-y-1/2 text-primary-400" />
+				<input
+					type="text"
+					bind:value={searchQuery}
+					placeholder={s('settings.categories.searchPlaceholder') || 'Search categories...'}
+					class="w-full pl-9 pr-8 py-2 text-sm rounded-lg border border-primary-200 bg-white dark:bg-graphite-700 text-primary placeholder-primary-400 focus-visible-ring"
+				/>
+				{#if searchQuery}
+					<button
+						type="button"
+						onclick={() => (searchQuery = '')}
+						class="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-primary-400 hover:text-primary-600 rounded focus-visible-ring"
+						aria-label={s('ui.clear') || 'Clear search'}
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-4 w-4"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M6 18L18 6M6 6l12 12"
+							/>
+						</svg>
+					</button>
+				{/if}
+			</div>
 
-      <!-- Quick-jump letter bar -->
-      <div class="flex flex-wrap gap-0.5 justify-center">
-        <button
-          type="button"
-          onclick={() => letterFilter = null}
-          class="px-1.5 py-0.5 text-xs font-medium rounded transition-colors focus-visible-ring
+			<!-- Quick-jump letter bar -->
+			<div class="flex flex-wrap gap-0.5 justify-center">
+				<button
+					type="button"
+					onclick={() => (letterFilter = null)}
+					class="px-1.5 py-0.5 text-xs font-medium rounded transition-colors focus-visible-ring
             {letterFilter === null
-              ? 'bg-blue-100 text-blue-700 dark:bg-blue-800 dark:text-blue-200'
-              : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-gray-200 dark:hover:bg-gray-700'}"
-          aria-pressed={letterFilter === null}
-        >
-          All
-        </button>
-        {#each allLetters as letter}
-          {@const hasItems = availableLetters.includes(letter)}
-          <button
-            type="button"
-            onclick={() => letterFilter = letterFilter === letter ? null : letter}
-            disabled={!hasItems}
-            class="size-6 text-xs font-medium rounded transition-colors focus-visible-ring
+						? 'bg-purple-100 text-accent-links dark:bg-purple-800'
+						: 'text-primary-600 hover:text-primary-700 hover:bg-primary-50'}"
+					aria-pressed={letterFilter === null}
+				>
+					All
+				</button>
+				{#each allLetters as letter}
+					{@const hasItems = availableLetters.includes(letter)}
+					<button
+						type="button"
+						onclick={() => (letterFilter = letterFilter === letter ? null : letter)}
+						disabled={!hasItems}
+						class="size-6 text-xs font-medium rounded transition-colors focus-visible-ring
               {letterFilter === letter
-                ? 'bg-blue-100 text-blue-700 dark:bg-blue-800 dark:text-blue-200'
-                : hasItems
-                  ? 'text-gray-600 hover:text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-gray-200 dark:hover:bg-gray-700'
-                  : 'text-gray-300 dark:text-gray-600 cursor-not-allowed'}"
-            aria-pressed={letterFilter === letter}
-          >
-            {letter}
-          </button>
-        {/each}
-      </div>
-    </div>
+							? 'bg-purple-100 text-accent-links dark:bg-purple-800'
+							: hasItems
+								? 'text-primary-600 hover:text-primary-800 hover:bg-primary-50'
+								: 'text-primary-200 cursor-not-allowed'}"
+						aria-pressed={letterFilter === letter}
+					>
+						{letter}
+					</button>
+				{/each}
+			</div>
+		</div>
 
-    <!-- Always use dndzone, dynamic min-height to prevent shrinking when filtering -->
-    <div
-      bind:this={disabledContainerRef}
-      class="rounded-lg p-3 flex flex-wrap gap-2 content-start border-2 border-dashed"
-      style="min-height: {containerMinHeight}px"
-      class:border-gray-300={!isDragging}
-      class:dark:border-gray-600={!isDragging}
-      class:border-transparent={isDragging}
-      use:dndzone={{
-        items: disabledItems,
-        flipDurationMs,
-        type: "category",
-        dropTargetStyle: {
-          outline: "rgba(156, 163, 175, 0.5) solid 2px",
-          outlineOffset: "-2px",
-          borderRadius: "0.5rem",
-        },
-        morphDisabled: true,
-      }}
-      onconsider={handleDisabledConsider}
-      onfinalize={handleDisabledFinalize}
-    >
-      {#each disabledItems as category, index (`disabled-${category.id}-${index}`)}
-        {@const isCore = isCoreCategory(category.id)}
-        {@const matchesTypeFilter =
-          categoryFilter === "all" ||
-          (categoryFilter === "core" ? isCore : !isCore)}
-        {@const isFiltered = !matchesTypeFilter || !matchesSearch(category)}
-        {@const isBeingDragged = draggedItemId === category.id}
-        <div
-          animate:flip={{ duration: flipDurationMs }}
-          class="group inline-flex items-center gap-1.5 rounded-md bg-gray-100 px-3 py-2 text-sm font-medium text-gray-700 dark:bg-gray-700 dark:text-gray-300 focus-visible-ring
+		<!-- Always use dndzone, dynamic min-height to prevent shrinking when filtering -->
+		<div
+			bind:this={disabledContainerRef}
+			class="rounded-lg p-3 flex flex-wrap gap-2 content-start border-2 border-dashed"
+			style="min-height: {containerMinHeight}px"
+			class:border-primary-200={!isDragging}
+			class:border-transparent={isDragging}
+			use:dndzone={{
+				items: disabledItems,
+				flipDurationMs,
+				type: 'category',
+				dropTargetStyle: {
+					outline: 'rgba(156, 163, 175, 0.5) solid 2px',
+					outlineOffset: '-2px',
+					borderRadius: '0.5rem',
+				},
+				morphDisabled: true,
+			}}
+			onconsider={handleDisabledConsider}
+			onfinalize={handleDisabledFinalize}
+		>
+			{#each disabledItems as category, index (`disabled-${category.id}-${index}`)}
+				{@const isCore = isCoreCategory(category.id)}
+				{@const matchesTypeFilter =
+					categoryFilter === 'all' || (categoryFilter === 'core' ? isCore : !isCore)}
+				{@const isFiltered = !matchesTypeFilter || !matchesSearch(category)}
+				{@const isBeingDragged = draggedItemId === category.id}
+				<div
+					animate:flip={{ duration: flipDurationMs }}
+					class="group inline-flex items-center gap-1.5 rounded-md bg-primary-50 px-3 py-2 text-sm font-medium text-primary-700 focus-visible-ring
 						{isBeingDragged
-            ? 'opacity-50'
-            : ''} cursor-grab active:cursor-grabbing hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
-          style={isFiltered && !isBeingDragged
-            ? "position: absolute; left: -9999px; opacity: 0; pointer-events: none;"
-            : ""}
-          title={s("settings.categories.enable") ||
-            "Click to enable, drag to reorder"}
-          role="button"
-          tabindex={isFiltered ? -1 : 0}
-          aria-label={`${getDisplayName(category)} - click to enable or drag to reorder`}
-          onclick={(e) => {
-            e.stopPropagation();
-            e.preventDefault();
-            handleDisabledClick(category.id);
-          }}
-          onkeydown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              e.stopPropagation();
-              handleDisabledClick(category.id);
-            }
-          }}
-          onmousedown={(e) => e.stopPropagation()}
-        >
-          <span class="select-none">
-            {getDisplayName(category)}
-          </span>
-        </div>
-      {/each}
-      {#if disabledItems.length === 0}
-        <div
-          class="text-sm text-gray-500 dark:text-gray-400 pointer-events-none select-none"
-        >
-          {s("settings.categories.noDisabled") || "All categories enabled"}
-        </div>
-      {:else if disabledItems.every((item) => !matchesSearch(item))}
-        <div
-          class="text-sm text-gray-500 dark:text-gray-400 pointer-events-none select-none"
-        >
-          {#if searchQuery}
-            {s("settings.categories.noSearchResults") || "No categories match your search"}
-          {:else if letterFilter}
-            {s("settings.categories.noLetterResults") || `No categories starting with "${letterFilter}"`}
-          {:else}
-            {s("settings.categories.noFiltered") || "No categories match the current filter"}
-          {/if}
-        </div>
-      {/if}
-    </div>
-  </div>
+						? 'opacity-50'
+						: ''} cursor-grab active:cursor-grabbing hover:bg-primary-100 transition-colors"
+					style={isFiltered && !isBeingDragged
+						? 'position: absolute; left: -9999px; opacity: 0; pointer-events: none;'
+						: ''}
+					title={s('settings.categories.enable') || 'Click to enable, drag to reorder'}
+					role="button"
+					tabindex={isFiltered ? -1 : 0}
+					aria-label={`${getDisplayName(category)} - click to enable or drag to reorder`}
+					onclick={(e) => {
+						e.stopPropagation();
+						e.preventDefault();
+						handleDisabledClick(category.id);
+					}}
+					onkeydown={(e) => {
+						if (e.key === 'Enter' || e.key === ' ') {
+							e.preventDefault();
+							e.stopPropagation();
+							handleDisabledClick(category.id);
+						}
+					}}
+					onmousedown={(e) => e.stopPropagation()}
+				>
+					<span class="select-none">
+						{getDisplayName(category)}
+					</span>
+				</div>
+			{/each}
+			{#if disabledItems.length === 0}
+				<div class="text-sm text-primary-600 pointer-events-none select-none">
+					{s('settings.categories.noDisabled') || 'All categories enabled'}
+				</div>
+			{:else if disabledItems.every((item) => !matchesSearch(item))}
+				<div class="text-sm text-primary-600 pointer-events-none select-none">
+					{#if searchQuery}
+						{s('settings.categories.noSearchResults') || 'No categories match your search'}
+					{:else if letterFilter}
+						{s('settings.categories.noLetterResults') ||
+							`No categories starting with "${letterFilter}"`}
+					{:else}
+						{s('settings.categories.noFiltered') || 'No categories match the current filter'}
+					{/if}
+				</div>
+			{/if}
+		</div>
+	</div>
 
-  <div class="text-center">
-    <button
-      onclick={() => showContributeModal = true}
-      class="text-sm text-blue-500 hover:text-blue-600 dark:text-blue-400 dark:hover:text-blue-300 focus-visible-ring rounded"
-    >
-      {s("settings.categories.contribute") || "+ Contribute a category"}
-    </button>
-  </div>
+	<div class="text-center">
+		<button
+			onclick={() => (showContributeModal = true)}
+			class="text-sm text-accent-links focus-visible-ring rounded"
+		>
+			{s('settings.categories.contribute') || '+ Contribute a category'}
+		</button>
+	</div>
 </div>
 
 <ContributeCategoryModal
-  visible={showContributeModal}
-  onClose={() => showContributeModal = false}
+	visible={showContributeModal}
+	onClose={() => (showContributeModal = false)}
 />

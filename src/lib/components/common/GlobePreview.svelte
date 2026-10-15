@@ -1,4 +1,5 @@
 <script lang="ts">
+import { type DisputedArea, findDisputedArea } from '$lib/utils/disputedAreas';
 import * as THREE from 'three';
 import { feature } from 'topojson-client';
 import type { Topology, GeometryCollection } from 'topojson-specification';
@@ -193,7 +194,11 @@ function drawGeometry(
 	}
 }
 
-function createGlobeTexture(dark: boolean, highlightId: string | null): HTMLCanvasElement {
+function createGlobeTexture(
+	dark: boolean,
+	highlightId: string | null,
+	disputedArea: DisputedArea | null,
+): HTMLCanvasElement {
 	const canvas = document.createElement('canvas');
 	const w = 2048;
 	const h = 1024;
@@ -224,6 +229,16 @@ function createGlobeTexture(dark: boolean, highlightId: string | null): HTMLCanv
 		);
 	}
 
+	// After the countries, so it covers whichever one claims the territory.
+	if (disputedArea) {
+		ctx.fillStyle = dark ? '#1a5c3a' : '#5aad5a';
+		ctx.strokeStyle = dark ? '#2a3e52' : '#8aaa88';
+		ctx.lineWidth = 0.8;
+		for (const polygon of disputedArea.polygons) {
+			drawGeometry(ctx, { type: 'Polygon', coordinates: polygon }, w, h);
+		}
+	}
+
 	return canvas;
 }
 
@@ -247,11 +262,12 @@ $effect(() => {
 	const w = size * 2;
 	const h = size * 2;
 
-	// Find which country contains the target point
-	const highlightId = findCountryId(targetLat, targetLng);
+	// Contested territories highlight themselves, not a country (KNEWS-451)
+	const disputedArea = findDisputedArea(targetLat, targetLng);
+	const highlightId = disputedArea ? null : findCountryId(targetLat, targetLng);
 
 	// Create texture from GeoJSON (standard equirectangular projection)
-	const textureCanvas = createGlobeTexture(dark, highlightId);
+	const textureCanvas = createGlobeTexture(dark, highlightId, disputedArea);
 	const texture = new THREE.CanvasTexture(textureCanvas);
 	texture.colorSpace = THREE.SRGBColorSpace;
 
@@ -424,7 +440,7 @@ $effect(() => {
 </script>
 
 <div
-  bind:this={containerEl}
-  style="width: {size}px; height: {size}px;"
-  class="overflow-hidden rounded-lg"
+	bind:this={containerEl}
+	style="width: {size}px; height: {size}px;"
+	class="overflow-hidden rounded-lg"
 ></div>

@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest';
 import { splitFirstSentence, splitSentences } from './sentenceSplitter';
+import { describe, expect, it } from 'vitest';
 
 describe('sentenceSplitter', () => {
 	describe('splitFirstSentence', () => {

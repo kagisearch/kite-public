@@ -11,5 +11,5 @@ let { isOpen, onClose, title = 'Test Modal' }: Props = $props();
 </script>
 
 <BaseModal {isOpen} {onClose} {title}>
-  <div>Modal Content</div>
+	<div>Modal Content</div>
 </BaseModal>

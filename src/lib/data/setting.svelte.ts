@@ -62,6 +62,13 @@ export class Setting<T = unknown> {
 					stored === 'false'
 				) {
 					this.currentValue = JSON.parse(stored);
+				} else if (typeof this.defaultValue === 'number') {
+					const parsed = Number(stored);
+					if (stored.trim() !== '' && Number.isFinite(parsed)) {
+						this.currentValue = parsed as T;
+					} else {
+						this.currentValue = this.defaultValue;
+					}
 				} else {
 					// Keep as string
 					this.currentValue = stored as T;
@@ -95,8 +102,6 @@ export class Setting<T = unknown> {
 			let valueToStore: string;
 			if (typeof this.currentValue === 'string') {
 				valueToStore = this.currentValue;
-			} else if (typeof this.currentValue === 'boolean' || typeof this.currentValue === 'number') {
-				valueToStore = String(this.currentValue);
 			} else {
 				valueToStore = JSON.stringify(this.currentValue);
 			}

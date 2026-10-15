@@ -39,6 +39,7 @@ jobs:
               - 'vitest*.ts'
               - 'tailwind.config.*'
               - 'static/**'
+              - '.lighthouserc.json'
 
   build:
     name: Build Application

@@ -225,16 +225,24 @@ export function usePageHelpers(
 	const reloadReadStories = async () => {
 		try {
 			const storyIds = await kiteDB.getReadStoryIds();
-			const newReadStories: Record<string, boolean> = {};
+			// Merge with any SSR-seeded entries (logged-in users hit
+			// ssrLoad.loadInitialReadStories on first paint). On a fresh login the
+			// client Dexie may still be syncing from /api/sync/read-history when
+			// this runs — preserve the SSR seed so the read styling doesn't flash
+			// off until the sync catches up.
+			const newReadStories: Record<string, boolean> = { ...state.readStories };
 			storyIds.forEach((id) => {
 				newReadStories[id] = true;
 			});
 			actions.setReadStories(newReadStories);
-			actions.setTotalStoriesRead(storyIds.size);
+			actions.setTotalStoriesRead(Object.keys(newReadStories).length);
 		} catch (error) {
 			console.error('[UI] Error loading saved stories:', error);
-			actions.setReadStories({});
-			actions.setTotalStoriesRead(0);
+			// Preserve any SSR-seeded entries on Dexie failure — those are
+			// the only correct read-state we have when the local DB is
+			// unavailable. Anonymous users start with state.readStories = {}
+			// anyway, so this is a no-op for them.
+			actions.setTotalStoriesRead(Object.keys(state.readStories).length);
 		}
 	};
 

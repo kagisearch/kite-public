@@ -1,5 +1,4 @@
 <script lang="ts">
-import { onMount } from 'svelte';
 import {
 	getImageSrc,
 	getProxiedImageUrl,
@@ -7,6 +6,7 @@ import {
 	onCacheUpdate,
 } from '$lib/utils/imagePreloader';
 import SelectableText from './SelectableText.svelte';
+import { onMount } from 'svelte';
 
 // Props
 interface Props {
@@ -94,70 +94,72 @@ onMount(() => {
 </script>
 
 {#if !imageError}
-  <section class="mt-6">
-    <figure>
-      <div class="relative">
-        <div class="relative mx-auto w-[calc(100%-1rem)] max-w-[800px]">
-          <a
-            href={article.link || "#"}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={article.link ? `View full article: ${article.image_caption || 'Story image'} at ${article.domain || 'source'}` : undefined}
-            class="relative block"
-            class:pointer-events-none={!article.link}
-          >
-            <img
-              src={currentImageSrc || getProxiedImageUrl(article.image)}
-              alt={article.image_caption || "Story image"}
-              class="h-auto w-full rounded-lg shadow-md"
-              class:opacity-50={!imageLoaded && !imageError}
-              loading={shouldLoadEagerly ? "eager" : "lazy"}
-              decoding={shouldLoadEagerly ? "sync" : "async"}
-              onload={handleImageLoad}
-              onerror={handleImageError}
-            />
+	<section class="mt-6">
+		<figure>
+			<div class="relative">
+				<div class="relative mx-auto w-[calc(100%-1rem)] max-w-[800px]">
+					<a
+						href={article.link || '#'}
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label={article.link
+							? `View full article: ${article.image_caption || 'Story image'} at ${article.domain || 'source'}`
+							: undefined}
+						class="relative block"
+						class:pointer-events-none={!article.link}
+					>
+						<img
+							src={currentImageSrc || getProxiedImageUrl(article.image)}
+							alt={article.image_caption || 'Story image'}
+							class="h-auto w-full rounded-lg shadow-md"
+							class:opacity-50={!imageLoaded && !imageError}
+							loading={shouldLoadEagerly ? 'eager' : 'lazy'}
+							decoding={shouldLoadEagerly ? 'sync' : 'async'}
+							onload={handleImageLoad}
+							onerror={handleImageError}
+						/>
 
-            <!-- Loading indicator -->
-            {#if !imageLoaded}
-              <div
-                class="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-lg"
-                role="status"
-                aria-live="polite"
-                aria-label="Loading image"
-              >
-                <div
-                  class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-400"
-                  aria-hidden="true"
-                ></div>
-              </div>
-            {/if}
+						<!-- Loading indicator -->
+						{#if !imageLoaded}
+							<div
+								class="absolute inset-0 flex items-center justify-center bg-primary-50 dark:bg-graphite-700 rounded-lg"
+								role="status"
+								aria-live="polite"
+								aria-label="Loading image"
+							>
+								<div
+									class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-300"
+									aria-hidden="true"
+								></div>
+							</div>
+						{/if}
 
-            {#if showCaption && article.domain && imageLoaded && !imageError}
-              <div
-                class="bg-opacity-50 hover:bg-opacity-75 absolute right-2 bottom-2 rounded bg-black px-2 py-1 text-sm text-white"
-              >
-                {article.domain}
-              </div>
-            {/if}
-          </a>
-          {#if showCaption && article.image_caption && imageLoaded && !imageError}
-            <p class="mt-2 text-sm text-gray-600 italic dark:text-gray-400">
-              {#if flashcardMode}
-                <SelectableText
-                  text={article.image_caption}
-                  {flashcardMode}
-                  {selectedWords}
-                  {shouldJiggle}
-                  {onWordClick}
-                  section="image_caption"
-                />
-              {:else}
-                {article.image_caption}
-              {/if}
-            </p>
-          {/if}
-        </div>
-      </div>
-    </figure>
-  </section>
+						{#if showCaption && article.domain && imageLoaded && !imageError}
+							<div
+								class="bg-opacity-50 hover:bg-opacity-75 absolute right-2 bottom-2 rounded bg-black px-2 py-1 text-sm text-white"
+							>
+								{article.domain}
+							</div>
+						{/if}
+					</a>
+					{#if showCaption && article.image_caption && imageLoaded && !imageError}
+						<p class="mt-2 text-sm text-primary-600 italic">
+							{#if flashcardMode}
+								<SelectableText
+									text={article.image_caption}
+									{flashcardMode}
+									{selectedWords}
+									{shouldJiggle}
+									{onWordClick}
+									section="image_caption"
+								/>
+							{:else}
+								{article.image_caption}
+							{/if}
+						</p>
+					{/if}
+				</div>
+			</div>
+		</figure>
+	</section>
 {/if}

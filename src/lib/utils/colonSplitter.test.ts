@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest';
 import { findNonTimeColon, splitAtNonTimeColon } from './colonSplitter';
+import { describe, expect, it } from 'vitest';
 
 describe('colonSplitter', () => {
 	describe('findNonTimeColon', () => {
@@ -23,6 +23,40 @@ describe('colonSplitter', () => {
 			const textWithTitle =
 				'Gaza Update: Le pause precedenti avevano consentito gli aiuti dalle 10:00 alle 20:00';
 			expect(findNonTimeColon(textWithTitle)).toBe(11); // After "Gaza Update"
+		});
+
+		it('should ignore colons inside single quotes', () => {
+			expect(findNonTimeColon("Signs saying 'No Shah: No Regime'")).toBe(-1);
+			expect(findNonTimeColon("Protest: Signs saying 'USA: Don't Repeat 1953'")).toBe(7); // First colon outside quotes
+		});
+
+		it('should ignore colons inside double quotes', () => {
+			expect(findNonTimeColon('He said "Warning: Danger ahead"')).toBe(-1);
+			expect(findNonTimeColon('Quote: He said "Note: Important"')).toBe(5);
+		});
+
+		it('should ignore colons inside Japanese brackets', () => {
+			expect(findNonTimeColon('「内容: 説明」')).toBe(-1);
+			// タイトル (4 chars) + : at index 4
+			expect(findNonTimeColon('タイトル: 「内容: 説明」を参照')).toBe(4);
+			// Double corner brackets
+			expect(findNonTimeColon('『タイトル: 内容』')).toBe(-1);
+		});
+
+		it('should handle curly quotes', () => {
+			expect(findNonTimeColon("'Warning: Danger'")).toBe(-1);
+			expect(findNonTimeColon('"Note: Important"')).toBe(-1);
+		});
+
+		it('should handle nested quotes correctly', () => {
+			// Colon inside inner quotes should be ignored
+			expect(findNonTimeColon("Headline: He said 'Warning: Stay away'")).toBe(8);
+		});
+
+		it('should handle null and empty input', () => {
+			expect(findNonTimeColon(null as unknown as string)).toBe(-1);
+			expect(findNonTimeColon(undefined as unknown as string)).toBe(-1);
+			expect(findNonTimeColon('')).toBe(-1);
 		});
 	});
 
@@ -54,6 +88,24 @@ describe('colonSplitter', () => {
 			expect(splitAtNonTimeColon(textWithTitle)).toEqual([
 				'Gaza',
 				'Le pause precedenti avevano consentito gli aiuti dalle 10:00 alle 20:00',
+			]);
+		});
+
+		it('should not split text when colon is inside quotes', () => {
+			expect(splitAtNonTimeColon("Signs saying 'No Shah: No Regime'")).toBe(null);
+			expect(splitAtNonTimeColon('「内容: 説明」')).toBe(null);
+			expect(splitAtNonTimeColon('"Warning: Danger"')).toBe(null);
+		});
+
+		it('should split at colon outside quotes', () => {
+			expect(splitAtNonTimeColon("Protest: Signs saying 'USA: Don't Repeat 1953'")).toEqual([
+				'Protest',
+				"Signs saying 'USA: Don't Repeat 1953'",
+			]);
+
+			expect(splitAtNonTimeColon('Japanese: 「内容: 説明」')).toEqual([
+				'Japanese',
+				'「内容: 説明」',
 			]);
 		});
 	});

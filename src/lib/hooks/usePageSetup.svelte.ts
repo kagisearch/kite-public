@@ -1,8 +1,8 @@
-import { onMount } from 'svelte';
 import { browser } from '$app/environment';
 import { preloadAllLocales } from '$lib/client/storyLocalization.svelte';
 import { displaySettings, languageSettings, settingsModalState } from '$lib/data/settings.svelte';
 import { kiteDB } from '$lib/db/dexie';
+import { appUpdateService } from '$lib/services/appUpdateService.svelte';
 import { batchNotificationService } from '$lib/services/batchNotificationService';
 import { dataReloadService } from '$lib/services/dataService';
 import { type NavigationParams, UrlNavigationService } from '$lib/services/urlNavigationService';
@@ -10,6 +10,7 @@ import { categoryMetadataStore } from '$lib/stores/categoryMetadata.svelte';
 import { timeTravel } from '$lib/stores/timeTravel.svelte';
 import { timeTravelBatch } from '$lib/stores/timeTravelBatch.svelte';
 import { toastStore } from '$lib/stores/toast.svelte';
+import { onMount } from 'svelte';
 
 interface PageSetupOptions {
 	parseInitialUrl: () => NavigationParams;
@@ -130,12 +131,16 @@ export function usePageSetup(options: PageSetupOptions) {
 			});
 		});
 
+		// Start monitoring for app version updates (KNEWS-261)
+		appUpdateService.start();
+
 		// Cleanup on unmount
 		return () => {
 			window.removeEventListener('sync-complete', handleSyncComplete);
 			window.removeEventListener('hashchange', handleHashChange);
 			window.removeEventListener('popstate', handlePopState);
 			unsubscribeBatchNotifications();
+			appUpdateService.stop();
 		};
 	});
 }

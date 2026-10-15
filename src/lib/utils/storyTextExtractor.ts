@@ -2,15 +2,14 @@
  * Utility to extract plain text from story sections for TTS
  * Strips citations and returns clean text optimized for natural speech
  */
-
 import { stripCitations } from './citationUtils';
 
 // Sections to skip (non-text content)
-const SKIP_SECTIONS = new Set(['primaryImage', 'secondaryImage', 'sources']);
+export const SECTIONS_WITHOUT_TEXT = new Set(['primaryImage', 'secondaryImage', 'sources']);
 
 // Special case mappings for sections that don't follow the pattern
 // Note: businessAngle and quotes are handled specially in extractSectionText
-const SPECIAL_FIELD_MAP: Record<string, string> = {
+export const SPECIAL_FIELD_MAP: Record<string, string> = {
 	summary: 'short_summary',
 	highlights: 'talking_points',
 	actionItems: 'user_action_items',
@@ -20,7 +19,7 @@ const SPECIAL_FIELD_MAP: Record<string, string> = {
 /**
  * Convert camelCase to snake_case
  */
-function camelToSnake(str: string): string {
+export function camelToSnake(str: string): string {
 	return str.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
 }
 
@@ -92,7 +91,7 @@ type StoryData = Record<string, unknown>;
  */
 function extractSectionText(sectionId: string, story: StoryData): string[] {
 	// Skip non-text sections
-	if (SKIP_SECTIONS.has(sectionId)) {
+	if (SECTIONS_WITHOUT_TEXT.has(sectionId)) {
 		return [];
 	}
 

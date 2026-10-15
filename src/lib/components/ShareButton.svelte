@@ -1,10 +1,10 @@
 <script lang="ts">
+import { browser } from '$app/environment';
+import { s } from '$lib/client/localization.svelte';
 import { flip, offset, shift, useFloating } from '@skeletonlabs/floating-ui-svelte';
 import { IconCheck, IconLoader2, IconShare } from '@tabler/icons-svelte';
 import { onDestroy, onMount } from 'svelte';
 import Portal from 'svelte-portal';
-import { browser } from '$app/environment';
-import { s } from '$lib/client/localization.svelte';
 
 interface Props {
 	title?: string;
@@ -230,48 +230,44 @@ async function handleShare() {
 
 <!-- Share Button (icon only) -->
 <button
-  bind:this={floating.elements.reference}
-  onclick={handleShare}
-  class="group relative flex h-10 w-10 items-center justify-center rounded-lg {className}"
-  aria-label={s("article.shareStory") || "Share story"}
-  title={s("article.shareStory") || "Share story"}
-  disabled={isLoading}
+	bind:this={floating.elements.reference}
+	onclick={handleShare}
+	class="group relative flex h-10 w-10 items-center justify-center rounded-lg {className}"
+	aria-label={s('article.shareStory') || 'Share story'}
+	title={s('article.shareStory') || 'Share story'}
+	disabled={isLoading}
 >
-  {#if isLoading}
-    <!-- Loading spinner -->
-    <IconLoader2
-      size={20}
-      stroke={2}
-      class="animate-spin text-gray-500 dark:text-gray-400"
-    />
-  {:else}
-    <!-- Share icon -->
-    <IconShare
-      size={20}
-      stroke={2}
-      class="transition-colors text-gray-600 group-hover:text-gray-800 dark:text-gray-400 dark:group-hover:text-gray-200"
-    />
-  {/if}
+	{#if isLoading}
+		<!-- Loading spinner -->
+		<IconLoader2 size={20} stroke={2} class="animate-spin text-primary-600" />
+	{:else}
+		<!-- Share icon -->
+		<IconShare
+			size={20}
+			stroke={2}
+			class="transition-colors text-primary-600 group-hover:text-primary-800"
+		/>
+	{/if}
 </button>
 
 <!-- Floating "Copied!" feedback -->
 {#if showCopiedFeedback}
-  <Portal>
-    <div
-      bind:this={floating.elements.floating}
-      class="absolute top-0 left-0 z-tooltip flex items-center gap-1.5 rounded-md bg-green-600 px-3 py-2 text-sm font-medium text-white shadow-lg transition-opacity duration-200 dark:bg-green-700 {floating.isPositioned
-        ? 'opacity-100'
-        : 'opacity-0 invisible'}"
-      style={floating.floatingStyles}
-    >
-      <IconCheck size={16} stroke={2.5} class="text-white" />
-      <span>{s("article.shareCopied") || "Copied!"}</span>
-    </div>
-  </Portal>
+	<Portal>
+		<div
+			bind:this={floating.elements.floating}
+			class="absolute top-0 left-0 z-tooltip flex items-center gap-1.5 rounded-md bg-green-600 px-3 py-2 text-sm font-medium text-white shadow-lg transition-opacity duration-200 dark:bg-green-700 {floating.isPositioned
+				? 'opacity-100'
+				: 'opacity-0 invisible'}"
+			style={floating.floatingStyles}
+		>
+			<IconCheck size={16} stroke={2.5} class="text-white" />
+			<span>{s('article.shareCopied') || 'Copied!'}</span>
+		</div>
+	</Portal>
 {/if}
 
 <style>
-  button {
-    -webkit-tap-highlight-color: transparent;
-  }
+button {
+	-webkit-tap-highlight-color: transparent;
+}
 </style>

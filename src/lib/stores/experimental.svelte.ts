@@ -46,6 +46,12 @@ function saveFeatures(features: ExperimentalFeatures) {
 		if (syncManager) {
 			syncManager.trackSettingChange('kite-experimental-features', JSON.stringify(features));
 		}
+
+		// Mirror the SSR-relevant flags into the kn_prefs cookie. Lazy import
+		// keeps this module independent of $app/environment-only code paths.
+		import('$lib/data/knPrefsCookie')
+			.then(({ syncKnPrefsCookie }) => syncKnPrefsCookie())
+			.catch((err) => console.warn('[experimental] kn_prefs cookie refresh failed:', err));
 	} catch (error) {
 		console.warn('Failed to save experimental features to localStorage:', error);
 	}
@@ -97,6 +103,10 @@ export const experimental = {
 			} catch (error) {
 				console.warn('Failed to remove experimental features from localStorage:', error);
 			}
+			// Refresh kn_prefs so SSR stops seeing the stale cookie state.
+			import('$lib/data/knPrefsCookie')
+				.then(({ syncKnPrefsCookie }) => syncKnPrefsCookie())
+				.catch((err) => console.warn('[experimental] kn_prefs cookie refresh failed:', err));
 		}
 	},
 
@@ -104,5 +114,24 @@ export const experimental = {
 		if (browser) {
 			loadFeatures();
 		}
+	},
+
+	/**
+	 * Apply SSR-mirrored experimental flags before client init() reads
+	 * localStorage. Must be called on every initialMount — including when
+	 * the seed is absent — to reset SSR-visible flags to their defaults.
+	 *
+	 * On adapter-node the module-level $state is shared across requests, so
+	 * leaving fields untouched would leak the previous request's value into
+	 * the next render: a subscriber with showChaosIndex=true followed by an
+	 * anonymous user would emit the chaos badge in the second request's HTML.
+	 * Always overwrite each SSR-visible field; missing seed fields fall back
+	 * to DEFAULT_FEATURES.
+	 */
+	seedFromSSR(seed: Partial<ExperimentalFeatures> | null | undefined): void {
+		experimentalState.showChaosIndex =
+			typeof seed?.showChaosIndex === 'boolean'
+				? seed.showChaosIndex
+				: DEFAULT_FEATURES.showChaosIndex;
 	},
 };

@@ -1,21 +1,15 @@
-import { error } from '@sveltejs/kit';
+import { ssrPayload } from '$lib/server/ssrLoad';
 import type { PageServerLoad } from './$types';
+import { error } from '@sveltejs/kit';
 
-export const load: PageServerLoad = async ({ params }) => {
-	const { batchId } = params;
+export const load: PageServerLoad = async (event) => {
+	const { batchId } = event.params;
 
-	// Check if the request is for an XML file
-	if (batchId.endsWith('.xml')) {
-		// Return 404 to let nginx serve the static file
+	// Static asset routes that nginx is meant to serve directly. Returning
+	// 404 here lets it fall through to the static handler.
+	if (batchId.endsWith('.xml') || batchId.endsWith('.json')) {
 		error(404, 'Not found');
 	}
 
-	// Check if the request is for other static files that should be served by nginx
-	if (batchId.endsWith('.json')) {
-		// Return 404 to let nginx serve the static file
-		error(404, 'Not found');
-	}
-
-	// No page-specific meta tags for batch-only URLs
-	return {};
+	return ssrPayload(event, { batchId });
 };

@@ -1,9 +1,9 @@
 <script lang="ts">
-import { flip, offset, shift, useFloating } from '@skeletonlabs/floating-ui-svelte';
-import { fade } from 'svelte/transition';
-import Portal from 'svelte-portal';
 import { browser } from '$app/environment';
 import { s } from '$lib/client/localization.svelte';
+import { flip, offset, shift, useFloating } from '@skeletonlabs/floating-ui-svelte';
+import Portal from 'svelte-portal';
+import { fade } from 'svelte/transition';
 
 interface Props {
 	show: boolean;
@@ -79,32 +79,31 @@ $effect(() => {
 
 <!-- Temporary category tooltip -->
 {#if localShowTooltip && referenceElement && browser}
-  <Portal>
-    <div
-      bind:this={floating.elements.floating}
-      class="absolute top-0 left-0 z-popover pointer-events-none {floating.isPositioned
-        ? 'opacity-100'
-        : 'opacity-0 invisible'}"
-      style={floating.floatingStyles}
-      transition:fade={{ duration: 200 }}
-    >
-      <!-- Arrow pointing up -->
-      <div
-        class="absolute -top-2 left-1/2 ltr:-translate-x-1/2 rtl:translate-x-1/2 w-0 h-0
+	<Portal>
+		<div
+			bind:this={floating.elements.floating}
+			class="absolute top-0 left-0 z-popover pointer-events-none {floating.isPositioned
+				? 'opacity-100'
+				: 'opacity-0 invisible'}"
+			style={floating.floatingStyles}
+			transition:fade={{ duration: 200 }}
+		>
+			<!-- Arrow pointing up -->
+			<div
+				class="absolute -top-2 left-1/2 ltr:-translate-x-1/2 rtl:translate-x-1/2 w-0 h-0
 				border-l-[6px] border-l-transparent
 				border-r-[6px] border-r-transparent
-				border-b-[8px] border-b-gray-800 dark:border-b-gray-700"
-      ></div>
+				border-b-[8px] border-b-primary-800 dark:border-b-graphite-700"
+			></div>
 
-      <!-- Tooltip content -->
-      <div
-        class="bg-gray-800 dark:bg-gray-700 text-white text-xs px-3 py-2 rounded-md shadow-lg max-w-xs"
-      >
-        <p class="whitespace-nowrap">
-          {s("app.temporaryCategoryNotice") ||
-            "Temporarily showing this category from shared link"}
-        </p>
-      </div>
-    </div>
-  </Portal>
+			<!-- Tooltip content -->
+			<div
+				class="bg-primary-800 dark:bg-graphite-700 text-white dark:text-primary text-xs px-3 py-2 rounded-md shadow-lg max-w-xs"
+			>
+				<p class="whitespace-nowrap">
+					{s('app.temporaryCategoryNotice') || 'Temporarily showing this category from shared link'}
+				</p>
+			</div>
+		</div>
+	</Portal>
 {/if}

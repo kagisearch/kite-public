@@ -1,12 +1,13 @@
 <script lang="ts">
-import { IconLoader2 } from '@tabler/icons-svelte';
 import { browser } from '$app/environment';
 import { s } from '$lib/client/localization.svelte';
+import { features } from '$lib/config/features';
 import { type SearchResult, SearchService } from '$lib/services/search';
 import type { Category, Story } from '$lib/types';
 import { scrollLock } from '$lib/utils/scrollLock';
 import SearchInput from './SearchInput.svelte';
 import SearchResults from './SearchResults.svelte';
+import { IconLoader2 } from '@tabler/icons-svelte';
 
 interface Props {
 	visible: boolean;
@@ -100,11 +101,13 @@ async function handleInput(text: string, cursorPosition: number) {
 
 	const result = searchService.updateFromInput(text, cursorPosition);
 
-	// Update filter suggestions and context
-	filterSuggestions = result.suggestions;
-	currentFilterContext = result.context;
-	showFilterSuggestions = filterSuggestions.length > 0;
-	filterSuggestionIndex = 0;
+	// Update filter suggestions and context (only if filters are enabled)
+	if (features.searchFilters) {
+		filterSuggestions = result.suggestions;
+		currentFilterContext = result.context;
+		showFilterSuggestions = filterSuggestions.length > 0;
+		filterSuggestionIndex = 0;
+	}
 
 	// Update local state
 	const state = searchService.getState();
@@ -447,124 +450,111 @@ $effect(() => {
 </script>
 
 {#if visible}
-  <div
-    class="fixed inset-0 z-modal flex items-start justify-center pt-20 px-4"
-    ontouchmove={(e) => e.preventDefault()}
-    style="touch-action: none;"
-  >
-    <!-- Backdrop -->
-    <button
-      class="absolute inset-0 bg-black/20 dark:bg-black/40 {isLoadingBatch
-        ? 'cursor-not-allowed'
-        : ''}"
-      onclick={() => {
-        if (!isLoadingBatch) {
-          onClose();
-        }
-      }}
-      aria-label={s("search.close_search") || "Close search"}
-      disabled={isLoadingBatch}
-    ></button>
+	<div
+		class="fixed inset-0 z-modal flex items-start justify-center pt-20 px-4"
+		ontouchmove={(e) => e.preventDefault()}
+		style="touch-action: none;"
+	>
+		<!-- Backdrop -->
+		<button
+			class="absolute inset-0 bg-black/20 dark:bg-black/40 {isLoadingBatch
+				? 'cursor-not-allowed'
+				: ''}"
+			onclick={() => {
+				if (!isLoadingBatch) {
+					onClose();
+				}
+			}}
+			aria-label={s('search.close_search') || 'Close search'}
+			disabled={isLoadingBatch}
+		></button>
 
-    <!-- Search Modal -->
-    <div
-      class="relative bg-white dark:bg-gray-800 rounded-lg shadow-2xl w-full max-w-2xl h-[70vh] flex flex-col overflow-hidden {isLoadingBatch
-        ? 'pointer-events-none'
-        : ''}"
-      ontouchmove={(e) => e.stopPropagation()}
-      style="touch-action: pan-y;"
-    >
-      <!-- Loading Overlay for Historical Results -->
-      {#if isLoadingBatch}
-        <div
-          class="absolute inset-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm z-50 flex items-center justify-center"
-        >
-          <div class="text-center">
-            <IconLoader2 class="size-8 text-blue-500 animate-spin mx-auto mb-4" />
-            <p class="text-sm text-gray-600 dark:text-gray-400">
-              {s("search.loading_historical_data") ||
-                "Loading historical data..."}
-            </p>
-          </div>
-        </div>
-      {/if}
-      <!-- Search Input -->
-      <div class="border-b border-gray-200 dark:border-gray-700">
-        <SearchInput
-          bind:this={searchInput}
-          filters={searchState.filters}
-          suggestions={filterSuggestions}
-          selectedSuggestionIndex={filterSuggestionIndex}
-          isLoading={searchState.isLoading}
-          onInput={handleInput}
-          onKeydown={handleKeyDown}
-          onApplySuggestion={handleApplySuggestion}
-          onRemoveFilter={handleRemoveFilter}
-        />
-      </div>
+		<!-- Search Modal -->
+		<div
+			class="relative bg-modal-bg rounded-lg shadow-2xl w-full max-w-2xl h-[70vh] flex flex-col overflow-hidden {isLoadingBatch
+				? 'pointer-events-none'
+				: ''}"
+			ontouchmove={(e) => e.stopPropagation()}
+			style="touch-action: pan-y;"
+		>
+			<!-- Loading Overlay for Historical Results -->
+			{#if isLoadingBatch}
+				<div
+					class="absolute inset-0 bg-white/80 dark:bg-graphite-950/80 backdrop-blur-sm z-50 flex items-center justify-center"
+				>
+					<div class="text-center">
+						<IconLoader2 class="size-8 text-accent-links animate-spin mx-auto mb-4" />
+						<p class="text-sm text-primary-600">
+							{s('search.loading_historical_data') || 'Loading historical data...'}
+						</p>
+					</div>
+				</div>
+			{/if}
+			<!-- Search Input -->
+			<div class="border-b border-primary-100">
+				<SearchInput
+					bind:this={searchInput}
+					filters={searchState.filters}
+					suggestions={filterSuggestions}
+					selectedSuggestionIndex={filterSuggestionIndex}
+					isLoading={searchState.isLoading}
+					onInput={handleInput}
+					onKeydown={handleKeyDown}
+					onApplySuggestion={handleApplySuggestion}
+					onRemoveFilter={handleRemoveFilter}
+				/>
+			</div>
 
-      <!-- Search Results -->
-      <SearchResults
-        results={searchState.results}
-        selectedIndex={searchState.selectedIndex}
-        isLoading={searchState.isLoading}
-        isSearchingHistorical={searchState.isSearchingHistorical}
-        isLoadingMore={searchState.isLoadingMore}
-        hasMore={searchState.hasMore}
-        query={searchState.query}
-        totalCount={searchState.totalCount || searchState.results.length}
-        localCount={searchState.localCount}
-        historicalCount={searchState.historicalCount}
-        onSelectResult={handleSelectResult}
-        onLoadMore={handleLoadMore}
-      />
+			<!-- Search Results -->
+			<SearchResults
+				results={searchState.results}
+				selectedIndex={searchState.selectedIndex}
+				isLoading={searchState.isLoading}
+				isSearchingHistorical={searchState.isSearchingHistorical}
+				isLoadingMore={searchState.isLoadingMore}
+				hasMore={searchState.hasMore}
+				query={searchState.query}
+				totalCount={searchState.totalCount || searchState.results.length}
+				localCount={searchState.localCount}
+				historicalCount={searchState.historicalCount}
+				onSelectResult={handleSelectResult}
+				onLoadMore={handleLoadMore}
+			/>
 
-      <!-- Keyboard Shortcuts Help (hidden on mobile) -->
-      <div
-        class="hidden sm:block px-4 py-2 border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50"
-      >
-        <div
-          class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400"
-        >
-          <div class="flex items-center gap-4">
-            <span class="flex items-center gap-1">
-              <kbd
-                class="px-1.5 py-0.5 bg-gray-200 dark:bg-gray-700 rounded text-xs"
-                >↑↓</kbd
-              >
-              {s("search.navigate") || "navigate"}
-            </span>
-            <span class="flex items-center gap-1">
-              <kbd
-                class="px-1.5 py-0.5 bg-gray-200 dark:bg-gray-700 rounded text-xs"
-                >Enter</kbd
-              >
-              {s("search.select") || "select"}
-            </span>
-            <span class="flex items-center gap-1">
-              <kbd
-                class="px-1.5 py-0.5 bg-gray-200 dark:bg-gray-700 rounded text-xs"
-                >Esc</kbd
-              >
-              {s("search.close") || "close"}
-            </span>
-          </div>
-          <span class="flex items-center gap-1">
-            <kbd
-              class="px-1.5 py-0.5 bg-gray-200 dark:bg-gray-700 rounded text-xs"
-            >
-              {isMac ? '⌘' : 'Ctrl'}
-            </kbd>
-            <span>+</span>
-            <kbd
-              class="px-1.5 py-0.5 bg-gray-200 dark:bg-gray-700 rounded text-xs"
-            >
-              K
-            </kbd>
-            {s("search.search") || "search"}
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
+			<!-- Keyboard Shortcuts Help (hidden on mobile) -->
+			<div
+				class="hidden sm:block px-4 py-2 border-t border-primary-50 bg-primary-25 dark:bg-graphite-800/50"
+			>
+				<div class="flex items-center justify-between text-xs text-primary-600">
+					<div class="flex items-center gap-4">
+						<span class="flex items-center gap-1">
+							<kbd class="px-1.5 py-0.5 bg-primary-100 dark:bg-graphite-700 rounded text-xs">↑↓</kbd
+							>
+							{s('search.navigate') || 'navigate'}
+						</span>
+						<span class="flex items-center gap-1">
+							<kbd class="px-1.5 py-0.5 bg-primary-100 dark:bg-graphite-700 rounded text-xs"
+								>Enter</kbd
+							>
+							{s('search.select') || 'select'}
+						</span>
+						<span class="flex items-center gap-1">
+							<kbd class="px-1.5 py-0.5 bg-primary-100 dark:bg-graphite-700 rounded text-xs"
+								>Esc</kbd
+							>
+							{s('search.close') || 'close'}
+						</span>
+					</div>
+					<span class="flex items-center gap-1">
+						<kbd class="px-1.5 py-0.5 bg-primary-100 dark:bg-graphite-700 rounded text-xs">
+							{isMac ? '⌘' : 'Ctrl'}
+						</kbd>
+						<span>+</span>
+						<kbd class="px-1.5 py-0.5 bg-primary-100 dark:bg-graphite-700 rounded text-xs"> K </kbd>
+						{s('search.search') || 'search'}
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
 {/if}

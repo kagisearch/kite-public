@@ -1,6 +1,6 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { batchService } from '../batchService';
 import { chaosIndexService } from '../chaosIndexService';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 // Mock fetch
 global.fetch = vi.fn();

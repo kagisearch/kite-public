@@ -1,12 +1,12 @@
 <script lang="ts">
-import { arrow, flip, offset, shift, size, useFloating } from '@skeletonlabs/floating-ui-svelte';
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-svelte';
-import { onDestroy, onMount } from 'svelte';
-import Portal from 'svelte-portal';
 import { browser } from '$app/environment';
 import { s } from '$lib/client/localization.svelte';
 import { fetchWikipediaContent, type WikipediaContent } from '$lib/services/wikipediaService';
 import { scrollLock } from '$lib/utils/scrollLock';
+import { arrow, flip, offset, shift, size, useFloating } from '@skeletonlabs/floating-ui-svelte';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-svelte';
+import { onDestroy, onMount } from 'svelte';
+import Portal from 'svelte-portal';
 
 interface Props {
 	language?: string; // Language for Wikipedia lookups
@@ -273,172 +273,156 @@ onDestroy(() => {
 </script>
 
 {#if showTooltip}
-  {#if !isMobile}
-    <!-- Desktop Tooltip -->
-    <Portal>
-      <div
-        bind:this={floating.elements.floating}
-        class="absolute top-0 left-0 z-tooltip w-80 max-w-[min(320px,calc(100vw-16px))] rounded-lg border border-gray-300 bg-white shadow-lg transition-opacity duration-200 dark:border-gray-600 dark:bg-gray-700 {floating.isPositioned
-          ? 'opacity-100'
-          : 'opacity-0 invisible'}"
-        style={floating.floatingStyles}
-        onmouseenter={handleTooltipEnter}
-        onmouseleave={handleTooltipLeave}
-        role="tooltip"
-      >
-        <!-- Arrow - temporarily commented out -->
-        <!-- <div
+	{#if !isMobile}
+		<!-- Desktop Tooltip -->
+		<Portal>
+			<div
+				bind:this={floating.elements.floating}
+				class="absolute top-0 left-0 z-tooltip w-80 max-w-[min(320px,calc(100vw-16px))] rounded-lg border border-primary-200 bg-modal-bg shadow-lg transition-opacity duration-200 {floating.isPositioned
+					? 'opacity-100'
+					: 'opacity-0 invisible'}"
+				style={floating.floatingStyles}
+				onmouseenter={handleTooltipEnter}
+				onmouseleave={handleTooltipLeave}
+				role="tooltip"
+			>
+				<!-- Arrow - temporarily commented out -->
+				<!-- <div
 					bind:this={arrowElement}
-					class="arrow border border-gray-300 dark:border-gray-600"
+					class="arrow border border-primary-200 dark:border-primary-300"
 					style={floating.arrowStyles}
 					data-placement={floating.placement}
 				></div> -->
 
-        <!-- Content -->
-        <OverlayScrollbarsComponent
-          bind:this={tooltipScrollbars}
-          class="w-full overflow-hidden transition-[max-height] duration-200"
-          style="max-height: {tooltipMaxHeight}px"
-          options={{
-            overflow: {
-              x: "hidden",
-              y: "scroll",
-            },
-            scrollbars: {
-              autoHide: "leave",
-              autoHideDelay: 300,
-            },
-          }}
-        >
-          <div class="p-3">
-            <h4
-              class="mb-2 font-semibold text-gray-800 dark:text-gray-200 break-words"
-            >
-              {tooltipTitle}
-            </h4>
+				<!-- Content -->
+				<OverlayScrollbarsComponent
+					bind:this={tooltipScrollbars}
+					class="w-full overflow-hidden transition-[max-height] duration-200"
+					style="max-height: {tooltipMaxHeight}px"
+					options={{
+						overflow: {
+							x: 'hidden',
+							y: 'scroll',
+						},
+						scrollbars: {
+							autoHide: 'leave',
+							autoHideDelay: 300,
+						},
+					}}
+				>
+					<div class="p-3">
+						<h4 class="mb-2 font-semibold text-primary break-words">
+							{tooltipTitle}
+						</h4>
 
-            {#if isLoading}
-              <div
-                class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400"
-              >
-                <div
-                  class="h-4 w-4 animate-spin rounded-full border-2 border-gray-300 border-t-blue-500"
-                ></div>
-                <span>Loading...</span>
-              </div>
-            {:else}
-              {#if tooltipImage}
-                <img
-                  src={tooltipImage}
-                  alt={tooltipTitle}
-                  class="mb-2 w-full rounded h-auto object-contain"
-                />
-              {/if}
-              <p class="text-sm text-gray-600 dark:text-gray-400 break-words" dir="auto">
-                {tooltipContent}
-              </p>
-            {/if}
-          </div>
-        </OverlayScrollbarsComponent>
-      </div>
-    </Portal>
-  {:else}
-    <!-- Mobile Modal (Fullscreen) -->
-    <Portal>
-      <div
-        class="fixed inset-0 z-tooltip flex items-center justify-center bg-black/60 dark:bg-black/80"
-        onclick={closeMobileModal}
-        onkeydown={(e) => e.key === "Escape" && closeMobileModal()}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="wikipedia-modal-title"
-        tabindex="-1"
-      >
-        <div
-          class="flex h-full w-full flex-col bg-white shadow-xl dark:bg-gray-800"
-          onclick={(e) => e.stopPropagation()}
-          onkeydown={(e) => e.stopPropagation()}
-          role="presentation"
-        >
-          <!-- Header with arrow back button -->
-          <div
-            class="flex items-center border-b border-gray-200 p-4 dark:border-gray-700"
-          >
-            <button
-              class="mr-3 rounded-full p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-100"
-              onclick={closeMobileModal}
-              aria-label={s("common.back")}
-            >
-              <svg
-                class="h-5 w-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                />
-              </svg>
-            </button>
-            <h3
-              id="wikipedia-modal-title"
-              class="flex-1 text-lg font-semibold text-gray-900 dark:text-gray-100"
-            >
-              {tooltipTitle}
-            </h3>
-          </div>
+						{#if isLoading}
+							<div class="flex items-center space-x-2 text-sm text-primary-600">
+								<div
+									class="h-4 w-4 animate-spin rounded-full border-2 border-primary-200 border-t-accent-links"
+								></div>
+								<span>Loading...</span>
+							</div>
+						{:else}
+							{#if tooltipImage}
+								<img
+									src={tooltipImage}
+									alt={tooltipTitle}
+									class="mb-2 w-full rounded h-auto object-contain"
+								/>
+							{/if}
+							<p class="text-sm text-primary-600 break-words" dir="auto">
+								{tooltipContent}
+							</p>
+						{/if}
+					</div>
+				</OverlayScrollbarsComponent>
+			</div>
+		</Portal>
+	{:else}
+		<!-- Mobile Modal (Fullscreen) -->
+		<Portal>
+			<div
+				class="fixed inset-0 z-tooltip flex items-center justify-center bg-black/60 dark:bg-black/80"
+				onclick={closeMobileModal}
+				onkeydown={(e) => e.key === 'Escape' && closeMobileModal()}
+				role="dialog"
+				aria-modal="true"
+				aria-labelledby="wikipedia-modal-title"
+				tabindex="-1"
+			>
+				<div
+					class="flex h-full w-full flex-col bg-modal-bg shadow-xl"
+					onclick={(e) => e.stopPropagation()}
+					onkeydown={(e) => e.stopPropagation()}
+					role="presentation"
+				>
+					<!-- Header with arrow back button -->
+					<div class="flex items-center border-b border-primary-100 p-4">
+						<button
+							class="mr-3 rounded-full p-2 text-primary-600 hover:bg-primary-50 hover:text-primary"
+							onclick={closeMobileModal}
+							aria-label={s('common.back')}
+						>
+							<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M10 19l-7-7m0 0l7-7m-7 7h18"
+								/>
+							</svg>
+						</button>
+						<h3 id="wikipedia-modal-title" class="flex-1 text-lg font-semibold text-primary">
+							{tooltipTitle}
+						</h3>
+					</div>
 
-          <!-- Content -->
-          <OverlayScrollbarsComponent
-            class="flex-1 overflow-hidden"
-            options={{
-              overflow: {
-                x: "hidden",
-                y: "scroll",
-              },
-              scrollbars: {
-                autoHide: "leave",
-                autoHideDelay: 300,
-              },
-            }}
-          >
-            <div class="p-4">
-              {#if isLoading}
-                <div
-                  class="flex items-center justify-center space-x-2 py-8 text-gray-500 dark:text-gray-400"
-                >
-                  <div
-                    class="h-6 w-6 animate-spin rounded-full border-2 border-gray-300 border-t-blue-500"
-                  ></div>
-                  <span>Loading Wikipedia content...</span>
-                </div>
-              {:else}
-                {#if tooltipFullImage || tooltipImage}
-                  <img
-                    src={tooltipFullImage || tooltipImage}
-                    alt={tooltipTitle}
-                    class="mb-4 w-full rounded-lg object-contain"
-                  />
-                {/if}
-                <p class="text-gray-700 dark:text-gray-300" dir="auto">{tooltipContent}</p>
-                {#if tooltipWikiUrl}
-                  <a
-                    href={tooltipWikiUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="mt-4 inline-block rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
-                  >
-                    {s("wikipedia.readMore")}
-                  </a>
-                {/if}
-              {/if}
-            </div>
-          </OverlayScrollbarsComponent>
-        </div>
-      </div>
-    </Portal>
-  {/if}
+					<!-- Content -->
+					<OverlayScrollbarsComponent
+						class="flex-1 overflow-hidden"
+						options={{
+							overflow: {
+								x: 'hidden',
+								y: 'scroll',
+							},
+							scrollbars: {
+								autoHide: 'leave',
+								autoHideDelay: 300,
+							},
+						}}
+					>
+						<div class="p-4">
+							{#if isLoading}
+								<div class="flex items-center justify-center space-x-2 py-8 text-primary-600">
+									<div
+										class="h-6 w-6 animate-spin rounded-full border-2 border-primary-200 border-t-accent-links"
+									></div>
+									<span>Loading Wikipedia content...</span>
+								</div>
+							{:else}
+								{#if tooltipFullImage || tooltipImage}
+									<img
+										src={tooltipFullImage || tooltipImage}
+										alt={tooltipTitle}
+										class="mb-4 w-full rounded-lg object-contain"
+									/>
+								{/if}
+								<p class="text-primary-700" dir="auto">{tooltipContent}</p>
+								{#if tooltipWikiUrl}
+									<a
+										href={tooltipWikiUrl}
+										target="_blank"
+										rel="noopener noreferrer"
+										class="mt-4 inline-block rounded-lg bg-accent-links px-4 py-2 text-on-accent hover:opacity-90"
+									>
+										{s('wikipedia.readMore')}
+									</a>
+								{/if}
+							{/if}
+						</div>
+					</OverlayScrollbarsComponent>
+				</div>
+			</div>
+		</Portal>
+	{/if}
 {/if}

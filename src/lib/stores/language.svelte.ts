@@ -51,11 +51,24 @@ const languageState = $state<LanguageState>({
 });
 
 // Helper functions
+function writeLocaleCookie(language: SupportedLanguage) {
+	if (!browser) return;
+
+	const secure = window.location.protocol === 'https:' ? '; secure' : '';
+	if (language === 'default') {
+		document.cookie = `locale=; path=/; max-age=0; samesite=lax${secure}`;
+		return;
+	}
+
+	document.cookie = `locale=${encodeURIComponent(language)}; path=/; max-age=31536000; samesite=lax${secure}`;
+}
+
 function saveLanguage(language: SupportedLanguage) {
 	if (!browser) return;
 
 	// Store "kiteLanguage" for UI language
 	localStorage.setItem('kiteLanguage', language);
+	writeLocaleCookie(language);
 
 	// Track change for sync
 	if (syncManager) {
@@ -66,10 +79,10 @@ function saveLanguage(language: SupportedLanguage) {
 function loadLanguage(): SupportedLanguage {
 	if (!browser) return 'default';
 
-	const stored = localStorage.getItem('kiteLanguage') as SupportedLanguage;
+	const stored = localStorage.getItem('kiteLanguage') as SupportedLanguage | null;
 
-	// Return stored language or "default" as fallback
-	return stored || 'default';
+	// Match settings.language's default value so client hydration and SSR agree.
+	return stored || 'en';
 }
 
 // Load locale data from API
@@ -138,6 +151,7 @@ export const language = {
 		const storedLanguage = loadLanguage();
 		languageState.current = storedLanguage;
 		applyLanguage(storedLanguage);
+		writeLocaleCookie(storedLanguage);
 	},
 
 	initStrings(initialStrings: Record<string, LocaleEntry>) {

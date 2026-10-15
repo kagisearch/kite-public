@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest';
 import { containsCJK } from './textUtils';
+import { describe, expect, it } from 'vitest';
 
 describe('textUtils', () => {
 	describe('containsCJK', () => {

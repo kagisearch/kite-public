@@ -26,6 +26,11 @@ coverage
 *.sln
 *.sw?
 
+# Environment variables
+.env
+.env.*
+
+# Build output
 .vite
 .svelte-kit
 __pycache__/

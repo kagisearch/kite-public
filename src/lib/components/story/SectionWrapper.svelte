@@ -11,10 +11,10 @@ let { title, className = '', children }: Props = $props();
 </script>
 
 <section class="mt-6 {className}">
-  <h3 class="mb-2 text-xl font-semibold text-gray-800 dark:text-gray-200">
-    {title}
-  </h3>
-  {#if children}
-    {@render children()}
-  {/if}
+	<h3 class="mb-2 text-xl font-semibold text-primary-800">
+		{title}
+	</h3>
+	{#if children}
+		{@render children()}
+	{/if}
 </section>

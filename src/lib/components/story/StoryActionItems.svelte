@@ -39,39 +39,35 @@ const displayItems = $derived.by(() => {
 </script>
 
 <section class="mt-6 rounded-lg bg-[#F1FAE8] p-4 dark:bg-[#2B411C]">
-  <h3 class="mb-2 text-xl font-semibold text-gray-800 dark:text-gray-100">
-    {storyLocalizer("section.actionItems") || "Action Items"}
-  </h3>
-  <ul class="mb-2 ms-4 list-disc space-y-2 text-gray-700 dark:text-gray-200">
-    {#each displayItems as item}
-      {@const itemCitations = getCitedArticlesForText(
-        item,
-        citationMapping,
-        articles,
-      )}
-      <li dir="auto">
-        {#if flashcardMode}
-          <SelectableText
-            text={item}
-            {flashcardMode}
-            {selectedWords}
-            {selectedPhrases}
-            {shouldJiggle}
-            {onWordClick}
-            section="user_action_items"
-          />
-        {:else}
-          <CitationText
-            text={item}
-            showFavicons={false}
-            showNumbers={false}
-            inline={true}
-            articles={itemCitations.citedArticles}
-            {citationMapping}
-            {storyLocalizer}
-          />
-        {/if}
-      </li>
-    {/each}
-  </ul>
+	<h3 class="mb-2 text-xl font-semibold text-primary-800">
+		{storyLocalizer('section.actionItems') || 'Action Items'}
+	</h3>
+	<ul class="mb-2 ms-4 list-disc space-y-2 text-primary-700">
+		{#each displayItems as item}
+			{@const itemCitations = getCitedArticlesForText(item, citationMapping, articles)}
+			<li>
+				{#if flashcardMode}
+					<SelectableText
+						text={item}
+						{flashcardMode}
+						{selectedWords}
+						{selectedPhrases}
+						{shouldJiggle}
+						{onWordClick}
+						section="user_action_items"
+					/>
+				{:else}
+					<CitationText
+						text={item}
+						showFavicons={false}
+						showNumbers={false}
+						inline={true}
+						articles={itemCitations.citedArticles}
+						{citationMapping}
+						{storyLocalizer}
+					/>
+				{/if}
+			</li>
+		{/each}
+	</ul>
 </section>

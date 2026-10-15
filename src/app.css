@@ -8,7 +8,7 @@
 
 @theme {
 	/* Font Families */
-	--font-lufga: 'lufga', system-ui, sans-serif;
+	--font-lufga: 'lufga', 'lufga-fallback', system-ui, sans-serif;
 
 	/* Colors */
 	--color-graphite: #18181a;
@@ -60,19 +60,24 @@
 	--color-chrome-950: #23232f;
 	--color-chrome-1000: #181824;
 
+	--color-purple-50: #f3f1fe;
+	--color-purple-100: #e8e4fd;
+	--color-purple-200: #d4cefb;
 	--color-purple-300: #c9c1ff;
 	--color-purple-400: #c0b8ff;
 	--color-purple-500: #9185e0;
 	--color-purple-600: #6c5edc;
-	--color-purple-800: #4d41a4;
+	--color-purple-700: #5a4ec5;
+	--color-purple-800: #4739ac;
 	--color-purple-900: #3f3399;
+	--color-purple-950: #2d2570;
 
 	--color-white: #ffffff;
 	--color-yellow: #ffb319;
 	--color-warning: #ff964a;
-	--color-info: #4A67C7;
+	--color-info: #4a67c7;
 	--color-danger: #ff5a0a;
-	--color-success: #3F8611;
+	--color-success: #3f8611;
 	--color-calm: #edf0f5;
 	--color-blue: #224fc1;
 
@@ -117,7 +122,7 @@
 	/* Focus Ring Colors */
 	--color-focus-ring: #93c5fd; /* blue-300 for light mode */
 	--color-ring-focus-ring: var(--color-focus-ring); /* For Tailwind ring-focus-ring class */
-    
+
 	/* Animations */
 	--animate-fade: fadeIn 0.5s ease-in-out;
 
@@ -133,6 +138,20 @@
 	--skeleton-start: #eeedf6;
 	--skeleton-middle: #d8d5eb;
 	--skeleton-end: #fcfbfb;
+
+	/* Dynamic font size variables (can be overridden by JavaScript) */
+	--text-xs: var(--text-xs, 0.75rem);
+	--text-sm: var(--text-sm, 0.875rem);
+	--text-base: var(--text-base, 1rem);
+	--text-lg: var(--text-lg, 1.125rem);
+	--text-xl: var(--text-xl, 1.25rem);
+	--text-2xl: var(--text-2xl, 1.5rem);
+	--text-3xl: var(--text-3xl, 1.875rem);
+	--text-4xl: var(--text-4xl, 2.25rem);
+
+	/* Dark mode page-level colors */
+	--color-dark-bg: var(--color-graphite-950);
+	--color-dark-text: var(--color-graphite-70);
 
 	/* Z-index scale - Tailwind v4 utilities (use z-dropdown, z-modal, etc.) */
 	--z-index-base: 0;
@@ -312,6 +331,7 @@ span.highlight {
 		url('/fonts/lufga/lufga-regular-webfont.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
+	font-display: fallback;
 }
 
 @font-face {
@@ -339,6 +359,93 @@ span.highlight {
 	font-weight: 300;
 	font-style: normal;
 	font-display: fallback;
+}
+
+/* Metric-matched fallbacks. These don't ship glyphs — they re-shape Arial /
+ * Helvetica so their box matches lufga's at the same font-size. When the
+ * browser is still loading lufga (or it never loads on a flaky network), the
+ * stack falls through to 'lufga-fallback', which paints Arial glyphs but with
+ * lufga's ascent/descent/x-height. Result: no perceived size change or CLS
+ * when the real lufga eventually swaps in.
+ *
+ * Values computed from frontend/static/fonts/lufga/lufga-*-webfont.ttf
+ * (OS/2 sxHeight, winAscent, winDescent, sTypoLineGap) against Arial's
+ * sxHeight 1062 / upm 2048. Both lufga weights share the same x-height so
+ * size-adjust is identical; ascent/descent/line-gap diverge per weight. */
+@font-face {
+	font-family: 'lufga-fallback';
+	src: local('Arial'), local('Helvetica');
+	font-weight: normal;
+	font-style: normal;
+	size-adjust: 98.35%;
+	ascent-override: 92.93%;
+	descent-override: 25.11%;
+	line-gap-override: 0%;
+}
+
+@font-face {
+	font-family: 'lufga-fallback';
+	src: local('Arial Bold'), local('Helvetica Bold'), local('Arial'), local('Helvetica');
+	font-weight: 600 700;
+	font-style: normal;
+	size-adjust: 98.35%;
+	ascent-override: 98.63%;
+	descent-override: 34.06%;
+	line-gap-override: 20.34%;
+}
+
+/* Atkinson Hyperlegible Next - designed for low-vision readability.
+   One variable file covers the whole weight range. */
+@font-face {
+	font-family: 'Atkinson Hyperlegible Next';
+	src: url('/fonts/atkinson-hyperlegible/atkinson-next-variable.woff2') format('woff2-variations');
+	font-weight: 200 800;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Fast Sans - bolds the first ~40% of each word via the calt feature, which
+   browsers apply by default. Latin/Greek/Cyrillic only; other scripts fall
+   back to system-ui. Ships a single weight, and browsers reuse it as-is
+   rather than synthesising bold (measured: 400/600/700 render identically),
+   so headings lose their weight contrast and the fixation points carry the
+   emphasis instead. */
+@font-face {
+	font-family: 'Fast Sans';
+	src: url('/fonts/fast-sans/fast-sans.woff2') format('woff2');
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* OpenDyslexic - designed for readers with dyslexia */
+@font-face {
+	font-family: 'OpenDyslexic';
+	src: url('/fonts/opendyslexic/opendyslexic-regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'OpenDyslexic';
+	src: url('/fonts/opendyslexic/opendyslexic-bold.woff') format('woff');
+	font-weight: 600 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+/* Font family classes - accessibility fonts apply globally, only .font-lufga keeps branding */
+.font-family-atkinson {
+	font-family: 'Atkinson Hyperlegible Next', system-ui, sans-serif;
+}
+
+.font-family-fast {
+	font-family: 'Fast Sans', system-ui, sans-serif;
+}
+
+.font-family-opendyslexic {
+	font-family: 'OpenDyslexic', system-ui, sans-serif;
 }
 
 select {
@@ -396,22 +503,22 @@ select {
 
 /* OverlayScrollbars theming - Light theme (default) */
 .os-scrollbar {
-  --os-handle-bg: rgba(0, 0, 0, 0.2);
-  --os-handle-bg-hover: rgba(0, 0, 0, 0.3);
-  --os-handle-bg-active: rgba(0, 0, 0, 0.4);
-  --os-track-bg: transparent;
-  --os-track-bg-hover: rgba(0, 0, 0, 0.05);
-  --os-track-bg-active: rgba(0, 0, 0, 0.1);
+	--os-handle-bg: rgba(0, 0, 0, 0.2);
+	--os-handle-bg-hover: rgba(0, 0, 0, 0.3);
+	--os-handle-bg-active: rgba(0, 0, 0, 0.4);
+	--os-track-bg: transparent;
+	--os-track-bg-hover: rgba(0, 0, 0, 0.05);
+	--os-track-bg-active: rgba(0, 0, 0, 0.1);
 }
 
 /* OverlayScrollbars theming - Dark theme */
 .dark .os-scrollbar {
-  --os-handle-bg: rgba(255, 255, 255, 0.2);
-  --os-handle-bg-hover: rgba(255, 255, 255, 0.3);
-  --os-handle-bg-active: rgba(255, 255, 255, 0.4);
-  --os-track-bg: transparent;
-  --os-track-bg-hover: rgba(255, 255, 255, 0.05);
-  --os-track-bg-active: rgba(255, 255, 255, 0.1);
+	--os-handle-bg: rgba(255, 255, 255, 0.2);
+	--os-handle-bg-hover: rgba(255, 255, 255, 0.3);
+	--os-handle-bg-active: rgba(255, 255, 255, 0.4);
+	--os-track-bg: transparent;
+	--os-track-bg-hover: rgba(255, 255, 255, 0.05);
+	--os-track-bg-active: rgba(255, 255, 255, 0.1);
 }
 
 /* Test Color Icon Class */
@@ -459,7 +566,12 @@ a:hover .icon-test-color {
 }
 
 /* Typography: text-balance for headings, text-pretty for body */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	text-wrap: balance;
 }
 
@@ -477,6 +589,58 @@ p {
 	display: none;
 }
 
+/* The first rendered story section still needs the card-level top margin
+   stripped even when a translation overlay is inserted before the sections. */
+.kite-first-section-wrap > section:first-of-type {
+	margin-top: 0;
+}
+
+/* Shimmer applied to story fields that are still awaiting on-demand
+   translation: the original-language text remains rendered (and selectable)
+   at a reduced opacity, with a soft highlight sweeping through. The contrast
+   between plateau and peak is intentionally mild so the text never visually
+   "disappears" — it just reads as "this part is changing soon". */
+.kite-translating-shimmer {
+	-webkit-mask-image: linear-gradient(
+		100deg,
+		rgba(0, 0, 0, 0.65) 0%,
+		rgba(0, 0, 0, 0.65) 30%,
+		rgba(0, 0, 0, 0.95) 50%,
+		rgba(0, 0, 0, 0.65) 70%,
+		rgba(0, 0, 0, 0.65) 100%
+	);
+	mask-image: linear-gradient(
+		100deg,
+		rgba(0, 0, 0, 0.65) 0%,
+		rgba(0, 0, 0, 0.65) 30%,
+		rgba(0, 0, 0, 0.95) 50%,
+		rgba(0, 0, 0, 0.65) 70%,
+		rgba(0, 0, 0, 0.65) 100%
+	);
+	/* mask-size must stay >= 200% AND mask-position must stay in [0%, 100%]
+	   so the element is always covered by the mask. Going outside that range
+	   with mask-repeat: no-repeat leaves portions of the element fully
+	   unmasked (alpha 0), making the text wink out — which is what the user
+	   originally saw. */
+	-webkit-mask-size: 250% 100%;
+	mask-size: 250% 100%;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	animation: kite-translating-shimmer 2.6s linear infinite;
+	will-change: mask-position;
+}
+
+@keyframes kite-translating-shimmer {
+	from {
+		-webkit-mask-position: 100% 0;
+		mask-position: 100% 0;
+	}
+	to {
+		-webkit-mask-position: 0% 0;
+		mask-position: 0% 0;
+	}
+}
+
 /* Respect user preference for reduced motion */
 @media (prefers-reduced-motion: reduce) {
 	*,
@@ -486,5 +650,11 @@ p {
 		animation-iteration-count: 1 !important;
 		transition-duration: 0.01ms !important;
 		scroll-behavior: auto !important;
+	}
+
+	.kite-translating-shimmer {
+		-webkit-mask-image: none;
+		mask-image: none;
+		opacity: 0.55;
 	}
 }

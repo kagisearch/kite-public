@@ -54,7 +54,6 @@
  * - Never delete old migrations (needed for users who haven't migrated yet)
  * - Test migrations with different starting states
  */
-
 import { browser } from '$app/environment';
 import { safeGetItem, safeSetItem } from '$lib/client/utils/safe-storage';
 import { ALL_MIGRATIONS } from './migrations/index';

@@ -23,6 +23,14 @@
     "text": "تنزيل لنظام iOS",
     "translationContext": "Button text to download iOS app"
   },
+  "settings.about.feedback": {
+    "text": "الملاحظات",
+    "translationContext": "Section header for the feedback link in about settings"
+  },
+  "settings.about.feedbackDescription": {
+    "text": "شارك الأفكار، وأبلغ عن المشاكل، وصوّت على ما سنبنيه لاحقًا",
+    "translationContext": "Description of the Kagi Feedback forum link"
+  },
   "settings.about.forNews": {
     "text": "لقراء الأخبار",
     "translationContext": "Footer text suffix for copyright"
@@ -50,6 +58,10 @@
   "settings.about.mobileDescription": {
     "text": "احصل على أخبار Kagi على جهازك المحمول",
     "translationContext": "Description for mobile apps"
+  },
+  "settings.about.openFeedback": {
+    "text": "فتح ملاحظات Kagi",
+    "translationContext": "Button text linking to the Kagi Feedback forum"
   },
   "settings.about.viewApiDocs": {
     "text": "عرض وثائق API",
@@ -527,6 +539,10 @@
     "text": "خصص موجز الأخبار الخاص بك عن طريق تصفية الموضوعات التي تفضل عدم رؤيتها. استخدم الإعدادات المسبقة للفلاتر الشائعة أو أنشئ كلماتك الرئيسية المخصصة.",
     "translationContext": "Description shown at the top of content filter settings tab"
   },
+  "settings.dataLanguage.englishOnlyNotice": {
+    "text": "اعتبارًا من ١٠ يونيو ٢٠٢٦، لم نعد نترجم كل الفئات إلى جميع اللغات. كل قصة متاحة بلغتها الأصلية، بالإضافة إلى ترجمة باللغة الإنجليزية إذا كانت اللغة الأصلية غير الإنجليزية.",
+    "translationContext": "Notice in language settings explaining that batch translation into all languages stopped on June 10, 2026; stories now ship in their native language plus English. Keep the date as-is."
+  },
   "settings.dataLanguage.label": {
     "text": "لغة المحتوى",
     "translationContext": "Label for the data/content language setting"
@@ -578,6 +594,30 @@
   "settings.experimental.warning": {
     "text": "هذه ميزات تجريبية قد يتم تغييرها أو إزالتها في أي وقت.",
     "translationContext": "Warning text for experimental features"
+  },
+  "settings.fontFamily.atkinson": {
+    "text": "Atkinson Hyperlegible Next",
+    "translationContext": "Option for Atkinson Hyperlegible font, designed for low-vision readability"
+  },
+  "settings.fontFamily.default": {
+    "text": "النظام (افتراضي)",
+    "translationContext": "Option for the default system font"
+  },
+  "settings.fontFamily.description": {
+    "text": "تم تحسين Atkinson Hyperlegible Next للقراء ضعاف البصر. صُمم OpenDyslexic للقراء الذين يعانون من عسر القراءة. أما Fast Sans فيقوم بتغميق بداية كل كلمة لتوجيه العين عبر النص.",
+    "translationContext": "Description for the font family setting explaining accessibility benefits"
+  },
+  "settings.fontFamily.fast": {
+    "text": "Fast Sans (قراءة أسرع)",
+    "translationContext": "Option for the Fast Sans font, which bolds the start of each word as a reading aid"
+  },
+  "settings.fontFamily.label": {
+    "text": "الخط",
+    "translationContext": "Label for the font family setting"
+  },
+  "settings.fontFamily.opendyslexic": {
+    "text": "OpenDyslexic",
+    "translationContext": "Option for OpenDyslexic font, designed for readers with dyslexia"
   },
   "settings.fontSize.label": {
     "text": "حجم الخط",
@@ -686,6 +726,138 @@
   "settings.layoutWidth.wide": {
     "text": "عريض (1024px)",
     "translationContext": "Option for wide layout width"
+  },
+  "settings.lock.backToPin": {
+    "text": "العودة إلى رمز PIN",
+    "translationContext": "Link to go back from math challenge to PIN entry"
+  },
+  "settings.lock.confirmPin": {
+    "text": "تأكيد رمز PIN",
+    "translationContext": "Label for confirming the new PIN"
+  },
+  "settings.lock.description": {
+    "text": "أدخل رمز PIN الخاص بك للوصول إلى الإعدادات.",
+    "translationContext": "Description on the PIN lock screen"
+  },
+  "settings.lock.disableKeyboardShortcuts": {
+    "text": "تعطيل اختصارات لوحة المفاتيح",
+    "translationContext": "Toggle to disable all keyboard shortcuts for managed users"
+  },
+  "settings.lock.enable": {
+    "text": "تعيين قفل برمز PIN",
+    "translationContext": "Button to enable PIN lock"
+  },
+  "settings.lock.enabled": {
+    "text": "قفل الإعدادات مفعل",
+    "translationContext": "Status text when PIN lock is active"
+  },
+  "settings.lock.enabledDescription": {
+    "text": "يلزم إدخال رمز PIN لفتح الإعدادات.",
+    "translationContext": "Description when PIN lock is active"
+  },
+  "settings.lock.forgot": {
+    "text": "هل نسيت رمز PIN؟",
+    "translationContext": "Link to start the forgot PIN flow"
+  },
+  "settings.lock.forgotTitle": {
+    "text": "إعادة تعيين رمز PIN",
+    "translationContext": "Title shown on the math challenge screen for forgotten PIN"
+  },
+  "settings.lock.hideChaosIndex": {
+    "text": "إخفاء مؤشر الفوضى",
+    "translationContext": "Toggle to hide the chaos index indicator"
+  },
+  "settings.lock.hideCorrections": {
+    "text": "إخفاء سجل التصويبات",
+    "translationContext": "Managed-mode toggle that hides the 'Corrected' indicator and correction history under story headers. Defaults to ON when a PIN is set, so the simplified reading view stays uncluttered."
+  },
+  "settings.lock.hideFontSize": {
+    "text": "إخفاء اختصار حجم الخط",
+    "translationContext": "Toggle to hide the font size button in the header"
+  },
+  "settings.lock.hideReportButton": {
+    "text": "إخفاء زر الإبلاغ",
+    "translationContext": "Toggle to hide the report button on story cards"
+  },
+  "settings.lock.hideSearch": {
+    "text": "إخفاء البحث",
+    "translationContext": "Toggle to hide the search button in the header"
+  },
+  "settings.lock.hideShareButton": {
+    "text": "إخفاء زر المشاركة",
+    "translationContext": "Toggle to hide the share button on story cards"
+  },
+  "settings.lock.hideTimeTravel": {
+    "text": "إخفاء السفر عبر الزمن",
+    "translationContext": "Toggle to hide the time travel button in the header"
+  },
+  "settings.lock.managedOptions": {
+    "text": "تبسيط الواجهة",
+    "translationContext": "Heading for managed mode toggles when PIN is set"
+  },
+  "settings.lock.managedOptionsDescription": {
+    "text": "إخفاء الأزرار والميزات اختياريًا لتوفير تجربة قراءة أنقى. على سبيل المثال، عند إعداد أخبار Kagi لطفل أو قريب أكبر سنًا يرغب فقط في قراءة الأخبار دون تشتيت.",
+    "translationContext": "Description for managed mode options section, explains why hiding features can be helpful"
+  },
+  "settings.lock.mathDescription": {
+    "text": "حل هذه المسألة لإعادة تعيين رمز PIN الخاص بك:",
+    "translationContext": "Description asking user to solve a math problem to reset PIN"
+  },
+  "settings.lock.mathPlaceholder": {
+    "text": "إجابتك",
+    "translationContext": "Placeholder for the math answer input"
+  },
+  "settings.lock.mathSubmit": {
+    "text": "إرسال",
+    "translationContext": "Button to submit the math challenge answer"
+  },
+  "settings.lock.mathWrong": {
+    "text": "إجابة غير صحيحة. حاول مرة أخرى.",
+    "translationContext": "Error when math challenge answer is wrong"
+  },
+  "settings.lock.mismatch": {
+    "text": "رموز PIN غير متطابقة.",
+    "translationContext": "Error when PIN confirmation doesn't match"
+  },
+  "settings.lock.newPin": {
+    "text": "رمز PIN جديد (4-6 أرقام)",
+    "translationContext": "Label for the new PIN input"
+  },
+  "settings.lock.placeholder": {
+    "text": "أدخل رمز PIN",
+    "translationContext": "Placeholder text for the PIN input field"
+  },
+  "settings.lock.remove": {
+    "text": "إزالة رمز PIN",
+    "translationContext": "Button to remove the PIN lock"
+  },
+  "settings.lock.sectionDescription": {
+    "text": "اقفل الإعدادات برمز PIN لمنع التغييرات العرضية. مفيد للأجهزة المدارة أو الرقابة الأبوية.\n\nعند القفل، يتم إخفاء اختصار حجم الخط وشعار تنزيل التطبيق، ويلزم إدخال رمز PIN لفتح الإعدادات.",
+    "translationContext": "Description of the settings lock feature, explaining what changes in managed mode"
+  },
+  "settings.lock.sectionTitle": {
+    "text": "قفل الإعدادات",
+    "translationContext": "Title of the settings lock section in account settings"
+  },
+  "settings.lock.setPin": {
+    "text": "تعيين رمز PIN",
+    "translationContext": "Button to save the new PIN"
+  },
+  "settings.lock.title": {
+    "text": "الإعدادات مقفلة",
+    "translationContext": "Title shown on the PIN lock screen"
+  },
+  "settings.lock.tooShort": {
+    "text": "يجب أن يتكون رمز PIN من 4 أرقام على الأقل.",
+    "translationContext": "Error when PIN is too short"
+  },
+  "settings.lock.unlock": {
+    "text": "فتح القفل",
+    "translationContext": "Button text to unlock settings with PIN"
+  },
+  "settings.lock.wrongPin": {
+    "text": "رمز PIN غير صحيح. يرجى المحاولة مرة أخرى.",
+    "translationContext": "Error message when wrong PIN is entered"
   },
   "settings.mapsProvider.apple": {
     "text": "خرائط Apple",
@@ -2567,6 +2739,18 @@
     "text": "{{weekday}}، {{day}} {{month}}",
     "translationContext": "Format for displaying dates. {weekday} will be replaced with the day of the week, {month} with the month name, and {day} with the day number."
   },
+  "downloadApp.pageTitle": {
+    "text": "تنزيل Kagi News",
+    "translationContext": "HTML page title for the download app landing page"
+  },
+  "downloadApp.subtitle": {
+    "text": "يبدو أنك تستخدم جهاز كمبيوتر مكتبي. اختر متجرك أدناه وافتح الرابط على هاتفك!",
+    "translationContext": "Subtitle for the download app landing page shown to desktop users"
+  },
+  "downloadApp.title": {
+    "text": "الأخبار معك أينما كنت",
+    "translationContext": "Heading for the download app landing page"
+  },
   "f1.completed": {
     "text": "مكتمل",
     "translationContext": "Status label for completed races"
@@ -2675,6 +2859,10 @@
     "text": "ساهم",
     "translationContext": "Link text for contributing to the project"
   },
+  "footer.feedback": {
+    "text": "الملاحظات",
+    "translationContext": "Link text for the Kagi Feedback forum"
+  },
   "footer.rssFeed": {
     "text": "خلاصة RSS",
     "translationContext": "Link text for RSS feed"
@@ -2714,6 +2902,10 @@
   "keyboard.action.jumpLast": {
     "text": "الانتقال إلى القصة الأخيرة",
     "translationContext": "Description for G key - jumping to last story"
+  },
+  "keyboard.action.markAllRead": {
+    "text": "تحديد كل القصص كمقروءة",
+    "translationContext": "Description for Shift+M key - marking all stories in the current category as read"
   },
   "keyboard.action.moveNext": {
     "text": "الانتقال إلى القصة التالية",
@@ -2826,6 +3018,30 @@
   "meta.news": {
     "text": "أخبار",
     "translationContext": "The word 'News' used in titles"
+  },
+  "nativeAppBanner.appStoreLabel": {
+    "text": "تنزيل من App Store",
+    "translationContext": "Accessibility label for the App Store download badge"
+  },
+  "nativeAppBanner.dismissLabel": {
+    "text": "تجاهل شريط التطبيق",
+    "translationContext": "Accessibility label for the close button on the native app banner"
+  },
+  "nativeAppBanner.googlePlayLabel": {
+    "text": "احصل عليه من Google Play",
+    "translationContext": "Accessibility label for the Google Play download badge"
+  },
+  "nativeAppBanner.qrCodeAlt": {
+    "text": "رمز QR لتنزيل Kagi News",
+    "translationContext": "Alt text for the QR code image in the native app banner"
+  },
+  "nativeAppBanner.subtitle": {
+    "text": "جرّب تطبيقنا على هاتفك المحمول.",
+    "translationContext": "Subtitle for the desktop native app promotional banner"
+  },
+  "nativeAppBanner.title": {
+    "text": "موجز الصحافة اليومي",
+    "translationContext": "Title for the desktop native app promotional banner"
   },
   "navigation.backToTop": {
     "text": "العودة إلى الأعلى",
@@ -3218,6 +3434,18 @@
   "nhl.volume": {
     "text": "الحجم",
     "translationContext": "Abbreviation for trading volume"
+  },
+  "notification.appUpdate.description": {
+    "text": "لقد عملنا على تحسينات وإصلاحات للأخطاء. أعد تحميل الصفحة للحصول على أحدث إصدار.",
+    "translationContext": "Description shown in a banner when a new version of the app has been deployed, prompting the user to reload"
+  },
+  "notification.appUpdate.reload": {
+    "text": "إعادة تحميل",
+    "translationContext": "Button label to reload the page and get the latest version of the app"
+  },
+  "notification.appUpdate.title": {
+    "text": "إصدار جديد من Kagi News متاح الآن",
+    "translationContext": "Title shown in a banner when a new version of the app has been deployed"
   },
   "notification.newBatch.action": {
     "text": "عرض",
@@ -3735,6 +3963,10 @@
     "text": "غير متوفر مؤقتًا",
     "translationContext": "Small label shown with a clock icon when a core category has no stories, indicating the update schedule"
   },
+  "stories.noStoriesHistorical": {
+    "text": "لم تكن هناك أخبار في هذه الفئة في هذا التاريخ.",
+    "translationContext": "Message shown when viewing a historical batch and the selected category has no stories for that date"
+  },
   "story.assistant.placeholder": {
     "text": "اسأل عن هذه القصة...",
     "translationContext": "Placeholder text in the assistant question input field"
@@ -3746,6 +3978,34 @@
   "story.assistant.tooltip": {
     "text": "اسأل المساعد",
     "translationContext": "Tooltip for button that opens Kagi Assistant with the current story topic"
+  },
+  "story.corrections.changed": {
+    "text": "التغييرات",
+    "translationContext": "Label introducing the list of fields that a correction modified (e.g. 'Changed: Headline, Summary')."
+  },
+  "story.corrections.explainer": {
+    "text": "قد يتم تعديل الأخبار بعد نشرها. يكون السبب عادةً بلاغًا من قارئ أو تدقيقنا للحقائق بعد النشر؛ ويتم إنتاج التعديل بواسطة نفس نوع نظام الذكاء الاصطناعي الذي يكتب الأخبار، ويُسجَّل هنا من أجل الشفافية.",
+    "translationContext": "Neutral footnote shown under the expanded correction history list, explaining how corrections work (triggered by a reader report or follow-up fact-checking, generated by AI, not by a human editor)."
+  },
+  "story.corrections.many": {
+    "text": "{count} تصويبات",
+    "translationContext": "Label shown when a story has received multiple fact-check corrections. {count} is replaced with the number (2 or more)."
+  },
+  "story.corrections.manyAfterRead": {
+    "text": "{count} تصويبات بعد قراءتك",
+    "translationContext": "Plural variant shown when multiple corrections were applied after the user read the story. {count} is replaced with the number (2 or more)."
+  },
+  "story.corrections.one": {
+    "text": "تم التصويب",
+    "translationContext": "Label on a subtle indicator shown when a story has received one fact-check correction after publication. Clicking reveals a timestamped note about what was changed."
+  },
+  "story.corrections.oneAfterRead": {
+    "text": "تم التصويب بعد قراءتك",
+    "translationContext": "Variant of the 'Corrected' label shown when the correction was applied after the reader had already read the story — highlighted so they know the text they remember may have changed."
+  },
+  "story.corrections.toggle": {
+    "text": "عرض سجل التصويبات",
+    "translationContext": "Accessibility label for the button that expands the correction history list."
   },
   "story.flashcards.download": {
     "text": "تنزيل",
@@ -4006,6 +4266,46 @@
   "timeTravel.urlBanner.viewingShared": {
     "text": "شارك أحدهم معك رابطًا لأخبار من تاريخ {{{date}}}. يمكنك العودة إلى أخبار اليوم في أي وقت باستخدام علامة ✕ بجوار التاريخ أعلاه.",
     "translationContext": "One-time info banner shown when user arrives via a shared time travel URL (has referrer). Points user to the header date pill with X button."
+  },
+  "translation.explainer.networkEffect": {
+    "text": "تُحفظ الترجمات مؤقتًا للقراء اللاحقين. ومع ازدياد شعبية لغة ما، تنضم إلى مجموعة اللغات المترجمة مسبقًا.",
+    "translationContext": "Fourth paragraph of the on-demand translation explainer modal"
+  },
+  "translation.explainer.onDemand": {
+    "text": "تستخدم اللغات الأقل انتشارًا الترجمة عند الطلب. تُترجم العناوين مسبقًا لتسهيل تصفح القائمة، بينما يُترجم المحتوى الكامل عند فتح القصة.",
+    "translationContext": "Third paragraph fallback when the language name is unknown"
+  },
+  "translation.explainer.onDemandLang": {
+    "text": "تستخدم اللغات الأقل انتشارًا مثل {{lang}} الترجمة عند الطلب. تُترجم العناوين مسبقًا لتسهيل تصفح القائمة، بينما يُترجم المحتوى الكامل عند فتح القصة.",
+    "translationContext": "Third paragraph of the on-demand translation explainer modal (with the language name placeholder)"
+  },
+  "translation.explainer.pretranslated": {
+    "text": "تتم ترجمة جميع القصص مسبقًا للغات ذات الشعبية الكبيرة (مثل الإنجليزية والإيطالية والفرنسية والألمانية والإسبانية والصينية واليابانية وغيرها) وذلك خلال عملية المعالجة المجمعة.",
+    "translationContext": "Second paragraph of the on-demand translation explainer modal"
+  },
+  "translation.explainer.title": {
+    "text": "الترجمة عند الطلب",
+    "translationContext": "Heading of the modal that explains on-demand translation"
+  },
+  "translation.learnMore": {
+    "text": "آلية العمل",
+    "translationContext": "Button on the on-demand translation progress indicator that opens the explainer modal"
+  },
+  "translation.section": {
+    "text": "قسم",
+    "translationContext": "Singular \"section\" used in the on-demand translation progress counter"
+  },
+  "translation.sections": {
+    "text": "أقسام",
+    "translationContext": "Plural \"sections\" used in the on-demand translation progress counter"
+  },
+  "translation.translating": {
+    "text": "جارٍ الترجمة",
+    "translationContext": "Status label shown next to the spinner while on-demand translation streams in"
+  },
+  "translation.translatingDetail": {
+    "text": "جارٍ الترجمة من {{source}} باستخدام Kagi Translate. اللغة {{target}} ليست ضمن اللغات المترجمة مسبقًا، لذا نترجم القصص عند الطلب.",
+    "translationContext": "Secondary line under the on-demand translation spinner. {{source}} and {{target}} are language names like 'English' and 'Estonian'."
   },
   "turbulence.title": {
     "text": "مقياس الاضطراب العالمي",

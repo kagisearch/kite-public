@@ -1,7 +1,8 @@
 <script lang="ts">
-import { onMount } from 'svelte';
+import { settingsLock } from '$lib/data/settings.svelte.js';
 import { keyboardNavigation } from '$lib/stores/keyboardNavigation.svelte';
 import type { Story } from '$lib/types';
+import { onMount } from 'svelte';
 
 interface Props {
 	stories: Story[];
@@ -14,6 +15,7 @@ interface Props {
 	showSearchModal?: boolean;
 	onStoryToggle: (storyId: string) => void;
 	onToggleReadStatus?: (index: number) => void;
+	onMarkAllAsRead?: () => void;
 	onToggleSearchModal?: () => void;
 	onCategoryChange?: (categoryId: string) => void;
 }
@@ -29,6 +31,7 @@ let {
 	showSearchModal = $bindable(false),
 	onStoryToggle,
 	onToggleReadStatus,
+	onMarkAllAsRead,
 	onToggleSearchModal,
 	onCategoryChange,
 }: Props = $props();
@@ -55,15 +58,19 @@ function scrollToSelectedStory() {
 }
 
 function handleGlobalKeyDown(event: KeyboardEvent) {
+	// Disable all keyboard shortcuts when managed mode has them disabled
+	if (settingsLock.getManagedOption('disableKeyboardShortcuts')) {
+		return;
+	}
+
 	// Don't handle shortcuts if user is typing in an input/textarea or if modals are open (except help)
 	const target = event.target as HTMLElement;
 	const isInputFocused =
 		target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable;
 
-	// Allow Escape and ? even when inputs are focused
-	const allowWhenInputFocused = event.key === 'Escape' || event.key === '?';
-
-	if (isInputFocused && !allowWhenInputFocused) {
+	// Allow Escape even when inputs are focused (to close modals/overlays)
+	// Don't allow ? when typing — it should be typed as a character, not trigger help
+	if (isInputFocused && event.key !== 'Escape') {
 		return;
 	}
 
@@ -233,6 +240,14 @@ function handleGlobalKeyDown(event: KeyboardEvent) {
 	if (event.key === 'm' && keyboardNavigation.hasSelection && onToggleReadStatus) {
 		event.preventDefault();
 		onToggleReadStatus(keyboardNavigation.selectedIndex);
+		return;
+	}
+
+	// M (Shift+M) - Mark all stories in the current category as read.
+	// No selection required — mirrors the "Mark all as read" button.
+	if (event.key === 'M' && !event.ctrlKey && !event.metaKey && !event.altKey && onMarkAllAsRead) {
+		event.preventDefault();
+		onMarkAllAsRead();
 		return;
 	}
 }

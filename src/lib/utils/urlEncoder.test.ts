@@ -1,4 +1,3 @@
-import { describe, expect, it } from 'vitest';
 import {
 	buildArticleUrl,
 	buildCategoryUrl,
@@ -9,6 +8,7 @@ import {
 	generateSlug,
 	parseUrl,
 } from './urlEncoder';
+import { describe, expect, it } from 'vitest';
 
 describe('urlEncoder', () => {
 	describe('encodeBatchId', () => {
@@ -132,7 +132,9 @@ describe('urlEncoder', () => {
 
 		it('should handle Unicode characters in multiple languages', () => {
 			// Arabic
-			expect(generateSlug('فنزويلا تغلق سفاراتها في النرويج')).toBe('فنزويلا-تغلق-سفاراتها-في-النرويج');
+			expect(generateSlug('فنزويلا تغلق سفاراتها في النرويج')).toBe(
+				'فنزويلا-تغلق-سفاراتها-في-النرويج',
+			);
 			// Chinese
 			expect(generateSlug('中国新闻报道')).toBe('中国新闻报道');
 			// Japanese
