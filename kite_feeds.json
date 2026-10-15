@@ -9049,7 +9049,7 @@
     "feeds": [
       "https://www.motorsport.com/rss/all/news/",
       "https://www.autosport.com/rss/all/news/",
-      "https://racer.com/feed/",
+      "https://racer.com/feed",
       "https://racer.com/category/nascar/feed",
       "https://racer.com/category/imsa/feed",
       "https://racer.com/category/indycar/feed",
@@ -9064,11 +9064,8 @@
       "https://www.gpone.com/en/article-feed.xml",
       "https://www.racecar-engineering.com/feed/",
       "https://joesaward.wordpress.com/feed/",
-      "https://thecheckeredflag.co.uk/feed/",
       "https://speedcafe.com/feed",
       "https://f1i.com/feed",
-      "https://www.grandprix247.com/feed/",
-      "https://motorsportbroadcasting.com/feed/",
       "https://autoaction.com.au/feed/",
       "https://velocitymagazine.com.au/feed/",
       "https://motorsportstribune.com/feed/",
@@ -9076,8 +9073,7 @@
       "https://motorsportstribune.com/category/indycar/feed/",
       "https://lightsoutblog.com/feed",
       "https://newsonf1.com/feed",
-      "https://wrcwings.tech/feed",
-      "https://www.auto-motor-und-sport.de/formel-1/rss.xml"
+      "https://wrcwings.tech/feed"
     ]
   },
   "Movies": {
