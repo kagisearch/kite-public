@@ -433,6 +433,9 @@ feeds = {
         "https://www.thefirearmblog.com/blog/feed/",
     ],
     "Linux": [
+        "https://linuxiac.com/feed/",
+        "https://blog.linuxmint.com/?feed=rss2",
+        "https://9to5linux.com/feed",
         "http://feeds.feedburner.com/UbuntuhandbookNewsTutorialsHowtosForUbuntuLinux",
         "https://linuxconfig.org/feed",
         "https://linuxhandbook.com/rss/",
@@ -640,6 +643,9 @@ feeds = {
         "https://www.westhesportsguy.com/feeds/posts/default",
     ],
     "Technology": [
+        "https://www.bbc.com/future/feed.rss",
+        "https://www.disconnect.blog/feed",
+        "https://www.neowin.net/news/rss/",
         "http://anandtech.com/rss/",
         "http://atomicsupermen.wordpress.com/feed/",
         "http://bloggingthemonkey.blogspot.com/feeds/posts/default",
