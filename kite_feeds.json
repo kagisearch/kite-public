@@ -3734,11 +3734,33 @@
       "zh-Hant": "賽普勒斯"
     },
     "feeds": [
-      "https://alithia.com.cy/feed/",
+      "https://24h.com.cy/feed/",
+      "https://bugunkibris.com/feed/",
       "https://cyprus-mail.com/feed",
-      "https://geopolitico.gr/feed/",
+      "https://cyprus-mail.com/tag/north/feed/",
+      "https://cyprustimes.com/feed/",
+      "https://dialogos.com.cy/feed/",
+      "https://famagusta-gazette.com/feed/",
+      "https://haberkibris.com/rss.php",
+      "https://kibrisgazetesi.com/feed/",
+      "https://larnakaonline.com.cy/feed/",
+      "https://omegalive.com.cy/feed/",
+      "https://ozgurgazetekibris.com/feed",
+      "https://typos.com.cy/feed/",
+      "https://www.alphanews.live/category/politics/feed/",
+      "https://www.ant1live.com/rss.xml",
+      "https://www.detaykibris.com/rss",
+      "https://www.economytoday.com.cy/rss.xml",
+      "https://www.financialmirror.com/feed/",
+      "https://www.gundemkibris.com/rss",
+      "https://www.halkinsesikibris.com/rss",
+      "https://www.havadiskibris.com/feed/",
+      "https://www.kibrisgenctv.com/rss/kibris",
+      "https://www.kibrisgercek.com/rss",
       "https://www.philenews.com/feed/",
-      "https://www.sigmalive.com/rss"
+      "https://www.politis.com.cy/feed/",
+      "https://www.sigmalive.com/rss",
+      "https://www.yeniduzen.com/rss"
     ]
   },
   "Czech Republic": {
