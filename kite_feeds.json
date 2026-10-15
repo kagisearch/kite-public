@@ -3339,7 +3339,7 @@
       "https://www1.cbn.com/rss-cbn-articles-cbnnews.xml"
     ]
   },
-  "Climate Change": {
+    "Church of Jesus Christ of Latter-day Saints": {     "source_language": "en",     "feeds": [       "https://newsroom.churchofjesuschrist.org/rss",       "https://feeds.lds.org/church-news-and-events-eng"     ]   },   "Climate Change": {
     "category_type": "topic",
     "source_language": "en",
     "display_names": {
