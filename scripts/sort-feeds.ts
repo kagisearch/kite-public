@@ -40,11 +40,45 @@ function sortCategories(data: FeedsJson): [string, CategoryData][] {
   });
 }
 
-function dedupeAndSort(urls: string[]): string[] {
-  return [...new Set(urls)].sort((a, b) => a.localeCompare(b));
+// Feeds are ordered by site, not by raw URL: the scheme and a leading "www."
+// are ignored, so http:// and https:// entries for the same site sit next to
+// each other. URLs that only differ by scheme, "www." or a trailing slash are
+// the same feed; the https one (then the shortest) is kept.
+// Keep in sync with feedKey/dedupe_and_sort in sort-core-feeds.py.
+const URL_PARTS = /^([a-z][a-z0-9+.-]*):\/\/([^/?#]*)(.*)$/i;
+
+function feedKey(url: string): [string, string] {
+  const m = URL_PARTS.exec(url.trim());
+  if (!m) return [url.trim().toLowerCase(), ''];
+  const host = m[2].toLowerCase().replace(/^www\./, '');
+  const q = m[3].indexOf('?');
+  const path = (q === -1 ? m[3] : m[3].slice(0, q)).replace(/\/+$/, '');
+  return [host, q === -1 ? path : path + m[3].slice(q)];
 }
 
+function cmp(a: string, b: string): number {
+  return a < b ? -1 : a > b ? 1 : 0;
+}
 
+function preferred(a: string, b: string): string {
+  const aHttps = a.startsWith('https://');
+  if (aHttps !== b.startsWith('https://')) return aHttps ? a : b;
+  if (a.length !== b.length) return a.length < b.length ? a : b;
+  return cmp(a, b) <= 0 ? a : b;
+}
+
+function dedupeAndSort(urls: string[]): string[] {
+  const byKey = new Map<string, { key: [string, string]; url: string }>();
+  for (const url of urls) {
+    const key = feedKey(url);
+    const id = `${key[0]} ${key[1]}`;
+    const seen = byKey.get(id);
+    byKey.set(id, { key, url: seen ? preferred(seen.url, url) : url });
+  }
+  return [...byKey.values()]
+    .sort((a, b) => cmp(a.key[0], b.key[0]) || cmp(a.key[1], b.key[1]))
+    .map((e) => e.url);
+}
 
 function main() {
   logProcessing(`Reading ${FEEDS_FILE}`);
