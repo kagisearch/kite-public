@@ -1,0 +1,4 @@
+# Written by the auto-sort bot (scripts/sort-*.ts) with 2-space JSON;
+# prettier would re-indent the whole file with tabs.
+kite_feeds.json
+media_data.json
