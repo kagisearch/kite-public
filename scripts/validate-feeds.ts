@@ -42,6 +42,7 @@ interface DuplicateIssue extends ValidationIssue {
 
 function stripHtml(html: string): string {
 	return html
+		.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
 		.replace(/<script[\s\S]*?<\/script>/gi, '')
 		.replace(/<style[\s\S]*?<\/style>/gi, '')
 		.replace(/<[^>]+>/g, ' ')
