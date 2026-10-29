@@ -15217,6 +15217,45 @@
       "https://www.wweek.com/feed/"
     ]
   },
+  "USA | San Diego": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {
+    "en": "USA | San Diego",
+      "es": "EE.UU. | San Diego"
+    },
+    "feeds": [
+      "https://www.kpbs.org/index.rss",
+      "https://www.nbcsandiego.com/?rss=y",
+      "https://www.cbs8.com/feeds/syndication/rss/news",
+      "https://fox5sandiego.com/feed/",
+      "https://www.10news.com/index.rss",
+      "https://www.telemundo20.com/?rss=y",
+      "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=site%3Ahttps://www.sandiegouniontribune.com/",
+      "https://voiceofsandiego.org/feed/",
+      "https://timesofsandiego.com/feed/",
+      "https://inewsource.org/feed/",
+      "https://sdbj.com/feed/",
+      "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=site%3Ahttps://www.sandiegoreader.com/",
+      "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=site%3Ahttps://www.axios.com/local/san-diego/",
+      "https://www.borderreport.com/feed/",
+      "https://sdvoice.info/feed/",
+      "https://thecoastnews.com/feed/",
+      "https://coronadotimes.com/feed/",
+      "https://www.thestarnews.com/feed/",
+      "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=site%3Ahttps://eastcountymagazine.org/",
+      "https://www.valleycenter.com/feed/",
+      "https://www.times-advocate.com/feed/",
+      "https://news.google.com/rss/search?hl=en-US&gl=US&ceid=US%3Aen&oc=11&q=site%3Ahttps://www.countynewscenter.com/",
+      "https://zetatijuana.com/feed/",
+      "https://www.elimparcial.com/arc/outboundfeeds/msn/",
+      "https://www.elsoldetijuana.com.mx/rss",
+      "https://www.uniradioinforma.com/feed/",
+      "https://jornadabc.com.mx/feed/",
+      "https://puntonorte.info/feed/",
+      "https://www.reddit.com/r/sandiego/.rss"
+    ]
+  },
   "USA | Utah": {
     "category_type": "topic",
     "source_language": "en",
