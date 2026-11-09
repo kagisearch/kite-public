@@ -10923,7 +10923,11 @@
       "https://rss.sciencedirect.com/publication/science/03783782",
       "https://www.thelancet.com/rssfeed/lanchi_current.xml",
       "https://www.thelancet.com/rssfeed/langlo_current.xml",
-      "https://tools.cdc.gov/api/v2/resources/media/342778.rss"
+      "https://tools.cdc.gov/api/v2/resources/media/342778.rss",
+      "https://adc.bmj.com/rss/ahead.xml",
+      "https://jamanetwork.com/rss/site_19/onlineFirst_75.xml",
+      "https://link.springer.com/search.rss?facet-journal-id=112&query=&sortOrder=newestFirst",
+      "https://rss.sciencedirect.com/publication/science/16954033",
     ]
   },
   "Philippines": {
