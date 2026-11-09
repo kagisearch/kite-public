@@ -10879,6 +10879,53 @@
       "https://wearenotnumbers.org/feed/"
     ]
   },
+  "Pediatric News": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {
+      "en": "Pediatric News",
+      "ar": "أخبار طب الأطفال",
+      "ca": "Notícies de pediatria",
+      "de": "Nachrichten aus der Kinderheilkunde",
+      "es": "Noticias de pediatría",
+      "et": "Pediaatriauudised",
+      "fr": "Actualités pédiatriques",
+      "he": "חדשות ברפואת ילדים",
+      "hi": "बाल चिकित्सा समाचार",
+      "it": "Notizie di pediatria",
+      "ja": "小児医療ニュース",
+      "ko": "소아과 뉴스",
+      "nl": "Kindergeneeskundig nieuws",
+      "pt": "Notícias de pediatria",
+      "ru": "Новости педиатрии",
+      "uk": "Новини педіатрії",
+      "zh-Hans": "儿科新闻",
+      "zh-Hant": "兒科新聞"
+    },
+    "feeds": [
+      "https://acamh.onlinelibrary.wiley.com/feed/14697610/most-recent",
+      "https://adc.bmj.com/rss/current.xml",
+      "https://bmjpaedsopen.bmj.com/rss/current.xml",
+      "https://www.contemporarypediatrics.com/rss.xml",
+      "https://www.cpsc.gov/Newsroom/CPSC-RSS-Feed/Recalls-RSS",
+      "https://www.efsa.europa.eu/en/press/rss",
+      "https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/recalls/rss.xml",
+      "https://fn.bmj.com/rss/current.xml",
+      "https://www.frontiersin.org/journals/pediatrics/rss",
+      "https://jamanetwork.com/rss/site_19/75.xml",
+      "https://journals.plos.org/plosmedicine/feed/atom",
+      "https://www.nature.com/pr.rss",
+      "https://onlinelibrary.wiley.com/feed/10970355/most-recent",
+      "https://onlinelibrary.wiley.com/feed/15364801/most-recent",
+      "https://onlinelibrary.wiley.com/feed/16512227/most-recent",
+      "https://onlinelibrary.wiley.com/feed/17408709/most-recent",
+      "https://publications.aap.org/rss/site_1000005/1000005.xml",
+      "https://rss.sciencedirect.com/publication/science/03783782",
+      "https://www.thelancet.com/rssfeed/lanchi_current.xml",
+      "https://www.thelancet.com/rssfeed/langlo_current.xml",
+      "https://tools.cdc.gov/api/v2/resources/media/342778.rss"
+    ]
+  },
   "Philippines": {
     "category_type": "topic",
     "source_language": "en",
