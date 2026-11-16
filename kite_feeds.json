@@ -15217,6 +15217,24 @@
       "https://www.wweek.com/feed/"
     ]
   },
+  "USA | Pennsylvania": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {
+      "en": "USA | Pennsylvania"
+    },
+    "feeds": [
+      "https://6abc.com/feed/",
+      "https://www.cbsnews.com/philadelphia/latest/rss/main",
+      "https://www.inquirer.com/arc/outboundfeeds/rss/?outputType=xml",
+      "https://penncapital-star.com/feed/",
+      "https://www.pennlive.com/arc/outboundfeeds/rss/?outputType=xml",
+      "https://www.pghcitypaper.com/feed/",
+      "https://whyy.org/feed/",
+      "https://www.witf.org/feed/",
+      "https://www.wnep.com/feeds/syndication/rss/news/local"
+    ]
+  },
   "USA | Utah": {
     "category_type": "topic",
     "source_language": "en",
