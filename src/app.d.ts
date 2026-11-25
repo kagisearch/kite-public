@@ -1,6 +1,6 @@
 /// <reference types="@sveltejs/kit" />
-import type { Writable } from 'svelte/store';
 import type { Story } from '$lib/types';
+import type { Writable } from 'svelte/store';
 
 // src/app.d.ts
 declare global {

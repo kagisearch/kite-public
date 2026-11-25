@@ -115,12 +115,37 @@ class SyncManager {
 						...change,
 						timestamp: new Date(change.timestamp),
 					})) as LocalChange[];
+					this.deduplicatePendingChanges();
 				}
 				this.updateSyncState({ pendingChanges: this.pendingChanges.length });
 			} catch (error) {
 				console.error('Failed to load pending changes:', error);
 				this.pendingChanges = [];
 			}
+		}
+	}
+
+	/**
+	 * Keep only the latest pending change per setting key.
+	 * Multiple changes for the same key can accumulate if the user modifies
+	 * settings while offline or before the debounced sync fires.
+	 */
+	private deduplicatePendingChanges() {
+		const seen = new Set<string>();
+		const deduped: LocalChange[] = [];
+		// Walk backward so the first kept entry per key is the latest
+		for (let i = this.pendingChanges.length - 1; i >= 0; i--) {
+			const change = this.pendingChanges[i];
+			if (change.type === 'setting') {
+				const key = (change.data as import('$lib/types/sync').SettingChangeData).key;
+				if (seen.has(key)) continue;
+				seen.add(key);
+			}
+			deduped.unshift(change);
+		}
+		if (deduped.length < this.pendingChanges.length) {
+			this.pendingChanges = deduped;
+			this.savePendingChanges();
 		}
 	}
 
@@ -245,6 +270,16 @@ class SyncManager {
 		this.pendingChanges = [];
 		this.savePendingChanges();
 
+		// Collect keys we're about to send so we can protect them from being
+		// overwritten by the sync response. (KNEWS-219)
+		const sentSettingKeys = new Set<string>();
+		for (const change of changesToSync) {
+			if (change.type === 'setting' && change.operation === 'update') {
+				const data = change.data as import('$lib/types/sync').SettingChangeData;
+				sentSettingKeys.add(data.key);
+			}
+		}
+
 		try {
 			// Prepare sync data from the captured changes
 			const syncData = await this.prepareSyncData(forceAllSettings, changesToSync);
@@ -288,8 +323,8 @@ class SyncManager {
 			this.consecutiveFailures = 0;
 			this.backoffDelay = 0;
 
-			// Process sync response
-			await this.processSyncResponse(result);
+			// Process sync response, passing sent keys so they aren't overwritten
+			await this.processSyncResponse(result, sentSettingKeys);
 
 			// Changes were already removed before sync, nothing to clean up here
 			// Any new changes added during sync are still in this.pendingChanges
@@ -384,35 +419,41 @@ class SyncManager {
 			forceAllSettings,
 		);
 
-		// Process pending changes that are settings
+		// Process pending changes that are settings.
+		// When multiple changes exist for the same key, use the LATEST one (KNEWS-219).
+		// Previously the first change per key won, which could send stale values.
+		const latestByKey = new Map<
+			string,
+			{ data: import('$lib/types/sync').SettingChangeData; timestamp: Date }
+		>();
 		for (const change of changes) {
 			if (change.type === 'setting' && change.operation === 'update') {
-				// Type guard - we know this is SettingChangeData now
 				const settingData = change.data as import('$lib/types/sync').SettingChangeData;
-
-				// Ensure timestamp is a Date object
 				const timestamp =
 					typeof change.timestamp === 'string' ? new Date(change.timestamp) : change.timestamp;
-
-				// If value is null, it means the setting was removed from localStorage
-				if (settingData.value === null) {
-					localSettings.push({
-						key: settingData.key,
-						value: null, // This signals deletion
-						version: 1,
-						updatedAt: timestamp,
-						operation: 'delete', // Mark for deletion
-					});
-				} else {
-					localSettings.push({
-						key: settingData.key,
-						value: settingData.value,
-						version: 1,
-						updatedAt: timestamp,
-					});
-				}
-				processedKeys.add(settingData.key);
+				// Always overwrite — later entries in the array are more recent
+				latestByKey.set(settingData.key, { data: settingData, timestamp });
 			}
+		}
+
+		for (const [, { data: settingData, timestamp }] of latestByKey) {
+			if (settingData.value === null) {
+				localSettings.push({
+					key: settingData.key,
+					value: null, // This signals deletion
+					version: 1,
+					updatedAt: timestamp,
+					operation: 'delete', // Mark for deletion
+				});
+			} else {
+				localSettings.push({
+					key: settingData.key,
+					value: settingData.value,
+					version: 1,
+					updatedAt: timestamp,
+				});
+			}
+			processedKeys.add(settingData.key);
 		}
 
 		// If forceAllSettings, gather all syncable settings from localStorage
@@ -484,12 +525,13 @@ class SyncManager {
 	/**
 	 * Process sync response from server
 	 */
-	private async processSyncResponse(data: SyncResponse) {
+	private async processSyncResponse(data: SyncResponse, sentSettingKeys: Set<string> = new Set()) {
 		const { settings: remoteSettings, conflicts } = data;
 
 		console.log('[Sync] Processing sync response:', {
 			settings: remoteSettings?.length || 0,
 			conflicts: conflicts?.length || 0,
+			sentSettingKeys: Array.from(sentSettingKeys),
 		});
 
 		// Handle conflicts
@@ -497,9 +539,9 @@ class SyncManager {
 			await this.handleConflicts(conflicts);
 		}
 
-		// Update local settings
+		// Update local settings, passing sentSettingKeys so they aren't overwritten
 		if (remoteSettings && remoteSettings.length > 0) {
-			await this.updateLocalSettings(remoteSettings);
+			await this.updateLocalSettings(remoteSettings, sentSettingKeys);
 		}
 
 		// Note: Read history is now synced separately via syncReadHistory()
@@ -558,26 +600,53 @@ class SyncManager {
 	/**
 	 * Update local settings from remote
 	 */
-	private async updateLocalSettings(remoteSettings: RemoteSetting[]) {
+	private async updateLocalSettings(
+		remoteSettings: RemoteSetting[],
+		sentSettingKeys: Set<string> = new Set(),
+	) {
 		console.log('[Sync] Updating local settings from remote:', remoteSettings);
 
-		// Get keys of settings we have pending changes for
-		const pendingSettingKeys = new Set(
-			this.pendingChanges
-				.filter((change) => change.type === 'setting')
-				.map((change) => (change.data as import('$lib/types/sync').SettingChangeData).key),
-		);
+		// Protect settings that were just sent OR have new pending changes.
+		// sentSettingKeys: keys we sent in this sync request (cleared from pendingChanges
+		//   before the request, so they wouldn't appear there). (KNEWS-219)
+		// pendingChanges: new changes queued while the sync request was in-flight.
+		const protectedKeys = new Set(sentSettingKeys);
+		for (const change of this.pendingChanges) {
+			if (change.type === 'setting') {
+				protectedKeys.add((change.data as import('$lib/types/sync').SettingChangeData).key);
+			}
+		}
 
-		console.log('[Sync] Settings with pending changes:', Array.from(pendingSettingKeys));
+		console.log('[Sync] Protected settings (sent + pending):', Array.from(protectedKeys));
+
+		// Settings that must never be synced (local-only, security-sensitive)
+		const LOCAL_ONLY_KEYS = new Set(['settingsLockPin', 'managedMode']);
+
+		// Track whether any kn_prefs-relevant setting changed so we can refresh
+		// the cookie once at the end (instead of N times during the loop).
+		let knPrefsChanged = false;
+		const KN_PREFS_KEYS = new Set([
+			'enabledCategories',
+			'categoryOrder',
+			'dataLanguage',
+			'contentLanguages',
+			'kite-content-filter',
+		]);
 
 		// First, process all remote settings (updates)
 		for (const remoteSetting of remoteSettings) {
 			const key = remoteSetting.settingKey;
 			const value = remoteSetting.settingValue;
 
-			// Skip if we have pending changes for this setting
-			if (pendingSettingKeys.has(key)) {
-				console.log(`[Sync] Skipping ${key} - we have pending local changes for this setting`);
+			// Skip local-only settings (PIN lock, managed mode)
+			if (LOCAL_ONLY_KEYS.has(key)) {
+				console.log(`[Sync] Skipping ${key} - local-only setting`);
+				continue;
+			}
+
+			// Skip if we just sent this key or have new pending changes for it
+			if (protectedKeys.has(key)) {
+				console.log(`[Sync] Skipping ${key} - protected (just sent or has pending changes)`);
 				continue;
 			}
 
@@ -585,6 +654,8 @@ class SyncManager {
 				`[Sync] Processing remote setting ${key}:`,
 				typeof value === 'object' ? JSON.stringify(value).substring(0, 200) : value,
 			);
+
+			if (KN_PREFS_KEYS.has(key)) knPrefsChanged = true;
 
 			if (value === null) {
 				// Setting was deleted/reset to default on another device
@@ -615,7 +686,7 @@ class SyncManager {
 						import('$lib/data/settings.svelte')
 							.then(({ categorySettings }) => {
 								if (categorySettings) {
-									categorySettings.reload();
+									categorySettings.init();
 								}
 							})
 							.catch((err) => {
@@ -806,6 +877,17 @@ class SyncManager {
 
 		// Settings will be picked up when stores re-init on next access
 		console.log('[Sync] Settings updated successfully');
+
+		// Refresh the kn_prefs cookie once if any cookie-relevant key changed.
+		// Wait one microtask so the in-line categorySettings.init() / setting
+		// load() calls fired during the loop have settled into reactive state.
+		if (knPrefsChanged && browser) {
+			queueMicrotask(() => {
+				import('$lib/data/knPrefsCookie')
+					.then(({ syncKnPrefsCookie }) => syncKnPrefsCookie())
+					.catch((err) => console.warn('[Sync] kn_prefs cookie refresh failed:', err));
+			});
+		}
 	}
 
 	/**
@@ -1313,9 +1395,8 @@ class SyncManager {
 			this.updateSyncState({ lastSyncedAt: new Date(lastSync) });
 		}
 
-		// Clear old pending changes on startup - they're stale from previous session
-		this.pendingChanges = [];
-		this.savePendingChanges();
+		// Keep pending changes from previous session — their keys need to be in
+		// sentSettingKeys to prevent the initial sync from overwriting local values.
 
 		// Start sync operations if we have a user ID
 		if (userId) {
@@ -1383,10 +1464,3 @@ class SyncManager {
 
 // Create singleton instance
 export const syncManager = new SyncManager();
-
-// Auto-cleanup on page unload
-if (browser) {
-	window.addEventListener('beforeunload', () => {
-		syncManager.cleanup();
-	});
-}

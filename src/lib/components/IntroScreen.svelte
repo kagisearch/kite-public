@@ -1,8 +1,7 @@
 <script lang="ts">
-import { useOverlayScrollbars } from 'overlayscrollbars-svelte';
 import { browser } from '$app/environment';
 import { s } from '$lib/client/localization.svelte';
-import 'overlayscrollbars/overlayscrollbars.css';
+import { useOverlayScrollbars } from 'overlayscrollbars-svelte';
 
 // Props
 interface Props {
@@ -57,124 +56,109 @@ $effect(() => {
 </script>
 
 {#if visible}
-  <div
-    bind:this={scrollableElement}
-    class="fixed inset-0 z-50 overflow-y-auto bg-white dark:bg-dark-bg"
-    data-overlayscrollbars-initialize
-  >
-    <div class="flex min-h-full items-center justify-center p-4 sm:p-8">
-      <div class="w-full max-w-3xl rounded-lg bg-primary-50 p-8">
-        <div class="mb-8 flex items-start justify-between">
-          <div class="w-full">
-            <h1 class="mb-2 text-3xl font-bold text-primary">
-              {s("app.title") || "Kite"}
-            </h1>
-            <p class="text-primary-600">
-              {s("about.subtitle") || "News app by Kagi"}
-            </p>
-          </div>
-        </div>
+	<div
+		bind:this={scrollableElement}
+		class="fixed inset-0 z-50 overflow-y-auto bg-white dark:bg-dark-bg"
+		data-overlayscrollbars-initialize
+	>
+		<div class="flex min-h-full items-center justify-center p-4 sm:p-8">
+			<div class="w-full max-w-3xl rounded-lg bg-primary-50 p-8">
+				<div class="mb-8 flex items-start justify-between">
+					<div class="w-full">
+						<h1 class="mb-2 text-3xl font-bold text-primary">
+							{s('app.title') || 'Kite'}
+						</h1>
+						<p class="text-primary-600">
+							{s('about.subtitle') || 'News app by Kagi'}
+						</p>
+					</div>
+				</div>
 
-        <div class="space-y-6 text-primary-700">
-          <section>
-            <h2
-              class="mb-3 text-xl font-semibold text-primary"
-            >
-              {@html s("about.why.title") || "Why Kite?"}
-            </h2>
-            <p class="mb-4">
-              {@html s("about.why.description") ||
-                "Kite provides a better way to read news."}
-            </p>
-          </section>
+				<div class="space-y-6 text-primary-700">
+					<section>
+						<h2 class="mb-3 text-xl font-semibold text-primary">
+							{@html s('about.why.title') || 'Why Kite?'}
+						</h2>
+						<p class="mb-4">
+							{@html s('about.why.description') || 'Kite provides a better way to read news.'}
+						</p>
+					</section>
 
-          <section>
-            <h2
-              class="mb-3 text-xl font-semibold text-primary"
-            >
-              {@html s("about.approach.title") || "Our Approach"}
-            </h2>
-            <p class="mb-4 text-primary-700">
-              {@html s("about.approach.description1") ||
-                "We aggregate news from multiple sources."}
-            </p>
-            <p class="mb-4 text-primary-700">
-              {@html s("about.approach.description2") ||
-                "We provide summaries and context."}
-            </p>
-            <p class="mb-4 text-primary-700">
-              {@html s("about.approach.description3") ||
-                "We respect your privacy."}
-            </p>
-          </section>
+					<section>
+						<h2 class="mb-3 text-xl font-semibold text-primary">
+							{@html s('about.approach.title') || 'Our Approach'}
+						</h2>
+						<p class="mb-4 text-primary-700">
+							{@html s('about.approach.description1') || 'We aggregate news from multiple sources.'}
+						</p>
+						<p class="mb-4 text-primary-700">
+							{@html s('about.approach.description2') || 'We provide summaries and context.'}
+						</p>
+						<p class="mb-4 text-primary-700">
+							{@html s('about.approach.description3') || 'We respect your privacy.'}
+						</p>
+					</section>
 
-          <section>
-            <h2
-              class="mb-3 text-xl font-semibold text-primary"
-            >
-              {@html s("about.principles.title") || "Our Principles"}
-            </h2>
-            <ul class="space-y-2">
-              <li>
-                • {s("about.principles.item1") || "No tracking or cookies"}
-              </li>
-              <li>
-                • {s("about.principles.item2") || "No ads or sponsored content"}
-              </li>
-              <li>
-                • {s("about.principles.item3") || "Multiple perspectives"}
-              </li>
-              <li>• {s("about.principles.item4") || "Source transparency"}</li>
-              <li>• {s("about.principles.item5") || "Fast and lightweight"}</li>
-              <li>• {s("about.principles.item6") || "Open source"}</li>
-            </ul>
-          </section>
+					<section>
+						<h2 class="mb-3 text-xl font-semibold text-primary">
+							{@html s('about.principles.title') || 'Our Principles'}
+						</h2>
+						<ul class="space-y-2">
+							<li>
+								• {s('about.principles.item1') || 'No tracking or cookies'}
+							</li>
+							<li>
+								• {s('about.principles.item2') || 'No ads or sponsored content'}
+							</li>
+							<li>
+								• {s('about.principles.item3') || 'Multiple perspectives'}
+							</li>
+							<li>• {s('about.principles.item4') || 'Source transparency'}</li>
+							<li>• {s('about.principles.item5') || 'Fast and lightweight'}</li>
+							<li>• {s('about.principles.item6') || 'Open source'}</li>
+						</ul>
+					</section>
 
-          <section>
-            <h2
-              class="mb-3 text-xl font-semibold text-primary"
-            >
-              {@html s("about.customization.title") || "Customization"}
-            </h2>
-            <p>
-              {@html s("about.customization.description") ||
-                "Customize Kite to fit your reading preferences."}
-            </p>
-          </section>
+					<section>
+						<h2 class="mb-3 text-xl font-semibold text-primary">
+							{@html s('about.customization.title') || 'Customization'}
+						</h2>
+						<p>
+							{@html s('about.customization.description') ||
+								'Customize Kite to fit your reading preferences.'}
+						</p>
+					</section>
 
-          <section>
-            <h2
-              class="mb-3 text-xl font-semibold text-primary"
-            >
-              {@html s("about.contact.title") || "Contact"}
-            </h2>
-            <p>
-              {@html s("about.contact.description") ||
-                "Questions or feedback? Contact us at news@kagi.com"}
-            </p>
-          </section>
+					<section>
+						<h2 class="mb-3 text-xl font-semibold text-primary">
+							{@html s('about.contact.title') || 'Contact'}
+						</h2>
+						<p>
+							{@html s('about.contact.description') ||
+								'Questions or feedback? Contact us at news@kagi.com'}
+						</p>
+					</section>
 
-          <!-- Disclaimer -->
-          <section class="mt-6 rounded-lg bg-primary-100 p-4">
-            <p class="text-sm text-primary-600 text-center">
-              {s("app.disclaimerAutoGenerated") ||
-                "Summaries are AI-generated and Kite can make mistakes."}
-              {" "}
-              {s("app.disclaimerVerify") ||
-                "Please verify important information."}
-            </p>
-          </section>
+					<!-- Disclaimer -->
+					<section class="mt-6 rounded-lg bg-primary-100 p-4">
+						<p class="text-sm text-primary-600 text-center">
+							{s('app.disclaimerAutoGenerated') ||
+								'Summaries are AI-generated and Kite can make mistakes.'}
+							{' '}
+							{s('app.disclaimerVerify') || 'Please verify important information.'}
+						</p>
+					</section>
 
-          <div class="mt-8 flex justify-center">
-            <button
-              onclick={handleClose}
-              class="focus:ring-opacity-75 rounded-lg bg-primary px-6 py-3 font-semibold text-primary-25 transition-colors duration-200 ease-in-out hover:bg-primary-800 focus:ring-2 focus:ring-primary-400 focus:outline-none"
-            >
-              {@html s("about.understand.button") || "Got it!"}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+					<div class="mt-8 flex justify-center">
+						<button
+							onclick={handleClose}
+							class="focus:ring-opacity-75 rounded-lg bg-primary px-6 py-3 font-semibold text-primary-25 transition-colors duration-200 ease-in-out hover:bg-primary-800 focus:ring-2 focus:ring-primary-400 focus:outline-none"
+						>
+							{@html s('about.understand.button') || 'Got it!'}
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {/if}

@@ -20,8 +20,8 @@ const isHistoricalSearchEnabled = () => {
 		}
 	}
 
-	// Default: disabled
-	return false;
+	// Default: enabled
+	return true;
 };
 
 export const features = {
@@ -47,6 +47,12 @@ export const features = {
 	 * - URL parameter (testing): ?historical=true
 	 */
 	historicalSearch: isHistoricalSearchEnabled(),
+	/**
+	 * Enable search filters (category:, from:, to:)
+	 * Disabled for now — filter parsing/validation has bugs.
+	 * Historical search still works without filters.
+	 */
+	searchFilters: false,
 } as const;
 
 export type Features = typeof features;

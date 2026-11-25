@@ -7,7 +7,7 @@ interface PageEffectsOptions {
 	currentCategory: string;
 	temporaryCategory: string | null;
 	lastLoadedCategory: string;
-	loadStoriesForCategory: (categoryId: string) => Promise<void>;
+	loadStoriesForCategory: (categoryId: string, opts?: { prefetch?: boolean }) => Promise<void>;
 	handleCategoryChange: (category: string, updateUrl: boolean) => void;
 	setCurrentCategory: (category: string) => void;
 }
