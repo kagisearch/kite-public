@@ -1,4 +1,6 @@
 import type { Article, Story } from '$lib/types';
+import { normalizeInternationalReaction } from './internationalReactions';
+import { normalizeStoryTextItem } from './storyTextList';
 
 export interface CitationMapping {
 	// Maps citation identifier (e.g., "nytimes.com#2") to global citation number
@@ -111,7 +113,7 @@ export function buildCitationMapping(story: Story, articles: Article[]): Citatio
 	};
 
 	// Helper to process citations in any text field
-	const processCitations = (text: string | string[] | null | undefined) => {
+	const processCitations = (text: unknown) => {
 		if (!text) return;
 
 		// Handle arrays by processing each element
@@ -122,9 +124,15 @@ export function buildCitationMapping(story: Story, articles: Article[]): Citatio
 			return;
 		}
 
-		if (typeof text !== 'string') return;
+		// Object-shaped list items carry their citations inside a field, so they
+		// have to be flattened with the same normalizer StoryListSection renders
+		// through. Skipping them here would leave those citations out of the
+		// mapping while their text is still displayed, so the markers would never
+		// be numbered and the sources would go missing (KNEWS-443).
+		const value = typeof text === 'string' ? text : normalizeStoryTextItem(text);
+		if (!value) return;
 
-		const citations = extractCitations(text);
+		const citations = extractCitations(value);
 
 		for (const citation of citations) {
 			// Skip if we've already assigned a number to this citation
@@ -244,8 +252,8 @@ export function buildCitationMapping(story: Story, articles: Article[]): Citatio
 		}
 	}
 
-	if (story.gaming_industry_impact?.length) {
-		for (const impact of story.gaming_industry_impact) {
+	if (story.industry_impact?.length) {
+		for (const impact of story.industry_impact) {
 			processCitations(impact);
 		}
 	}
@@ -259,7 +267,9 @@ export function buildCitationMapping(story: Story, articles: Article[]): Citatio
 
 	if (story.international_reactions?.length) {
 		for (const reaction of story.international_reactions) {
-			processCitations(reaction);
+			// Tolerate object-shaped items (legacy/LLM data) so citations inside
+			// them are still extracted into the global mapping.
+			processCitations(normalizeInternationalReaction(reaction));
 		}
 	}
 

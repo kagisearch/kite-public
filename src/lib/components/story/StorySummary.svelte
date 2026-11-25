@@ -1,7 +1,7 @@
 <script lang="ts">
 import { s } from '$lib/client/localization.svelte';
 import Tooltip from '$lib/components/Tooltip.svelte';
-import GlobePreview from '$lib/components/common/GlobePreview.svelte';
+import type GlobePreviewType from '$lib/components/common/GlobePreview.svelte';
 import { geocodeLocation } from '$lib/data/countryCoordinates';
 import { displaySettings } from '$lib/data/settings.svelte';
 import type { Article, LocalizerFunction } from '$lib/types';
@@ -17,6 +17,10 @@ import Portal from 'svelte-portal';
 
 // Props
 interface Props {
+	/** Direction of the summary text; see StoryCard's fieldDirection. */
+	summaryDir?: 'ltr' | 'rtl';
+	/** Direction of the location line, which translates as its own column. */
+	locationDir?: 'ltr' | 'rtl';
 	story: any;
 	citationMapping?: CitationMapping;
 	storyLocalizer?: LocalizerFunction;
@@ -28,6 +32,8 @@ interface Props {
 }
 
 let {
+	summaryDir = 'ltr',
+	locationDir = 'ltr',
 	story,
 	citationMapping,
 	storyLocalizer = s,
@@ -90,6 +96,13 @@ let showGlobe = $state(false);
 let globeCoords = $state<{ lat: number; lng: number } | null>(null);
 let locationButtonEl: HTMLElement | undefined = $state(undefined);
 let hideTimeout: number | null = null;
+let GlobePreview = $state<typeof GlobePreviewType | null>(null);
+
+async function ensureGlobePreview() {
+	if (GlobePreview) return;
+	const mod = await import('$lib/components/common/GlobePreview.svelte');
+	GlobePreview = mod.default;
+}
 
 // Floating UI for globe popup
 const floating = hasMousePointer
@@ -130,7 +143,11 @@ function handleLocationMouseEnter() {
 		clearTimeout(hideTimeout);
 		hideTimeout = null;
 	}
-	if (globeCoords) showGlobe = true;
+	if (globeCoords) {
+		showGlobe = true;
+		// Kick off three.js load on first hover — renders as soon as it's ready.
+		ensureGlobePreview();
+	}
 }
 
 function handleLocationMouseLeave() {
@@ -162,81 +179,82 @@ onDestroy(() => {
 </script>
 
 <section class="mt-6">
-  <div class="mb-6" dir="auto">
-    {#if flashcardMode}
-      <SelectableText
-        text={displaySummary}
-        {flashcardMode}
-        {selectedWords}
-        {selectedPhrases}
-        {shouldJiggle}
-        {onWordClick}
-        section="short_summary"
-      />
-    {:else}
-      <CitationText
-        text={displaySummary}
-        showFavicons={false}
-        showNumbers={false}
-        inline={false}
-        articles={summaryCitedArticles.citedArticles}
-        {citationMapping}
-        {storyLocalizer}
-      />
-    {/if}
-  </div>
-  {#if story.location}
-    <button
-      bind:this={locationButtonEl}
-      class="flex cursor-pointer items-center text-gray-600 dark:text-gray-300 bg-transparent border-none p-0 focus-visible-ring rounded"
-      onclick={handleLocationClick}
-      onkeydown={handleLocationKeydown}
-      onmouseenter={handleLocationMouseEnter}
-      onmouseleave={handleLocationMouseLeave}
-      aria-label="View {story.location} on {mapServiceName}"
-    >
-      <img src="/svg/map.svg" alt="Map icon" class="mr-2 h-5 w-5" />
-      <Tooltip
-        text={storyLocalizer("article.location") || `View on ${mapServiceName}`}
-        position="top"
-      >
-        <span dir="auto" onclick={handleLocationClick}>
-          <CitationText
-            text={displayLocation}
-            showFavicons={false}
-            showNumbers={false}
-            inline={true}
-            articles={locationCitedArticles?.citedArticles || []}
-            {citationMapping}
-            {storyLocalizer}
-          />
-        </span>
-      </Tooltip>
-    </button>
-  {/if}
+	<!-- short_summary and location are separate columns that translate
+	     independently, so each takes its own direction (KNEWS-453). -->
+	<div class="mb-6" dir={summaryDir}>
+		{#if flashcardMode}
+			<SelectableText
+				text={displaySummary}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+				section="short_summary"
+			/>
+		{:else}
+			<CitationText
+				text={displaySummary}
+				showFavicons={false}
+				showNumbers={false}
+				inline={false}
+				articles={summaryCitedArticles.citedArticles}
+				{citationMapping}
+				{storyLocalizer}
+			/>
+		{/if}
+	</div>
+	{#if story.location}
+		<button
+			bind:this={locationButtonEl}
+			dir={locationDir}
+			class="flex cursor-pointer items-center text-primary-600 bg-transparent border-none p-0 focus-visible-ring rounded"
+			onclick={handleLocationClick}
+			onkeydown={handleLocationKeydown}
+			onmouseenter={handleLocationMouseEnter}
+			onmouseleave={handleLocationMouseLeave}
+			aria-label="View {story.location} on {mapServiceName}"
+		>
+			<img src="/svg/map.svg" alt="Map icon" class="mr-2 h-5 w-5" />
+			<Tooltip
+				text={storyLocalizer('article.location') || `View on ${mapServiceName}`}
+				position="top"
+			>
+				<span onclick={handleLocationClick}>
+					<CitationText
+						text={displayLocation}
+						showFavicons={false}
+						showNumbers={false}
+						inline={true}
+						articles={locationCitedArticles?.citedArticles || []}
+						{citationMapping}
+						{storyLocalizer}
+					/>
+				</span>
+			</Tooltip>
+		</button>
+	{/if}
 </section>
 
-{#if showGlobe && globeCoords && floating}
-  <Portal>
-    <div
-      bind:this={floating.elements.floating}
-      class="absolute top-0 left-0 z-tooltip overflow-hidden rounded-lg border border-gray-300 bg-white shadow-lg transition-opacity duration-200 dark:border-gray-600 dark:bg-gray-800 {floating.isPositioned
-        ? 'opacity-100'
-        : 'opacity-0 invisible'}"
-      style={floating.floatingStyles}
-      onmouseenter={handlePopupEnter}
-      onmouseleave={handlePopupLeave}
-      role="tooltip"
-    >
-      <div class="p-2">
-        <GlobePreview
-          lat={globeCoords.lat}
-          lng={globeCoords.lng}
-          size={typeof window !== "undefined" && window.innerWidth >= 768
-            ? 220
-            : 160}
-        />
-      </div>
-    </div>
-  </Portal>
+{#if showGlobe && globeCoords && floating && GlobePreview}
+	<Portal>
+		<div
+			bind:this={floating.elements.floating}
+			class="absolute top-0 left-0 z-tooltip overflow-hidden rounded-lg border border-primary-200 bg-modal-bg shadow-lg transition-opacity duration-200 {floating.isPositioned
+				? 'opacity-100'
+				: 'opacity-0 invisible'}"
+			style={floating.floatingStyles}
+			onmouseenter={handlePopupEnter}
+			onmouseleave={handlePopupLeave}
+			role="tooltip"
+		>
+			<div class="p-2">
+				<GlobePreview
+					lat={globeCoords.lat}
+					lng={globeCoords.lng}
+					size={typeof window !== 'undefined' && window.innerWidth >= 768 ? 220 : 160}
+				/>
+			</div>
+		</div>
+	</Portal>
 {/if}

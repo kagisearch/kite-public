@@ -6,6 +6,8 @@
  * @returns The index of the first non-time colon outside quotes, or -1 if not found
  */
 export function findNonTimeColon(text: string): number {
+	if (!text) return -1;
+
 	// Regular expression to match time patterns (HH:MM with optional seconds)
 	const timePattern = /\b\d{1,2}:\d{2}(?::\d{2})?\b/g;
 
