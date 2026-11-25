@@ -6,6 +6,40 @@ import sys
 from pathlib import Path
 import importlib.util
 import glob
+import re
+
+# Feeds are ordered by site, not by raw URL: the scheme and a leading "www."
+# are ignored, so http:// and https:// entries for the same site sit next to
+# each other. URLs that only differ by scheme, "www." or a trailing slash are
+# the same feed; the https one (then the shortest) is kept.
+# Keep in sync with feedKey/dedupeAndSort in sort-feeds.ts.
+URL_PARTS = re.compile(r'^([a-z][a-z0-9+.-]*)://([^/?#]*)(.*)$', re.IGNORECASE)
+
+
+def feed_key(url):
+    m = URL_PARTS.match(url.strip())
+    if not m:
+        return (url.strip().lower(), '')
+    host = re.sub(r'^www\.', '', m.group(2).lower())
+    rest = m.group(3)
+    path, sep, query = rest.partition('?')
+    return (host, path.rstrip('/') + sep + query)
+
+
+def preferred(a, b):
+    if a.startswith('https://') != b.startswith('https://'):
+        return a if a.startswith('https://') else b
+    if len(a) != len(b):
+        return a if len(a) < len(b) else b
+    return min(a, b)
+
+
+def dedupe_and_sort(urls):
+    by_key = {}
+    for url in urls:
+        key = feed_key(url)
+        by_key[key] = preferred(by_key[key], url) if key in by_key else url
+    return [url for _, url in sorted(by_key.items())]
 
 CORE_FEEDS_FILE = 'core_feeds.py'
 LOCALES_DIR = 'src/lib/locales'
@@ -73,16 +107,15 @@ def main():
 
     for category in sorted(feeds_dict.keys()):
         original_feeds = feeds_dict[category]
-        unique_feeds = sorted(list(set(original_feeds)))
-
-        # Find the actual duplicates
+        unique_feeds = dedupe_and_sort(original_feeds)
+        kept = set(unique_feeds)
         seen = set()
         duplicates = []
         for feed in original_feeds:
-            if feed in seen:
-                duplicates.append(feed)
-            else:
+            if feed in kept and feed not in seen:
                 seen.add(feed)
+            else:
+                duplicates.append(feed)
 
         dupes = len(duplicates)
 
@@ -98,11 +131,13 @@ def main():
     output_lines = ['feeds = {']
     categories = sorted(sorted_feeds.keys())
 
-    for i, category in enumerate(categories):
+    # Trailing commas everywhere, so the private feeds.py copy is already
+    # ruff-formatted and the two files stay byte-identical.
+    for category in categories:
         output_lines.append(f'    "{category}": [')
         for feed in sorted_feeds[category]:
             output_lines.append(f'        "{feed}",')
-        output_lines.append('    ]' + (',' if i < len(categories) - 1 else ''))
+        output_lines.append('    ],')
 
     output_lines.append('}')
     new_content = '\n'.join(output_lines) + '\n'
