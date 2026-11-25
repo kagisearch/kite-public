@@ -14,10 +14,9 @@
  * - Safari: Up to 1GB
  * - Can easily handle millions of read story entries
  */
-
-import Dexie, { type Table } from 'dexie';
 import { browser } from '$app/environment';
 import { syncManager } from '$lib/client/sync-manager';
+import Dexie, { type Table } from 'dexie';
 
 // Interface for read story entries
 export interface ReadStoryEntry {
@@ -208,6 +207,23 @@ export const kiteDB = {
 		} catch (error) {
 			console.error('[Dexie] Failed to get read stories:', error);
 			return new Set();
+		}
+	},
+
+	/**
+	 * Return when the user first marked a story as read (ms since epoch), or
+	 * null if there's no read record. Used by the correction-history UI to
+	 * decide whether the user read the story before a correction was applied.
+	 */
+	async getReadTimestamp(clusterUuid: string): Promise<number | null> {
+		if (!browser || !indexedDBAvailable) return null;
+		try {
+			if (!db.isOpen()) await db.open();
+			const entry = await db.readStories.get(clusterUuid);
+			return entry?.timestamp ?? null;
+		} catch (error) {
+			console.error('[Dexie] Failed to read timestamp:', error);
+			return null;
 		}
 	},
 

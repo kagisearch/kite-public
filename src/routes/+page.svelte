@@ -1,49 +1,66 @@
 <script lang="ts">
-import { getContext } from 'svelte';
 import { browser } from '$app/environment';
 import { page } from '$app/state';
 import { s } from '$lib/client/localization.svelte';
+import AppUpdateBanner from '$lib/components/AppUpdateBanner.svelte';
 import BackToTop from '$lib/components/BackToTop.svelte';
 import CategoryNavigation from '$lib/components/CategoryNavigation.svelte';
-import CryptoGrid from '$lib/components/crypto/CryptoGrid.svelte';
-import CryptoPrice from '$lib/components/crypto/CryptoPrice.svelte';
 import DataLoader from '$lib/components/DataLoader.svelte';
 import Footer from '$lib/components/Footer.svelte';
-import F1Schedule from '$lib/components/f1/F1Schedule.svelte';
-import F1Standings from '$lib/components/f1/F1Standings.svelte';
 import Header from '$lib/components/Header.svelte';
 import HistoryManager from '$lib/components/HistoryManager.svelte';
 import IntroScreen from '$lib/components/IntroScreen.svelte';
 import KeyboardNavigationHandler from '$lib/components/KeyboardNavigationHandler.svelte';
 import KeyboardShortcutsHelp from '$lib/components/KeyboardShortcutsHelp.svelte';
-import NFLScores from '$lib/components/nfl/NFLScores.svelte';
-import NFLStandings from '$lib/components/nfl/NFLStandings.svelte';
-import NHLScores from '$lib/components/nhl/NHLScores.svelte';
-import NHLStandings from '$lib/components/nhl/NHLStandings.svelte';
 import OnThisDay from '$lib/components/OnThisDay.svelte';
 import Settings from '$lib/components/Settings.svelte';
 import SourceOverlay from '$lib/components/SourceOverlay.svelte';
 import StoryList from '$lib/components/StoryList.svelte';
-import { SearchModal } from '$lib/components/search';
-import StoryCardSkeleton from '$lib/components/story/StoryCardSkeleton.svelte';
 import TemporaryCategoryTooltip from '$lib/components/TemporaryCategoryTooltip.svelte';
 import TimeTravel from '$lib/components/TimeTravel.svelte';
 import Toast from '$lib/components/Toast.svelte';
 import WikipediaPopup from '$lib/components/WikipediaPopup.svelte';
+import CryptoGrid from '$lib/components/crypto/CryptoGrid.svelte';
+import CryptoPrice from '$lib/components/crypto/CryptoPrice.svelte';
+import F1Schedule from '$lib/components/f1/F1Schedule.svelte';
+import F1Standings from '$lib/components/f1/F1Standings.svelte';
+import NFLScores from '$lib/components/nfl/NFLScores.svelte';
+import NFLStandings from '$lib/components/nfl/NFLStandings.svelte';
+import NHLScores from '$lib/components/nhl/NHLScores.svelte';
+import NHLStandings from '$lib/components/nhl/NHLStandings.svelte';
+import { SearchModal } from '$lib/components/search';
+import StoryCardSkeleton from '$lib/components/story/StoryCardSkeleton.svelte';
 import Weather from '$lib/components/weather/Weather.svelte';
+import { syncKnPrefsCookie } from '$lib/data/knPrefsCookie';
 import {
+	categorySettings,
 	displaySettings,
 	languageSettings,
 	type SupportedLanguage,
 	settings,
 	settingsModalState,
 } from '$lib/data/settings.svelte.js';
+import { useCategoryManager } from '$lib/hooks/useCategoryManager.svelte';
+import { useDataHandlers } from '$lib/hooks/useDataHandlers.svelte';
+import { usePageDerived } from '$lib/hooks/usePageDerived.svelte';
+import { usePageEffects } from '$lib/hooks/usePageEffects.svelte';
+import { usePageHelpers } from '$lib/hooks/usePageHelpers.svelte';
+import { usePageSetup } from '$lib/hooks/usePageSetup.svelte';
+// Composables
+import { usePageState } from '$lib/hooks/usePageState.svelte';
+import { useSinglePageMode } from '$lib/hooks/useSinglePageMode.svelte';
+import { useStoryToggle } from '$lib/hooks/useStoryToggle.svelte';
 import { imagePreloadingService } from '$lib/services/imagePreloadingService';
 import { navigationHandlerService } from '$lib/services/navigationHandlerService';
-import { timeTravelBatch } from '$lib/stores/timeTravelBatch.svelte';
 import { type NavigationParams, UrlNavigationService } from '$lib/services/urlNavigationService';
+import { categoryMetadataStore } from '$lib/stores/categoryMetadata.svelte';
+import { timeTravelBatch } from '$lib/stores/timeTravelBatch.svelte';
+import { timeTravelExitHint } from '$lib/stores/timeTravelExitHint.svelte';
+import type { Category } from '$lib/types';
+import type { SeedData } from '$lib/types/seed';
 import { categorySwipeHandler } from '$lib/utils/categorySwipeHandler';
 import { clearImageCache, extractStoryImages, getImageCacheStats } from '$lib/utils/imagePreloader';
+import { untrack } from 'svelte';
 
 // Helper function for layout width class
 function getContainerWidthClass(): string {
@@ -57,19 +74,46 @@ function getContainerWidthClass(): string {
 	}
 }
 
-import { useCategoryManager } from '$lib/hooks/useCategoryManager.svelte';
-import { useDataHandlers } from '$lib/hooks/useDataHandlers.svelte';
-import { usePageDerived } from '$lib/hooks/usePageDerived.svelte';
-import { usePageEffects } from '$lib/hooks/usePageEffects.svelte';
-import { usePageHelpers } from '$lib/hooks/usePageHelpers.svelte';
-import { usePageSetup } from '$lib/hooks/usePageSetup.svelte';
-// Composables
-import { usePageState } from '$lib/hooks/usePageState.svelte';
-import { useSinglePageMode } from '$lib/hooks/useSinglePageMode.svelte';
-import { useStoryToggle } from '$lib/hooks/useStoryToggle.svelte';
+// Server-rendered initial payload from +page.server.ts. Optional because
+// the same component is re-rendered as <Page /> by wrapper routes (/latest,
+// /[batchId], /about, ...) that don't have their own server load — those
+// fall back to the client-side DataLoader fetch path.
+let { data = { initialData: null } }: { data?: { initialData: SeedData | null } } = $props();
 
 // Initialize state
 const state = usePageState();
+
+// Server-only pre-seed of the data the derived below read.
+//
+// Svelte evaluates `$derived` eagerly during SSR — `usePageDerived()` a few
+// lines down computes orderedCategories/singlePageStories immediately, and
+// server-side derived never recompute. The seed is otherwise not applied
+// until `handleDataLoaded` near the bottom of this script, so those derived
+// would capture empty state for the whole render: single page mode
+// server-rendered zero stories and StoryList painted its "Temporarily
+// unavailable" empty state until the client hydrated (KNEWS-447). Tabs mode
+// never hit this because its template reads `state.stories` directly, and
+// that getter is live at render time.
+//
+// handleDataLoaded still runs below and re-applies all of this (plus the
+// browser-only work); these three assignments are idempotent. Reordering
+// that call instead would mean untangling the derived <- helpers <-
+// dataHandlers construction cycle, which is a much larger change.
+if (!browser && data.initialData) {
+	state.categories = data.initialData.categories;
+	state.allCategoryStories = data.initialData.allCategoryStories;
+	if (data.initialData.enabled) {
+		categorySettings.seedFromSSR(data.initialData.enabled);
+	}
+}
+
+// Hover-prefetch a category. Thin wrapper around loadStoriesForCategory's
+// prefetch mode — KNEWS-252. CategoryNavigation only invokes this on
+// fine-pointer (mouse) devices.
+function prefetchCategoryStories(categoryId: string) {
+	if (!browser) return;
+	dataHandlers.loadStoriesForCategory(categoryId, { prefetch: true });
+}
 
 // Derived state
 const derived = usePageDerived(() => ({
@@ -78,11 +122,64 @@ const derived = usePageDerived(() => ({
 	stories: state.stories,
 	expandedStories: state.expandedStories,
 	allCategoryStories: state.allCategoryStories,
+	loadingCategories: state.loadingCategories,
 	storyCountOverride: state.storyCountOverride,
 }));
 
-// Get session from context for subscription check
-const session = getContext<Session | null>('session');
+function showCategoryNavigation() {
+	return (
+		getNavigationCategories().length > 0 &&
+		!state.isSharedArticleView &&
+		categorySettings.singlePageMode === 'disabled'
+	);
+}
+
+function getNavigationCategories(): Category[] {
+	if (derived.orderedCategories.length > 0) {
+		return derived.orderedCategories;
+	}
+
+	if (categorySettings.enabled.length === 0) {
+		return [];
+	}
+
+	// Fallback path taken when `derived.orderedCategories` returned empty
+	// (the early-return inside it fires whenever `state.categories` hasn't
+	// been assigned yet, which on SSR happens because `handleDataLoaded`
+	// seeds the stores before it sets `state.categories = seed.categories`
+	// and any derived access in that window caches an empty array). We
+	// reproduce the same enabled-driven loop with metadata-backed
+	// placeholders so the nav renders the user's actual enabled list —
+	// including community categories like `quantum_physics` that have no
+	// row in the current batch — instead of silently dropping them via
+	// the prior `.filter(Boolean)`.
+	const categoriesById = new Map(state.categories.map((category) => [category.id, category]));
+	const categories: Category[] = [];
+	for (const categoryId of categorySettings.enabled) {
+		const category = categoriesById.get(categoryId);
+		if (category) {
+			categories.push(category);
+		} else {
+			const metadata = categoryMetadataStore.findById(categoryId);
+			categories.push({
+				id: categoryId,
+				name: metadata?.displayName ?? categoryId,
+			});
+		}
+	}
+
+	if (
+		state.temporaryCategory &&
+		!categories.find((category) => category.id === state.temporaryCategory)
+	) {
+		const temporaryCategory = categoriesById.get(state.temporaryCategory);
+		if (temporaryCategory) {
+			categories.push(temporaryCategory);
+		}
+	}
+
+	return categories;
+}
 
 // Time travel URL banner - show once, remember dismissal (synced via settings)
 function dismissTimeTravelUrlBanner() {
@@ -243,6 +340,12 @@ const dataHandlers = useDataHandlers(
 		set allCategoryStories(v) {
 			state.allCategoryStories = v;
 		},
+		get loadingCategories() {
+			return state.loadingCategories;
+		},
+		set loadingCategories(v) {
+			state.loadingCategories = v;
+		},
 		get categoryMap() {
 			return state.categoryMap;
 		},
@@ -339,6 +442,12 @@ const dataHandlers = useDataHandlers(
 		set storyCountOverride(v) {
 			state.storyCountOverride = v;
 		},
+		get readStories() {
+			return state.readStories;
+		},
+		set readStories(v) {
+			state.readStories = v;
+		},
 	},
 	{
 		updatePageTitle: (categoryId: string) => categoryManager.updatePageTitle(categoryId),
@@ -388,7 +497,10 @@ const storyToggle = useStoryToggle(
 	(value) => {
 		state.readStories = value;
 	},
-	state.initiallyExpandedStoryIndex,
+	() => state.initiallyExpandedStoryIndex,
+	() => {
+		state.initiallyExpandedStoryIndex = null;
+	},
 	() => state.historyManager,
 	() => ({
 		isSinglePageMode: derived.isSinglePageMode,
@@ -400,6 +512,16 @@ const storyToggle = useStoryToggle(
 		handleCategoryChange: categoryManager.handleCategoryChange,
 	}),
 );
+
+// Initial hydration. handleDataLoaded is server-safe (state writes happen
+// unconditionally, browser-only side effects are gated internally), so this
+// single call covers both SSR rendering and post-mount client hydration.
+// untrack() because the seed is a one-shot capture, not a reactive read.
+untrack(() => {
+	if (data.initialData) {
+		dataHandlers.handleDataLoaded(data.initialData, { initialMount: true });
+	}
+});
 
 // Page setup (onMount)
 usePageSetup({
@@ -498,6 +620,7 @@ const handleUrlNavigation = async (params: NavigationParams) => {
 			setDataLanguage: (lang: SupportedLanguage) => {
 				languageSettings.data = lang;
 				settings.dataLanguage.save();
+				syncKnPrefsCookie();
 			},
 			getCurrentDataLanguage: () => languageSettings.data,
 			handleCategoryChange: categoryManager.handleCategoryChange,
@@ -577,235 +700,282 @@ if (browser && typeof window !== 'undefined') {
 </script>
 
 <svelte:head>
-  <link rel="preload" as="image" href="/doggo_default.svg" />
+	<link rel="preload" as="image" href="/doggo_default.svg" />
 </svelte:head>
 
-{#if !state.dataLoaded}
-  {@const urlParams = parseInitialUrl()}
-  <DataLoader
-    onDataLoaded={dataHandlers.handleDataLoaded}
-    onError={dataHandlers.handleDataError}
-    initialBatchId={urlParams.batchId}
-    initialCategoryId={urlParams.categoryId}
-  />
-{:else if displaySettings.showIntro || state.showAboutPage}
-  <IntroScreen visible={true} onClose={helpers.handleIntroClose} />
+<DataLoader
+	onSeed={(seed) => dataHandlers.handleDataLoaded(seed)}
+	currentCategory={state.currentCategory}
+	categoryMap={state.categoryMap}
+/>
+
+{#if browser && state.dataLoaded && (displaySettings.showIntro || state.showAboutPage)}
+	<!-- Intro/about gated on `browser` because displaySettings.showIntro
+       depends on localStorage which is unavailable during SSR. Without this
+       gate, the server would default to showing the intro and (a) cause a
+       hydration mismatch for users in non-default locales, and (b) cause
+       GCP CDN to cache the intro page instead of the news content. -->
+	<IntroScreen visible={true} onClose={helpers.handleIntroClose} />
 {:else}
-  <a
-    href="#main-content"
-    class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-max focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded-md focus:shadow-lg"
-  >
-    {s("ui.skipToMainContent") || "Skip to main content"}
-  </a>
+	<a
+		href="#main-content"
+		class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-max focus:px-4 focus:py-2 focus:bg-purple-600 focus:text-white focus:rounded-md focus:shadow-lg"
+	>
+		{s('ui.skipToMainContent') || 'Skip to main content'}
+	</a>
 
-  <HistoryManager
-    bind:this={state.historyManager}
-    batchId={state.currentBatchId}
-    dateSlug={state.currentDateSlug}
-    batchCreatedAt={state.currentBatchCreatedAt}
-    categoryId={state.currentCategory}
-    storyIndex={derived.currentStoryIndex}
-    stories={derived.isSinglePageMode ? derived.singlePageStories : state.stories}
-    isLatestBatch={state.isLatestBatch}
-    bind:isSharedView={state.isSharedArticleView}
-    onNavigate={handleUrlNavigation}
-  />
+	{#if state.dataLoaded}
+		<HistoryManager
+			bind:this={state.historyManager}
+			batchId={state.currentBatchId}
+			dateSlug={state.currentDateSlug}
+			batchCreatedAt={state.currentBatchCreatedAt}
+			categoryId={state.currentCategory}
+			storyIndex={derived.currentStoryIndex}
+			stories={derived.isSinglePageMode ? derived.singlePageStories : state.stories}
+			isLatestBatch={state.isLatestBatch}
+			bind:isSharedView={state.isSharedArticleView}
+			onNavigate={handleUrlNavigation}
+		/>
+	{/if}
 
-  <div class="md:hidden sticky top-0 z-modal-backdrop bg-white dark:bg-gray-900 shadow-sm relative">
-    <div class="px-3 py-2">
-      <Header
-        offlineMode={state.offlineMode}
-        totalReadCount={state.totalReadCount}
-        totalStoriesRead={state.totalStoriesRead}
-        getLastUpdated={helpers.getLastUpdated}
-        lastUpdatedTimestamp={state.lastUpdatedTimestamp}
-        chaosIndex={state.chaosIndex}
-        dataLoaded={state.dataLoaded}
-        isSharedView={state.isSharedArticleView}
-        onLogoClick={helpers.handleLogoClick}
-        onSearchClick={() => (state.showSearchModal = true)}
-        bind:chaosModalOpen={state.chaosModalOpen}
-      />
-    </div>
-    {#if derived.categoryHeaderPosition === "top" && !state.isSharedArticleView && !derived.isSinglePageMode}
-      <CategoryNavigation
-        categories={derived.orderedCategories}
-        currentCategory={state.currentCategory}
-        onCategoryChange={categoryManager.handleCategoryChange}
-        onCategoryDoubleClick={() => state.storyList?.toggleExpandAll()}
-        mobilePosition="integrated"
-        temporaryCategory={state.temporaryCategory}
-        showTemporaryTooltip={false}
-      />
-    {/if}
-  </div>
+	<div class="md:hidden sticky top-0 z-modal-backdrop bg-modal-bg shadow-sm relative">
+		<div class="px-3 py-2">
+			<Header
+				offlineMode={state.offlineMode}
+				totalReadCount={state.totalReadCount}
+				totalStoriesRead={state.totalStoriesRead}
+				getLastUpdated={helpers.getLastUpdated}
+				lastUpdatedTimestamp={state.lastUpdatedTimestamp}
+				chaosIndex={state.chaosIndex}
+				dataLoaded={state.dataLoaded}
+				isSharedView={state.isSharedArticleView}
+				onLogoClick={helpers.handleLogoClick}
+				onSearchClick={() => (state.showSearchModal = true)}
+				bind:chaosModalOpen={state.chaosModalOpen}
+			/>
+		</div>
+		{#if showCategoryNavigation() && derived.categoryHeaderPosition === 'top'}
+			<CategoryNavigation
+				categories={getNavigationCategories()}
+				currentCategory={state.currentCategory}
+				onCategoryChange={categoryManager.handleCategoryChange}
+				onCategoryHover={prefetchCategoryStories}
+				onCategoryDoubleClick={() => state.storyList?.toggleExpandAll()}
+				mobilePosition="integrated"
+				temporaryCategory={state.temporaryCategory}
+				showTemporaryTooltip={false}
+			/>
+		{/if}
+	</div>
 
-  {#if derived.categoryHeaderPosition === "bottom" && !state.isSharedArticleView && !derived.isSinglePageMode}
-    <div class="md:hidden">
-      <CategoryNavigation
-        categories={derived.orderedCategories}
-        currentCategory={state.currentCategory}
-        onCategoryChange={categoryManager.handleCategoryChange}
-        onCategoryDoubleClick={() => state.storyList?.toggleExpandAll()}
-        mobilePosition="bottom"
-        temporaryCategory={state.temporaryCategory}
-        showTemporaryTooltip={false}
-      />
-    </div>
-  {/if}
+	{#if showCategoryNavigation() && derived.categoryHeaderPosition === 'bottom'}
+		<div class="md:hidden">
+			<CategoryNavigation
+				categories={getNavigationCategories()}
+				currentCategory={state.currentCategory}
+				onCategoryChange={categoryManager.handleCategoryChange}
+				onCategoryHover={prefetchCategoryStories}
+				onCategoryDoubleClick={() => state.storyList?.toggleExpandAll()}
+				mobilePosition="bottom"
+				temporaryCategory={state.temporaryCategory}
+				showTemporaryTooltip={false}
+			/>
+		</div>
+	{/if}
 
-  <main
-    class="pb-[56px] md:pb-0 relative z-20 {derived.categoryHeaderPosition === 'top' ? 'pt-0' : ''}"
-    ontouchstart={categorySwipeHandler.handleTouchStart}
-    ontouchmove={categorySwipeHandler.handleTouchMove}
-    ontouchend={categorySwipeHandler.handleTouchEnd}
-  >
-    <!-- Desktop Header - full width with its own padding -->
-    <div class="hidden md:block px-4">
-      <Header
-        offlineMode={state.offlineMode}
-        totalReadCount={state.totalReadCount}
-        totalStoriesRead={state.totalStoriesRead}
-        getLastUpdated={helpers.getLastUpdated}
-        lastUpdatedTimestamp={state.lastUpdatedTimestamp}
-        chaosIndex={state.chaosIndex}
-        dataLoaded={state.dataLoaded}
-        isSharedView={state.isSharedArticleView}
-        onLogoClick={helpers.handleLogoClick}
-        onSearchClick={() => (state.showSearchModal = true)}
-        bind:chaosModalOpen={state.chaosModalOpen}
-      />
-    </div>
+	<main
+		class="pb-[56px] md:pb-0 relative z-20 {derived.categoryHeaderPosition === 'top' ? 'pt-0' : ''}"
+		ontouchstart={categorySwipeHandler.handleTouchStart}
+		ontouchmove={categorySwipeHandler.handleTouchMove}
+		ontouchend={categorySwipeHandler.handleTouchEnd}
+	>
+		<!-- Desktop Header - full width with its own padding -->
+		<div class="hidden md:block px-4">
+			<Header
+				offlineMode={state.offlineMode}
+				totalReadCount={state.totalReadCount}
+				totalStoriesRead={state.totalStoriesRead}
+				getLastUpdated={helpers.getLastUpdated}
+				lastUpdatedTimestamp={state.lastUpdatedTimestamp}
+				chaosIndex={state.chaosIndex}
+				dataLoaded={state.dataLoaded}
+				isSharedView={state.isSharedArticleView}
+				onLogoClick={helpers.handleLogoClick}
+				onSearchClick={() => (state.showSearchModal = true)}
+				bind:chaosModalOpen={state.chaosModalOpen}
+			/>
+		</div>
 
-    <div class="container mx-auto {getContainerWidthClass()} px-4">
-      {#if !state.isSharedArticleView && !derived.isSinglePageMode}
-        <div class="hidden md:block">
-          <CategoryNavigation
-            bind:this={state.desktopCategoryNavigation}
-            categories={derived.orderedCategories}
-            currentCategory={state.currentCategory}
-            onCategoryChange={categoryManager.handleCategoryChange}
-            onCategoryDoubleClick={() => state.storyList?.toggleExpandAll()}
-            mobilePosition="bottom"
-            temporaryCategory={state.temporaryCategory}
-            showTemporaryTooltip={state.showTemporaryCategoryTooltip}
-            onTemporaryScrollStart={() => { state.showTemporaryCategoryTooltip = false; }}
-            onTemporaryScrollEnd={() => { state.showTemporaryCategoryTooltip = true; }}
-          />
-        </div>
-      {/if}
+		<div class="container mx-auto {getContainerWidthClass()} px-4">
+			{#if showCategoryNavigation()}
+				<div class="hidden md:block">
+					<CategoryNavigation
+						bind:this={state.desktopCategoryNavigation}
+						categories={getNavigationCategories()}
+						currentCategory={state.currentCategory}
+						onCategoryChange={categoryManager.handleCategoryChange}
+						onCategoryHover={prefetchCategoryStories}
+						onCategoryDoubleClick={() => state.storyList?.toggleExpandAll()}
+						mobilePosition="bottom"
+						temporaryCategory={state.temporaryCategory}
+						showTemporaryTooltip={state.showTemporaryCategoryTooltip}
+						onTemporaryScrollStart={() => {
+							state.showTemporaryCategoryTooltip = false;
+						}}
+						onTemporaryScrollEnd={() => {
+							state.showTemporaryCategoryTooltip = true;
+						}}
+					/>
+				</div>
+			{/if}
 
-      <div id="main-content">
-        {#if state.isSharedArticleView}
-          {@const batchDate = state.currentBatchCreatedAt ? new Date(state.currentBatchCreatedAt) : null}
-          {@const isValidDate = batchDate && !isNaN(batchDate.getTime())}
-          {@const formattedDate = isValidDate ? batchDate.toLocaleDateString(languageSettings.ui === 'default' ? undefined : languageSettings.ui, {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-          }) : ''}
-          <div class="mt-4 mb-6 border-l-4 border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-800/50 pl-4 pr-3 py-3 flex items-center justify-between gap-4">
-            <p class="text-sm text-gray-700 dark:text-gray-300">
-              {#if isValidDate}
-                {s("shared.viewingStoryFrom", { date: formattedDate }) || `Viewing a shared story from ${formattedDate}`}
-              {:else}
-                {s("shared.viewingSharedStory") || "Viewing a shared story"}
-              {/if}
-            </p>
-            <button
-              onclick={helpers.handleExitSharedView}
-              class="flex-shrink-0 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 transition-colors underline"
-            >
-              {s("shared.viewLatest") || "View latest stories"}
-            </button>
-          </div>
-        {/if}
+			<div id="main-content">
+				{#if !state.dataLoaded}
+					<div class="min-h-[300px]" aria-live="polite" aria-busy="true">
+						<span class="sr-only">{s('loading.stories') || 'Loading stories...'}</span>
+						{#each Array(10) as _, i}
+							<StoryCardSkeleton variant={i} />
+						{/each}
+					</div>
+				{:else}
+					{#if state.isSharedArticleView}
+						{@const batchDate = state.currentBatchCreatedAt
+							? new Date(state.currentBatchCreatedAt)
+							: null}
+						{@const isValidDate = batchDate && !isNaN(batchDate.getTime())}
+						{@const formattedDate = isValidDate
+							? batchDate.toLocaleDateString(
+									languageSettings.ui === 'default' ? undefined : languageSettings.ui,
+									{
+										year: 'numeric',
+										month: 'long',
+										day: 'numeric',
+									},
+								)
+							: ''}
+						<div
+							class="mt-4 mb-6 border-l-4 border-primary-300 bg-primary-25 dark:bg-graphite-800/50 pl-4 pr-3 py-3 flex items-center justify-between gap-4"
+						>
+							<p class="text-sm text-primary-700">
+								{#if isValidDate}
+									{s('shared.viewingStoryFrom', { date: formattedDate }) ||
+										`Viewing a shared story from ${formattedDate}`}
+								{:else}
+									{s('shared.viewingSharedStory') || 'Viewing a shared story'}
+								{/if}
+							</p>
+							<button
+								onclick={helpers.handleExitSharedView}
+								class="flex-shrink-0 text-sm font-medium text-primary-700 hover:text-primary transition-colors underline"
+							>
+								{s('shared.viewLatest') || 'View latest stories'}
+							</button>
+						</div>
+					{/if}
 
-        {#if timeTravelBatch.isHistoricalBatch && timeTravelBatch.entrySource === 'url' && !settings.timeTravelBannerDismissed.currentValue && !state.isSharedArticleView}
-          {@const batchDate = state.currentBatchCreatedAt ? new Date(state.currentBatchCreatedAt) : null}
-          {@const isValidDate = batchDate && !isNaN(batchDate.getTime())}
-          {@const formattedDate = isValidDate ? batchDate.toLocaleDateString(languageSettings.ui === 'default' ? undefined : languageSettings.ui, {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-          }) : ''}
-          {@const hasReferrer = browser && document.referrer && !document.referrer.includes(location.origin)}
-          <div class="mt-4 mb-6 border-l-4 border-blue-400 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/30 pl-4 pr-3 py-3 flex items-center justify-between gap-4">
-            <p class="text-sm text-blue-700 dark:text-blue-300">
-              {#if hasReferrer}
-                {s("timeTravel.urlBanner.viewingShared", { date: formattedDate }) || `Someone shared a link to news from ${formattedDate} with you. You can return to today's news anytime using the ✕ next to the date above.`}
-              {:else}
-                {s("timeTravel.urlBanner.viewing", { date: formattedDate }) || `This link points to news from ${formattedDate}. You can return to today's news anytime using the ✕ next to the date above.`}
-              {/if}
-            </p>
-            <button
-              onclick={dismissTimeTravelUrlBanner}
-              class="flex-shrink-0 text-sm font-medium text-blue-700 dark:text-blue-300 hover:text-blue-900 dark:hover:text-blue-100 transition-colors underline"
-            >
-              {s("timeTravel.urlBanner.dismiss") || "Got it"}
-            </button>
-          </div>
-        {/if}
+					{#if timeTravelBatch.isHistoricalBatch && timeTravelBatch.entrySource === 'url' && !settings.timeTravelBannerDismissed.currentValue && !state.isSharedArticleView}
+						{@const batchDate = state.currentBatchCreatedAt
+							? new Date(state.currentBatchCreatedAt)
+							: null}
+						{@const isValidDate = batchDate && !isNaN(batchDate.getTime())}
+						{@const formattedDate = isValidDate
+							? batchDate.toLocaleDateString(
+									languageSettings.ui === 'default' ? undefined : languageSettings.ui,
+									{
+										year: 'numeric',
+										month: 'long',
+										day: 'numeric',
+									},
+								)
+							: ''}
+						{@const hasReferrer =
+							browser && document.referrer && !document.referrer.includes(location.origin)}
+						<div
+							class="mt-4 mb-6 border-l-4 border-primary-300 bg-primary-25 pl-4 pr-3 py-3 flex items-center justify-between gap-4"
+							onmouseenter={() => (timeTravelExitHint.active = true)}
+							onmouseleave={() => (timeTravelExitHint.active = false)}
+							role="presentation"
+						>
+							<p class="text-sm text-primary-700">
+								{#if hasReferrer}
+									{s('timeTravel.urlBanner.viewingShared', { date: formattedDate }) ||
+										`Someone shared a link to news from ${formattedDate} with you. You can return to today's news anytime using the ✕ next to the date above.`}
+								{:else}
+									{s('timeTravel.urlBanner.viewing', { date: formattedDate }) ||
+										`This link points to news from ${formattedDate}. You can return to today's news anytime using the ✕ next to the date above.`}
+								{/if}
+							</p>
+							<button
+								onclick={dismissTimeTravelUrlBanner}
+								class="flex-shrink-0 text-sm font-medium text-accent-links hover:opacity-80 transition-colors underline"
+							>
+								{s('timeTravel.urlBanner.dismiss') || 'Got it'}
+							</button>
+						</div>
+					{/if}
 
-        {#if state.isLoadingCategory}
-          <div class="min-h-[300px]" aria-live="polite" aria-busy="true">
-            <span class="sr-only">{s("loading.stories") || "Loading stories..."}</span>
-            {#each Array(10) as _, i}
-              <StoryCardSkeleton variant={i} />
-            {/each}
-          </div>
-        {:else if derived.isSinglePageMode}
-          <StoryList
-            bind:this={state.storyList}
-            stories={derived.singlePageStories}
-            currentCategory="all"
-            categoryUuid=""
-            batchId={state.currentBatchId}
-            batchDateSlug={state.currentDateSlug}
-            bind:expandedStories={state.expandedStories}
-            onStoryToggle={storyToggle.handleToggle}
-
-            bind:readStories={state.readStories}
-            bind:showSourceOverlay={state.showSourceOverlay}
-            bind:currentSource={state.currentSource}
-            bind:sourceArticles={state.sourceArticles}
-            bind:currentMediaInfo={state.currentMediaInfo}
-            bind:isLoadingMediaInfo={state.isLoadingMediaInfo}
-            storyCountOverride={null}
-            isSharedView={state.isSharedArticleView}
-            sharedArticleIndex={state.sharedArticleIndex}
-            sharedClusterId={state.sharedClusterId}
-            initiallyExpandedIndex={state.initiallyExpandedStoryIndex}
-            showCategoryLabels={derived.singlePageMode === 'sequential'}
-            skipStoryCountLimit={true}
-          />
-        {:else if state.currentCategory === "onthisday"}
-          <OnThisDay
-            stories={state.onThisDayEvents}
-            language={state.onThisDayLanguage}
-            onWikipediaClick={helpers.handleWikipediaClick}
-          />
-        {:else}
-          {#if state.currentCategory.toLowerCase() === "nhl"}
-            <NHLScores />
-            <NHLStandings />
-          {/if}
-          {#if state.currentCategory.toLowerCase() === "nfl"}
-            <NFLScores />
-            <NFLStandings />
-          {/if}
-          {#if state.currentCategory.toLowerCase() === "formula_1"}
-            <F1Schedule />
-            <F1Standings />
-          {/if}
-          {#if state.currentCategory.toLowerCase() === "bitcoin"}
-            <CryptoPrice cryptoId="bitcoin" />
-          {/if}
-          {#if state.currentCategory.toLowerCase() === "cryptocurrency"}
-            <CryptoGrid />
-          {/if}
-          <!-- Weather widgets temporarily hidden -->
-          <!-- {#if state.currentCategory.toLowerCase() === "bay"}
+					{#if state.isLoadingCategory}
+						<div class="min-h-[300px]" aria-live="polite" aria-busy="true">
+							<span class="sr-only">{s('loading.stories') || 'Loading stories...'}</span>
+							{#each Array(10) as _, i}
+								<StoryCardSkeleton variant={i} />
+							{/each}
+						</div>
+					{:else if derived.isSinglePageMode}
+						<StoryList
+							bind:this={state.storyList}
+							stories={derived.singlePageStories}
+							pendingSections={derived.singlePagePendingSections}
+							currentCategory="all"
+							categoryUuid=""
+							batchId={state.currentBatchId}
+							batchDateSlug={state.currentDateSlug}
+							bind:expandedStories={state.expandedStories}
+							onStoryToggle={storyToggle.handleToggle}
+							bind:readStories={state.readStories}
+							bind:showSourceOverlay={state.showSourceOverlay}
+							bind:currentSource={state.currentSource}
+							bind:sourceArticles={state.sourceArticles}
+							bind:currentMediaInfo={state.currentMediaInfo}
+							bind:isLoadingMediaInfo={state.isLoadingMediaInfo}
+							storyCountOverride={null}
+							isSharedView={state.isSharedArticleView}
+							sharedArticleIndex={state.sharedArticleIndex}
+							sharedClusterId={state.sharedClusterId}
+							initiallyExpandedIndex={state.initiallyExpandedStoryIndex}
+							showCategoryLabels={derived.singlePageMode === 'sequential'}
+							skipStoryCountLimit={true}
+							filteredCountOverride={derived.singlePageHiddenCount}
+							onDisplayedStoriesChange={(stories) => (state.visibleStories = stories)}
+						/>
+					{:else if state.currentCategory === 'onthisday'}
+						<OnThisDay
+							stories={state.onThisDayEvents}
+							language={state.onThisDayLanguage}
+							onWikipediaClick={helpers.handleWikipediaClick}
+						/>
+					{:else}
+						{#if state.currentCategory.toLowerCase() === 'nhl'}
+							<NHLScores />
+							<NHLStandings />
+						{/if}
+						{#if state.currentCategory.toLowerCase() === 'nfl'}
+							<NFLScores />
+							<NFLStandings />
+						{/if}
+						{#if state.currentCategory.toLowerCase() === 'formula_1'}
+							<F1Schedule />
+							<F1Standings />
+						{/if}
+						{#if state.currentCategory.toLowerCase() === 'bitcoin'}
+							<CryptoPrice cryptoId="bitcoin" />
+						{/if}
+						{#if state.currentCategory.toLowerCase() === 'cryptocurrency'}
+							<CryptoGrid />
+						{/if}
+						<!-- Weather widgets temporarily hidden -->
+						<!-- {#if state.currentCategory.toLowerCase() === "bay"}
             <Weather location="san-francisco" />
           {/if}
           {#if state.currentCategory.toLowerCase() === "usa_|_new_york_city"}
@@ -815,104 +985,113 @@ if (browser && typeof window !== 'undefined') {
             <Weather location="austin" />
           {/if} -->
 
-          <StoryList
-            bind:this={state.storyList}
-            stories={state.stories}
-            currentCategory={state.currentCategory}
-            categoryUuid={state.categoryMap[state.currentCategory]}
-            batchId={state.currentBatchId}
-            batchDateSlug={state.currentDateSlug}
-            bind:expandedStories={state.expandedStories}
-            onStoryToggle={storyToggle.handleToggle}
+						<StoryList
+							bind:this={state.storyList}
+							stories={state.stories}
+							currentCategory={state.currentCategory}
+							categoryUuid={state.categoryMap[state.currentCategory]}
+							batchId={state.currentBatchId}
+							batchDateSlug={state.currentDateSlug}
+							bind:expandedStories={state.expandedStories}
+							onStoryToggle={storyToggle.handleToggle}
+							bind:readStories={state.readStories}
+							bind:showSourceOverlay={state.showSourceOverlay}
+							bind:currentSource={state.currentSource}
+							bind:sourceArticles={state.sourceArticles}
+							bind:currentMediaInfo={state.currentMediaInfo}
+							bind:isLoadingMediaInfo={state.isLoadingMediaInfo}
+							storyCountOverride={state.storyCountOverride}
+							isSharedView={state.isSharedArticleView}
+							sharedArticleIndex={state.sharedArticleIndex}
+							sharedClusterId={state.sharedClusterId}
+							initiallyExpandedIndex={state.initiallyExpandedStoryIndex}
+							onDisplayedStoriesChange={(stories) => (state.visibleStories = stories)}
+						/>
+					{/if}
+				{/if}
+			</div>
 
-            bind:readStories={state.readStories}
-            bind:showSourceOverlay={state.showSourceOverlay}
-            bind:currentSource={state.currentSource}
-            bind:sourceArticles={state.sourceArticles}
-            bind:currentMediaInfo={state.currentMediaInfo}
-            bind:isLoadingMediaInfo={state.isLoadingMediaInfo}
-            storyCountOverride={state.storyCountOverride}
-            isSharedView={state.isSharedArticleView}
-            sharedArticleIndex={state.sharedArticleIndex}
-            sharedClusterId={state.sharedClusterId}
-            initiallyExpandedIndex={state.initiallyExpandedStoryIndex}
-          />
-        {/if}
-      </div>
-
-      <Footer
-        currentCategory={state.currentCategory}
-        categories={state.categories}
-        stories={state.stories}
-        onShowAbout={() => { displaySettings.showIntro = true; }}
-      />
-    </div>
-  </main>
+			{#if state.dataLoaded}
+				<Footer
+					currentCategory={state.currentCategory}
+					categories={state.categories}
+					stories={state.stories}
+					onShowAbout={() => {
+						displaySettings.showIntro = true;
+					}}
+				/>
+			{/if}
+		</div>
+	</main>
 {/if}
 
 <Settings
-  visible={settingsModalState.isOpen}
-  categories={state.categories}
-  onClose={() => { settingsModalState.isOpen = false; }}
-  onShowAbout={() => {
-    settingsModalState.isOpen = false;
-    displaySettings.showIntro = true;
-  }}
+	visible={settingsModalState.isOpen}
+	categories={state.categories}
+	onClose={() => {
+		settingsModalState.isOpen = false;
+	}}
+	onShowAbout={() => {
+		settingsModalState.isOpen = false;
+		displaySettings.showIntro = true;
+	}}
 />
 
 <TimeTravel />
 
 <SourceOverlay
-  isOpen={state.showSourceOverlay}
-  currentSource={state.currentSource}
-  sourceArticles={state.sourceArticles}
-  currentMediaInfo={state.currentMediaInfo}
-  isLoadingMediaInfo={state.isLoadingMediaInfo}
-  onClose={helpers.handleCloseSource}
+	isOpen={state.showSourceOverlay}
+	currentSource={state.currentSource}
+	sourceArticles={state.sourceArticles}
+	currentMediaInfo={state.currentMediaInfo}
+	isLoadingMediaInfo={state.isLoadingMediaInfo}
+	onClose={helpers.handleCloseSource}
 />
 
 <WikipediaPopup
-  visible={state.wikipediaPopup.visible}
-  title={state.wikipediaPopup.title}
-  content={state.wikipediaPopup.content}
-  imageUrl={state.wikipediaPopup.imageUrl}
-  onClose={helpers.closeWikipediaPopup}
+	visible={state.wikipediaPopup.visible}
+	title={state.wikipediaPopup.title}
+	content={state.wikipediaPopup.content}
+	imageUrl={state.wikipediaPopup.imageUrl}
+	onClose={helpers.closeWikipediaPopup}
 />
 
 <TemporaryCategoryTooltip
-  show={state.showTemporaryCategoryTooltip}
-  referenceElement={state.temporaryCategoryElement}
+	show={state.showTemporaryCategoryTooltip}
+	referenceElement={state.temporaryCategoryElement}
 />
 
 <SearchModal
-  visible={state.showSearchModal}
-  allCategoryStories={state.allCategoryStories}
-  categories={state.categories}
-  currentCategory={state.currentCategory}
-  onClose={() => (state.showSearchModal = false)}
-  onSelectStory={helpers.handleSearchSelectStory}
+	visible={state.showSearchModal}
+	allCategoryStories={state.allCategoryStories}
+	categories={state.categories}
+	currentCategory={state.currentCategory}
+	onClose={() => (state.showSearchModal = false)}
+	onSelectStory={helpers.handleSearchSelectStory}
 />
 
 {#if state.dataLoaded && !state.showOnboarding && !displaySettings.showIntro}
-  <BackToTop />
+	<BackToTop />
 {/if}
 
 <Toast />
+<AppUpdateBanner />
 
 {#if state.dataLoaded}
-<KeyboardNavigationHandler
-	stories={state.stories}
-	currentCategory={state.currentCategory}
-	categories={derived.orderedCategories}
-	expandedStories={state.expandedStories}
-	showSourceOverlay={state.showSourceOverlay}
-	wikipediaPopupVisible={state.wikipediaPopup.visible}
-	settingsModalOpen={settingsModalState.isOpen}
-	bind:showSearchModal={state.showSearchModal}
-	onStoryToggle={storyToggle.handleToggle}
-	onToggleReadStatus={(index) => state.storyList?.toggleReadStatus(index)}
-	onCategoryChange={categoryManager.handleCategoryChange}
-/>
+	<KeyboardNavigationHandler
+		stories={state.visibleStories}
+		currentCategory={state.currentCategory}
+		categories={derived.orderedCategories}
+		expandedStories={state.expandedStories}
+		showSourceOverlay={state.showSourceOverlay}
+		wikipediaPopupVisible={state.wikipediaPopup.visible}
+		settingsModalOpen={settingsModalState.isOpen}
+		bind:showSearchModal={state.showSearchModal}
+		onStoryToggle={storyToggle.handleToggle}
+		onToggleReadStatus={(index) => state.storyList?.toggleReadStatus(index)}
+		onMarkAllAsRead={() => state.storyList?.markAllAsRead()}
+		onCategoryChange={categoryManager.handleCategoryChange}
+	/>
 {/if}
 
 <KeyboardShortcutsHelp />

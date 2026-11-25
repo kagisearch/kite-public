@@ -1,6 +1,6 @@
 <script lang="ts">
-import { IconAlertTriangle, IconCheck, IconInfoCircle, IconX } from '@tabler/icons-svelte';
 import { type Toast, toastStore } from '$lib/stores/toast.svelte';
+import { IconAlertTriangle, IconCheck, IconInfoCircle, IconX } from '@tabler/icons-svelte';
 
 const { toasts } = $derived.by(() => ({ toasts: toastStore.toasts }));
 
@@ -26,14 +26,16 @@ function getColorClasses(type: Toast['type']): string {
 		case 'error':
 			return 'bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-200 border-red-200 dark:border-red-800';
 		default:
-			return 'bg-blue-50 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 border-blue-200 dark:border-blue-800';
+			return 'bg-purple-50 dark:bg-purple-900/20 text-accent-links border-primary-100';
 	}
 }
 </script>
 
 <!-- Toast Container -->
 {#if toasts.length > 0}
-	<div class="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-[calc(1rem+env(safe-area-inset-right))] z-notification flex flex-col gap-2 max-w-md sm:max-w-sm max-sm:left-[calc(1rem+env(safe-area-inset-left))] max-sm:right-[calc(1rem+env(safe-area-inset-right))]">
+	<div
+		class="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-[calc(1rem+env(safe-area-inset-right))] z-notification flex flex-col gap-2 max-w-md sm:max-w-sm max-sm:left-[calc(1rem+env(safe-area-inset-left))] max-sm:right-[calc(1rem+env(safe-area-inset-right))]"
+	>
 		{#each toasts as toast (toast.id)}
 			{@const Icon = getIcon(toast.type)}
 			<div
