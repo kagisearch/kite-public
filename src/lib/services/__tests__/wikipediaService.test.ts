@@ -1,9 +1,9 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
 import {
 	clearWikipediaCache,
 	fetchWikipediaContent,
 	getWikipediaCacheSize,
 } from '../wikipediaService';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 // Mock fetch
 global.fetch = vi.fn();

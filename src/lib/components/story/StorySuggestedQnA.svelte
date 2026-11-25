@@ -45,70 +45,62 @@ const displayQna = $derived.by(() => {
 </script>
 
 <section class="mt-6">
-  <h3 class="mb-4 text-xl font-semibold text-gray-800 dark:text-gray-200">
-    {storyLocalizer("section.suggestedQnA") || "Q&A"}
-  </h3>
+	<h3 class="mb-4 text-xl font-semibold text-primary-800">
+		{storyLocalizer('section.suggestedQnA') || 'Q&A'}
+	</h3>
 
-  <div class="space-y-4">
-    {#each displayQna as qa}
-      {@const questionCitations = getCitedArticlesForText(
-        qa.question,
-        citationMapping,
-        articles,
-      )}
-      {@const answerCitations = getCitedArticlesForText(
-        qa.answer,
-        citationMapping,
-        articles,
-      )}
-      <div class="rounded-lg bg-gray-100 p-4 dark:bg-gray-700">
-        <p class="mb-2 text-base font-semibold text-gray-800 dark:text-gray-200">
-          {#if flashcardMode}
-            <SelectableText
-              text={qa.question}
-              {flashcardMode}
-              {selectedWords}
-              {selectedPhrases}
-              {shouldJiggle}
-              {onWordClick}
-              section="suggested_qna"
-            />
-          {:else}
-            <CitationText
-              text={qa.question}
-              showFavicons={false}
-              showNumbers={false}
-              inline={true}
-              articles={questionCitations.citedArticles}
-              {citationMapping}
-              {storyLocalizer}
-            />
-          {/if}
-        </p>
-        <p class="text-base text-gray-700 dark:text-gray-300">
-          {#if flashcardMode}
-            <SelectableText
-              text={qa.answer}
-              {flashcardMode}
-              {selectedWords}
-              {selectedPhrases}
-              {shouldJiggle}
-              {onWordClick}
-              section="suggested_qna"
-            />
-          {:else}
-            <CitationText
-              text={qa.answer}
-              showFavicons={false}
-              showNumbers={false}
-              inline={false}
-              articles={answerCitations.citedArticles}
-              {citationMapping}
-              {storyLocalizer}
-            />
-          {/if}
-        </p>
-      </div>
-    {/each}
-  </div>
+	<div class="space-y-4">
+		{#each displayQna as qa}
+			{@const questionCitations = getCitedArticlesForText(qa.question, citationMapping, articles)}
+			{@const answerCitations = getCitedArticlesForText(qa.answer, citationMapping, articles)}
+			<div class="rounded-lg bg-primary-50 p-4">
+				<p class="mb-2 text-base font-semibold text-primary-800">
+					{#if flashcardMode}
+						<SelectableText
+							text={qa.question}
+							{flashcardMode}
+							{selectedWords}
+							{selectedPhrases}
+							{shouldJiggle}
+							{onWordClick}
+							section="suggested_qna"
+						/>
+					{:else}
+						<CitationText
+							text={qa.question}
+							showFavicons={false}
+							showNumbers={false}
+							inline={true}
+							articles={questionCitations.citedArticles}
+							{citationMapping}
+							{storyLocalizer}
+						/>
+					{/if}
+				</p>
+				<p class="text-base text-primary-700">
+					{#if flashcardMode}
+						<SelectableText
+							text={qa.answer}
+							{flashcardMode}
+							{selectedWords}
+							{selectedPhrases}
+							{shouldJiggle}
+							{onWordClick}
+							section="suggested_qna"
+						/>
+					{:else}
+						<CitationText
+							text={qa.answer}
+							showFavicons={false}
+							showNumbers={false}
+							inline={false}
+							articles={answerCitations.citedArticles}
+							{citationMapping}
+							{storyLocalizer}
+						/>
+					{/if}
+				</p>
+			</div>
+		{/each}
+	</div>
 </section>

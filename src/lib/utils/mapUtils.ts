@@ -1,7 +1,6 @@
 /**
  * Utility functions for handling map URLs and device detection
  */
-
 import { displaySettings } from '$lib/data/settings.svelte';
 import { getMapsUrl } from './mapsProvider';
 

@@ -38,6 +38,14 @@ export function usePageState() {
 	let lastUpdated = $state('');
 	let lastUpdatedTimestamp = $state(0);
 	let allCategoryStories = $state<Record<string, Story[]>>({});
+	// Category ids with a story fetch in flight. Distinct from
+	// `isLoadingCategory`, which tracks only the active-view load: single page
+	// mode fills every category in parallel via prefetch and needs to know
+	// which ones are still outstanding so it can show a placeholder for each.
+	// Emptiness of `allCategoryStories[id]` can't answer that — the SSR seed
+	// assigns `[]` to every category in the batch, and a category can also be
+	// legitimately empty for the day.
+	let loadingCategories = $state<Record<string, true>>({});
 	let categoryMap = $state<Record<string, string>>({});
 	let currentBatchId = $state<string>('');
 	let currentDateSlug = $state<string | undefined>(undefined);
@@ -77,6 +85,9 @@ export function usePageState() {
 	let isLatestBatch = $state(true);
 	let historyManager = $state<HistoryManagerInstance | undefined>();
 	let initiallyExpandedStoryIndex = $state<number | null>(null);
+
+	// Keyboard navigation: the filtered/limited stories actually rendered by StoryList
+	let visibleStories = $state<Story[]>([]);
 
 	return {
 		// App state
@@ -232,6 +243,12 @@ export function usePageState() {
 		set allCategoryStories(value) {
 			allCategoryStories = value;
 		},
+		get loadingCategories() {
+			return loadingCategories;
+		},
+		set loadingCategories(value) {
+			loadingCategories = value;
+		},
 		get categoryMap() {
 			return categoryMap;
 		},
@@ -351,6 +368,14 @@ export function usePageState() {
 		},
 		set initiallyExpandedStoryIndex(value) {
 			initiallyExpandedStoryIndex = value;
+		},
+
+		// Keyboard navigation
+		get visibleStories() {
+			return visibleStories;
+		},
+		set visibleStories(value) {
+			visibleStories = value;
 		},
 	};
 }

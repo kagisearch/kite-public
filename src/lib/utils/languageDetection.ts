@@ -1,4 +1,4 @@
-import { SUPPORTED_LANGUAGES } from '$lib/constants/languages';
+import { ALL_LANGUAGES } from '$lib/constants/languages';
 import type { SupportedLanguage } from '$lib/data/settings.svelte';
 
 /**
@@ -11,7 +11,7 @@ export function detectUserLanguage(): SupportedLanguage {
 	const browserLang = navigator.language;
 
 	// Get all supported language codes (excluding "default")
-	const supportedCodes = SUPPORTED_LANGUAGES.filter((lang) => lang.code !== 'default').map(
+	const supportedCodes = ALL_LANGUAGES.filter((lang) => lang.code !== 'default').map(
 		(lang) => lang.code,
 	);
 
@@ -54,5 +54,5 @@ export function detectChineseVariant(browserLang: string): SupportedLanguage {
  * Checks if a language is supported
  */
 export function isSupportedLanguage(lang: string): lang is SupportedLanguage {
-	return SUPPORTED_LANGUAGES.some((supported) => supported.code === lang);
+	return ALL_LANGUAGES.some((supported) => supported.code === lang);
 }

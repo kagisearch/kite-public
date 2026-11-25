@@ -3,30 +3,35 @@ import { browser } from '$app/environment';
 import { page } from '$app/state';
 import { isRtlLocale } from '$lib/client/rtl-detection';
 import { syncManager } from '$lib/client/sync-manager';
-import '../app.css';
 import { syncSettingsWatcher } from '$lib/client/sync-settings-watcher.svelte';
+import NativeAppBanner from '$lib/components/NativeAppBanner.svelte';
 import {
 	categorySettings,
 	displaySettings,
 	experimentalSettings,
 	languageSettings,
 	loadAllSettings,
+	seedSettingsFromSsrPrefs,
 	settings,
+	settingsLock,
 	themeSettings,
 } from '$lib/data/settings.svelte.js';
 import { dataLanguage } from '$lib/stores/dataLanguage.svelte';
 import { experimental } from '$lib/stores/experimental.svelte';
 import { language } from '$lib/stores/language.svelte.js';
 import { pageMetadata } from '$lib/stores/pageMetadata.svelte.js';
+import '../app.css';
 import '../styles/index.css';
-import { useOverlayScrollbars } from 'overlayscrollbars-svelte';
 import type { PageData } from './$types';
-import 'overlayscrollbars/overlayscrollbars.css';
+import { useOverlayScrollbars } from 'overlayscrollbars-svelte';
 import { onMount, type Snippet, setContext } from 'svelte';
 import { deepMerge, MetaTags } from 'svelte-meta-tags';
 
 // Props from layout load
 let { data, children }: { data: PageData; children: Snippet } = $props();
+
+// svelte-ignore state_referenced_locally - SSR prefs intentionally seed only the initial render
+seedSettingsFromSsrPrefs(data.knPrefs);
 
 // Set session context for child components
 // svelte-ignore state_referenced_locally - session context is set once at initialization
@@ -127,5 +132,9 @@ $effect(() => {
 </script>
 
 <MetaTags {...metaTags} />
+
+{#if data.showNativeAppBanner && !settingsLock.hasPin}
+	<NativeAppBanner />
+{/if}
 
 {@render children()}
