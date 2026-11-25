@@ -3507,7 +3507,59 @@
       "https://www1.cbn.com/rss-cbn-articles-cbnnews.xml"
     ]
   },
-    "Church of Jesus Christ of Latter-day Saints": {     "source_language": "en",     "feeds": [       "https://newsroom.churchofjesuschrist.org/rss",       "https://feeds.lds.org/church-news-and-events-eng"     ]   },   "Climate Change": {
+  "Church of Jesus Christ of Latter-day Saints": {
+    "category_type": "topic",
+    "source_language": "en",
+    "display_names": {
+      "en": "Church of Jesus Christ of Latter-day Saints",
+      "ar": "كنيسة يسوع المسيح لقديسي الأيام الأخيرة",
+      "ca": "Església de Jesucrist dels Sants dels Darrers Dies",
+      "de": "Kirche Jesu Christi der Heiligen der Letzten Tage",
+      "es": "La Iglesia de Jesucristo de los Santos de los Últimos Días",
+      "et": "Viimse Aja Pühade Jeesuse Kristuse Kirik",
+      "fr": "Église de Jésus-Christ des saints des derniers jours",
+      "he": "כנסיית ישוע המשיח של קדושי אחרית הימים",
+      "hi": "चर्च ऑफ़ जीसस क्राइस्ट ऑफ़ लैटर-डे सेंट्स",
+      "it": "Chiesa di Gesù Cristo dei Santi degli Ultimi Giorni",
+      "ja": "末日聖徒イエス・キリスト教会",
+      "ko": "예수 그리스도 후기 성도 교회",
+      "nl": "Kerk van Jezus Christus van de Heiligen der Laatste Dagen",
+      "pt": "A Igreja de Jesus Cristo dos Santos dos Últimos Dias",
+      "ru": "Церковь Иисуса Христа Святых последних дней",
+      "uk": "Церква Ісуса Христа Святих Останніх Днів",
+      "zh-Hans": "耶稣基督后期圣徒教会",
+      "zh-Hant": "耶穌基督後期聖徒教會"
+    },
+    "feeds": [
+      "https://www.abc4.com/news/religion/feed/",
+      "https://bycommonconsent.com/feed/",
+      "https://www.byui.edu/newsroom/index.rss",
+      "https://www.deseret.com/arc/outboundfeeds/rss/category/faith/?outputType=xml",
+      "https://www.dialoguejournal.com/feed/",
+      "https://exponentii.org/feed/",
+      "https://latterdaysaintmag.com/feed/",
+      "https://www.ldsdaily.com/feed/",
+      "https://www.ldsliving.com/index.atom",
+      "https://news-africa.churchofjesuschrist.org/rss",
+      "https://news-au.churchofjesuschrist.org/rss",
+      "https://news-ca.churchofjesuschrist.org/rss",
+      "https://news-pacific.churchofjesuschrist.org/rss",
+      "https://news-ph.churchofjesuschrist.org/rss",
+      "https://news-uk.churchofjesuschrist.org/rss",
+      "https://news.byu.edu/index.rss",
+      "https://news.google.com/rss/search?q=site:ksl.com+%22Latter-day+Saints%22+when:30d&hl=en-US&gl=US&ceid=US:en",
+      "https://newsroom.churchofjesuschrist.org/rss",
+      "https://publicsquaremag.org/feed/",
+      "https://religionnews.com/category/faiths/christianity/latter-day-saints/feed/",
+      "https://www.sltrib.com/arc/outboundfeeds/rss/category/religion/?outputType=xml",
+      "https://sunstone.org/feed/",
+      "https://www.thechurchnews.com/arc/outboundfeeds/rss/?outputType=xml",
+      "https://www.timesandseasons.org/index.php/feed/",
+      "https://universe.byu.edu/index.rss",
+      "https://wheatandtares.org/feed/"
+    ]
+  },
+  "Climate Change": {
     "category_type": "topic",
     "source_language": "en",
     "display_names": {
