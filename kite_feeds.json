@@ -20,7 +20,7 @@
       "ru": "Австралия | Виктория",
       "uk": "Австралія | Вікторія",
       "zh-Hans": "澳大利亚 | 维多利亚州",
-      "zh-Hant": "澳大利亞 | 維多利亞州"
+      "zh-Hant": "澳洲 | 維多利亞"
     },
     "feeds": [
       "https://www.abc.net.au/news/feed/5470430/rss.xml",
@@ -104,7 +104,7 @@
       "ru": "Канада | Британская Колумбия",
       "uk": "Канада | Британська Колумбія",
       "zh-Hans": "加拿大 | 不列颠哥伦比亚省",
-      "zh-Hant": "加拿大 | 英屬哥倫比亞省"
+      "zh-Hant": "加拿大 | 英屬哥倫比亞"
     },
     "feeds": [
       "https://www.100milefreepress.net/feed/",
@@ -457,7 +457,7 @@
       "ru": "Индия | Гуджарат",
       "uk": "Індія | Гуджарат",
       "zh-Hans": "印度 | 古吉拉特邦",
-      "zh-Hant": "印度 | 古吉拉特邦"
+      "zh-Hant": "印度 | 古加拉特邦"
     },
     "feeds": [
       "http://chitralekha.com/category/news/gujarat/feed",
@@ -574,7 +574,7 @@
       "pt": "Índia | Maharashtra",
       "ru": "Индия | Махараштра",
       "zh-Hans": "印度 | 马哈拉施特拉邦",
-      "zh-Hant": "印度 | 馬哈拉施特拉邦"
+      "zh-Hant": "印度 | 馬哈拉什特拉邦"
     },
     "feeds": [
       "https://divyamarathi.bhaskar.com/rss-v1--category-5492.xml",
@@ -679,7 +679,7 @@
       "ru": "США | Джорджия",
       "uk": "США | Джорджія",
       "zh-Hans": "美国 | 佐治亚",
-      "zh-Hant": "美國 | 喬治亞"
+      "zh-Hant": "美國 | 喬治亞州"
     },
     "feeds": [
       "https://www.11alive.com/feeds/syndication/rss/news",
@@ -3534,7 +3534,8 @@
     "source_language": "en",
     "display_names": {
       "en": "Christian",
-      "ko": "기독교"
+      "ko": "기독교",
+      "zh-Hant": "基督教"
     },
     "feeds": [
       "https://answersingenesis.org/dailycontent.xml",
@@ -3935,7 +3936,8 @@
       "en": "Computer Science",
       "pt-BR": "Ciência da Computação",
       "ar": "Ciencias de la Computación",
-      "ko": "컴퓨터 과학"
+      "ko": "컴퓨터 과학",
+      "zh-Hant": "電腦科學"
     },
     "feeds": [
       "https://11011110.github.io/blog/feed.xml",
@@ -8080,7 +8082,8 @@
     "display_names": {
       "en": "Tamil Nadu",
       "ta": "தமிழ்நாடு",
-      "ko": "인도 | 타밀나두주"
+      "ko": "인도 | 타밀나두주",
+      "zh-Hant": "印度 | 坦米爾那都邦"
     },
     "feeds": [
       "https://beta.dinamani.com/api/v1/collections/latest-news.rss",
@@ -10878,7 +10881,8 @@
     "source_language": "en",
     "display_names": {
       "en": "North Carolina",
-      "ko": "미국 | 노스캐롤라이나주"
+      "ko": "미국 | 노스캐롤라이나주",
+      "zh-Hant": "美國 | 北卡羅萊納州"
     },
     "feeds": [
       "https://abc11.com/feed",
@@ -11434,7 +11438,7 @@
       "ru": "Новости педиатрии",
       "uk": "Новини педіатрії",
       "zh-Hans": "儿科新闻",
-      "zh-Hant": "兒科新聞"
+      "zh-Hant": "小兒科新聞"
     },
     "feeds": [
       "https://acamh.onlinelibrary.wiley.com/feed/14697610/most-recent",
@@ -11606,7 +11610,7 @@
       "ru": "Фотоника и машинное зрение",
       "uk": "Фотоніка та машинний зір",
       "zh-Hans": "光子学与机器视觉",
-      "zh-Hant": "光子學與機器視覺"
+      "zh-Hant": "光子學與電腦視覺"
     },
     "feeds": [
       "https://www.azooptics.com/syndication.axd",
@@ -12089,7 +12093,8 @@
     "source_language": "en",
     "display_names": {
       "en": "Psychology",
-      "ko": "심리학"
+      "ko": "심리학",
+      "zh-Hant": "心理學"
     },
     "feeds": [
       "https://beckinstitute.org/feed/",
@@ -12129,7 +12134,8 @@
     "source_language": "en",
     "display_names": {
       "en": "Quantum Physics",
-      "ko": "양자물리학"
+      "ko": "양자물리학",
+      "zh-Hant": "量子物理"
     },
     "feeds": [
       "https://aws.amazon.com/blogs/quantum-computing/feed",
@@ -12674,10 +12680,11 @@
     "display_names": {
       "en": "Singapore",
       "et": "Singapur",
+      "ko": "싱가포르",
       "ms": "Singapura",
-      "zh-Hans": "新加坡",
       "ta": "சிங்கப்பூர் ",
-      "ko": "싱가포르"
+      "zh-Hans": "新加坡",
+      "zh-Hant": "新加坡"
     },
     "feeds": [
       "https://www.8days.sg/api/v1/rss-outbound-feed?_format=xml",
@@ -15765,7 +15772,7 @@
       "ru": "США | Небраска",
       "uk": "США | Небраска",
       "zh-Hans": "美国 | 内布拉斯加",
-      "zh-Hant": "美國 | 內布拉斯加"
+      "zh-Hant": "美國 | 內布拉斯加州"
     },
     "feeds": [
       "https://flatwaterfreepress.org/feed/",
@@ -16465,7 +16472,8 @@
     "source_language": "en",
     "display_names": {
       "en": "USA | Wyoming",
-      "ko": "미국 | 와이오밍주"
+      "ko": "미국 | 와이오밍주",
+      "zh-Hant": "美國 | 懷俄明州"
     },
     "feeds": [
       "https://www.basinrepublican-rustler.com/rss.xml",
