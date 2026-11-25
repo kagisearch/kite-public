@@ -1,8 +1,8 @@
 <script lang="ts">
-import { onDestroy, onMount, type Snippet } from 'svelte';
-import { fade } from 'svelte/transition';
-import Portal from 'svelte-portal';
 import { browser } from '$app/environment';
+import { onDestroy, onMount, type Snippet } from 'svelte';
+import Portal from 'svelte-portal';
+import { fade } from 'svelte/transition';
 
 /**
  * Props
@@ -305,44 +305,44 @@ function handleMouseLeave() {
   2. The actual tooltip <div> is portaled to <body>.
 -->
 <div
-  bind:this={triggerElement}
-  class={className}
-  onmouseenter={handleMouseEnter}
-  onmouseleave={handleMouseLeave}
-  onfocus={handleMouseEnter}
-  onblur={handleMouseLeave}
-  onclick={handleTriggerClick}
-  ontouchstart={handleTouchStart}
-  ontouchend={handleTouchEnd}
-  onkeydown={(e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      handleTriggerClick(e as unknown as MouseEvent);
-    }
-  }}
-  tabindex="-1"
-  role="none"
+	bind:this={triggerElement}
+	class={className}
+	onmouseenter={handleMouseEnter}
+	onmouseleave={handleMouseLeave}
+	onfocus={handleMouseEnter}
+	onblur={handleMouseLeave}
+	onclick={handleTriggerClick}
+	ontouchstart={handleTouchStart}
+	ontouchend={handleTouchEnd}
+	onkeydown={(e) => {
+		if (e.key === 'Enter' || e.key === ' ') {
+			handleTriggerClick(e as unknown as MouseEvent);
+		}
+	}}
+	tabindex="-1"
+	role="none"
 >
-  <!-- The content that triggers the tooltip goes here -->
-  {@render children()}
+	<!-- The content that triggers the tooltip goes here -->
+	{@render children()}
 </div>
 
 {#if visible && text && !disabled}
-  <Portal target="body">
-    <div
-      bind:this={tooltipElement}
-      class="svelte-tooltip z-tooltip max-w-xs overflow-hidden rounded-md bg-gray-900 dark:bg-gray-800 px-3 py-2 text-xs text-white shadow-lg"
-      transition:fade={{ duration: 150 }}
-      style="position: fixed; pointer-events: none;"
-    >
-      <div class="whitespace-pre-line text-left">
-        {text}
-      </div>
-    </div>
-  </Portal>
+	<Portal target="body">
+		<div
+			bind:this={tooltipElement}
+			class="svelte-tooltip z-tooltip max-w-xs overflow-hidden rounded-md bg-tooltip-bg px-3 py-2 text-xs text-on-accent shadow-lg"
+			transition:fade={{ duration: 150 }}
+			style="position: fixed; pointer-events: none;"
+		>
+			<div class="whitespace-pre-line text-left">
+				{text}
+			</div>
+		</div>
+	</Portal>
 {/if}
 
 <style>
-  div {
-    transform-origin: center bottom;
-  }
+div {
+	transform-origin: center bottom;
+}
 </style>

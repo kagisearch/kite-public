@@ -3,6 +3,7 @@ export interface Article {
 	link: string;
 	domain: string;
 	date: string;
+	author?: string | null;
 	image?: string;
 	image_caption?: string;
 }
@@ -46,13 +47,29 @@ export interface OnThisDayData {
 	events: OnThisDayEvent[];
 }
 
+/**
+ * A reader-facing correction event. One entry per applied admin-approved
+ * fact-check edit. Ordered newest-first in Story.corrections.
+ */
+export interface Correction {
+	/** ISO timestamp when the edit was applied. */
+	appliedAt: string;
+	/** Neutral one-liner the fact-check agent wrote for readers. */
+	note: string;
+	/** Top-level field names that the edit modified (e.g. ["title", "short_summary"]). */
+	changedFields: string[];
+}
+
 export interface Story {
 	id?: string;
 	cluster_number: number;
 	unique_domains?: number;
 	number_of_titles?: number;
 	sourceLanguage?: string;
-	selectedLanguage?: string; // The language actually used for this story's content
+	selectedLanguage?: string; // The language this story's content is being rendered towards
+	/** Columns already in `selectedLanguage`, merged server-side from a partial
+	 *  translation row. Absent when nothing was pre-translated. */
+	preTranslatedFields?: string[];
 	category: string;
 	title: string;
 	short_summary: string;
@@ -89,7 +106,6 @@ export interface Story {
 	user_experience_impact?: string | null;
 	gameplay_mechanics?: string[] | null;
 	industry_impact?: string[] | null;
-	gaming_industry_impact?: string[] | null;
 	technical_specifications?: string[] | null;
 	suggested_qna?: QnA[] | null;
 	primary_image?: {
@@ -104,7 +120,10 @@ export interface Story {
 	} | null;
 	articles: Article[];
 	domains?: Domain[];
+	corrections?: Correction[];
 	expanded?: boolean;
+	/** Whether a translation is available for the requested language (false = needs on-demand translation) */
+	translationAvailable?: boolean;
 }
 
 export interface Category {

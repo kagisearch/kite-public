@@ -6,6 +6,7 @@
 export interface StoryListInstance {
 	toggleExpandAll(): void;
 	toggleReadStatus(index: number): void;
+	markAllAsRead(): Promise<void>;
 }
 
 // CategoryNavigation component instance type

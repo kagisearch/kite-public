@@ -39,28 +39,28 @@ const displayContent = $derived.by(() => {
 </script>
 
 <section class="mt-6">
-  <h3 class="mb-2 text-xl font-semibold text-gray-800 dark:text-gray-200">
-    {title}
-  </h3>
-  <div class="mb-4 text-base text-gray-700 dark:text-gray-300">
-    {#if flashcardMode}
-      <SelectableText
-        text={displayContent}
-        {flashcardMode}
-        {selectedWords}
-        {selectedPhrases}
-        {shouldJiggle}
-        {onWordClick}
-        {section}
-      />
-    {:else}
-      <CitationText
-        text={displayContent}
-        showFavicons={false}
-        showNumbers={false}
-        {articles}
-        {citationMapping}
-      />
-    {/if}
-  </div>
+	<h3 class="mb-2 text-xl font-semibold text-primary-800">
+		{title}
+	</h3>
+	<div class="mb-4 text-base text-primary-700">
+		{#if flashcardMode}
+			<SelectableText
+				text={displayContent}
+				{flashcardMode}
+				{selectedWords}
+				{selectedPhrases}
+				{shouldJiggle}
+				{onWordClick}
+				{section}
+			/>
+		{:else}
+			<CitationText
+				text={displayContent}
+				showFavicons={false}
+				showNumbers={false}
+				{articles}
+				{citationMapping}
+			/>
+		{/if}
+	</div>
 </section>
