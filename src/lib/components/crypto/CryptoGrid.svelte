@@ -1,7 +1,7 @@
 <script lang="ts">
+import { s } from '$lib/client/localization.svelte';
 import { IconRefresh, IconTrendingDown, IconTrendingUp } from '@tabler/icons-svelte';
 import { onMount } from 'svelte';
-import { s } from '$lib/client/localization.svelte';
 
 interface CryptoConfig {
 	id: string;
@@ -127,11 +127,11 @@ onMount(() => {
 <div class="mb-4 hidden md:block">
 	<!-- Header -->
 	<div class="mb-3 flex items-center justify-between">
-		<h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">{s('crypto.grid.title')}</h3>
+		<h3 class="text-lg font-semibold text-primary">{s('crypto.grid.title')}</h3>
 		<button
 			onclick={handleRefresh}
 			disabled={refreshing}
-			class="rounded p-1.5 text-gray-600 transition-colors hover:bg-gray-100 disabled:opacity-50 dark:text-gray-400 dark:hover:bg-gray-800"
+			class="rounded p-1.5 text-primary-600 transition-colors hover:bg-primary-50 disabled:opacity-50"
 			aria-label="Refresh prices"
 		>
 			<IconRefresh class="h-4 w-4 {refreshing ? 'animate-spin' : ''}" />
@@ -143,28 +143,33 @@ onMount(() => {
 		{#each cryptos as crypto}
 			{@const priceData = data.get(crypto.id)}
 			{@const isPositive = (priceData?.priceChangePercentage24h ?? 0) >= 0}
-			{@const sparklinePath = priceData?.sparkline ? generateSparklinePath(priceData.sparkline) : ''}
+			{@const sparklinePath = priceData?.sparkline
+				? generateSparklinePath(priceData.sparkline)
+				: ''}
 
-			<div class="rounded-lg border border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-800">
+			<div class="rounded-lg border border-primary-100 bg-white p-3 dark:bg-graphite-800">
 				<div class="flex items-start justify-between">
 					<!-- Icon & Name -->
 					<div class="flex items-center gap-2">
 						<div class="flex h-8 w-8 items-center justify-center rounded-full {crypto.color} p-1">
 							<img
-								src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/{symbolMap[crypto.id] || 'btc'}.svg"
+								src="https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/{symbolMap[
+									crypto.id
+								] || 'btc'}.svg"
 								alt={crypto.id}
 								class="h-full w-full"
 								onerror={(e) => {
 									const img = e.currentTarget as HTMLImageElement;
-									img.src = 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/btc.svg';
+									img.src =
+										'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/btc.svg';
 								}}
 							/>
 						</div>
 						<div class="flex flex-col">
-							<span class="text-xs font-medium text-gray-900 dark:text-gray-100">
+							<span class="text-xs font-medium text-primary">
 								{priceData?.symbol || '...'}
 							</span>
-							<span class="text-[10px] text-gray-600 dark:text-gray-400">
+							<span class="text-[10px] text-primary-600">
 								{priceData?.name || crypto.id}
 							</span>
 						</div>
@@ -186,11 +191,15 @@ onMount(() => {
 
 				<!-- Price -->
 				<div class="mt-2">
-					<div class="text-lg font-bold text-gray-900 dark:text-gray-100">
+					<div class="text-lg font-bold text-primary">
 						{loading || !priceData ? '...' : formatPrice(priceData.price)}
 					</div>
 					{#if !loading && priceData}
-						<div class="flex items-center gap-1 text-xs font-medium {isPositive ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}">
+						<div
+							class="flex items-center gap-1 text-xs font-medium {isPositive
+								? 'text-green-600 dark:text-green-400'
+								: 'text-red-600 dark:text-red-400'}"
+						>
 							{#if isPositive}
 								<IconTrendingUp class="h-3 w-3" />
 							{:else}

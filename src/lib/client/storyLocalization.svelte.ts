@@ -1,9 +1,9 @@
-import Mustache from 'mustache';
 import { browser } from '$app/environment';
 import { s } from '$lib/client/localization.svelte';
-import { SUPPORTED_LANGUAGES } from '$lib/constants/languages';
+import { ALL_LANGUAGES } from '$lib/constants/languages';
 import { dataLanguage } from '$lib/stores/dataLanguage.svelte.js';
 import { language, type SupportedLanguage } from '$lib/stores/language.svelte.js';
+import Mustache from 'mustache';
 
 // Simple cache for locale data - all locales loaded at startup
 const localeCache: Map<string, Record<string, unknown>> = new Map();
@@ -73,8 +73,10 @@ export function createStoryLocalizer(
 export async function preloadAllLocales() {
 	if (!browser) return;
 
-	// Get all real language codes (exclude "default" and "source")
-	const languages = SUPPORTED_LANGUAGES.filter(
+	// Get all real language codes (exclude "default" and "source"). ALL_LANGUAGES
+	// includes ON_DEMAND_LANGUAGES so locales for Estonian etc. preload too —
+	// on-demand only controls content translation, not the locale strings.
+	const languages = ALL_LANGUAGES.filter(
 		(lang) => lang.code !== 'default' && lang.code !== 'source',
 	).map((lang) => lang.code as SupportedLanguage);
 

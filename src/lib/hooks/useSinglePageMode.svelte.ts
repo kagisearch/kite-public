@@ -8,7 +8,7 @@ interface SinglePageModeOptions {
 	singlePageMode: SinglePageMode;
 	dataLoaded: boolean;
 	orderedCategories: Category[];
-	loadStoriesForCategory: (categoryId: string) => Promise<void>;
+	loadStoriesForCategory: (categoryId: string, opts?: { prefetch?: boolean }) => Promise<void>;
 	historyManager: HistoryManagerInstance | undefined;
 	currentCategory: string;
 	initialCategoryFromUrl?: string | null;
@@ -22,7 +22,15 @@ export function useSinglePageMode(options: () => SinglePageModeOptions) {
 	let previousSinglePageMode: boolean | null = null;
 	let previousSinglePageModeForLoading: boolean | null = null;
 
-	// Effect to load categories when single page mode is ENABLED (transition from false to true)
+	// Effect to load every category's stories for single page mode.
+	//
+	// Two situations need the bulk load, and only the first one used to be
+	// handled: toggling the mode on (false -> true), and arriving with the mode
+	// already enabled (null -> true, i.e. a reload or any fresh visit). Skipping
+	// the latter meant that after a refresh only the category in the URL was
+	// ever fetched — `singlePageStories` maps over `allCategoryStories`, so the
+	// page rendered a single section and the rest of the feed silently vanished
+	// until the user toggled the setting again (kite-public#583).
 	$effect(() => {
 		const opts = options();
 		if (!opts.dataLoaded) return;
@@ -30,14 +38,13 @@ export function useSinglePageMode(options: () => SinglePageModeOptions) {
 		// Track the transition
 		const currentMode = opts.isSinglePageMode;
 
-		// Only load categories when transitioning from disabled to enabled
-		// Skip on initial page load (previousSinglePageModeForLoading === null)
-		if (
-			previousSinglePageModeForLoading !== null &&
-			previousSinglePageModeForLoading === false &&
-			currentMode === true
-		) {
-			console.log('[SinglePage] Mode enabled - loading all categories');
+		const isInitialLoad = previousSinglePageModeForLoading === null;
+		const isTurningOn = previousSinglePageModeForLoading === false;
+
+		if (currentMode === true && (isInitialLoad || isTurningOn)) {
+			console.log(
+				`[SinglePage] Mode active (${isInitialLoad ? 'initial load' : 'just enabled'}) - loading all categories`,
+			);
 
 			// Find categories that need to be loaded
 			const categoriesToLoad: string[] = [];
@@ -50,7 +57,18 @@ export function useSinglePageMode(options: () => SinglePageModeOptions) {
 			}
 
 			if (categoriesToLoad.length > 0) {
-				Promise.all(categoriesToLoad.map((catId) => opts.loadStoriesForCategory(catId)));
+				// On initial load the primary category fetch (usePageEffects) is
+				// still in flight and owns `state.stories` / `isLoadingCategory` /
+				// `lastLoadedCategory`. Prefetch fills `allCategoryStories` without
+				// touching any of that, so the bulk load can't blank the view or
+				// leave the skeleton stuck. loadStoriesForCategory already dedupes
+				// against the cache and in-flight fetches, so re-requesting the URL
+				// category here is a no-op rather than a second request.
+				Promise.all(
+					categoriesToLoad.map((catId) =>
+						opts.loadStoriesForCategory(catId, isInitialLoad ? { prefetch: true } : undefined),
+					),
+				);
 			}
 		}
 

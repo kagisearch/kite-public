@@ -23,6 +23,14 @@
     "text": "הורדה ל-iOS",
     "translationContext": "Button text to download iOS app"
   },
+  "settings.about.feedback": {
+    "text": "משוב",
+    "translationContext": "Section header for the feedback link in about settings"
+  },
+  "settings.about.feedbackDescription": {
+    "text": "שתפו רעיונות, דווחו על בעיות, והצביעו על מה שניצור בהמשך",
+    "translationContext": "Description of the Kagi Feedback forum link"
+  },
   "settings.about.forNews": {
     "text": "עבור קוראי חדשות",
     "translationContext": "Footer text suffix for copyright"
@@ -50,6 +58,10 @@
   "settings.about.mobileDescription": {
     "text": "קבלו את Kagi News במכשיר הנייד שלכם",
     "translationContext": "Description for mobile apps"
+  },
+  "settings.about.openFeedback": {
+    "text": "פתיחת המשוב של Kagi",
+    "translationContext": "Button text linking to the Kagi Feedback forum"
   },
   "settings.about.viewApiDocs": {
     "text": "צפייה בתיעוד ה-API",
@@ -527,6 +539,10 @@
     "text": "התאם/י אישית את פיד החדשות שלך על ידי סינון נושאים שאת/ה מעדיף/ה לא לראות. השתמש/י במסננים קבועים מראש עבור מסננים נפוצים או צור/י מילות מפתח מותאמות אישית משלך.",
     "translationContext": "Description shown at the top of content filter settings tab"
   },
+  "settings.dataLanguage.englishOnlyNotice": {
+    "text": "החל מ-10 ביוני 2026, איננו מתרגמים עוד את כל הקטגוריות לכל השפות. כל סיפור זמין בשפת המקור שלו, בתוספת תרגום לאנגלית, במקרה שהן שונות.",
+    "translationContext": "Notice in language settings explaining that batch translation into all languages stopped on June 10, 2026; stories now ship in their native language plus English. Keep the date as-is."
+  },
   "settings.dataLanguage.label": {
     "text": "שפת התוכן",
     "translationContext": "Label for the data/content language setting"
@@ -578,6 +594,30 @@
   "settings.experimental.warning": {
     "text": "אלו הן תכונות ניסיוניות שעשויות להשתנות או להיות מוסרות בכל עת.",
     "translationContext": "Warning text for experimental features"
+  },
+  "settings.fontFamily.atkinson": {
+    "text": "Atkinson Hyperlegible Next",
+    "translationContext": "Option for Atkinson Hyperlegible font, designed for low-vision readability"
+  },
+  "settings.fontFamily.default": {
+    "text": "מערכת (ברירת מחדל)",
+    "translationContext": "Option for the default system font"
+  },
+  "settings.fontFamily.description": {
+    "text": "Atkinson Hyperlegible Next מותאם לקוראים עם לקות ראייה. OpenDyslexic עוצב עבור קוראים עם דיסלקציה. Fast Sans מדגיש את תחילת כל מילה כדי להנחות את העין לאורך הטקסט.",
+    "translationContext": "Description for the font family setting explaining accessibility benefits"
+  },
+  "settings.fontFamily.fast": {
+    "text": "Fast Sans (לקריאה מהירה)",
+    "translationContext": "Option for the Fast Sans font, which bolds the start of each word as a reading aid"
+  },
+  "settings.fontFamily.label": {
+    "text": "גופן",
+    "translationContext": "Label for the font family setting"
+  },
+  "settings.fontFamily.opendyslexic": {
+    "text": "OpenDyslexic",
+    "translationContext": "Option for OpenDyslexic font, designed for readers with dyslexia"
   },
   "settings.fontSize.label": {
     "text": "גודל גופן",
@@ -686,6 +726,138 @@
   "settings.layoutWidth.wide": {
     "text": "רחב (1024px)",
     "translationContext": "Option for wide layout width"
+  },
+  "settings.lock.backToPin": {
+    "text": "חזרה להזנת PIN",
+    "translationContext": "Link to go back from math challenge to PIN entry"
+  },
+  "settings.lock.confirmPin": {
+    "text": "אימות קוד PIN",
+    "translationContext": "Label for confirming the new PIN"
+  },
+  "settings.lock.description": {
+    "text": "יש להזין קוד PIN כדי לגשת להגדרות.",
+    "translationContext": "Description on the PIN lock screen"
+  },
+  "settings.lock.disableKeyboardShortcuts": {
+    "text": "השבתת קיצורי מקלדת",
+    "translationContext": "Toggle to disable all keyboard shortcuts for managed users"
+  },
+  "settings.lock.enable": {
+    "text": "הגדרת נעילת PIN",
+    "translationContext": "Button to enable PIN lock"
+  },
+  "settings.lock.enabled": {
+    "text": "נעילת ההגדרות מופעלת",
+    "translationContext": "Status text when PIN lock is active"
+  },
+  "settings.lock.enabledDescription": {
+    "text": "נדרש קוד PIN לפתיחת ההגדרות.",
+    "translationContext": "Description when PIN lock is active"
+  },
+  "settings.lock.forgot": {
+    "text": "שכחת את ה-PIN?",
+    "translationContext": "Link to start the forgot PIN flow"
+  },
+  "settings.lock.forgotTitle": {
+    "text": "איפוס PIN",
+    "translationContext": "Title shown on the math challenge screen for forgotten PIN"
+  },
+  "settings.lock.hideChaosIndex": {
+    "text": "הסתרת מדד הכאוס",
+    "translationContext": "Toggle to hide the chaos index indicator"
+  },
+  "settings.lock.hideCorrections": {
+    "text": "הסתרת היסטוריית תיקונים",
+    "translationContext": "Managed-mode toggle that hides the 'Corrected' indicator and correction history under story headers. Defaults to ON when a PIN is set, so the simplified reading view stays uncluttered."
+  },
+  "settings.lock.hideFontSize": {
+    "text": "הסתרת כפתור גודל הגופן",
+    "translationContext": "Toggle to hide the font size button in the header"
+  },
+  "settings.lock.hideReportButton": {
+    "text": "הסתרת כפתור הדיווח",
+    "translationContext": "Toggle to hide the report button on story cards"
+  },
+  "settings.lock.hideSearch": {
+    "text": "הסתרת חיפוש",
+    "translationContext": "Toggle to hide the search button in the header"
+  },
+  "settings.lock.hideShareButton": {
+    "text": "הסתרת כפתור השיתוף",
+    "translationContext": "Toggle to hide the share button on story cards"
+  },
+  "settings.lock.hideTimeTravel": {
+    "text": "הסתרת מסע בזמן",
+    "translationContext": "Toggle to hide the time travel button in the header"
+  },
+  "settings.lock.managedOptions": {
+    "text": "פישוט ממשק",
+    "translationContext": "Heading for managed mode toggles when PIN is set"
+  },
+  "settings.lock.managedOptionsDescription": {
+    "text": "ניתן להסתיר כפתורים ותכונות כדי ליצור חווית קריאה נקייה יותר. לדוגמה, בעת הגדרת Kagi News עבור ילד או קרוב משפחה מבוגר שרוצה רק לקרוא את החדשות ללא הסחות דעת.",
+    "translationContext": "Description for managed mode options section, explains why hiding features can be helpful"
+  },
+  "settings.lock.mathDescription": {
+    "text": "פתרו את התרגיל כדי לאפס את ה-PIN:",
+    "translationContext": "Description asking user to solve a math problem to reset PIN"
+  },
+  "settings.lock.mathPlaceholder": {
+    "text": "התשובה שלך",
+    "translationContext": "Placeholder for the math answer input"
+  },
+  "settings.lock.mathSubmit": {
+    "text": "שליחה",
+    "translationContext": "Button to submit the math challenge answer"
+  },
+  "settings.lock.mathWrong": {
+    "text": "תשובה שגויה. יש לנסות שוב.",
+    "translationContext": "Error when math challenge answer is wrong"
+  },
+  "settings.lock.mismatch": {
+    "text": "קודי ה-PIN אינם תואמים.",
+    "translationContext": "Error when PIN confirmation doesn't match"
+  },
+  "settings.lock.newPin": {
+    "text": "קוד PIN חדש (4-6 ספרות)",
+    "translationContext": "Label for the new PIN input"
+  },
+  "settings.lock.placeholder": {
+    "text": "הזנת PIN",
+    "translationContext": "Placeholder text for the PIN input field"
+  },
+  "settings.lock.remove": {
+    "text": "הסרת PIN",
+    "translationContext": "Button to remove the PIN lock"
+  },
+  "settings.lock.sectionDescription": {
+    "text": "נעילת ההגדרות באמצעות קוד PIN למניעת שינויים מקריים. שימושי למכשירים מנוהלים או לבקרת הורים.\n\nכאשר המצב נעול, קיצור הדרך לגודל הגופן והבאנר להורדת האפליקציה יוסתרו, ויידרש קוד PIN לפתיחת ההגדרות.",
+    "translationContext": "Description of the settings lock feature, explaining what changes in managed mode"
+  },
+  "settings.lock.sectionTitle": {
+    "text": "נעילת הגדרות",
+    "translationContext": "Title of the settings lock section in account settings"
+  },
+  "settings.lock.setPin": {
+    "text": "הגדרת PIN",
+    "translationContext": "Button to save the new PIN"
+  },
+  "settings.lock.title": {
+    "text": "הגדרות נעולות",
+    "translationContext": "Title shown on the PIN lock screen"
+  },
+  "settings.lock.tooShort": {
+    "text": "קוד ה-PIN חייב להכיל לפחות 4 ספרות.",
+    "translationContext": "Error when PIN is too short"
+  },
+  "settings.lock.unlock": {
+    "text": "פתיחה",
+    "translationContext": "Button text to unlock settings with PIN"
+  },
+  "settings.lock.wrongPin": {
+    "text": "קוד PIN שגוי. יש לנסות שוב.",
+    "translationContext": "Error message when wrong PIN is entered"
   },
   "settings.mapsProvider.apple": {
     "text": "מפות Apple",
@@ -2563,6 +2735,18 @@
     "text": "{{weekday}}, {{day}} ב{{month}}",
     "translationContext": "Format for displaying dates. {weekday} will be replaced with the day of the week, {month} with the month name, and {day} with the day number."
   },
+  "downloadApp.pageTitle": {
+    "text": "הורדת Kagi News",
+    "translationContext": "HTML page title for the download app landing page"
+  },
+  "downloadApp.subtitle": {
+    "text": "נראה שפתחתם את העמוד הזה במחשב. בחרו את החנות שלכם למטה ופתחו אותה בטלפון!",
+    "translationContext": "Subtitle for the download app landing page shown to desktop users"
+  },
+  "downloadApp.title": {
+    "text": "חדשות בדרכים",
+    "translationContext": "Heading for the download app landing page"
+  },
   "f1.completed": {
     "text": "הסתיים",
     "translationContext": "Status label for completed races"
@@ -2671,6 +2855,10 @@
     "text": "תרום",
     "translationContext": "Link text for contributing to the project"
   },
+  "footer.feedback": {
+    "text": "משוב",
+    "translationContext": "Link text for the Kagi Feedback forum"
+  },
   "footer.rssFeed": {
     "text": "פיד RSS",
     "translationContext": "Link text for RSS feed"
@@ -2710,6 +2898,10 @@
   "keyboard.action.jumpLast": {
     "text": "קפוץ לכתבה האחרונה",
     "translationContext": "Description for G key - jumping to last story"
+  },
+  "keyboard.action.markAllRead": {
+    "text": "סמן את כל הכתבות כנקראו",
+    "translationContext": "Description for Shift+M key - marking all stories in the current category as read"
   },
   "keyboard.action.moveNext": {
     "text": "עבור לכתבה הבאה",
@@ -2822,6 +3014,30 @@
   "meta.news": {
     "text": "חדשות",
     "translationContext": "The word 'News' used in titles"
+  },
+  "nativeAppBanner.appStoreLabel": {
+    "text": "הורד ב-App Store",
+    "translationContext": "Accessibility label for the App Store download badge"
+  },
+  "nativeAppBanner.dismissLabel": {
+    "text": "סגירת הבאנר של האפליקציה",
+    "translationContext": "Accessibility label for the close button on the native app banner"
+  },
+  "nativeAppBanner.googlePlayLabel": {
+    "text": "קבל אותו ב-Google Play",
+    "translationContext": "Accessibility label for the Google Play download badge"
+  },
+  "nativeAppBanner.qrCodeAlt": {
+    "text": "קוד QR להורדת Kagi News",
+    "translationContext": "Alt text for the QR code image in the native app banner"
+  },
+  "nativeAppBanner.subtitle": {
+    "text": "נסו את אפליקציית המובייל שלנו בטלפון.",
+    "translationContext": "Subtitle for the desktop native app promotional banner"
+  },
+  "nativeAppBanner.title": {
+    "text": "סיכום עיתונות יומי",
+    "translationContext": "Title for the desktop native app promotional banner"
   },
   "navigation.backToTop": {
     "text": "חזרה למעלה",
@@ -3214,6 +3430,18 @@
   "nhl.volume": {
     "text": "נפח",
     "translationContext": "Abbreviation for trading volume"
+  },
+  "notification.appUpdate.description": {
+    "text": "עבדנו על שיפורים ותיקוני באגים. טענו מחדש את הדף כדי לקבל את הגרסה האחרונה.",
+    "translationContext": "Description shown in a banner when a new version of the app has been deployed, prompting the user to reload"
+  },
+  "notification.appUpdate.reload": {
+    "text": "טעינה מחדש",
+    "translationContext": "Button label to reload the page and get the latest version of the app"
+  },
+  "notification.appUpdate.title": {
+    "text": "גרסה חדשה של Kagi News זמינה",
+    "translationContext": "Title shown in a banner when a new version of the app has been deployed"
   },
   "notification.newBatch.action": {
     "text": "הצג",
@@ -3731,6 +3959,10 @@
     "text": "לא זמין זמנית",
     "translationContext": "Small label shown with a clock icon when a core category has no stories, indicating the update schedule"
   },
+  "stories.noStoriesHistorical": {
+    "text": "לא היו חדשות בקטגוריה זו בתאריך זה.",
+    "translationContext": "Message shown when viewing a historical batch and the selected category has no stories for that date"
+  },
   "story.assistant.placeholder": {
     "text": "שאלו על הכתבה...",
     "translationContext": "Placeholder text in the assistant question input field"
@@ -3742,6 +3974,34 @@
   "story.assistant.tooltip": {
     "text": "שאלו את הסייען",
     "translationContext": "Tooltip for button that opens Kagi Assistant with the current story topic"
+  },
+  "story.corrections.changed": {
+    "text": "שונו:",
+    "translationContext": "Label introducing the list of fields that a correction modified (e.g. 'Changed: Headline, Summary')."
+  },
+  "story.corrections.explainer": {
+    "text": "כתבות עשויות לעבור שינויים לאחר פרסומן. הגורם לכך הוא בדרך כלל דיווח של קורא או בדיקת עובדות שאנו מבצעים לאחר הפרסום; התיקון נוצר על ידי אותה מערכת בינה מלאכותית שכותבת את הכתבות, ומתועד כאן למען השקיפות.",
+    "translationContext": "Neutral footnote shown under the expanded correction history list, explaining how corrections work (triggered by a reader report or follow-up fact-checking, generated by AI, not by a human editor)."
+  },
+  "story.corrections.many": {
+    "text": "{count} תיקונים",
+    "translationContext": "Label shown when a story has received multiple fact-check corrections. {count} is replaced with the number (2 or more)."
+  },
+  "story.corrections.manyAfterRead": {
+    "text": "{count} תיקונים לאחר קריאתך",
+    "translationContext": "Plural variant shown when multiple corrections were applied after the user read the story. {count} is replaced with the number (2 or more)."
+  },
+  "story.corrections.one": {
+    "text": "תוקן",
+    "translationContext": "Label on a subtle indicator shown when a story has received one fact-check correction after publication. Clicking reveals a timestamped note about what was changed."
+  },
+  "story.corrections.oneAfterRead": {
+    "text": "תוקן לאחר קריאתך",
+    "translationContext": "Variant of the 'Corrected' label shown when the correction was applied after the reader had already read the story — highlighted so they know the text they remember may have changed."
+  },
+  "story.corrections.toggle": {
+    "text": "הצגת היסטוריית תיקונים",
+    "translationContext": "Accessibility label for the button that expands the correction history list."
   },
   "story.flashcards.download": {
     "text": "הורד",
@@ -4002,6 +4262,46 @@
   "timeTravel.urlBanner.viewingShared": {
     "text": "מישהו שיתף איתך קישור לחדשות מהתאריך {{{date}}}. ניתן לחזור לחדשות של היום בכל עת באמצעות ה-✕ שליד התאריך למעלה.",
     "translationContext": "One-time info banner shown when user arrives via a shared time travel URL (has referrer). Points user to the header date pill with X button."
+  },
+  "translation.explainer.networkEffect": {
+    "text": "התרגומים נשמרים במטמון עבור קוראים עתידיים. כאשר שפה זוכה לקהל קוראים גדול יותר, היא מצטרפת לקבוצת השפות המתורגמות מראש.",
+    "translationContext": "Fourth paragraph of the on-demand translation explainer modal"
+  },
+  "translation.explainer.onDemand": {
+    "text": "שפות עם קהל קוראים קטן יותר משתמשות בתרגום לפי דרישה. הכותרות עדיין מתורגמות מראש כך שניתן לעיין ברשימה. התוכן המלא מתורגם כאשר קורא פותח כתבה.",
+    "translationContext": "Third paragraph fallback when the language name is unknown"
+  },
+  "translation.explainer.onDemandLang": {
+    "text": "שפות עם קהל קוראים קטן יותר, כמו {{lang}}, משתמשות בתרגום לפי דרישה. הכותרות עדיין מתורגמות מראש כך שניתן לעיין ברשימה. התוכן המלא מתורגם כאשר קורא פותח כתבה.",
+    "translationContext": "Third paragraph of the on-demand translation explainer modal (with the language name placeholder)"
+  },
+  "translation.explainer.pretranslated": {
+    "text": "בשפות עם קהל קוראים מבוסס (כמו אנגלית, איטלקית, צרפתית, גרמנית, ספרדית, סינית, יפנית ואחרות), כל הכתבות מתורגמות מראש במהלך עיבוד אצווה.",
+    "translationContext": "Second paragraph of the on-demand translation explainer modal"
+  },
+  "translation.explainer.title": {
+    "text": "תרגום לפי דרישה",
+    "translationContext": "Heading of the modal that explains on-demand translation"
+  },
+  "translation.learnMore": {
+    "text": "איך זה עובד",
+    "translationContext": "Button on the on-demand translation progress indicator that opens the explainer modal"
+  },
+  "translation.section": {
+    "text": "קטע",
+    "translationContext": "Singular \"section\" used in the on-demand translation progress counter"
+  },
+  "translation.sections": {
+    "text": "קטעים",
+    "translationContext": "Plural \"sections\" used in the on-demand translation progress counter"
+  },
+  "translation.translating": {
+    "text": "מתרגם...",
+    "translationContext": "Status label shown next to the spinner while on-demand translation streams in"
+  },
+  "translation.translatingDetail": {
+    "text": "מתרגם מ-{{source}} באמצעות Kagi Translate. {{target}} אינה כלולה באוסף המתורגם מראש, לכן אנו מתרגמים כתבות לפי דרישה.",
+    "translationContext": "Secondary line under the on-demand translation spinner. {{source}} and {{target}} are language names like 'English' and 'Estonian'."
   },
   "turbulence.title": {
     "text": "מד סערת עולם",

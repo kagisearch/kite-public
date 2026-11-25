@@ -23,6 +23,14 @@
     "text": "iOS के लिए डाउनलोड करें",
     "translationContext": "Button text to download iOS app"
   },
+  "settings.about.feedback": {
+    "text": "प्रतिक्रिया",
+    "translationContext": "Section header for the feedback link in about settings"
+  },
+  "settings.about.feedbackDescription": {
+    "text": "विचार साझा करें, समस्याओं की रिपोर्ट करें, और हम आगे क्या बनाएँ, इस पर वोट करें",
+    "translationContext": "Description of the Kagi Feedback forum link"
+  },
   "settings.about.forNews": {
     "text": "समाचार पाठकों के लिए",
     "translationContext": "Footer text suffix for copyright"
@@ -50,6 +58,10 @@
   "settings.about.mobileDescription": {
     "text": "अपने मोबाइल डिवाइस पर कागी न्यूज़ प्राप्त करें",
     "translationContext": "Description for mobile apps"
+  },
+  "settings.about.openFeedback": {
+    "text": "कागी प्रतिक्रिया खोलें",
+    "translationContext": "Button text linking to the Kagi Feedback forum"
   },
   "settings.about.viewApiDocs": {
     "text": "API दस्तावेज़ देखें",
@@ -527,6 +539,10 @@
     "text": "उन विषयों को फ़िल्टर करके अपनी न्यूज़ फ़ीड को अनुकूलित करें जिन्हें आप नहीं देखना चाहते हैं। सामान्य फ़िल्टर के लिए प्रीसेट का उपयोग करें या अपने स्वयं के कस्टम कीवर्ड बनाएं।",
     "translationContext": "Description shown at the top of content filter settings tab"
   },
+  "settings.dataLanguage.englishOnlyNotice": {
+    "text": "१० जून, २०२६ से, हम अब हर श्रेणी का सभी भाषाओं में अनुवाद नहीं करते हैं। हर कहानी अपनी मूल भाषा में उपलब्ध है, और अगर वह अंग्रेज़ी से अलग है, तो उसका अंग्रेज़ी अनुवाद भी उपलब्ध है।",
+    "translationContext": "Notice in language settings explaining that batch translation into all languages stopped on June 10, 2026; stories now ship in their native language plus English. Keep the date as-is."
+  },
   "settings.dataLanguage.label": {
     "text": "सामग्री की भाषा",
     "translationContext": "Label for the data/content language setting"
@@ -578,6 +594,30 @@
   "settings.experimental.warning": {
     "text": "ये प्रायोगिक सुविधाएँ हैं जिन्हें किसी भी समय बदला या हटाया जा सकता है।",
     "translationContext": "Warning text for experimental features"
+  },
+  "settings.fontFamily.atkinson": {
+    "text": "एटकिन्सन हाइपरलेजिबल नेक्स्ट",
+    "translationContext": "Option for Atkinson Hyperlegible font, designed for low-vision readability"
+  },
+  "settings.fontFamily.default": {
+    "text": "सिस्टम (डिफ़ॉल्ट)",
+    "translationContext": "Option for the default system font"
+  },
+  "settings.fontFamily.description": {
+    "text": "Atkinson Hyperlegible Next कम दृष्टि वाले पाठकों के लिए अनुकूलित है। OpenDyslexic को डिस्लेक्सिया वाले पाठकों के लिए डिज़ाइन किया गया है। Fast Sans प्रत्येक शब्द की शुरुआत को बोल्ड (गाढ़ा) करता है ताकि पढ़ते समय आपकी आँखों को दिशा मिल सके।",
+    "translationContext": "Description for the font family setting explaining accessibility benefits"
+  },
+  "settings.fontFamily.fast": {
+    "text": "Fast Sans (तेजी से पढ़ने के लिए)",
+    "translationContext": "Option for the Fast Sans font, which bolds the start of each word as a reading aid"
+  },
+  "settings.fontFamily.label": {
+    "text": "फ़ॉन्ट",
+    "translationContext": "Label for the font family setting"
+  },
+  "settings.fontFamily.opendyslexic": {
+    "text": "ओपनडिस्लेक्सिक",
+    "translationContext": "Option for OpenDyslexic font, designed for readers with dyslexia"
   },
   "settings.fontSize.label": {
     "text": "फ़ॉन्ट आकार",
@@ -686,6 +726,138 @@
   "settings.layoutWidth.wide": {
     "text": "चौड़ा (1024px)",
     "translationContext": "Option for wide layout width"
+  },
+  "settings.lock.backToPin": {
+    "text": "पिन पर वापस जाएँ",
+    "translationContext": "Link to go back from math challenge to PIN entry"
+  },
+  "settings.lock.confirmPin": {
+    "text": "पिन की पुष्टि करें",
+    "translationContext": "Label for confirming the new PIN"
+  },
+  "settings.lock.description": {
+    "text": "सेटिंग्स तक पहुँचने के लिए अपना पिन डालें।",
+    "translationContext": "Description on the PIN lock screen"
+  },
+  "settings.lock.disableKeyboardShortcuts": {
+    "text": "कीबोर्ड शॉर्टकट अक्षम करें",
+    "translationContext": "Toggle to disable all keyboard shortcuts for managed users"
+  },
+  "settings.lock.enable": {
+    "text": "पिन लॉक सेट करें",
+    "translationContext": "Button to enable PIN lock"
+  },
+  "settings.lock.enabled": {
+    "text": "सेटिंग्स लॉक सक्षम है",
+    "translationContext": "Status text when PIN lock is active"
+  },
+  "settings.lock.enabledDescription": {
+    "text": "सेटिंग्स खोलने के लिए पिन की आवश्यकता है।",
+    "translationContext": "Description when PIN lock is active"
+  },
+  "settings.lock.forgot": {
+    "text": "पिन भूल गए?",
+    "translationContext": "Link to start the forgot PIN flow"
+  },
+  "settings.lock.forgotTitle": {
+    "text": "पिन रीसेट करें",
+    "translationContext": "Title shown on the math challenge screen for forgotten PIN"
+  },
+  "settings.lock.hideChaosIndex": {
+    "text": "केओस इंडेक्स छिपाएँ",
+    "translationContext": "Toggle to hide the chaos index indicator"
+  },
+  "settings.lock.hideCorrections": {
+    "text": "सुधार इतिहास छिपाएँ",
+    "translationContext": "Managed-mode toggle that hides the 'Corrected' indicator and correction history under story headers. Defaults to ON when a PIN is set, so the simplified reading view stays uncluttered."
+  },
+  "settings.lock.hideFontSize": {
+    "text": "फ़ॉन्ट आकार शॉर्टकट छिपाएँ",
+    "translationContext": "Toggle to hide the font size button in the header"
+  },
+  "settings.lock.hideReportButton": {
+    "text": "रिपोर्ट बटन छिपाएँ",
+    "translationContext": "Toggle to hide the report button on story cards"
+  },
+  "settings.lock.hideSearch": {
+    "text": "खोज छिपाएँ",
+    "translationContext": "Toggle to hide the search button in the header"
+  },
+  "settings.lock.hideShareButton": {
+    "text": "शेयर बटन छिपाएँ",
+    "translationContext": "Toggle to hide the share button on story cards"
+  },
+  "settings.lock.hideTimeTravel": {
+    "text": "टाइम ट्रैवल छिपाएँ",
+    "translationContext": "Toggle to hide the time travel button in the header"
+  },
+  "settings.lock.managedOptions": {
+    "text": "इंटरफ़ेस सरल करें",
+    "translationContext": "Heading for managed mode toggles when PIN is set"
+  },
+  "settings.lock.managedOptionsDescription": {
+    "text": "एक साफ़ पढ़ने का अनुभव बनाने के लिए बटनों और सुविधाओं को छिपाएँ। उदाहरण के लिए, जब किसी बच्चे या बड़े रिश्तेदार के लिए कागी न्यूज़ सेट कर रहे हों, जो बिना किसी रुकावट के सिर्फ़ समाचार पढ़ना चाहते हैं।",
+    "translationContext": "Description for managed mode options section, explains why hiding features can be helpful"
+  },
+  "settings.lock.mathDescription": {
+    "text": "अपना पिन रीसेट करने के लिए इसे हल करें:",
+    "translationContext": "Description asking user to solve a math problem to reset PIN"
+  },
+  "settings.lock.mathPlaceholder": {
+    "text": "आपका उत्तर",
+    "translationContext": "Placeholder for the math answer input"
+  },
+  "settings.lock.mathSubmit": {
+    "text": "सबमिट करें",
+    "translationContext": "Button to submit the math challenge answer"
+  },
+  "settings.lock.mathWrong": {
+    "text": "गलत उत्तर। फिर से प्रयास करें।",
+    "translationContext": "Error when math challenge answer is wrong"
+  },
+  "settings.lock.mismatch": {
+    "text": "पिन मेल नहीं खाते।",
+    "translationContext": "Error when PIN confirmation doesn't match"
+  },
+  "settings.lock.newPin": {
+    "text": "नया पिन (4-6 अंक)",
+    "translationContext": "Label for the new PIN input"
+  },
+  "settings.lock.placeholder": {
+    "text": "पिन डालें",
+    "translationContext": "Placeholder text for the PIN input field"
+  },
+  "settings.lock.remove": {
+    "text": "पिन हटाएँ",
+    "translationContext": "Button to remove the PIN lock"
+  },
+  "settings.lock.sectionDescription": {
+    "text": "आकस्मिक बदलावों को रोकने के लिए सेटिंग्स को पिन से लॉक करें। यह प्रबंधित डिवाइस या माता-पिता के नियंत्रण के लिए उपयोगी है।\n\nलॉक होने पर, फ़ॉन्ट आकार शॉर्टकट और ऐप डाउनलोड बैनर छिप जाते हैं, और सेटिंग्स खोलने के लिए पिन की आवश्यकता होती है।",
+    "translationContext": "Description of the settings lock feature, explaining what changes in managed mode"
+  },
+  "settings.lock.sectionTitle": {
+    "text": "सेटिंग्स लॉक",
+    "translationContext": "Title of the settings lock section in account settings"
+  },
+  "settings.lock.setPin": {
+    "text": "पिन सेट करें",
+    "translationContext": "Button to save the new PIN"
+  },
+  "settings.lock.title": {
+    "text": "सेटिंग्स लॉक्ड",
+    "translationContext": "Title shown on the PIN lock screen"
+  },
+  "settings.lock.tooShort": {
+    "text": "पिन कम से कम 4 अंकों का होना चाहिए।",
+    "translationContext": "Error when PIN is too short"
+  },
+  "settings.lock.unlock": {
+    "text": "अनलॉक करें",
+    "translationContext": "Button text to unlock settings with PIN"
+  },
+  "settings.lock.wrongPin": {
+    "text": "गलत पिन। कृपया फिर से प्रयास करें।",
+    "translationContext": "Error message when wrong PIN is entered"
   },
   "settings.mapsProvider.apple": {
     "text": "एप्पल मैप्स",
@@ -2567,6 +2739,18 @@
     "text": "{{weekday}}, {{month}} {{day}}",
     "translationContext": "Format for displaying dates. {{weekday}} will be replaced with the day of the week, {{month}} with the month name, and {{day}} with the day number."
   },
+  "downloadApp.pageTitle": {
+    "text": "Kagi News डाउनलोड करें",
+    "translationContext": "HTML page title for the download app landing page"
+  },
+  "downloadApp.subtitle": {
+    "text": "लगता है आपने इसे डेस्कटॉप पर खोला है। नीचे अपना स्टोर चुनें और इसे अपने फ़ोन पर खोलें!",
+    "translationContext": "Subtitle for the download app landing page shown to desktop users"
+  },
+  "downloadApp.title": {
+    "text": "चलते-फिरते समाचार",
+    "translationContext": "Heading for the download app landing page"
+  },
   "f1.completed": {
     "text": "समाप्त",
     "translationContext": "Status label for completed races"
@@ -2675,6 +2859,10 @@
     "text": "योगदान करें",
     "translationContext": "Link text for contributing to the project"
   },
+  "footer.feedback": {
+    "text": "प्रतिक्रिया",
+    "translationContext": "Link text for the Kagi Feedback forum"
+  },
   "footer.rssFeed": {
     "text": "आरएसएस फ़ीड",
     "translationContext": "Link text for RSS feed"
@@ -2714,6 +2902,10 @@
   "keyboard.action.jumpLast": {
     "text": "अंतिम स्टोरी पर जाएँ",
     "translationContext": "Description for G key - jumping to last story"
+  },
+  "keyboard.action.markAllRead": {
+    "text": "सभी स्टोरी को पढ़ा के रूप में चिह्नित करें",
+    "translationContext": "Description for Shift+M key - marking all stories in the current category as read"
   },
   "keyboard.action.moveNext": {
     "text": "अगली स्टोरी पर जाएँ",
@@ -2826,6 +3018,30 @@
   "meta.news": {
     "text": "समाचार",
     "translationContext": "The word 'News' used in titles"
+  },
+  "nativeAppBanner.appStoreLabel": {
+    "text": "App Store पर डाउनलोड करें",
+    "translationContext": "Accessibility label for the App Store download badge"
+  },
+  "nativeAppBanner.dismissLabel": {
+    "text": "ऐप बैनर हटाएँ",
+    "translationContext": "Accessibility label for the close button on the native app banner"
+  },
+  "nativeAppBanner.googlePlayLabel": {
+    "text": "Google Play से प्राप्त करें",
+    "translationContext": "Accessibility label for the Google Play download badge"
+  },
+  "nativeAppBanner.qrCodeAlt": {
+    "text": "Kagi News डाउनलोड करने के लिए QR कोड",
+    "translationContext": "Alt text for the QR code image in the native app banner"
+  },
+  "nativeAppBanner.subtitle": {
+    "text": "हमारे मोबाइल ऐप को अपने फ़ोन पर आज़माएँ।",
+    "translationContext": "Subtitle for the desktop native app promotional banner"
+  },
+  "nativeAppBanner.title": {
+    "text": "दैनिक प्रेस सारांश",
+    "translationContext": "Title for the desktop native app promotional banner"
   },
   "navigation.backToTop": {
     "text": "शीर्ष पर वापस जाएं",
@@ -3218,6 +3434,18 @@
   "nhl.volume": {
     "text": "Vol",
     "translationContext": "Abbreviation for trading volume"
+  },
+  "notification.appUpdate.description": {
+    "text": "हमने सुधार और बग फ़िक्स पर काम किया है। नवीनतम संस्करण पाने के लिए पेज रीलोड करें।",
+    "translationContext": "Description shown in a banner when a new version of the app has been deployed, prompting the user to reload"
+  },
+  "notification.appUpdate.reload": {
+    "text": "रीलोड करें",
+    "translationContext": "Button label to reload the page and get the latest version of the app"
+  },
+  "notification.appUpdate.title": {
+    "text": "Kagi News का नया संस्करण उपलब्ध है",
+    "translationContext": "Title shown in a banner when a new version of the app has been deployed"
   },
   "notification.newBatch.action": {
     "text": "देखें",
@@ -3775,6 +4003,10 @@
     "text": "अस्थायी रूप से अनुपलब्ध",
     "translationContext": "Small label shown with a clock icon when a core category has no stories, indicating the update schedule"
   },
+  "stories.noStoriesHistorical": {
+    "text": "इस श्रेणी में इस तारीख को कोई समाचार नहीं था।",
+    "translationContext": "Message shown when viewing a historical batch and the selected category has no stories for that date"
+  },
   "story.assistant.placeholder": {
     "text": "इस कहानी के बारे में पूछें...",
     "translationContext": "Placeholder text in the assistant question input field"
@@ -3786,6 +4018,34 @@
   "story.assistant.tooltip": {
     "text": "असिस्टेंट से पूछें",
     "translationContext": "Tooltip for button that opens Kagi Assistant with the current story topic"
+  },
+  "story.corrections.changed": {
+    "text": "बदला गया",
+    "translationContext": "Label introducing the list of fields that a correction modified (e.g. 'Changed: Headline, Summary')."
+  },
+  "story.corrections.explainer": {
+    "text": "कहानियों को प्रकाशन के बाद संशोधित किया जा सकता है। इसका कारण आमतौर पर पाठक की रिपोर्ट या हमारी अपनी प्रकाशन-पश्चात तथ्य-जांच होती है; संशोधन उसी प्रकार के AI सिस्टम द्वारा किया जाता है जो कहानियाँ लिखता है, और इसे पारदर्शिता के लिए यहाँ दर्ज किया जाता है।",
+    "translationContext": "Neutral footnote shown under the expanded correction history list, explaining how corrections work (triggered by a reader report or follow-up fact-checking, generated by AI, not by a human editor)."
+  },
+  "story.corrections.many": {
+    "text": "{count} सुधार",
+    "translationContext": "Label shown when a story has received multiple fact-check corrections. {count} is replaced with the number (2 or more)."
+  },
+  "story.corrections.manyAfterRead": {
+    "text": "आपके पढ़ने के बाद {count} सुधार",
+    "translationContext": "Plural variant shown when multiple corrections were applied after the user read the story. {count} is replaced with the number (2 or more)."
+  },
+  "story.corrections.one": {
+    "text": "सुधार किया गया",
+    "translationContext": "Label on a subtle indicator shown when a story has received one fact-check correction after publication. Clicking reveals a timestamped note about what was changed."
+  },
+  "story.corrections.oneAfterRead": {
+    "text": "आपके पढ़ने के बाद सुधार किया गया",
+    "translationContext": "Variant of the 'Corrected' label shown when the correction was applied after the reader had already read the story — highlighted so they know the text they remember may have changed."
+  },
+  "story.corrections.toggle": {
+    "text": "सुधार इतिहास दिखाएँ",
+    "translationContext": "Accessibility label for the button that expands the correction history list."
   },
   "story.flashcards.download": {
     "text": "डाउनलोड करें",
@@ -4046,6 +4306,46 @@
   "timeTravel.urlBanner.viewingShared": {
     "text": "किसी ने आपके साथ {{{date}}} की खबरों का एक लिंक साझा किया है। आप ऊपर दी गई तारीख के आगे ✕ का उपयोग करके किसी भी समय आज की खबरों पर लौट सकते हैं।",
     "translationContext": "One-time info banner shown when user arrives via a shared time travel URL (has referrer). Points user to the header date pill with X button."
+  },
+  "translation.explainer.networkEffect": {
+    "text": "अनुवादों को भविष्य के पाठकों के लिए कैश किया जाता है। जैसे-जैसे किसी भाषा के पाठक बढ़ते हैं, वह पहले से अनुवादित भाषाओं के समूह में शामिल हो जाती है।",
+    "translationContext": "Fourth paragraph of the on-demand translation explainer modal"
+  },
+  "translation.explainer.onDemand": {
+    "text": "कम पाठक संख्या वाली भाषाएँ मांग पर अनुवाद का उपयोग करती हैं। शीर्षकों का अनुवाद फिर भी पहले से कर दिया जाता है ताकि सूची को ब्राउज़ किया जा सके। पूरी सामग्री का अनुवाद तब होता है जब कोई पाठक कहानी खोलता है।",
+    "translationContext": "Third paragraph fallback when the language name is unknown"
+  },
+  "translation.explainer.onDemandLang": {
+    "text": "{{lang}} जैसी कम पाठक संख्या वाली भाषाएँ मांग पर अनुवाद का उपयोग करती हैं। शीर्षकों का अनुवाद फिर भी पहले से कर दिया जाता है ताकि सूची को ब्राउज़ किया जा सके। पूरी सामग्री का अनुवाद तब होता है जब कोई पाठक कहानी खोलता है।",
+    "translationContext": "Third paragraph of the on-demand translation explainer modal (with the language name placeholder)"
+  },
+  "translation.explainer.pretranslated": {
+    "text": "स्थापित पाठक संख्या वाली भाषाएँ (जैसे अंग्रेजी, इतालवी, फ्रेंच, जर्मन, स्पेनिश, चीनी, जापानी, और अन्य) की हर कहानी का बैच प्रोसेसिंग के दौरान पहले से ही अनुवाद कर दिया जाता है।",
+    "translationContext": "Second paragraph of the on-demand translation explainer modal"
+  },
+  "translation.explainer.title": {
+    "text": "मांग पर अनुवाद",
+    "translationContext": "Heading of the modal that explains on-demand translation"
+  },
+  "translation.learnMore": {
+    "text": "यह कैसे काम करता है",
+    "translationContext": "Button on the on-demand translation progress indicator that opens the explainer modal"
+  },
+  "translation.section": {
+    "text": "खंड",
+    "translationContext": "Singular \"section\" used in the on-demand translation progress counter"
+  },
+  "translation.sections": {
+    "text": "खंडों",
+    "translationContext": "Plural \"sections\" used in the on-demand translation progress counter"
+  },
+  "translation.translating": {
+    "text": "अनुवाद हो रहा है",
+    "translationContext": "Status label shown next to the spinner while on-demand translation streams in"
+  },
+  "translation.translatingDetail": {
+    "text": "Kagi Translate द्वारा {{source}} से अनुवाद किया जा रहा है। {{target}} पहले से अनुवादित भाषाओं में शामिल नहीं है, इसलिए हम कहानियों का अनुवाद मांग पर करते हैं।",
+    "translationContext": "Secondary line under the on-demand translation spinner. {{source}} and {{target}} are language names like 'English' and 'Estonian'."
   },
   "turbulence.title": {
     "text": "विश्व अशांति मीटर",

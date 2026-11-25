@@ -1,4 +1,8 @@
 <script lang="ts">
+import { browser } from '$app/environment';
+import { s } from '$lib/client/localization.svelte';
+import { features } from '$lib/config/features';
+import type { SearchResult } from '$lib/services/search';
 import {
 	IconBolt,
 	IconCalendar,
@@ -9,11 +13,6 @@ import {
 	IconX,
 } from '@tabler/icons-svelte';
 import { useOverlayScrollbars } from 'overlayscrollbars-svelte';
-import { browser } from '$app/environment';
-import { s } from '$lib/client/localization.svelte';
-import { features } from '$lib/config/features';
-import type { SearchResult } from '$lib/services/search';
-import 'overlayscrollbars/overlayscrollbars.css';
 import { slide } from 'svelte/transition';
 
 interface Props {
@@ -53,9 +52,9 @@ let showFilterTips = $state(true);
 let autoRotate = $state(true);
 let animateTransition = $state(false);
 
-// Check localStorage for filter tips preference (only if feature is enabled)
+// Check localStorage for filter tips preference (only if filters are enabled)
 $effect(() => {
-	if (browser && features.historicalSearch) {
+	if (browser && features.historicalSearch && features.searchFilters) {
 		const hidden = localStorage.getItem('hideSearchFilterTips');
 		showFilterTips = hidden !== 'true';
 	} else {
@@ -80,7 +79,7 @@ function selectFilterTip(index: number) {
 const filterTips = [
 	{
 		icon: IconTag,
-		color: 'text-blue-500 dark:text-blue-400',
+		color: 'text-accent-links',
 		title: 'category:',
 		hint: 'search.filter_category_hint',
 		defaultHint: 'Filter by news category (e.g., category:Technology)',
@@ -94,7 +93,7 @@ const filterTips = [
 	},
 	{
 		icon: IconBolt,
-		color: 'text-purple-500 dark:text-purple-400',
+		color: 'text-accent-links',
 		title: s('search.shortcuts_title') || 'Quick shortcuts',
 		hint: 'search.shortcuts_hint',
 		defaultHint: 'Type "cat" for categories, dates like "yesterday" or "last week"',
@@ -283,353 +282,312 @@ function getSnippetWithHighlight(text: string, query: string, maxLength: number 
 </script>
 
 <div class="flex-1 overflow-hidden flex flex-col">
-  <!-- Results Header -->
-  <div
-    class="px-4 py-3 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50"
-  >
-    <div class="flex items-center justify-between h-6">
-      <div class="flex-1">
-        {#if isLoading}
-          <div
-            class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400"
-          >
-            <IconLoader2 class="size-4 text-blue-500 animate-spin" />
-            {s("search.searching") || "Searching..."}
-          </div>
-        {:else if results.length > 0}
-          <div class="text-sm text-gray-600 dark:text-gray-400">
-            {#if totalCount > results.length}
-              {s("search.showing") || "Showing"}
-              {results.length}
-              {s("search.of") || "of"}
-              {totalCount}
-              {totalCount === 1
-                ? s("search.result_single") || "result"
-                : s("search.result_plural") || "results"}
-            {:else}
-              {results.length}
-              {results.length === 1
-                ? s("search.result_single") || "result"
-                : s("search.result_plural") || "results"}
-            {/if}
-            {#if query}
-              {s("search.for") || "for"}
-              <span class="font-medium">"{query}"</span>
-            {/if}
-          </div>
-        {/if}
-      </div>
+	<!-- Results Header -->
+	<div class="px-4 py-3 border-b border-primary-100 bg-primary-25 dark:bg-graphite-800/50">
+		<div class="flex items-center justify-between h-6">
+			<div class="flex-1">
+				{#if isLoading}
+					<div class="flex items-center gap-2 text-sm text-primary-600">
+						<IconLoader2 class="size-4 text-accent-links animate-spin" />
+						{s('search.searching') || 'Searching...'}
+					</div>
+				{:else if results.length > 0}
+					<div class="text-sm text-primary-600">
+						{#if totalCount > results.length}
+							{s('search.showing') || 'Showing'}
+							{results.length}
+							{s('search.of') || 'of'}
+							{totalCount}
+							{totalCount === 1
+								? s('search.result_single') || 'result'
+								: s('search.result_plural') || 'results'}
+						{:else}
+							{results.length}
+							{results.length === 1
+								? s('search.result_single') || 'result'
+								: s('search.result_plural') || 'results'}
+						{/if}
+						{#if query}
+							{s('search.for') || 'for'}
+							<span class="font-medium">"{query}"</span>
+						{/if}
+					</div>
+				{/if}
+			</div>
 
-      <!-- Historical Search Status (only shown if feature is enabled) -->
-      {#if features.historicalSearch}
-        {#if query.length > 0 && query.length < 3}
-          <div class="text-xs text-amber-600 dark:text-amber-400">
-            {s("search.historical_needs_3_chars") ||
-              "Historical search needs 3+ characters"}
-          </div>
-        {:else if isSearchingHistorical}
-          <div
-            class="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400"
-          >
-            <IconLoader2 class="size-3 text-yellow-500 animate-spin" />
-            {s("search.searching_historical") || "Searching historical..."}
-          </div>
-        {:else if historicalCount > 0}
-          <div
-            class="flex items-center gap-1 text-xs text-green-600 dark:text-green-400"
-          >
-            <IconClock size={12} />
-            {s("search.historical_included", {
-              count: String(historicalCount),
-            }) || `${historicalCount} historical results included`}
-          </div>
-        {/if}
-      {/if}
-    </div>
-  </div>
+			<!-- Historical Search Status (only shown if feature is enabled) -->
+			{#if features.historicalSearch}
+				{#if query.length > 0 && query.length < 3}
+					<div class="text-xs text-amber-600 dark:text-amber-400">
+						{s('search.historical_needs_3_chars') || 'Historical search needs 3+ characters'}
+					</div>
+				{:else if isSearchingHistorical}
+					<div class="flex items-center gap-2 text-xs text-primary-600">
+						<IconLoader2 class="size-3 text-yellow-500 animate-spin" />
+						{s('search.searching_historical') || 'Searching historical...'}
+					</div>
+				{:else if historicalCount > 0}
+					<div class="flex items-center gap-1 text-xs text-green-600 dark:text-green-400">
+						<IconClock size={12} />
+						{s('search.historical_included', {
+							count: String(historicalCount),
+						}) || `${historicalCount} historical results included`}
+					</div>
+				{/if}
+			{/if}
+		</div>
+	</div>
 
-  <!-- Results List -->
-  <div
-    bind:this={resultsContainer}
-    class="flex-1 min-h-0"
-    data-overlayscrollbars-initialize
-  >
-    {#if !query && results.length === 0}
-      <!-- Empty state - show filter suggestions -->
-      <div class="flex items-center justify-center min-h-full p-8">
-        <div class="w-full max-w-md">
-          <div class="text-center mb-6">
-            <img
-              src="/doggo_default.svg"
-              alt="Search mascot"
-              class="size-40 mx-auto mb-4 transition-all duration-200"
-            />
-            <h3
-              class="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2"
-            >
-              {s("search.get_started_title") || "Start searching"}
-            </h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400">
-              {s("search.get_started_description") ||
-                "Type to search or use filters"}
-            </p>
-          </div>
+	<!-- Results List -->
+	<div bind:this={resultsContainer} class="flex-1 min-h-0" data-overlayscrollbars-initialize>
+		{#if !query && results.length === 0}
+			<!-- Empty state - show filter suggestions -->
+			<div class="flex items-center justify-center min-h-full p-8">
+				<div class="w-full max-w-md">
+					<div class="text-center mb-6">
+						<img
+							src="/doggo_default.svg"
+							alt="Search mascot"
+							class="size-40 mx-auto mb-4 transition-all duration-200"
+						/>
+						<h3 class="text-lg font-medium text-primary mb-2">
+							{s('search.get_started_title') || 'Start searching'}
+						</h3>
+						<p class="text-sm text-primary-600">
+							{s('search.get_started_description') || 'Type to search or use filters'}
+						</p>
+					</div>
 
-          {#if showFilterTips}
-            <div
-              transition:slide|local={{
-                duration: animateTransition ? 300 : 0,
-                axis: "y",
-              }}
-            >
-              <div class="flex items-center justify-between mb-3">
-                <div
-                  class="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
-                >
-                  {s("search.try_these") || "Try these filters"}
-                </div>
-                <button
-                  onclick={dismissFilterTips}
-                  class="text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 transition-colors"
-                  aria-label="Dismiss filter tips"
-                  title={s("search.dismiss_tips") ||
-                    "Don't show these tips again"}
-                >
-                  <IconX size={14} />
-                </button>
-              </div>
+					{#if showFilterTips}
+						<div
+							transition:slide|local={{
+								duration: animateTransition ? 300 : 0,
+								axis: 'y',
+							}}
+						>
+							<div class="flex items-center justify-between mb-3">
+								<div class="text-xs font-medium text-primary-600 uppercase tracking-wider">
+									{s('search.try_these') || 'Try these filters'}
+								</div>
+								<button
+									onclick={dismissFilterTips}
+									class="text-primary-400 hover:text-primary-600 transition-colors"
+									aria-label="Dismiss filter tips"
+									title={s('search.dismiss_tips') || "Don't show these tips again"}
+								>
+									<IconX size={14} />
+								</button>
+							</div>
 
-              <!-- Rotating filter tip carousel -->
-              <div class="relative h-20 overflow-hidden">
-                {#each filterTips as tip, index}
-                  {@const Icon = tip.icon}
-                  <div
-                    class="absolute inset-0 flex items-start gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50 transition-all duration-200 {index ===
-                    currentFilterTip
-                      ? 'opacity-100 translate-y-0'
-                      : 'opacity-0 translate-y-4'}"
-                    style="display: {index === currentFilterTip
-                      ? 'flex'
-                      : 'none'}"
-                  >
-                    <div class="{tip.color} mt-0.5">
-                      <Icon size={16} />
-                    </div>
-                    <div class="flex-1">
-                      <div
-                        class="font-medium text-sm text-gray-900 dark:text-gray-100"
-                      >
-                        {tip.title}
-                      </div>
-                      <div
-                        class="text-xs text-gray-600 dark:text-gray-400 mt-1"
-                      >
-                        {s(tip.hint) || tip.defaultHint}
-                      </div>
-                    </div>
-                  </div>
-                {/each}
-              </div>
+							<!-- Rotating filter tip carousel -->
+							<div class="relative h-20 overflow-hidden">
+								{#each filterTips as tip, index}
+									{@const Icon = tip.icon}
+									<div
+										class="absolute inset-0 flex items-start gap-3 p-3 rounded-lg bg-primary-25 dark:bg-graphite-800/50 transition-all duration-200 {index ===
+										currentFilterTip
+											? 'opacity-100 translate-y-0'
+											: 'opacity-0 translate-y-4'}"
+										style="display: {index === currentFilterTip ? 'flex' : 'none'}"
+									>
+										<div class="{tip.color} mt-0.5">
+											<Icon size={16} />
+										</div>
+										<div class="flex-1">
+											<div class="font-medium text-sm text-primary">
+												{tip.title}
+											</div>
+											<div class="text-xs text-primary-600 mt-1">
+												{s(tip.hint) || tip.defaultHint}
+											</div>
+										</div>
+									</div>
+								{/each}
+							</div>
 
-              <!-- Progress indicator with fill animation -->
-              <div class="flex justify-center gap-1.5 mt-3">
-                {#each filterTips as _, index}
-                  <button
-                    class="relative rounded-full bg-gray-300 dark:bg-gray-600 overflow-hidden transition-all duration-200 {index ===
-                    currentFilterTip
-                      ? 'w-8 h-1.5'
-                      : 'w-1.5 h-1.5'}"
-                    onclick={() => selectFilterTip(index)}
-                    aria-label="Go to tip {index + 1}"
-                  >
-                    {#if index === currentFilterTip && autoRotate}
-                      <div
-                        class="absolute inset-0 bg-gray-600 dark:bg-gray-300 rounded-full animate-fill-progress"
-                      ></div>
-                    {:else if index === currentFilterTip}
-                      <div
-                        class="absolute inset-0 bg-gray-600 dark:bg-gray-300 rounded-full"
-                      ></div>
-                    {/if}
-                  </button>
-                {/each}
-              </div>
-            </div>
-          {/if}
-        </div>
-      </div>
-    {:else if results.length > 0}
-      {#each results as result, index}
-        <button
-          class="w-full p-4 text-left border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/50 focus:bg-gray-50 dark:focus:bg-gray-800/50 focus:outline-none {index ===
-          selectedIndex
-            ? 'bg-blue-50 dark:bg-blue-900/20 border-l-2 border-l-blue-500'
-            : ''}"
-          onclick={() => handleResultClick(result)}
-          onkeydown={(e) => handleResultKeyDown(e, result)}
-          tabindex={index === selectedIndex ? 0 : -1}
-          type="button"
-        >
-          <div class="flex flex-col gap-2">
-            <!-- Title and Category -->
-            <div class="flex items-start justify-between gap-2">
-              <div class="flex items-start gap-2 flex-1">
-                {#if result.story.emoji}
-                  <span class="text-lg mt-0.5">{result.story.emoji}</span>
-                {/if}
-                <h3
-                  class="font-semibold text-gray-900 dark:text-white line-clamp-2 flex-1"
-                  dir="auto"
-                >
-                  {@html highlightMatch(result.story.title || "", query)}
-                </h3>
-              </div>
-              <span
-                class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 shrink-0"
-                dir="auto"
-              >
-                {result.categoryName}
-              </span>
-            </div>
+							<!-- Progress indicator with fill animation -->
+							<div class="flex justify-center gap-1.5 mt-3">
+								{#each filterTips as _, index}
+									<button
+										class="relative rounded-full bg-primary-200 overflow-hidden transition-all duration-200 {index ===
+										currentFilterTip
+											? 'w-8 h-1.5'
+											: 'w-1.5 h-1.5'}"
+										onclick={() => selectFilterTip(index)}
+										aria-label="Go to tip {index + 1}"
+									>
+										{#if index === currentFilterTip && autoRotate}
+											<div
+												class="absolute inset-0 bg-primary-600 rounded-full animate-fill-progress"
+											></div>
+										{:else if index === currentFilterTip}
+											<div class="absolute inset-0 bg-primary-600 rounded-full"></div>
+										{/if}
+									</button>
+								{/each}
+							</div>
+						</div>
+					{/if}
+				</div>
+			</div>
+		{:else if results.length > 0}
+			{#each results as result, index}
+				<button
+					class="w-full p-4 text-left border-b border-primary-50 hover:bg-primary-25 dark:hover:bg-graphite-800/50 focus:bg-primary-25 dark:focus:bg-graphite-800/50 focus:outline-none {index ===
+					selectedIndex
+						? 'bg-purple-50 dark:bg-purple-900/20 border-l-2 border-l-purple-600'
+						: ''}"
+					onclick={() => handleResultClick(result)}
+					onkeydown={(e) => handleResultKeyDown(e, result)}
+					tabindex={index === selectedIndex ? 0 : -1}
+					type="button"
+				>
+					<div class="flex flex-col gap-2">
+						<!-- Title and Category -->
+						<div class="flex items-start justify-between gap-2">
+							<div class="flex items-start gap-2 flex-1">
+								{#if result.story.emoji}
+									<span class="text-lg mt-0.5">{result.story.emoji}</span>
+								{/if}
+								<h3 class="font-semibold text-primary line-clamp-2 flex-1" dir="auto">
+									{@html highlightMatch(result.story.title || '', query)}
+								</h3>
+							</div>
+							<span
+								class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-primary-50 dark:bg-graphite-700 text-primary-800 shrink-0"
+								dir="auto"
+							>
+								{result.categoryName}
+							</span>
+						</div>
 
-            <!-- Summary/Snippet -->
-            {#if result.story.snippet}
-              <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2" dir="auto">
-                {@html getSnippetWithHighlight(result.story.snippet, query)}
-              </p>
-            {:else if result.story.short_summary}
-              <p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2" dir="auto">
-                {@html getSnippetWithHighlight(
-                  result.story.short_summary,
-                  query,
-                )}
-              </p>
-            {/if}
+						<!-- Summary/Snippet -->
+						{#if result.story.snippet}
+							<p class="text-sm text-primary-600 line-clamp-2" dir="auto">
+								{@html getSnippetWithHighlight(result.story.snippet, query)}
+							</p>
+						{:else if result.story.short_summary}
+							<p class="text-sm text-primary-600 line-clamp-2" dir="auto">
+								{@html getSnippetWithHighlight(result.story.short_summary, query)}
+							</p>
+						{/if}
 
-            <!-- Metadata -->
-            <div
-              class="flex items-center text-xs text-gray-500 dark:text-gray-400"
-            >
-              {#if result.story.location}
-                <span dir="auto">📍 {result.story.location}</span>
-                {#if result.story.unique_domains || (result.batchDate && !isToday(result.batchDate))}
-                  <span class="mx-2">•</span>
-                {/if}
-              {/if}
+						<!-- Metadata -->
+						<div class="flex items-center text-xs text-primary-600">
+							{#if result.story.location}
+								<span dir="auto">📍 {result.story.location}</span>
+								{#if result.story.unique_domains || (result.batchDate && !isToday(result.batchDate))}
+									<span class="mx-2">•</span>
+								{/if}
+							{/if}
 
-              {#if result.story.unique_domains}
-                <span
-                  >{result.story.unique_domains}
-                  {result.story.unique_domains === 1
-                    ? s("search.source_single") || "source"
-                    : s("search.source_plural") || "sources"}</span
-                >
-                {#if result.batchDate && !isToday(result.batchDate)}
-                  <span class="mx-2">•</span>
-                {/if}
-              {/if}
+							{#if result.story.unique_domains}
+								<span
+									>{result.story.unique_domains}
+									{result.story.unique_domains === 1
+										? s('search.source_single') || 'source'
+										: s('search.source_plural') || 'sources'}</span
+								>
+								{#if result.batchDate && !isToday(result.batchDate)}
+									<span class="mx-2">•</span>
+								{/if}
+							{/if}
 
-              <!-- Date (only show if not today for current results) -->
-              {#if result.batchDate && !isToday(result.batchDate)}
-                <span>{new Date(result.batchDate).toLocaleDateString()}</span>
-              {/if}
-            </div>
-          </div>
-        </button>
-      {/each}
+							<!-- Date (only show if not today for current results) -->
+							{#if result.batchDate && !isToday(result.batchDate)}
+								<span>{new Date(result.batchDate).toLocaleDateString()}</span>
+							{/if}
+						</div>
+					</div>
+				</button>
+			{/each}
 
-      <!-- Load More Button (only shown if historical search is enabled) -->
-      {#if features.historicalSearch && hasMore && onLoadMore}
-        <div
-          class="p-4 text-center bg-gray-50 dark:bg-gray-800/50 border-t border-gray-200 dark:border-gray-700"
-        >
-          {#if isLoadingMore}
-            <div
-              class="flex items-center justify-center gap-2 text-sm text-gray-600 dark:text-gray-400"
-            >
-              <IconLoader2 class="size-4 text-blue-500 animate-spin" />
-              {s("search.loading_more") || "Loading more results..."}
-            </div>
-          {:else}
-            <button
-              onclick={onLoadMore}
-              class="px-4 py-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
-            >
-              {s("search.load_more") || "Load more results"}
-            </button>
-            <div class="mt-1 text-xs text-gray-500 dark:text-gray-400">
-              {s("search.showing_of", {
-                shown: results.length.toString(),
-                total: totalCount.toString(),
-              }) || `Showing ${results.length} of ${totalCount} results`}
-            </div>
-          {/if}
-        </div>
-      {/if}
-    {:else if !isLoading}
-      <!-- Empty State -->
-      <div class="flex items-center justify-center min-h-full p-8">
-        <div class="text-center">
-          <div
-            class="mx-auto size-12 text-gray-400 dark:text-gray-500 mb-4 flex items-center justify-center"
-          >
-            <IconSearch size={48} stroke={1.5} />
-          </div>
-          <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-2">
-            {s("search.no_results_title") || "No results found"}
-          </h3>
-          <p class="text-gray-500 dark:text-gray-400 mb-4 max-w-sm">
-            {#if features.historicalSearch}
-              {s("search.no_results_description") ||
-                "Try adjusting your search terms or filters to find what you're looking for."}
-            {:else}
-              {s("search.no_results_description_simple") ||
-                "Try different search terms to find what you're looking for."}
-            {/if}
-          </p>
-          {#if features.historicalSearch}
-            <div class="text-sm text-gray-400 dark:text-gray-500 space-y-1">
-              <p>{s("search.try_searching_for") || "Try searching for:"}</p>
-              <div class="flex flex-wrap gap-2 justify-center">
-                <code class="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded"
-                  >category:World</code
-                >
-                <code class="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded"
-                  >from:yesterday</code
-                >
-                <code class="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded"
-                  >to:today</code
-                >
-              </div>
-            </div>
-          {/if}
-        </div>
-      </div>
-    {/if}
-  </div>
+			<!-- Load More Button (only shown if historical search is enabled) -->
+			{#if features.historicalSearch && hasMore && onLoadMore}
+				<div
+					class="p-4 text-center bg-primary-25 dark:bg-graphite-800/50 border-t border-primary-100"
+				>
+					{#if isLoadingMore}
+						<div class="flex items-center justify-center gap-2 text-sm text-primary-600">
+							<IconLoader2 class="size-4 text-accent-links animate-spin" />
+							{s('search.loading_more') || 'Loading more results...'}
+						</div>
+					{:else}
+						<button
+							onclick={onLoadMore}
+							class="px-4 py-2 text-sm font-medium text-accent-links hover:opacity-80 hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-lg transition-colors"
+						>
+							{s('search.load_more') || 'Load more results'}
+						</button>
+						<div class="mt-1 text-xs text-primary-600">
+							{s('search.showing_of', {
+								shown: results.length.toString(),
+								total: Math.max(totalCount, results.length).toString(),
+							}) || `Showing ${results.length} of ${Math.max(totalCount, results.length)} results`}
+						</div>
+					{/if}
+				</div>
+			{/if}
+		{:else if !isLoading}
+			<!-- Empty State -->
+			<div class="flex items-center justify-center min-h-full p-8">
+				<div class="text-center">
+					<div class="mx-auto size-12 text-primary-400 mb-4 flex items-center justify-center">
+						<IconSearch size={48} stroke={1.5} />
+					</div>
+					<h3 class="text-lg font-medium text-primary mb-2">
+						{s('search.no_results_title') || 'No results found'}
+					</h3>
+					<p class="text-primary-600 mb-4 max-w-sm">
+						{#if features.historicalSearch}
+							{s('search.no_results_description') ||
+								"Try adjusting your search terms or filters to find what you're looking for."}
+						{:else}
+							{s('search.no_results_description_simple') ||
+								"Try different search terms to find what you're looking for."}
+						{/if}
+					</p>
+					{#if features.searchFilters}
+						<div class="text-sm text-primary-400 space-y-1">
+							<p>{s('search.try_searching_for') || 'Try searching for:'}</p>
+							<div class="flex flex-wrap gap-2 justify-center">
+								<code class="px-2 py-1 bg-primary-50 dark:bg-graphite-700 rounded"
+									>category:World</code
+								>
+								<code class="px-2 py-1 bg-primary-50 dark:bg-graphite-700 rounded"
+									>from:yesterday</code
+								>
+								<code class="px-2 py-1 bg-primary-50 dark:bg-graphite-700 rounded">to:today</code>
+							</div>
+						</div>
+					{/if}
+				</div>
+			</div>
+		{/if}
+	</div>
 </div>
 
 <style>
-  .line-clamp-2 {
-    display: -webkit-box;
-    line-clamp: 2;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
+.line-clamp-2 {
+	display: -webkit-box;
+	line-clamp: 2;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
 
-  @keyframes fill-progress {
-    from {
-      transform: scaleX(0);
-      transform-origin: left;
-    }
-    to {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-  }
+@keyframes fill-progress {
+	from {
+		transform: scaleX(0);
+		transform-origin: left;
+	}
+	to {
+		transform: scaleX(1);
+		transform-origin: left;
+	}
+}
 
-  .animate-fill-progress {
-    animation: fill-progress 3s linear;
-  }
+.animate-fill-progress {
+	animation: fill-progress 3s linear;
+}
 </style>

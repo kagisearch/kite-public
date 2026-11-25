@@ -1,11 +1,11 @@
 <script lang="ts">
-import { IconArrowUp, IconArrowDown, IconArrowsExchange, IconLoader2 } from '@tabler/icons-svelte';
-import BaseModal from '$lib/components/BaseModal.svelte';
 import { s } from '$lib/client/localization.svelte';
 import { downloadSettingsBackup } from '$lib/client/settings-backup';
 import { syncManager } from '$lib/client/sync-manager';
-import { settings } from '$lib/data/settings.svelte';
 import { safeSetItem, safeRemoveItem } from '$lib/client/utils/safe-storage';
+import BaseModal from '$lib/components/BaseModal.svelte';
+import { settings } from '$lib/data/settings.svelte';
+import { IconArrowUp, IconArrowDown, IconArrowsExchange, IconLoader2 } from '@tabler/icons-svelte';
 
 interface Props {
 	isOpen: boolean;
@@ -130,7 +130,7 @@ function tryParse(value: string): unknown {
 >
 	<div class="p-5">
 		{#if step === 'choose'}
-			<p class="mb-4 text-sm text-gray-600 dark:text-gray-400">
+			<p class="mb-4 text-sm text-primary-600">
 				{s('syncSetup.description') ||
 					'We found existing settings on your account from another device. How would you like to proceed?'}
 			</p>
@@ -138,19 +138,19 @@ function tryParse(value: string): unknown {
 			<div class="space-y-3">
 				<button
 					onclick={pushLocal}
-					class="w-full text-left p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors"
+					class="w-full text-left p-4 rounded-lg border-2 border-primary-100 hover:border-purple-400 transition-colors"
 				>
 					<div class="flex items-start gap-3">
 						<div
-							class="mt-0.5 rounded-lg bg-blue-100 dark:bg-blue-900/40 p-2 text-blue-600 dark:text-blue-400"
+							class="mt-0.5 rounded-lg bg-purple-100 dark:bg-purple-900/40 p-2 text-accent-links"
 						>
 							<IconArrowUp size={18} />
 						</div>
 						<div>
-							<div class="text-sm font-medium text-gray-900 dark:text-gray-100">
+							<div class="text-sm font-medium text-primary">
 								{s('syncSetup.pushLocal.title') || 'Use this device'}
 							</div>
-							<div class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+							<div class="text-xs text-primary-600 mt-0.5">
 								{s('syncSetup.pushLocal.description') ||
 									'Replace cloud settings with your current settings'}
 							</div>
@@ -160,7 +160,7 @@ function tryParse(value: string): unknown {
 
 				<button
 					onclick={pullRemote}
-					class="w-full text-left p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors"
+					class="w-full text-left p-4 rounded-lg border-2 border-primary-100 hover:border-purple-400 transition-colors"
 				>
 					<div class="flex items-start gap-3">
 						<div
@@ -169,10 +169,10 @@ function tryParse(value: string): unknown {
 							<IconArrowDown size={18} />
 						</div>
 						<div>
-							<div class="text-sm font-medium text-gray-900 dark:text-gray-100">
+							<div class="text-sm font-medium text-primary">
 								{s('syncSetup.pullRemote.title') || 'Use cloud settings'}
 							</div>
-							<div class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+							<div class="text-xs text-primary-600 mt-0.5">
 								{s('syncSetup.pullRemote.description') ||
 									'Replace your current settings with cloud settings'}
 							</div>
@@ -182,19 +182,19 @@ function tryParse(value: string): unknown {
 
 				<button
 					onclick={merge}
-					class="w-full text-left p-4 rounded-lg border-2 border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors"
+					class="w-full text-left p-4 rounded-lg border-2 border-primary-100 hover:border-purple-400 transition-colors"
 				>
 					<div class="flex items-start gap-3">
 						<div
-							class="mt-0.5 rounded-lg bg-purple-100 dark:bg-purple-900/40 p-2 text-purple-600 dark:text-purple-400"
+							class="mt-0.5 rounded-lg bg-purple-100 dark:bg-purple-900/40 p-2 text-accent-links"
 						>
 							<IconArrowsExchange size={18} />
 						</div>
 						<div>
-							<div class="text-sm font-medium text-gray-900 dark:text-gray-100">
+							<div class="text-sm font-medium text-primary">
 								{s('syncSetup.merge.title') || 'Merge'}
 							</div>
-							<div class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+							<div class="text-xs text-primary-600 mt-0.5">
 								{s('syncSetup.merge.description') ||
 									'Keep your settings and add any missing cloud settings'}
 							</div>
@@ -204,29 +204,29 @@ function tryParse(value: string): unknown {
 			</div>
 		{:else if step === 'syncing'}
 			<div class="flex flex-col items-center justify-center py-8 gap-3">
-				<IconLoader2 size={28} class="animate-spin text-blue-600 dark:text-blue-400" />
-				<p class="text-sm text-gray-600 dark:text-gray-400">{syncingLabel}</p>
+				<IconLoader2 size={28} class="animate-spin text-accent-links" />
+				<p class="text-sm text-primary-600">{syncingLabel}</p>
 			</div>
 		{:else if step === 'done'}
 			<div class="flex flex-col items-center justify-center py-8 gap-3">
-				<svg class="h-8 w-8 text-green-600 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20">
+				<svg
+					class="h-8 w-8 text-green-600 dark:text-green-400"
+					fill="currentColor"
+					viewBox="0 0 20 20"
+				>
 					<path
 						fill-rule="evenodd"
 						d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
 						clip-rule="evenodd"
 					/>
 				</svg>
-				<p class="text-sm text-gray-600 dark:text-gray-400">
+				<p class="text-sm text-primary-600">
 					{s('syncSetup.done') || 'Settings synced successfully!'}
 				</p>
 			</div>
 		{:else if step === 'error'}
 			<div class="flex flex-col items-center justify-center py-8 gap-3">
-				<svg
-					class="h-8 w-8 text-red-600 dark:text-red-400"
-					fill="currentColor"
-					viewBox="0 0 20 20"
-				>
+				<svg class="h-8 w-8 text-red-600 dark:text-red-400" fill="currentColor" viewBox="0 0 20 20">
 					<path
 						fill-rule="evenodd"
 						d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
@@ -238,7 +238,7 @@ function tryParse(value: string): unknown {
 					onclick={() => {
 						step = 'choose';
 					}}
-					class="mt-2 text-sm text-blue-600 dark:text-blue-400 hover:underline"
+					class="mt-2 text-sm text-accent-links hover:underline"
 				>
 					{s('syncSetup.tryAgain') || 'Try again'}
 				</button>
