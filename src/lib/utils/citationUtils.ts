@@ -142,17 +142,27 @@ export function getFaviconUrl(domain: string): string {
 	return `/api/favicon-proxy?domain=${encodeURIComponent(domain)}&quality=high`;
 }
 
+// Pattern to match citations like [domain#position], [common], [*], [1], [2], etc.
+const CITATION_MARKER_PATTERN = /\[([^\]]+)\]/g;
+
 /**
- * Remove all citations from text
+ * Remove citation markers and nothing else. Each marker becomes a single
+ * space so the words on either side stay separate; the surrounding text is
+ * otherwise untouched. Use this when the result is matched rather than shown.
+ */
+export function removeCitationMarkers(text: string): string {
+	if (!text || typeof text !== 'string') return '';
+	return text.replace(CITATION_MARKER_PATTERN, ' ');
+}
+
+/**
+ * Remove all citations from text and tidy the result for display
  */
 export function stripCitations(text: string): string {
 	if (!text || typeof text !== 'string') return '';
 
-	// Pattern to match citations like [domain#position], [common], [*], [1], [2], etc.
-	const citationPattern = /\[([^\]]+)\]/g;
-
 	// Remove citations and clean up extra spaces
-	let cleaned = text.replace(citationPattern, '').trim();
+	let cleaned = text.replace(CITATION_MARKER_PATTERN, '').trim();
 	cleaned = cleaned.replace(/\s+/g, ' '); // Replace multiple spaces with single space
 	cleaned = cleaned.replace(/\s+([.,;:!?)])/g, '$1'); // Fix space before punctuation
 

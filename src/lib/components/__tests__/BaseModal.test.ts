@@ -1,13 +1,25 @@
-import { fireEvent, render } from '@testing-library/svelte';
-import { describe, expect, it, vi } from 'vitest';
 import { scrollLock } from '$lib/utils/scrollLock';
 import BaseModal from '../BaseModal.svelte';
+import { fireEvent, render } from '@testing-library/svelte';
+import { describe, expect, it, vi } from 'vitest';
 
 // Mock scrollLock
 vi.mock('$lib/utils/scrollLock', () => ({
 	scrollLock: {
 		lock: vi.fn(),
 		unlock: vi.fn(),
+	},
+}));
+
+// Mock overlayscrollbars-svelte
+vi.mock('overlayscrollbars-svelte', () => ({
+	useOverlayScrollbars: () => [vi.fn(), vi.fn()],
+}));
+
+// Mock overlayscrollbars
+vi.mock('overlayscrollbars', () => ({
+	OverlayScrollbars: {
+		valid: vi.fn(() => false),
 	},
 }));
 

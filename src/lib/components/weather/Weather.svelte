@@ -1,7 +1,7 @@
 <script lang="ts">
+import { s } from '$lib/client/localization.svelte';
 import { IconWind } from '@tabler/icons-svelte';
 import { onMount } from 'svelte';
-import { s } from '$lib/client/localization.svelte';
 
 interface Props {
 	location?: 'san-francisco' | 'new-york' | 'austin';
@@ -67,31 +67,23 @@ onMount(() => {
 });
 </script>
 
-<div class="mb-4 rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-800/50">
+<div class="mb-4 rounded-lg border border-primary-100 bg-primary-25 dark:bg-graphite-800/50">
 	<div class="px-4 py-3 min-h-[92px]">
 		{#if loading}
 			<div class="flex items-start justify-between h-full">
 				<div class="flex items-center gap-3">
-					<img
-						src="/weather-icons/cloudy.svg"
-						alt="Loading"
-						class="h-16 w-16"
-					/>
+					<img src="/weather-icons/cloudy.svg" alt="Loading" class="h-16 w-16" />
 					<div class="flex flex-col">
-						<span class="text-sm text-gray-600 dark:text-gray-400">{s('weather.loading')}</span>
+						<span class="text-sm text-primary-600">{s('weather.loading')}</span>
 					</div>
 				</div>
 			</div>
 		{:else if data?.error || !data?.data}
 			<div class="flex items-start justify-between h-full">
 				<div class="flex items-center gap-3">
-					<img
-						src="/weather-icons/cloudy.svg"
-						alt="Error"
-						class="h-16 w-16"
-					/>
+					<img src="/weather-icons/cloudy.svg" alt="Error" class="h-16 w-16" />
 					<div class="flex flex-col">
-						<span class="text-sm text-gray-600 dark:text-gray-400">{s('weather.error')}</span>
+						<span class="text-sm text-primary-600">{s('weather.error')}</span>
 					</div>
 				</div>
 			</div>
@@ -107,14 +99,17 @@ onMount(() => {
 						class="h-16 w-16"
 					/>
 					<div class="flex flex-col">
-						<span class="text-xs text-gray-600 dark:text-gray-400">{s(`weather.location.${data.locationKey}`)}</span>
-						<span class="text-2xl font-bold text-gray-900 dark:text-gray-100">{data.data.temperature}°{s('weather.fahrenheit')}</span>
-						<span class="text-sm text-gray-600 dark:text-gray-400">{weatherInfo.description}</span>
+						<span class="text-xs text-primary-600">{s(`weather.location.${data.locationKey}`)}</span
+						>
+						<span class="text-2xl font-bold text-primary"
+							>{data.data.temperature}°{s('weather.fahrenheit')}</span
+						>
+						<span class="text-sm text-primary-600">{weatherInfo.description}</span>
 					</div>
 				</div>
 
 				<!-- Weather Stats -->
-				<div class="flex flex-col gap-1 text-right text-xs text-gray-600 dark:text-gray-400">
+				<div class="flex flex-col gap-1 text-right text-xs text-primary-600">
 					<div class="flex items-center justify-end gap-2">
 						<span>↑ {data.data.temperatureMax}°</span>
 						<span>↓ {data.data.temperatureMin}°</span>

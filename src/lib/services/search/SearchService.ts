@@ -65,29 +65,17 @@ export class SearchService {
 	/**
 	 * Update search from input text
 	 */
-	updateFromInput(inputText: string, _cursorPosition: number = 0) {
+	updateFromInput(inputText: string, cursorPosition: number = 0) {
 		// Only update the query part, filters are handled separately
 		this.state.query = inputText;
 
-		// DISABLED: Filter suggestions are for historical search which is disabled
-		// Only provide filter suggestions if historical search is enabled
-		// if (!features.historicalSearch) {
-		return {
-			context: null,
-			suggestions: [],
-		};
-		// }
-
 		// Get filter context for suggestions
-		// const context = this.filterService.detectFilterContext(
-		//   inputText,
-		//   cursorPosition,
-		// );
+		const context = this.filterService.detectFilterContext(inputText, cursorPosition);
 
-		// return {
-		//   context,
-		//   suggestions: context ? this.filterService.getSuggestions(context) : [],
-		// };
+		return {
+			context,
+			suggestions: context ? this.filterService.getSuggestions(context) : [],
+		};
 	}
 
 	/**
@@ -159,12 +147,25 @@ export class SearchService {
 					}
 				});
 
-			// Start historical search if eligible and feature is enabled
-			// DISABLED: Historical search is too slow on remote database
-			const canSearchHistorical = false;
+			// Start historical search after a debounce delay to avoid excessive API calls
 			let historicalPromise: Promise<SearchExecutionResult> | null = null;
 
-			if (searchOptions.includeHistorical !== false && canSearchHistorical) {
+			if (searchOptions.includeHistorical !== false) {
+				// Debounce historical search by 300ms — local results are already shown
+				await new Promise<void>((resolve) => {
+					const timer = setTimeout(resolve, 300);
+					searchOptions.abortSignal?.addEventListener('abort', () => {
+						clearTimeout(timer);
+						resolve();
+					});
+				});
+
+				// Check if aborted during debounce
+				if (searchOptions.abortSignal?.aborted) {
+					this.state.isLoading = false;
+					return this.state.results;
+				}
+
 				if (onHistoricalStart) {
 					onHistoricalStart();
 				}
@@ -196,7 +197,9 @@ export class SearchService {
 							this.state.results = combined;
 							// For the initial search, we've requested items at offset 0
 							this.state.hasMore = historicalResults.hasMore;
-							this.state.totalCount = historicalResults.historicalCount;
+							// totalCount must include local results that were merged in
+							this.state.totalCount =
+								historicalResults.historicalCount + currentLocalResults.length;
 							this.state.currentOffset = 0; // We started at offset 0
 
 							if (onHistoricalComplete) {
@@ -289,7 +292,9 @@ export class SearchService {
 			this.state.currentOffset = nextOffset; // Update offset to what we just used
 			// The backend already tells us if there are more results
 			this.state.hasMore = moreResults.hasMore;
-			this.state.totalCount = moreResults.historicalCount;
+			// Include local results count in total
+			const localCount = this.state.results.filter((r) => !r.batchId).length;
+			this.state.totalCount = moreResults.historicalCount + localCount;
 
 			if (onMoreLoaded) {
 				onMoreLoaded(moreResults.historicalResults, this.state.totalCount);

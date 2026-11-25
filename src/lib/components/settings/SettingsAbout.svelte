@@ -1,9 +1,9 @@
 <script lang="ts">
-import { IconKeyboard } from '@tabler/icons-svelte';
 import { s } from '$lib/client/localization.svelte';
 import { settingsModalState, themeSettings } from '$lib/data/settings.svelte.js';
 import { keyboardNavigation } from '$lib/stores/keyboardNavigation.svelte';
 import { language } from '$lib/stores/language.svelte';
+import { IconKeyboard, IconMessage2 } from '@tabler/icons-svelte';
 
 interface Props {
 	onShowAbout?: () => void;
@@ -90,9 +90,7 @@ const googlePlayNeedsScaling = $derived(badgesWithExtraPadding.includes(googlePl
 
 <div class="space-y-6">
 	<!-- About Kite -->
-	<div
-		class="bg-blue-50 dark:bg-blue-900/30 p-6 rounded-xl border border-blue-100 dark:border-blue-700/50"
-	>
+	<div class="bg-primary-50 p-6 rounded-xl border border-primary-100">
 		<div class="flex flex-col sm:flex-row items-start gap-6">
 			<!-- Doggo on the left -->
 			<div class="flex-shrink-0">
@@ -101,16 +99,16 @@ const googlePlayNeedsScaling = $derived(badgesWithExtraPadding.includes(googlePl
 
 			<!-- Content on the right -->
 			<div class="flex-1 space-y-3">
-				<h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">
+				<h3 class="text-lg font-semibold text-primary">
 					{s('settings.about.aboutKite') || 'About Kite'}
 				</h3>
-				<p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+				<p class="text-sm text-primary-700 leading-relaxed">
 					{s('settings.about.description') ||
 						'Kite is a news aggregator that clusters stories from multiple sources, helping you see different perspectives on the same event. Available in 15+ languages with automatic translation.'}
 				</p>
 				<button
 					onclick={showAbout}
-					class="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors focus-visible-ring rounded"
+					class="inline-flex items-center gap-1.5 text-sm font-medium text-accent-links hover:opacity-80 transition-colors focus-visible-ring rounded"
 				>
 					<span>{s('settings.about.learnMore') || 'Learn more'}</span>
 					<svg
@@ -132,34 +130,56 @@ const googlePlayNeedsScaling = $derived(badgesWithExtraPadding.includes(googlePl
 		</div>
 	</div>
 
+	<!-- Feedback -->
+	<div class="space-y-3">
+		<h3 class="text-base font-bold text-primary">
+			{s('settings.about.feedback') || 'Feedback'}
+		</h3>
+		<div class="ps-2">
+			<p class="text-sm text-primary-600 mb-3">
+				{s('settings.about.feedbackDescription') ||
+					'Share ideas, report problems, and vote on what we build next'}
+			</p>
+			<a
+				href="https://kagifeedback.org/t/kagi-news"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-flex items-center gap-2 rounded-lg border border-primary-200 bg-white dark:bg-graphite-850 px-4 py-2 text-sm font-medium text-primary-700 transition-colors duration-200 hover:bg-primary-50 focus-visible-ring"
+			>
+				<IconMessage2 size={18} />
+				<span>{s('settings.about.openFeedback') || 'Open Kagi Feedback'}</span>
+			</a>
+		</div>
+	</div>
+
 	<!-- Keyboard Shortcuts -->
 	<div class="space-y-3">
-		<h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300">
+		<h3 class="text-base font-bold text-primary">
 			{s('settings.about.keyboardShortcuts') || 'Keyboard Shortcuts'}
 		</h3>
 		<div class="ps-2">
-			<p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+			<p class="text-sm text-primary-600 mb-3">
 				{s('settings.about.keyboardDescription') ||
 					'Navigate stories and categories using vim-style keyboard shortcuts'}
 			</p>
 			<button
 				onclick={showKeyboardShortcuts}
-				class="inline-flex items-center gap-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200 hover:bg-gray-50 dark:hover:bg-gray-700 focus-visible-ring"
+				class="inline-flex items-center gap-2 rounded-lg border border-primary-200 bg-white dark:bg-graphite-850 px-4 py-2 text-sm font-medium text-primary-700 transition-colors duration-200 hover:bg-primary-50 focus-visible-ring"
 			>
 				<IconKeyboard size={18} />
 				<span>{s('settings.about.viewShortcuts') || 'View Keyboard Shortcuts'}</span>
-				<kbd class="ms-2 px-1.5 py-0.5 text-xs font-semibold bg-gray-100 dark:bg-gray-700 rounded">?</kbd>
+				<kbd class="ms-2 px-1.5 py-0.5 text-xs font-semibold bg-primary-50 rounded">?</kbd>
 			</button>
 		</div>
 	</div>
 
 	<!-- API Access -->
 	<div class="space-y-3">
-		<h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300">
+		<h3 class="text-base font-bold text-primary">
 			{s('settings.about.apiAccess') || 'API Access'}
 		</h3>
 		<div class="ps-2">
-			<p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+			<p class="text-sm text-primary-600 mb-3">
 				{s('settings.about.apiDescription') ||
 					'Access Kite news programmatically with our REST API'}
 			</p>
@@ -167,7 +187,7 @@ const googlePlayNeedsScaling = $derived(badgesWithExtraPadding.includes(googlePl
 				href="/api-docs"
 				target="_blank"
 				rel="noopener noreferrer"
-				class="inline-flex items-center gap-2 rounded-lg bg-blue-500 px-4 py-2 text-sm font-medium text-white transition-colors duration-200 hover:bg-blue-600 focus-visible-ring"
+				class="inline-flex items-center gap-2 rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white transition-colors duration-200 hover:bg-purple-700 focus-visible-ring"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -190,11 +210,11 @@ const googlePlayNeedsScaling = $derived(badgesWithExtraPadding.includes(googlePl
 
 	<!-- Mobile Apps -->
 	<div class="space-y-3">
-		<h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300">
+		<h3 class="text-base font-bold text-primary">
 			{s('settings.about.mobileApps') || 'Mobile Apps'}
 		</h3>
 		<div class="ps-2">
-			<p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+			<p class="text-sm text-primary-600 mb-3">
 				{s('settings.about.mobileDescription') || 'Get Kite on your mobile device'}
 			</p>
 			<div class="flex flex-col sm:flex-row gap-3 items-center">
@@ -232,8 +252,8 @@ const googlePlayNeedsScaling = $derived(badgesWithExtraPadding.includes(googlePl
 	</div>
 
 	<!-- Copyright -->
-	<div class="ps-2 pt-4 border-t border-gray-200 dark:border-gray-700">
-		<p class="text-xs text-gray-500 dark:text-gray-400">
+	<div class="ps-2 pt-4 border-t border-primary-100">
+		<p class="text-xs text-primary-600">
 			© {new Date().getFullYear()} Kagi Inc.
 		</p>
 	</div>

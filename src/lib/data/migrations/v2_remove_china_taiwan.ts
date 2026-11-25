@@ -24,7 +24,6 @@
  * - Users who had "China_Taiwan" enabled will have "Taiwan" enabled
  * - Users who had "China_Taiwan" disabled will not have "Taiwan" added
  */
-
 import { settings } from '../settings.svelte';
 import type { Migration } from './types';
 

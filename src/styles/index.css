@@ -1,57 +1,15 @@
-@import "tailwindcss";
-
-/* Use CSS selector instead of the prefers-color-scheme media query: https://tailwindcss.com/docs/dark-mode */
-@custom-variant dark (&:where(.dark, .dark *));
-
-/* OverlayScrollbars theming - Light theme (default) */
-.os-scrollbar {
-	--os-handle-bg: rgba(0, 0, 0, 0.2);
-	--os-handle-bg-hover: rgba(0, 0, 0, 0.3);
-	--os-handle-bg-active: rgba(0, 0, 0, 0.4);
-	--os-track-bg: transparent;
-	--os-track-bg-hover: rgba(0, 0, 0, 0.05);
-	--os-track-bg-active: rgba(0, 0, 0, 0.1);
-}
-
-/* OverlayScrollbars theming - Dark theme */
-.dark .os-scrollbar {
-	--os-handle-bg: rgba(255, 255, 255, 0.2);
-	--os-handle-bg-hover: rgba(255, 255, 255, 0.3);
-	--os-handle-bg-active: rgba(255, 255, 255, 0.4);
-	--os-track-bg: transparent;
-	--os-track-bg-hover: rgba(255, 255, 255, 0.05);
-	--os-track-bg-active: rgba(255, 255, 255, 0.1);
-}
-
-/* Extend default theme */
-@theme {
-	/* Dynamic font size variables (can be overridden by JavaScript) */
-	--text-xs: var(--text-xs, 0.75rem);
-	--text-sm: var(--text-sm, 0.875rem);
-	--text-base: var(--text-base, 1rem);
-	--text-lg: var(--text-lg, 1.125rem);
-	--text-xl: var(--text-xl, 1.25rem);
-	--text-2xl: var(--text-2xl, 1.5rem);
-	--text-3xl: var(--text-3xl, 1.875rem);
-	--text-4xl: var(--text-4xl, 2.25rem);
-
-	/* TODO: Use proper way to adjust dark mode for background and text */
-	--color-dark-bg: #1a202c;
-	--color-dark-text: #e2e8f0;
-}
-
-/* Custom overrides  */
+/* Custom overrides — design system tokens are in app.css */
 @layer base {
 	/* This adds behavior as it was in Tailwind v3.
    * In v4 the button doesn't have a pointer as default.
    * https://github.com/tailwindlabs/tailwindcss/issues/8961#issuecomment-2685614710
    */
 	button,
-	[role="button"] {
+	[role='button'] {
 		cursor: pointer;
 	}
 	button:disabled,
-	[role="button"]:disabled {
+	[role='button']:disabled {
 		cursor: default;
 	}
 }
@@ -74,11 +32,15 @@
 }
 
 .flying-kite {
-	width: 40px;
-	height: 40px;
+	display: block;
 	animation: kite-fly-away 17s ease-in-out forwards;
 	transform-origin: center;
 	font-size: 1rem; /* Reset font size to prevent inheritance */
+}
+
+.flying-kite svg {
+	width: 40px;
+	height: 40px;
 }
 
 @keyframes kite-fly-away {
@@ -163,44 +125,72 @@
 	transition: background-color 0.8s ease-out;
 }
 
-/* Topic Colors */
+/* Topic colors - ordered by perceptual distinctness. */
+.topic-color-0 {
+	color: #e74c3c;
+} /* red */
 .topic-color-1 {
-	color: #cc3333;
-} /* Red */
+	color: #3498db;
+} /* blue */
 .topic-color-2 {
-	color: #b85c2e;
-} /* Orange/Brown */
+	color: #2ecc71;
+} /* green */
 .topic-color-3 {
-	color: #0077cc;
-} /* Medium Blue */
+	color: #9b59b6;
+} /* purple */
 .topic-color-4 {
-	color: #666633;
-} /* Olive */
+	color: #f39c12;
+} /* orange */
 .topic-color-5 {
-	color: #8822cc;
-} /* Purple */
+	color: #1abc9c;
+} /* teal */
 .topic-color-6 {
-	color: #b8288f;
-} /* Magenta */
+	color: #e91e63;
+} /* pink */
 .topic-color-7 {
-	color: #e60039;
-} /* Brighter Red */
+	color: #3f51b5;
+} /* indigo */
 .topic-color-8 {
-	color: #00855a;
-} /* Forest Green */
-.topic-color-9 {
-	color: #d14900;
-} /* Burnt Orange */
+	color: #ff9800;
+} /* amber */
 
-.dark img[src="svg/kite.svg"]:not([src*="kite_dark"]),
-.dark img[src="svg/quote.svg"],
-.dark img[src="svg/placeholder.svg"] {
+.dark .topic-color-0 {
+	color: #ff6b6b;
+} /* red */
+.dark .topic-color-1 {
+	color: #74b9ff;
+} /* blue */
+.dark .topic-color-2 {
+	color: #55efc4;
+} /* green */
+.dark .topic-color-3 {
+	color: #a29bfe;
+} /* purple */
+.dark .topic-color-4 {
+	color: #fdcb6e;
+} /* orange */
+.dark .topic-color-5 {
+	color: #00cec9;
+} /* teal */
+.dark .topic-color-6 {
+	color: #fd79a8;
+} /* pink */
+.dark .topic-color-7 {
+	color: #7986cb;
+} /* indigo */
+.dark .topic-color-8 {
+	color: #ffb74d;
+} /* amber */
+
+.dark img[src='svg/kite.svg']:not([src*='kite_dark']),
+.dark img[src='svg/quote.svg'],
+.dark img[src='svg/placeholder.svg'] {
 	filter: invert(1) brightness(2);
 }
 
 :root {
-	--color-header: #6285f0;
-	--color-focus: #3b82f6;
+	--color-header: #6c5edc;
+	--color-focus: var(--color-focus-ring);
 	--color-focus-offset: #ffffff;
 	--timeline-bullet-size: 24px;
 }
@@ -255,7 +245,7 @@
 }
 
 .timeline .body:before {
-	content: "";
+	content: '';
 	display: block;
 	background-color: var(--color-header);
 	width: 2px;
@@ -275,7 +265,7 @@
 }
 
 .dark .timeline .body {
-	color: #e2e8f0;
+	color: var(--color-primary);
 }
 
 .overflow-hidden {
@@ -299,23 +289,23 @@
 .category-tab {
 	white-space: nowrap;
 	padding: 0.5rem 0;
-	color: #6b7280;
+	color: var(--color-primary-600);
 	cursor: pointer;
 	border-bottom: 2px solid transparent;
 	transition: all 0.2s ease;
 }
 
 .category-tab.active {
-	color: #000000;
+	color: var(--color-primary);
 	border-bottom: 2px solid #f3b644;
 }
 
 .dark .category-tab {
-	color: #9ca3af;
+	color: var(--color-primary-400);
 }
 
 .dark .category-tab.active {
-	color: #ffffff;
+	color: var(--color-primary);
 	border-bottom: 2px solid #f3b644;
 }
 
@@ -348,7 +338,7 @@
 	}
 
 	.dark .focus-visible-ring {
-		--color-focus-offset: #1a202c;
+		--color-focus-offset: var(--color-graphite-950);
 	}
 
 	/* Screen reader only - visually hidden but accessible to screen readers */
@@ -365,17 +355,39 @@
 	}
 
 	/* Z-index scale utilities */
-	.z-base { z-index: var(--z-index-base); }
-	.z-dropdown { z-index: var(--z-index-dropdown); }
-	.z-sticky { z-index: var(--z-index-sticky); }
-	.z-fixed { z-index: var(--z-index-fixed); }
-	.z-drawer { z-index: var(--z-index-drawer); }
-	.z-modal-backdrop { z-index: var(--z-index-modal-backdrop); }
-	.z-modal { z-index: var(--z-index-modal); }
-	.z-popover { z-index: var(--z-index-popover); }
-	.z-tooltip { z-index: var(--z-index-tooltip); }
-	.z-notification { z-index: var(--z-index-notification); }
-	.z-max { z-index: var(--z-index-max); }
+	.z-base {
+		z-index: var(--z-index-base);
+	}
+	.z-dropdown {
+		z-index: var(--z-index-dropdown);
+	}
+	.z-sticky {
+		z-index: var(--z-index-sticky);
+	}
+	.z-fixed {
+		z-index: var(--z-index-fixed);
+	}
+	.z-drawer {
+		z-index: var(--z-index-drawer);
+	}
+	.z-modal-backdrop {
+		z-index: var(--z-index-modal-backdrop);
+	}
+	.z-modal {
+		z-index: var(--z-index-modal);
+	}
+	.z-popover {
+		z-index: var(--z-index-popover);
+	}
+	.z-tooltip {
+		z-index: var(--z-index-tooltip);
+	}
+	.z-notification {
+		z-index: var(--z-index-notification);
+	}
+	.z-max {
+		z-index: var(--z-index-max);
+	}
 }
 
 /* Spin animations for loading screen */

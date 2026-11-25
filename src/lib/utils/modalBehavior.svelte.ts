@@ -55,9 +55,9 @@ export function createModalBehavior() {
 
 	function getModalClasses(fullScreenOnMobile = true): string {
 		if (fullScreenOnMobile) {
-			return 'flex h-full w-full flex-col bg-white shadow-xl md:h-auto md:rounded-lg dark:bg-gray-800';
+			return 'flex h-full w-full flex-col bg-white shadow-xl md:h-auto md:rounded-lg dark:bg-graphite-900';
 		}
-		return 'flex flex-col bg-white shadow-xl rounded-lg dark:bg-gray-800';
+		return 'flex flex-col bg-white shadow-xl rounded-lg dark:bg-graphite-900';
 	}
 
 	return {

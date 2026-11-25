@@ -1,6 +1,8 @@
 import { categorySettings, displaySettings } from '$lib/data/settings.svelte';
 import { categoryMetadataStore } from '$lib/stores/categoryMetadata.svelte';
+import { contentFilter } from '$lib/stores/contentFilter.svelte';
 import type { Category, Story } from '$lib/types';
+import { filterStories } from '$lib/utils/contentFilter';
 import { orderStoriesForSinglePage } from '$lib/utils/storyOrdering';
 
 interface DerivedStateOptions {
@@ -9,6 +11,7 @@ interface DerivedStateOptions {
 	stories: Story[];
 	expandedStories: Record<string, boolean>;
 	allCategoryStories: Record<string, Story[]>;
+	loadingCategories: Record<string, true>;
 	storyCountOverride: number | null;
 }
 
@@ -38,8 +41,9 @@ export function usePageDerived(options: () => DerivedStateOptions) {
 
 		const orderedList: Category[] = [];
 
-		// Add categories in the exact order they appear in enabled
-		// Include categories not in current batch so they still show in nav with "no stories" message
+		// Add categories in the exact order they appear in enabled.
+		// Include categories not in the current batch so they still show in
+		// nav with the "no stories" empty state.
 		for (const categoryId of categorySettings.enabled) {
 			const category = opts.categories.find((cat) => cat.id === categoryId);
 			if (category) {
@@ -73,6 +77,20 @@ export function usePageDerived(options: () => DerivedStateOptions) {
 	const singlePageMode = $derived(categorySettings.singlePageMode);
 	const isSinglePageMode = $derived(singlePageMode !== 'disabled');
 
+	// Take stories per category the same way StoryList does for a single category:
+	// let the content filter pick from the whole pool so hidden stories are
+	// backfilled rather than leaving the category short (KNEWS-441).
+	const pickStories = (stories: Story[], limit: number): Story[] =>
+		contentFilter.isActive
+			? filterStories(
+					stories,
+					contentFilter.keywords,
+					contentFilter.filterScope,
+					contentFilter.filterMode,
+					limit,
+				).filtered
+			: stories.slice(0, limit);
+
 	// Cache for random mode to prevent re-shuffling on every reactivity trigger
 	let cachedRandomStories: ReturnType<typeof orderStoriesForSinglePage> | null = null;
 	let cachedRandomKey = '';
@@ -94,7 +112,10 @@ export function usePageDerived(options: () => DerivedStateOptions) {
 				.flatMap((cat) => opts.allCategoryStories[cat.id] || [])
 				.map((s) => s.id || s.title)
 				.join(',');
-			const cacheKey = `${storyIds}-${perCategoryLimit}-${orderedCategories.map((c) => c.id).join(',')}`;
+			const filterKey = contentFilter.isActive
+				? `${contentFilter.keywords.join('|')}-${contentFilter.filterScope}-${contentFilter.filterMode}`
+				: '';
+			const cacheKey = `${storyIds}-${perCategoryLimit}-${orderedCategories.map((c) => c.id).join(',')}-${filterKey}`;
 
 			// Only re-shuffle if the underlying data changed
 			if (cachedRandomKey !== cacheKey) {
@@ -103,6 +124,7 @@ export function usePageDerived(options: () => DerivedStateOptions) {
 					orderedCategories,
 					singlePageMode,
 					perCategoryLimit,
+					pickStories,
 				);
 				cachedRandomKey = cacheKey;
 			}
@@ -116,7 +138,61 @@ export function usePageDerived(options: () => DerivedStateOptions) {
 			orderedCategories,
 			singlePageMode,
 			perCategoryLimit,
+			pickStories,
 		);
+	});
+
+	// Categories whose stories are still in flight, each anchored to the loaded
+	// category it should render above (`beforeCategoryId: null` = after
+	// everything loaded so far). Single page mode fills every category in
+	// parallel and they resolve in arbitrary order, so a pending section has to
+	// be placed by its position in orderedCategories rather than appended —
+	// otherwise a category that lands early would jump above the placeholders
+	// for categories that precede it (KNEWS-448).
+	const singlePagePendingSections = $derived.by(() => {
+		if (!isSinglePageMode) return [];
+		const opts = options();
+
+		const pending: { id: string; name: string; beforeCategoryId: string | null }[] = [];
+		let waiting: { id: string; name: string }[] = [];
+
+		for (const category of orderedCategories) {
+			if (opts.loadingCategories[category.id]) {
+				waiting.push({ id: category.id, name: category.name });
+				continue;
+			}
+			// A loaded category with stories anchors everything queued so far.
+			if ((opts.allCategoryStories[category.id] || []).length > 0) {
+				for (const w of waiting) pending.push({ ...w, beforeCategoryId: category.id });
+				waiting = [];
+			}
+		}
+		for (const w of waiting) pending.push({ ...w, beforeCategoryId: null });
+
+		return pending;
+	});
+
+	// How many stories the filter removed on the way to each category's count.
+	// StoryList cannot derive this in single page mode because it only ever sees
+	// the already-backfilled list, not the pools it was drawn from.
+	const singlePageHiddenCount = $derived.by(() => {
+		if (!isSinglePageMode || !contentFilter.isActive) return 0;
+		const opts = options();
+		const perCategoryLimit = opts.storyCountOverride ?? displaySettings.storyCount;
+		return orderedCategories.reduce((total, category) => {
+			const categoryStories = opts.allCategoryStories[category.id] || [];
+			if (categoryStories.length === 0) return total;
+			return (
+				total +
+				filterStories(
+					categoryStories,
+					contentFilter.keywords,
+					contentFilter.filterScope,
+					contentFilter.filterMode,
+					perCategoryLimit,
+				).filteredCount
+			);
+		}, 0);
 	});
 
 	// Compute current story index from expanded stories
@@ -181,6 +257,12 @@ export function usePageDerived(options: () => DerivedStateOptions) {
 		},
 		get isSinglePageMode() {
 			return isSinglePageMode;
+		},
+		get singlePageHiddenCount() {
+			return singlePageHiddenCount;
+		},
+		get singlePagePendingSections() {
+			return singlePagePendingSections;
 		},
 		get singlePageStories() {
 			return singlePageStories;

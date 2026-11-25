@@ -1,10 +1,9 @@
 /**
  * Device ID management utilities
  */
-
-import { v4 as uuidv4 } from 'uuid';
 import { browser } from '$app/environment';
 import { safeGetItem, safeSetItem } from './safe-storage';
+import { v4 as uuidv4 } from 'uuid';
 
 /**
  * Get or create a persistent device ID

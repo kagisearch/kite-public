@@ -1,7 +1,7 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
 import * as imagePreloader from '$lib/utils/imagePreloader';
 import { dataService } from '../dataService';
 import { imagePreloadingService } from '../imagePreloadingService';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 // Mock the dependencies
 vi.mock('$lib/utils/imagePreloader', () => ({
