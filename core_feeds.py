@@ -308,6 +308,7 @@ feeds = {
         "https://feeds.npr.org/820266919/rss.xml",
         "https://galyonk.in/feed",
         "https://www.gamedeveloper.com/rss.xml",
+        "https://gameempress.com/category/gaming/feed/",
         "https://gameinformer.com/news.xml",
         "https://gameinformer.com/reviews.xml",
         "https://www.gamepressure.com/rss/news.xml",
