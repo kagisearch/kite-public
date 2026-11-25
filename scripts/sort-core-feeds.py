@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Sort and deduplicate core feeds."""
 
+import ast
 import json
 import sys
 from pathlib import Path
-import importlib.util
 import glob
 import re
 
@@ -44,6 +44,42 @@ def dedupe_and_sort(urls):
 CORE_FEEDS_FILE = 'core_feeds.py'
 LOCALES_DIR = 'src/lib/locales'
 
+
+def load_core_feeds(path=CORE_FEEDS_FILE):
+    """Read the `feeds` dict from core_feeds.py without running it.
+
+    core_feeds.py is data, and this script runs in CI with a token that can
+    push, so it is parsed, never imported: only a top-level
+    `feeds = {"Category": ["url", ...], ...}` made of string literals is
+    accepted. Anything else (calls, names, f-strings, other statements) is an
+    error.
+    """
+    tree = ast.parse(Path(path).read_text(encoding='utf-8'), filename=str(path))
+    feeds = None
+    for node in tree.body:
+        if (
+            isinstance(node, ast.Assign)
+            and len(node.targets) == 1
+            and isinstance(node.targets[0], ast.Name)
+            and node.targets[0].id == 'feeds'
+        ):
+            feeds = ast.literal_eval(node.value)
+        elif isinstance(node, ast.Expr) and isinstance(node.value, ast.Constant) and isinstance(node.value.value, str):
+            continue  # a docstring
+        else:
+            raise ValueError(f"{path}:{node.lineno}: only a `feeds = {{...}}` assignment is allowed")
+    if not isinstance(feeds, dict):
+        raise ValueError(f"{path}: no `feeds` dict found")
+    for category, urls in feeds.items():
+        if not isinstance(category, str) or not isinstance(urls, list) or not all(isinstance(u, str) for u in urls):
+            raise ValueError(f"{path}: `feeds` must map category names to lists of URL strings")
+    return feeds
+
+
+def py_string(value):
+    """Quote a string as a Python literal (JSON string syntax is valid Python)."""
+    return json.dumps(value, ensure_ascii=False)
+
 def analyze_translations():
     """Analyze translation issues for core feeds categories."""
     issues = []
@@ -52,14 +88,7 @@ def analyze_translations():
     if not Path(CORE_FEEDS_FILE).exists():
         return issues
 
-    spec = importlib.util.spec_from_file_location("core_feeds", CORE_FEEDS_FILE)
-    core_feeds_module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(core_feeds_module)
-
-    if not hasattr(core_feeds_module, 'feeds'):
-        return issues
-
-    core_categories = set(core_feeds_module.feeds.keys())
+    core_categories = set(load_core_feeds().keys())
 
     # Check each locale file for missing translations
     locale_files = glob.glob(f"{LOCALES_DIR}/*.json")
@@ -90,16 +119,11 @@ def main():
 
     print(f"📄 Reading {CORE_FEEDS_FILE}")
 
-    # Import the module directly
-    spec = importlib.util.spec_from_file_location("core_feeds", CORE_FEEDS_FILE)
-    core_feeds_module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(core_feeds_module)
-
-    if not hasattr(core_feeds_module, 'feeds'):
-        print("❌ Could not find 'feeds' dictionary in core_feeds.py")
+    try:
+        feeds_dict = load_core_feeds()
+    except (SyntaxError, ValueError) as e:
+        print(f"❌ {CORE_FEEDS_FILE} is not a plain feeds dict: {e}")
         return 1
-
-    feeds_dict = core_feeds_module.feeds
 
     # Sort categories and deduplicate feeds
     sorted_feeds = {}
@@ -134,9 +158,9 @@ def main():
     # Trailing commas everywhere, so the private feeds.py copy is already
     # ruff-formatted and the two files stay byte-identical.
     for category in categories:
-        output_lines.append(f'    "{category}": [')
+        output_lines.append(f'    {py_string(category)}: [')
         for feed in sorted_feeds[category]:
-            output_lines.append(f'        "{feed}",')
+            output_lines.append(f'        {py_string(feed)},')
         output_lines.append('    ],')
 
     output_lines.append('}')
