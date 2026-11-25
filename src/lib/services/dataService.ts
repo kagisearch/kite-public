@@ -1,3 +1,4 @@
+import { STORIES_PER_CATEGORY } from '$lib/constants/categories';
 import { batchService } from './batchService';
 import { chaosIndexService } from './chaosIndexService';
 import { mediaService } from './mediaService';
@@ -8,19 +9,19 @@ import { storiesService } from './storiesService';
 const reloadCallbacks = new Set<() => Promise<void>>();
 const beforeReloadCallbacks = new Set<() => void>();
 
-// Flag to prevent recursive reloads
-let isReloading = false;
+// Single-flight reload: concurrent callers share the in-flight promise
+// instead of starting duplicate reloads. This handles the case where
+// DataLanguageSelector, sync-manager, and reactive effects all call
+// reloadData() for the same logical event.
+let inflightReload: Promise<void> | null = null;
 
 export const dataReloadService = {
 	// Register a callback to be called on reload
 	// Returns an unsubscribe function for cleanup
 	onReload(callback: () => Promise<void>): () => void {
 		reloadCallbacks.add(callback);
-		console.log('🔧 Reload callback registered, total:', reloadCallbacks.size);
-		// Return unsubscribe function
 		return () => {
 			reloadCallbacks.delete(callback);
-			console.log('🔧 Reload callback unregistered, total:', reloadCallbacks.size);
 		};
 	},
 
@@ -28,7 +29,6 @@ export const dataReloadService = {
 	// Returns an unsubscribe function for cleanup
 	beforeReload(callback: () => void): () => void {
 		beforeReloadCallbacks.add(callback);
-		console.log('🔧 Before-reload callback registered');
 		return () => {
 			beforeReloadCallbacks.delete(callback);
 		};
@@ -36,29 +36,27 @@ export const dataReloadService = {
 
 	// Check if a reload is currently in progress
 	isReloading(): boolean {
-		return isReloading;
+		return inflightReload !== null;
 	},
 
-	// Trigger all reload callbacks
+	// Trigger all reload callbacks. If a reload is already in progress,
+	// returns the existing promise (single-flight deduplication).
 	async reloadData() {
-		// Prevent recursive/duplicate reloads
-		if (isReloading) {
-			console.log('🔄 Reload already in progress, skipping...');
-			return;
+		if (inflightReload) {
+			return inflightReload;
 		}
 
-		isReloading = true;
-		console.log('🔄 Reloading data...');
-		try {
-			// Call before-reload callbacks first (synchronously)
-			beforeReloadCallbacks.forEach((cb) => {
-				cb();
-			});
-			// Then call all registered reload callbacks
-			await Promise.all([...reloadCallbacks].map((cb) => cb()));
-		} finally {
-			isReloading = false;
-		}
+		const doReload = async () => {
+			try {
+				for (const cb of beforeReloadCallbacks) cb();
+				await Promise.all([...reloadCallbacks].map((cb) => cb()));
+			} finally {
+				inflightReload = null;
+			}
+		};
+
+		inflightReload = doReload();
+		return inflightReload;
 	},
 };
 
@@ -94,20 +92,13 @@ class DataService {
 		return batchService.isTimeTravelMode();
 	}
 
-	async loadInitialData(
-		lang: string = 'default',
-		providedBatchInfo?: { id: string; createdAt: string },
-	) {
-		return batchService.loadInitialData(lang, providedBatchInfo);
-	}
-
 	/**
 	 * Stories functionality
 	 */
 	async loadStories(
 		batchId: string,
 		categoryUuid: string,
-		limit: number = 12,
+		limit: number = STORIES_PER_CATEGORY,
 		lang: string = 'default',
 	) {
 		return storiesService.loadStories(batchId, categoryUuid, limit, lang);

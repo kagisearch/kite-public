@@ -1,4 +1,5 @@
 <script lang="ts">
+import { s } from '$lib/client/localization.svelte';
 import {
 	IconChevronDown,
 	IconChevronUp,
@@ -7,7 +8,6 @@ import {
 	IconRefresh,
 } from '@tabler/icons-svelte';
 import { onMount } from 'svelte';
-import { s } from '$lib/client/localization.svelte';
 
 interface Race {
 	round: number;
@@ -103,27 +103,27 @@ onMount(() => {
 });
 </script>
 
-<div class="mb-4 rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-800/50">
+<div class="mb-4 rounded-lg border border-primary-100 bg-primary-25 dark:bg-graphite-800/50">
 	<!-- Header - Always visible -->
 	<div class="flex w-full items-center justify-between px-4 py-3">
 		<button
 			onclick={() => (expanded = !expanded)}
 			class="flex flex-1 items-center gap-2 text-left transition-colors hover:opacity-80"
 		>
-			<IconFlag class="h-4 w-4 text-gray-600 dark:text-gray-400" />
-			<span class="text-sm font-medium text-gray-900 dark:text-gray-100">{s('f1.schedule.title')}</span>
-			<span class="text-xs text-gray-600 dark:text-gray-400">{summaryText}</span>
+			<IconFlag class="h-4 w-4 text-primary-600" />
+			<span class="text-sm font-medium text-primary">{s('f1.schedule.title')}</span>
+			<span class="text-xs text-primary-600">{summaryText}</span>
 			{#if expanded}
-				<IconChevronUp class="ml-auto h-5 w-5 text-gray-600 dark:text-gray-400" />
+				<IconChevronUp class="ml-auto h-5 w-5 text-primary-600" />
 			{:else}
-				<IconChevronDown class="ml-auto h-5 w-5 text-gray-600 dark:text-gray-400" />
+				<IconChevronDown class="ml-auto h-5 w-5 text-primary-600" />
 			{/if}
 		</button>
 		{#if !loading}
 			<button
 				onclick={handleRefresh}
 				disabled={refreshing}
-				class="rounded p-1 text-gray-600 transition-colors hover:bg-gray-100 disabled:opacity-50 dark:text-gray-400 dark:hover:bg-gray-700"
+				class="rounded p-1 text-primary-600 transition-colors hover:bg-primary-50 disabled:opacity-50 dark:hover:bg-graphite-700"
 				aria-label={s('f1.schedule.title')}
 			>
 				<IconRefresh class="h-4 w-4 {refreshing ? 'animate-spin' : ''}" />
@@ -133,7 +133,7 @@ onMount(() => {
 
 	<!-- Collapsed Preview - Next 3 Races -->
 	{#if !expanded && upcomingRaces.length > 0}
-		<div class="border-t border-gray-200 px-4 py-2 dark:border-gray-700">
+		<div class="border-t border-primary-100 px-4 py-2">
 			<div class="space-y-1">
 				{#each upcomingRaces as race}
 					{@const daysUntil = getDaysUntil(race.date, race.time)}
@@ -145,9 +145,9 @@ onMount(() => {
 									{s('f1.nextRace')}
 								</span>
 							{/if}
-							<span class="font-medium text-gray-900 dark:text-gray-100">{race.name}</span>
+							<span class="font-medium text-primary">{race.name}</span>
 						</div>
-						<div class="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+						<div class="flex items-center gap-2 text-primary-600">
 							<span>{formatDate(race.date)}</span>
 							{#if daysUntil > 0}
 								<span>
@@ -169,10 +169,10 @@ onMount(() => {
 
 	<!-- Expanded Content -->
 	{#if expanded}
-		<div class="border-t border-gray-200 dark:border-gray-700">
+		<div class="border-t border-primary-100">
 			{#if loading}
 				<div class="flex items-center justify-center py-8">
-					<IconLoader2 class="h-6 w-6 animate-spin text-gray-600 dark:text-gray-400" />
+					<IconLoader2 class="h-6 w-6 animate-spin text-primary-600" />
 				</div>
 			{:else if error}
 				<div class="p-8 text-center text-red-600 dark:text-red-400">{error}</div>
@@ -186,13 +186,14 @@ onMount(() => {
 							<div
 								class="rounded-lg border p-3 {isNext
 									? 'border-red-300 bg-red-50 dark:border-red-700 dark:bg-red-900/20'
-									: 'border-gray-200 dark:border-gray-700'}"
+									: 'border-primary-100'}"
 							>
 								<div class="flex items-start justify-between">
 									<div class="flex-1">
 										<div class="flex items-center gap-2">
-											<span class="text-xs font-semibold text-gray-500 dark:text-gray-400">
-												{s('f1.round')} {race.round}
+											<span class="text-xs font-semibold text-primary-600">
+												{s('f1.round')}
+												{race.round}
 											</span>
 											{#if isNext}
 												<span
@@ -202,27 +203,27 @@ onMount(() => {
 												</span>
 											{/if}
 										</div>
-										<div class="mt-1 font-semibold text-gray-900 dark:text-gray-100">
+										<div class="mt-1 font-semibold text-primary">
 											{race.name}
 										</div>
-										<div class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+										<div class="mt-1 text-sm text-primary-600">
 											{race.circuit.location}, {race.circuit.country}
 										</div>
 										{#if race.winner}
-											<div class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+											<div class="mt-2 text-sm text-primary-600">
 												<span class="font-medium">{s('f1.winner')}:</span>
 												{race.winner.name}
-												<span class="text-gray-500 dark:text-gray-500">({race.winner.constructor})</span>
+												<span class="text-primary-600">({race.winner.constructor})</span>
 											</div>
 										{/if}
 									</div>
 									<div class="text-right">
-										<div class="font-semibold text-gray-900 dark:text-gray-100">
+										<div class="font-semibold text-primary">
 											{formatDate(race.date)}
 										</div>
 										{#if race.status === 'upcoming'}
 											{@const days = getDaysUntil(race.date, race.time)}
-											<div class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+											<div class="mt-1 text-sm text-primary-600">
 												{#if days <= 0}
 													{s('f1.today')}
 												{:else if days === 1}
@@ -232,7 +233,7 @@ onMount(() => {
 												{/if}
 											</div>
 										{:else}
-											<div class="mt-1 text-sm text-gray-500 dark:text-gray-500">
+											<div class="mt-1 text-sm text-primary-600">
 												{s('f1.completed')}
 											</div>
 										{/if}

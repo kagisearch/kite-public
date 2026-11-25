@@ -4,7 +4,6 @@
  * Import and register all migrations here in chronological order.
  * Each migration file should export a Migration object.
  */
-
 import type { Migration } from './types';
 import { v1_language_preferences } from './v1_language_preferences';
 import { v2_remove_china_taiwan } from './v2_remove_china_taiwan';

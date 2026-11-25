@@ -2,7 +2,6 @@
  * Self-contained sync watcher for settings
  * Tracks setting changes and syncs them when appropriate
  */
-
 import { browser } from '$app/environment';
 import { settings } from '$lib/data/settings.svelte';
 import { syncManager } from './sync-manager';
@@ -85,8 +84,8 @@ export class SyncSettingsWatcher {
 		const seen = new Set<string>(); // Track what we've already added
 
 		Object.values(settings).forEach((setting) => {
-			// Skip sync_local settings (they don't sync)
-			if (setting.category === 'sync_local') {
+			// Skip sync_local and lock settings (they don't sync)
+			if (setting.category === 'sync_local' || setting.category === 'lock') {
 				return;
 			}
 

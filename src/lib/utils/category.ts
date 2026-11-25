@@ -16,9 +16,14 @@ import { categoryNameToCamelCase } from './categoryIdTransform';
  * @param metadata - Metadata with display_names from kite_feeds.json
  */
 export function getCategoryDisplayName(category: Category, metadata: CategoryMetadata): string {
-	// Special case for OnThisDay
+	// Special case for OnThisDay. Use strict mode so `s()` returns undefined
+	// when the translation isn't loaded yet — otherwise it returns the
+	// literal key `"category.todayInHistory"` (which is truthy, so the `||`
+	// fallback never fires) and the tab briefly renders that key during the
+	// window between hydration and `+layout.svelte`'s `language.initStrings`
+	// running in onMount. Visible on Orion / WebKit as a one-frame flash.
 	if (category.id === 'onthisday') {
-		return s('category.todayInHistory') || 'Today in History';
+		return s('category.todayInHistory', undefined, true) ?? 'Today in History';
 	}
 
 	// For community categories: Use display_names from metadata

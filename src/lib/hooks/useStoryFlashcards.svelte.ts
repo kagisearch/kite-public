@@ -1,7 +1,7 @@
-import { SvelteMap, SvelteSet } from 'svelte/reactivity';
 import type { Story } from '$lib/types';
 import { generateAnkiCSV } from '$lib/utils/csv';
 import { downloadCSV } from '$lib/utils/download';
+import { SvelteMap, SvelteSet } from 'svelte/reactivity';
 
 export interface FlashcardState {
 	enabled: boolean;
