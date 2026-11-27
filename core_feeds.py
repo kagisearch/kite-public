@@ -960,6 +960,7 @@ feeds = {
         "https://xkcd.com/atom.xml",
     ],
     "World": [
+        "https://english.ajel.sa/rss.xml",
         "https://www.abc.net.au/news/feed/45910/rss.xml",
         "https://abcnews.go.com/abcnews/internationalheadlines",
         "https://acleddata.com/feed/",
